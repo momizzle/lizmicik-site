@@ -3,21 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liz Micik — SEO Strategist for the Agentic Web Transition</title>
+    <title>Liz Micik — SEO, Content Strategist, and Agentic Web Transition Consultant</title>
     <meta name="description" content="Every company built a website to talk to people. Nobody built one to talk to AI. Liz Micik helps businesses navigate the transition from the human web to the agentic web.">
     <meta name="author" content="Liz Micik">
-
     <!-- Open Graph -->
     <meta property="og:title" content="Liz Micik — SEO Strategist for the Agentic Web Transition">
     <meta property="og:description" content="Every company built a website to talk to people. Nobody built one to talk to AI.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://lizmicik.com">
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
     {
@@ -88,7 +85,6 @@
         ]
     }
     </script>
-
     <style>
         /* ========================================
            CSS Custom Properties
@@ -100,29 +96,24 @@
             --slate: #2C3038;
             --slate-light: #3D424D;
             --slate-mid: #545B6A;
-
             /* Accent colors — muted, pulled from reference images */
             --accent-amber: #C4956A;
             --accent-teal: #6A9FA0;
             --accent-blue: #7B8DAE;
             --accent-copper: #B07D5B;
-
             /* Text colors */
             --text-primary: #2C3038;
             --text-secondary: #545B6A;
             --text-light: #F2EDE7;
             --text-light-secondary: #B8B5B0;
-
             /* Typography */
             --font-heading: 'Lora', Georgia, 'Times New Roman', serif;
             --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-
             /* Spacing */
             --section-padding: clamp(4rem, 8vw, 7rem);
             --content-width: 720px;
             --wide-width: 960px;
         }
-
         /* ========================================
            Reset & Base
            ======================================== */
@@ -131,14 +122,12 @@
             margin: 0;
             padding: 0;
         }
-
         html {
             font-size: 16px;
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-
         body {
             font-family: var(--font-body);
             font-weight: 400;
@@ -146,23 +135,19 @@
             color: var(--text-primary);
             background-color: var(--cream);
         }
-
         img {
             max-width: 100%;
             height: auto;
             display: block;
         }
-
         a {
             color: var(--accent-teal);
             text-decoration: none;
             transition: color 0.2s ease;
         }
-
         a:hover {
             color: var(--accent-copper);
         }
-
         /* ========================================
            Typography
            ======================================== */
@@ -171,50 +156,41 @@
             font-weight: 600;
             line-height: 1.25;
         }
-
         h1 {
             font-size: clamp(2rem, 5vw, 3.2rem);
             letter-spacing: -0.02em;
         }
-
         h2 {
             font-size: clamp(1.5rem, 3.5vw, 2.2rem);
             letter-spacing: -0.01em;
             margin-bottom: 1.5rem;
         }
-
         h3 {
             font-size: clamp(1.15rem, 2.5vw, 1.5rem);
             margin-bottom: 0.75rem;
         }
-
         p {
             margin-bottom: 1.25rem;
             font-size: clamp(0.95rem, 1.8vw, 1.05rem);
         }
-
         p:last-child {
             margin-bottom: 0;
         }
-
         /* ========================================
            Layout
            ======================================== */
         .section {
             padding: var(--section-padding) 1.5rem;
         }
-
         .section-inner {
             max-width: var(--content-width);
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
-
         .section-inner--wide {
             max-width: var(--wide-width);
         }
-
         /* ========================================
            Navigation
            ======================================== */
@@ -230,15 +206,12 @@
             border-bottom: 1px solid rgba(44, 48, 56, 0.06);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
         .nav--hidden {
             transform: translateY(-100%);
         }
-
         .nav--shadow {
             box-shadow: 0 1px 8px rgba(44, 48, 56, 0.06);
         }
-
         .nav-inner {
             max-width: var(--wide-width);
             margin: 0 auto;
@@ -247,7 +220,6 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .nav-name {
             font-family: var(--font-heading);
             font-size: 1.1rem;
@@ -255,13 +227,11 @@
             color: var(--text-primary);
             letter-spacing: -0.01em;
         }
-
         .nav-links {
             display: flex;
             gap: 1.75rem;
             list-style: none;
         }
-
         .nav-links a {
             font-size: 0.85rem;
             font-weight: 500;
@@ -270,11 +240,9 @@
             text-transform: uppercase;
             transition: color 0.2s ease;
         }
-
         .nav-links a:hover {
             color: var(--text-primary);
         }
-
         .nav-toggle {
             display: none;
             background: none;
@@ -282,7 +250,6 @@
             cursor: pointer;
             padding: 0.5rem;
         }
-
         .nav-toggle span {
             display: block;
             width: 22px;
@@ -291,63 +258,48 @@
             margin: 5px 0;
             transition: all 0.3s ease;
         }
-
         /* ========================================
            HERO Section
            ======================================== */
         .hero {
-            padding-top: calc(var(--section-padding) + 3rem);
-            padding-bottom: var(--section-padding);
-            min-height: 85vh;
+            padding-top: calc(var(--section-padding) + 2rem);
+            padding-bottom: clamp(2rem, 4vw, 3rem);
+            min-height: auto;
             display: flex;
             align-items: center;
+            justify-content: center;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
-
         .hero::after {
             content: '';
             position: absolute;
-            right: -60px;
-            bottom: -20px;
-            width: 340px;
-            height: 240px;
-            background: url('images/3d%20shapes%20on%20flat%20model%20workflows%20-%20love%20this.png') center/cover no-repeat;
-            opacity: 0.08;
+            left: -80px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 500px;
+            height: 600px;
+            background: url('images/html%20block.png') center/contain no-repeat;
+            opacity: 0.22;
             pointer-events: none;
-            mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
-            -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+            z-index: 0;
         }
-
         .hero-inner {
             max-width: var(--content-width);
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
-
         .hero h1 {
             margin-bottom: 1.75rem;
             color: var(--text-primary);
         }
-
         .hero h1 .line-break {
             display: block;
             margin-top: 0.3em;
             color: var(--accent-copper);
         }
-
-        .hero-sub {
-            font-size: clamp(1.05rem, 2vw, 1.2rem);
-            color: var(--text-secondary);
-            font-weight: 300;
-            line-height: 1.6;
-            max-width: 560px;
-        }
-
-        .hero-sub strong {
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-
         /* ========================================
            THE SHIFT Section (cream bg)
            ======================================== */
@@ -355,7 +307,6 @@
             background-color: var(--cream-dark);
             position: relative;
         }
-
         /* Stat callout */
         .stat-callout {
             display: flex;
@@ -367,17 +318,14 @@
             margin: 2rem 0;
             border: 1px solid rgba(44, 48, 56, 0.06);
         }
-
         .stat-visual {
             flex-shrink: 0;
             width: 90px;
             height: 90px;
         }
-
         .stat-text {
             flex: 1;
         }
-
         .stat-text .stat-number {
             font-family: var(--font-heading);
             font-size: 1.6rem;
@@ -386,34 +334,28 @@
             line-height: 1.2;
             margin-bottom: 0.25rem;
         }
-
         .stat-text .stat-label {
             font-size: 0.88rem;
             color: var(--text-secondary);
             line-height: 1.5;
             margin-bottom: 0;
         }
-
         .stat-text .stat-source {
             font-size: 0.75rem;
             color: var(--text-light-secondary);
             margin-top: 0.35rem;
             margin-bottom: 0;
         }
-
         .stat-text .stat-source a {
             color: var(--text-light-secondary);
             text-decoration: underline;
         }
-
         .shift p {
             color: var(--text-secondary);
         }
-
         .shift p:first-of-type {
             color: var(--text-primary);
         }
-
         /* ========================================
            FRAMEWORK Section (slate bg)
            ======================================== */
@@ -423,7 +365,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .framework::before {
             content: '';
             position: absolute;
@@ -438,33 +379,27 @@
             mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
             -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
         }
-
         .framework h2 {
             color: var(--text-light);
         }
-
         .framework-intro {
             color: var(--text-light-secondary);
             margin-bottom: 2.5rem;
             font-size: clamp(1rem, 2vw, 1.1rem);
         }
-
         .framework-layers {
             display: flex;
             flex-direction: column;
             gap: 2.5rem;
         }
-
         .layer {
             padding-left: 1.5rem;
             border-left: 2px solid var(--slate-mid);
             transition: border-color 0.3s ease;
         }
-
         .layer:hover {
             border-left-color: var(--accent-amber);
         }
-
         .layer h3 {
             font-family: var(--font-heading);
             color: var(--cream);
@@ -472,43 +407,43 @@
             font-weight: 600;
             margin-bottom: 0.6rem;
         }
-
         .layer p {
             color: var(--text-light-secondary);
             font-size: clamp(0.9rem, 1.6vw, 0.98rem);
             line-height: 1.7;
         }
-
         /* ========================================
            ABOUT Section
            ======================================== */
         .about {
             background-color: var(--cream);
         }
-
         .about-content {
             display: flex;
             flex-direction: column;
             gap: 2rem;
         }
-
+        .about-photo-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            width: 220px;
+        }
         .about-photo-container {
             width: 200px;
             height: 200px;
             border-radius: 50%;
             overflow: hidden;
             flex-shrink: 0;
-            margin: 0 auto 1rem auto;
             background-color: var(--cream-dark);
             border: 3px solid var(--cream-dark);
         }
-
         .about-photo-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .about-photo-placeholder {
             width: 100%;
             height: 100%;
@@ -520,29 +455,36 @@
             color: var(--accent-amber);
             background-color: var(--cream-dark);
         }
-
+        .about-name {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-top: 0.75rem;
+            margin-bottom: 0;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+        .about-name strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
         .about p {
             color: var(--text-secondary);
         }
-
         .about-text > p:first-of-type {
             color: var(--text-primary);
             font-size: clamp(1.05rem, 2vw, 1.15rem);
         }
-
         .about-emphasis {
             font-family: var(--font-heading);
             font-style: italic;
             font-size: clamp(1rem, 2vw, 1.1rem);
             color: var(--text-primary) !important;
         }
-
         .about-list {
             list-style: none;
             padding: 0;
             margin: 0.5rem 0 1.5rem 0;
         }
-
         .about-list li {
             position: relative;
             padding-left: 1.6rem;
@@ -551,7 +493,6 @@
             color: var(--text-secondary);
             line-height: 1.6;
         }
-
         .about-list li::before {
             content: '';
             position: absolute;
@@ -563,7 +504,6 @@
             border-bottom: 2px solid var(--accent-amber);
             transform: rotate(-45deg);
         }
-
         .about-previous {
             margin-top: 1rem;
             padding-top: 1.5rem;
@@ -571,20 +511,6 @@
             font-size: 0.92rem !important;
             color: var(--text-secondary) !important;
         }
-
-        /* ========================================
-           Hero SVG illustration
-           ======================================== */
-        .hero-visual {
-            margin-top: 3rem;
-            max-width: 480px;
-        }
-
-        .hero-visual svg {
-            width: 100%;
-            height: auto;
-        }
-
         /* ========================================
            Section divider
            ======================================== */
@@ -594,11 +520,9 @@
             padding: 0;
             margin: 0;
         }
-
         .section-divider svg {
             display: block;
         }
-
         /* ========================================
            Framework layer icons
            ======================================== */
@@ -608,17 +532,14 @@
             gap: 0.75rem;
             margin-bottom: 0.6rem;
         }
-
         .layer-icon {
             flex-shrink: 0;
             width: 32px;
             height: 32px;
         }
-
         .layer-header h3 {
             margin-bottom: 0;
         }
-
         /* ========================================
            Shift pull-quote
            ======================================== */
@@ -632,7 +553,6 @@
             color: var(--text-primary);
             line-height: 1.5;
         }
-
         /* ========================================
            WORKING ON Section (slate bg)
            ======================================== */
@@ -642,7 +562,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .working-on::after {
             content: '';
             position: absolute;
@@ -656,51 +575,42 @@
             mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
             -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
         }
-
         .working-on h2 {
             color: var(--text-light);
         }
-
         .working-on p {
             color: var(--text-light-secondary);
         }
-
         /* ========================================
            CONTACT Section
            ======================================== */
         .contact {
             background-color: var(--cream-dark);
         }
-
         .contact h2 {
             margin-bottom: 0.75rem;
         }
-
         .contact-intro {
             color: var(--text-secondary);
             margin-bottom: 2.5rem;
         }
-
         .contact-form {
             display: flex;
             flex-direction: column;
             gap: 1.25rem;
             max-width: 520px;
         }
-
         .form-group {
             display: flex;
             flex-direction: column;
             gap: 0.35rem;
         }
-
         .form-group label {
             font-size: 0.85rem;
             font-weight: 500;
             color: var(--text-secondary);
             letter-spacing: 0.02em;
         }
-
         .form-group input,
         .form-group textarea {
             font-family: var(--font-body);
@@ -713,18 +623,15 @@
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
             outline: none;
         }
-
         .form-group input:focus,
         .form-group textarea:focus {
             border-color: var(--accent-teal);
             box-shadow: 0 0 0 3px rgba(106, 159, 160, 0.12);
         }
-
         .form-group textarea {
             min-height: 140px;
             resize: vertical;
         }
-
         .form-submit {
             font-family: var(--font-body);
             font-size: 0.95rem;
@@ -739,15 +646,12 @@
             align-self: flex-start;
             letter-spacing: 0.02em;
         }
-
         .form-submit:hover {
             background-color: var(--slate-light);
         }
-
         .form-submit:active {
             transform: translateY(1px);
         }
-
         .contact-email {
             margin-top: 2rem;
             padding-top: 1.5rem;
@@ -755,11 +659,9 @@
             font-size: 0.95rem;
             color: var(--text-secondary);
         }
-
         .contact-email a {
             font-weight: 500;
         }
-
         /* ========================================
            Footer
            ======================================== */
@@ -768,17 +670,14 @@
             padding: 2rem 1.5rem;
             text-align: center;
         }
-
         .footer p {
             font-size: 0.82rem;
             color: var(--slate-mid);
             margin: 0;
         }
-
         .footer a {
             color: var(--text-light-secondary);
         }
-
         /* ========================================
            Responsive
            ======================================== */
@@ -796,53 +695,44 @@
                 gap: 1rem;
                 border-bottom: 1px solid rgba(44, 48, 56, 0.06);
             }
-
             .nav-links.active {
                 display: flex;
             }
-
             .nav-toggle {
                 display: block;
             }
-
             .nav-toggle.active span:nth-child(1) {
                 transform: rotate(45deg) translate(5px, 5px);
             }
-
             .nav-toggle.active span:nth-child(2) {
                 opacity: 0;
             }
-
             .nav-toggle.active span:nth-child(3) {
                 transform: rotate(-45deg) translate(5px, -5px);
             }
-
             .hero {
-                min-height: 70vh;
+                min-height: auto;
             }
-
             .about-photo-container {
                 width: 160px;
                 height: 160px;
             }
         }
-
         @media (min-width: 768px) {
             .about-content {
                 flex-direction: row;
                 align-items: flex-start;
-                gap: 3rem;
+                gap: 2.5rem;
             }
-
-            .about-photo-container {
+            .about-photo-block {
                 margin: 0;
+                flex: 0 0 220px;
             }
-
             .about-text {
                 flex: 1;
+                min-width: 0;
             }
         }
-
         /* ========================================
            Subtle animations
            ======================================== */
@@ -852,7 +742,6 @@
                 transform: translateY(16px);
                 transition: opacity 0.6s ease, transform 0.6s ease;
             }
-
             .fade-in.visible {
                 opacity: 1;
                 transform: translateY(0);
@@ -860,9 +749,7 @@
         }
     </style>
 </head>
-
 <body>
-
     <!-- Navigation -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
         <div class="nav-inner">
@@ -880,7 +767,6 @@
             </ul>
         </div>
     </nav>
-
     <!-- HERO -->
     <header class="section hero" role="banner">
         <div class="hero-inner section-inner">
@@ -888,47 +774,14 @@
                 Every company built a website to talk to people.
                 <span class="line-break">Nobody built one to talk to AI.</span>
             </h1>
-            <p class="hero-sub fade-in">
-                <strong>Liz Micik</strong> — SEO strategist and consultant for the human-to-agentic web transition.
-            </p>
-            <!-- Abstract connection diagram — two blocks with a pathway between them -->
-            <div class="hero-visual fade-in" aria-hidden="true">
-                <svg viewBox="0 0 480 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Human block -->
-                    <rect x="20" y="30" width="80" height="60" rx="6" fill="none" stroke="#B8B5B0" stroke-width="1.5" opacity="0.5"/>
-                    <line x1="35" y1="50" x2="85" y2="50" stroke="#B8B5B0" stroke-width="1" opacity="0.3"/>
-                    <line x1="35" y1="58" x2="75" y2="58" stroke="#B8B5B0" stroke-width="1" opacity="0.3"/>
-                    <line x1="35" y1="66" x2="80" y2="66" stroke="#B8B5B0" stroke-width="1" opacity="0.3"/>
-                    <text x="60" y="82" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#B8B5B0" opacity="0.6">human web</text>
-                    <!-- Connection path -->
-                    <path d="M 110 60 C 160 60, 150 35, 200 35" stroke="#C4956A" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5" fill="none"/>
-                    <path d="M 110 60 C 160 60, 150 60, 200 60" stroke="#6A9FA0" stroke-width="1.5" opacity="0.4" fill="none"/>
-                    <path d="M 110 60 C 160 60, 150 85, 200 85" stroke="#7B8DAE" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5" fill="none"/>
-                    <!-- Small connector nodes -->
-                    <circle cx="155" cy="45" r="2.5" fill="#C4956A" opacity="0.5"/>
-                    <circle cx="160" cy="60" r="2.5" fill="#6A9FA0" opacity="0.5"/>
-                    <circle cx="155" cy="75" r="2.5" fill="#7B8DAE" opacity="0.5"/>
-                    <!-- AI/Agent block -->
-                    <rect x="200" y="20" width="100" height="80" rx="6" fill="none" stroke="#6A9FA0" stroke-width="1.5" opacity="0.5"/>
-                    <text x="250" y="48" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#6A9FA0" opacity="0.5">{</text>
-                    <text x="250" y="58" text-anchor="middle" font-family="monospace" font-size="7" fill="#6A9FA0" opacity="0.4">"entity": "..."</text>
-                    <text x="250" y="68" text-anchor="middle" font-family="monospace" font-size="7" fill="#6A9FA0" opacity="0.4">"trust": 0.92</text>
-                    <text x="250" y="78" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#6A9FA0" opacity="0.5">}</text>
-                    <text x="250" y="95" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#6A9FA0" opacity="0.6">agentic web</text>
-                    <!-- Arrow continuing right -->
-                    <line x1="310" y1="60" x2="360" y2="60" stroke="#B8B5B0" stroke-width="1" stroke-dasharray="3 4" opacity="0.3"/>
-                    <polygon points="360,56 368,60 360,64" fill="#B8B5B0" opacity="0.3"/>
-                </svg>
-            </div>
         </div>
     </header>
-
     <!-- THE SHIFT -->
     <section id="shift" class="section shift" aria-labelledby="shift-heading">
         <div class="section-inner">
             <h2 id="shift-heading" class="fade-in">The Shift</h2>
-            <p class="fade-in">You built a website to support your business. Over the years you worked hard to optimize it for the search engines so even more people could find it. You learned to use social media and video to expand your reach even further. Then you went to work testing it — crafting each word and each image to build a loyal customer base.</p>
-            <p class="fade-in">Now the web is being re-read — not by people, but by AI agents. The rules of success are being rewritten by large language models to serve answer engines that are quietly replacing the browser as the primary way businesses get found and evaluated.</p>
+            <p class="fade-in">You built a website to support your business. You worked hard to optimize it for the search engines. You added social sites and video to extend your reach. You crafted each word and each image to build a loyal customer base.</p>
+            <p class="fade-in">Now the web is being re-read — not by people, but by AI agents. The rules of success are being rewritten to serve answer engines that are quietly replacing the browser as the primary way businesses get found and evaluated.</p>
             <!-- Bot traffic stat callout -->
             <div class="stat-callout fade-in">
                 <svg class="stat-visual" viewBox="0 0 90 90" aria-hidden="true">
@@ -960,7 +813,6 @@
             <p class="fade-in">The ones that don't will watch their visibility erode and never understand why.</p>
         </div>
     </section>
-
     <!-- FRAMEWORK -->
     <section id="framework" class="section framework" aria-labelledby="framework-heading">
         <div class="section-inner">
@@ -1006,15 +858,16 @@
             </div>
         </div>
     </section>
-
     <!-- ABOUT -->
     <section id="about" class="section about" aria-labelledby="about-heading">
         <div class="section-inner">
             <h2 id="about-heading" class="fade-in">About</h2>
             <div class="about-content fade-in">
-                <div class="about-photo-container">
-                    <!-- Replace placeholder with headshot: <img src="headshot.jpg" alt="Liz Micik" width="200" height="200"> -->
-                    <div class="about-photo-placeholder" aria-hidden="true">LM</div>
+                <div class="about-photo-block">
+                    <div class="about-photo-container">
+                        <img src="images/headshot.png" alt="Liz Micik — SEO & Content Strategist" width="200" height="200">
+                    </div>
+                    <p class="about-name"><strong>Liz Micik</strong><br>SEO & Content Strategist<br>AI Transition Consultant</p>
                 </div>
                 <div class="about-text">
                     <p>For nearly three decades, I've been the person companies call when the structure of the website itself is the problem.</p>
@@ -1022,20 +875,18 @@
                     <ul class="about-list">
                         <li>Domain migrations</li>
                         <li>Platform moves</li>
-                        <li>Complete content restructuring to match a business pivot</li>
+                        <li>Content restructuring to match a business pivot</li>
                         <li>CMS overhauls that touch every URL</li>
                         <li>International expansions and company divestitures</li>
                     </ul>
                     <p>I've cleaned out the attic and the basement of websites for enterprise B2B companies, global SaaS platforms, insurance groups, and lead generation networks.</p>
                     <p>Every one of those projects had the same shape: something fundamental about the website has to change, and if you get the structure wrong, everything built on top of it breaks.</p>
-                    <p>Now the entire web is facing the biggest structural shift I've seen in my career — the transition from a web built for human browsers to one that also has to communicate with AI agents, language models, and machine-driven discovery systems.</p>
+                    <p>Now the entire web is facing the biggest structural shift I've seen in my career.</p>
                     <p>I'm here to help my clients lay the foundations they'll need to survive and thrive in this new agentic web. No one can know yet what it will fully become, but I couldn't be more excited to be part of this transition.</p>
-                    <p class="about-previous">Previously: Principal, Content and Branding at Dun &amp; Bradstreet. SEO Manager at National General Holdings Group. Independent SEO and content consultant serving B2B, ecommerce, and SaaS clients.</p>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- WHAT I'M WORKING ON -->
     <section id="working" class="section working-on" aria-labelledby="working-heading">
         <div class="section-inner">
@@ -1044,12 +895,11 @@
             <p class="fade-in">I write and speak about the human-to-agentic web transition — what it means for businesses that built their online presence for a world that's changing faster than most realize.</p>
         </div>
     </section>
-
     <!-- CONTACT -->
     <section id="contact" class="section contact" aria-labelledby="contact-heading">
         <div class="section-inner">
-            <h2 id="contact-heading" class="fade-in">Let's talk.</h2>
-            <p class="contact-intro fade-in">Whether you're trying to understand what the shift to AI-driven discovery means for your business, or you already know and need someone who's been thinking about this — I'd like to hear from you.</p>
+            <h2 id="contact-heading" class="fade-in">Let's talk strategy</h2>
+            <p class="contact-intro fade-in">the transition to an agentic first web has begun. Don't get left behind.</p>
             <form class="contact-form fade-in" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
                 <input type="hidden" name="form-name" value="contact">
                 <p class="visually-hidden" style="display:none;">
@@ -1072,25 +922,21 @@
             <p class="contact-email fade-in">Or reach me directly at <a href="mailto:lizmicik@gmail.com">lizmicik@gmail.com</a></p>
         </div>
     </section>
-
     <!-- Footer -->
     <footer class="footer" role="contentinfo">
         <p>&copy; 2026 Liz Micik. All rights reserved.</p>
     </footer>
-
     <!-- JavaScript -->
     <script>
         // Mobile nav toggle
         const navToggle = document.querySelector('.nav-toggle');
         const navLinks = document.querySelector('.nav-links');
-
         navToggle.addEventListener('click', () => {
             navToggle.classList.toggle('active');
             navLinks.classList.toggle('active');
             navToggle.setAttribute('aria-expanded',
                 navToggle.classList.contains('active'));
         });
-
         // Close mobile nav on link click
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
@@ -1099,29 +945,23 @@
                 navToggle.setAttribute('aria-expanded', 'false');
             });
         });
-
         // Hide/show nav on scroll
         let lastScroll = 0;
         const nav = document.querySelector('.nav');
-
         window.addEventListener('scroll', () => {
             const currentScroll = window.pageYOffset;
-
             if (currentScroll > 80) {
                 nav.classList.add('nav--shadow');
             } else {
                 nav.classList.remove('nav--shadow');
             }
-
             if (currentScroll > lastScroll && currentScroll > 200) {
                 nav.classList.add('nav--hidden');
             } else {
                 nav.classList.remove('nav--hidden');
             }
-
             lastScroll = currentScroll;
         }, { passive: true });
-
         // Fade-in on scroll (Intersection Observer)
         if ('IntersectionObserver' in window) {
             const observer = new IntersectionObserver((entries) => {
@@ -1135,13 +975,11 @@
                 threshold: 0.1,
                 rootMargin: '0px 0px -40px 0px'
             });
-
             document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
         } else {
             // Fallback: show everything
             document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
         }
-
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -1155,6 +993,5 @@
             });
         });
     </script>
-
 </body>
 </html>
