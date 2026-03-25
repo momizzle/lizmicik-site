@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B9S40S2SKG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-B9S40S2SKG');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Use — Liz Micik</title>
+  <meta name="description" content="Terms of Use for the Agent Readability Check tool and lizmicik.com.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FAF8F5;
+      --cream-dark: #F2EDE7;
+      --slate: #2C3038;
+      --slate-light: #3D424D;
+      --slate-mid: #545B6A;
+      --accent-amber: #C4956A;
+      --accent-teal: #6A9FA0;
+      --accent-copper: #B07D5B;
+      --text-primary: #2C3038;
+      --text-secondary: #545B6A;
+      --text-light: #F2EDE7;
+      --text-light-secondary: #B8B5B0;
+      --font-heading: 'Lora', Georgia, 'Times New Roman', serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --content-width: 720px;
+      --wide-width: 960px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: var(--font-body); font-weight: 400; line-height: 1.7;
+      color: var(--text-primary); background-color: var(--cream);
+    }
+    a { color: var(--accent-teal); text-decoration: none; transition: color 0.2s ease; }
+    a:hover { color: var(--accent-copper); }
+    h1, h2, h3 { font-family: var(--font-heading); font-weight: 600; line-height: 1.3; }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+    h2 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); margin-top: 2.5rem; margin-bottom: 0.75rem; }
+    h3 { font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    p, li { font-size: 0.95rem; margin-bottom: 0.75rem; }
+    ul { padding-left: 1.25rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.35rem; }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background-color: rgba(250,248,245,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(44,48,56,0.06);
+    }
+    .nav-inner {
+      max-width: var(--wide-width); margin: 0 auto; padding: 0.9rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-name {
+      font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600;
+      color: var(--text-primary); text-decoration: none;
+    }
+    .nav-name:hover { color: var(--accent-copper); }
+    .nav-back {
+      font-size: 0.85rem; font-weight: 500; color: var(--text-secondary);
+    }
+    .nav-back:hover { color: var(--text-primary); }
+
+    /* Content */
+    .page-content {
+      max-width: var(--content-width); margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+    }
+    .effective-date {
+      font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 2rem;
+    }
+    .section-divider {
+      border: none; border-top: 1px solid rgba(44,48,56,0.08); margin: 2rem 0;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--slate); padding: 2rem 1.5rem; text-align: center;
+    }
+    .footer p { font-size: 0.82rem; color: var(--slate-mid); margin: 0; }
+    .footer p + p { margin-top: 0.5rem; }
+    .footer a { color: var(--text-light-secondary); }
+
+    /* Cookie Banner */
+    .cookie-banner {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      background-color: var(--slate); border-top: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.1);
+    }
+    .cookie-banner-inner {
+      max-width: var(--wide-width); margin: 0 auto; padding: 1rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+    }
+    .cookie-banner p { font-size: 0.82rem; color: var(--text-light-secondary); margin: 0; line-height: 1.5; }
+    .cookie-banner a { color: var(--accent-amber); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    .cookie-banner a:hover { color: #fff; }
+    .cookie-accept {
+      flex-shrink: 0; background: var(--accent-copper); color: #fff; border: none;
+      padding: 0.5rem 1.25rem; border-radius: 6px;
+      font-family: var(--font-body); font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; transition: background 0.2s ease;
+    }
+    .cookie-accept:hover { background: #9a6a3e; }
+    @media (max-width: 640px) {
+      .cookie-banner-inner { flex-direction: column; text-align: center; gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-name">Liz Micik</a>
+      <a href="/" class="nav-back">&larr; Back to site</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <h1>Terms of Use</h1>
+    <p class="effective-date">Effective Date: March 25, 2026</p>
+
+    <p>These Terms of Use ("Terms") govern your use of the lizmicik.com website and the free Agent Readability Check tool (the "Tool"), provided by Liz Micik ("we," "us," or "our"). By accessing or using the site or Tool, you agree to be bound by these Terms.</p>
+
+    <hr class="section-divider">
+
+    <h2>1. The Agent Readability Check Tool</h2>
+
+    <p>The Agent Readability Check is a free, self-service diagnostic tool that provides a preliminary assessment of how AI agents perceive your business online. It queries multiple AI platforms and summarizes their responses alongside a qualitative readability level (LOW, MEDIUM, or HIGH).</p>
+
+    <p>The Tool is diagnostic only. It is not a comprehensive assessment and does not constitute consulting advice or a business recommendation.</p>
+
+    <hr class="section-divider">
+
+    <h2>2. Eligibility</h2>
+
+    <p>You may use the Tool if you are at least 18 years old, have the authority to provide the information requested, and agree to use it lawfully. If you use the Tool on behalf of a company, you represent that you have authority to do so.</p>
+
+    <hr class="section-divider">
+
+    <h2>3. Acceptable Use</h2>
+
+    <p>You agree to provide accurate information and not to reverse-engineer, hack, or interfere with the Tool's functionality. You agree not to use the Tool for competitive intelligence against other organizations, submit false information, scrape or systematically extract data, or create a competing product or service based on the Tool's methodology.</p>
+
+    <hr class="section-divider">
+
+    <h2>4. What You Get</h2>
+
+    <p>The Tool generates a preliminary readability assessment including a qualitative readability level, platform-by-platform AI responses about your company, and high-level observations. The assessment is based solely on AI platform responses at the time of the check and is not a substitute for professional consulting, legal, or compliance review.</p>
+
+    <hr class="section-divider">
+
+    <h2>5. Intellectual Property</h2>
+
+    <p>You retain ownership of any information you provide. By submitting information, you grant us the right to use it to generate your results and to improve the Tool in anonymized form (see our <a href="/privacy-policy.html">Privacy Policy</a>).</p>
+
+    <p>The Tool, including its assessment methodology, analysis engine, and underlying frameworks, is our proprietary intellectual property. You may not copy, reverse-engineer, modify, or distribute the Tool or its methodology.</p>
+
+    <hr class="section-divider">
+
+    <h2>6. Disclaimer of Warranties</h2>
+
+    <p>The Tool and website are provided "as is" and "as available." We make no warranties of accuracy, completeness, or timeliness of results; that the Tool will meet your expectations; that it will be uninterrupted, secure, or error-free; or that following any observations will result in specific business outcomes.</p>
+
+    <p>AI platform responses change frequently. A readability level assessed today may differ tomorrow based on factors entirely outside our control.</p>
+
+    <hr class="section-divider">
+
+    <h2>7. Limitation of Liability</h2>
+
+    <p>You use the Tool at your own risk. To the maximum extent permitted by law, we are not liable for any direct, indirect, incidental, consequential, special, or punitive damages, including lost profits, lost revenue, or business interruption. Our total liability for any claim related to the Tool is limited to the amount you paid for the Tool (which is $0).</p>
+
+    <hr class="section-divider">
+
+    <h2>8. Follow-Up Services</h2>
+
+    <p>The Tool may suggest that a paid Agent Readability Audit or Assessment engagement would provide deeper insight. Choosing to pursue paid services is entirely optional and creates no obligation.</p>
+
+    <hr class="section-divider">
+
+    <h2>9. Modifications</h2>
+
+    <p>We may modify, update, or discontinue the Tool or website at any time, including changing the analysis methodology, modifying deliverables, or adding or removing features. We reserve the right to update these Terms at any time. Continued use constitutes acceptance of updates.</p>
+
+    <hr class="section-divider">
+
+    <h2>10. Governing Law</h2>
+
+    <p>These Terms are governed by the laws of the State of Tennessee, without regard to conflict of law principles. Any disputes will first be subject to informal negotiation. If negotiation fails, disputes will be resolved in the courts of the State of Tennessee.</p>
+
+    <hr class="section-divider">
+
+    <h2>11. Contact</h2>
+
+    <p>For questions about these Terms, contact:</p>
+    <p><strong>Liz Micik</strong><br>
+    Email: <a href="mailto:lizmicik@gmail.com">lizmicik@gmail.com</a><br>
+    Website: <a href="https://lizmicik.com">lizmicik.com</a></p>
+
+    <hr class="section-divider">
+
+    <p>These Terms, along with our <a href="/privacy-policy.html">Privacy Policy</a>, constitute the entire agreement between you and us regarding the website and Tool.</p>
+
+    <p><em>Last updated: March 25, 2026</em></p>
+  </main>
+
+  <!-- Cookie Banner -->
+  <div id="cookie-banner" class="cookie-banner" role="alert" aria-label="Cookie notice" style="display:none;">
+    <div class="cookie-banner-inner">
+      <p>This site uses cookies to analyze traffic and improve your experience. By continuing to browse, you accept the use of cookies. <a href="/privacy-policy.html">Privacy Policy</a></p>
+      <button id="cookie-accept" class="cookie-accept" aria-label="Accept cookies">Got it</button>
+    </div>
+  </div>
+
+  <footer class="footer" role="contentinfo">
+    <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+    <p><a href="/privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms.html">Terms of Use</a></p>
+  </footer>
+
+  <script>
+    (function() {
+      var banner = document.getElementById('cookie-banner');
+      var btn = document.getElementById('cookie-accept');
+      if (!banner || !btn) return;
+      if (document.cookie.indexOf('cookie_notice=1') === -1) {
+        banner.style.display = 'block';
+      }
+      btn.addEventListener('click', function() {
+        document.cookie = 'cookie_notice=1;path=/;max-age=' + (60*60*24*365) + ';SameSite=Lax';
+        banner.style.display = 'none';
+      });
+    })();
+  </script>
+</body>
+</html>

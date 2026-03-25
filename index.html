@@ -793,6 +793,66 @@
                 transform: translateY(0);
             }
         }
+        /* ========================================
+           Cookie Banner
+           ======================================== */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background-color: var(--slate);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 -2px 12px rgba(0,0,0,0.1);
+        }
+        .cookie-banner-inner {
+            max-width: var(--wide-width);
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+        .cookie-banner p {
+            font-size: 0.82rem;
+            color: var(--text-light-secondary);
+            margin: 0;
+            line-height: 1.5;
+        }
+        .cookie-banner a {
+            color: var(--accent-amber);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 2px;
+        }
+        .cookie-banner a:hover {
+            color: #fff;
+        }
+        .cookie-accept {
+            flex-shrink: 0;
+            background: var(--accent-copper);
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1.25rem;
+            border-radius: 6px;
+            font-family: var(--font-body);
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .cookie-accept:hover {
+            background: #9a6a3e;
+        }
+        @media (max-width: 640px) {
+            .cookie-banner-inner {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -970,9 +1030,17 @@
             <p class="contact-email fade-in">Or reach me directly at <a href="mailto:lizmicik@gmail.com">lizmicik@gmail.com</a></p>
         </div>
     </section>
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="cookie-banner" role="alert" aria-label="Cookie notice" style="display:none;">
+      <div class="cookie-banner-inner">
+        <p>This site uses cookies to analyze traffic and improve your experience. By continuing to browse, you accept the use of cookies. <a href="/privacy-policy.html">Privacy Policy</a></p>
+        <button id="cookie-accept" class="cookie-accept" aria-label="Accept cookies">Got it</button>
+      </div>
+    </div>
     <!-- Footer -->
     <footer class="footer" role="contentinfo">
         <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+        <p style="margin-top:0.5rem;"><a href="/privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms.html">Terms of Use</a></p>
     </footer>
     <!-- JavaScript -->
     <script>
@@ -1040,6 +1108,19 @@
                 }
             });
         });
+        // Cookie banner
+        (function() {
+            var banner = document.getElementById('cookie-banner');
+            var btn = document.getElementById('cookie-accept');
+            if (!banner || !btn) return;
+            if (document.cookie.indexOf('cookie_notice=1') === -1) {
+                banner.style.display = 'block';
+            }
+            btn.addEventListener('click', function() {
+                document.cookie = 'cookie_notice=1;path=/;max-age=' + (60*60*24*365) + ';SameSite=Lax';
+                banner.style.display = 'none';
+            });
+        })();
     </script>
 </body>
 </html>

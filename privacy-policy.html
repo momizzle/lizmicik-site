@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B9S40S2SKG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-B9S40S2SKG');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Liz Micik</title>
+  <meta name="description" content="Privacy Policy for lizmicik.com and the Agent Readability Check tool.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FAF8F5;
+      --cream-dark: #F2EDE7;
+      --slate: #2C3038;
+      --slate-light: #3D424D;
+      --slate-mid: #545B6A;
+      --accent-amber: #C4956A;
+      --accent-teal: #6A9FA0;
+      --accent-copper: #B07D5B;
+      --text-primary: #2C3038;
+      --text-secondary: #545B6A;
+      --text-light: #F2EDE7;
+      --text-light-secondary: #B8B5B0;
+      --font-heading: 'Lora', Georgia, 'Times New Roman', serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --content-width: 720px;
+      --wide-width: 960px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: var(--font-body); font-weight: 400; line-height: 1.7;
+      color: var(--text-primary); background-color: var(--cream);
+    }
+    a { color: var(--accent-teal); text-decoration: none; transition: color 0.2s ease; }
+    a:hover { color: var(--accent-copper); }
+    h1, h2, h3 { font-family: var(--font-heading); font-weight: 600; line-height: 1.3; }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+    h2 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); margin-top: 2.5rem; margin-bottom: 0.75rem; }
+    h3 { font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    p, li { font-size: 0.95rem; margin-bottom: 0.75rem; }
+    ul { padding-left: 1.25rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.35rem; }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background-color: rgba(250,248,245,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(44,48,56,0.06);
+    }
+    .nav-inner {
+      max-width: var(--wide-width); margin: 0 auto; padding: 0.9rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-name {
+      font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600;
+      color: var(--text-primary); text-decoration: none;
+    }
+    .nav-name:hover { color: var(--accent-copper); }
+    .nav-back {
+      font-size: 0.85rem; font-weight: 500; color: var(--text-secondary);
+    }
+    .nav-back:hover { color: var(--text-primary); }
+
+    /* Content */
+    .page-content {
+      max-width: var(--content-width); margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+    }
+    .effective-date {
+      font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 2rem;
+    }
+    .section-divider {
+      border: none; border-top: 1px solid rgba(44,48,56,0.08); margin: 2rem 0;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--slate); padding: 2rem 1.5rem; text-align: center;
+    }
+    .footer p { font-size: 0.82rem; color: var(--slate-mid); margin: 0; }
+    .footer p + p { margin-top: 0.5rem; }
+    .footer a { color: var(--text-light-secondary); }
+
+    /* Cookie Banner */
+    .cookie-banner {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      background-color: var(--slate); border-top: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.1);
+    }
+    .cookie-banner-inner {
+      max-width: var(--wide-width); margin: 0 auto; padding: 1rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+    }
+    .cookie-banner p { font-size: 0.82rem; color: var(--text-light-secondary); margin: 0; line-height: 1.5; }
+    .cookie-banner a { color: var(--accent-amber); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    .cookie-banner a:hover { color: #fff; }
+    .cookie-accept {
+      flex-shrink: 0; background: var(--accent-copper); color: #fff; border: none;
+      padding: 0.5rem 1.25rem; border-radius: 6px;
+      font-family: var(--font-body); font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; transition: background 0.2s ease;
+    }
+    .cookie-accept:hover { background: #9a6a3e; }
+    @media (max-width: 640px) {
+      .cookie-banner-inner { flex-direction: column; text-align: center; gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-name">Liz Micik</a>
+      <a href="/" class="nav-back">&larr; Back to site</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <h1>Privacy Policy</h1>
+    <p class="effective-date">Effective Date: March 25, 2026</p>
+
+    <p>Liz Micik ("we," "us," or "our") operates the lizmicik.com website. This Privacy Policy explains how we collect, use, disclose, and safeguard information when you visit our website, including any related features, functionality, and services we offer (collectively, the "Service").</p>
+
+    <p>We may update this Privacy Policy from time to time. Your continued use of the Service constitutes your acceptance of the updated Privacy Policy.</p>
+
+    <hr class="section-divider">
+
+    <h2>1. Information We Collect</h2>
+
+    <h3>Information You Provide Directly</h3>
+    <p>We collect information when you use the free Agent Readability Check tool, sign up for email updates, or submit a contact form. This may include your email address, company name, and other optional details you choose to provide.</p>
+
+    <h3>Information Collected Automatically</h3>
+    <p>When you visit our site, we automatically collect standard usage data through Google Analytics, including pages visited, time on page, device and browser type, IP address (anonymized to city/state level), and referral source. This data is collected via cookies and similar tracking technologies.</p>
+
+    <p><strong>Cookies we use:</strong> Essential website functionality, analytics and site performance (Google Analytics), and user preference storage (such as cookie banner dismissal).</p>
+
+    <hr class="section-divider">
+
+    <h2>2. How We Use Your Information</h2>
+
+    <p>We use email addresses to send results from the Agent Readability Check tool, deliver newsletter updates if you've subscribed, send occasional product updates, and respond to consultation inquiries. You can unsubscribe from marketing emails at any time by clicking the unsubscribe link in any email or contacting us directly.</p>
+
+    <p>We use website usage data to understand how visitors use our site, improve performance and user experience, and troubleshoot technical issues.</p>
+
+    <h3>Agent Readability Check Tool</h3>
+    <p>When you use the free tool, it accepts input about your company and industry, runs analysis queries via third-party AI APIs, and generates a readability report. We may store anonymized query patterns to improve the tool (see Section 4).</p>
+
+    <hr class="section-divider">
+
+    <h2>3. Information Sharing</h2>
+
+    <p>We do not sell, rent, or lease your personal information to third parties. We do not share your data with competitors or unaffiliated marketing partners.</p>
+
+    <p>We may share information with service providers who help us operate the site, including our email delivery platform (Kit/ConvertKit), analytics provider (Google Analytics), website hosting (Netlify), and payment processor (Stripe) if you become a paid client. These providers are contractually obligated to use your data solely for providing services to us.</p>
+
+    <p>We may also disclose information if required by law, court order, or government request, with reasonable notice to you if legally possible.</p>
+
+    <hr class="section-divider">
+
+    <h2>4. Anonymized Data</h2>
+
+    <p>We may use anonymized, aggregated data from the Agent Readability Check tool to identify industry trends, improve the tool, and create insights for publication. Company names and personally identifiable information are removed, and results are presented only as industry patterns — never by individual company.</p>
+
+    <hr class="section-divider">
+
+    <h2>5. Data Retention</h2>
+
+    <p>Email addresses are retained for the duration of your newsletter subscription and removed upon unsubscribe. Consultation inquiries are retained for 3 years for business records. Website analytics are purged per Google Analytics retention settings (typically 14 months). Individual tool results are deleted 30 days after delivery; anonymized usage patterns may be retained for tool improvement.</p>
+
+    <hr class="section-divider">
+
+    <h2>6. Data Security</h2>
+
+    <p>We implement reasonable safeguards including HTTPS encryption, password-protected access to stored data, and restricted access to personal information. However, no internet transmission is 100% secure, and we cannot guarantee absolute security.</p>
+
+    <hr class="section-divider">
+
+    <h2>7. Your Rights</h2>
+
+    <p>You have the right to access, correct, or delete your personal data. To exercise these rights, contact us at <a href="mailto:lizmicik@gmail.com">lizmicik@gmail.com</a>. We will respond within 30 days.</p>
+
+    <p><strong>Opt-out options:</strong> Unsubscribe from emails via any email's unsubscribe link, opt out of Google Analytics via the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics opt-out browser extension</a>, or manage cookies via your browser settings.</p>
+
+    <h3>California Residents (CCPA)</h3>
+    <p>You have the right to know what personal information is collected, request its deletion, and opt out of its sale (we don't sell it). To submit a request, email <a href="mailto:lizmicik@gmail.com">lizmicik@gmail.com</a>.</p>
+
+    <h3>EU Residents (GDPR)</h3>
+    <p>You have rights of access, rectification, erasure, restriction of processing, and data portability. To submit a GDPR request, email <a href="mailto:lizmicik@gmail.com">lizmicik@gmail.com</a> with "GDPR Request" in the subject line.</p>
+
+    <hr class="section-divider">
+
+    <h2>8. Third-Party Links</h2>
+
+    <p>Our site may contain links to third-party websites and tools. We are not responsible for the privacy practices of third-party sites. Please review their privacy policies before providing personal information.</p>
+
+    <hr class="section-divider">
+
+    <h2>9. Children's Privacy</h2>
+
+    <p>Our Service is not directed to children under age 13. We do not knowingly collect personal information from children under 13. If we become aware that we have, we will promptly delete it.</p>
+
+    <hr class="section-divider">
+
+    <h2>10. Contact Us</h2>
+
+    <p>If you have questions about this Privacy Policy or wish to exercise your privacy rights, contact:</p>
+    <p><strong>Liz Micik</strong><br>
+    Email: <a href="mailto:lizmicik@gmail.com">lizmicik@gmail.com</a><br>
+    Website: <a href="https://lizmicik.com">lizmicik.com</a></p>
+
+    <hr class="section-divider">
+
+    <h2>11. Governing Law</h2>
+
+    <p>This Privacy Policy is governed by the laws of the State of Tennessee, without regard to conflict of law principles.</p>
+
+    <hr class="section-divider">
+
+    <p><em>Last updated: March 25, 2026</em></p>
+  </main>
+
+  <!-- Cookie Banner -->
+  <div id="cookie-banner" class="cookie-banner" role="alert" aria-label="Cookie notice" style="display:none;">
+    <div class="cookie-banner-inner">
+      <p>This site uses cookies to analyze traffic and improve your experience. By continuing to browse, you accept the use of cookies. <a href="/privacy-policy.html">Privacy Policy</a></p>
+      <button id="cookie-accept" class="cookie-accept" aria-label="Accept cookies">Got it</button>
+    </div>
+  </div>
+
+  <footer class="footer" role="contentinfo">
+    <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+    <p><a href="/privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms.html">Terms of Use</a></p>
+  </footer>
+
+  <script>
+    (function() {
+      var banner = document.getElementById('cookie-banner');
+      var btn = document.getElementById('cookie-accept');
+      if (!banner || !btn) return;
+      if (document.cookie.indexOf('cookie_notice=1') === -1) {
+        banner.style.display = 'block';
+      }
+      btn.addEventListener('click', function() {
+        document.cookie = 'cookie_notice=1;path=/;max-age=' + (60*60*24*365) + ';SameSite=Lax';
+        banner.style.display = 'none';
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -536,6 +536,37 @@
       .audit-cta-card { padding: 40px 24px; }
       .audit-cta-card h2 { font-size: 1.6rem; }
     }
+
+    /* ============================================================
+       COOKIE BANNER
+       ============================================================ */
+    .cookie-banner {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      background: #2C3038; border-top: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.1);
+    }
+    .cookie-banner-inner {
+      max-width: 960px; margin: 0 auto; padding: 1rem 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+    }
+    .cookie-banner p {
+      font-size: 0.82rem; color: rgba(184,181,176,1); margin: 0; line-height: 1.5;
+    }
+    .cookie-banner a {
+      color: #C4956A; text-decoration: underline;
+      text-decoration-thickness: 1px; text-underline-offset: 2px;
+    }
+    .cookie-banner a:hover { color: #fff; }
+    .cookie-accept {
+      flex-shrink: 0; background: #B07D5B; color: #fff; border: none;
+      padding: 0.5rem 1.25rem; border-radius: 8px;
+      font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; transition: background 0.2s ease;
+    }
+    .cookie-accept:hover { background: #9a6a3e; }
+    @media (max-width: 700px) {
+      .cookie-banner-inner { flex-direction: column; text-align: center; gap: 0.75rem; }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -796,9 +827,17 @@
 
   </main>
 
+  <!-- Cookie Banner -->
+  <div id="cookie-banner" class="cookie-banner" role="alert" aria-label="Cookie notice" style="display:none;">
+    <div class="cookie-banner-inner">
+      <p>This site uses cookies to analyze traffic and improve your experience. By continuing to browse, you accept the use of cookies. <a href="/privacy-policy.html">Privacy Policy</a></p>
+      <button id="cookie-accept" class="cookie-accept" aria-label="Accept cookies">Got it</button>
+    </div>
+  </div>
   <footer class="site-footer">
     <div class="container">
       <p>&copy; 2026 <a href="/">Liz Micik</a> &middot; lizmicik.com</p>
+      <p style="margin-top:0.4rem;"><a href="/privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms.html">Terms of Use</a></p>
     </div>
   </footer>
 
@@ -1131,6 +1170,20 @@
     document.getElementById('gate-form').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') { e.preventDefault(); submitEmail(); }
     });
+
+    // Cookie banner
+    (function() {
+      var banner = document.getElementById('cookie-banner');
+      var btn = document.getElementById('cookie-accept');
+      if (!banner || !btn) return;
+      if (document.cookie.indexOf('cookie_notice=1') === -1) {
+        banner.style.display = 'block';
+      }
+      btn.addEventListener('click', function() {
+        document.cookie = 'cookie_notice=1;path=/;max-age=' + (60*60*24*365) + ';SameSite=Lax';
+        banner.style.display = 'none';
+      });
+    })();
   </script>
 
 </body>
