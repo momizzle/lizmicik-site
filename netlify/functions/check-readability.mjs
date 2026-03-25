@@ -11,7 +11,6 @@
  */
 
 // ── Prompt Construction ──────────────────────────────────────────
-
 function buildPrompt(url, keyword) {
   return `I'm looking for a ${keyword} provider. What can you tell me about the company at ${url}? What do they specialize in, and are they a good choice for ${keyword}? Keep your response to 2-3 concise paragraphs.`;
 }
@@ -33,7 +32,6 @@ In 2-3 sentences, compare how confidently and consistently the platforms describ
 }
 
 // ── API Callers ──────────────────────────────────────────────────
-
 async function queryOpenAI(url, keyword) {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error('OPENAI_API_KEY not configured');
@@ -138,30 +136,20 @@ async function generateInsight(yoursResponses, competitorResponses, url, competi
   });
 
   if (!response.ok) return 'Unable to generate comparison insight.';
+
   const data = await response.json();
   return data.content[0].text.trim();
 }
 
 // ── Analysis ─────────────────────────────────────────────────────
-
 const HEDGING_PHRASES = [
-  'limited information',
-  'i don\'t have',
-  'i\'m not sure',
-  'i should note',
-  'some confusion',
-  'inconsistent',
-  'i couldn\'t find',
-  'not enough information',
-  'i\'d recommend checking',
-  'i\'d recommend verifying',
-  'i don\'t know',
-  'appears to be',
-  'seems to be',
-  'i was unable',
-  'no specific information',
-  'couldn\'t verify',
-  'difficult to determine',
+  'limited information', 'i don\'t have', 'i\'m not sure',
+  'i should note', 'some confusion', 'inconsistent',
+  'i couldn\'t find', 'not enough information',
+  'i\'d recommend checking', 'i\'d recommend verifying',
+  'i don\'t know', 'appears to be', 'seems to be',
+  'i was unable', 'no specific information',
+  'couldn\'t verify', 'difficult to determine',
 ];
 
 function analyzePlatform(responseText, keyword) {
@@ -169,7 +157,6 @@ function analyzePlatform(responseText, keyword) {
   const kwLower = keyword.toLowerCase();
 
   // Split keyword into individual words for partial matching
-  // e.g. "management consulting" -> check for "management" AND "consulting"
   const kwWords = kwLower.split(/\s+/).filter(w => w.length > 3);
   const wordMatches = kwWords.filter(w => lower.includes(w));
   const mentionsKeyword = wordMatches.length >= Math.ceil(kwWords.length * 0.5) || lower.includes(kwLower);
@@ -178,7 +165,6 @@ function analyzePlatform(responseText, keyword) {
   const hedgeCount = HEDGING_PHRASES.filter(phrase => lower.includes(phrase)).length;
   const confident = hedgeCount <= 1;
 
-  // Combined: agrees with keyword AND speaks confidently
   const agrees = mentionsKeyword && confident;
 
   return { mentionsKeyword, confident, hedgeCount, agrees };
@@ -202,10 +188,9 @@ function analyzeLevel(responses, keyword) {
 }
 
 // ── Simple Rate Limiting ─────────────────────────────────────────
-// In-memory rate limit (resets on cold start, ~10min idle)
 const rateLimitMap = new Map();
 const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
-const RATE_LIMIT_MAX = 3; // max 3 checks per minute per IP
+const RATE_LIMIT_MAX = 3;
 
 function checkRateLimit(ip) {
   const now = Date.now();
@@ -222,9 +207,7 @@ function checkRateLimit(ip) {
 }
 
 // ── Handler ──────────────────────────────────────────────────────
-
 export default async (req, context) => {
-  // CORS headers (same-origin, but just in case)
   const headers = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
@@ -270,6 +253,17 @@ export default async (req, context) => {
       queryClaude(cleanUrl, keyword),
     ]);
 
+    // Log errors server-side for debugging
+    if (chatgptResult.status === 'rejected') {
+      console.error('ChatGPT FAILED:', chatgptResult.reason?.message || chatgptResult.reason);
+    }
+    if (perplexityResult.status === 'rejected') {
+      console.error('Perplexity FAILED:', perplexityResult.reason?.message || perplexityResult.reason);
+    }
+    if (claudeResult.status === 'rejected') {
+      console.error('Claude FAILED:', claudeResult.reason?.message || claudeResult.reason);
+    }
+
     const yours = {
       chatgpt: chatgptResult.status === 'fulfilled'
         ? chatgptResult.value
@@ -288,6 +282,12 @@ export default async (req, context) => {
       perplexity: perplexityResult.status === 'fulfilled',
       claude: claudeResult.status === 'fulfilled',
     };
+
+    // Include error details in response (for debugging — remove before public launch)
+    const errors = {};
+    if (chatgptResult.status === 'rejected') errors.chatgpt = chatgptResult.reason?.message || String(chatgptResult.reason);
+    if (perplexityResult.status === 'rejected') errors.perplexity = perplexityResult.reason?.message || String(perplexityResult.reason);
+    if (claudeResult.status === 'rejected') errors.claude = claudeResult.reason?.message || String(claudeResult.reason);
 
     // ── Phase 2: Analyze readability level ──
     const analysis = analyzeLevel(yours, keyword);
@@ -327,6 +327,7 @@ export default async (req, context) => {
       competitor,
       insight,
       platformsResponded,
+      errors: Object.keys(errors).length > 0 ? errors : undefined,
     }), { status: 200, headers });
 
   } catch (err) {
