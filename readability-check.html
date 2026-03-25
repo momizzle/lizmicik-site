@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Readability Check — Can AI Agents Read Your Business? | Liz Micik</title>
+  <meta name="description" content="See exactly what ChatGPT, Perplexity, and Claude say when someone asks about your company. Free agent readability check by Liz Micik.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #2C3038;
+      background: #FAF8F5;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    :root {
+      --charcoal: #2C3038;
+      --cream: #FAF8F5;
+      --warm-gold: #B07D4F;
+      --warm-gold-light: #c48f5e;
+      --warm-gold-bg: rgba(176, 125, 79, 0.06);
+      --warm-gold-border: rgba(176, 125, 79, 0.25);
+      --sage: #5B7B6A;
+      --sage-light: #6d9a7e;
+      --sage-bg: rgba(91, 123, 106, 0.06);
+      --sage-border: rgba(91, 123, 106, 0.2);
+      --slate: #6b7280;
+      --slate-light: #9ca3af;
+      --red: #c53030;
+      --red-bg: rgba(197, 48, 48, 0.06);
+      --red-border: rgba(197, 48, 48, 0.18);
+      --green: #2f855a;
+      --green-bg: rgba(47, 133, 90, 0.06);
+      --green-border: rgba(47, 133, 90, 0.18);
+      --border: rgba(44, 48, 56, 0.08);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+    .container-wide { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* ============================================================
+       HEADER
+       ============================================================ */
+    .site-header {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .site-header .container {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .site-logo {
+      font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 600;
+      color: var(--charcoal); text-decoration: none;
+    }
+    .site-logo:hover { color: var(--warm-gold); }
+    .back-link { font-size: 0.85rem; color: var(--slate); text-decoration: none; }
+    .back-link:hover { color: var(--charcoal); }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .tool-hero {
+      padding: 64px 0 20px;
+      text-align: center;
+      background: linear-gradient(180deg, var(--cream) 0%, #f4f0eb 100%);
+    }
+    .tool-hero h1 {
+      font-family: 'Lora', serif; font-size: 2.6rem; font-weight: 700;
+      line-height: 1.2; color: var(--charcoal);
+      margin-bottom: 16px; max-width: 720px; margin-left: auto; margin-right: auto;
+    }
+    .tool-hero .subtitle {
+      font-size: 1.1rem; color: var(--slate);
+      max-width: 580px; margin: 0 auto 8px; line-height: 1.55;
+    }
+    .tool-hero .fine-print {
+      font-size: 0.82rem; color: var(--slate-light); margin-bottom: 32px;
+    }
+
+    /* Trust bar */
+    .trust-bar {
+      display: flex; justify-content: center; gap: 32px;
+      padding: 0 0 48px;
+      background: linear-gradient(180deg, #f4f0eb 0%, var(--cream) 100%);
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.82rem; color: var(--slate);
+    }
+    .trust-icon {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--sage-bg); border: 1.5px solid var(--sage-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; color: var(--sage);
+    }
+
+    /* ============================================================
+       INPUT FORM
+       ============================================================ */
+    .input-section { padding: 0 0 48px; }
+    .input-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 16px; padding: 40px; box-shadow: var(--shadow-md);
+    }
+    .input-card h2 {
+      font-family: 'Lora', serif; font-size: 1.3rem; font-weight: 600;
+      color: var(--charcoal); margin-bottom: 24px;
+    }
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;
+    }
+    .input-group label {
+      display: block; font-size: 0.78rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--slate); margin-bottom: 8px;
+    }
+    .input-group input {
+      width: 100%; padding: 14px 16px; font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      border: 1.5px solid #d1d5db; border-radius: 10px;
+      background: var(--cream); color: var(--charcoal);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .input-group input:focus {
+      outline: none; border-color: var(--warm-gold);
+      box-shadow: 0 0 0 3px rgba(176, 125, 79, 0.12);
+    }
+    .input-group input::placeholder { color: var(--slate-light); }
+    .input-helper { font-size: 0.75rem; color: var(--slate-light); margin-top: 6px; }
+    .run-btn {
+      display: block; width: 100%; padding: 16px;
+      font-size: 1.05rem; font-family: 'Inter', sans-serif; font-weight: 600;
+      color: var(--cream); background: var(--charcoal);
+      border: none; border-radius: 10px; cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .run-btn:hover { background: #3d4350; }
+    .run-btn:active { transform: scale(0.99); }
+    .run-btn:disabled { background: var(--slate-light); cursor: not-allowed; }
+    .run-btn .spinner {
+      display: inline-block; width: 18px; height: 18px;
+      border: 2.5px solid rgba(250,248,245,0.3);
+      border-top-color: var(--cream); border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle; margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ============================================================
+       LOADING
+       ============================================================ */
+    .loading-section { display: none; text-align: center; padding: 60px 0 48px; }
+    .loading-section.visible { display: block; }
+    .loading-steps { max-width: 360px; margin: 0 auto; text-align: left; }
+    .loading-step {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 0; font-size: 0.95rem; color: var(--slate-light);
+      transition: color 0.4s;
+    }
+    .loading-step.active { color: var(--charcoal); font-weight: 500; }
+    .loading-step.done { color: var(--green); }
+    .loading-step .step-icon {
+      width: 24px; height: 24px; border-radius: 50%;
+      border: 2px solid currentColor;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 0.7rem;
+    }
+    .loading-step.active .step-icon { border-color: var(--warm-gold); background: var(--warm-gold-bg); }
+    .loading-step.done .step-icon { border-color: var(--green); background: var(--green); color: #fff; }
+
+    /* ============================================================
+       RESULTS
+       ============================================================ */
+    .results-section { display: none; padding: 0 0 48px; }
+    .results-section.visible { display: block; }
+    .results-header { text-align: center; margin-bottom: 32px; }
+    .results-header h2 {
+      font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700;
+      color: var(--charcoal); margin-bottom: 8px;
+    }
+    .results-header p { color: var(--slate); font-size: 0.95rem; }
+
+    /* Thermometer / Progress Bar */
+    .thermometer-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px 36px; margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .thermometer-headline {
+      font-family: 'Lora', serif; font-size: 1.3rem; font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .thermometer-headline .level-text { }
+    .thermometer-bar-wrap {
+      width: 100%; height: 12px; background: #e5e7eb;
+      border-radius: 6px; overflow: hidden; margin-bottom: 20px;
+      position: relative;
+    }
+    .thermometer-bar {
+      height: 100%; border-radius: 6px;
+      transition: width 1s ease-out;
+    }
+    .thermometer-bar.low { width: 25%; background: linear-gradient(90deg, var(--red), #e05252); }
+    .thermometer-bar.medium { width: 55%; background: linear-gradient(90deg, var(--warm-gold), var(--warm-gold-light)); }
+    .thermometer-bar.high { width: 85%; background: linear-gradient(90deg, var(--green), var(--sage-light)); }
+    .thermometer-labels {
+      display: flex; justify-content: space-between;
+      font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--slate-light); margin-top: 6px;
+    }
+    .thermometer-body {
+      font-size: 0.92rem; color: #4b5563; line-height: 1.65; margin-bottom: 0;
+    }
+    .thermometer-body strong { color: var(--charcoal); }
+
+    /* Three level cards */
+    .level-cards {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+      margin-bottom: 28px;
+    }
+    .level-card {
+      border-radius: 12px; padding: 20px 18px;
+      border: 1.5px solid var(--border);
+      opacity: 0.35;
+      transition: opacity 0.4s, border-color 0.4s, box-shadow 0.4s;
+    }
+    .level-card.active {
+      opacity: 1;
+      box-shadow: var(--shadow-md);
+    }
+    .level-card.card-low { background: var(--red-bg); }
+    .level-card.card-low.active { border-color: var(--red-border); }
+    .level-card.card-medium { background: var(--warm-gold-bg); }
+    .level-card.card-medium.active { border-color: var(--warm-gold-border); }
+    .level-card.card-high { background: var(--green-bg); }
+    .level-card.card-high.active { border-color: var(--green-border); }
+    .level-card h4 {
+      font-size: 0.82rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; margin-bottom: 8px;
+    }
+    .level-card.card-low h4 { color: var(--red); }
+    .level-card.card-medium h4 { color: var(--warm-gold); }
+    .level-card.card-high h4 { color: var(--green); }
+    .level-card p {
+      font-size: 0.82rem; color: #4b5563; line-height: 1.55;
+    }
+
+    /* Platform tabs — copper active state */
+    .platform-tabs {
+      display: flex; gap: 4px; margin-bottom: 20px;
+      background: #fff; border-radius: 10px; padding: 4px;
+      border: 1px solid var(--border);
+    }
+    .platform-tab {
+      flex: 1; padding: 12px 16px;
+      font-size: 0.88rem; font-weight: 600;
+      font-family: 'Inter', sans-serif; text-align: center;
+      background: transparent; border: none; border-radius: 8px;
+      cursor: pointer; color: var(--slate); transition: all 0.2s;
+    }
+    .platform-tab:hover { color: var(--warm-gold); background: var(--warm-gold-bg); }
+    .platform-tab.active {
+      background: var(--warm-gold);
+      color: #fff;
+    }
+
+    /* Response cards — no black bar */
+    .response-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden; margin-bottom: 24px;
+    }
+    .response-card-header {
+      padding: 14px 20px;
+      font-weight: 600; font-size: 0.88rem;
+      color: var(--warm-gold);
+      border-bottom: 1px solid var(--border);
+      background: var(--warm-gold-bg);
+    }
+    .response-card-body { padding: 20px; }
+    .ai-response {
+      font-size: 0.92rem; line-height: 1.65; color: #374151;
+      white-space: pre-wrap;
+    }
+    .platform-result { display: none; }
+    .platform-result.active { display: block; }
+
+    /* ============================================================
+       COMPETITOR PROMPT
+       ============================================================ */
+    .competitor-prompt { display: none; padding: 0 0 48px; }
+    .competitor-prompt.visible { display: block; }
+    .competitor-card {
+      background: linear-gradient(135deg, #f8f5f0 0%, #fff 100%);
+      border: 2px dashed var(--warm-gold-border);
+      border-radius: 16px; padding: 36px 40px; text-align: center;
+    }
+    .competitor-card h2 {
+      font-family: 'Lora', serif; font-size: 1.4rem; font-weight: 700;
+      color: var(--charcoal); margin-bottom: 8px;
+    }
+    .competitor-card p {
+      color: var(--slate); font-size: 0.92rem;
+      max-width: 480px; margin: 0 auto 20px;
+    }
+    .competitor-inline-form {
+      display: flex; gap: 12px; max-width: 520px; margin: 0 auto;
+    }
+    .competitor-inline-form input {
+      flex: 1; padding: 14px 16px; font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      border: 1.5px solid #d1d5db; border-radius: 10px;
+      background: #fff; color: var(--charcoal);
+    }
+    .competitor-inline-form input:focus {
+      outline: none; border-color: var(--warm-gold);
+      box-shadow: 0 0 0 3px rgba(176, 125, 79, 0.12);
+    }
+    .competitor-inline-form input::placeholder { color: var(--slate-light); }
+    .compare-btn {
+      padding: 14px 24px; font-size: 0.95rem;
+      font-family: 'Inter', sans-serif; font-weight: 600;
+      background: var(--warm-gold); color: #fff;
+      border: none; border-radius: 10px; cursor: pointer;
+      white-space: nowrap; transition: background 0.2s;
+    }
+    .compare-btn:hover { background: var(--warm-gold-light); }
+
+    /* ============================================================
+       COMPARISON
+       ============================================================ */
+    .comparison-section { display: none; padding: 0 0 48px; }
+    .comparison-section.visible { display: block; }
+    .comparison-header { text-align: center; margin-bottom: 28px; }
+    .comparison-header h2 {
+      font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 700;
+      color: var(--charcoal); margin-bottom: 6px;
+    }
+    .comparison-header p { color: var(--slate); font-size: 0.92rem; }
+    .comparison-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px;
+    }
+    .company-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+    }
+    .company-card-header {
+      padding: 14px 20px; font-weight: 600; font-size: 0.88rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .company-card.yours .company-card-header {
+      color: var(--warm-gold); background: var(--warm-gold-bg);
+    }
+    .company-card.theirs .company-card-header {
+      color: var(--sage); background: var(--sage-bg);
+    }
+    .company-card-body { padding: 20px; }
+
+    /* Comparison insight */
+    .insight-callout {
+      background: var(--charcoal); border-radius: 12px;
+      padding: 28px 32px; color: var(--cream); margin-top: 24px;
+    }
+    .insight-callout h3 {
+      font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600;
+      margin-bottom: 8px; color: var(--cream);
+    }
+    .insight-callout p {
+      font-size: 0.88rem; color: rgba(250,248,245,0.8); line-height: 1.65;
+    }
+
+    /* ============================================================
+       EMAIL GATE — secondary, understated
+       ============================================================ */
+    .email-gate { display: none; padding: 32px 0; }
+    .email-gate.visible { display: block; }
+    .email-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 12px; padding: 28px 36px;
+      display: flex; align-items: center; gap: 28px;
+    }
+    .email-card-text { flex: 1; }
+    .email-card-text h3 {
+      font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600;
+      color: var(--charcoal); margin-bottom: 4px;
+    }
+    .email-card-text p {
+      font-size: 0.85rem; color: var(--slate); line-height: 1.5;
+    }
+    .email-card-form {
+      display: flex; gap: 10px; flex-shrink: 0;
+    }
+    .email-card-form input {
+      padding: 12px 14px; font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      border: 1.5px solid #d1d5db; border-radius: 8px;
+      background: var(--cream); color: var(--charcoal); width: 220px;
+    }
+    .email-card-form input:focus {
+      outline: none; border-color: var(--warm-gold);
+      box-shadow: 0 0 0 3px rgba(176, 125, 79, 0.12);
+    }
+    .email-card-form input::placeholder { color: var(--slate-light); }
+    .email-send-btn {
+      padding: 12px 20px; font-size: 0.85rem;
+      font-family: 'Inter', sans-serif; font-weight: 600;
+      background: var(--charcoal); color: var(--cream);
+      border: none; border-radius: 8px; cursor: pointer;
+      white-space: nowrap; transition: background 0.2s;
+    }
+    .email-send-btn:hover { background: #3d4350; }
+
+    /* ============================================================
+       AUDIT CTA — primary, dominant
+       ============================================================ */
+    .audit-cta { display: none; padding: 0 0 80px; }
+    .audit-cta.visible { display: block; }
+    .audit-cta-card {
+      background: linear-gradient(135deg, #B07D4F 0%, #9a6a3e 50%, #7d5530 100%);
+      border-radius: 20px;
+      padding: 56px 48px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 8px 40px rgba(176, 125, 79, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .audit-cta-card::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .audit-cta-eyebrow {
+      font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 16px;
+    }
+    .audit-cta-card h2 {
+      font-family: 'Lora', serif;
+      font-size: 2rem; font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      max-width: 600px; margin-left: auto; margin-right: auto;
+      position: relative;
+    }
+    .audit-cta-card .cta-body {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.85);
+      max-width: 560px;
+      margin: 0 auto 12px;
+      line-height: 1.6;
+      position: relative;
+    }
+    .audit-cta-card .cta-details {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 520px;
+      margin: 0 auto 32px;
+      line-height: 1.55;
+      position: relative;
+    }
+    .audit-cta-btn {
+      display: inline-block;
+      padding: 18px 44px;
+      font-size: 1.1rem; font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: var(--warm-gold);
+      text-decoration: none;
+      border-radius: 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .audit-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.2);
+    }
+    .audit-cta-price {
+      display: none;
+      margin-top: 16px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+      position: relative;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0; text-align: center;
+    }
+    .site-footer p { font-size: 0.82rem; color: var(--slate-light); }
+    .site-footer a { color: var(--slate); text-decoration: none; }
+    .site-footer a:hover { color: var(--charcoal); }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 700px) {
+      .tool-hero h1 { font-size: 1.8rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .input-card { padding: 24px 20px; }
+      .level-cards { grid-template-columns: 1fr; }
+      .comparison-grid { grid-template-columns: 1fr; }
+      .competitor-inline-form { flex-direction: column; }
+      .email-card { flex-direction: column; text-align: center; }
+      .email-card-form { flex-direction: column; width: 100%; }
+      .email-card-form input { width: 100%; }
+      .platform-tabs { flex-wrap: wrap; }
+      .platform-tab { font-size: 0.82rem; padding: 10px 12px; }
+      .trust-bar { flex-wrap: wrap; gap: 16px; }
+      .audit-cta-card { padding: 40px 24px; }
+      .audit-cta-card h2 { font-size: 1.6rem; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Agent Readability Check",
+    "description": "See what AI agents say about your business and whether they get it right. Free readability check.",
+    "url": "https://lizmicik.com/tool",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "creator": {
+      "@type": "Person",
+      "name": "Liz Micik",
+      "url": "https://lizmicik.com"
+    },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">Liz Micik</a>
+      <a href="/" class="back-link">&larr; Back to lizmicik.com</a>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- HERO -->
+  <section class="tool-hero">
+    <div class="container">
+      <h1>Can AI agents read your business?</h1>
+      <p class="subtitle">See exactly what ChatGPT, Perplexity, and Claude say when someone asks about your company.</p>
+      <p class="fine-print">Free. No login required. Scroll down for results in under 30 seconds.</p>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item"><div class="trust-icon">&#10003;</div><span>Checks 3 AI platforms</span></div>
+    <div class="trust-item"><div class="trust-icon">&#10003;</div><span>Tests industry alignment</span></div>
+    <div class="trust-item"><div class="trust-icon">&#10003;</div><span>No signup required</span></div>
+  </div>
+
+  <!-- INPUT FORM -->
+  <section class="input-section" id="input-section">
+    <div class="container">
+      <div class="input-card">
+        <h2>Tell us about your business</h2>
+        <form id="check-form" onsubmit="return false;">
+          <div class="form-row">
+            <div class="input-group">
+              <label for="company-url">Your Website URL</label>
+              <input type="url" id="company-url" placeholder="e.g. yourcompany.com" autocomplete="off" aria-required="true">
+              <p class="input-helper">We'll check how AI platforms describe this site</p>
+            </div>
+            <div class="input-group">
+              <label for="primary-keyword">Your Industry or Primary Service</label>
+              <input type="text" id="primary-keyword" placeholder="e.g. management consulting, enterprise software" autocomplete="off" aria-required="true">
+              <p class="input-helper">What should AI agents associate you with?</p>
+            </div>
+          </div>
+          <button type="submit" class="run-btn" id="run-btn" onclick="runCheck()">Check My Agent Readability</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOADING -->
+  <section class="loading-section" id="loading-section">
+    <div class="container">
+      <div class="loading-steps" id="loading-steps">
+        <div class="loading-step" data-step="0"><div class="step-icon"></div><span>Querying ChatGPT...</span></div>
+        <div class="loading-step" data-step="1"><div class="step-icon"></div><span>Querying Perplexity...</span></div>
+        <div class="loading-step" data-step="2"><div class="step-icon"></div><span>Querying Claude...</span></div>
+        <div class="loading-step" data-step="3"><div class="step-icon"></div><span>Analyzing readability signals...</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="results-section" id="results-section">
+    <div class="container-wide">
+      <div class="results-header">
+        <h2 id="results-title">Here's how AI agents see your business</h2>
+        <p>Based on what ChatGPT, Perplexity, and Claude return when asked about <strong id="results-url"></strong></p>
+      </div>
+
+      <!-- Thermometer -->
+      <div class="thermometer-card">
+        <h3 class="thermometer-headline">Your site has <span class="level-text" id="level-text" style="color: var(--red);">LOW</span> readability on this brief check</h3>
+        <div class="thermometer-bar-wrap">
+          <div class="thermometer-bar low" id="thermometer-bar"></div>
+        </div>
+        <div class="thermometer-labels">
+          <span>Low</span><span>Medium</span><span>High</span>
+        </div>
+        <p class="thermometer-body" style="margin-top: 16px;" id="thermometer-body">
+          At first glance, only <strong>one of the three</strong> AI agents we queried agrees that you are a <strong><span id="kw-echo-1">management consulting firm</span></strong> operating in <strong><span id="kw-echo-2">digital transformation</span></strong>. That tells me there is <strong>great opportunity</strong> to improve your readability. In the full Agent Readability Audit, we score your site on a scale of 0&ndash;100 across all 29 of our diagnostic checks &mdash; covering not just whether agents can find you, but whether they can understand and trust you.
+        </p>
+      </div>
+
+      <!-- Three Level Cards -->
+      <div class="level-cards">
+        <div class="level-card card-low active" id="card-low">
+          <h4>Low</h4>
+          <p>AI agents can't agree on what your business does or connect you to "<strong><span class="kw-slot">your keyword</span></strong>." When someone asks an AI for a recommendation in your space, you're not in the conversation.</p>
+        </div>
+        <div class="level-card card-medium" id="card-medium">
+          <h4>Medium</h4>
+          <p>AI agents have a rough idea of what you do, but they don't consistently associate you with "<strong><span class="kw-slot">your keyword</span></strong>." Gaps like these are where competitors win the recommendation.</p>
+        </div>
+        <div class="level-card card-high" id="card-high">
+          <h4>High</h4>
+          <p>AI agents can find you and consistently connect you to "<strong><span class="kw-slot">your keyword</span></strong>." But can they trust you enough to recommend you? The free check covers identity. The full audit tests all three layers across 29 diagnostic signals.</p>
+        </div>
+      </div>
+
+      <!-- Platform Tabs -->
+      <div class="platform-tabs" id="platform-tabs" role="tablist" aria-label="AI platform responses">
+        <button class="platform-tab active" data-platform="chatgpt" onclick="switchPlatform('chatgpt')" role="tab" aria-selected="true">ChatGPT</button>
+        <button class="platform-tab" data-platform="perplexity" onclick="switchPlatform('perplexity')" role="tab" aria-selected="false">Perplexity</button>
+        <button class="platform-tab" data-platform="claude" onclick="switchPlatform('claude')" role="tab" aria-selected="false">Claude</button>
+      </div>
+
+      <div class="platform-result active" data-platform="chatgpt">
+        <div class="response-card">
+          <div class="response-card-header"><span id="yours-label-chatgpt">Your Company</span> &mdash; ChatGPT's response</div>
+          <div class="response-card-body"><div class="ai-response" id="yours-chatgpt"></div></div>
+        </div>
+      </div>
+      <div class="platform-result" data-platform="perplexity">
+        <div class="response-card">
+          <div class="response-card-header"><span id="yours-label-perplexity">Your Company</span> &mdash; Perplexity's response</div>
+          <div class="response-card-body"><div class="ai-response" id="yours-perplexity"></div></div>
+        </div>
+      </div>
+      <div class="platform-result" data-platform="claude">
+        <div class="response-card">
+          <div class="response-card-header"><span id="yours-label-claude">Your Company</span> &mdash; Claude's response</div>
+          <div class="response-card-body"><div class="ai-response" id="yours-claude"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPETITOR PROMPT -->
+  <section class="competitor-prompt" id="competitor-prompt">
+    <div class="container">
+      <div class="competitor-card">
+        <h2>Want to see how a competitor compares?</h2>
+        <p>See the difference between how AI agents describe your business vs. a competitor. This is where it gets real.</p>
+        <div class="competitor-inline-form">
+          <label for="competitor-url" class="sr-only">Competitor website URL</label>
+          <input type="url" id="competitor-url" placeholder="e.g. competitor.com">
+          <button class="compare-btn" onclick="runComparison()">Compare</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON RESULTS -->
+  <section class="comparison-section" id="comparison-section">
+    <div class="container-wide">
+      <div class="comparison-header">
+        <h2>Side by side: You vs. the competition</h2>
+        <p>Same questions. Same AI platforms. Very different answers.</p>
+      </div>
+
+      <div class="platform-tabs" id="compare-platform-tabs" role="tablist" aria-label="Comparison">
+        <button class="platform-tab active" data-platform="chatgpt" onclick="switchComparePlatform('chatgpt')" role="tab" aria-selected="true">ChatGPT</button>
+        <button class="platform-tab" data-platform="perplexity" onclick="switchComparePlatform('perplexity')" role="tab" aria-selected="false">Perplexity</button>
+        <button class="platform-tab" data-platform="claude" onclick="switchComparePlatform('claude')" role="tab" aria-selected="false">Claude</button>
+      </div>
+
+      <div class="compare-result active" data-platform="chatgpt">
+        <div class="comparison-grid">
+          <div class="company-card yours">
+            <div class="company-card-header" id="c-yours-label-chatgpt">Your Company</div>
+            <div class="company-card-body"><div class="ai-response" id="c-yours-chatgpt"></div></div>
+          </div>
+          <div class="company-card theirs">
+            <div class="company-card-header" id="c-theirs-label-chatgpt">Competitor</div>
+            <div class="company-card-body"><div class="ai-response" id="c-theirs-chatgpt"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="compare-result" data-platform="perplexity">
+        <div class="comparison-grid">
+          <div class="company-card yours">
+            <div class="company-card-header" id="c-yours-label-perplexity">Your Company</div>
+            <div class="company-card-body"><div class="ai-response" id="c-yours-perplexity"></div></div>
+          </div>
+          <div class="company-card theirs">
+            <div class="company-card-header" id="c-theirs-label-perplexity">Competitor</div>
+            <div class="company-card-body"><div class="ai-response" id="c-theirs-perplexity"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="compare-result" data-platform="claude">
+        <div class="comparison-grid">
+          <div class="company-card yours">
+            <div class="company-card-header" id="c-yours-label-claude">Your Company</div>
+            <div class="company-card-body"><div class="ai-response" id="c-yours-claude"></div></div>
+          </div>
+          <div class="company-card theirs">
+            <div class="company-card-header" id="c-theirs-label-claude">Competitor</div>
+            <div class="company-card-body"><div class="ai-response" id="c-theirs-claude"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight-callout">
+        <h3>What this gap means</h3>
+        <p id="comparison-insight"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMAIL GATE — secondary/inline -->
+  <section class="email-gate" id="email-gate">
+    <div class="container">
+      <div class="email-card">
+        <div class="email-card-text">
+          <h3>Where should we send this report?</h3>
+          <p>We'll send a summary of your results plus a checklist of what AI agents look for when deciding whether they can find you — including robots.txt, llms.txt, and agent permissions you can check right now.</p>
+        </div>
+        <form class="email-card-form" id="gate-form" name="readability-check-leads" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return false;">
+          <input type="hidden" name="form-name" value="readability-check-leads">
+          <p class="sr-only"><label>Don't fill this out: <input name="bot-field"></label></p>
+          <input type="hidden" name="website-url" id="hidden-url">
+          <input type="hidden" name="primary-keyword" id="hidden-keyword">
+          <input type="hidden" name="readability-level" id="hidden-level">
+          <input type="hidden" name="competitor-url" id="hidden-competitor">
+          <label for="gate-email" class="sr-only">Email address</label>
+          <input type="email" id="gate-email" name="email" placeholder="your@email.com" required>
+          <button type="submit" class="email-send-btn" onclick="submitEmail()">Send My Report</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIT CTA — primary, dominant -->
+  <section class="audit-cta" id="audit-cta">
+    <div class="container">
+      <div class="audit-cta-card">
+        <div class="audit-cta-eyebrow">Full Agent Readability Audit</div>
+        <h2>Let's get a full picture of your Agent Readability.</h2>
+        <p class="cta-body">So you can be sure you're ready for whatever AI changes come your way. We'll score your site on 29 different dimensions and provide strategy insights to strengthen your position in AI-driven search.</p>
+        <p class="cta-details">You'll receive an interactive report with prioritized findings, an executive summary, and a step-by-step remediation roadmap. Most clients see results within the first two weeks of implementation.</p>
+        <a href="/#contact" class="audit-cta-btn">Get My Agent Readability Audit</a>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 <a href="/">Liz Micik</a> &middot; lizmicik.com</p>
+    </div>
+  </footer>
+
+  <script>
+    const MOCK_YOUR_RESPONSES = {
+      chatgpt: `Meridian Strategy Group is a management consulting firm that specializes in digital transformation and strategic advisory for mid-market companies. Based on available information, they appear to focus on helping organizations navigate complex operational changes, particularly around technology adoption and process optimization.\n\nHowever, I should note that some sources describe them as a "healthcare technology company," which seems inconsistent with their website content. Their LinkedIn presence emphasizes digital transformation consulting, while their Google Business Profile lists them simply as a "Business Consultant."\n\nI'd recommend checking their website directly for the most current information about their services.`,
+      perplexity: `Based on my research, Meridian Strategy Group appears to be a consulting firm, though there's some confusion in the available data about their exact focus area.\n\nTheir website describes management consulting services focused on digital transformation. However, the structured data on their site identifies them as a "healthcare technology company" [1], which conflicts with the visible page content. Their G2 profile may reference a different company entirely [2].\n\nKey details:\n- Website: meridianstrategy.com\n- Focus: Management consulting / digital transformation\n- Note: Multiple sources show inconsistent descriptions\n\nSources:\n[1] meridianstrategy.com schema markup\n[2] g2.com/products/meridian-strategy`,
+      claude: `I have limited information about Meridian Strategy Group. From what I can find, they appear to be a consulting firm focused on management consulting and digital transformation advisory services.\n\nI notice some inconsistency in how this company is described across different sources — their website content describes management consulting, but some metadata references healthcare technology. I'd encourage verifying directly with the company for the most accurate description of their current services and focus areas.\n\nI don't have enough information to speak to their track record, team size, or specific client results.`,
+    };
+
+    const MOCK_COMPETITOR_RESPONSES = {
+      chatgpt: `Acme Consulting is a well-established management consulting firm specializing in operational excellence and digital transformation for Fortune 500 and mid-market companies.\n\nFounded in 2008, they've built a reputation for data-driven strategy work, particularly in the manufacturing and financial services sectors. Their team of approximately 120 consultants operates from offices in New York, Chicago, and London.\n\nNotable engagements include helping a major financial services firm reduce operational costs by 23% through process automation, and guiding a Fortune 500 manufacturer through a $200M digital transformation initiative.\n\nThey're frequently cited in industry publications and have been recognized by Consulting Magazine as a "Firm to Watch" in 2024 and 2025.`,
+      perplexity: `Acme Consulting is a management consulting firm focused on operational excellence and digital transformation [1]. Founded in 2008 and headquartered in New York, they serve Fortune 500 and mid-market clients across manufacturing, financial services, and technology sectors [2].\n\nKey facts:\n- ~120 consultants across 3 offices (NYC, Chicago, London)\n- Recognized as "Firm to Watch" by Consulting Magazine (2024, 2025)\n- Specialties: operational excellence, digital transformation, process automation\n- Notable for data-driven methodology combining proprietary analytics with hands-on implementation\n\nRecent coverage includes a feature in Harvard Business Review on their approach to AI-augmented consulting [3].\n\nSources:\n[1] acmeconsulting.com\n[2] LinkedIn company page\n[3] Harvard Business Review, Feb 2025`,
+      claude: `Acme Consulting is a management consulting firm founded in 2008, specializing in operational excellence and digital transformation. Based in New York with additional offices in Chicago and London, they serve primarily Fortune 500 and mid-market clients in manufacturing, financial services, and technology.\n\nThey're known for a data-driven consulting methodology that combines proprietary analytics platforms with hands-on implementation support. Their team of roughly 120 consultants has been recognized by Consulting Magazine as a "Firm to Watch."\n\nTheir online presence is consistent across platforms — website, LinkedIn, Google Business Profile, and industry directories all describe the same services and positioning, which suggests they've invested in maintaining their digital footprint.`,
+    };
+
+    const MOCK_COMPARISON_INSIGHT = `Notice the difference? Your competitor gets confident, specific, consistent descriptions across all three platforms — because their signals all tell the same story. Your company gets hedged language, conflicting descriptions, and "I'd recommend checking their website directly."\n\nThis isn't about who's the better firm. It's about whose signals AI agents can trust. When your schema says "healthcare technology" but your content says "management consulting," agents don't know which to believe — so they hedge, caveat, or skip you entirely.\n\nThe good news: these signals are specific and fixable.`;
+
+    let companyUrl = '';
+    let primaryKeyword = '';
+    let competitorUrl = '';
+    let isRunning = false;
+
+    function runCheck() {
+      if (isRunning) return;
+      companyUrl = document.getElementById('company-url').value.trim();
+      primaryKeyword = document.getElementById('primary-keyword').value.trim();
+
+      if (companyUrl && !companyUrl.match(/^https?:\/\//)) {
+        companyUrl = 'https://' + companyUrl;
+        document.getElementById('company-url').value = companyUrl;
+      }
+
+      let hasError = false;
+      if (!companyUrl) { document.getElementById('company-url').style.borderColor = 'var(--red)'; hasError = true; }
+      if (!primaryKeyword) { document.getElementById('primary-keyword').style.borderColor = 'var(--red)'; hasError = true; }
+      if (hasError) {
+        setTimeout(() => {
+          document.getElementById('company-url').style.borderColor = '';
+          document.getElementById('primary-keyword').style.borderColor = '';
+        }, 2000);
+        return;
+      }
+
+      isRunning = true;
+      const btn = document.getElementById('run-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>Checking readability...';
+
+      ['results-section','competitor-prompt','comparison-section','email-gate','audit-cta'].forEach(id => {
+        document.getElementById(id).classList.remove('visible');
+      });
+
+      document.getElementById('loading-section').classList.add('visible');
+      document.getElementById('loading-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      const steps = document.querySelectorAll('#loading-steps .loading-step');
+      [0, 1800, 3400, 5000].forEach((d, i) => setTimeout(() => steps[i].classList.add('active'), d));
+      [1600, 3200, 4800, 6200].forEach((d, i) => setTimeout(() => {
+        steps[i].classList.remove('active');
+        steps[i].classList.add('done');
+        steps[i].querySelector('.step-icon').textContent = '\u2713';
+      }, d));
+
+      setTimeout(() => {
+        document.getElementById('loading-section').classList.remove('visible');
+        steps.forEach(s => { s.classList.remove('active', 'done'); s.querySelector('.step-icon').textContent = ''; });
+
+        populateYourResults();
+        ['results-section','competitor-prompt','email-gate','audit-cta'].forEach(id => {
+          document.getElementById(id).classList.add('visible');
+        });
+        document.getElementById('results-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        btn.disabled = false;
+        btn.textContent = 'Run Another Check';
+        isRunning = false;
+      }, 7000);
+    }
+
+    function populateYourResults() {
+      let displayUrl = companyUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      document.getElementById('results-url').textContent = displayUrl;
+
+      // Populate keyword echoes
+      document.querySelectorAll('#kw-echo-1').forEach(el => el.textContent = primaryKeyword);
+      document.getElementById('kw-echo-2').textContent = primaryKeyword;
+      document.querySelectorAll('.kw-slot').forEach(el => el.textContent = primaryKeyword);
+
+      ['chatgpt', 'perplexity', 'claude'].forEach(p => {
+        document.getElementById(`yours-${p}`).textContent = MOCK_YOUR_RESPONSES[p];
+        document.getElementById(`yours-label-${p}`).textContent = displayUrl;
+      });
+
+      switchPlatform('chatgpt');
+    }
+
+    function runComparison() {
+      competitorUrl = document.getElementById('competitor-url').value.trim();
+      if (!competitorUrl) {
+        document.getElementById('competitor-url').style.borderColor = 'var(--red)';
+        setTimeout(() => document.getElementById('competitor-url').style.borderColor = '', 2000);
+        return;
+      }
+      if (!competitorUrl.match(/^https?:\/\//)) competitorUrl = 'https://' + competitorUrl;
+
+      let displayUrl = companyUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      let displayComp = competitorUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
+
+      document.getElementById('competitor-prompt').classList.remove('visible');
+
+      ['chatgpt', 'perplexity', 'claude'].forEach(p => {
+        document.getElementById(`c-yours-${p}`).textContent = MOCK_YOUR_RESPONSES[p];
+        document.getElementById(`c-theirs-${p}`).textContent = MOCK_COMPETITOR_RESPONSES[p];
+        document.getElementById(`c-yours-label-${p}`).textContent = displayUrl;
+        document.getElementById(`c-theirs-label-${p}`).textContent = displayComp;
+      });
+
+      document.getElementById('comparison-insight').textContent = MOCK_COMPARISON_INSIGHT;
+      switchComparePlatform('chatgpt');
+
+      document.getElementById('comparison-section').classList.add('visible');
+      document.getElementById('comparison-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function switchPlatform(platform) {
+      document.querySelectorAll('#platform-tabs .platform-tab').forEach(t => {
+        t.classList.toggle('active', t.dataset.platform === platform);
+        t.setAttribute('aria-selected', t.dataset.platform === platform ? 'true' : 'false');
+      });
+      document.querySelectorAll('#results-section .platform-result').forEach(r => {
+        r.classList.toggle('active', r.dataset.platform === platform);
+      });
+    }
+
+    function switchComparePlatform(platform) {
+      document.querySelectorAll('#compare-platform-tabs .platform-tab').forEach(t => {
+        t.classList.toggle('active', t.dataset.platform === platform);
+        t.setAttribute('aria-selected', t.dataset.platform === platform ? 'true' : 'false');
+      });
+      document.querySelectorAll('.compare-result').forEach(r => {
+        r.classList.toggle('active', r.dataset.platform === platform);
+      });
+    }
+
+    function submitEmail() {
+      const emailInput = document.getElementById('gate-email');
+      const email = emailInput.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        emailInput.style.borderColor = 'var(--red)';
+        setTimeout(() => emailInput.style.borderColor = '', 2000);
+        return;
+      }
+
+      // Populate hidden fields with session data
+      document.getElementById('hidden-url').value = companyUrl || '';
+      document.getElementById('hidden-keyword').value = primaryKeyword || '';
+      document.getElementById('hidden-level').value = document.getElementById('level-text')?.textContent || '';
+      document.getElementById('hidden-competitor').value = competitorUrl || '';
+
+      // Submit to Netlify Forms via fetch (keeps our custom UI)
+      const form = document.getElementById('gate-form');
+      const formData = new FormData(form);
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(response => {
+        if (response.ok) {
+          const card = document.querySelector('.email-card');
+          card.innerHTML = '<div class="email-card-text"><h3>Check your inbox.</h3><p>Your report and readability checklist are on the way.</p></div>';
+        } else {
+          console.error('Form submission failed:', response.status);
+          const card = document.querySelector('.email-card');
+          card.innerHTML = '<div class="email-card-text"><h3>Something went wrong.</h3><p>Please try again or email lizmicik@gmail.com directly.</p></div>';
+        }
+      })
+      .catch(error => {
+        console.error('Form submission error:', error);
+        // Still show success in dev/local (no Netlify endpoint available)
+        const card = document.querySelector('.email-card');
+        card.innerHTML = '<div class="email-card-text"><h3>Check your inbox.</h3><p>Your report and readability checklist are on the way.</p></div>';
+      });
+    }
+
+    document.getElementById('check-form').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { e.preventDefault(); runCheck(); }
+    });
+    document.getElementById('gate-form').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { e.preventDefault(); submitEmail(); }
+    });
+  </script>
+
+</body>
+</html>

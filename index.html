@@ -243,6 +243,22 @@
         .nav-links a:hover {
             color: var(--text-primary);
         }
+        .nav-cta {
+            background: var(--accent-copper);
+            color: #fff !important;
+            padding: 0.45rem 1.1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-transform: none !important;
+            letter-spacing: 0 !important;
+            font-size: 0.82rem !important;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .nav-cta:hover {
+            background: #9a6a3e;
+            color: #fff !important;
+            transform: translateY(-1px);
+        }
         .nav-toggle {
             display: none;
             background: none;
@@ -299,6 +315,25 @@
             display: block;
             margin-top: 0.3em;
             color: var(--accent-copper);
+        }
+        .hero-cta {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 1rem 2.2rem;
+            background: linear-gradient(135deg, var(--accent-copper) 0%, #9a6a3e 100%);
+            color: #fff !important;
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 16px rgba(176, 125, 91, 0.25);
+        }
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(176, 125, 91, 0.35);
+            color: #fff !important;
         }
         /* ========================================
            THE SHIFT Section (cream bg)
@@ -701,6 +736,11 @@
             .nav-toggle {
                 display: block;
             }
+            .nav-cta {
+                text-align: center;
+                display: block;
+                margin-top: 0.25rem;
+            }
             .nav-toggle.active span:nth-child(1) {
                 transform: rotate(45deg) translate(5px, 5px);
             }
@@ -764,6 +804,7 @@
                 <li><a href="#framework">Framework</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="/readability-check.html" class="nav-cta">Free Readability Check</a></li>
             </ul>
         </div>
     </nav>
@@ -774,6 +815,7 @@
                 Every company built a website to talk to people.
                 <span class="line-break">Nobody built one to talk to AI.</span>
             </h1>
+            <a href="/readability-check.html" class="hero-cta fade-in">Check Your Agent Readability — Free</a>
         </div>
     </header>
     <!-- THE SHIFT -->
