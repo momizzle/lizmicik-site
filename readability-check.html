@@ -566,7 +566,7 @@
     <div class="container">
       <h1>Can AI agents read your business?</h1>
       <p class="subtitle">See exactly what ChatGPT, Perplexity, and Claude say when someone asks about your company.</p>
-      <p class="fine-print">Free. No login required. Scroll down for results in under 30 seconds.</p>
+      <p class="fine-print">Free. No login required. Live results from real AI agents in under 30 seconds.</p>
     </div>
   </section>
 
@@ -605,9 +605,9 @@
   <section class="loading-section" id="loading-section">
     <div class="container">
       <div class="loading-steps" id="loading-steps">
-        <div class="loading-step" data-step="0"><div class="step-icon"></div><span>Querying ChatGPT...</span></div>
-        <div class="loading-step" data-step="1"><div class="step-icon"></div><span>Querying Perplexity...</span></div>
-        <div class="loading-step" data-step="2"><div class="step-icon"></div><span>Querying Claude...</span></div>
+        <div class="loading-step" data-step="0"><div class="step-icon"></div><span>Asking ChatGPT, Perplexity, and Claude about your company...</span></div>
+        <div class="loading-step" data-step="1"><div class="step-icon"></div><span>ChatGPT responded</span></div>
+        <div class="loading-step" data-step="2"><div class="step-icon"></div><span>Perplexity responded</span></div>
         <div class="loading-step" data-step="3"><div class="step-icon"></div><span>Analyzing readability signals...</span></div>
       </div>
     </div>
@@ -797,26 +797,19 @@
   </footer>
 
   <script>
-    const MOCK_YOUR_RESPONSES = {
-      chatgpt: `Meridian Strategy Group is a management consulting firm that specializes in digital transformation and strategic advisory for mid-market companies. Based on available information, they appear to focus on helping organizations navigate complex operational changes, particularly around technology adoption and process optimization.\n\nHowever, I should note that some sources describe them as a "healthcare technology company," which seems inconsistent with their website content. Their LinkedIn presence emphasizes digital transformation consulting, while their Google Business Profile lists them simply as a "Business Consultant."\n\nI'd recommend checking their website directly for the most current information about their services.`,
-      perplexity: `Based on my research, Meridian Strategy Group appears to be a consulting firm, though there's some confusion in the available data about their exact focus area.\n\nTheir website describes management consulting services focused on digital transformation. However, the structured data on their site identifies them as a "healthcare technology company" [1], which conflicts with the visible page content. Their G2 profile may reference a different company entirely [2].\n\nKey details:\n- Website: meridianstrategy.com\n- Focus: Management consulting / digital transformation\n- Note: Multiple sources show inconsistent descriptions\n\nSources:\n[1] meridianstrategy.com schema markup\n[2] g2.com/products/meridian-strategy`,
-      claude: `I have limited information about Meridian Strategy Group. From what I can find, they appear to be a consulting firm focused on management consulting and digital transformation advisory services.\n\nI notice some inconsistency in how this company is described across different sources — their website content describes management consulting, but some metadata references healthcare technology. I'd encourage verifying directly with the company for the most accurate description of their current services and focus areas.\n\nI don't have enough information to speak to their track record, team size, or specific client results.`,
-    };
-
-    const MOCK_COMPETITOR_RESPONSES = {
-      chatgpt: `Acme Consulting is a well-established management consulting firm specializing in operational excellence and digital transformation for Fortune 500 and mid-market companies.\n\nFounded in 2008, they've built a reputation for data-driven strategy work, particularly in the manufacturing and financial services sectors. Their team of approximately 120 consultants operates from offices in New York, Chicago, and London.\n\nNotable engagements include helping a major financial services firm reduce operational costs by 23% through process automation, and guiding a Fortune 500 manufacturer through a $200M digital transformation initiative.\n\nThey're frequently cited in industry publications and have been recognized by Consulting Magazine as a "Firm to Watch" in 2024 and 2025.`,
-      perplexity: `Acme Consulting is a management consulting firm focused on operational excellence and digital transformation [1]. Founded in 2008 and headquartered in New York, they serve Fortune 500 and mid-market clients across manufacturing, financial services, and technology sectors [2].\n\nKey facts:\n- ~120 consultants across 3 offices (NYC, Chicago, London)\n- Recognized as "Firm to Watch" by Consulting Magazine (2024, 2025)\n- Specialties: operational excellence, digital transformation, process automation\n- Notable for data-driven methodology combining proprietary analytics with hands-on implementation\n\nRecent coverage includes a feature in Harvard Business Review on their approach to AI-augmented consulting [3].\n\nSources:\n[1] acmeconsulting.com\n[2] LinkedIn company page\n[3] Harvard Business Review, Feb 2025`,
-      claude: `Acme Consulting is a management consulting firm founded in 2008, specializing in operational excellence and digital transformation. Based in New York with additional offices in Chicago and London, they serve primarily Fortune 500 and mid-market clients in manufacturing, financial services, and technology.\n\nThey're known for a data-driven consulting methodology that combines proprietary analytics platforms with hands-on implementation support. Their team of roughly 120 consultants has been recognized by Consulting Magazine as a "Firm to Watch."\n\nTheir online presence is consistent across platforms — website, LinkedIn, Google Business Profile, and industry directories all describe the same services and positioning, which suggests they've invested in maintaining their digital footprint.`,
-    };
-
-    const MOCK_COMPARISON_INSIGHT = `Notice the difference? Your competitor gets confident, specific, consistent descriptions across all three platforms — because their signals all tell the same story. Your company gets hedged language, conflicting descriptions, and "I'd recommend checking their website directly."\n\nThis isn't about who's the better firm. It's about whose signals AI agents can trust. When your schema says "healthcare technology" but your content says "management consulting," agents don't know which to believe — so they hedge, caveat, or skip you entirely.\n\nThe good news: these signals are specific and fixable.`;
-
+    // ── State ──────────────────────────────────────────────────────
     let companyUrl = '';
     let primaryKeyword = '';
     let competitorUrl = '';
     let isRunning = false;
+    let lastYoursData = null;   // Cache results for comparison reuse
+    let lastAnalysis = null;
 
-    function runCheck() {
+    // ── API Configuration ──────────────────────────────────────────
+    const API_ENDPOINT = '/api/check-readability';
+
+    // ── Run Check (Phase 1: Your Company) ──────────────────────────
+    async function runCheck() {
       if (isRunning) return;
       companyUrl = document.getElementById('company-url').value.trim();
       primaryKeyword = document.getElementById('primary-keyword').value.trim();
@@ -840,41 +833,87 @@
       isRunning = true;
       const btn = document.getElementById('run-btn');
       btn.disabled = true;
-      btn.innerHTML = '<span class="spinner"></span>Checking readability...';
+      btn.innerHTML = '<span class="spinner"></span>Querying AI agents...';
 
+      // Hide previous results
       ['results-section','competitor-prompt','comparison-section','email-gate','audit-cta'].forEach(id => {
         document.getElementById(id).classList.remove('visible');
       });
 
+      // Show loading animation
       document.getElementById('loading-section').classList.add('visible');
       document.getElementById('loading-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
 
       const steps = document.querySelectorAll('#loading-steps .loading-step');
-      [0, 1800, 3400, 5000].forEach((d, i) => setTimeout(() => steps[i].classList.add('active'), d));
-      [1600, 3200, 4800, 6200].forEach((d, i) => setTimeout(() => {
-        steps[i].classList.remove('active');
-        steps[i].classList.add('done');
-        steps[i].querySelector('.step-icon').textContent = '\u2713';
-      }, d));
 
-      setTimeout(() => {
+      // Start first step immediately
+      steps[0].classList.add('active');
+
+      try {
+        // ── Call the serverless function ──
+        const response = await fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: companyUrl, keyword: primaryKeyword }),
+        });
+
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.error || `Server error (${response.status})`);
+        }
+
+        const data = await response.json();
+
+        // Animate through remaining steps quickly now that we have data
+        steps[0].classList.remove('active');
+        steps[0].classList.add('done');
+        steps[0].querySelector('.step-icon').textContent = '\u2713';
+
+        for (let i = 1; i < steps.length; i++) {
+          await delay(400);
+          if (i > 0) {
+            steps[i - 1].classList.remove('active');
+            steps[i - 1].classList.add('done');
+            steps[i - 1].querySelector('.step-icon').textContent = '\u2713';
+          }
+          steps[i].classList.add('active');
+        }
+        await delay(400);
+        steps[steps.length - 1].classList.remove('active');
+        steps[steps.length - 1].classList.add('done');
+        steps[steps.length - 1].querySelector('.step-icon').textContent = '\u2713';
+
+        await delay(300);
+
+        // Cache for comparison reuse
+        lastYoursData = data.yours;
+        lastAnalysis = data.analysis;
+
+        // Hide loading, show results
         document.getElementById('loading-section').classList.remove('visible');
         steps.forEach(s => { s.classList.remove('active', 'done'); s.querySelector('.step-icon').textContent = ''; });
 
-        populateYourResults();
+        populateYourResults(data);
         ['results-section','competitor-prompt','email-gate','audit-cta'].forEach(id => {
           document.getElementById(id).classList.add('visible');
         });
         document.getElementById('results-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-        btn.disabled = false;
-        btn.textContent = 'Run Another Check';
-        isRunning = false;
-      }, 7000);
+      } catch (err) {
+        console.error('Check failed:', err);
+        document.getElementById('loading-section').classList.remove('visible');
+        steps.forEach(s => { s.classList.remove('active', 'done'); s.querySelector('.step-icon').textContent = ''; });
+        showError(err.message || 'Something went wrong. Please try again.');
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Run Another Check';
+      isRunning = false;
     }
 
-    function populateYourResults() {
-      let displayUrl = companyUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
+    // ── Populate Results ───────────────────────────────────────────
+    function populateYourResults(data) {
+      const displayUrl = companyUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
       document.getElementById('results-url').textContent = displayUrl;
 
       // Populate keyword echoes
@@ -882,15 +921,57 @@
       document.getElementById('kw-echo-2').textContent = primaryKeyword;
       document.querySelectorAll('.kw-slot').forEach(el => el.textContent = primaryKeyword);
 
+      // Fill in AI responses
       ['chatgpt', 'perplexity', 'claude'].forEach(p => {
-        document.getElementById(`yours-${p}`).textContent = MOCK_YOUR_RESPONSES[p];
+        document.getElementById(`yours-${p}`).textContent = data.yours[p];
         document.getElementById(`yours-label-${p}`).textContent = displayUrl;
       });
+
+      // Set readability level from analysis
+      const { level, agreementCount } = data.analysis;
+      updateThermometer(level, agreementCount);
 
       switchPlatform('chatgpt');
     }
 
-    function runComparison() {
+    // ── Update Thermometer & Level Cards ───────────────────────────
+    function updateThermometer(level, agreementCount) {
+      const levelText = document.getElementById('level-text');
+      const bar = document.getElementById('thermometer-bar');
+      const body = document.getElementById('thermometer-body');
+
+      // Remove old level classes
+      bar.classList.remove('low', 'medium', 'high');
+
+      // Set level card active states
+      document.querySelectorAll('.level-card').forEach(c => c.classList.remove('active'));
+
+      if (level === 'HIGH') {
+        levelText.textContent = 'HIGH';
+        levelText.style.color = 'var(--green)';
+        bar.classList.add('high');
+        document.getElementById('card-high').classList.add('active');
+        body.innerHTML = `All <strong>three AI agents</strong> we queried confidently associate you with <strong><span id="kw-echo-1">${escapeHtml(primaryKeyword)}</span></strong>. That's a strong signal. But this free check only tests identity &mdash; can agents <em>find</em> you and agree on what you do. The full Agent Readability Audit scores your site on <strong>29 dimensions</strong> across all three layers: Find, Understand, and Trust.`;
+      } else if (level === 'MEDIUM') {
+        levelText.textContent = 'MEDIUM';
+        levelText.style.color = 'var(--warm-gold)';
+        bar.classList.add('medium');
+        document.getElementById('card-medium').classList.add('active');
+        body.innerHTML = `<strong>Two of three</strong> AI agents we queried associate you with <strong><span id="kw-echo-1">${escapeHtml(primaryKeyword)}</span></strong>, but the third hedges or disagrees. That gap means some AI-driven recommendations are missing you. In the full Agent Readability Audit, we score your site on <strong>29 dimensions</strong> across all three layers &mdash; Find, Understand, and Trust &mdash; so you know exactly where the signals break down.`;
+      } else {
+        levelText.textContent = 'LOW';
+        levelText.style.color = 'var(--red)';
+        bar.classList.add('low');
+        document.getElementById('card-low').classList.add('active');
+        const agreeText = agreementCount === 0
+          ? `<strong>None</strong> of the three AI agents`
+          : `Only <strong>one of the three</strong> AI agents`;
+        body.innerHTML = `${agreeText} we queried confidently agrees that you are in <strong><span id="kw-echo-1">${escapeHtml(primaryKeyword)}</span></strong>. That tells me there is <strong>great opportunity</strong> to improve your readability. In the full Agent Readability Audit, we score your site on <strong>29 dimensions</strong> across all three layers &mdash; Find, Understand, and Trust &mdash; covering not just whether agents can find you, but whether they can understand and trust you.`;
+      }
+    }
+
+    // ── Run Comparison (Phase 2: Competitor) ───────────────────────
+    async function runComparison() {
       competitorUrl = document.getElementById('competitor-url').value.trim();
       if (!competitorUrl) {
         document.getElementById('competitor-url').style.borderColor = 'var(--red)';
@@ -899,23 +980,81 @@
       }
       if (!competitorUrl.match(/^https?:\/\//)) competitorUrl = 'https://' + competitorUrl;
 
-      let displayUrl = companyUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
-      let displayComp = competitorUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      const displayUrl = companyUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      const displayComp = competitorUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
 
-      document.getElementById('competitor-prompt').classList.remove('visible');
+      // Show loading state on compare button
+      const compareBtn = document.querySelector('.compare-btn');
+      const origText = compareBtn.textContent;
+      compareBtn.disabled = true;
+      compareBtn.innerHTML = '<span class="spinner"></span>Querying...';
 
-      ['chatgpt', 'perplexity', 'claude'].forEach(p => {
-        document.getElementById(`c-yours-${p}`).textContent = MOCK_YOUR_RESPONSES[p];
-        document.getElementById(`c-theirs-${p}`).textContent = MOCK_COMPETITOR_RESPONSES[p];
-        document.getElementById(`c-yours-label-${p}`).textContent = displayUrl;
-        document.getElementById(`c-theirs-label-${p}`).textContent = displayComp;
-      });
+      try {
+        const response = await fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            url: companyUrl,
+            keyword: primaryKeyword,
+            competitorUrl: competitorUrl,
+          }),
+        });
 
-      document.getElementById('comparison-insight').textContent = MOCK_COMPARISON_INSIGHT;
-      switchComparePlatform('chatgpt');
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.error || `Server error (${response.status})`);
+        }
 
-      document.getElementById('comparison-section').classList.add('visible');
-      document.getElementById('comparison-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const data = await response.json();
+
+        document.getElementById('competitor-prompt').classList.remove('visible');
+
+        // Use fresh "yours" data from this call (or cached if identical)
+        const yoursData = data.yours || lastYoursData;
+
+        ['chatgpt', 'perplexity', 'claude'].forEach(p => {
+          document.getElementById(`c-yours-${p}`).textContent = yoursData[p];
+          document.getElementById(`c-theirs-${p}`).textContent = data.competitor[p];
+          document.getElementById(`c-yours-label-${p}`).textContent = displayUrl;
+          document.getElementById(`c-theirs-label-${p}`).textContent = displayComp;
+        });
+
+        document.getElementById('comparison-insight').textContent = data.insight || '';
+        switchComparePlatform('chatgpt');
+
+        document.getElementById('comparison-section').classList.add('visible');
+        document.getElementById('comparison-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      } catch (err) {
+        console.error('Comparison failed:', err);
+        showError(err.message || 'Comparison failed. Please try again.');
+      }
+
+      compareBtn.disabled = false;
+      compareBtn.textContent = origText;
+    }
+
+    // ── Error Display ──────────────────────────────────────────────
+    function showError(message) {
+      // Create a temporary error banner
+      const existing = document.getElementById('error-banner');
+      if (existing) existing.remove();
+
+      const banner = document.createElement('div');
+      banner.id = 'error-banner';
+      banner.style.cssText = 'max-width:960px;margin:24px auto;padding:16px 24px;background:var(--red-bg);border:1px solid var(--red-border);border-radius:8px;color:var(--red);text-align:center;font-size:0.95rem;';
+      banner.textContent = message;
+      document.getElementById('input-section').after(banner);
+
+      setTimeout(() => banner.remove(), 8000);
+    }
+
+    // ── Utilities ──────────────────────────────────────────────────
+    function delay(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
     }
 
     function switchPlatform(platform) {
