@@ -1253,7 +1253,20 @@
       document.getElementById('hidden-level').value = document.getElementById('level-text')?.textContent || '';
       document.getElementById('hidden-competitor').value = competitorUrl || '';
 
-      // Submit to Netlify Forms via fetch (keeps our custom UI)
+      // 1. Subscribe to Kit (ConvertKit) via serverless proxy
+      fetch('/api/subscribe-kit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email })
+      })
+      .then(res => {
+        if (!res.ok) console.warn('Kit subscription returned status:', res.status);
+        return res.json();
+      })
+      .then(data => console.log('Kit subscription:', data.success ? 'OK' : data.error))
+      .catch(err => console.warn('Kit subscription error (non-blocking):', err));
+
+      // 2. Submit to Netlify Forms as backup data capture
       const form = document.getElementById('gate-form');
       const formData = new FormData(form);
 
@@ -1274,7 +1287,6 @@
       })
       .catch(error => {
         console.error('Form submission error:', error);
-        // Still show success in dev/local (no Netlify endpoint available)
         const card = document.querySelector('.email-card');
         card.innerHTML = '<div class="email-card-text"><h3>Check your inbox.</h3><p>Your report and readability checklist are on the way.</p></div>';
       });
