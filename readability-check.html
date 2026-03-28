@@ -1,16 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-B9S40S2SKG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-B9S40S2SKG');
-</script>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agent Readability Check — Can AI Agents Read Your Business? | Liz Micik</title>
-  <meta name="description" content="See exactly what ChatGPT, Perplexity, and Claude say when someone asks about your company. Free agent readability check by Liz Micik.">
+  <meta name="description" content="See exactly what ChatGPT, Perplexity, Claude, and Google's AI say when someone asks about your company. Free agent readability check by Liz Micik.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -199,70 +194,85 @@
     }
     .results-header p { color: var(--slate); font-size: 0.95rem; }
 
-    /* Thermometer / Progress Bar */
-    .thermometer-card {
+    /* Fact vs Vibe Scorecard */
+    .scorecard {
       background: #fff; border: 1px solid var(--border);
-      border-radius: 16px; padding: 32px 36px; margin-bottom: 24px;
+      border-radius: 16px; padding: 32px 36px; margin-bottom: 28px;
       box-shadow: var(--shadow-sm);
     }
-    .thermometer-headline {
+    .scorecard-headline {
       font-family: 'Lora', serif; font-size: 1.3rem; font-weight: 700;
-      margin-bottom: 16px;
+      color: var(--charcoal); margin-bottom: 6px;
     }
-    .thermometer-headline .level-text { }
-    .thermometer-bar-wrap {
-      width: 100%; height: 12px; background: #e5e7eb;
-      border-radius: 6px; overflow: hidden; margin-bottom: 20px;
-      position: relative;
+    .scorecard-subhead {
+      font-size: 0.88rem; color: var(--slate); margin-bottom: 24px; line-height: 1.5;
     }
-    .thermometer-bar {
-      height: 100%; border-radius: 6px;
-      transition: width 1s ease-out;
-    }
-    .thermometer-bar.low { width: 25%; background: linear-gradient(90deg, var(--red), #e05252); }
-    .thermometer-bar.medium { width: 55%; background: linear-gradient(90deg, var(--warm-gold), var(--warm-gold-light)); }
-    .thermometer-bar.high { width: 85%; background: linear-gradient(90deg, var(--green), var(--sage-light)); }
-    .thermometer-labels {
-      display: flex; justify-content: space-between;
-      font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.06em; color: var(--slate-light); margin-top: 6px;
-    }
-    .thermometer-body {
-      font-size: 0.92rem; color: #4b5563; line-height: 1.65; margin-bottom: 0;
-    }
-    .thermometer-body strong { color: var(--charcoal); }
+    .scorecard-subhead strong { color: var(--charcoal); }
 
-    /* Three level cards */
-    .level-cards {
-      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
-      margin-bottom: 28px;
+    /* Per-platform score rows */
+    .score-row {
+      display: grid; grid-template-columns: 110px 1fr 54px;
+      align-items: center; gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
     }
-    .level-card {
-      border-radius: 12px; padding: 20px 18px;
-      border: 1.5px solid var(--border);
-      opacity: 0.35;
-      transition: opacity 0.4s, border-color 0.4s, box-shadow 0.4s;
+    .score-row:last-child { border-bottom: none; }
+    .score-platform {
+      font-size: 0.85rem; font-weight: 600; color: var(--charcoal);
     }
-    .level-card.active {
-      opacity: 1;
-      box-shadow: var(--shadow-md);
+    .score-bar-wrap {
+      position: relative; height: 28px;
+      background: #f3f4f6; border-radius: 6px; overflow: hidden;
     }
-    .level-card.card-low { background: var(--red-bg); }
-    .level-card.card-low.active { border-color: var(--red-border); }
-    .level-card.card-medium { background: var(--warm-gold-bg); }
-    .level-card.card-medium.active { border-color: var(--warm-gold-border); }
-    .level-card.card-high { background: var(--green-bg); }
-    .level-card.card-high.active { border-color: var(--green-border); }
-    .level-card h4 {
-      font-size: 0.82rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.06em; margin-bottom: 8px;
+    .score-bar-facts {
+      position: absolute; left: 0; top: 0; height: 100%;
+      background: linear-gradient(90deg, var(--green), var(--sage-light));
+      border-radius: 6px 0 0 6px;
+      transition: width 0.8s ease-out;
+      display: flex; align-items: center; justify-content: flex-end;
+      padding-right: 6px;
     }
-    .level-card.card-low h4 { color: var(--red); }
-    .level-card.card-medium h4 { color: var(--warm-gold); }
-    .level-card.card-high h4 { color: var(--green); }
-    .level-card p {
-      font-size: 0.82rem; color: #4b5563; line-height: 1.55;
+    .score-bar-vibes {
+      position: absolute; right: 0; top: 0; height: 100%;
+      background: linear-gradient(270deg, var(--red), #e05252);
+      border-radius: 0 6px 6px 0;
+      transition: width 0.8s ease-out;
+      display: flex; align-items: center; justify-content: flex-start;
+      padding-left: 6px;
     }
+    .score-bar-label {
+      font-size: 0.68rem; font-weight: 700; color: #fff;
+      white-space: nowrap;
+    }
+    .score-number {
+      font-size: 1.1rem; font-weight: 700; text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .score-number.positive { color: var(--green); }
+    .score-number.negative { color: var(--red); }
+    .score-number.zero { color: var(--slate-light); }
+
+    /* Score legend */
+    .score-legend {
+      display: flex; gap: 24px; margin-top: 16px; padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .legend-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.75rem; color: var(--slate);
+    }
+    .legend-dot {
+      width: 10px; height: 10px; border-radius: 3px;
+    }
+    .legend-dot.facts { background: var(--green); }
+    .legend-dot.vibes { background: var(--red); }
+
+    /* Scorecard body text */
+    .scorecard-body {
+      font-size: 0.92rem; color: #4b5563; line-height: 1.65;
+      margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);
+    }
+    .scorecard-body strong { color: var(--charcoal); }
 
     /* Platform tabs — copper active state */
     .platform-tabs {
@@ -304,10 +314,10 @@
     .platform-result.active { display: block; }
 
     /* ============================================================
-       COMPETITOR PROMPT
+       BENCHMARK / COMPETITOR
        ============================================================ */
-    .competitor-prompt { display: none; padding: 0 0 48px; }
-    .competitor-prompt.visible { display: block; }
+    .benchmark-section { display: none; padding: 0 0 24px; }
+    .benchmark-section.visible { display: block; }
     .competitor-card {
       background: linear-gradient(135deg, #f8f5f0 0%, #fff 100%);
       border: 2px dashed var(--warm-gold-border);
@@ -343,12 +353,6 @@
       white-space: nowrap; transition: background 0.2s;
     }
     .compare-btn:hover { background: var(--warm-gold-light); }
-
-    /* ============================================================
-       COMPARISON
-       ============================================================ */
-    .comparison-section { display: none; padding: 0 0 48px; }
-    .comparison-section.visible { display: block; }
     .comparison-header { text-align: center; margin-bottom: 28px; }
     .comparison-header h2 {
       font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 700;
@@ -376,21 +380,21 @@
 
     /* Comparison insight */
     .insight-callout {
-      background: var(--charcoal); border-radius: 12px;
-      padding: 28px 32px; color: var(--cream); margin-top: 24px;
+      background: #018799; border-radius: 12px;
+      padding: 28px 32px; color: #fff; margin-top: 24px; margin-bottom: 8px;
     }
     .insight-callout h3 {
       font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600;
-      margin-bottom: 8px; color: var(--cream);
+      margin-bottom: 8px; color: #fff;
     }
     .insight-callout p {
-      font-size: 0.88rem; color: rgba(250,248,245,0.8); line-height: 1.65;
+      font-size: 0.88rem; color: rgba(255,255,255,0.88); line-height: 1.65;
     }
 
     /* ============================================================
        EMAIL GATE — secondary, understated
        ============================================================ */
-    .email-gate { display: none; padding: 32px 0; }
+    .email-gate { display: none; padding: 16px 0; }
     .email-gate.visible { display: block; }
     .email-card {
       background: #fff; border: 1px solid var(--border);
@@ -536,37 +540,6 @@
       .audit-cta-card { padding: 40px 24px; }
       .audit-cta-card h2 { font-size: 1.6rem; }
     }
-
-    /* ============================================================
-       COOKIE BANNER
-       ============================================================ */
-    .cookie-banner {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
-      background: #2C3038; border-top: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 -2px 12px rgba(0,0,0,0.1);
-    }
-    .cookie-banner-inner {
-      max-width: 960px; margin: 0 auto; padding: 1rem 24px;
-      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
-    }
-    .cookie-banner p {
-      font-size: 0.82rem; color: rgba(184,181,176,1); margin: 0; line-height: 1.5;
-    }
-    .cookie-banner a {
-      color: #C4956A; text-decoration: underline;
-      text-decoration-thickness: 1px; text-underline-offset: 2px;
-    }
-    .cookie-banner a:hover { color: #fff; }
-    .cookie-accept {
-      flex-shrink: 0; background: #B07D5B; color: #fff; border: none;
-      padding: 0.5rem 1.25rem; border-radius: 8px;
-      font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 600;
-      cursor: pointer; transition: background 0.2s ease;
-    }
-    .cookie-accept:hover { background: #9a6a3e; }
-    @media (max-width: 700px) {
-      .cookie-banner-inner { flex-direction: column; text-align: center; gap: 0.75rem; }
-    }
   </style>
 
   <script type="application/ld+json">
@@ -601,15 +574,15 @@
   <!-- HERO -->
   <section class="tool-hero">
     <div class="container">
-      <h1>Can AI agents read your business?</h1>
-      <p class="subtitle">See exactly what ChatGPT, Perplexity, and Claude say when someone asks about your company.</p>
-      <p class="fine-print">Free. No login required. Live results from real AI agents in under 30 seconds.</p>
+      <h1>Do AI agents know your business, <span style="color:var(--warm-gold);">or are they guessing?</span></h1>
+      <p class="subtitle">We ask four AI platforms about your company, count every verifiable fact vs. every hedge, and show you how you compare to a well-known name in your industry.</p>
+      <p class="fine-print">Free. No login required. Results from top AI agents in under 30 seconds.</p>
     </div>
   </section>
 
   <!-- TRUST BAR -->
   <div class="trust-bar">
-    <div class="trust-item"><div class="trust-icon">&#10003;</div><span>Checks 3 AI platforms</span></div>
+    <div class="trust-item"><div class="trust-icon">&#10003;</div><span>Checks 4 AI platforms</span></div>
     <div class="trust-item"><div class="trust-icon">&#10003;</div><span>Tests industry alignment</span></div>
     <div class="trust-item"><div class="trust-icon">&#10003;</div><span>No signup required</span></div>
   </div>
@@ -618,7 +591,7 @@
   <section class="input-section" id="input-section">
     <div class="container">
       <div class="input-card">
-        <h2>Tell us about your business</h2>
+        <h2>Let's see what AI knows about you</h2>
         <form id="check-form" onsubmit="return false;">
           <div class="form-row">
             <div class="input-group">
@@ -642,160 +615,126 @@
   <section class="loading-section" id="loading-section">
     <div class="container">
       <div class="loading-steps" id="loading-steps">
-        <div class="loading-step" data-step="0"><div class="step-icon"></div><span>Asking ChatGPT, Perplexity, and Claude about your company...</span></div>
+        <div class="loading-step" data-step="0"><div class="step-icon"></div><span>Asking ChatGPT, Perplexity, Claude, and Google Gemini about your company...</span></div>
         <div class="loading-step" data-step="1"><div class="step-icon"></div><span>ChatGPT responded</span></div>
         <div class="loading-step" data-step="2"><div class="step-icon"></div><span>Perplexity responded</span></div>
-        <div class="loading-step" data-step="3"><div class="step-icon"></div><span>Analyzing readability signals...</span></div>
+        <div class="loading-step" data-step="3"><div class="step-icon"></div><span>Google Gemini responded</span></div>
+        <div class="loading-step" data-step="4"><div class="step-icon"></div><span>Analyzing readability signals...</span></div>
       </div>
     </div>
   </section>
 
-  <!-- RESULTS -->
-  <section class="results-section" id="results-section">
-    <div class="container-wide">
-      <div class="results-header">
-        <h2 id="results-title">Here's how AI agents see your business</h2>
-        <p>Based on what ChatGPT, Perplexity, and Claude return when asked about <strong id="results-url"></strong></p>
-      </div>
-
-      <!-- Thermometer -->
-      <div class="thermometer-card">
-        <h3 class="thermometer-headline">Your site has <span class="level-text" id="level-text" style="color: var(--red);">LOW</span> readability on this brief check</h3>
-        <div class="thermometer-bar-wrap">
-          <div class="thermometer-bar low" id="thermometer-bar"></div>
-        </div>
-        <div class="thermometer-labels">
-          <span>Low</span><span>Medium</span><span>High</span>
-        </div>
-        <p class="thermometer-body" style="margin-top: 16px;" id="thermometer-body">
-          At first glance, only <strong>one of the three</strong> AI agents we queried agrees that you are a <strong><span id="kw-echo-1">management consulting firm</span></strong> operating in <strong><span id="kw-echo-2">digital transformation</span></strong>. That tells me there is <strong>great opportunity</strong> to improve your readability. In the full Agent Readability Audit, we score your site on a scale of 0&ndash;100 across all 29 of our diagnostic checks &mdash; covering not just whether agents can find you, but whether they can understand and trust you.
-        </p>
-      </div>
-
-      <!-- Three Level Cards -->
-      <div class="level-cards">
-        <div class="level-card card-low active" id="card-low">
-          <h4>Low</h4>
-          <p>AI agents can't agree on what your business does or connect you to "<strong><span class="kw-slot">your keyword</span></strong>." When someone asks an AI for a recommendation in your space, you're not in the conversation.</p>
-        </div>
-        <div class="level-card card-medium" id="card-medium">
-          <h4>Medium</h4>
-          <p>AI agents have a rough idea of what you do, but they don't consistently associate you with "<strong><span class="kw-slot">your keyword</span></strong>." Gaps like these are where competitors win the recommendation.</p>
-        </div>
-        <div class="level-card card-high" id="card-high">
-          <h4>High</h4>
-          <p>AI agents can find you and consistently connect you to "<strong><span class="kw-slot">your keyword</span></strong>." But can they trust you enough to recommend you? The free check covers identity. The full audit tests all three layers across 29 diagnostic signals.</p>
-        </div>
-      </div>
-
-      <!-- Platform Tabs -->
-      <div class="platform-tabs" id="platform-tabs" role="tablist" aria-label="AI platform responses">
-        <button class="platform-tab active" data-platform="chatgpt" onclick="switchPlatform('chatgpt')" role="tab" aria-selected="true">ChatGPT</button>
-        <button class="platform-tab" data-platform="perplexity" onclick="switchPlatform('perplexity')" role="tab" aria-selected="false">Perplexity</button>
-        <button class="platform-tab" data-platform="claude" onclick="switchPlatform('claude')" role="tab" aria-selected="false">Claude</button>
-      </div>
-
-      <div class="platform-result active" data-platform="chatgpt">
-        <div class="response-card">
-          <div class="response-card-header"><span id="yours-label-chatgpt">Your Company</span> &mdash; ChatGPT's response</div>
-          <div class="response-card-body"><div class="ai-response" id="yours-chatgpt"></div></div>
-        </div>
-      </div>
-      <div class="platform-result" data-platform="perplexity">
-        <div class="response-card">
-          <div class="response-card-header"><span id="yours-label-perplexity">Your Company</span> &mdash; Perplexity's response</div>
-          <div class="response-card-body"><div class="ai-response" id="yours-perplexity"></div></div>
-        </div>
-      </div>
-      <div class="platform-result" data-platform="claude">
-        <div class="response-card">
-          <div class="response-card-header"><span id="yours-label-claude">Your Company</span> &mdash; Claude's response</div>
-          <div class="response-card-body"><div class="ai-response" id="yours-claude"></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- COMPETITOR PROMPT -->
-  <section class="competitor-prompt" id="competitor-prompt">
-    <div class="container">
-      <div class="competitor-card">
-        <h2>Want to see how a competitor compares?</h2>
-        <p>See the difference between how AI agents describe your business vs. a competitor. This is where it gets real.</p>
-        <div class="competitor-inline-form">
-          <label for="competitor-url" class="sr-only">Competitor website URL</label>
-          <input type="url" id="competitor-url" placeholder="e.g. competitor.com">
-          <button class="compare-btn" onclick="runComparison()">Compare</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- COMPARISON RESULTS -->
-  <section class="comparison-section" id="comparison-section">
+  <!-- RESULTS: Section 1 — Benchmark Comparison (the hook) -->
+  <section class="benchmark-section" id="benchmark-section">
     <div class="container-wide">
       <div class="comparison-header">
-        <h2>Side by side: You vs. the competition</h2>
-        <p>Same questions. Same AI platforms. Very different answers.</p>
+        <h2 id="benchmark-title">Your Score vs. Industry Titan</h2>
+        <p id="benchmark-subtitle">See how your AI readability compares to the top-performing company in your industry.</p>
       </div>
 
-      <div class="platform-tabs" id="compare-platform-tabs" role="tablist" aria-label="Comparison">
-        <button class="platform-tab active" data-platform="chatgpt" onclick="switchComparePlatform('chatgpt')" role="tab" aria-selected="true">ChatGPT</button>
-        <button class="platform-tab" data-platform="perplexity" onclick="switchComparePlatform('perplexity')" role="tab" aria-selected="false">Perplexity</button>
-        <button class="platform-tab" data-platform="claude" onclick="switchComparePlatform('claude')" role="tab" aria-selected="false">Claude</button>
-      </div>
+      <!-- Benchmark Scorecard: Side-by-side bars -->
+      <div class="scorecard" id="benchmark-scorecard">
+        <p class="scorecard-subhead">Every <strong>verifiable fact</strong> an AI cites &mdash; founding year, team size, named clients, awards &mdash; scores <strong>+2</strong>. Every <strong>hedge or disclaimer</strong> scores <strong>&minus;2</strong>.</p>
 
-      <div class="compare-result active" data-platform="chatgpt">
-        <div class="comparison-grid">
-          <div class="company-card yours">
-            <div class="company-card-header" id="c-yours-label-chatgpt">Your Company</div>
-            <div class="company-card-body"><div class="ai-response" id="c-yours-chatgpt"></div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+          <!-- Your scores -->
+          <div>
+            <h4 class="benchmark-col-label" id="bench-yours-label" style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--warm-gold);margin-bottom:16px;">Your Company</h4>
+            <div class="score-row" data-platform="chatgpt">
+              <div class="score-platform">ChatGPT</div>
+              <div class="score-bar-wrap"><div class="score-bar-facts" id="bench-yours-bar-facts-chatgpt"></div><div class="score-bar-vibes" id="bench-yours-bar-vibes-chatgpt"></div></div>
+              <div class="score-number zero" id="bench-yours-score-chatgpt">0</div>
+            </div>
+            <div class="score-row" data-platform="perplexity">
+              <div class="score-platform">Perplexity</div>
+              <div class="score-bar-wrap"><div class="score-bar-facts" id="bench-yours-bar-facts-perplexity"></div><div class="score-bar-vibes" id="bench-yours-bar-vibes-perplexity"></div></div>
+              <div class="score-number zero" id="bench-yours-score-perplexity">0</div>
+            </div>
+            <div class="score-row" data-platform="claude">
+              <div class="score-platform">Claude</div>
+              <div class="score-bar-wrap"><div class="score-bar-facts" id="bench-yours-bar-facts-claude"></div><div class="score-bar-vibes" id="bench-yours-bar-vibes-claude"></div></div>
+              <div class="score-number zero" id="bench-yours-score-claude">0</div>
+            </div>
+            <div class="score-row" data-platform="gemini">
+              <div class="score-platform">Google AI</div>
+              <div class="score-bar-wrap"><div class="score-bar-facts" id="bench-yours-bar-facts-gemini"></div><div class="score-bar-vibes" id="bench-yours-bar-vibes-gemini"></div></div>
+              <div class="score-number zero" id="bench-yours-score-gemini">0</div>
+            </div>
           </div>
-          <div class="company-card theirs">
-            <div class="company-card-header" id="c-theirs-label-chatgpt">Competitor</div>
-            <div class="company-card-body"><div class="ai-response" id="c-theirs-chatgpt"></div></div>
+
+          <!-- Titan scores -->
+          <div>
+            <h4 class="benchmark-col-label" id="bench-titan-label" style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--sage);margin-bottom:16px;">Industry Leader</h4>
+            <div class="score-row" data-platform="chatgpt">
+              <div class="score-platform">ChatGPT</div>
+              <div class="score-bar-wrap"><div class="score-bar-facts" id="bench-titan-bar-facts-chatgpt"></div><div class="score-bar-vibes" id="bench-titan-bar-vibes-chatgpt"></div></div>
+              <div class="score-number zero" id="bench-titan-score-chatgpt">0</div>
+            </div>
+            <div class="score-row" data-platform="perplexity">
+              <div class="score-platform">Perplexity</div>
+              <div class="score-bar-wrap"><div class="score-bar-facts" id="bench-titan-bar-facts-perplexity"></div><div class="score-bar-vibes" id="bench-titan-bar-vibes-perplexity"></div></div>
+              <div class="score-number zero" id="bench-titan-score-perplexity">0</div>
+            </div>
+            <div class="score-row" data-platform="claude">
+              <div class="score-platform">Claude</div>
+              <div class="score-bar-wrap"><div class="score-bar-facts" id="bench-titan-bar-facts-claude"></div><div class="score-bar-vibes" id="bench-titan-bar-vibes-claude"></div></div>
+              <div class="score-number zero" id="bench-titan-score-claude">0</div>
+            </div>
+            <div class="score-row" data-platform="gemini">
+              <div class="score-platform">Google AI</div>
+              <div class="score-bar-wrap"><div class="score-bar-facts" id="bench-titan-bar-facts-gemini"></div><div class="score-bar-vibes" id="bench-titan-bar-vibes-gemini"></div></div>
+              <div class="score-number zero" id="bench-titan-score-gemini">0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="score-legend">
+          <div class="legend-item"><div class="legend-dot facts"></div>Verifiable facts (+2 each)</div>
+          <div class="legend-item"><div class="legend-dot vibes"></div>Hedges &amp; disclaimers (&minus;2 each)</div>
+        </div>
+
+        <div class="insight-callout" style="margin-top:24px;">
+          <h3 id="benchmark-gap-headline">The gap is your opportunity</h3>
+          <p id="benchmark-gap-body"></p>
+        </div>
+      </div>
+
+      <!-- No benchmark match fallback -->
+      <div id="benchmark-no-match" style="display:none;">
+        <div class="competitor-card">
+          <h2>We couldn't auto-match your industry benchmark</h2>
+          <p>Your keyword didn't match a pre-analyzed industry leader. Want to compare against a specific competitor instead?</p>
+          <div class="competitor-inline-form">
+            <label for="competitor-url" class="sr-only">Competitor website URL</label>
+            <input type="url" id="competitor-url" placeholder="e.g. competitor.com">
+            <button class="compare-btn" onclick="runComparison()">Compare</button>
           </div>
         </div>
       </div>
-      <div class="compare-result" data-platform="perplexity">
-        <div class="comparison-grid">
-          <div class="company-card yours">
-            <div class="company-card-header" id="c-yours-label-perplexity">Your Company</div>
-            <div class="company-card-body"><div class="ai-response" id="c-yours-perplexity"></div></div>
-          </div>
-          <div class="company-card theirs">
-            <div class="company-card-header" id="c-theirs-label-perplexity">Competitor</div>
-            <div class="company-card-body"><div class="ai-response" id="c-theirs-perplexity"></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="compare-result" data-platform="claude">
-        <div class="comparison-grid">
-          <div class="company-card yours">
-            <div class="company-card-header" id="c-yours-label-claude">Your Company</div>
-            <div class="company-card-body"><div class="ai-response" id="c-yours-claude"></div></div>
-          </div>
-          <div class="company-card theirs">
-            <div class="company-card-header" id="c-theirs-label-claude">Competitor</div>
-            <div class="company-card-body"><div class="ai-response" id="c-theirs-claude"></div></div>
-          </div>
-        </div>
-      </div>
 
-      <div class="insight-callout">
-        <h3>What this gap means</h3>
-        <p id="comparison-insight"></p>
+      <!-- Benchmark data not yet cached fallback -->
+      <div id="benchmark-pending" style="display:none;">
+        <div class="competitor-card">
+          <h2 id="pending-category">Industry Match Found</h2>
+          <p>We matched you to <strong id="pending-titan-name"></strong> in <strong id="pending-category-name"></strong>, but we're still building benchmark scores for this industry. In the meantime, try comparing against a specific competitor:</p>
+          <div class="competitor-inline-form">
+            <label for="competitor-url-pending" class="sr-only">Competitor website URL</label>
+            <input type="url" id="competitor-url-pending" placeholder="e.g. competitor.com">
+            <button class="compare-btn" onclick="runComparisonFromPending()">Compare</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- EMAIL GATE — secondary/inline -->
+  <!-- RESULTS: Section 2 — Email Gate (catch them at peak interest) -->
   <section class="email-gate" id="email-gate">
     <div class="container">
+      <h2 class="email-gate-headline" style="font-family:'Lora',serif;font-size:1.6rem;font-weight:700;color:var(--charcoal);text-align:center;margin-bottom:20px;">Where should we send the full details?</h2>
       <div class="email-card">
         <div class="email-card-text">
-          <h3>Where should we send this report?</h3>
-          <p>We'll send a summary of your results plus a checklist of what AI agents look for when deciding whether they can find you — including robots.txt, llms.txt, and agent permissions you can check right now.</p>
+          <h3>Get your full Readability Report</h3>
+          <p>We'll send you a detailed breakdown of the facts each AI model uncovered about you. Read the raw responses yourself, all in one shareable report.</p>
         </div>
         <form class="email-card-form" id="gate-form" name="readability-check-leads" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return false;">
           <input type="hidden" name="form-name" value="readability-check-leads">
@@ -812,32 +751,41 @@
     </div>
   </section>
 
+  <!-- Hidden data containers — retained for email report, not displayed on page -->
+  <div id="scorecard" style="display:none;">
+    <div id="score-rows">
+      <div class="score-row" data-platform="chatgpt"><div class="score-number" id="score-chatgpt">0</div></div>
+      <div class="score-row" data-platform="perplexity"><div class="score-number" id="score-perplexity">0</div></div>
+      <div class="score-row" data-platform="claude"><div class="score-number" id="score-claude">0</div></div>
+      <div class="score-row" data-platform="gemini"><div class="score-number" id="score-gemini">0</div></div>
+    </div>
+    <p class="scorecard-body" id="scorecard-body"></p>
+  </div>
+  <div style="display:none;" id="hidden-responses">
+    <div id="yours-chatgpt"></div>
+    <div id="yours-perplexity"></div>
+    <div id="yours-claude"></div>
+    <div id="yours-gemini"></div>
+  </div>
+
   <!-- AUDIT CTA — primary, dominant -->
   <section class="audit-cta" id="audit-cta">
     <div class="container">
       <div class="audit-cta-card">
         <div class="audit-cta-eyebrow">Full Agent Readability Audit</div>
-        <h2>Let's get a full picture of your Agent Readability.</h2>
-        <p class="cta-body">So you can be sure you're ready for whatever AI changes come your way. We'll score your site on 29 different dimensions and provide strategy insights to strengthen your position in AI-driven search.</p>
-        <p class="cta-details">You'll receive an interactive report with prioritized findings, an executive summary, and a step-by-step remediation roadmap. Most clients see results within the first two weeks of implementation.</p>
-        <a href="/#contact" class="audit-cta-btn">Get My Agent Readability Audit</a>
+        <h2>Ready to Start Improving Your Score?</h2>
+        <p class="cta-body">We'll evaluate your site across 30 dimensions and show you exactly what's keeping your score down. You'll learn how easily AI agents can find you, understand your key content, and trust your authority, and what you can do to improve each of those.</p>
+        <p class="cta-details">You'll receive an interactive report with prioritized findings, an executive summary, and a step-by-step improvement roadmap including quick wins.</p>
+        <a href="/#contact" class="audit-cta-btn">Get My Readability Audit</a>
       </div>
     </div>
   </section>
 
   </main>
 
-  <!-- Cookie Banner -->
-  <div id="cookie-banner" class="cookie-banner" role="alert" aria-label="Cookie notice" style="display:none;">
-    <div class="cookie-banner-inner">
-      <p>This site uses cookies to analyze traffic and improve your experience. By continuing to browse, you accept the use of cookies. <a href="/privacy-policy.html">Privacy Policy</a></p>
-      <button id="cookie-accept" class="cookie-accept" aria-label="Accept cookies">Got it</button>
-    </div>
-  </div>
   <footer class="site-footer">
     <div class="container">
       <p>&copy; 2026 <a href="/">Liz Micik</a> &middot; lizmicik.com</p>
-      <p style="margin-top:0.4rem;"><a href="/privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms.html">Terms of Use</a></p>
     </div>
   </footer>
 
@@ -881,7 +829,7 @@
       btn.innerHTML = '<span class="spinner"></span>Querying AI agents...';
 
       // Hide previous results
-      ['results-section','competitor-prompt','comparison-section','email-gate','audit-cta'].forEach(id => {
+      ['benchmark-section','email-gate','audit-cta'].forEach(id => {
         document.getElementById(id).classList.remove('visible');
       });
 
@@ -939,10 +887,11 @@
         steps.forEach(s => { s.classList.remove('active', 'done'); s.querySelector('.step-icon').textContent = ''; });
 
         populateYourResults(data);
-        ['results-section','competitor-prompt','email-gate','audit-cta'].forEach(id => {
+        populateBenchmark(data);
+        ['benchmark-section','email-gate','audit-cta'].forEach(id => {
           document.getElementById(id).classList.add('visible');
         });
-        document.getElementById('results-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('benchmark-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
       } catch (err) {
         console.error('Check failed:', err);
@@ -958,78 +907,194 @@
 
     // ── Populate Results ───────────────────────────────────────────
     function populateYourResults(data) {
-      const displayUrl = companyUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
-      document.getElementById('results-url').textContent = displayUrl;
-
-      // Populate keyword echoes
-      document.querySelectorAll('#kw-echo-1').forEach(el => el.textContent = primaryKeyword);
-      document.getElementById('kw-echo-2').textContent = primaryKeyword;
-      document.querySelectorAll('.kw-slot').forEach(el => el.textContent = primaryKeyword);
-
-      // Fill in AI responses
-      ['chatgpt', 'perplexity', 'claude'].forEach(p => {
-        document.getElementById(`yours-${p}`).textContent = data.yours[p];
-        document.getElementById(`yours-label-${p}`).textContent = displayUrl;
+      // Store AI responses in hidden containers (for email report)
+      ['chatgpt', 'perplexity', 'claude', 'gemini'].forEach(p => {
+        const el = document.getElementById(`yours-${p}`);
+        if (el) el.textContent = data.yours[p];
       });
 
-      // Set readability level from analysis
-      const { level, agreementCount } = data.analysis;
-      updateThermometer(level, agreementCount);
-
-      switchPlatform('chatgpt');
-    }
-
-    // ── Update Thermometer & Level Cards ───────────────────────────
-    function updateThermometer(level, agreementCount) {
-      const levelText = document.getElementById('level-text');
-      const bar = document.getElementById('thermometer-bar');
-      const body = document.getElementById('thermometer-body');
-
-      // Remove old level classes
-      bar.classList.remove('low', 'medium', 'high');
-
-      // Set level card active states
-      document.querySelectorAll('.level-card').forEach(c => c.classList.remove('active'));
-
-      if (level === 'HIGH') {
-        levelText.textContent = 'HIGH';
-        levelText.style.color = 'var(--green)';
-        bar.classList.add('high');
-        document.getElementById('card-high').classList.add('active');
-        body.innerHTML = `All <strong>three AI agents</strong> we queried confidently associate you with <strong><span id="kw-echo-1">${escapeHtml(primaryKeyword)}</span></strong>. That's a strong signal. But this free check only tests identity &mdash; can agents <em>find</em> you and agree on what you do. The full Agent Readability Audit scores your site on <strong>29 dimensions</strong> across all three layers: Find, Understand, and Trust.`;
-      } else if (level === 'MEDIUM') {
-        levelText.textContent = 'MEDIUM';
-        levelText.style.color = 'var(--warm-gold)';
-        bar.classList.add('medium');
-        document.getElementById('card-medium').classList.add('active');
-        body.innerHTML = `<strong>Two of three</strong> AI agents we queried associate you with <strong><span id="kw-echo-1">${escapeHtml(primaryKeyword)}</span></strong>, but the third hedges or disagrees. That gap means some AI-driven recommendations are missing you. In the full Agent Readability Audit, we score your site on <strong>29 dimensions</strong> across all three layers &mdash; Find, Understand, and Trust &mdash; so you know exactly where the signals break down.`;
-      } else {
-        levelText.textContent = 'LOW';
-        levelText.style.color = 'var(--red)';
-        bar.classList.add('low');
-        document.getElementById('card-low').classList.add('active');
-        const agreeText = agreementCount === 0
-          ? `<strong>None</strong> of the three AI agents`
-          : `Only <strong>one of the three</strong> AI agents`;
-        body.innerHTML = `${agreeText} we queried confidently agrees that you are in <strong><span id="kw-echo-1">${escapeHtml(primaryKeyword)}</span></strong>. That tells me there is <strong>great opportunity</strong> to improve your readability. In the full Agent Readability Audit, we score your site on <strong>29 dimensions</strong> across all three layers &mdash; Find, Understand, and Trust &mdash; covering not just whether agents can find you, but whether they can understand and trust you.`;
+      // Populate fact/vibe scorecard data (hidden, for email report)
+      if (data.scoring) {
+        updateScorecard(data.scoring);
       }
     }
 
-    // ── Run Comparison (Phase 2: Competitor) ───────────────────────
+    // ── Update Fact/Vibe Scorecard ─────────────────────────────────
+    function updateScorecard(scoring) {
+      const maxBar = 30; // max score for bar width scaling
+      const platformNames = ['chatgpt', 'perplexity', 'claude', 'gemini'];
+
+      platformNames.forEach(p => {
+        const pData = scoring.platforms[p];
+        if (!pData) return;
+
+        // Update bar widths (facts go left-to-right, vibes go right-to-left)
+        const factWidth = Math.min((pData.facts * 2 / maxBar) * 50, 50);
+        const vibeWidth = Math.min((pData.vibes * 2 / maxBar) * 50, 50);
+
+        const factBar = document.getElementById('bar-facts-' + p);
+        const vibeBar = document.getElementById('bar-vibes-' + p);
+        factBar.style.width = factWidth + '%';
+        vibeBar.style.width = vibeWidth + '%';
+
+        // Add count labels inside bars if wide enough
+        if (pData.facts > 0) factBar.innerHTML = '<span class="score-bar-label">' + pData.facts + ' facts</span>';
+        else factBar.innerHTML = '';
+        if (pData.vibes > 0) vibeBar.innerHTML = '<span class="score-bar-label">' + pData.vibes + ' hedges</span>';
+        else vibeBar.innerHTML = '';
+
+        // Update score number
+        const scoreEl = document.getElementById('score-' + p);
+        scoreEl.textContent = (pData.score > 0 ? '+' : '') + pData.score;
+        scoreEl.classList.remove('positive', 'negative', 'zero');
+        if (pData.score > 0) scoreEl.classList.add('positive');
+        else if (pData.score < 0) scoreEl.classList.add('negative');
+        else scoreEl.classList.add('zero');
+      });
+
+      // Body text based on total score
+      const body = document.getElementById('scorecard-body');
+      const totalFacts = scoring.totalFacts;
+      const totalVibes = scoring.totalVibes;
+      const totalScore = scoring.totalScore;
+
+      if (totalFacts === 0) {
+        body.innerHTML = `Across all four AI platforms, <strong>not a single verifiable fact</strong> was cited about your business. No founding year, no team size, no named clients, no awards. Every response was generated from vibes &mdash; plausible-sounding descriptions with nothing behind them. That means when someone asks an AI to recommend a <strong>${escapeHtml(primaryKeyword)}</strong> provider, AI has nothing concrete to point to. The full Agent Readability Audit identifies exactly which signals are missing and what to fix first.`;
+      } else if (totalScore < 0) {
+        body.innerHTML = `AI agents produced <strong>more hedges than facts</strong> about your business. That means the dominant signal is uncertainty &mdash; "appears to be," "limited information," "I'd recommend checking." When AI agents aren't sure about you, they don't recommend you. The full Agent Readability Audit maps exactly where these gaps are across all three layers: Find, Understand, and Trust.`;
+      } else if (totalFacts <= 4) {
+        body.innerHTML = `AI agents found <strong>a few facts</strong> about your business, but the coverage is thin and inconsistent across platforms. Some know more than others. The full Agent Readability Audit identifies which signals are reaching which platforms &mdash; and which aren't &mdash; across 29 diagnostic dimensions.`;
+      } else {
+        body.innerHTML = `AI agents can cite <strong>real facts</strong> about your business &mdash; that's better than most. But are they citing the <em>right</em> facts? The ones that win recommendations? The full Agent Readability Audit goes beyond what AI knows to test whether it trusts you enough to recommend you, across 29 dimensions and all three layers.`;
+      }
+    }
+
+    // ── Populate Benchmark Section ─────────────────────────────────
+    function populateBenchmark(data) {
+      const benchEl = document.getElementById('benchmark-section');
+      const scorecardEl = document.getElementById('benchmark-scorecard');
+      const noMatchEl = document.getElementById('benchmark-no-match');
+      const pendingEl = document.getElementById('benchmark-pending');
+
+      // Reset all sub-views
+      scorecardEl.style.display = 'none';
+      noMatchEl.style.display = 'none';
+      pendingEl.style.display = 'none';
+
+      if (!data.benchmark) {
+        // No industry match — show fallback with competitor input
+        noMatchEl.style.display = 'block';
+        return;
+      }
+
+      const bench = data.benchmark;
+
+      if (!bench.scoring) {
+        // Matched but no cached data yet
+        pendingEl.style.display = 'block';
+        document.getElementById('pending-titan-name').textContent = bench.titanName;
+        document.getElementById('pending-category-name').textContent = bench.category;
+        return;
+      }
+
+      // We have full benchmark data — show the side-by-side scorecard
+      scorecardEl.style.display = 'block';
+      const displayUrl = companyUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      document.getElementById('bench-yours-label').textContent = displayUrl;
+      document.getElementById('bench-titan-label').textContent = bench.category + ' Leader: ' + bench.titanName;
+      document.getElementById('benchmark-title').textContent = 'Your Score vs. \u201C' + bench.category + '\u201D Titan';
+      document.getElementById('benchmark-subtitle').textContent =
+        'We compared your AI readability against ' + bench.titanName + ', the top-performing company in ' + bench.category + '.';
+
+      const maxBar = 30;
+      const platforms = ['chatgpt', 'perplexity', 'claude', 'gemini'];
+
+      // Populate YOUR scores (reuse from main scoring)
+      platforms.forEach(p => {
+        const pData = data.scoring.platforms[p];
+        if (!pData) return;
+        const factWidth = Math.min((pData.facts * 2 / maxBar) * 50, 50);
+        const vibeWidth = Math.min((pData.vibes * 2 / maxBar) * 50, 50);
+        const factBar = document.getElementById('bench-yours-bar-facts-' + p);
+        const vibeBar = document.getElementById('bench-yours-bar-vibes-' + p);
+        factBar.style.width = factWidth + '%';
+        vibeBar.style.width = vibeWidth + '%';
+        if (pData.facts > 0) factBar.innerHTML = '<span class="score-bar-label">' + pData.facts + ' facts</span>';
+        else factBar.innerHTML = '';
+        if (pData.vibes > 0) vibeBar.innerHTML = '<span class="score-bar-label">' + pData.vibes + ' hedges</span>';
+        else vibeBar.innerHTML = '';
+        const scoreEl = document.getElementById('bench-yours-score-' + p);
+        scoreEl.textContent = (pData.score > 0 ? '+' : '') + pData.score;
+        scoreEl.classList.remove('positive', 'negative', 'zero');
+        if (pData.score > 0) scoreEl.classList.add('positive');
+        else if (pData.score < 0) scoreEl.classList.add('negative');
+        else scoreEl.classList.add('zero');
+      });
+
+      // Populate TITAN scores
+      platforms.forEach(p => {
+        const pData = bench.scoring.platforms[p];
+        if (!pData) return;
+        const factWidth = Math.min((pData.facts * 2 / maxBar) * 50, 50);
+        const vibeWidth = Math.min((pData.vibes * 2 / maxBar) * 50, 50);
+        const factBar = document.getElementById('bench-titan-bar-facts-' + p);
+        const vibeBar = document.getElementById('bench-titan-bar-vibes-' + p);
+        factBar.style.width = factWidth + '%';
+        vibeBar.style.width = vibeWidth + '%';
+        if (pData.facts > 0) factBar.innerHTML = '<span class="score-bar-label">' + pData.facts + ' facts</span>';
+        else factBar.innerHTML = '';
+        if (pData.vibes > 0) vibeBar.innerHTML = '<span class="score-bar-label">' + pData.vibes + ' hedges</span>';
+        else vibeBar.innerHTML = '';
+        const scoreEl = document.getElementById('bench-titan-score-' + p);
+        scoreEl.textContent = (pData.score > 0 ? '+' : '') + pData.score;
+        scoreEl.classList.remove('positive', 'negative', 'zero');
+        if (pData.score > 0) scoreEl.classList.add('positive');
+        else if (pData.score < 0) scoreEl.classList.add('negative');
+        else scoreEl.classList.add('zero');
+      });
+
+      // Gap analysis text
+      const yourTotal = data.scoring.totalScore;
+      const titanTotal = bench.scoring.totalScore;
+      const gap = titanTotal - yourTotal;
+      const gapBody = document.getElementById('benchmark-gap-body');
+
+      if (gap > 20) {
+        document.getElementById('benchmark-gap-headline').textContent = 'There\'s a significant gap here';
+        gapBody.textContent = bench.titanName + ' scores ' + gap + ' points higher than you across all four AI platforms. That\'s the difference between AI agents recommending them and hedging about you. The good news: this gap is closable. The full Agent Readability Audit maps exactly where your signals are missing and what to fix first.';
+      } else if (gap > 8) {
+        document.getElementById('benchmark-gap-headline').textContent = 'Room to improve';
+        gapBody.textContent = bench.titanName + ' leads you by ' + gap + ' points. That gap means AI agents cite more verifiable facts about them — more founding dates, team sizes, client names, awards. Every fact they have that you don\'t is a missed opportunity for recommendation. The full Audit identifies exactly which facts to surface.';
+      } else if (gap > 0) {
+        document.getElementById('benchmark-gap-headline').textContent = 'You\'re closer than most';
+        gapBody.textContent = 'Only ' + gap + ' points separate you from ' + bench.titanName + '. That\'s strong — but in AI-driven search, small edges compound. The full Audit digs into which specific signals are missing and how to close the remaining gap.';
+      } else {
+        document.getElementById('benchmark-gap-headline').textContent = 'You\'re outperforming the benchmark';
+        gapBody.textContent = 'You\'re scoring as well or better than ' + bench.titanName + ' in your industry. That\'s impressive and rare. The full Audit can help you maintain this edge and identify emerging AI surfaces where competitors might catch up.';
+      }
+    }
+
+    // ── Run Comparison (fallback competitor) ──────────────────────
+    function runComparisonFromPending() {
+      const input = document.getElementById('competitor-url-pending');
+      document.getElementById('competitor-url').value = input.value;
+      runComparison();
+    }
+
     async function runComparison() {
-      competitorUrl = document.getElementById('competitor-url').value.trim();
+      const compUrlInput = document.getElementById('competitor-url');
+      competitorUrl = compUrlInput ? compUrlInput.value.trim() : '';
       if (!competitorUrl) {
-        document.getElementById('competitor-url').style.borderColor = 'var(--red)';
-        setTimeout(() => document.getElementById('competitor-url').style.borderColor = '', 2000);
+        if (compUrlInput) {
+          compUrlInput.style.borderColor = 'var(--red)';
+          setTimeout(() => compUrlInput.style.borderColor = '', 2000);
+        }
         return;
       }
       if (!competitorUrl.match(/^https?:\/\//)) competitorUrl = 'https://' + competitorUrl;
 
-      const displayUrl = companyUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
-      const displayComp = competitorUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
-
       // Show loading state on compare button
-      const compareBtn = document.querySelector('.compare-btn');
+      const compareBtn = event.target.closest('.compare-btn') || document.querySelector('.compare-btn');
       const origText = compareBtn.textContent;
       compareBtn.disabled = true;
       compareBtn.innerHTML = '<span class="spinner"></span>Querying...';
@@ -1052,23 +1117,23 @@
 
         const data = await response.json();
 
-        document.getElementById('competitor-prompt').classList.remove('visible');
+        // If we got competitor scoring, show a simple alert with gap
+        // (full competitor view is deprioritized in favor of benchmarks)
+        if (data.competitorScoring) {
+          const yourTotal = data.scoring.totalScore;
+          const compTotal = data.competitorScoring.totalScore;
+          const gapBody = document.getElementById('benchmark-gap-body');
+          const displayComp = competitorUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
 
-        // Use fresh "yours" data from this call (or cached if identical)
-        const yoursData = data.yours || lastYoursData;
-
-        ['chatgpt', 'perplexity', 'claude'].forEach(p => {
-          document.getElementById(`c-yours-${p}`).textContent = yoursData[p];
-          document.getElementById(`c-theirs-${p}`).textContent = data.competitor[p];
-          document.getElementById(`c-yours-label-${p}`).textContent = displayUrl;
-          document.getElementById(`c-theirs-label-${p}`).textContent = displayComp;
-        });
-
-        document.getElementById('comparison-insight').textContent = data.insight || '';
-        switchComparePlatform('chatgpt');
-
-        document.getElementById('comparison-section').classList.add('visible');
-        document.getElementById('comparison-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          document.getElementById('benchmark-gap-headline').textContent = 'You vs. ' + displayComp;
+          if (compTotal > yourTotal) {
+            gapBody.textContent = displayComp + ' scores ' + (compTotal - yourTotal) + ' points higher than you. They have more verifiable facts in AI responses — which means AI agents are more likely to recommend them. The full Audit shows you exactly how to close this gap.';
+          } else if (compTotal < yourTotal) {
+            gapBody.textContent = 'You\'re outscoring ' + displayComp + ' by ' + (yourTotal - compTotal) + ' points. You have the edge in AI readability, but don\'t get complacent — the full Audit ensures you maintain and extend that lead.';
+          } else {
+            gapBody.textContent = 'You and ' + displayComp + ' are tied. That means neither of you has a decisive AI readability advantage yet. The full Audit can help you break ahead.';
+          }
+        }
 
       } catch (err) {
         console.error('Comparison failed:', err);
@@ -1102,25 +1167,7 @@
       return div.innerHTML;
     }
 
-    function switchPlatform(platform) {
-      document.querySelectorAll('#platform-tabs .platform-tab').forEach(t => {
-        t.classList.toggle('active', t.dataset.platform === platform);
-        t.setAttribute('aria-selected', t.dataset.platform === platform ? 'true' : 'false');
-      });
-      document.querySelectorAll('#results-section .platform-result').forEach(r => {
-        r.classList.toggle('active', r.dataset.platform === platform);
-      });
-    }
-
-    function switchComparePlatform(platform) {
-      document.querySelectorAll('#compare-platform-tabs .platform-tab').forEach(t => {
-        t.classList.toggle('active', t.dataset.platform === platform);
-        t.setAttribute('aria-selected', t.dataset.platform === platform ? 'true' : 'false');
-      });
-      document.querySelectorAll('.compare-result').forEach(r => {
-        r.classList.toggle('active', r.dataset.platform === platform);
-      });
-    }
+    // Platform tabs and raw responses removed from page — sent via email report only
 
     function submitEmail() {
       const emailInput = document.getElementById('gate-email');
@@ -1170,20 +1217,6 @@
     document.getElementById('gate-form').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') { e.preventDefault(); submitEmail(); }
     });
-
-    // Cookie banner
-    (function() {
-      var banner = document.getElementById('cookie-banner');
-      var btn = document.getElementById('cookie-accept');
-      if (!banner || !btn) return;
-      if (document.cookie.indexOf('cookie_notice=1') === -1) {
-        banner.style.display = 'block';
-      }
-      btn.addEventListener('click', function() {
-        document.cookie = 'cookie_notice=1;path=/;max-age=' + (60*60*24*365) + ';SameSite=Lax';
-        banner.style.display = 'none';
-      });
-    })();
   </script>
 
 </body>

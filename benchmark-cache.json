@@ -1,0 +1,1885 @@
+{
+  "cargill.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 1,
+        "vibes": 0,
+        "score": 2,
+        "factMatches": [
+          "70 countries"
+        ],
+        "vibeMatches": []
+      },
+      "perplexity": {
+        "facts": 21,
+        "vibes": 0,
+        "score": 42,
+        "factMatches": [
+          "founded in 1865",
+          "160,000 employees",
+          "$165B",
+          "[1]",
+          "[2]",
+          "[6]",
+          "[3]",
+          "[5]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 2,
+        "vibes": 1,
+        "score": 2,
+        "factMatches": [
+          "Founded in 1865",
+          "70 countries"
+        ],
+        "vibeMatches": [
+          "well-established"
+        ]
+      },
+      "gemini": {
+        "facts": 1,
+        "vibes": 1,
+        "score": 0,
+        "factMatches": [
+          "70 countries"
+        ],
+        "vibeMatches": [
+          "might be"
+        ]
+      }
+    },
+    "totalScore": 46,
+    "totalFacts": 25,
+    "totalVibes": 2
+  },
+  "exxonmobil.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      },
+      "perplexity": {
+        "facts": 12,
+        "vibes": 0,
+        "score": 24,
+        "factMatches": [
+          "[1]",
+          "[2]",
+          "[6]",
+          "[10]",
+          "[9]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 1,
+        "vibes": 2,
+        "score": -2,
+        "factMatches": [
+          "headquartered in Spring"
+        ],
+        "vibeMatches": [
+          "may be",
+          "likely"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 22,
+    "totalFacts": 13,
+    "totalVibes": 2
+  },
+  "bechtel.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 1,
+        "vibes": 0,
+        "score": 2,
+        "factMatches": [
+          "Founded in 1898"
+        ],
+        "vibeMatches": []
+      },
+      "perplexity": {
+        "facts": 14,
+        "vibes": 0,
+        "score": 28,
+        "factMatches": [
+          "founded in 1898",
+          "50,000 employees",
+          "headquartered in Reston",
+          "[3]",
+          "[4]",
+          "[1]",
+          "[2]",
+          "as of 2022"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 3,
+        "vibes": 1,
+        "score": 4,
+        "factMatches": [
+          "Founded in 1898",
+          "headquartered in Reston",
+          "160 countries"
+        ],
+        "vibeMatches": [
+          "well-established"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 1,
+        "score": -2,
+        "factMatches": [],
+        "vibeMatches": [
+          "renowned"
+        ]
+      }
+    },
+    "totalScore": 32,
+    "totalFacts": 18,
+    "totalVibes": 2
+  },
+  "nestle.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 1,
+        "vibes": 1,
+        "score": 0,
+        "factMatches": [
+          "headquartered in Switzerland"
+        ],
+        "vibeMatches": [
+          "well-known"
+        ]
+      },
+      "perplexity": {
+        "facts": 22,
+        "vibes": 0,
+        "score": 44,
+        "factMatches": [
+          "since 2014",
+          "$1.1 billion",
+          "headquartered in Switzerland",
+          "[1]",
+          "[4]",
+          "[5]",
+          "[7]",
+          "[8]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 1,
+        "vibes": 2,
+        "score": -2,
+        "factMatches": [
+          "headquartered in Vevey"
+        ],
+        "vibeMatches": [
+          "well-known",
+          "for the most accurate"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 42,
+    "totalFacts": 24,
+    "totalVibes": 3
+  },
+  "nike.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 2,
+        "vibes": 1,
+        "score": 2,
+        "factMatches": [
+          "Founded in 1964",
+          "in 1964"
+        ],
+        "vibeMatches": [
+          "renowned"
+        ]
+      },
+      "perplexity": {
+        "facts": 9,
+        "vibes": 0,
+        "score": 18,
+        "factMatches": [
+          "[1]",
+          "[2]",
+          "[3]",
+          "[5]",
+          "[7]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 1,
+        "vibes": 0,
+        "score": 2,
+        "factMatches": [
+          "headquartered in Beaverton"
+        ],
+        "vibeMatches": []
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 22,
+    "totalFacts": 12,
+    "totalVibes": 1
+  },
+  "nytimes.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 1,
+        "vibes": 1,
+        "score": 0,
+        "factMatches": [
+          "Founded in 1851"
+        ],
+        "vibeMatches": [
+          "could be"
+        ]
+      },
+      "perplexity": {
+        "facts": 10,
+        "vibes": 0,
+        "score": 20,
+        "factMatches": [
+          "founded in 1851",
+          "[1]",
+          "[3]",
+          "[4]",
+          "[5]",
+          "[2]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 2,
+        "vibes": 2,
+        "score": 0,
+        "factMatches": [
+          "founded in 1851",
+          "headquartered in New"
+        ],
+        "vibeMatches": [
+          "well-known",
+          "likely"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 20,
+    "totalFacts": 13,
+    "totalVibes": 3
+  },
+  "pfizer.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 1,
+        "vibes": 1,
+        "score": 0,
+        "factMatches": [
+          "Established in 1849"
+        ],
+        "vibeMatches": [
+          "well-known"
+        ]
+      },
+      "perplexity": {
+        "facts": 22,
+        "vibes": 1,
+        "score": 42,
+        "factMatches": [
+          "headquartered in New",
+          "[1]",
+          "[2]",
+          "[3]",
+          "[4]",
+          "[5]",
+          "[6]",
+          "[7]"
+        ],
+        "vibeMatches": [
+          "premier"
+        ]
+      },
+      "claude": {
+        "facts": 1,
+        "vibes": 1,
+        "score": 0,
+        "factMatches": [
+          "headquartered in New"
+        ],
+        "vibeMatches": [
+          "well-known"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 42,
+    "totalFacts": 24,
+    "totalVibes": 3
+  },
+  "caterpillar.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 2,
+        "vibes": 0,
+        "score": 4,
+        "factMatches": [
+          "Established in 1925",
+          "in 1925"
+        ],
+        "vibeMatches": []
+      },
+      "perplexity": {
+        "facts": 18,
+        "vibes": 1,
+        "score": 34,
+        "factMatches": [
+          "$64.8 billion",
+          "[2]",
+          "[4]",
+          "[5]",
+          "[6]",
+          "[1]",
+          "[3]",
+          "[7]"
+        ],
+        "vibeMatches": [
+          "might be"
+        ]
+      },
+      "claude": {
+        "facts": 4,
+        "vibes": 2,
+        "score": 4,
+        "factMatches": [
+          "Founded in 1925",
+          "headquartered in Irving",
+          "Fortune 500",
+          "in 1925"
+        ],
+        "vibeMatches": [
+          "highly reputable",
+          "could be"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 42,
+    "totalFacts": 24,
+    "totalVibes": 3
+  },
+  "apple.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 2,
+        "vibes": 1,
+        "score": 2,
+        "factMatches": [
+          "Founded in 1976",
+          "in 1976"
+        ],
+        "vibeMatches": [
+          "renowned"
+        ]
+      },
+      "perplexity": {
+        "facts": 20,
+        "vibes": 0,
+        "score": 40,
+        "factMatches": [
+          "$3,500",
+          "[1]",
+          "[3]",
+          "[7]",
+          "[8]",
+          "[2]",
+          "[4]",
+          "[5]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 1,
+        "vibes": 1,
+        "score": 0,
+        "factMatches": [
+          "headquartered in Cupertino"
+        ],
+        "vibeMatches": [
+          "well-known"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 1,
+        "score": -2,
+        "factMatches": [],
+        "vibeMatches": [
+          "renowned"
+        ]
+      }
+    },
+    "totalScore": 40,
+    "totalFacts": 23,
+    "totalVibes": 3
+  },
+  "pg.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 1,
+        "vibes": 1,
+        "score": 0,
+        "factMatches": [
+          "Established in 1837"
+        ],
+        "vibeMatches": [
+          "well-known"
+        ]
+      },
+      "perplexity": {
+        "facts": 16,
+        "vibes": 0,
+        "score": 32,
+        "factMatches": [
+          "7,500+ employees",
+          "$2B",
+          "[1]",
+          "[2]",
+          "[3]",
+          "[4]",
+          "[5]",
+          "[6]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 4,
+        "vibes": 1,
+        "score": 6,
+        "factMatches": [
+          "Founded in 1837",
+          "headquartered in Cincinnati",
+          "70 countries",
+          "180 countries"
+        ],
+        "vibeMatches": [
+          "well-known"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 38,
+    "totalFacts": 21,
+    "totalVibes": 2
+  },
+  "ups.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 2,
+        "vibes": 0,
+        "score": 4,
+        "factMatches": [
+          "Founded in 1907",
+          "in 1907"
+        ],
+        "vibeMatches": []
+      },
+      "perplexity": {
+        "facts": 18,
+        "vibes": 0,
+        "score": 36,
+        "factMatches": [
+          "founded in 1907",
+          "500,000+ employees",
+          "$100B",
+          "Gartner",
+          "[1]",
+          "[2]",
+          "[3]",
+          "[5]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 2,
+        "vibes": 1,
+        "score": 2,
+        "factMatches": [
+          "headquartered in Atlanta",
+          "220 countries"
+        ],
+        "vibeMatches": [
+          "well-known"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 1,
+        "score": -2,
+        "factMatches": [],
+        "vibeMatches": [
+          "renowned"
+        ]
+      }
+    },
+    "totalScore": 40,
+    "totalFacts": 22,
+    "totalVibes": 2
+  },
+  "verizon.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      },
+      "perplexity": {
+        "facts": 14,
+        "vibes": 0,
+        "score": 28,
+        "factMatches": [
+          "$138.2 billion",
+          "headquartered in New",
+          "Fortune 500",
+          "[1]",
+          "[2]",
+          "[3]",
+          "[5]",
+          "[6]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 0,
+        "vibes": 1,
+        "score": -2,
+        "factMatches": [],
+        "vibeMatches": [
+          "may be"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 26,
+    "totalFacts": 14,
+    "totalVibes": 1
+  },
+  "nexteraenergy.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 0,
+        "vibes": 1,
+        "score": -2,
+        "factMatches": [],
+        "vibeMatches": [
+          "could be"
+        ]
+      },
+      "perplexity": {
+        "facts": 15,
+        "vibes": 1,
+        "score": 28,
+        "factMatches": [
+          "16,000 people",
+          "$190 billion",
+          "$154 billion",
+          "headquartered in Juno",
+          "[1]",
+          "[3]",
+          "[5]",
+          "[4]"
+        ],
+        "vibeMatches": [
+          "likely"
+        ]
+      },
+      "claude": {
+        "facts": 1,
+        "vibes": 1,
+        "score": 0,
+        "factMatches": [
+          "headquartered in Juno"
+        ],
+        "vibeMatches": [
+          "i can't browse"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 26,
+    "totalFacts": 16,
+    "totalVibes": 3
+  },
+  "mckesson.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 1,
+        "vibes": 0,
+        "score": 2,
+        "factMatches": [
+          "Founded in 1833"
+        ],
+        "vibeMatches": []
+      },
+      "perplexity": {
+        "facts": 19,
+        "vibes": 0,
+        "score": 38,
+        "factMatches": [
+          "[1]",
+          "[2]",
+          "[3]",
+          "[5]",
+          "[6]",
+          "[4]",
+          "[7]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 1,
+        "vibes": 0,
+        "score": 2,
+        "factMatches": [
+          "Fortune 500"
+        ],
+        "vibeMatches": []
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 42,
+    "totalFacts": 21,
+    "totalVibes": 0
+  },
+  "amazon.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 2,
+        "vibes": 0,
+        "score": 4,
+        "factMatches": [
+          "Founded in 1994",
+          "in 1994"
+        ],
+        "vibeMatches": []
+      },
+      "perplexity": {
+        "facts": 9,
+        "vibes": 1,
+        "score": 16,
+        "factMatches": [
+          "[1]",
+          "[2]",
+          "[3]",
+          "[7]",
+          "[5]"
+        ],
+        "vibeMatches": [
+          "likely"
+        ]
+      },
+      "claude": {
+        "facts": 1,
+        "vibes": 0,
+        "score": 2,
+        "factMatches": [
+          "in 1994"
+        ],
+        "vibeMatches": []
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 22,
+    "totalFacts": 12,
+    "totalVibes": 1
+  },
+  "jpmorgan.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      },
+      "perplexity": {
+        "facts": 16,
+        "vibes": 0,
+        "score": 32,
+        "factMatches": [
+          "[1]",
+          "[2]",
+          "[3]",
+          "[4]",
+          "[5]",
+          "[8]",
+          "[7]",
+          "[9]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 1,
+        "vibes": 1,
+        "score": 0,
+        "factMatches": [
+          "headquartered in New"
+        ],
+        "vibeMatches": [
+          "well-established"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 32,
+    "totalFacts": 17,
+    "totalVibes": 1
+  },
+  "statefarm.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      },
+      "perplexity": {
+        "facts": 23,
+        "vibes": 0,
+        "score": 46,
+        "factMatches": [
+          "founded in 1922",
+          "$122.9 billion",
+          "$5.3 billion",
+          "headquartered in Bloomington",
+          "[1]",
+          "[3]",
+          "[4]",
+          "[9]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 3,
+        "vibes": 1,
+        "score": 4,
+        "factMatches": [
+          "founded in 1922",
+          "headquartered in Bloomington",
+          "in 1922"
+        ],
+        "vibeMatches": [
+          "well-established"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 1,
+        "score": -2,
+        "factMatches": [],
+        "vibeMatches": [
+          "well-known"
+        ]
+      }
+    },
+    "totalScore": 48,
+    "totalFacts": 26,
+    "totalVibes": 2
+  },
+  "cbre.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 4,
+        "vibes": 0,
+        "score": 8,
+        "factMatches": [
+          "Founded in 1906",
+          "headquartered in Los",
+          "in 1906",
+          "100 countries"
+        ],
+        "vibeMatches": []
+      },
+      "perplexity": {
+        "facts": 15,
+        "vibes": 0,
+        "score": 30,
+        "factMatches": [
+          "Fortune 100",
+          "[1]",
+          "[2]",
+          "[4]",
+          "[3]",
+          "[5]",
+          "[6]",
+          "in 2006"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 2,
+        "vibes": 0,
+        "score": 4,
+        "factMatches": [
+          "headquartered in Dallas",
+          "100 countries"
+        ],
+        "vibeMatches": []
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 42,
+    "totalFacts": 21,
+    "totalVibes": 0
+  },
+  "blackrock.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 2,
+        "vibes": 0,
+        "score": 4,
+        "factMatches": [
+          "Established in 1988",
+          "in 1988"
+        ],
+        "vibeMatches": []
+      },
+      "perplexity": {
+        "facts": 27,
+        "vibes": 0,
+        "score": 54,
+        "factMatches": [
+          "Founded in 1988",
+          "$12.5",
+          "headquartered in New",
+          "[3]",
+          "[1]",
+          "[5]",
+          "[6]",
+          "[2]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 3,
+        "vibes": 2,
+        "score": 2,
+        "factMatches": [
+          "founded in 1988",
+          "headquartered in New",
+          "in 1988"
+        ],
+        "vibeMatches": [
+          "well-known",
+          "highly regarded"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 60,
+    "totalFacts": 32,
+    "totalVibes": 2
+  },
+  "marriott.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 1,
+        "vibes": 0,
+        "score": 2,
+        "factMatches": [
+          "131 countries"
+        ],
+        "vibeMatches": []
+      },
+      "perplexity": {
+        "facts": 15,
+        "vibes": 0,
+        "score": 30,
+        "factMatches": [
+          "Founded in 1927",
+          "[1]",
+          "[3]",
+          "[2]",
+          "in 1927",
+          "in 1995",
+          "144 countries"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 1,
+        "vibes": 2,
+        "score": -2,
+        "factMatches": [
+          "headquartered in Bethesda"
+        ],
+        "vibeMatches": [
+          "i don't have",
+          "well-known"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 30,
+    "totalFacts": 17,
+    "totalVibes": 2
+  },
+  "salesforce.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 2,
+        "vibes": 1,
+        "score": 2,
+        "factMatches": [
+          "founded in 1999",
+          "in 1999"
+        ],
+        "vibeMatches": [
+          "highly regarded"
+        ]
+      },
+      "perplexity": {
+        "facts": 21,
+        "vibes": 0,
+        "score": 42,
+        "factMatches": [
+          "founded in 1999",
+          "$41.5 billion",
+          "$186 billion",
+          "headquartered in San",
+          "[1]",
+          "[2]",
+          "[3]",
+          "[4]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 2,
+        "vibes": 0,
+        "score": 4,
+        "factMatches": [
+          "Founded in 1999",
+          "in 1999"
+        ],
+        "vibeMatches": []
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 48,
+    "totalFacts": 25,
+    "totalVibes": 1
+  },
+  "mckinsey.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 2,
+        "vibes": 1,
+        "score": 2,
+        "factMatches": [
+          "Founded in 1926",
+          "in 1926"
+        ],
+        "vibeMatches": [
+          "premier"
+        ]
+      },
+      "perplexity": {
+        "facts": 13,
+        "vibes": 0,
+        "score": 26,
+        "factMatches": [
+          "founded in 1926",
+          "[4]",
+          "[8]",
+          "[7]",
+          "[3]",
+          "[5]",
+          "[2]",
+          "[1]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 2,
+        "vibes": 2,
+        "score": 0,
+        "factMatches": [
+          "founded in 1926",
+          "in 1926"
+        ],
+        "vibeMatches": [
+          "well-known",
+          "prestigious"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 28,
+    "totalFacts": 17,
+    "totalVibes": 3
+  },
+  "wpp.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 1,
+        "vibes": 1,
+        "score": 0,
+        "factMatches": [
+          "headquartered in London"
+        ],
+        "vibeMatches": [
+          "well-established"
+        ]
+      },
+      "perplexity": {
+        "facts": 12,
+        "vibes": 1,
+        "score": 22,
+        "factMatches": [
+          "130,000 people",
+          "$65 billion",
+          "headquartered in London",
+          "[1]",
+          "[2]",
+          "160 offices"
+        ],
+        "vibeMatches": [
+          "might be"
+        ]
+      },
+      "claude": {
+        "facts": 1,
+        "vibes": 1,
+        "score": 0,
+        "factMatches": [
+          "headquartered in London"
+        ],
+        "vibeMatches": [
+          "well-known"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 22,
+    "totalFacts": 14,
+    "totalVibes": 3
+  },
+  "deloitte.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 2,
+        "vibes": 1,
+        "score": 2,
+        "factMatches": [
+          "Established in 1845",
+          "150 countries"
+        ],
+        "vibeMatches": [
+          "leading provider"
+        ]
+      },
+      "perplexity": {
+        "facts": 19,
+        "vibes": 0,
+        "score": 38,
+        "factMatches": [
+          "470,000 employees",
+          "$67.2 billion",
+          "Fortune 500",
+          "[3]",
+          "[7]",
+          "[1]",
+          "[2]",
+          "[4]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 1,
+        "vibes": 3,
+        "score": -4,
+        "factMatches": [
+          "150 countries"
+        ],
+        "vibeMatches": [
+          "well-established",
+          "highly reputable",
+          "might be"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 1,
+        "score": -2,
+        "factMatches": [],
+        "vibeMatches": [
+          "renowned"
+        ]
+      }
+    },
+    "totalScore": 34,
+    "totalFacts": 22,
+    "totalVibes": 5
+  },
+  "kirkland.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 3,
+        "vibes": 2,
+        "score": 2,
+        "factMatches": [
+          "Founded in 1909",
+          "headquartered in Chicago",
+          "in 1909"
+        ],
+        "vibeMatches": [
+          "leading firm",
+          "prestigious"
+        ]
+      },
+      "perplexity": {
+        "facts": 19,
+        "vibes": 0,
+        "score": 38,
+        "factMatches": [
+          "founded in 1909",
+          "[1]",
+          "[2]",
+          "[3]",
+          "[7]",
+          "[8]",
+          "[5]",
+          "[6]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 1,
+        "vibes": 2,
+        "score": -2,
+        "factMatches": [
+          "headquartered in Chicago"
+        ],
+        "vibeMatches": [
+          "i don't have",
+          "prestigious"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 38,
+    "totalFacts": 23,
+    "totalVibes": 4
+  },
+  "mayoclinic.org": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 1,
+        "vibes": 1,
+        "score": 0,
+        "factMatches": [
+          "based in Rochester"
+        ],
+        "vibeMatches": [
+          "renowned"
+        ]
+      },
+      "perplexity": {
+        "facts": 14,
+        "vibes": 1,
+        "score": 26,
+        "factMatches": [
+          "[1]",
+          "[2]",
+          "[3]",
+          "[5]",
+          "[9]",
+          "[6]",
+          "[8]",
+          "[4]"
+        ],
+        "vibeMatches": [
+          "renowned"
+        ]
+      },
+      "claude": {
+        "facts": 1,
+        "vibes": 2,
+        "score": -2,
+        "factMatches": [
+          "headquartered in Rochester"
+        ],
+        "vibeMatches": [
+          "well-established",
+          "may be"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 1,
+        "score": -2,
+        "factMatches": [],
+        "vibeMatches": [
+          "renowned"
+        ]
+      }
+    },
+    "totalScore": 22,
+    "totalFacts": 16,
+    "totalVibes": 5
+  },
+  "harvard.edu": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 1,
+        "vibes": 2,
+        "score": -2,
+        "factMatches": [
+          "Founded in 1636"
+        ],
+        "vibeMatches": [
+          "renowned",
+          "prestigious"
+        ]
+      },
+      "perplexity": {
+        "facts": 15,
+        "vibes": 1,
+        "score": 28,
+        "factMatches": [
+          "[3]",
+          "[8]",
+          "[2]",
+          "[6]",
+          "[4]",
+          "[7]",
+          "[1]",
+          "[5]"
+        ],
+        "vibeMatches": [
+          "premier"
+        ]
+      },
+      "claude": {
+        "facts": 1,
+        "vibes": 3,
+        "score": -4,
+        "factMatches": [
+          "Founded in 1636"
+        ],
+        "vibeMatches": [
+          "well-known",
+          "renowned",
+          "prestigious"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 22,
+    "totalFacts": 17,
+    "totalVibes": 6
+  },
+  "gensler.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 3,
+        "vibes": 1,
+        "score": 4,
+        "factMatches": [
+          "Established in 1965",
+          "in 1965",
+          "50 locations"
+        ],
+        "vibeMatches": [
+          "could be"
+        ]
+      },
+      "perplexity": {
+        "facts": 24,
+        "vibes": 0,
+        "score": 48,
+        "factMatches": [
+          "Founded in 1965",
+          "6,000 professionals",
+          "$1.83 billion",
+          "headquartered in San",
+          "[1]",
+          "[2]",
+          "[4]",
+          "[5]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 0,
+        "vibes": 3,
+        "score": -6,
+        "factMatches": [],
+        "vibeMatches": [
+          "i don't have",
+          "well-known",
+          "highly reputable"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 46,
+    "totalFacts": 27,
+    "totalVibes": 4
+  },
+  "crowdstrike.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 2,
+        "vibes": 0,
+        "score": 4,
+        "factMatches": [
+          "Founded in 2011",
+          "in 2011"
+        ],
+        "vibeMatches": []
+      },
+      "perplexity": {
+        "facts": 17,
+        "vibes": 0,
+        "score": 34,
+        "factMatches": [
+          "founded in 2011",
+          "headquartered in Austin",
+          "[1]",
+          "[2]",
+          "[3]",
+          "[9]",
+          "[6]",
+          "[5]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 5,
+        "vibes": 0,
+        "score": 10,
+        "factMatches": [
+          "founded in 2011",
+          "headquartered in Austin",
+          "Gartner",
+          "Forrester",
+          "in 2011"
+        ],
+        "vibeMatches": []
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 48,
+    "totalFacts": 24,
+    "totalVibes": 0
+  },
+  "redcross.org": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 1,
+        "vibes": 1,
+        "score": 0,
+        "factMatches": [
+          "Founded in 1881"
+        ],
+        "vibeMatches": [
+          "well-established"
+        ]
+      },
+      "perplexity": {
+        "facts": 12,
+        "vibes": 0,
+        "score": 24,
+        "factMatches": [
+          "[1]",
+          "[2]",
+          "[4]",
+          "[5]",
+          "[8]",
+          "[7]",
+          "[9]",
+          "rated 4"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 1,
+        "vibes": 2,
+        "score": -2,
+        "factMatches": [
+          "founded in 1881"
+        ],
+        "vibeMatches": [
+          "well-known",
+          "may be"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 22,
+    "totalFacts": 14,
+    "totalVibes": 3
+  },
+  "disney.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      },
+      "perplexity": {
+        "facts": 11,
+        "vibes": 0,
+        "score": 22,
+        "factMatches": [
+          "[1]",
+          "[5]",
+          "[6]",
+          "[2]",
+          "[3]",
+          "[7]",
+          "[9]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 2,
+        "vibes": 2,
+        "score": 0,
+        "factMatches": [
+          "Founded in 1923",
+          "in 1923"
+        ],
+        "vibeMatches": [
+          "well-known",
+          "highly reputable"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 1,
+        "score": -2,
+        "factMatches": [],
+        "vibeMatches": [
+          "renowned"
+        ]
+      }
+    },
+    "totalScore": 20,
+    "totalFacts": 13,
+    "totalVibes": 3
+  },
+  "wm.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 0,
+        "vibes": 1,
+        "score": -2,
+        "factMatches": [],
+        "vibeMatches": [
+          "leading provider"
+        ]
+      },
+      "perplexity": {
+        "facts": 14,
+        "vibes": 2,
+        "score": 24,
+        "factMatches": [
+          "Founded in 1968",
+          "50,000 employees",
+          "headquartered in Houston",
+          "[1]",
+          "[4]",
+          "[5]",
+          "[9]",
+          "in 1968"
+        ],
+        "vibeMatches": [
+          "leading provider",
+          "appears to be"
+        ]
+      },
+      "claude": {
+        "facts": 1,
+        "vibes": 1,
+        "score": 0,
+        "factMatches": [
+          "headquartered in Houston"
+        ],
+        "vibeMatches": [
+          "may be"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 22,
+    "totalFacts": 15,
+    "totalVibes": 4
+  },
+  "gsa.gov": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      },
+      "perplexity": {
+        "facts": 20,
+        "vibes": 0,
+        "score": 40,
+        "factMatches": [
+          "established in 1949",
+          "12,000 employees",
+          "$66 billion",
+          "$33 billion",
+          "[1]",
+          "[2]",
+          "[9]",
+          "[3]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 2,
+        "vibes": 1,
+        "score": 2,
+        "factMatches": [
+          "established in 1949",
+          "in 1949"
+        ],
+        "vibeMatches": [
+          "highly reputable"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 42,
+    "totalFacts": 22,
+    "totalVibes": 1
+  },
+  "accenture.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      },
+      "perplexity": {
+        "facts": 19,
+        "vibes": 1,
+        "score": 36,
+        "factMatches": [
+          "Founded in 1989",
+          "786,000 employees",
+          "$64.9 billion",
+          "$3 billion",
+          "25.7% market share",
+          "headquartered in Dublin",
+          "[4]",
+          "[5]"
+        ],
+        "vibeMatches": [
+          "appears to be"
+        ]
+      },
+      "claude": {
+        "facts": 3,
+        "vibes": 0,
+        "score": 6,
+        "factMatches": [
+          "Gartner",
+          "Forrester",
+          "120 countries"
+        ],
+        "vibeMatches": []
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 42,
+    "totalFacts": 22,
+    "totalVibes": 1
+  },
+  "adeccogroup.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 1,
+        "vibes": 0,
+        "score": 2,
+        "factMatches": [
+          "60 countries"
+        ],
+        "vibeMatches": []
+      },
+      "perplexity": {
+        "facts": 17,
+        "vibes": 0,
+        "score": 34,
+        "factMatches": [
+          "25,000 employees",
+          "[1]",
+          "[5]",
+          "[7]",
+          "[2]",
+          "[3]",
+          "[4]",
+          "[8]"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 2,
+        "vibes": 2,
+        "score": 0,
+        "factMatches": [
+          "headquartered in Zurich",
+          "60 countries"
+        ],
+        "vibeMatches": [
+          "well-known",
+          "for the most current"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 1,
+        "score": -2,
+        "factMatches": [],
+        "vibeMatches": [
+          "leading provider"
+        ]
+      }
+    },
+    "totalScore": 34,
+    "totalFacts": 20,
+    "totalVibes": 3
+  },
+  "regiscorp.com": {
+    "platforms": {
+      "chatgpt": {
+        "facts": 0,
+        "vibes": 1,
+        "score": -2,
+        "factMatches": [],
+        "vibeMatches": [
+          "well-known"
+        ]
+      },
+      "perplexity": {
+        "facts": 14,
+        "vibes": 0,
+        "score": 28,
+        "factMatches": [
+          "Founded in 1922",
+          "[1]",
+          "[3]",
+          "[4]",
+          "[5]",
+          "[6]",
+          "[2]",
+          "in 1922"
+        ],
+        "vibeMatches": []
+      },
+      "claude": {
+        "facts": 0,
+        "vibes": 1,
+        "score": -2,
+        "factMatches": [],
+        "vibeMatches": [
+          "i don't have"
+        ]
+      },
+      "gemini": {
+        "facts": 0,
+        "vibes": 0,
+        "score": 0,
+        "factMatches": [],
+        "vibeMatches": []
+      }
+    },
+    "totalScore": 24,
+    "totalFacts": 14,
+    "totalVibes": 2
+  }
+}
