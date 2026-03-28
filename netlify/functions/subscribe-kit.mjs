@@ -51,28 +51,42 @@ export default async (request) => {
       });
     }
 
-    const kitResponse = await fetch(`https://api.kit.com/v4/forms/${formId}/subscribers`, {
+    // Step 1: Create (or retrieve) the subscriber
+    const subResponse = await fetch('https://api.kit.com/v4/subscribers', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'X-Kit-Api-Key': apiKey,
       },
-      body: JSON.stringify({
-        email_address: email,
-      }),
+      body: JSON.stringify({ email_address: email }),
     });
 
-    const kitData = await kitResponse.json();
+    const subData = await subResponse.json();
 
-    if (!kitResponse.ok) {
-      console.error('Kit API error:', kitResponse.status, kitData);
-      return new Response(JSON.stringify({ error: 'Subscription failed', details: kitData }), {
-        status: kitResponse.status,
+    if (!subResponse.ok) {
+      console.error('Kit create subscriber error:', subResponse.status, subData);
+      return new Response(JSON.stringify({ error: 'Subscription failed', details: subData }), {
+        status: subResponse.status,
         headers: { 'Content-Type': 'application/json' },
       });
     }
 
-    return new Response(JSON.stringify({ success: true, subscriber: kitData }), {
+    // Step 2: Associate subscriber with the form (for tracking + automations)
+    const formResponse = await fetch(`https://api.kit.com/v4/forms/${formId}/subscribers`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Kit-Api-Key': apiKey,
+      },
+      body: JSON.stringify({ email_address: email }),
+    });
+
+    if (!formResponse.ok) {
+      console.warn('Kit form association warning:', formResponse.status);
+      // Non-fatal — subscriber was still created
+    }
+
+    return new Response(JSON.stringify({ success: true, subscriber: subData }), {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
