@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -699,28 +698,15 @@
         </div>
       </div>
 
-      <!-- No benchmark match fallback -->
+      <!-- No benchmark match / pending fallback — shows user's own scores -->
       <div id="benchmark-no-match" style="display:none;">
         <div class="competitor-card">
-          <h2>We couldn't auto-match your industry benchmark</h2>
-          <p>Your keyword didn't match a pre-analyzed industry leader. Want to compare against a specific competitor instead?</p>
-          <div class="competitor-inline-form">
-            <label for="competitor-url" class="sr-only">Competitor website URL</label>
-            <input type="url" id="competitor-url" placeholder="e.g. competitor.com">
-            <button class="compare-btn" onclick="runComparison()">Compare</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Benchmark data not yet cached fallback -->
-      <div id="benchmark-pending" style="display:none;">
-        <div class="competitor-card">
-          <h2 id="pending-category">Industry Match Found</h2>
-          <p>We matched you to <strong id="pending-titan-name"></strong> in <strong id="pending-category-name"></strong>, but we're still building benchmark scores for this industry. In the meantime, try comparing against a specific competitor:</p>
-          <div class="competitor-inline-form">
-            <label for="competitor-url-pending" class="sr-only">Competitor website URL</label>
-            <input type="url" id="competitor-url-pending" placeholder="e.g. competitor.com">
-            <button class="compare-btn" onclick="runComparisonFromPending()">Compare</button>
+          <h3 style="font-family:'Lora',serif;font-size:1.3rem;font-weight:700;color:var(--charcoal);margin-bottom:16px;text-align:center;">Which of these best describes your industry?</h3>
+          <div style="display:flex;flex-direction:column;gap:12px;max-width:400px;margin:0 auto;">
+            <select id="industry-dropdown" style="padding:12px 16px;border:1px solid var(--warm-gold-border);border-radius:6px;font-size:1rem;color:var(--charcoal);background-color:white;cursor:pointer;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;transition:border-color 0.2s;">
+              <option value="">— Select an industry —</option>
+            </select>
+            <button onclick="selectBenchmark()" style="padding:12px 16px;background-color:var(--warm-gold);color:white;border:none;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;transition:background-color 0.2s;">Show My Benchmark</button>
           </div>
         </div>
       </div>
@@ -797,6 +783,47 @@
     let isRunning = false;
     let lastYoursData = null;   // Cache results for comparison reuse
     let lastAnalysis = null;
+    let lastScoringData = null;  // Cache user's scoring data for dropdown selection
+
+    // ── Benchmark Lookup (Industry → Titan Mapping) ────────────────
+    const BENCHMARK_LOOKUP = {
+      "Agriculture & Farming": { titan: "cargill.com", titanName: "Cargill", platforms: { chatgpt: {facts:1,vibes:0,score:2}, perplexity: {facts:21,vibes:0,score:42}, claude: {facts:2,vibes:1,score:2}, gemini: {facts:1,vibes:1,score:0} }, totalScore: 46 },
+      "Mining & Energy": { titan: "exxonmobil.com", titanName: "ExxonMobil", platforms: { chatgpt: {facts:0,vibes:0,score:0}, perplexity: {facts:12,vibes:0,score:24}, claude: {facts:1,vibes:2,score:-2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 22 },
+      "Construction & Engineering": { titan: "bechtel.com", titanName: "Bechtel", platforms: { chatgpt: {facts:1,vibes:0,score:2}, perplexity: {facts:14,vibes:0,score:28}, claude: {facts:3,vibes:1,score:4}, gemini: {facts:0,vibes:1,score:-2} }, totalScore: 32 },
+      "Food & Beverage": { titan: "nestle.com", titanName: "Nestlé", platforms: { chatgpt: {facts:1,vibes:1,score:0}, perplexity: {facts:22,vibes:0,score:44}, claude: {facts:1,vibes:2,score:-2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 42 },
+      "Fashion & Apparel": { titan: "nike.com", titanName: "Nike", platforms: { chatgpt: {facts:2,vibes:1,score:2}, perplexity: {facts:9,vibes:0,score:18}, claude: {facts:1,vibes:0,score:2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 22 },
+      "Publishing & Media": { titan: "nytimes.com", titanName: "The New York Times", platforms: { chatgpt: {facts:1,vibes:1,score:0}, perplexity: {facts:10,vibes:0,score:20}, claude: {facts:2,vibes:2,score:0}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 20 },
+      "Pharmaceuticals & Life Sciences": { titan: "pfizer.com", titanName: "Pfizer", platforms: { chatgpt: {facts:1,vibes:1,score:0}, perplexity: {facts:22,vibes:1,score:42}, claude: {facts:1,vibes:1,score:0}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 42 },
+      "Industrial Manufacturing": { titan: "caterpillar.com", titanName: "Caterpillar", platforms: { chatgpt: {facts:2,vibes:0,score:4}, perplexity: {facts:18,vibes:1,score:34}, claude: {facts:4,vibes:2,score:4}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 42 },
+      "Technology & Electronics": { titan: "apple.com", titanName: "Apple", platforms: { chatgpt: {facts:2,vibes:1,score:2}, perplexity: {facts:20,vibes:0,score:40}, claude: {facts:1,vibes:1,score:0}, gemini: {facts:0,vibes:1,score:-2} }, totalScore: 40 },
+      "Consumer Products": { titan: "pg.com", titanName: "Procter & Gamble", platforms: { chatgpt: {facts:1,vibes:1,score:0}, perplexity: {facts:16,vibes:0,score:32}, claude: {facts:4,vibes:1,score:6}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 38 },
+      "Transportation & Logistics": { titan: "ups.com", titanName: "UPS", platforms: { chatgpt: {facts:2,vibes:0,score:4}, perplexity: {facts:18,vibes:0,score:36}, claude: {facts:2,vibes:1,score:2}, gemini: {facts:0,vibes:1,score:-2} }, totalScore: 40 },
+      "Telecommunications": { titan: "verizon.com", titanName: "Verizon", platforms: { chatgpt: {facts:0,vibes:0,score:0}, perplexity: {facts:14,vibes:0,score:28}, claude: {facts:0,vibes:1,score:-2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 26 },
+      "Utilities & Clean Energy": { titan: "nexteraenergy.com", titanName: "NextEra Energy", platforms: { chatgpt: {facts:0,vibes:1,score:-2}, perplexity: {facts:15,vibes:1,score:28}, claude: {facts:1,vibes:1,score:0}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 26 },
+      "Wholesale & Distribution": { titan: "mckesson.com", titanName: "McKesson", platforms: { chatgpt: {facts:1,vibes:0,score:2}, perplexity: {facts:19,vibes:0,score:38}, claude: {facts:1,vibes:0,score:2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 42 },
+      "Retail & eCommerce": { titan: "amazon.com", titanName: "Amazon", platforms: { chatgpt: {facts:2,vibes:0,score:4}, perplexity: {facts:9,vibes:1,score:16}, claude: {facts:1,vibes:0,score:2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 22 },
+      "Banking & Financial Services": { titan: "jpmorgan.com", titanName: "JPMorgan Chase", platforms: { chatgpt: {facts:0,vibes:0,score:0}, perplexity: {facts:16,vibes:0,score:32}, claude: {facts:1,vibes:1,score:0}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 32 },
+      "Insurance": { titan: "statefarm.com", titanName: "State Farm", platforms: { chatgpt: {facts:0,vibes:0,score:0}, perplexity: {facts:23,vibes:0,score:46}, claude: {facts:3,vibes:1,score:4}, gemini: {facts:0,vibes:1,score:-2} }, totalScore: 48 },
+      "Real Estate": { titan: "cbre.com", titanName: "CBRE", platforms: { chatgpt: {facts:4,vibes:0,score:8}, perplexity: {facts:15,vibes:0,score:30}, claude: {facts:2,vibes:0,score:4}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 42 },
+      "Investment & Asset Management": { titan: "blackrock.com", titanName: "BlackRock", platforms: { chatgpt: {facts:2,vibes:0,score:4}, perplexity: {facts:27,vibes:0,score:54}, claude: {facts:3,vibes:2,score:2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 60 },
+      "Hospitality & Travel": { titan: "marriott.com", titanName: "Marriott", platforms: { chatgpt: {facts:1,vibes:0,score:2}, perplexity: {facts:15,vibes:0,score:30}, claude: {facts:1,vibes:2,score:-2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 30 },
+      "Personal Services": { titan: "regiscorp.com", titanName: "Regis Corporation", platforms: { chatgpt: {facts:0,vibes:1,score:-2}, perplexity: {facts:14,vibes:0,score:28}, claude: {facts:0,vibes:1,score:-2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 24 },
+      "Business Services & Staffing": { titan: "adeccogroup.com", titanName: "Adecco", platforms: { chatgpt: {facts:1,vibes:0,score:2}, perplexity: {facts:17,vibes:0,score:34}, claude: {facts:2,vibes:2,score:0}, gemini: {facts:0,vibes:1,score:-2} }, totalScore: 34 },
+      "Software & SaaS": { titan: "salesforce.com", titanName: "Salesforce", platforms: { chatgpt: {facts:2,vibes:1,score:2}, perplexity: {facts:21,vibes:0,score:42}, claude: {facts:2,vibes:0,score:4}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 48 },
+      "Management Consulting": { titan: "mckinsey.com", titanName: "McKinsey", platforms: { chatgpt: {facts:2,vibes:1,score:2}, perplexity: {facts:13,vibes:0,score:26}, claude: {facts:2,vibes:2,score:0}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 28 },
+      "Marketing & Advertising": { titan: "wpp.com", titanName: "WPP", platforms: { chatgpt: {facts:1,vibes:1,score:0}, perplexity: {facts:12,vibes:1,score:22}, claude: {facts:1,vibes:1,score:0}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 22 },
+      "Accounting & Tax": { titan: "deloitte.com", titanName: "Deloitte", platforms: { chatgpt: {facts:2,vibes:1,score:2}, perplexity: {facts:19,vibes:0,score:38}, claude: {facts:1,vibes:3,score:-4}, gemini: {facts:0,vibes:1,score:-2} }, totalScore: 34 },
+      "Legal Services": { titan: "kirkland.com", titanName: "Kirkland & Ellis", platforms: { chatgpt: {facts:3,vibes:2,score:2}, perplexity: {facts:19,vibes:0,score:38}, claude: {facts:1,vibes:2,score:-2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 38 },
+      "Healthcare": { titan: "mayoclinic.org", titanName: "Mayo Clinic", platforms: { chatgpt: {facts:1,vibes:1,score:0}, perplexity: {facts:14,vibes:1,score:26}, claude: {facts:1,vibes:2,score:-2}, gemini: {facts:0,vibes:1,score:-2} }, totalScore: 22 },
+      "Education & Training": { titan: "harvard.edu", titanName: "Harvard University", platforms: { chatgpt: {facts:1,vibes:2,score:-2}, perplexity: {facts:15,vibes:1,score:28}, claude: {facts:1,vibes:3,score:-4}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 22 },
+      "Architecture & Design": { titan: "gensler.com", titanName: "Gensler", platforms: { chatgpt: {facts:3,vibes:1,score:4}, perplexity: {facts:24,vibes:0,score:48}, claude: {facts:0,vibes:3,score:-6}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 46 },
+      "Cybersecurity & IT Services": { titan: "crowdstrike.com", titanName: "CrowdStrike", platforms: { chatgpt: {facts:2,vibes:0,score:4}, perplexity: {facts:17,vibes:0,score:34}, claude: {facts:5,vibes:0,score:10}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 48 },
+      "Nonprofit & Social Services": { titan: "redcross.org", titanName: "American Red Cross", platforms: { chatgpt: {facts:1,vibes:1,score:0}, perplexity: {facts:12,vibes:0,score:24}, claude: {facts:1,vibes:2,score:-2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 22 },
+      "Entertainment & Recreation": { titan: "disney.com", titanName: "Disney", platforms: { chatgpt: {facts:0,vibes:0,score:0}, perplexity: {facts:11,vibes:0,score:22}, claude: {facts:2,vibes:2,score:0}, gemini: {facts:0,vibes:1,score:-2} }, totalScore: 20 },
+      "Environmental Services": { titan: "wm.com", titanName: "Waste Management", platforms: { chatgpt: {facts:0,vibes:1,score:-2}, perplexity: {facts:14,vibes:2,score:24}, claude: {facts:1,vibes:1,score:0}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 22 },
+      "Government & Public Sector": { titan: "gsa.gov", titanName: "GSA", platforms: { chatgpt: {facts:0,vibes:0,score:0}, perplexity: {facts:20,vibes:0,score:40}, claude: {facts:2,vibes:1,score:2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 42 },
+      "Professional Services": { titan: "accenture.com", titanName: "Accenture", platforms: { chatgpt: {facts:0,vibes:0,score:0}, perplexity: {facts:19,vibes:1,score:36}, claude: {facts:3,vibes:0,score:6}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 42 }
+    };
 
     // ── API Configuration ──────────────────────────────────────────
     const API_ENDPOINT = '/api/check-readability';
@@ -974,28 +1001,22 @@
       const benchEl = document.getElementById('benchmark-section');
       const scorecardEl = document.getElementById('benchmark-scorecard');
       const noMatchEl = document.getElementById('benchmark-no-match');
-      const pendingEl = document.getElementById('benchmark-pending');
 
       // Reset all sub-views
       scorecardEl.style.display = 'none';
       noMatchEl.style.display = 'none';
-      pendingEl.style.display = 'none';
 
-      if (!data.benchmark) {
-        // No industry match — show fallback with competitor input
+      if (!data.benchmark || !data.benchmark.scoring) {
+        // No match or no cached data — show user's own scores and industry dropdown
+        lastScoringData = data.scoring;
         noMatchEl.style.display = 'block';
+        document.getElementById('benchmark-title').textContent = 'Your AI Readability Score';
+        document.getElementById('benchmark-subtitle').textContent =
+          'Select your industry below to see how you compare.';
         return;
       }
 
       const bench = data.benchmark;
-
-      if (!bench.scoring) {
-        // Matched but no cached data yet
-        pendingEl.style.display = 'block';
-        document.getElementById('pending-titan-name').textContent = bench.titanName;
-        document.getElementById('pending-category-name').textContent = bench.category;
-        return;
-      }
 
       // We have full benchmark data — show the side-by-side scorecard
       scorecardEl.style.display = 'block';
@@ -1071,6 +1092,54 @@
       } else {
         document.getElementById('benchmark-gap-headline').textContent = 'You\'re outperforming the benchmark';
         gapBody.textContent = 'You\'re scoring as well or better than ' + bench.titanName + ' in your industry. That\'s impressive and rare. The full Audit can help you maintain this edge and identify emerging AI surfaces where competitors might catch up.';
+      }
+    }
+
+    // ── Populate Fallback Scores (no benchmark match) ─────────────
+    function populateFallbackScores(data) {
+      if (!data.scoring) return;
+      const maxBar = 30;
+      const platforms = ['chatgpt', 'perplexity', 'claude', 'gemini'];
+
+      platforms.forEach(p => {
+        const pData = data.scoring.platforms[p];
+        if (!pData) return;
+        const factWidth = Math.min((pData.facts * 2 / maxBar) * 50, 50);
+        const vibeWidth = Math.min((pData.vibes * 2 / maxBar) * 50, 50);
+        const factBar = document.getElementById('fallback-bar-facts-' + p);
+        const vibeBar = document.getElementById('fallback-bar-vibes-' + p);
+        factBar.style.width = factWidth + '%';
+        vibeBar.style.width = vibeWidth + '%';
+        if (pData.facts > 0) factBar.innerHTML = '<span class="score-bar-label">' + pData.facts + ' facts</span>';
+        else factBar.innerHTML = '';
+        if (pData.vibes > 0) vibeBar.innerHTML = '<span class="score-bar-label">' + pData.vibes + ' hedges</span>';
+        else vibeBar.innerHTML = '';
+        const scoreEl = document.getElementById('fallback-score-' + p);
+        scoreEl.textContent = (pData.score > 0 ? '+' : '') + pData.score;
+        scoreEl.classList.remove('positive', 'negative', 'zero');
+        if (pData.score > 0) scoreEl.classList.add('positive');
+        else if (pData.score < 0) scoreEl.classList.add('negative');
+        else scoreEl.classList.add('zero');
+      });
+
+      // Insight text based on total score
+      const totalFacts = data.scoring.totalFacts;
+      const totalScore = data.scoring.totalScore;
+      const headline = document.getElementById('fallback-headline');
+      const body = document.getElementById('fallback-body');
+
+      if (totalFacts === 0) {
+        headline.textContent = 'AI agents don\u2019t know you yet';
+        body.textContent = 'Across all four platforms, not a single verifiable fact was cited about your business. No founding year, no team size, no named clients. When AI agents don\u2019t know you, they can\u2019t recommend you. The full Agent Readability Audit identifies exactly which signals are missing and what to fix first.';
+      } else if (totalScore < 0) {
+        headline.textContent = 'More hedges than facts';
+        body.textContent = 'AI agents produced more disclaimers than verifiable facts about your business. The dominant signal is uncertainty. When AI isn\u2019t sure about you, it doesn\u2019t recommend you. The full Audit maps exactly where these gaps are and how to close them.';
+      } else if (totalFacts <= 4) {
+        headline.textContent = 'AI knows a little, but not enough';
+        body.textContent = 'A few facts surfaced, but the coverage is thin and inconsistent across platforms. Some AI agents know more than others. The full Audit identifies which signals are reaching which platforms and which aren\u2019t, across 30 diagnostic dimensions.';
+      } else {
+        headline.textContent = 'A solid start';
+        body.textContent = 'AI agents can cite real facts about your business. That\u2019s better than most. But are they citing the right facts? The ones that win recommendations? The full Audit goes beyond what AI knows to test whether it trusts you enough to recommend you.';
       }
     }
 
@@ -1210,6 +1279,127 @@
         card.innerHTML = '<div class="email-card-text"><h3>Check your inbox.</h3><p>Your report and readability checklist are on the way.</p></div>';
       });
     }
+
+    // ── Industry Dropdown Selection ────────────────────────────────
+    function selectBenchmark() {
+      const dropdown = document.getElementById('industry-dropdown');
+      const selectedCategory = dropdown.value;
+
+      if (!selectedCategory) {
+        alert('Please select an industry.');
+        return;
+      }
+
+      const benchmarkData = BENCHMARK_LOOKUP[selectedCategory];
+      if (!benchmarkData) {
+        alert('Industry data not found.');
+        return;
+      }
+
+      // Hide the no-match dropdown div
+      document.getElementById('benchmark-no-match').style.display = 'none';
+
+      // Show the benchmark-scorecard div
+      const scorecardEl = document.getElementById('benchmark-scorecard');
+      scorecardEl.style.display = 'block';
+
+      // Populate benchmark title and subtitle
+      const displayUrl = companyUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      document.getElementById('benchmark-title').textContent = 'Your Score vs. "' + selectedCategory + '" Titan';
+      document.getElementById('benchmark-subtitle').textContent =
+        'We compared your AI readability against ' + benchmarkData.titanName + ', the top-performing company in ' + selectedCategory + '.';
+
+      // Populate labels
+      document.getElementById('bench-yours-label').textContent = displayUrl;
+      document.getElementById('bench-titan-label').textContent = selectedCategory + ' Leader: ' + benchmarkData.titanName;
+
+      // Populate YOUR side bars (from lastScoringData)
+      if (lastScoringData) {
+        const maxBar = 30;
+        const platforms = ['chatgpt', 'perplexity', 'claude', 'gemini'];
+
+        platforms.forEach(p => {
+          const pData = lastScoringData.platforms[p];
+          if (!pData) return;
+          const factWidth = Math.min((pData.facts * 2 / maxBar) * 50, 50);
+          const vibeWidth = Math.min((pData.vibes * 2 / maxBar) * 50, 50);
+          const factBar = document.getElementById('bench-yours-bar-facts-' + p);
+          const vibeBar = document.getElementById('bench-yours-bar-vibes-' + p);
+          factBar.style.width = factWidth + '%';
+          vibeBar.style.width = vibeWidth + '%';
+          if (pData.facts > 0) factBar.innerHTML = '<span class="score-bar-label">' + pData.facts + ' facts</span>';
+          else factBar.innerHTML = '';
+          if (pData.vibes > 0) vibeBar.innerHTML = '<span class="score-bar-label">' + pData.vibes + ' hedges</span>';
+          else vibeBar.innerHTML = '';
+          const scoreEl = document.getElementById('bench-yours-score-' + p);
+          scoreEl.textContent = (pData.score > 0 ? '+' : '') + pData.score;
+          scoreEl.classList.remove('positive', 'negative', 'zero');
+          if (pData.score > 0) scoreEl.classList.add('positive');
+          else if (pData.score < 0) scoreEl.classList.add('negative');
+          else scoreEl.classList.add('zero');
+        });
+      }
+
+      // Populate TITAN side bars (from BENCHMARK_LOOKUP)
+      const maxBar = 30;
+      const platforms = ['chatgpt', 'perplexity', 'claude', 'gemini'];
+
+      platforms.forEach(p => {
+        const pData = benchmarkData.platforms[p];
+        if (!pData) return;
+        const factWidth = Math.min((pData.facts * 2 / maxBar) * 50, 50);
+        const vibeWidth = Math.min((pData.vibes * 2 / maxBar) * 50, 50);
+        const factBar = document.getElementById('bench-titan-bar-facts-' + p);
+        const vibeBar = document.getElementById('bench-titan-bar-vibes-' + p);
+        factBar.style.width = factWidth + '%';
+        vibeBar.style.width = vibeWidth + '%';
+        if (pData.facts > 0) factBar.innerHTML = '<span class="score-bar-label">' + pData.facts + ' facts</span>';
+        else factBar.innerHTML = '';
+        if (pData.vibes > 0) vibeBar.innerHTML = '<span class="score-bar-label">' + pData.vibes + ' hedges</span>';
+        else vibeBar.innerHTML = '';
+        const scoreEl = document.getElementById('bench-titan-score-' + p);
+        scoreEl.textContent = (pData.score > 0 ? '+' : '') + pData.score;
+        scoreEl.classList.remove('positive', 'negative', 'zero');
+        if (pData.score > 0) scoreEl.classList.add('positive');
+        else if (pData.score < 0) scoreEl.classList.add('negative');
+        else scoreEl.classList.add('zero');
+      });
+
+      // Populate gap analysis (same logic as populateBenchmark)
+      const yourTotal = lastScoringData ? lastScoringData.totalScore : 0;
+      const titanTotal = benchmarkData.totalScore;
+      const gap = titanTotal - yourTotal;
+      const gapBody = document.getElementById('benchmark-gap-body');
+
+      if (gap > 20) {
+        document.getElementById('benchmark-gap-headline').textContent = 'There\'s a significant gap here';
+        gapBody.textContent = benchmarkData.titanName + ' scores ' + gap + ' points higher than you across all four AI platforms. That\'s the difference between AI agents recommending them and hedging about you. The good news: this gap is closable. The full Agent Readability Audit maps exactly where your signals are missing and what to fix first.';
+      } else if (gap > 8) {
+        document.getElementById('benchmark-gap-headline').textContent = 'Room to improve';
+        gapBody.textContent = benchmarkData.titanName + ' leads you by ' + gap + ' points. That gap means AI agents cite more verifiable facts about them — more founding dates, team sizes, client names, awards. Every fact they have that you don\'t is a missed opportunity for recommendation. The full Audit identifies exactly which facts to surface.';
+      } else if (gap > 0) {
+        document.getElementById('benchmark-gap-headline').textContent = 'You\'re closer than most';
+        gapBody.textContent = 'Only ' + gap + ' points separate you from ' + benchmarkData.titanName + '. That\'s strong — but in AI-driven search, small edges compound. The full Audit digs into which specific signals are missing and how to close the remaining gap.';
+      } else {
+        document.getElementById('benchmark-gap-headline').textContent = 'You\'re outperforming the benchmark';
+        gapBody.textContent = 'You\'re scoring as well or better than ' + benchmarkData.titanName + ' in your industry. That\'s impressive and rare. The full Audit can help you maintain this edge and identify emerging AI surfaces where competitors might catch up.';
+      }
+
+      // Scroll to scorecard
+      scorecardEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ── Initialize Industry Dropdown ────────────────────────────────
+    document.addEventListener('DOMContentLoaded', function() {
+      const dropdown = document.getElementById('industry-dropdown');
+      const categories = Object.keys(BENCHMARK_LOOKUP).sort();
+      categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category;
+        dropdown.appendChild(option);
+      });
+    });
 
     document.getElementById('check-form').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') { e.preventDefault(); runCheck(); }
