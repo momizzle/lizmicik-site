@@ -31,10 +31,10 @@
     :root {
       --charcoal: #2C3038;
       --cream: #FAF8F5;
-      --warm-gold: #B07D4F;
-      --warm-gold-light: #c48f5e;
-      --warm-gold-bg: rgba(176, 125, 79, 0.06);
-      --warm-gold-border: rgba(176, 125, 79, 0.25);
+      --warm-gold: #B07D5B;
+      --warm-gold-light: #C4956A;
+      --warm-gold-bg: rgba(176, 125, 91, 0.06);
+      --warm-gold-border: rgba(176, 125, 91, 0.25);
       --sage: #5B7B6A;
       --sage-light: #6d9a7e;
       --sage-bg: rgba(91, 123, 106, 0.06);
@@ -139,7 +139,7 @@
     .input-group input {
       width: 100%; padding: 14px 16px; font-size: 1rem;
       font-family: 'Inter', sans-serif;
-      border: 1.5px solid #d1d5db; border-radius: 10px;
+      border: 1.5px solid rgba(44, 48, 56, 0.15); border-radius: 10px;
       background: var(--cream); color: var(--charcoal);
       transition: border-color 0.2s, box-shadow 0.2s;
     }
@@ -230,7 +230,7 @@
     }
     .score-bar-wrap {
       position: relative; height: 28px;
-      background: #f3f4f6; border-radius: 6px; overflow: hidden;
+      background: #F2EDE7; border-radius: 6px; overflow: hidden;
     }
     .score-bar-facts {
       position: absolute; left: 0; top: 0; height: 100%;
@@ -277,7 +277,7 @@
 
     /* Scorecard body text */
     .scorecard-body {
-      font-size: 0.92rem; color: #4b5563; line-height: 1.65;
+      font-size: 0.92rem; color: var(--slate); line-height: 1.65;
       margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);
     }
     .scorecard-body strong { color: var(--charcoal); }
@@ -315,7 +315,7 @@
     }
     .response-card-body { padding: 20px; }
     .ai-response {
-      font-size: 0.92rem; line-height: 1.65; color: #374151;
+      font-size: 0.92rem; line-height: 1.65; color: var(--charcoal);
       white-space: pre-wrap;
     }
     .platform-result { display: none; }
@@ -345,7 +345,7 @@
     .competitor-inline-form input {
       flex: 1; padding: 14px 16px; font-size: 1rem;
       font-family: 'Inter', sans-serif;
-      border: 1.5px solid #d1d5db; border-radius: 10px;
+      border: 1.5px solid rgba(44, 48, 56, 0.15); border-radius: 10px;
       background: #fff; color: var(--charcoal);
     }
     .competitor-inline-form input:focus {
@@ -388,7 +388,7 @@
 
     /* Comparison insight */
     .insight-callout {
-      background: #018799; border-radius: 12px;
+      background: #6A9FA0; border-radius: 12px;
       padding: 28px 32px; color: #fff; margin-top: 24px; margin-bottom: 8px;
     }
     .insight-callout h3 {
@@ -423,7 +423,7 @@
     .email-card-form input {
       padding: 12px 14px; font-size: 0.9rem;
       font-family: 'Inter', sans-serif;
-      border: 1.5px solid #d1d5db; border-radius: 8px;
+      border: 1.5px solid rgba(44, 48, 56, 0.15); border-radius: 8px;
       background: var(--cream); color: var(--charcoal); width: 220px;
     }
     .email-card-form input:focus {
@@ -446,7 +446,7 @@
     .audit-cta { display: none; padding: 0 0 80px; }
     .audit-cta.visible { display: block; }
     .audit-cta-card {
-      background: linear-gradient(135deg, #B07D4F 0%, #9a6a3e 50%, #7d5530 100%);
+      background: linear-gradient(135deg, #B07D5B 0%, #9a6a3e 50%, #7d5530 100%);
       border-radius: 20px;
       padding: 56px 48px;
       text-align: center;

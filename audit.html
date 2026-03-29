@@ -69,14 +69,15 @@
     :root {
       --charcoal: #2C3038;
       --cream: #FAF8F5;
-      --warm-gold: #B07D4F;
-      --warm-gold-light: #c48f5e;
-      --warm-gold-bg: rgba(176, 125, 79, 0.06);
-      --warm-gold-border: rgba(176, 125, 79, 0.25);
-      --teal: #2A7B88;
-      --teal-light: #3A9DAD;
-      --teal-bg: rgba(42, 123, 136, 0.06);
-      --teal-border: rgba(42, 123, 136, 0.2);
+      --warm-gold: #B07D5B;
+      --warm-gold-light: #C4956A;
+      --warm-gold-bg: rgba(176, 125, 91, 0.06);
+      --warm-gold-border: rgba(176, 125, 91, 0.25);
+      --teal: #6A9FA0;
+      --teal-deep: #4E7F80;
+      --teal-light: #8ABCBD;
+      --teal-bg: rgba(106, 159, 160, 0.08);
+      --teal-border: rgba(106, 159, 160, 0.25);
       --sage: #5B7B6A;
       --sage-light: #6d9a7e;
       --sage-bg: rgba(91, 123, 106, 0.06);
@@ -133,20 +134,20 @@
 
     .cta-btn {
       display: inline-block; padding: 14px 36px;
-      background: var(--warm-gold); color: #fff; border: none;
+      background: var(--teal); color: #fff; border: none;
       border-radius: 8px; font-size: 1rem; font-weight: 600;
       text-decoration: none; cursor: pointer;
       transition: background 0.2s, transform 0.1s;
     }
-    .cta-btn:hover { background: var(--warm-gold-light); transform: translateY(-1px); }
+    .cta-btn:hover { background: var(--teal-deep); transform: translateY(-1px); }
     .cta-btn-outline {
       display: inline-block; padding: 12px 28px;
-      background: transparent; color: var(--warm-gold); border: 2px solid var(--warm-gold);
+      background: transparent; color: var(--teal); border: 2px solid var(--teal);
       border-radius: 8px; font-size: 0.95rem; font-weight: 600;
       text-decoration: none; cursor: pointer;
       transition: all 0.2s;
     }
-    .cta-btn-outline:hover { background: var(--warm-gold); color: #fff; }
+    .cta-btn-outline:hover { background: var(--teal); color: #fff; }
 
     /* ============================================================
        SECTIONS
@@ -156,7 +157,7 @@
 
     .section-label {
       font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--warm-gold); margin-bottom: 12px;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 12px;
     }
     .section-heading {
       font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700;
@@ -178,7 +179,7 @@
     }
     .stat-number {
       font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 700;
-      color: var(--warm-gold); line-height: 1.2;
+      color: var(--teal-deep); line-height: 1.2;
     }
     .stat-label {
       font-size: 0.82rem; color: var(--slate); margin-top: 8px; line-height: 1.4;
@@ -225,7 +226,7 @@
     }
     .layer-card h3 {
       font-family: 'Lora', serif; font-size: 1.4rem; font-weight: 700;
-      color: var(--warm-gold); margin-bottom: 8px;
+      color: var(--teal-deep); margin-bottom: 8px;
     }
     .layer-card p {
       font-size: 0.95rem; color: var(--slate); line-height: 1.6;
@@ -252,7 +253,7 @@
     }
     .sample-dimension-header .dim-layer {
       font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em;
-      color: var(--warm-gold-light); font-weight: 600;
+      color: var(--teal-light); font-weight: 600;
     }
     .sample-dimension-body { padding: 28px; }
     .dim-score-row {
@@ -375,7 +376,7 @@
     .proof-card + .proof-card { margin-top: 16px; }
     .proof-label {
       font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.06em; color: var(--warm-gold); margin-bottom: 8px;
+      letter-spacing: 0.06em; color: var(--teal); margin-bottom: 8px;
     }
     .proof-card h3 {
       font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 600;
@@ -426,12 +427,12 @@
        ============================================================ */
     .pricing-section { text-align: center; }
     .pricing-card {
-      background: #fff; border: 2px solid var(--warm-gold-border); border-radius: 16px;
+      background: #fff; border: 2px solid var(--teal-border); border-radius: 16px;
       padding: 48px 40px; max-width: 520px; margin: 32px auto 0;
       box-shadow: var(--shadow-lg);
     }
     .pricing-badge {
-      display: inline-block; background: var(--warm-gold); color: #fff;
+      display: inline-block; background: var(--teal); color: #fff;
       font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
       letter-spacing: 0.08em; padding: 4px 12px; border-radius: 20px;
       margin-bottom: 16px;
@@ -477,7 +478,7 @@
       background: none; border: none; width: 100%; text-align: left;
       font-family: inherit; padding: 0;
     }
-    .faq-question:hover { color: var(--warm-gold); }
+    .faq-question:hover { color: var(--teal); }
     .faq-toggle {
       flex-shrink: 0; font-size: 1.2rem; color: var(--slate-light);
       transition: transform 0.2s;
@@ -523,16 +524,16 @@
     .form-group input:focus,
     .form-group textarea:focus,
     .form-group select:focus {
-      outline: none; border-color: var(--warm-gold);
+      outline: none; border-color: var(--teal);
     }
     .form-group textarea { resize: vertical; min-height: 100px; }
     .form-submit {
-      width: 100%; padding: 14px; background: var(--warm-gold);
+      width: 100%; padding: 14px; background: var(--teal);
       color: #fff; border: none; border-radius: 8px;
       font-size: 1rem; font-weight: 600; cursor: pointer;
       transition: background 0.2s;
     }
-    .form-submit:hover { background: var(--warm-gold-light); }
+    .form-submit:hover { background: var(--teal-deep); }
 
     /* ============================================================
        FOOTER
@@ -652,7 +653,7 @@
     <section id="comparison">
       <div class="container">
         <p class="section-label">The Difference</p>
-        <h2 class="section-heading">This is not a traditional SEO audit</h2>
+        <h2 class="section-heading">This is not a traditional SEO audit.</h2>
         <div class="section-body">
           <p>Traditional SEO audits were designed for a world where humans search and search engines return ranked links. The agentic web operates on different principles entirely.</p>
         </div>
@@ -726,7 +727,7 @@
     <section id="what-we-evaluate">
       <div class="container">
         <p class="section-label">The Framework</p>
-        <h2 class="section-heading">Three questions. 30 points. Every layer that matters</h2>
+        <h2 class="section-heading">Three questions. 30 points. Every layer that matters.</h2>
         <div class="section-body">
           <p>The Agent Readiness Audit evaluates your site against a proprietary framework built from real-world testing across hundreds of AI agent interactions. It's not a checklist -it's a diagnostic that tells you what's broken, why it matters, and what to prioritize.</p>
         </div>
@@ -760,7 +761,7 @@
     <section id="what-you-get">
       <div class="container">
         <p class="section-label">What's Included</p>
-        <h2 class="section-heading">A strategic assessment your team can act on</h2>
+        <h2 class="section-heading">A strategic assessment your team can act on.</h2>
         <div class="section-body">
           <p>You won't get a 60-page crawl report full of jargon. You'll get a clear picture of where you stand, what's broken, and exactly what to do about it -in language that moves decisions.</p>
         </div>
@@ -810,7 +811,7 @@
     <section id="process">
       <div class="container">
         <p class="section-label">The Process</p>
-        <h2 class="section-heading">What happens after you request your audit</h2>
+        <h2 class="section-heading">What happens after you request your audit.</h2>
         <div class="process-steps" style="grid-template-columns: repeat(3, 1fr);">
           <div class="process-step">
             <div class="step-number">1</div>
@@ -838,11 +839,11 @@
       <div class="container" style="display: flex; gap: 24px; max-width: 760px;">
         <div class="testimonial-card" style="flex: 1; margin: 0; padding: 20px 24px;">
           <p class="testimonial-quote" style="font-size: 0.88rem;">"Liz is a true professional: thorough, strategic, and collaborative. She led major initiatives like a complex site migration with exceptional organization and attention to detail."</p>
-          <p class="testimonial-attribution">— Theresa Bass, Ignite Visibility</p>
+          <p class="testimonial-attribution">— Theresa Bass, Dun &amp; Bradstreet</p>
         </div>
         <div class="testimonial-card" style="flex: 1; margin: 0; padding: 20px 24px;">
           <p class="testimonial-quote" style="font-size: 0.88rem;">"Liz is an expert in the truest sense of the word when it comes to SEO, content and AIO. She breaks down nuanced concepts into strategic, focused plans and actions."</p>
-          <p class="testimonial-attribution">— Sean Balaban, Dun & Bradstreet</p>
+          <p class="testimonial-attribution">— Sean Balaban</p>
         </div>
       </div>
     </section>

@@ -595,32 +595,67 @@
             line-height: 1.5;
         }
         /* ========================================
-           WORKING ON Section (slate bg)
+           WORKING ON Section
            ======================================== */
         .working-on {
-            background-color: var(--slate);
-            color: var(--text-light);
-            position: relative;
-            overflow: hidden;
-        }
-        .working-on::after {
-            content: '';
-            position: absolute;
-            left: -60px;
-            bottom: -30px;
-            width: 280px;
-            height: 220px;
-            background: url('images/server%20block%20lit%20up%20within.png') center/cover no-repeat;
-            opacity: 0.1;
-            pointer-events: none;
-            mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
-            -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+            background-color: var(--cream);
+            padding-bottom: 0;
         }
         .working-on h2 {
-            color: var(--text-light);
+            margin-bottom: 1.5rem;
         }
-        .working-on p {
-            color: var(--text-light-secondary);
+        .working-cards {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 0;
+        }
+        .working-card {
+            padding: 1.75rem 2rem;
+            color: #fff;
+        }
+        .working-card--audit {
+            background-color: var(--accent-teal);
+            border-radius: 8px 0 0 0;
+        }
+        .working-card--signal {
+            background-color: var(--accent-copper);
+            border-radius: 0 8px 0 0;
+        }
+        .working-card--writing {
+            background-color: var(--slate-light);
+            grid-column: 1 / -1;
+            border-radius: 0 0 8px 8px;
+        }
+        .working-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        .working-card p {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.88);
+            margin-bottom: 0;
+        }
+        .working-card a {
+            color: #fff;
+            font-weight: 500;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: rgba(255, 255, 255, 0.4);
+            transition: text-decoration-color 0.2s;
+        }
+        .working-card a:hover {
+            text-decoration-color: #fff;
+        }
+        @media (max-width: 600px) {
+            .working-cards {
+                grid-template-columns: 1fr;
+            }
+            .working-card--audit { border-radius: 8px 8px 0 0; }
+            .working-card--signal { border-radius: 0; }
+            .working-card--writing { border-radius: 0 0 8px 8px; }
         }
         /* ========================================
            CONTACT Section
@@ -998,11 +1033,21 @@
     </section>
     <!-- WHAT I'M WORKING ON -->
     <section id="working" class="section working-on" aria-labelledby="working-heading">
-        <div class="section-inner">
+        <div class="section-inner section-inner--wide">
             <h2 id="working-heading" class="fade-in">What I'm Working On</h2>
-            <p class="fade-in">The Agent Readiness Audit is a 30-point diagnostic that evaluates how well AI agents can find, understand, and trust your business online. It covers technical infrastructure, content structure, and entity authority across four major AI platforms.</p>
-            <p class="fade-in" style="margin-top: 1rem;"><a href="/audit" style="color: var(--warm-gold); font-weight: 500; text-decoration: underline; text-underline-offset: 3px;">Learn more about the audit</a></p>
-            <p class="fade-in">I also write and speak about the human-to-agentic web transition and what it means for businesses that built their online presence for a world that's changing faster than most realize.</p>
+            <div class="working-cards fade-in">
+                <div class="working-card working-card--audit">
+                    <h3>The Agent Readiness Audit</h3>
+                    <p>A 30-point diagnostic that evaluates how well AI agents can find, understand, and trust your business online. Covers technical infrastructure, content structure, and entity authority across four major AI platforms. <a href="/audit">Learn more</a></p>
+                </div>
+                <div class="working-card working-card--signal">
+                    <h3>The Signal Check</h3>
+                    <p>A free tool that shows you exactly what AI platforms are saying about your business right now — the facts, the gaps, and the made-up parts. <a href="/signal-check">Try it free</a></p>
+                </div>
+                <div class="working-card working-card--writing">
+                    <p>I also write and speak about the human-to-agentic web transition and what it means for businesses that built their online presence for a world that's changing faster than most realize.</p>
+                </div>
+            </div>
         </div>
     </section>
     <!-- CONTACT -->
