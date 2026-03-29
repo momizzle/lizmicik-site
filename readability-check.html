@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B9S40S2SKG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-B9S40S2SKG');
+  </script>
+  <!-- End Google tag -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agent Readability Check — Can AI Agents Read Your Business? | Liz Micik</title>
@@ -519,6 +528,25 @@
     .site-footer p { font-size: 0.82rem; color: var(--slate-light); }
     .site-footer a { color: var(--slate); text-decoration: none; }
     .site-footer a:hover { color: var(--charcoal); }
+    .footer-links { margin-top: 8px; }
+    .footer-links a { margin: 0 8px; font-size: 0.78rem; }
+
+    /* ============================================================
+       COOKIE BANNER
+       ============================================================ */
+    .cookie-banner {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--charcoal); color: #fff; padding: 16px 24px;
+      font-size: 0.82rem; display: flex; justify-content: center;
+      align-items: center; gap: 16px; z-index: 1000;
+    }
+    .cookie-banner a { color: var(--warm-gold-light); }
+    .cookie-btn {
+      padding: 6px 20px; border-radius: 6px; font-size: 0.82rem;
+      font-weight: 600; cursor: pointer; border: none;
+    }
+    .cookie-accept { background: var(--warm-gold); color: #fff; }
+    .cookie-decline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); }
 
     /* ============================================================
        RESPONSIVE
@@ -538,6 +566,7 @@
       .trust-bar { flex-wrap: wrap; gap: 16px; }
       .audit-cta-card { padding: 40px 24px; }
       .audit-cta-card h2 { font-size: 1.6rem; }
+      .cookie-banner { flex-direction: column; text-align: center; }
     }
   </style>
 
@@ -563,7 +592,6 @@
 
   <header class="site-header">
     <div class="container">
-      <a href="/" class="site-logo">Liz Micik</a>
       <a href="/" class="back-link">&larr; Back to lizmicik.com</a>
     </div>
   </header>
@@ -762,7 +790,7 @@
         <h2>Ready to Start Improving Your Score?</h2>
         <p class="cta-body">We'll evaluate your site across 30 dimensions and show you exactly what's keeping your score down. You'll learn how easily AI agents can find you, understand your key content, and trust your authority, and what you can do to improve each of those.</p>
         <p class="cta-details">You'll receive an interactive report with prioritized findings, an executive summary, and a step-by-step improvement roadmap including quick wins.</p>
-        <a href="/#contact" class="audit-cta-btn">Get My Readability Audit</a>
+        <a href="/audit" class="audit-cta-btn">Get My Readability Audit</a>
       </div>
     </div>
   </section>
@@ -772,8 +800,21 @@
   <footer class="site-footer">
     <div class="container">
       <p>&copy; 2026 <a href="/">Liz Micik</a> &middot; lizmicik.com</p>
+      <div class="footer-links">
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms">Terms of Use</a>
+      </div>
     </div>
   </footer>
+
+  <!-- ============================================================
+       COOKIE BANNER
+       ============================================================ -->
+  <div class="cookie-banner" id="cookie-banner" style="display: none;">
+    <span>This site uses cookies for analytics. <a href="/privacy-policy">Privacy Policy</a></span>
+    <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button>
+    <button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button>
+  </div>
 
   <script>
     // ── State ──────────────────────────────────────────────────────
@@ -784,6 +825,7 @@
     let lastYoursData = null;   // Cache results for comparison reuse
     let lastAnalysis = null;
     let lastScoringData = null;  // Cache user's scoring data for dropdown selection
+    let lastBenchmarkData = null; // Cache benchmark data for email report
 
     // ── Benchmark Lookup (Industry → Titan Mapping) ────────────────
     const BENCHMARK_LOOKUP = {
@@ -905,9 +947,11 @@
 
         await delay(300);
 
-        // Cache for comparison reuse
+        // Cache for comparison reuse and email report
         lastYoursData = data.yours;
         lastAnalysis = data.analysis;
+        lastScoringData = data.scoring;
+        lastBenchmarkData = data.benchmark;
 
         // Hide loading, show results
         document.getElementById('loading-section').classList.remove('visible');
@@ -1266,7 +1310,33 @@
       .then(data => console.log('Kit subscription:', data.success ? 'OK' : data.error))
       .catch(err => console.warn('Kit subscription error (non-blocking):', err));
 
-      // 2. Submit to Netlify Forms as backup data capture
+      // 2. Send personalized results email via Resend
+      const benchmarkPayload = lastBenchmarkData ? {
+        category: lastBenchmarkData.category || null,
+        titanName: lastBenchmarkData.titanName || null,
+        scoring: lastBenchmarkData.scoring || null
+      } : null;
+
+      fetch('/api/send-results-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          url: companyUrl,
+          keyword: primaryKeyword,
+          scoring: lastScoringData,
+          responses: lastYoursData,
+          benchmark: benchmarkPayload
+        })
+      })
+      .then(res => {
+        if (!res.ok) console.warn('Results email returned status:', res.status);
+        return res.json();
+      })
+      .then(data => console.log('Results email:', data.success ? 'OK' : data.error))
+      .catch(err => console.warn('Results email error (non-blocking):', err));
+
+      // 3. Submit to Netlify Forms as backup data capture
       const form = document.getElementById('gate-form');
       const formData = new FormData(form);
 
@@ -1278,17 +1348,17 @@
       .then(response => {
         if (response.ok) {
           const card = document.querySelector('.email-card');
-          card.innerHTML = '<div class="email-card-text"><h3>Check your inbox.</h3><p>Your report and readability checklist are on the way.</p></div>';
+          card.innerHTML = '<div class="email-card-text"><h3>Check your inbox.</h3><p>Your full results are on the way, including what each AI actually said about you.</p></div>';
         } else {
           console.error('Form submission failed:', response.status);
           const card = document.querySelector('.email-card');
-          card.innerHTML = '<div class="email-card-text"><h3>Something went wrong.</h3><p>Please try again or email lizmicik@gmail.com directly.</p></div>';
+          card.innerHTML = '<div class="email-card-text"><h3>Something went wrong.</h3><p>Please try again or email info@lizmicik.com directly.</p></div>';
         }
       })
       .catch(error => {
         console.error('Form submission error:', error);
         const card = document.querySelector('.email-card');
-        card.innerHTML = '<div class="email-card-text"><h3>Check your inbox.</h3><p>Your report and readability checklist are on the way.</p></div>';
+        card.innerHTML = '<div class="email-card-text"><h3>Check your inbox.</h3><p>Your full results are on the way, including what each AI actually said about you.</p></div>';
       });
     }
 
@@ -1419,6 +1489,24 @@
     document.getElementById('gate-form').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') { e.preventDefault(); submitEmail(); }
     });
+  </script>
+
+  <script>
+    // Cookie banner
+    function acceptCookies() {
+      localStorage.setItem('cookies-accepted', 'true');
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+    function declineCookies() {
+      localStorage.setItem('cookies-accepted', 'false');
+      document.getElementById('cookie-banner').style.display = 'none';
+      window['ga-disable-G-B9S40S2SKG'] = true;
+    }
+    if (!localStorage.getItem('cookies-accepted')) {
+      document.getElementById('cookie-banner').style.display = 'flex';
+    } else if (localStorage.getItem('cookies-accepted') === 'false') {
+      window['ga-disable-G-B9S40S2SKG'] = true;
+    }
   </script>
 
 </body>

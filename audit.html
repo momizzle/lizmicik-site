@@ -13,7 +13,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agent Readability Audit - A 30-Point Diagnostic for the Agentic Web | Liz Micik</title>
-  <meta name="description" content="Find out exactly where your website breaks down for AI agents. The Agent Readability Audit scores your site across 30 dimensions in three layers: Find, Understand, and Trust. $1,200 founding rate.">
+  <meta name="description" content="Find out exactly where your website breaks down for AI agents. The Agent Readability Audit scores your site across 30 dimensions in three layers: Find, Understand, and Trust. $1,200 launch rate.">
   <link rel="canonical" href="https://lizmicik.com/audit">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,10 +38,10 @@
     "offers": [
       {
         "@type": "Offer",
-        "name": "Founding Rate",
+        "name": "Launch Rate",
         "price": "1200",
         "priceCurrency": "USD",
-        "description": "Limited founding cohort rate -20% off standard pricing",
+        "description": "Launch special, limited to first 5 audits, 20% off standard pricing",
         "availability": "https://schema.org/LimitedAvailability"
       },
       {
@@ -103,20 +103,10 @@
       border-bottom: 1px solid var(--border);
     }
     .site-header .container-wide {
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex; align-items: center;
     }
-    .site-logo {
-      font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 600;
-      color: var(--charcoal); text-decoration: none;
-    }
-    .site-logo:hover { color: var(--warm-gold); }
-    .nav-links { display: flex; gap: 24px; align-items: center; }
-    .nav-links a {
-      font-size: 0.88rem; color: var(--slate); text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--charcoal); }
-    .nav-links a.active { color: var(--charcoal); font-weight: 500; }
+    .back-link { font-size: 0.85rem; color: var(--slate); text-decoration: none; }
+    .back-link:hover { color: var(--charcoal); }
 
     /* ============================================================
        HERO
@@ -585,7 +575,6 @@
       .fit-columns { grid-template-columns: 1fr; }
       .pricing-card { padding: 36px 24px; }
       .form-card { padding: 32px 24px; }
-      .nav-links { gap: 16px; }
       .compare-table { font-size: 0.82rem; }
       .compare-table th, .compare-table td { padding: 10px 8px; }
       .process-steps { grid-template-columns: repeat(2, 1fr); gap: 20px; }
@@ -608,12 +597,7 @@
        ============================================================ -->
   <header class="site-header">
     <div class="container-wide">
-      <a href="/" class="site-logo">Liz Micik</a>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="/readability-check">Free Check</a>
-        <a href="/audit" class="active">Audit</a>
-        <a href="/#about">About</a>
-      </nav>
+      <a href="/" class="back-link">&larr; Back to lizmicik.com</a>
     </div>
   </header>
 
@@ -871,7 +855,7 @@
         <p class="section-label">Pricing</p>
         <h2 class="section-heading">Transparent. One tier. No surprises.</h2>
         <div class="pricing-card">
-          <div class="pricing-badge">Founding Cohort -5 per month</div>
+          <div class="pricing-badge">Launch Special, 5 Spots</div>
           <div class="pricing-amount">$1,200 <span class="pricing-original">$1,500</span></div>
           <p class="pricing-label">One-time diagnostic. No retainer. No recurring fees.</p>
           <ul class="pricing-includes">
@@ -881,8 +865,8 @@
             <li>Live AI agent test results (ChatGPT, Claude, Perplexity, Gemini)</li>
             <li>Personalized video walkthrough from Liz</li>
           </ul>
-          <a href="#apply" class="cta-btn" style="width: 100%; text-align: center;">Get the Founding Rate</a>
-          <p class="pricing-note">The founding rate is 20% off standard pricing and is available to a limited number of early clients. Standard pricing will be $1,500.</p>
+          <a href="#apply" class="cta-btn" style="width: 100%; text-align: center;">Get the Launch Rate</a>
+          <p class="pricing-note">The launch rate is 20% off standard pricing and is limited to the first 5 audits. Standard pricing will be $1,500.</p>
         </div>
       </div>
     </section>
@@ -1035,7 +1019,7 @@
     <div class="container">
       <p>&copy; 2026 <a href="/">Liz Micik</a> &middot; lizmicik.com</p>
       <div class="footer-links">
-        <a href="/privacy">Privacy Policy</a>
+        <a href="/privacy-policy">Privacy Policy</a>
         <a href="/terms">Terms of Use</a>
       </div>
     </div>
@@ -1045,7 +1029,7 @@
        COOKIE BANNER
        ============================================================ -->
   <div class="cookie-banner" id="cookie-banner" style="display: none;">
-    <span>This site uses cookies for analytics. <a href="/privacy">Privacy Policy</a></span>
+    <span>This site uses cookies for analytics. <a href="/privacy-policy">Privacy Policy</a></span>
     <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button>
     <button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button>
   </div>
