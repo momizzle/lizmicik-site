@@ -12,8 +12,8 @@
   <!-- End Google tag -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agent Readability Check — Can AI Agents Read Your Business? | Liz Micik</title>
-  <meta name="description" content="See exactly what ChatGPT, Perplexity, Claude, and Google's AI say when someone asks about your company. Free agent readability check by Liz Micik.">
+  <title>Agent Signal Check — Can AI Agents Read Your Business? | Liz Micik</title>
+  <meta name="description" content="See exactly what ChatGPT, Perplexity, Claude, and Google's AI say when someone asks about your company. Free Agent Signal Check by Liz Micik.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -574,8 +574,8 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Agent Readability Check",
-    "description": "See what AI agents say about your business and whether they get it right. Free readability check.",
+    "name": "Agent Signal Check",
+    "description": "See what AI agents say about your business and whether they get it right. Free Agent Signal Check.",
     "url": "https://lizmicik.com/tool",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
@@ -632,7 +632,7 @@
               <p class="input-helper">What should AI agents associate you with?</p>
             </div>
           </div>
-          <button type="submit" class="run-btn" id="run-btn" onclick="runCheck()">Check My Agent Readability</button>
+          <button type="submit" class="run-btn" id="run-btn" onclick="runCheck()">Run My Agent Signal Check</button>
         </form>
       </div>
     </div>
@@ -646,7 +646,7 @@
         <div class="loading-step" data-step="1"><div class="step-icon"></div><span>ChatGPT responded</span></div>
         <div class="loading-step" data-step="2"><div class="step-icon"></div><span>Perplexity responded</span></div>
         <div class="loading-step" data-step="3"><div class="step-icon"></div><span>Google Gemini responded</span></div>
-        <div class="loading-step" data-step="4"><div class="step-icon"></div><span>Analyzing readability signals...</span></div>
+        <div class="loading-step" data-step="4"><div class="step-icon"></div><span>Analyzing agent signals...</span></div>
       </div>
     </div>
   </section>
@@ -656,7 +656,7 @@
     <div class="container-wide">
       <div class="comparison-header">
         <h2 id="benchmark-title">Your Score vs. Industry Titan</h2>
-        <p id="benchmark-subtitle">See how your AI readability compares to the top-performing company in your industry.</p>
+        <p id="benchmark-subtitle">See how your AI signals compare to the top-performing company in your industry.</p>
       </div>
 
       <!-- Benchmark Scorecard: Side-by-side bars -->
@@ -747,7 +747,7 @@
       <h2 class="email-gate-headline" style="font-family:'Lora',serif;font-size:1.6rem;font-weight:700;color:var(--charcoal);text-align:center;margin-bottom:20px;">Where should we send the full details?</h2>
       <div class="email-card">
         <div class="email-card-text">
-          <h3>Get your full Readability Report</h3>
+          <h3>Get your full Signal Report</h3>
           <p>We'll send you a detailed breakdown of the facts each AI model uncovered about you. Read the raw responses yourself, all in one shareable report.</p>
         </div>
         <form class="email-card-form" id="gate-form" name="readability-check-leads" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return false;">
@@ -786,11 +786,11 @@
   <section class="audit-cta" id="audit-cta">
     <div class="container">
       <div class="audit-cta-card">
-        <div class="audit-cta-eyebrow">Full Agent Readability Audit</div>
+        <div class="audit-cta-eyebrow">Full Agent Readiness Audit</div>
         <h2>Ready to Start Improving Your Score?</h2>
         <p class="cta-body">We'll evaluate your site across 30 dimensions and show you exactly what's keeping your score down. You'll learn how easily AI agents can find you, understand your key content, and trust your authority, and what you can do to improve each of those.</p>
         <p class="cta-details">You'll receive an interactive report with prioritized findings, an executive summary, and a step-by-step improvement roadmap including quick wins.</p>
-        <a href="/audit" class="audit-cta-btn">Get My Readability Audit</a>
+        <a href="/audit" class="audit-cta-btn">Get My Readiness Audit</a>
       </div>
     </div>
   </section>
@@ -1030,13 +1030,13 @@
       const totalScore = scoring.totalScore;
 
       if (totalFacts === 0) {
-        body.innerHTML = `Across all four AI platforms, <strong>not a single verifiable fact</strong> was cited about your business. No founding year, no team size, no named clients, no awards. Every response was generated from vibes &mdash; plausible-sounding descriptions with nothing behind them. That means when someone asks an AI to recommend a <strong>${escapeHtml(primaryKeyword)}</strong> provider, AI has nothing concrete to point to. The full Agent Readability Audit identifies exactly which signals are missing and what to fix first.`;
+        body.innerHTML = `Across all four AI platforms, <strong>not a single verifiable fact</strong> was cited about your business. No founding year, no team size, no named clients, no awards. Every response was generated from vibes &mdash; plausible-sounding descriptions with nothing behind them. That means when someone asks an AI to recommend a <strong>${escapeHtml(primaryKeyword)}</strong> provider, AI has nothing concrete to point to. The full Agent Readiness Audit identifies exactly which signals are missing and what to fix first.`;
       } else if (totalScore < 0) {
-        body.innerHTML = `AI agents produced <strong>more hedges than facts</strong> about your business. That means the dominant signal is uncertainty &mdash; "appears to be," "limited information," "I'd recommend checking." When AI agents aren't sure about you, they don't recommend you. The full Agent Readability Audit maps exactly where these gaps are across all three layers: Find, Understand, and Trust.`;
+        body.innerHTML = `AI agents produced <strong>more hedges than facts</strong> about your business. That means the dominant signal is uncertainty &mdash; "appears to be," "limited information," "I'd recommend checking." When AI agents aren't sure about you, they don't recommend you. The full Agent Readiness Audit maps exactly where these gaps are across all three layers: Find, Understand, and Trust.`;
       } else if (totalFacts <= 4) {
-        body.innerHTML = `AI agents found <strong>a few facts</strong> about your business, but the coverage is thin and inconsistent across platforms. Some know more than others. The full Agent Readability Audit identifies which signals are reaching which platforms &mdash; and which aren't &mdash; across 29 diagnostic dimensions.`;
+        body.innerHTML = `AI agents found <strong>a few facts</strong> about your business, but the coverage is thin and inconsistent across platforms. Some know more than others. The full Agent Readiness Audit identifies which signals are reaching which platforms &mdash; and which aren't &mdash; across 29 diagnostic dimensions.`;
       } else {
-        body.innerHTML = `AI agents can cite <strong>real facts</strong> about your business &mdash; that's better than most. But are they citing the <em>right</em> facts? The ones that win recommendations? The full Agent Readability Audit goes beyond what AI knows to test whether it trusts you enough to recommend you, across 29 dimensions and all three layers.`;
+        body.innerHTML = `AI agents can cite <strong>real facts</strong> about your business &mdash; that's better than most. But are they citing the <em>right</em> facts? The ones that win recommendations? The full Agent Readiness Audit goes beyond what AI knows to test whether it trusts you enough to recommend you, across 29 dimensions and all three layers.`;
       }
     }
 
@@ -1054,7 +1054,7 @@
         // No match or no cached data — show user's own scores and industry dropdown
         lastScoringData = data.scoring;
         noMatchEl.style.display = 'block';
-        document.getElementById('benchmark-title').textContent = 'Your AI Readability Score';
+        document.getElementById('benchmark-title').textContent = 'Your AI Signal Score';
         document.getElementById('benchmark-subtitle').textContent =
           'Select your industry below to see how you compare.';
         return;
@@ -1069,7 +1069,7 @@
       document.getElementById('bench-titan-label').textContent = bench.category + ' Leader: ' + bench.titanName;
       document.getElementById('benchmark-title').textContent = 'Your Score vs. \u201C' + bench.category + '\u201D Titan';
       document.getElementById('benchmark-subtitle').textContent =
-        'We compared your AI readability against ' + bench.titanName + ', the top-performing company in ' + bench.category + '.';
+        'We compared your AI signals against ' + bench.titanName + ', the top-performing company in ' + bench.category + '.';
 
       const maxBar = 30;
       const platforms = ['chatgpt', 'perplexity', 'claude', 'gemini'];
@@ -1126,7 +1126,7 @@
 
       if (gap > 20) {
         document.getElementById('benchmark-gap-headline').textContent = 'There\'s a significant gap here';
-        gapBody.textContent = bench.titanName + ' scores ' + gap + ' points higher than you across all four AI platforms. That\'s the difference between AI agents recommending them and hedging about you. The good news: this gap is closable. The full Agent Readability Audit maps exactly where your signals are missing and what to fix first.';
+        gapBody.textContent = bench.titanName + ' scores ' + gap + ' points higher than you across all four AI platforms. That\'s the difference between AI agents recommending them and hedging about you. The good news: this gap is closable. The full Agent Readiness Audit maps exactly where your signals are missing and what to fix first.';
       } else if (gap > 8) {
         document.getElementById('benchmark-gap-headline').textContent = 'Room to improve';
         gapBody.textContent = bench.titanName + ' leads you by ' + gap + ' points. That gap means AI agents cite more verifiable facts about them — more founding dates, team sizes, client names, awards. Every fact they have that you don\'t is a missed opportunity for recommendation. The full Audit identifies exactly which facts to surface.';
@@ -1174,7 +1174,7 @@
 
       if (totalFacts === 0) {
         headline.textContent = 'AI agents don\u2019t know you yet';
-        body.textContent = 'Across all four platforms, not a single verifiable fact was cited about your business. No founding year, no team size, no named clients. When AI agents don\u2019t know you, they can\u2019t recommend you. The full Agent Readability Audit identifies exactly which signals are missing and what to fix first.';
+        body.textContent = 'Across all four platforms, not a single verifiable fact was cited about your business. No founding year, no team size, no named clients. When AI agents don\u2019t know you, they can\u2019t recommend you. The full Agent Readiness Audit identifies exactly which signals are missing and what to fix first.';
       } else if (totalScore < 0) {
         headline.textContent = 'More hedges than facts';
         body.textContent = 'AI agents produced more disclaimers than verifiable facts about your business. The dominant signal is uncertainty. When AI isn\u2019t sure about you, it doesn\u2019t recommend you. The full Audit maps exactly where these gaps are and how to close them.';
@@ -1242,9 +1242,9 @@
           if (compTotal > yourTotal) {
             gapBody.textContent = displayComp + ' scores ' + (compTotal - yourTotal) + ' points higher than you. They have more verifiable facts in AI responses — which means AI agents are more likely to recommend them. The full Audit shows you exactly how to close this gap.';
           } else if (compTotal < yourTotal) {
-            gapBody.textContent = 'You\'re outscoring ' + displayComp + ' by ' + (yourTotal - compTotal) + ' points. You have the edge in AI readability, but don\'t get complacent — the full Audit ensures you maintain and extend that lead.';
+            gapBody.textContent = 'You\'re outscoring ' + displayComp + ' by ' + (yourTotal - compTotal) + ' points. You have the edge in AI signals, but don\'t get complacent — the full Audit ensures you maintain and extend that lead.';
           } else {
-            gapBody.textContent = 'You and ' + displayComp + ' are tied. That means neither of you has a decisive AI readability advantage yet. The full Audit can help you break ahead.';
+            gapBody.textContent = 'You and ' + displayComp + ' are tied. That means neither of you has a decisive AI signals advantage yet. The full Audit can help you break ahead.';
           }
         }
 
@@ -1389,7 +1389,7 @@
       const displayUrl = companyUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
       document.getElementById('benchmark-title').textContent = 'Your Score vs. "' + selectedCategory + '" Titan';
       document.getElementById('benchmark-subtitle').textContent =
-        'We compared your AI readability against ' + benchmarkData.titanName + ', the top-performing company in ' + selectedCategory + '.';
+        'We compared your AI signals against ' + benchmarkData.titanName + ', the top-performing company in ' + selectedCategory + '.';
 
       // Populate labels
       document.getElementById('bench-yours-label').textContent = displayUrl;
@@ -1455,7 +1455,7 @@
 
       if (gap > 20) {
         document.getElementById('benchmark-gap-headline').textContent = 'There\'s a significant gap here';
-        gapBody.textContent = benchmarkData.titanName + ' scores ' + gap + ' points higher than you across all four AI platforms. That\'s the difference between AI agents recommending them and hedging about you. The good news: this gap is closable. The full Agent Readability Audit maps exactly where your signals are missing and what to fix first.';
+        gapBody.textContent = benchmarkData.titanName + ' scores ' + gap + ' points higher than you across all four AI platforms. That\'s the difference between AI agents recommending them and hedging about you. The good news: this gap is closable. The full Agent Readiness Audit maps exactly where your signals are missing and what to fix first.';
       } else if (gap > 8) {
         document.getElementById('benchmark-gap-headline').textContent = 'Room to improve';
         gapBody.textContent = benchmarkData.titanName + ' leads you by ' + gap + ' points. That gap means AI agents cite more verifiable facts about them — more founding dates, team sizes, client names, awards. Every fact they have that you don\'t is a missed opportunity for recommendation. The full Audit identifies exactly which facts to surface.';
