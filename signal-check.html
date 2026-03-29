@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B9S40S2SKG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-B9S40S2SKG');
+  </script>
+  <!-- End Google tag -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Signal Check — Can AI Agents Read Your Business? | Liz Micik</title>
+  <meta name="description" content="See exactly what ChatGPT, Perplexity, Claude, and Google's AI say when someone asks about your company. Free Agent Signal Check by Liz Micik.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #2C3038;
+      background: #FAF8F5;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    :root {
+      --charcoal: #2C3038;
+      --cream: #FAF8F5;
+      --warm-gold: #B07D4F;
+      --warm-gold-light: #c48f5e;
+      --warm-gold-bg: rgba(176, 125, 79, 0.06);
+      --warm-gold-border: rgba(176, 125, 79, 0.25);
+      --sage: #5B7B6A;
+      --sage-light: #6d9a7e;
+      --sage-bg: rgba(91, 123, 106, 0.06);
+      --sage-border: rgba(91, 123, 106, 0.2);
+      --slate: #6b7280;
+      --slate-light: #9ca3af;
+      --red: #c53030;
+      --red-bg: rgba(197, 48, 48, 0.06);
+      --red-border: rgba(197, 48, 48, 0.18);
+      --green: #2f855a;
+      --green-bg: rgba(47, 133, 90, 0.06);
+      --green-border: rgba(47, 133, 90, 0.18);
+      --border: rgba(44, 48, 56, 0.08);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+    .container-wide { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* ============================================================
+       HEADER
+       ============================================================ */
+    .site-header {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .site-header .container {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .site-logo {
+      font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 600;
+      color: var(--charcoal); text-decoration: none;
+    }
+    .site-logo:hover { color: var(--warm-gold); }
+    .back-link { font-size: 0.85rem; color: var(--slate); text-decoration: none; }
+    .back-link:hover { color: var(--charcoal); }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .tool-hero {
+      padding: 64px 0 20px;
+      text-align: center;
+      background: linear-gradient(180deg, var(--cream) 0%, #f4f0eb 100%);
+    }
+    .tool-hero h1 {
+      font-family: 'Lora', serif; font-size: 2.6rem; font-weight: 700;
+      line-height: 1.2; color: var(--charcoal);
+      margin-bottom: 16px; max-width: 720px; margin-left: auto; margin-right: auto;
+    }
+    .tool-hero .subtitle {
+      font-size: 1.1rem; color: var(--slate);
+      max-width: 580px; margin: 0 auto 8px; line-height: 1.55;
+    }
+    .tool-hero .fine-print {
+      font-size: 0.82rem; color: var(--slate-light); margin-bottom: 32px;
+    }
+
+    /* Trust bar */
+    .trust-bar {
+      display: flex; justify-content: center; gap: 32px;
+      padding: 0 0 48px;
+      background: linear-gradient(180deg, #f4f0eb 0%, var(--cream) 100%);
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.82rem; color: var(--slate);
+    }
+    .trust-icon {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--sage-bg); border: 1.5px solid var(--sage-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; color: var(--sage);
+    }
+
+    /* ============================================================
+       INPUT FORM
+       ============================================================ */
+    .input-section { padding: 0 0 48px; }
+    .input-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 16px; padding: 40px; box-shadow: var(--shadow-md);
+    }
+    .input-card h2 {
+      font-family: 'Lora', serif; font-size: 1.3rem; font-weight: 600;
+      color: var(--charcoal); margin-bottom: 24px;
+    }
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;
+    }
+    .input-group label {
+      display: block; font-size: 0.78rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--slate); margin-bottom: 8px;
+    }
+    .input-group input {
+      width: 100%; padding: 14px 16px; font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      border: 1.5px solid #d1d5db; border-radius: 10px;
+      background: var(--cream); color: var(--charcoal);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .input-group input:focus {
+      outline: none; border-color: var(--warm-gold);
+      box-shadow: 0 0 0 3px rgba(176, 125, 79, 0.12);
+    }
+    .input-group input::placeholder { color: var(--slate-light); }
+    .input-helper { font-size: 0.75rem; color: var(--slate-light); margin-top: 6px; }
+    .run-btn {
+      display: block; width: 100%; padding: 16px;
+      font-size: 1.05rem; font-family: 'Inter', sans-serif; font-weight: 600;
+      color: var(--cream); background: var(--charcoal);
+      border: none; border-radius: 10px; cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .run-btn:hover { background: #3d4350; }
+    .run-btn:active { transform: scale(0.99); }
+    .run-btn:disabled { background: var(--slate-light); cursor: not-allowed; }
+    .run-btn .spinner {
+      display: inline-block; width: 18px; height: 18px;
+      border: 2.5px solid rgba(250,248,245,0.3);
+      border-top-color: var(--cream); border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle; margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ============================================================
+       LOADING
+       ============================================================ */
+    .loading-section { display: none; text-align: center; padding: 60px 0 48px; }
+    .loading-section.visible { display: block; }
+    .loading-steps { max-width: 360px; margin: 0 auto; text-align: left; }
+    .loading-step {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 0; font-size: 0.95rem; color: var(--slate-light);
+      transition: color 0.4s;
+    }
+    .loading-step.active { color: var(--charcoal); font-weight: 500; }
+    .loading-step.done { color: var(--green); }
+    .loading-step .step-icon {
+      width: 24px; height: 24px; border-radius: 50%;
+      border: 2px solid currentColor;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 0.7rem;
+    }
+    .loading-step.active .step-icon { border-color: var(--warm-gold); background: var(--warm-gold-bg); }
+    .loading-step.done .step-icon { border-color: var(--green); background: var(--green); color: #fff; }
+
+    /* ============================================================
+       RESULTS
+       ============================================================ */
+    .results-section { display: none; padding: 0 0 48px; }
+    .results-section.visible { display: block; }
+    .results-header { text-align: center; margin-bottom: 32px; }
+    .results-header h2 {
+      font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700;
+      color: var(--charcoal); margin-bottom: 8px;
+    }
+    .results-header p { color: var(--slate); font-size: 0.95rem; }
+
+    /* Fact vs Vibe Scorecard */
+    .scorecard {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px 36px; margin-bottom: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+    .scorecard-headline {
+      font-family: 'Lora', serif; font-size: 1.3rem; font-weight: 700;
+      color: var(--charcoal); margin-bottom: 6px;
+    }
+    .scorecard-subhead {
+      font-size: 0.88rem; color: var(--slate); margin-bottom: 24px; line-height: 1.5;
+    }
+    .scorecard-subhead strong { color: var(--charcoal); }
+
+    /* Per-platform score rows */
+    .score-row {
+      display: grid; grid-template-columns: 110px 1fr 54px;
+      align-items: center; gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .score-row:last-child { border-bottom: none; }
+    .score-platform {
+      font-size: 0.85rem; font-weight: 600; color: var(--charcoal);
+    }
+    .score-bar-wrap {
+      position: relative; height: 28px;
+      background: #f3f4f6; border-radius: 6px; overflow: hidden;
+    }
+    .score-bar-facts {
+      position: absolute; left: 0; top: 0; height: 100%;
+      background: linear-gradient(90deg, var(--green), var(--sage-light));
+      border-radius: 6px 0 0 6px;
+      transition: width 0.8s ease-out;
+      display: flex; align-items: center; justify-content: flex-end;
+      padding-right: 6px;
+    }
+    .score-bar-vibes {
+      position: absolute; right: 0; top: 0; height: 100%;
+      background: linear-gradient(270deg, var(--red), #e05252);
+      border-radius: 0 6px 6px 0;
+      transition: width 0.8s ease-out;
+      display: flex; align-items: center; justify-content: flex-start;
+      padding-left: 6px;
+    }
+    .score-bar-label {
+      font-size: 0.68rem; font-weight: 700; color: #fff;
+      white-space: nowrap;
+    }
+    .score-number {
+      font-size: 1.1rem; font-weight: 700; text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .score-number.positive { color: var(--green); }
+    .score-number.negative { color: var(--red); }
+    .score-number.zero { color: var(--slate-light); }
+
+    /* Score legend */
+    .score-legend {
+      display: flex; gap: 24px; margin-top: 16px; padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .legend-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.75rem; color: var(--slate);
+    }
+    .legend-dot {
+      width: 10px; height: 10px; border-radius: 3px;
+    }
+    .legend-dot.facts { background: var(--green); }
+    .legend-dot.vibes { background: var(--red); }
+
+    /* Scorecard body text */
+    .scorecard-body {
+      font-size: 0.92rem; color: #4b5563; line-height: 1.65;
+      margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);
+    }
+    .scorecard-body strong { color: var(--charcoal); }
+
+    /* Platform tabs — copper active state */
+    .platform-tabs {
+      display: flex; gap: 4px; margin-bottom: 20px;
+      background: #fff; border-radius: 10px; padding: 4px;
+      border: 1px solid var(--border);
+    }
+    .platform-tab {
+      flex: 1; padding: 12px 16px;
+      font-size: 0.88rem; font-weight: 600;
+      font-family: 'Inter', sans-serif; text-align: center;
+      background: transparent; border: none; border-radius: 8px;
+      cursor: pointer; color: var(--slate); transition: all 0.2s;
+    }
+    .platform-tab:hover { color: var(--warm-gold); background: var(--warm-gold-bg); }
+    .platform-tab.active {
+      background: var(--warm-gold);
+      color: #fff;
+    }
+
+    /* Response cards — no black bar */
+    .response-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden; margin-bottom: 24px;
+    }
+    .response-card-header {
+      padding: 14px 20px;
+      font-weight: 600; font-size: 0.88rem;
+      color: var(--warm-gold);
+      border-bottom: 1px solid var(--border);
+      background: var(--warm-gold-bg);
+    }
+    .response-card-body { padding: 20px; }
+    .ai-response {
+      font-size: 0.92rem; line-height: 1.65; color: #374151;
+      white-space: pre-wrap;
+    }
+    .platform-result { display: none; }
+    .platform-result.active { display: block; }
+
+    /* ============================================================
+       BENCHMARK / COMPETITOR
+       ============================================================ */
+    .benchmark-section { display: none; padding: 0 0 24px; }
+    .benchmark-section.visible { display: block; }
+    .competitor-card {
+      background: linear-gradient(135deg, #f8f5f0 0%, #fff 100%);
+      border: 2px dashed var(--warm-gold-border);
+      border-radius: 16px; padding: 36px 40px; text-align: center;
+    }
+    .competitor-card h2 {
+      font-family: 'Lora', serif; font-size: 1.4rem; font-weight: 700;
+      color: var(--charcoal); margin-bottom: 8px;
+    }
+    .competitor-card p {
+      color: var(--slate); font-size: 0.92rem;
+      max-width: 480px; margin: 0 auto 20px;
+    }
+    .competitor-inline-form {
+      display: flex; gap: 12px; max-width: 520px; margin: 0 auto;
+    }
+    .competitor-inline-form input {
+      flex: 1; padding: 14px 16px; font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      border: 1.5px solid #d1d5db; border-radius: 10px;
+      background: #fff; color: var(--charcoal);
+    }
+    .competitor-inline-form input:focus {
+      outline: none; border-color: var(--warm-gold);
+      box-shadow: 0 0 0 3px rgba(176, 125, 79, 0.12);
+    }
+    .competitor-inline-form input::placeholder { color: var(--slate-light); }
+    .compare-btn {
+      padding: 14px 24px; font-size: 0.95rem;
+      font-family: 'Inter', sans-serif; font-weight: 600;
+      background: var(--warm-gold); color: #fff;
+      border: none; border-radius: 10px; cursor: pointer;
+      white-space: nowrap; transition: background 0.2s;
+    }
+    .compare-btn:hover { background: var(--warm-gold-light); }
+    .comparison-header { text-align: center; margin-bottom: 28px; }
+    .comparison-header h2 {
+      font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 700;
+      color: var(--charcoal); margin-bottom: 6px;
+    }
+    .comparison-header p { color: var(--slate); font-size: 0.92rem; }
+    .comparison-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px;
+    }
+    .company-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+    }
+    .company-card-header {
+      padding: 14px 20px; font-weight: 600; font-size: 0.88rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .company-card.yours .company-card-header {
+      color: var(--warm-gold); background: var(--warm-gold-bg);
+    }
+    .company-card.theirs .company-card-header {
+      color: var(--sage); background: var(--sage-bg);
+    }
+    .company-card-body { padding: 20px; }
+
+    /* Comparison insight */
+    .insight-callout {
+      background: #018799; border-radius: 12px;
+      padding: 28px 32px; color: #fff; margin-top: 24px; margin-bottom: 8px;
+    }
+    .insight-callout h3 {
+      font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600;
+      margin-bottom: 8px; color: #fff;
+    }
+    .insight-callout p {
+      font-size: 0.88rem; color: rgba(255,255,255,0.88); line-height: 1.65;
+    }
+
+    /* ============================================================
+       EMAIL GATE — secondary, understated
+       ============================================================ */
+    .email-gate { display: none; padding: 16px 0; }
+    .email-gate.visible { display: block; }
+    .email-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 12px; padding: 28px 36px;
+      display: flex; align-items: center; gap: 28px;
+    }
+    .email-card-text { flex: 1; }
+    .email-card-text h3 {
+      font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600;
+      color: var(--charcoal); margin-bottom: 4px;
+    }
+    .email-card-text p {
+      font-size: 0.85rem; color: var(--slate); line-height: 1.5;
+    }
+    .email-card-form {
+      display: flex; gap: 10px; flex-shrink: 0;
+    }
+    .email-card-form input {
+      padding: 12px 14px; font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      border: 1.5px solid #d1d5db; border-radius: 8px;
+      background: var(--cream); color: var(--charcoal); width: 220px;
+    }
+    .email-card-form input:focus {
+      outline: none; border-color: var(--warm-gold);
+      box-shadow: 0 0 0 3px rgba(176, 125, 79, 0.12);
+    }
+    .email-card-form input::placeholder { color: var(--slate-light); }
+    .email-send-btn {
+      padding: 12px 20px; font-size: 0.85rem;
+      font-family: 'Inter', sans-serif; font-weight: 600;
+      background: var(--charcoal); color: var(--cream);
+      border: none; border-radius: 8px; cursor: pointer;
+      white-space: nowrap; transition: background 0.2s;
+    }
+    .email-send-btn:hover { background: #3d4350; }
+
+    /* ============================================================
+       AUDIT CTA — primary, dominant
+       ============================================================ */
+    .audit-cta { display: none; padding: 0 0 80px; }
+    .audit-cta.visible { display: block; }
+    .audit-cta-card {
+      background: linear-gradient(135deg, #B07D4F 0%, #9a6a3e 50%, #7d5530 100%);
+      border-radius: 20px;
+      padding: 56px 48px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 8px 40px rgba(176, 125, 79, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .audit-cta-card::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .audit-cta-eyebrow {
+      font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 16px;
+    }
+    .audit-cta-card h2 {
+      font-family: 'Lora', serif;
+      font-size: 2rem; font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      max-width: 600px; margin-left: auto; margin-right: auto;
+      position: relative;
+    }
+    .audit-cta-card .cta-body {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.85);
+      max-width: 560px;
+      margin: 0 auto 12px;
+      line-height: 1.6;
+      position: relative;
+    }
+    .audit-cta-card .cta-details {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 520px;
+      margin: 0 auto 32px;
+      line-height: 1.55;
+      position: relative;
+    }
+    .audit-cta-btn {
+      display: inline-block;
+      padding: 18px 44px;
+      font-size: 1.1rem; font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: var(--warm-gold);
+      text-decoration: none;
+      border-radius: 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .audit-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.2);
+    }
+    .audit-cta-price {
+      display: none;
+      margin-top: 16px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+      position: relative;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0; text-align: center;
+    }
+    .site-footer p { font-size: 0.82rem; color: var(--slate-light); }
+    .site-footer a { color: var(--slate); text-decoration: none; }
+    .site-footer a:hover { color: var(--charcoal); }
+    .footer-links { margin-top: 8px; }
+    .footer-links a { margin: 0 8px; font-size: 0.78rem; }
+
+    /* ============================================================
+       COOKIE BANNER
+       ============================================================ */
+    .cookie-banner {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--charcoal); color: #fff; padding: 16px 24px;
+      font-size: 0.82rem; display: flex; justify-content: center;
+      align-items: center; gap: 16px; z-index: 1000;
+    }
+    .cookie-banner a { color: var(--warm-gold-light); }
+    .cookie-btn {
+      padding: 6px 20px; border-radius: 6px; font-size: 0.82rem;
+      font-weight: 600; cursor: pointer; border: none;
+    }
+    .cookie-accept { background: var(--warm-gold); color: #fff; }
+    .cookie-decline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 700px) {
+      .tool-hero h1 { font-size: 1.8rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .input-card { padding: 24px 20px; }
+      .level-cards { grid-template-columns: 1fr; }
+      .comparison-grid { grid-template-columns: 1fr; }
+      .competitor-inline-form { flex-direction: column; }
+      .email-card { flex-direction: column; text-align: center; }
+      .email-card-form { flex-direction: column; width: 100%; }
+      .email-card-form input { width: 100%; }
+      .platform-tabs { flex-wrap: wrap; }
+      .platform-tab { font-size: 0.82rem; padding: 10px 12px; }
+      .trust-bar { flex-wrap: wrap; gap: 16px; }
+      .audit-cta-card { padding: 40px 24px; }
+      .audit-cta-card h2 { font-size: 1.6rem; }
+      .cookie-banner { flex-direction: column; text-align: center; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Agent Signal Check",
+    "description": "See what AI agents say about your business and whether they get it right. Free Agent Signal Check.",
+    "url": "https://lizmicik.com/tool",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "creator": {
+      "@type": "Person",
+      "name": "Liz Micik",
+      "url": "https://lizmicik.com"
+    },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="back-link">&larr; Back to lizmicik.com</a>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- HERO -->
+  <section class="tool-hero">
+    <div class="container">
+      <h1>Do AI agents know your business, <span style="color:var(--warm-gold);">or are they guessing?</span></h1>
+      <p class="subtitle">We ask four AI platforms about your company, count every verifiable fact vs. every hedge, and show you how you compare to a well-known name in your industry.</p>
+      <p class="fine-print">Free. No login required. Results from top AI agents in under 30 seconds.</p>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item"><div class="trust-icon">&#10003;</div><span>Checks 4 AI platforms</span></div>
+    <div class="trust-item"><div class="trust-icon">&#10003;</div><span>Tests industry alignment</span></div>
+    <div class="trust-item"><div class="trust-icon">&#10003;</div><span>No signup required</span></div>
+  </div>
+
+  <!-- INPUT FORM -->
+  <section class="input-section" id="input-section">
+    <div class="container">
+      <div class="input-card">
+        <h2>Let's see what AI knows about you</h2>
+        <form id="check-form" onsubmit="return false;">
+          <div class="form-row">
+            <div class="input-group">
+              <label for="company-url">Your Website URL</label>
+              <input type="url" id="company-url" placeholder="e.g. yourcompany.com" autocomplete="off" aria-required="true">
+              <p class="input-helper">We'll check how AI platforms describe this site</p>
+            </div>
+            <div class="input-group">
+              <label for="primary-keyword">Your Industry or Primary Service</label>
+              <input type="text" id="primary-keyword" placeholder="e.g. management consulting, enterprise software" autocomplete="off" aria-required="true">
+              <p class="input-helper">What should AI agents associate you with?</p>
+            </div>
+          </div>
+          <button type="submit" class="run-btn" id="run-btn" onclick="runCheck()">Run My Agent Signal Check</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOADING -->
+  <section class="loading-section" id="loading-section">
+    <div class="container">
+      <div class="loading-steps" id="loading-steps">
+        <div class="loading-step" data-step="0"><div class="step-icon"></div><span>Asking ChatGPT, Perplexity, Claude, and Google Gemini about your company...</span></div>
+        <div class="loading-step" data-step="1"><div class="step-icon"></div><span>ChatGPT responded</span></div>
+        <div class="loading-step" data-step="2"><div class="step-icon"></div><span>Perplexity responded</span></div>
+        <div class="loading-step" data-step="3"><div class="step-icon"></div><span>Google Gemini responded</span></div>
+        <div class="loading-step" data-step="4"><div class="step-icon"></div><span>Analyzing agent signals...</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS: Section 1 — Benchmark Comparison (the hook) -->
+  <section class="benchmark-section" id="benchmark-section">
+    <div class="container-wide">
+      <div class="comparison-header">
+        <h2 id="benchmark-title">Your Score vs. Industry Titan</h2>
+        <p id="benchmark-subtitle">See how your AI signals compare to the top-performing company in your industry.</p>
+      </div>
+
+      <!-- Benchmark Scorecard: Side-by-side bars -->
+      <div class="scorecard" id="benchmark-scorecard">
+        <p class="scorecard-subhead">Every <strong>verifiable fact</strong> an AI cites &mdash; founding year, team size, named clients, awards &mdash; scores <strong>+2</strong>. Every <strong>hedge or disclaimer</strong> scores <strong>&minus;2</strong>.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+          <!-- Your scores -->
+          <div>
+            <h4 class="benchmark-col-label" id="bench-yours-label" style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--warm-gold);margin-bottom:16px;">Your Company</h4>
+            <div class="score-row" data-platform="chatgpt">
+              <div class="score-platform">ChatGPT</div>
+              <div class="score-bar-wrap"><div class="score-bar-facts" id="bench-yours-bar-facts-chatgpt"></div><div class="score-bar-vibes" id="bench-yours-bar-vibes-chatgpt"></div></div>
+              <div class="score-number zero" id="bench-yours-score-chatgpt">0</div>
+            </div>
+            <div class="score-row" data-platform="perplexity">
+              <div class="score-platform">Perplexity</div>
+              <div class="score-bar-wrap"><div class="score-bar-facts" id="bench-yours-bar-facts-perplexity"></div><div class="score-bar-vibes" id="bench-yours-bar-vibes-perplexity"></div></div>
+              <div class="score-number zero" id="bench-yours-score-perplexity">0</div>
+            </div>
+            <div class="score-row" data-platform="claude">
+              <div class="score-platform">Claude</div>
+              <div class="score-bar-wrap"><div class="score-bar-facts" id="bench-yours-bar-facts-claude"></div><div class="score-bar-vibes" id="bench-yours-bar-vibes-claude"></div></div>
+              <div class="score-number zero" id="bench-yours-score-claude">0</div>
+            </div>
+            <div class="score-row" data-platform="gemini">
+              <div class="score-platform">Google AI</div>
+              <div class="score-bar-wrap"><div class="score-bar-facts" id="bench-yours-bar-facts-gemini"></div><div class="score-bar-vibes" id="bench-yours-bar-vibes-gemini"></div></div>
+              <div class="score-number zero" id="bench-yours-score-gemini">0</div>
+            </div>
+          </div>
+
+          <!-- Titan scores -->
+          <div>
+            <h4 class="benchmark-col-label" id="bench-titan-label" style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--sage);margin-bottom:16px;">Industry Leader</h4>
+            <div class="score-row" data-platform="chatgpt">
+              <div class="score-platform">ChatGPT</div>
+              <div class="score-bar-wrap"><div class="score-bar-facts" id="bench-titan-bar-facts-chatgpt"></div><div class="score-bar-vibes" id="bench-titan-bar-vibes-chatgpt"></div></div>
+              <div class="score-number zero" id="bench-titan-score-chatgpt">0</div>
+            </div>
+            <div class="score-row" data-platform="perplexity">
+              <div class="score-platform">Perplexity</div>
+              <div class="score-bar-wrap"><div class="score-bar-facts" id="bench-titan-bar-facts-perplexity"></div><div class="score-bar-vibes" id="bench-titan-bar-vibes-perplexity"></div></div>
+              <div class="score-number zero" id="bench-titan-score-perplexity">0</div>
+            </div>
+            <div class="score-row" data-platform="claude">
+              <div class="score-platform">Claude</div>
+              <div class="score-bar-wrap"><div class="score-bar-facts" id="bench-titan-bar-facts-claude"></div><div class="score-bar-vibes" id="bench-titan-bar-vibes-claude"></div></div>
+              <div class="score-number zero" id="bench-titan-score-claude">0</div>
+            </div>
+            <div class="score-row" data-platform="gemini">
+              <div class="score-platform">Google AI</div>
+              <div class="score-bar-wrap"><div class="score-bar-facts" id="bench-titan-bar-facts-gemini"></div><div class="score-bar-vibes" id="bench-titan-bar-vibes-gemini"></div></div>
+              <div class="score-number zero" id="bench-titan-score-gemini">0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="score-legend">
+          <div class="legend-item"><div class="legend-dot facts"></div>Verifiable facts (+2 each)</div>
+          <div class="legend-item"><div class="legend-dot vibes"></div>Hedges &amp; disclaimers (&minus;2 each)</div>
+        </div>
+
+        <div class="insight-callout" style="margin-top:24px;">
+          <h3 id="benchmark-gap-headline">The gap is your opportunity</h3>
+          <p id="benchmark-gap-body"></p>
+        </div>
+      </div>
+
+      <!-- No benchmark match / pending fallback — shows user's own scores -->
+      <div id="benchmark-no-match" style="display:none;">
+        <div class="competitor-card">
+          <h3 style="font-family:'Lora',serif;font-size:1.3rem;font-weight:700;color:var(--charcoal);margin-bottom:16px;text-align:center;">Which of these best describes your industry?</h3>
+          <div style="display:flex;flex-direction:column;gap:12px;max-width:400px;margin:0 auto;">
+            <select id="industry-dropdown" style="padding:12px 16px;border:1px solid var(--warm-gold-border);border-radius:6px;font-size:1rem;color:var(--charcoal);background-color:white;cursor:pointer;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;transition:border-color 0.2s;">
+              <option value="">— Select an industry —</option>
+            </select>
+            <button onclick="selectBenchmark()" style="padding:12px 16px;background-color:var(--warm-gold);color:white;border:none;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;transition:background-color 0.2s;">Show My Benchmark</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS: Section 2 — Email Gate (catch them at peak interest) -->
+  <section class="email-gate" id="email-gate">
+    <div class="container">
+      <h2 class="email-gate-headline" style="font-family:'Lora',serif;font-size:1.6rem;font-weight:700;color:var(--charcoal);text-align:center;margin-bottom:20px;">Where should we send the full details?</h2>
+      <div class="email-card">
+        <div class="email-card-text">
+          <h3>Get your full Signal Report</h3>
+          <p>We'll send you a detailed breakdown of the facts each AI model uncovered about you. Read the raw responses yourself, all in one shareable report.</p>
+        </div>
+        <form class="email-card-form" id="gate-form" name="readability-check-leads" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return false;">
+          <input type="hidden" name="form-name" value="readability-check-leads">
+          <p class="sr-only"><label>Don't fill this out: <input name="bot-field"></label></p>
+          <input type="hidden" name="website-url" id="hidden-url">
+          <input type="hidden" name="primary-keyword" id="hidden-keyword">
+          <input type="hidden" name="readability-level" id="hidden-level">
+          <input type="hidden" name="competitor-url" id="hidden-competitor">
+          <label for="gate-email" class="sr-only">Email address</label>
+          <input type="email" id="gate-email" name="email" placeholder="your@email.com" required>
+          <button type="submit" class="email-send-btn" onclick="submitEmail()">Send My Report</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hidden data containers — retained for email report, not displayed on page -->
+  <div id="scorecard" style="display:none;">
+    <div id="score-rows">
+      <div class="score-row" data-platform="chatgpt"><div class="score-number" id="score-chatgpt">0</div></div>
+      <div class="score-row" data-platform="perplexity"><div class="score-number" id="score-perplexity">0</div></div>
+      <div class="score-row" data-platform="claude"><div class="score-number" id="score-claude">0</div></div>
+      <div class="score-row" data-platform="gemini"><div class="score-number" id="score-gemini">0</div></div>
+    </div>
+    <p class="scorecard-body" id="scorecard-body"></p>
+  </div>
+  <div style="display:none;" id="hidden-responses">
+    <div id="yours-chatgpt"></div>
+    <div id="yours-perplexity"></div>
+    <div id="yours-claude"></div>
+    <div id="yours-gemini"></div>
+  </div>
+
+  <!-- AUDIT CTA — primary, dominant -->
+  <section class="audit-cta" id="audit-cta">
+    <div class="container">
+      <div class="audit-cta-card">
+        <div class="audit-cta-eyebrow">Full Agent Readiness Audit</div>
+        <h2>Ready to Start Improving Your Score?</h2>
+        <p class="cta-body">We'll evaluate your site across 30 dimensions and show you exactly what's keeping your score down. You'll learn how easily AI agents can find you, understand your key content, and trust your authority, and what you can do to improve each of those.</p>
+        <p class="cta-details">You'll receive an interactive report with prioritized findings, an executive summary, and a step-by-step improvement roadmap including quick wins.</p>
+        <a href="/audit" class="audit-cta-btn">Get My Readiness Audit</a>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 <a href="/">Liz Micik</a> &middot; lizmicik.com</p>
+      <div class="footer-links">
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       COOKIE BANNER
+       ============================================================ -->
+  <div class="cookie-banner" id="cookie-banner" style="display: none;">
+    <span>This site uses cookies for analytics. <a href="/privacy-policy">Privacy Policy</a></span>
+    <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button>
+    <button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button>
+  </div>
+
+  <script>
+    // ── State ──────────────────────────────────────────────────────
+    let companyUrl = '';
+    let primaryKeyword = '';
+    let competitorUrl = '';
+    let isRunning = false;
+    let lastYoursData = null;   // Cache results for comparison reuse
+    let lastAnalysis = null;
+    let lastScoringData = null;  // Cache user's scoring data for dropdown selection
+    let lastBenchmarkData = null; // Cache benchmark data for email report
+
+    // ── Benchmark Lookup (Industry → Titan Mapping) ────────────────
+    const BENCHMARK_LOOKUP = {
+      "Agriculture & Farming": { titan: "cargill.com", titanName: "Cargill", platforms: { chatgpt: {facts:1,vibes:0,score:2}, perplexity: {facts:21,vibes:0,score:42}, claude: {facts:2,vibes:1,score:2}, gemini: {facts:1,vibes:1,score:0} }, totalScore: 46 },
+      "Mining & Energy": { titan: "exxonmobil.com", titanName: "ExxonMobil", platforms: { chatgpt: {facts:0,vibes:0,score:0}, perplexity: {facts:12,vibes:0,score:24}, claude: {facts:1,vibes:2,score:-2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 22 },
+      "Construction & Engineering": { titan: "bechtel.com", titanName: "Bechtel", platforms: { chatgpt: {facts:1,vibes:0,score:2}, perplexity: {facts:14,vibes:0,score:28}, claude: {facts:3,vibes:1,score:4}, gemini: {facts:0,vibes:1,score:-2} }, totalScore: 32 },
+      "Food & Beverage": { titan: "nestle.com", titanName: "Nestlé", platforms: { chatgpt: {facts:1,vibes:1,score:0}, perplexity: {facts:22,vibes:0,score:44}, claude: {facts:1,vibes:2,score:-2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 42 },
+      "Fashion & Apparel": { titan: "nike.com", titanName: "Nike", platforms: { chatgpt: {facts:2,vibes:1,score:2}, perplexity: {facts:9,vibes:0,score:18}, claude: {facts:1,vibes:0,score:2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 22 },
+      "Publishing & Media": { titan: "nytimes.com", titanName: "The New York Times", platforms: { chatgpt: {facts:1,vibes:1,score:0}, perplexity: {facts:10,vibes:0,score:20}, claude: {facts:2,vibes:2,score:0}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 20 },
+      "Pharmaceuticals & Life Sciences": { titan: "pfizer.com", titanName: "Pfizer", platforms: { chatgpt: {facts:1,vibes:1,score:0}, perplexity: {facts:22,vibes:1,score:42}, claude: {facts:1,vibes:1,score:0}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 42 },
+      "Industrial Manufacturing": { titan: "caterpillar.com", titanName: "Caterpillar", platforms: { chatgpt: {facts:2,vibes:0,score:4}, perplexity: {facts:18,vibes:1,score:34}, claude: {facts:4,vibes:2,score:4}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 42 },
+      "Technology & Electronics": { titan: "apple.com", titanName: "Apple", platforms: { chatgpt: {facts:2,vibes:1,score:2}, perplexity: {facts:20,vibes:0,score:40}, claude: {facts:1,vibes:1,score:0}, gemini: {facts:0,vibes:1,score:-2} }, totalScore: 40 },
+      "Consumer Products": { titan: "pg.com", titanName: "Procter & Gamble", platforms: { chatgpt: {facts:1,vibes:1,score:0}, perplexity: {facts:16,vibes:0,score:32}, claude: {facts:4,vibes:1,score:6}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 38 },
+      "Transportation & Logistics": { titan: "ups.com", titanName: "UPS", platforms: { chatgpt: {facts:2,vibes:0,score:4}, perplexity: {facts:18,vibes:0,score:36}, claude: {facts:2,vibes:1,score:2}, gemini: {facts:0,vibes:1,score:-2} }, totalScore: 40 },
+      "Telecommunications": { titan: "verizon.com", titanName: "Verizon", platforms: { chatgpt: {facts:0,vibes:0,score:0}, perplexity: {facts:14,vibes:0,score:28}, claude: {facts:0,vibes:1,score:-2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 26 },
+      "Utilities & Clean Energy": { titan: "nexteraenergy.com", titanName: "NextEra Energy", platforms: { chatgpt: {facts:0,vibes:1,score:-2}, perplexity: {facts:15,vibes:1,score:28}, claude: {facts:1,vibes:1,score:0}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 26 },
+      "Wholesale & Distribution": { titan: "mckesson.com", titanName: "McKesson", platforms: { chatgpt: {facts:1,vibes:0,score:2}, perplexity: {facts:19,vibes:0,score:38}, claude: {facts:1,vibes:0,score:2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 42 },
+      "Retail & eCommerce": { titan: "amazon.com", titanName: "Amazon", platforms: { chatgpt: {facts:2,vibes:0,score:4}, perplexity: {facts:9,vibes:1,score:16}, claude: {facts:1,vibes:0,score:2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 22 },
+      "Banking & Financial Services": { titan: "jpmorgan.com", titanName: "JPMorgan Chase", platforms: { chatgpt: {facts:0,vibes:0,score:0}, perplexity: {facts:16,vibes:0,score:32}, claude: {facts:1,vibes:1,score:0}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 32 },
+      "Insurance": { titan: "statefarm.com", titanName: "State Farm", platforms: { chatgpt: {facts:0,vibes:0,score:0}, perplexity: {facts:23,vibes:0,score:46}, claude: {facts:3,vibes:1,score:4}, gemini: {facts:0,vibes:1,score:-2} }, totalScore: 48 },
+      "Real Estate": { titan: "cbre.com", titanName: "CBRE", platforms: { chatgpt: {facts:4,vibes:0,score:8}, perplexity: {facts:15,vibes:0,score:30}, claude: {facts:2,vibes:0,score:4}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 42 },
+      "Investment & Asset Management": { titan: "blackrock.com", titanName: "BlackRock", platforms: { chatgpt: {facts:2,vibes:0,score:4}, perplexity: {facts:27,vibes:0,score:54}, claude: {facts:3,vibes:2,score:2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 60 },
+      "Hospitality & Travel": { titan: "marriott.com", titanName: "Marriott", platforms: { chatgpt: {facts:1,vibes:0,score:2}, perplexity: {facts:15,vibes:0,score:30}, claude: {facts:1,vibes:2,score:-2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 30 },
+      "Personal Services": { titan: "regiscorp.com", titanName: "Regis Corporation", platforms: { chatgpt: {facts:0,vibes:1,score:-2}, perplexity: {facts:14,vibes:0,score:28}, claude: {facts:0,vibes:1,score:-2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 24 },
+      "Business Services & Staffing": { titan: "adeccogroup.com", titanName: "Adecco", platforms: { chatgpt: {facts:1,vibes:0,score:2}, perplexity: {facts:17,vibes:0,score:34}, claude: {facts:2,vibes:2,score:0}, gemini: {facts:0,vibes:1,score:-2} }, totalScore: 34 },
+      "Software & SaaS": { titan: "salesforce.com", titanName: "Salesforce", platforms: { chatgpt: {facts:2,vibes:1,score:2}, perplexity: {facts:21,vibes:0,score:42}, claude: {facts:2,vibes:0,score:4}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 48 },
+      "Management Consulting": { titan: "mckinsey.com", titanName: "McKinsey", platforms: { chatgpt: {facts:2,vibes:1,score:2}, perplexity: {facts:13,vibes:0,score:26}, claude: {facts:2,vibes:2,score:0}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 28 },
+      "Marketing & Advertising": { titan: "wpp.com", titanName: "WPP", platforms: { chatgpt: {facts:1,vibes:1,score:0}, perplexity: {facts:12,vibes:1,score:22}, claude: {facts:1,vibes:1,score:0}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 22 },
+      "Accounting & Tax": { titan: "deloitte.com", titanName: "Deloitte", platforms: { chatgpt: {facts:2,vibes:1,score:2}, perplexity: {facts:19,vibes:0,score:38}, claude: {facts:1,vibes:3,score:-4}, gemini: {facts:0,vibes:1,score:-2} }, totalScore: 34 },
+      "Legal Services": { titan: "kirkland.com", titanName: "Kirkland & Ellis", platforms: { chatgpt: {facts:3,vibes:2,score:2}, perplexity: {facts:19,vibes:0,score:38}, claude: {facts:1,vibes:2,score:-2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 38 },
+      "Healthcare": { titan: "mayoclinic.org", titanName: "Mayo Clinic", platforms: { chatgpt: {facts:1,vibes:1,score:0}, perplexity: {facts:14,vibes:1,score:26}, claude: {facts:1,vibes:2,score:-2}, gemini: {facts:0,vibes:1,score:-2} }, totalScore: 22 },
+      "Education & Training": { titan: "harvard.edu", titanName: "Harvard University", platforms: { chatgpt: {facts:1,vibes:2,score:-2}, perplexity: {facts:15,vibes:1,score:28}, claude: {facts:1,vibes:3,score:-4}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 22 },
+      "Architecture & Design": { titan: "gensler.com", titanName: "Gensler", platforms: { chatgpt: {facts:3,vibes:1,score:4}, perplexity: {facts:24,vibes:0,score:48}, claude: {facts:0,vibes:3,score:-6}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 46 },
+      "Cybersecurity & IT Services": { titan: "crowdstrike.com", titanName: "CrowdStrike", platforms: { chatgpt: {facts:2,vibes:0,score:4}, perplexity: {facts:17,vibes:0,score:34}, claude: {facts:5,vibes:0,score:10}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 48 },
+      "Nonprofit & Social Services": { titan: "redcross.org", titanName: "American Red Cross", platforms: { chatgpt: {facts:1,vibes:1,score:0}, perplexity: {facts:12,vibes:0,score:24}, claude: {facts:1,vibes:2,score:-2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 22 },
+      "Entertainment & Recreation": { titan: "disney.com", titanName: "Disney", platforms: { chatgpt: {facts:0,vibes:0,score:0}, perplexity: {facts:11,vibes:0,score:22}, claude: {facts:2,vibes:2,score:0}, gemini: {facts:0,vibes:1,score:-2} }, totalScore: 20 },
+      "Environmental Services": { titan: "wm.com", titanName: "Waste Management", platforms: { chatgpt: {facts:0,vibes:1,score:-2}, perplexity: {facts:14,vibes:2,score:24}, claude: {facts:1,vibes:1,score:0}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 22 },
+      "Government & Public Sector": { titan: "gsa.gov", titanName: "GSA", platforms: { chatgpt: {facts:0,vibes:0,score:0}, perplexity: {facts:20,vibes:0,score:40}, claude: {facts:2,vibes:1,score:2}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 42 },
+      "Professional Services": { titan: "accenture.com", titanName: "Accenture", platforms: { chatgpt: {facts:0,vibes:0,score:0}, perplexity: {facts:19,vibes:1,score:36}, claude: {facts:3,vibes:0,score:6}, gemini: {facts:0,vibes:0,score:0} }, totalScore: 42 }
+    };
+
+    // ── API Configuration ──────────────────────────────────────────
+    const API_ENDPOINT = '/api/signal-check';
+
+    // ── Run Check (Phase 1: Your Company) ──────────────────────────
+    async function runCheck() {
+      if (isRunning) return;
+      companyUrl = document.getElementById('company-url').value.trim();
+      primaryKeyword = document.getElementById('primary-keyword').value.trim();
+
+      if (companyUrl && !companyUrl.match(/^https?:\/\//)) {
+        companyUrl = 'https://' + companyUrl;
+        document.getElementById('company-url').value = companyUrl;
+      }
+
+      let hasError = false;
+      if (!companyUrl) { document.getElementById('company-url').style.borderColor = 'var(--red)'; hasError = true; }
+      if (!primaryKeyword) { document.getElementById('primary-keyword').style.borderColor = 'var(--red)'; hasError = true; }
+      if (hasError) {
+        setTimeout(() => {
+          document.getElementById('company-url').style.borderColor = '';
+          document.getElementById('primary-keyword').style.borderColor = '';
+        }, 2000);
+        return;
+      }
+
+      isRunning = true;
+      const btn = document.getElementById('run-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>Querying AI agents...';
+
+      // Hide previous results
+      ['benchmark-section','email-gate','audit-cta'].forEach(id => {
+        document.getElementById(id).classList.remove('visible');
+      });
+
+      // Show loading animation
+      document.getElementById('loading-section').classList.add('visible');
+      document.getElementById('loading-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      const steps = document.querySelectorAll('#loading-steps .loading-step');
+
+      // Start first step immediately
+      steps[0].classList.add('active');
+
+      try {
+        // ── Call the serverless function ──
+        const response = await fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: companyUrl, keyword: primaryKeyword }),
+        });
+
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.error || `Server error (${response.status})`);
+        }
+
+        const data = await response.json();
+
+        // Animate through remaining steps quickly now that we have data
+        steps[0].classList.remove('active');
+        steps[0].classList.add('done');
+        steps[0].querySelector('.step-icon').textContent = '\u2713';
+
+        for (let i = 1; i < steps.length; i++) {
+          await delay(400);
+          if (i > 0) {
+            steps[i - 1].classList.remove('active');
+            steps[i - 1].classList.add('done');
+            steps[i - 1].querySelector('.step-icon').textContent = '\u2713';
+          }
+          steps[i].classList.add('active');
+        }
+        await delay(400);
+        steps[steps.length - 1].classList.remove('active');
+        steps[steps.length - 1].classList.add('done');
+        steps[steps.length - 1].querySelector('.step-icon').textContent = '\u2713';
+
+        await delay(300);
+
+        // Cache for comparison reuse and email report
+        lastYoursData = data.yours;
+        lastAnalysis = data.analysis;
+        lastScoringData = data.scoring;
+        lastBenchmarkData = data.benchmark;
+
+        // Hide loading, show results
+        document.getElementById('loading-section').classList.remove('visible');
+        steps.forEach(s => { s.classList.remove('active', 'done'); s.querySelector('.step-icon').textContent = ''; });
+
+        populateYourResults(data);
+        populateBenchmark(data);
+        ['benchmark-section','email-gate','audit-cta'].forEach(id => {
+          document.getElementById(id).classList.add('visible');
+        });
+        document.getElementById('benchmark-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      } catch (err) {
+        console.error('Check failed:', err);
+        document.getElementById('loading-section').classList.remove('visible');
+        steps.forEach(s => { s.classList.remove('active', 'done'); s.querySelector('.step-icon').textContent = ''; });
+        showError(err.message || 'Something went wrong. Please try again.');
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Run Another Check';
+      isRunning = false;
+    }
+
+    // ── Populate Results ───────────────────────────────────────────
+    function populateYourResults(data) {
+      // Store AI responses in hidden containers (for email report)
+      ['chatgpt', 'perplexity', 'claude', 'gemini'].forEach(p => {
+        const el = document.getElementById(`yours-${p}`);
+        if (el) el.textContent = data.yours[p];
+      });
+
+      // Populate fact/vibe scorecard data (hidden, for email report)
+      if (data.scoring) {
+        updateScorecard(data.scoring);
+      }
+    }
+
+    // ── Update Fact/Vibe Scorecard ─────────────────────────────────
+    function updateScorecard(scoring) {
+      const maxBar = 30; // max score for bar width scaling
+      const platformNames = ['chatgpt', 'perplexity', 'claude', 'gemini'];
+
+      platformNames.forEach(p => {
+        const pData = scoring.platforms[p];
+        if (!pData) return;
+
+        // Update bar widths (facts go left-to-right, vibes go right-to-left)
+        const factWidth = Math.min((pData.facts * 2 / maxBar) * 50, 50);
+        const vibeWidth = Math.min((pData.vibes * 2 / maxBar) * 50, 50);
+
+        const factBar = document.getElementById('bar-facts-' + p);
+        const vibeBar = document.getElementById('bar-vibes-' + p);
+        factBar.style.width = factWidth + '%';
+        vibeBar.style.width = vibeWidth + '%';
+
+        // Add count labels inside bars if wide enough
+        if (pData.facts > 0) factBar.innerHTML = '<span class="score-bar-label">' + pData.facts + ' facts</span>';
+        else factBar.innerHTML = '';
+        if (pData.vibes > 0) vibeBar.innerHTML = '<span class="score-bar-label">' + pData.vibes + ' hedges</span>';
+        else vibeBar.innerHTML = '';
+
+        // Update score number
+        const scoreEl = document.getElementById('score-' + p);
+        scoreEl.textContent = (pData.score > 0 ? '+' : '') + pData.score;
+        scoreEl.classList.remove('positive', 'negative', 'zero');
+        if (pData.score > 0) scoreEl.classList.add('positive');
+        else if (pData.score < 0) scoreEl.classList.add('negative');
+        else scoreEl.classList.add('zero');
+      });
+
+      // Body text based on total score
+      const body = document.getElementById('scorecard-body');
+      const totalFacts = scoring.totalFacts;
+      const totalVibes = scoring.totalVibes;
+      const totalScore = scoring.totalScore;
+
+      if (totalFacts === 0) {
+        body.innerHTML = `Across all four AI platforms, <strong>not a single verifiable fact</strong> was cited about your business. No founding year, no team size, no named clients, no awards. Every response was generated from vibes &mdash; plausible-sounding descriptions with nothing behind them. That means when someone asks an AI to recommend a <strong>${escapeHtml(primaryKeyword)}</strong> provider, AI has nothing concrete to point to. The full Agent Readiness Audit identifies exactly which signals are missing and what to fix first.`;
+      } else if (totalScore < 0) {
+        body.innerHTML = `AI agents produced <strong>more hedges than facts</strong> about your business. That means the dominant signal is uncertainty &mdash; "appears to be," "limited information," "I'd recommend checking." When AI agents aren't sure about you, they don't recommend you. The full Agent Readiness Audit maps exactly where these gaps are across all three layers: Find, Understand, and Trust.`;
+      } else if (totalFacts <= 4) {
+        body.innerHTML = `AI agents found <strong>a few facts</strong> about your business, but the coverage is thin and inconsistent across platforms. Some know more than others. The full Agent Readiness Audit identifies which signals are reaching which platforms &mdash; and which aren't &mdash; across 29 diagnostic dimensions.`;
+      } else {
+        body.innerHTML = `AI agents can cite <strong>real facts</strong> about your business &mdash; that's better than most. But are they citing the <em>right</em> facts? The ones that win recommendations? The full Agent Readiness Audit goes beyond what AI knows to test whether it trusts you enough to recommend you, across 29 dimensions and all three layers.`;
+      }
+    }
+
+    // ── Populate Benchmark Section ─────────────────────────────────
+    function populateBenchmark(data) {
+      const benchEl = document.getElementById('benchmark-section');
+      const scorecardEl = document.getElementById('benchmark-scorecard');
+      const noMatchEl = document.getElementById('benchmark-no-match');
+
+      // Reset all sub-views
+      scorecardEl.style.display = 'none';
+      noMatchEl.style.display = 'none';
+
+      if (!data.benchmark || !data.benchmark.scoring) {
+        // No match or no cached data — show user's own scores and industry dropdown
+        lastScoringData = data.scoring;
+        noMatchEl.style.display = 'block';
+        document.getElementById('benchmark-title').textContent = 'Your AI Signal Score';
+        document.getElementById('benchmark-subtitle').textContent =
+          'Select your industry below to see how you compare.';
+        return;
+      }
+
+      const bench = data.benchmark;
+
+      // We have full benchmark data — show the side-by-side scorecard
+      scorecardEl.style.display = 'block';
+      const displayUrl = companyUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      document.getElementById('bench-yours-label').textContent = displayUrl;
+      document.getElementById('bench-titan-label').textContent = bench.category + ' Leader: ' + bench.titanName;
+      document.getElementById('benchmark-title').textContent = 'Your Score vs. \u201C' + bench.category + '\u201D Titan';
+      document.getElementById('benchmark-subtitle').textContent =
+        'We compared your AI signals against ' + bench.titanName + ', the top-performing company in ' + bench.category + '.';
+
+      const maxBar = 30;
+      const platforms = ['chatgpt', 'perplexity', 'claude', 'gemini'];
+
+      // Populate YOUR scores (reuse from main scoring)
+      platforms.forEach(p => {
+        const pData = data.scoring.platforms[p];
+        if (!pData) return;
+        const factWidth = Math.min((pData.facts * 2 / maxBar) * 50, 50);
+        const vibeWidth = Math.min((pData.vibes * 2 / maxBar) * 50, 50);
+        const factBar = document.getElementById('bench-yours-bar-facts-' + p);
+        const vibeBar = document.getElementById('bench-yours-bar-vibes-' + p);
+        factBar.style.width = factWidth + '%';
+        vibeBar.style.width = vibeWidth + '%';
+        if (pData.facts > 0) factBar.innerHTML = '<span class="score-bar-label">' + pData.facts + ' facts</span>';
+        else factBar.innerHTML = '';
+        if (pData.vibes > 0) vibeBar.innerHTML = '<span class="score-bar-label">' + pData.vibes + ' hedges</span>';
+        else vibeBar.innerHTML = '';
+        const scoreEl = document.getElementById('bench-yours-score-' + p);
+        scoreEl.textContent = (pData.score > 0 ? '+' : '') + pData.score;
+        scoreEl.classList.remove('positive', 'negative', 'zero');
+        if (pData.score > 0) scoreEl.classList.add('positive');
+        else if (pData.score < 0) scoreEl.classList.add('negative');
+        else scoreEl.classList.add('zero');
+      });
+
+      // Populate TITAN scores
+      platforms.forEach(p => {
+        const pData = bench.scoring.platforms[p];
+        if (!pData) return;
+        const factWidth = Math.min((pData.facts * 2 / maxBar) * 50, 50);
+        const vibeWidth = Math.min((pData.vibes * 2 / maxBar) * 50, 50);
+        const factBar = document.getElementById('bench-titan-bar-facts-' + p);
+        const vibeBar = document.getElementById('bench-titan-bar-vibes-' + p);
+        factBar.style.width = factWidth + '%';
+        vibeBar.style.width = vibeWidth + '%';
+        if (pData.facts > 0) factBar.innerHTML = '<span class="score-bar-label">' + pData.facts + ' facts</span>';
+        else factBar.innerHTML = '';
+        if (pData.vibes > 0) vibeBar.innerHTML = '<span class="score-bar-label">' + pData.vibes + ' hedges</span>';
+        else vibeBar.innerHTML = '';
+        const scoreEl = document.getElementById('bench-titan-score-' + p);
+        scoreEl.textContent = (pData.score > 0 ? '+' : '') + pData.score;
+        scoreEl.classList.remove('positive', 'negative', 'zero');
+        if (pData.score > 0) scoreEl.classList.add('positive');
+        else if (pData.score < 0) scoreEl.classList.add('negative');
+        else scoreEl.classList.add('zero');
+      });
+
+      // Gap analysis text
+      const yourTotal = data.scoring.totalScore;
+      const titanTotal = bench.scoring.totalScore;
+      const gap = titanTotal - yourTotal;
+      const gapBody = document.getElementById('benchmark-gap-body');
+
+      if (gap > 20) {
+        document.getElementById('benchmark-gap-headline').textContent = 'There\'s a significant gap here';
+        gapBody.textContent = bench.titanName + ' scores ' + gap + ' points higher than you across all four AI platforms. That\'s the difference between AI agents recommending them and hedging about you. The good news: this gap is closable. The full Agent Readiness Audit maps exactly where your signals are missing and what to fix first.';
+      } else if (gap > 8) {
+        document.getElementById('benchmark-gap-headline').textContent = 'Room to improve';
+        gapBody.textContent = bench.titanName + ' leads you by ' + gap + ' points. That gap means AI agents cite more verifiable facts about them — more founding dates, team sizes, client names, awards. Every fact they have that you don\'t is a missed opportunity for recommendation. The full Audit identifies exactly which facts to surface.';
+      } else if (gap > 0) {
+        document.getElementById('benchmark-gap-headline').textContent = 'You\'re closer than most';
+        gapBody.textContent = 'Only ' + gap + ' points separate you from ' + bench.titanName + '. That\'s strong — but in AI-driven search, small edges compound. The full Audit digs into which specific signals are missing and how to close the remaining gap.';
+      } else {
+        document.getElementById('benchmark-gap-headline').textContent = 'You\'re outperforming the benchmark';
+        gapBody.textContent = 'You\'re scoring as well or better than ' + bench.titanName + ' in your industry. That\'s impressive and rare. The full Audit can help you maintain this edge and identify emerging AI surfaces where competitors might catch up.';
+      }
+    }
+
+    // ── Populate Fallback Scores (no benchmark match) ─────────────
+    function populateFallbackScores(data) {
+      if (!data.scoring) return;
+      const maxBar = 30;
+      const platforms = ['chatgpt', 'perplexity', 'claude', 'gemini'];
+
+      platforms.forEach(p => {
+        const pData = data.scoring.platforms[p];
+        if (!pData) return;
+        const factWidth = Math.min((pData.facts * 2 / maxBar) * 50, 50);
+        const vibeWidth = Math.min((pData.vibes * 2 / maxBar) * 50, 50);
+        const factBar = document.getElementById('fallback-bar-facts-' + p);
+        const vibeBar = document.getElementById('fallback-bar-vibes-' + p);
+        factBar.style.width = factWidth + '%';
+        vibeBar.style.width = vibeWidth + '%';
+        if (pData.facts > 0) factBar.innerHTML = '<span class="score-bar-label">' + pData.facts + ' facts</span>';
+        else factBar.innerHTML = '';
+        if (pData.vibes > 0) vibeBar.innerHTML = '<span class="score-bar-label">' + pData.vibes + ' hedges</span>';
+        else vibeBar.innerHTML = '';
+        const scoreEl = document.getElementById('fallback-score-' + p);
+        scoreEl.textContent = (pData.score > 0 ? '+' : '') + pData.score;
+        scoreEl.classList.remove('positive', 'negative', 'zero');
+        if (pData.score > 0) scoreEl.classList.add('positive');
+        else if (pData.score < 0) scoreEl.classList.add('negative');
+        else scoreEl.classList.add('zero');
+      });
+
+      // Insight text based on total score
+      const totalFacts = data.scoring.totalFacts;
+      const totalScore = data.scoring.totalScore;
+      const headline = document.getElementById('fallback-headline');
+      const body = document.getElementById('fallback-body');
+
+      if (totalFacts === 0) {
+        headline.textContent = 'AI agents don\u2019t know you yet';
+        body.textContent = 'Across all four platforms, not a single verifiable fact was cited about your business. No founding year, no team size, no named clients. When AI agents don\u2019t know you, they can\u2019t recommend you. The full Agent Readiness Audit identifies exactly which signals are missing and what to fix first.';
+      } else if (totalScore < 0) {
+        headline.textContent = 'More hedges than facts';
+        body.textContent = 'AI agents produced more disclaimers than verifiable facts about your business. The dominant signal is uncertainty. When AI isn\u2019t sure about you, it doesn\u2019t recommend you. The full Audit maps exactly where these gaps are and how to close them.';
+      } else if (totalFacts <= 4) {
+        headline.textContent = 'AI knows a little, but not enough';
+        body.textContent = 'A few facts surfaced, but the coverage is thin and inconsistent across platforms. Some AI agents know more than others. The full Audit identifies which signals are reaching which platforms and which aren\u2019t, across 30 diagnostic dimensions.';
+      } else {
+        headline.textContent = 'A solid start';
+        body.textContent = 'AI agents can cite real facts about your business. That\u2019s better than most. But are they citing the right facts? The ones that win recommendations? The full Audit goes beyond what AI knows to test whether it trusts you enough to recommend you.';
+      }
+    }
+
+    // ── Run Comparison (fallback competitor) ──────────────────────
+    function runComparisonFromPending() {
+      const input = document.getElementById('competitor-url-pending');
+      document.getElementById('competitor-url').value = input.value;
+      runComparison();
+    }
+
+    async function runComparison() {
+      const compUrlInput = document.getElementById('competitor-url');
+      competitorUrl = compUrlInput ? compUrlInput.value.trim() : '';
+      if (!competitorUrl) {
+        if (compUrlInput) {
+          compUrlInput.style.borderColor = 'var(--red)';
+          setTimeout(() => compUrlInput.style.borderColor = '', 2000);
+        }
+        return;
+      }
+      if (!competitorUrl.match(/^https?:\/\//)) competitorUrl = 'https://' + competitorUrl;
+
+      // Show loading state on compare button
+      const compareBtn = event.target.closest('.compare-btn') || document.querySelector('.compare-btn');
+      const origText = compareBtn.textContent;
+      compareBtn.disabled = true;
+      compareBtn.innerHTML = '<span class="spinner"></span>Querying...';
+
+      try {
+        const response = await fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            url: companyUrl,
+            keyword: primaryKeyword,
+            competitorUrl: competitorUrl,
+          }),
+        });
+
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.error || `Server error (${response.status})`);
+        }
+
+        const data = await response.json();
+
+        // If we got competitor scoring, show a simple alert with gap
+        // (full competitor view is deprioritized in favor of benchmarks)
+        if (data.competitorScoring) {
+          const yourTotal = data.scoring.totalScore;
+          const compTotal = data.competitorScoring.totalScore;
+          const gapBody = document.getElementById('benchmark-gap-body');
+          const displayComp = competitorUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
+
+          document.getElementById('benchmark-gap-headline').textContent = 'You vs. ' + displayComp;
+          if (compTotal > yourTotal) {
+            gapBody.textContent = displayComp + ' scores ' + (compTotal - yourTotal) + ' points higher than you. They have more verifiable facts in AI responses — which means AI agents are more likely to recommend them. The full Audit shows you exactly how to close this gap.';
+          } else if (compTotal < yourTotal) {
+            gapBody.textContent = 'You\'re outscoring ' + displayComp + ' by ' + (yourTotal - compTotal) + ' points. You have the edge in AI signals, but don\'t get complacent — the full Audit ensures you maintain and extend that lead.';
+          } else {
+            gapBody.textContent = 'You and ' + displayComp + ' are tied. That means neither of you has a decisive AI signals advantage yet. The full Audit can help you break ahead.';
+          }
+        }
+
+      } catch (err) {
+        console.error('Comparison failed:', err);
+        showError(err.message || 'Comparison failed. Please try again.');
+      }
+
+      compareBtn.disabled = false;
+      compareBtn.textContent = origText;
+    }
+
+    // ── Error Display ──────────────────────────────────────────────
+    function showError(message) {
+      // Create a temporary error banner
+      const existing = document.getElementById('error-banner');
+      if (existing) existing.remove();
+
+      const banner = document.createElement('div');
+      banner.id = 'error-banner';
+      banner.style.cssText = 'max-width:960px;margin:24px auto;padding:16px 24px;background:var(--red-bg);border:1px solid var(--red-border);border-radius:8px;color:var(--red);text-align:center;font-size:0.95rem;';
+      banner.textContent = message;
+      document.getElementById('input-section').after(banner);
+
+      setTimeout(() => banner.remove(), 8000);
+    }
+
+    // ── Utilities ──────────────────────────────────────────────────
+    function delay(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    // Platform tabs and raw responses removed from page — sent via email report only
+
+    function submitEmail() {
+      const emailInput = document.getElementById('gate-email');
+      const email = emailInput.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        emailInput.style.borderColor = 'var(--red)';
+        setTimeout(() => emailInput.style.borderColor = '', 2000);
+        return;
+      }
+
+      // Populate hidden fields with session data
+      document.getElementById('hidden-url').value = companyUrl || '';
+      document.getElementById('hidden-keyword').value = primaryKeyword || '';
+      document.getElementById('hidden-level').value = document.getElementById('level-text')?.textContent || '';
+      document.getElementById('hidden-competitor').value = competitorUrl || '';
+
+      // 1. Subscribe to Kit (ConvertKit) via serverless proxy
+      fetch('/api/subscribe-kit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email })
+      })
+      .then(res => {
+        if (!res.ok) console.warn('Kit subscription returned status:', res.status);
+        return res.json();
+      })
+      .then(data => console.log('Kit subscription:', data.success ? 'OK' : data.error))
+      .catch(err => console.warn('Kit subscription error (non-blocking):', err));
+
+      // 2. Send personalized results email via Resend
+      const benchmarkPayload = lastBenchmarkData ? {
+        category: lastBenchmarkData.category || null,
+        titanName: lastBenchmarkData.titanName || null,
+        scoring: lastBenchmarkData.scoring || null
+      } : null;
+
+      fetch('/api/send-results-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          url: companyUrl,
+          keyword: primaryKeyword,
+          scoring: lastScoringData,
+          responses: lastYoursData,
+          benchmark: benchmarkPayload
+        })
+      })
+      .then(res => {
+        if (!res.ok) console.warn('Results email returned status:', res.status);
+        return res.json();
+      })
+      .then(data => console.log('Results email:', data.success ? 'OK' : data.error))
+      .catch(err => console.warn('Results email error (non-blocking):', err));
+
+      // 3. Submit to Netlify Forms as backup data capture
+      const form = document.getElementById('gate-form');
+      const formData = new FormData(form);
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(response => {
+        if (response.ok) {
+          const card = document.querySelector('.email-card');
+          card.innerHTML = '<div class="email-card-text"><h3>Check your inbox.</h3><p>Your full results are on the way, including what each AI actually said about you.</p></div>';
+        } else {
+          console.error('Form submission failed:', response.status);
+          const card = document.querySelector('.email-card');
+          card.innerHTML = '<div class="email-card-text"><h3>Something went wrong.</h3><p>Please try again or email info@lizmicik.com directly.</p></div>';
+        }
+      })
+      .catch(error => {
+        console.error('Form submission error:', error);
+        const card = document.querySelector('.email-card');
+        card.innerHTML = '<div class="email-card-text"><h3>Check your inbox.</h3><p>Your full results are on the way, including what each AI actually said about you.</p></div>';
+      });
+    }
+
+    // ── Industry Dropdown Selection ────────────────────────────────
+    function selectBenchmark() {
+      const dropdown = document.getElementById('industry-dropdown');
+      const selectedCategory = dropdown.value;
+
+      if (!selectedCategory) {
+        alert('Please select an industry.');
+        return;
+      }
+
+      const benchmarkData = BENCHMARK_LOOKUP[selectedCategory];
+      if (!benchmarkData) {
+        alert('Industry data not found.');
+        return;
+      }
+
+      // Hide the no-match dropdown div
+      document.getElementById('benchmark-no-match').style.display = 'none';
+
+      // Show the benchmark-scorecard div
+      const scorecardEl = document.getElementById('benchmark-scorecard');
+      scorecardEl.style.display = 'block';
+
+      // Populate benchmark title and subtitle
+      const displayUrl = companyUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      document.getElementById('benchmark-title').textContent = 'Your Score vs. "' + selectedCategory + '" Titan';
+      document.getElementById('benchmark-subtitle').textContent =
+        'We compared your AI signals against ' + benchmarkData.titanName + ', the top-performing company in ' + selectedCategory + '.';
+
+      // Populate labels
+      document.getElementById('bench-yours-label').textContent = displayUrl;
+      document.getElementById('bench-titan-label').textContent = selectedCategory + ' Leader: ' + benchmarkData.titanName;
+
+      // Populate YOUR side bars (from lastScoringData)
+      if (lastScoringData) {
+        const maxBar = 30;
+        const platforms = ['chatgpt', 'perplexity', 'claude', 'gemini'];
+
+        platforms.forEach(p => {
+          const pData = lastScoringData.platforms[p];
+          if (!pData) return;
+          const factWidth = Math.min((pData.facts * 2 / maxBar) * 50, 50);
+          const vibeWidth = Math.min((pData.vibes * 2 / maxBar) * 50, 50);
+          const factBar = document.getElementById('bench-yours-bar-facts-' + p);
+          const vibeBar = document.getElementById('bench-yours-bar-vibes-' + p);
+          factBar.style.width = factWidth + '%';
+          vibeBar.style.width = vibeWidth + '%';
+          if (pData.facts > 0) factBar.innerHTML = '<span class="score-bar-label">' + pData.facts + ' facts</span>';
+          else factBar.innerHTML = '';
+          if (pData.vibes > 0) vibeBar.innerHTML = '<span class="score-bar-label">' + pData.vibes + ' hedges</span>';
+          else vibeBar.innerHTML = '';
+          const scoreEl = document.getElementById('bench-yours-score-' + p);
+          scoreEl.textContent = (pData.score > 0 ? '+' : '') + pData.score;
+          scoreEl.classList.remove('positive', 'negative', 'zero');
+          if (pData.score > 0) scoreEl.classList.add('positive');
+          else if (pData.score < 0) scoreEl.classList.add('negative');
+          else scoreEl.classList.add('zero');
+        });
+      }
+
+      // Populate TITAN side bars (from BENCHMARK_LOOKUP)
+      const maxBar = 30;
+      const platforms = ['chatgpt', 'perplexity', 'claude', 'gemini'];
+
+      platforms.forEach(p => {
+        const pData = benchmarkData.platforms[p];
+        if (!pData) return;
+        const factWidth = Math.min((pData.facts * 2 / maxBar) * 50, 50);
+        const vibeWidth = Math.min((pData.vibes * 2 / maxBar) * 50, 50);
+        const factBar = document.getElementById('bench-titan-bar-facts-' + p);
+        const vibeBar = document.getElementById('bench-titan-bar-vibes-' + p);
+        factBar.style.width = factWidth + '%';
+        vibeBar.style.width = vibeWidth + '%';
+        if (pData.facts > 0) factBar.innerHTML = '<span class="score-bar-label">' + pData.facts + ' facts</span>';
+        else factBar.innerHTML = '';
+        if (pData.vibes > 0) vibeBar.innerHTML = '<span class="score-bar-label">' + pData.vibes + ' hedges</span>';
+        else vibeBar.innerHTML = '';
+        const scoreEl = document.getElementById('bench-titan-score-' + p);
+        scoreEl.textContent = (pData.score > 0 ? '+' : '') + pData.score;
+        scoreEl.classList.remove('positive', 'negative', 'zero');
+        if (pData.score > 0) scoreEl.classList.add('positive');
+        else if (pData.score < 0) scoreEl.classList.add('negative');
+        else scoreEl.classList.add('zero');
+      });
+
+      // Populate gap analysis (same logic as populateBenchmark)
+      const yourTotal = lastScoringData ? lastScoringData.totalScore : 0;
+      const titanTotal = benchmarkData.totalScore;
+      const gap = titanTotal - yourTotal;
+      const gapBody = document.getElementById('benchmark-gap-body');
+
+      if (gap > 20) {
+        document.getElementById('benchmark-gap-headline').textContent = 'There\'s a significant gap here';
+        gapBody.textContent = benchmarkData.titanName + ' scores ' + gap + ' points higher than you across all four AI platforms. That\'s the difference between AI agents recommending them and hedging about you. The good news: this gap is closable. The full Agent Readiness Audit maps exactly where your signals are missing and what to fix first.';
+      } else if (gap > 8) {
+        document.getElementById('benchmark-gap-headline').textContent = 'Room to improve';
+        gapBody.textContent = benchmarkData.titanName + ' leads you by ' + gap + ' points. That gap means AI agents cite more verifiable facts about them — more founding dates, team sizes, client names, awards. Every fact they have that you don\'t is a missed opportunity for recommendation. The full Audit identifies exactly which facts to surface.';
+      } else if (gap > 0) {
+        document.getElementById('benchmark-gap-headline').textContent = 'You\'re closer than most';
+        gapBody.textContent = 'Only ' + gap + ' points separate you from ' + benchmarkData.titanName + '. That\'s strong — but in AI-driven search, small edges compound. The full Audit digs into which specific signals are missing and how to close the remaining gap.';
+      } else {
+        document.getElementById('benchmark-gap-headline').textContent = 'You\'re outperforming the benchmark';
+        gapBody.textContent = 'You\'re scoring as well or better than ' + benchmarkData.titanName + ' in your industry. That\'s impressive and rare. The full Audit can help you maintain this edge and identify emerging AI surfaces where competitors might catch up.';
+      }
+
+      // Scroll to scorecard
+      scorecardEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ── Initialize Industry Dropdown ────────────────────────────────
+    document.addEventListener('DOMContentLoaded', function() {
+      const dropdown = document.getElementById('industry-dropdown');
+      const categories = Object.keys(BENCHMARK_LOOKUP).sort();
+      categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category;
+        dropdown.appendChild(option);
+      });
+    });
+
+    document.getElementById('check-form').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { e.preventDefault(); runCheck(); }
+    });
+    document.getElementById('gate-form').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { e.preventDefault(); submitEmail(); }
+    });
+  </script>
+
+  <script>
+    // Cookie banner
+    function acceptCookies() {
+      localStorage.setItem('cookies-accepted', 'true');
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+    function declineCookies() {
+      localStorage.setItem('cookies-accepted', 'false');
+      document.getElementById('cookie-banner').style.display = 'none';
+      window['ga-disable-G-B9S40S2SKG'] = true;
+    }
+    if (!localStorage.getItem('cookies-accepted')) {
+      document.getElementById('cookie-banner').style.display = 'flex';
+    } else if (localStorage.getItem('cookies-accepted') === 'false') {
+      window['ga-disable-G-B9S40S2SKG'] = true;
+    }
+  </script>
+
+</body>
+</html>
