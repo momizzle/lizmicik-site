@@ -1005,14 +1005,16 @@
 
         const factBar = document.getElementById('bar-facts-' + p);
         const vibeBar = document.getElementById('bar-vibes-' + p);
-        factBar.style.width = factWidth + '%';
-        vibeBar.style.width = vibeWidth + '%';
-
-        // Add count labels inside bars if wide enough
-        if (pData.facts > 0) factBar.innerHTML = '<span class="score-bar-label">' + pData.facts + ' facts</span>';
-        else factBar.innerHTML = '';
-        if (pData.vibes > 0) vibeBar.innerHTML = '<span class="score-bar-label">' + pData.vibes + ' hedges</span>';
-        else vibeBar.innerHTML = '';
+        if (factBar) {
+          factBar.style.width = factWidth + '%';
+          if (pData.facts > 0) factBar.innerHTML = '<span class="score-bar-label">' + pData.facts + ' facts</span>';
+          else factBar.innerHTML = '';
+        }
+        if (vibeBar) {
+          vibeBar.style.width = vibeWidth + '%';
+          if (pData.vibes > 0) vibeBar.innerHTML = '<span class="score-bar-label">' + pData.vibes + ' hedges</span>';
+          else vibeBar.innerHTML = '';
+        }
 
         // Update score number
         const scoreEl = document.getElementById('score-' + p);
