@@ -237,57 +237,141 @@
     }
 
     /* ============================================================
-       SAMPLE DIMENSION (show, don't tell)
+       PREVIEW ACCORDION (show, don't tell)
        ============================================================ */
-    .sample-dimension {
-      background: #fff; border: 1px solid var(--border); border-radius: 16px;
-      padding: 0; margin-top: 40px; box-shadow: var(--shadow-md);
-      overflow: hidden;
+    .preview-accordion {
+      margin-top: 48px;
     }
-    .sample-dimension-header {
-      background: var(--charcoal); color: #fff; padding: 16px 28px;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .sample-dimension-header h4 {
-      font-size: 0.95rem; font-weight: 600;
-    }
-    .sample-dimension-header .dim-layer {
-      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em;
-      color: var(--teal-light); font-weight: 600;
-    }
-    .sample-dimension-body { padding: 28px; }
-    .dim-score-row {
-      display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
-    }
-    .dim-score {
-      flex-shrink: 0; width: 56px; height: 56px; border-radius: 12px;
-      background: #FFF3E0; border: 2px solid #FFB74D;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 700;
-      color: #E65100;
-    }
-    .dim-score.good { background: #E8F5E9; border-color: #66BB6A; color: #2E7D32; }
-    .dim-score.poor { background: var(--red-bg); border-color: var(--red); color: var(--red); }
-    .dim-meta { font-size: 0.82rem; color: var(--slate-light); }
-    .dim-meta strong { color: var(--charcoal); font-weight: 600; }
-    .dim-finding {
+    .preview-accordion-intro {
       font-size: 0.92rem; color: var(--slate); line-height: 1.6;
+      margin-bottom: 24px; text-align: center;
+    }
+    .preview-item {
+      border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden; margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s;
+    }
+    .preview-item:hover { box-shadow: var(--shadow-md); }
+    .preview-item:last-child { margin-bottom: 0; }
+    .preview-toggle {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 24px; border: none; cursor: pointer;
+      background: linear-gradient(135deg, #4E7F80, #6A9FA0);
+      color: #fff; font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+    }
+    .preview-toggle:hover {
+      background: linear-gradient(135deg, #3d6b6c, #5a9394);
+    }
+    .preview-toggle-left {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .preview-toggle-left .layer-label {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; opacity: 0.8;
+    }
+    .preview-toggle-left h4 {
+      font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 600;
+      margin: 0;
+    }
+    .preview-toggle .toggle-icon {
+      font-size: 1.4rem; font-weight: 300; transition: transform 0.3s;
+      flex-shrink: 0; width: 28px; text-align: center;
+    }
+    .preview-item.open .toggle-icon { transform: rotate(45deg); }
+
+    .preview-body {
+      max-height: 0; overflow: hidden; padding: 0 28px;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      background: #fff;
+    }
+    .preview-item.open .preview-body {
+      max-height: 1000px;
+      padding: 28px;
+    }
+    .preview-finding {
+      margin-bottom: 20px;
+    }
+    .preview-severity {
+      display: inline-block; font-size: 0.72rem; font-weight: 600;
+      padding: 4px 10px; border-radius: 12px; margin-bottom: 10px;
+      white-space: nowrap;
+    }
+    .preview-severity.high {
+      background: #dc2626; color: #fff;
+    }
+    .preview-severity.medium {
+      background: #f59e0b; color: #fff;
+    }
+    .preview-finding h5 {
+      font-size: 0.95rem; font-weight: 500; color: var(--charcoal);
+      margin-bottom: 10px;
+    }
+    .preview-finding-desc {
+      font-size: 0.88rem; color: #545B6A; line-height: 1.7;
       margin-bottom: 16px;
     }
-    .dim-recommendation {
-      background: var(--teal-bg); border-left: 3px solid var(--teal);
-      padding: 14px 18px; border-radius: 0 8px 8px 0;
+    .preview-whatwefound {
+      font-size: 0.88rem; color: #545B6A; line-height: 1.7;
+      margin-bottom: 16px;
+      border-left: 3px solid var(--teal); padding-left: 16px;
     }
-    .dim-recommendation-label {
-      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.06em; color: var(--teal); margin-bottom: 4px;
+    .preview-whatwefound strong {
+      display: block; font-size: 0.82rem; font-weight: 500;
+      color: var(--teal-deep); margin-bottom: 6px;
     }
-    .dim-recommendation p {
+    .preview-rec {
       font-size: 0.88rem; color: var(--charcoal); line-height: 1.5;
+      padding: 12px; background: var(--cream);
+      border-left: 3px solid var(--warm-gold); border-radius: 4px;
     }
-    .sample-badge {
-      display: inline-block; margin-top: 16px;
-      font-size: 0.75rem; color: var(--slate-light); font-style: italic;
+    .preview-rec strong {
+      font-weight: 600;
+    }
+    .preview-techdetail {
+      margin-top: 12px;
+    }
+    .preview-techdetail summary {
+      cursor: pointer; font-size: 0.8rem; font-weight: 500;
+      color: var(--teal-deep); list-style: none;
+      display: flex; align-items: center; gap: 6px;
+      user-select: none; padding: 4px 0;
+    }
+    .preview-techdetail summary::-webkit-details-marker { display: none; }
+    .preview-techdetail summary::marker { display: none; content: ""; }
+    .preview-techdetail summary::before {
+      content: "+"; font-size: 0.85rem; font-weight: 700;
+      color: var(--teal); width: 14px; text-align: center;
+      transition: transform 0.2s;
+    }
+    .preview-techdetail[open] > summary::before {
+      content: "\2212";
+    }
+    .preview-techdetail-body {
+      margin-top: 8px; font-size: 0.82rem; color: #545B6A;
+      line-height: 1.6;
+    }
+    .preview-techdetail-body code {
+      font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.78rem;
+      background: var(--cream); padding: 1px 5px; border-radius: 3px;
+    }
+    .preview-techdetail-body .pages-affected {
+      margin-top: 8px; font-weight: 600; font-size: 0.8rem;
+      color: var(--charcoal);
+    }
+    .preview-techdetail-body ul {
+      list-style: none; padding: 0; margin: 4px 0 0;
+      font-size: 0.78rem; font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+    .preview-techdetail-body ul li {
+      padding: 5px 0; border-bottom: 1px solid rgba(44, 48, 56, 0.06);
+      color: #545B6A;
+    }
+    .preview-techdetail-body ul li:last-child { border-bottom: none; }
+    .preview-note {
+      text-align: center; margin-top: 24px;
+      font-size: 0.82rem; color: var(--slate-light); font-style: italic;
     }
 
     /* ============================================================
@@ -752,6 +836,111 @@
           </div>
         </div>
 
+        <!-- Preview Accordion: Real findings from a real audit -->
+        <div class="preview-accordion">
+          <p class="preview-accordion-intro">Here's what actual findings look like — from a real audit, client identity redacted.</p>
+
+          <!-- FIND -->
+          <div class="preview-item">
+            <button class="preview-toggle" onclick="togglePreview(this)">
+              <div class="preview-toggle-left">
+                <div>
+                  <span class="layer-label">Find</span>
+                  <h4>Can AI crawlers actually reach your content?</h4>
+                </div>
+              </div>
+              <span class="toggle-icon">+</span>
+            </button>
+            <div class="preview-body">
+              <div class="preview-finding">
+                <span class="preview-severity medium">Medium</span>
+                <h5>Selective AI Crawler Management</h5>
+                <p class="preview-finding-desc">Modern AI platforms each send their own named crawler to read your website. Explicitly allowing these crawlers by name signals that your site welcomes AI indexing and can improve crawl priority.</p>
+                <div class="preview-whatwefound">
+                  <strong>What we found</strong>
+                  This site has explicit rules for Claude's bots but does not address GPTBot, PerplexityBot, Google-Extended, Bytespider, or other AI crawlers. While technically allowed under the wildcard rule, adding explicit Allow directives for each signals intent and can improve how thoroughly they index your content.
+                </div>
+                <details class="preview-techdetail">
+                  <summary>Technical detail</summary>
+                  <div class="preview-techdetail-body">
+                    <p>AI crawlers not specifically addressed: GPTBot, Google-Extended, Bytespider, CCBot, Anthropic-AI, PerplexityBot, Amazonbot. These all fall under User-Agent: * (permissive). The selective Claude-only approach may be from an early implementation before other AI crawlers became standard.</p>
+                  </div>
+                </details>
+                <div class="preview-rec"><strong>Recommendation:</strong> Add explicit Allow: / directives for GPTBot, Google-Extended, PerplexityBot, Bytespider, CCBot, and Amazonbot.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- UNDERSTAND -->
+          <div class="preview-item">
+            <button class="preview-toggle" onclick="togglePreview(this)">
+              <div class="preview-toggle-left">
+                <div>
+                  <span class="layer-label">Understand</span>
+                  <h4>Does your structured data tell AI what you do?</h4>
+                </div>
+              </div>
+              <span class="toggle-icon">+</span>
+            </button>
+            <div class="preview-body">
+              <div class="preview-finding">
+                <span class="preview-severity high">High</span>
+                <h5>Services Pages Lack Service Schema</h5>
+                <p class="preview-finding-desc">Schema.org Service markup tells AI systems "this page describes a professional service." Without it, AI models must guess whether a page is about services, a blog post, or something else entirely.</p>
+                <div class="preview-whatwefound">
+                  <strong>What we found</strong>
+                  Both the services overview and service detail pages use generic WebPage schema. Neither declares Service or ProfessionalService type. When a prospect asks AI "What services does this firm offer?", the AI cannot cite structured schema and must parse unstructured text instead.
+                </div>
+                <details class="preview-techdetail">
+                  <summary>Technical detail</summary>
+                  <div class="preview-techdetail-body">
+                    <p>WordPress theme defaults to WebPage type for all pages. Yoast SEO does not auto-generate Service schema. Requires custom post type schema template in child theme.</p>
+                    <p class="pages-affected">Pages affected:</p>
+                    <ul>
+                      <li>https://████████.com/service-areas — <code>has_service: false</code></li>
+                      <li>https://████████.com/service-areas/strategy-scale — <code>has_service: false</code></li>
+                    </ul>
+                  </div>
+                </details>
+                <div class="preview-rec"><strong>Recommendation:</strong> Implement schema.org/Service on all service pages with properties: name, description, provider (Organization), areaServed, serviceType.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TRUST -->
+          <div class="preview-item">
+            <button class="preview-toggle" onclick="togglePreview(this)">
+              <div class="preview-toggle-left">
+                <div>
+                  <span class="layer-label">Trust</span>
+                  <h4>Will AI actually recommend your business?</h4>
+                </div>
+              </div>
+              <span class="toggle-icon">+</span>
+            </button>
+            <div class="preview-body">
+              <div class="preview-finding">
+                <span class="preview-severity high">High</span>
+                <h5>Zero Visibility Across All AI Models</h5>
+                <p class="preview-finding-desc">AI visibility measures whether AI systems mention your firm when users ask questions in your industry. We test this by running structured conversations across multiple AI models and tracking which firms are mentioned.</p>
+                <div class="preview-whatwefound">
+                  <strong>What we found</strong>
+                  This firm has 0% visibility across all four AI model families tested: DeepSeek, Perplexity, Gemini, and OpenAI. In 80 AI conversations, the firm was never mentioned. This is not a ranking problem. The firm is completely absent from AI answers about their industry.
+                </div>
+                <details class="preview-techdetail">
+                  <summary>Technical detail</summary>
+                  <div class="preview-techdetail-body">
+                    <p>20 prompts generating 80 conversations across 4 model families. This site: 0 mentions across 397 total source citations. Top cited in category: bcg.com (23), mckinsey.com (22), youtube.com (17), pwc.com (17), deloitte.com (15), bain.com (15).</p>
+                  </div>
+                </details>
+                <div class="preview-rec"><strong>Recommendation:</strong> This finding is the result of compounding failures across Find and Understand dimensions. Fixing schema, content depth, and authority signals will begin building the foundation for visibility. Re-run testing in 90 days after implementing initial fixes.</div>
+              </div>
+            </div>
+          </div>
+
+          <p class="preview-note">Each audit includes 30 scored findings across all three layers, plus a prioritized action plan.</p>
+        </div>
+
       </div>
     </section>
 
@@ -1036,6 +1225,18 @@
   </div>
 
   <script>
+    // Preview accordion toggle
+    function togglePreview(btn) {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.preview-item').forEach(i => i.classList.remove('open'));
+      // Open clicked (if it wasn't already open)
+      if (!isOpen) {
+        item.classList.add('open');
+      }
+    }
+
     // FAQ toggle
     function toggleFaq(btn) {
       const answer = btn.nextElementSibling;
