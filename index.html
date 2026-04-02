@@ -49,7 +49,7 @@
                 "givenName": "Liz",
                 "familyName": "Micik",
                 "url": "https://lizmicik.com",
-                "email": "mailto:lizmicik@gmail.com",
+                "email": "mailto:info@lizmicik.com",
                 "sameAs": [
                     "https://www.linkedin.com/in/lizmicik"
                 ],
@@ -1074,7 +1074,7 @@
                 </div>
                 <button type="submit" class="form-submit">Send Message</button>
             </form>
-            <p class="contact-email fade-in">Or reach me directly at <a href="mailto:lizmicik@gmail.com">lizmicik@gmail.com</a></p>
+            <p class="contact-email fade-in">Or reach me directly at <a href="mailto:info@lizmicik.com">info@lizmicik.com</a></p>
         </div>
     </section>
     <!-- Cookie Banner -->
@@ -1166,6 +1166,51 @@
             btn.addEventListener('click', function() {
                 document.cookie = 'cookie_notice=1;path=/;max-age=' + (60*60*24*365) + ';SameSite=Lax';
                 banner.style.display = 'none';
+            });
+        })();
+
+        // Contact form: Kit subscription + email notification
+        (function() {
+            var form = document.querySelector('form[name="contact"]');
+            if (!form) return;
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var btn = form.querySelector('.form-submit');
+                var origText = btn.textContent;
+                btn.textContent = 'Sending...';
+                btn.disabled = true;
+
+                var name = form.querySelector('[name="name"]').value;
+                var email = form.querySelector('[name="email"]').value;
+                var message = form.querySelector('[name="message"]').value;
+
+                // Fire Kit subscribe + notification in parallel (non-blocking to Netlify submit)
+                var kitCall = fetch('/api/subscribe-kit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, source: 'contact' })
+                }).catch(function(err) { console.warn('Kit subscribe failed:', err); });
+
+                var notifyCall = fetch('/api/notify-form', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ source: 'contact', name: name, email: email, message: message })
+                }).catch(function(err) { console.warn('Notify failed:', err); });
+
+                // Wait for both, then submit to Netlify Forms
+                Promise.allSettled([kitCall, notifyCall]).then(function() {
+                    // Submit natively to Netlify Forms
+                    var formData = new FormData(form);
+                    fetch('/', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: new URLSearchParams(formData).toString()
+                    }).then(function() {
+                        form.innerHTML = '<p style="text-align:center;font-size:1.1rem;color:#018799;padding:24px 0;">Thank you! I\'ll be in touch within 24 hours.</p>';
+                    }).catch(function() {
+                        form.innerHTML = '<p style="text-align:center;font-size:1.1rem;color:#018799;padding:24px 0;">Thank you! I\'ll be in touch within 24 hours.</p>';
+                    });
+                });
             });
         })();
     </script>

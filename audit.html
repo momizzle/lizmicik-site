@@ -1265,6 +1265,62 @@
     } else if (localStorage.getItem('cookies-accepted') === 'false') {
       window['ga-disable-G-B9S40S2SKG'] = true;
     }
+
+    // Audit application form: Kit subscription + email notification
+    (function() {
+      var form = document.querySelector('form[name="audit-application"]');
+      if (!form) return;
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var btn = form.querySelector('.form-submit');
+        var origText = btn.textContent;
+        btn.textContent = 'Submitting...';
+        btn.disabled = true;
+
+        var name = form.querySelector('[name="name"]').value;
+        var email = form.querySelector('[name="email"]').value;
+        var website = form.querySelector('[name="website"]').value;
+        var companySize = form.querySelector('[name="company-size"]').value;
+        var aboutBusiness = form.querySelector('[name="about-business"]').value;
+        var howFound = form.querySelector('[name="how-found"]').value;
+
+        // Fire Kit subscribe + notification in parallel
+        var kitCall = fetch('/api/subscribe-kit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, source: 'audit' })
+        }).catch(function(err) { console.warn('Kit subscribe failed:', err); });
+
+        var notifyCall = fetch('/api/notify-form', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            source: 'audit',
+            name: name,
+            email: email,
+            website: website,
+            companySize: companySize,
+            aboutBusiness: aboutBusiness,
+            howFound: howFound
+          })
+        }).catch(function(err) { console.warn('Notify failed:', err); });
+
+        // Wait for both, then submit to Netlify Forms and redirect
+        Promise.allSettled([kitCall, notifyCall]).then(function() {
+          var formData = new FormData(form);
+          fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString()
+          }).then(function() {
+            window.location.href = '/audit-thank-you';
+          }).catch(function() {
+            // Still redirect even if Netlify form fails
+            window.location.href = '/audit-thank-you';
+          });
+        });
+      });
+    })();
   </script>
 
 </body>

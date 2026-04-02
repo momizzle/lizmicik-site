@@ -6,7 +6,15 @@
  *
  * Environment variables required (set in Netlify dashboard):
  *   KIT_API_KEY
- *   KIT_FORM_ID
+ *   KIT_FORM_ID              -- default form (Signal Check email gate)
+ *   KIT_CONTACT_FORM_ID      -- contact form (triggers Email B)
+ *   KIT_AUDIT_FORM_ID        -- audit application form (triggers Email C)
+ *
+ * Expects POST body:
+ *   { email, source? }
+ *
+ *   source: "signal-check" (default), "contact", or "audit"
+ *   Maps to the corresponding KIT_*_FORM_ID env var.
  */
 
 export default async (request) => {
@@ -31,7 +39,7 @@ export default async (request) => {
 
   try {
     const body = await request.json();
-    const { email } = body;
+    const { email, source } = body;
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return new Response(JSON.stringify({ error: 'Valid email required' }), {
@@ -41,10 +49,22 @@ export default async (request) => {
     }
 
     const apiKey = Netlify.env.get('KIT_API_KEY');
-    const formId = Netlify.env.get('KIT_FORM_ID');
 
-    if (!apiKey || !formId) {
-      console.error('Missing KIT_API_KEY or KIT_FORM_ID environment variables');
+    // Resolve the correct Kit form ID based on source
+    let formId;
+    switch (source) {
+      case 'contact':
+        formId = Netlify.env.get('KIT_CONTACT_FORM_ID');
+        break;
+      case 'audit':
+        formId = Netlify.env.get('KIT_AUDIT_FORM_ID');
+        break;
+      default:
+        formId = Netlify.env.get('KIT_FORM_ID');
+    }
+
+    if (!apiKey) {
+      console.error('Missing KIT_API_KEY environment variable');
       return new Response(JSON.stringify({ error: 'Server configuration error' }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' },
@@ -72,18 +92,23 @@ export default async (request) => {
     }
 
     // Step 2: Associate subscriber with the form (for tracking + automations)
-    const formResponse = await fetch(`https://api.kit.com/v4/forms/${formId}/subscribers`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Kit-Api-Key': apiKey,
-      },
-      body: JSON.stringify({ email_address: email }),
-    });
+    // Skip if no form ID configured for this source
+    if (formId) {
+      const formResponse = await fetch(`https://api.kit.com/v4/forms/${formId}/subscribers`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Kit-Api-Key': apiKey,
+        },
+        body: JSON.stringify({ email_address: email }),
+      });
 
-    if (!formResponse.ok) {
-      console.warn('Kit form association warning:', formResponse.status);
-      // Non-fatal — subscriber was still created
+      if (!formResponse.ok) {
+        console.warn(`Kit form association warning (source: ${source || 'default'}, formId: ${formId}):`, formResponse.status);
+        // Non-fatal -- subscriber was still created
+      }
+    } else {
+      console.warn(`No Kit form ID configured for source: ${source || 'default'}. Subscriber created but not associated with a form.`);
     }
 
     return new Response(JSON.stringify({ success: true, subscriber: subData }), {
