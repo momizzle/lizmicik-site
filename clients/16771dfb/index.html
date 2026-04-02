@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Deliverables - Liz Micik</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF8F5;
+    --cream-dark: #F2EDE7;
+    --slate: #2C3038;
+    --slate-light: #3D424D;
+    --slate-mid: #545B6A;
+    --teal-deep: #4E7F80;
+    --accent-teal: #6A9FA0;
+    --teal-light: #8ABCBD;
+    --accent-copper: #B07D5B;
+    --font-heading: 'Lora', Georgia, serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--slate);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--slate) 0%, var(--slate-light) 100%);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .header h1 {
+    font-family: var(--font-heading);
+    color: var(--cream);
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .header p {
+    color: var(--teal-light);
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+    flex: 1;
+  }
+
+  .welcome {
+    margin-bottom: 2.5rem;
+  }
+
+  .welcome h2 {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--slate);
+    margin-bottom: 0.75rem;
+  }
+
+  .welcome p {
+    color: var(--slate-mid);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .deliverables {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .deliverable-card {
+    background: #fff;
+    border: 1px solid var(--cream-dark);
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    text-decoration: none;
+    color: var(--slate);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .deliverable-card:hover {
+    border-color: var(--accent-teal);
+    box-shadow: 0 2px 12px rgba(78, 127, 128, 0.1);
+  }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.25rem;
+  }
+
+  .icon-html { background: linear-gradient(135deg, var(--teal-deep), var(--accent-teal)); color: #fff; }
+  .icon-pdf { background: linear-gradient(135deg, #c0392b, #e74c3c); color: #fff; }
+  .icon-video { background: linear-gradient(135deg, var(--accent-copper), #c99272); color: #fff; }
+  .icon-deck { background: linear-gradient(135deg, var(--slate), var(--slate-mid)); color: #fff; }
+
+  .card-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  .card-content p {
+    color: var(--slate-mid);
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .card-arrow {
+    margin-left: auto;
+    color: var(--accent-teal);
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .placeholder-card {
+    opacity: 0.45;
+    pointer-events: none;
+    cursor: default;
+  }
+
+  .placeholder-card .card-content p {
+    font-style: italic;
+  }
+
+  .contact-section {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .contact-section p {
+    color: var(--slate-mid);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .contact-section a {
+    color: var(--teal-deep);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .contact-section a:hover {
+    text-decoration: underline;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--slate-mid);
+    font-size: 0.8rem;
+  }
+
+  .footer a {
+    color: var(--slate-mid);
+    text-decoration: none;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 600px) {
+    .header { padding: 2rem 1.25rem; }
+    .header h1 { font-size: 1.4rem; }
+    .container { padding: 2rem 1.25rem; }
+    .deliverable-card { padding: 1.25rem; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Liz Micik</h1>
+    <p>Agent Readiness Audit&#8482;</p>
+  </div>
+
+  <div class="container">
+    <div class="welcome">
+      <h2>Your Deliverables</h2>
+      <p>Everything from your engagement is collected here. Files will be added as they become available.</p>
+    </div>
+
+    <div class="deliverables">
+      <a href="report.html" class="deliverable-card">
+        <div class="card-icon icon-html">&#9671;</div>
+        <div class="card-content">
+          <h3>Interactive Audit Report</h3>
+          <p>Full findings across all three layers with scoring, evidence, and recommendations.</p>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+      <div class="deliverable-card placeholder-card">
+        <div class="card-icon icon-pdf">&#9724;</div>
+        <div class="card-content">
+          <h3>Executive Summary (PDF)</h3>
+          <p>Coming soon</p>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </div>
+
+      <div class="deliverable-card placeholder-card">
+        <div class="card-icon icon-video">&#9654;</div>
+        <div class="card-content">
+          <h3>Video Walkthrough</h3>
+          <p>Coming soon</p>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </div>
+
+      <div class="deliverable-card placeholder-card">
+        <div class="card-icon icon-deck">&#9632;</div>
+        <div class="card-content">
+          <h3>Presentation Deck</h3>
+          <p>Coming soon</p>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </div>
+    </div>
+
+    <div class="contact-section">
+      <p>Questions about your audit? Reach out directly at <a href="mailto:info@lizmicik.com">info@lizmicik.com</a></p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+    <p style="margin-top:0.5rem;"><a href="/privacy-policy">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms">Terms of Use</a></p>
+  </footer>
+
+</body>
+</html>

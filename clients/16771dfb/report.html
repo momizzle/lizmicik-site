@@ -1,0 +1,2223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Agent Readiness Audit™ - Sample Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FAF8F5;
+      --cream-dark: #F2EDE7;
+      --slate: #2C3038;
+      --slate-light: #3D424D;
+      --slate-mid: #545B6A;
+      --accent-teal: #6A9FA0;
+      --teal-deep: #4E7F80;
+      --teal-light: #8ABCBD;
+      --accent-copper: #B07D5B;
+      --accent-blue: #7B8DAE;
+      --text-primary: #2C3038;
+      --text-secondary: #545B6A;
+      --text-light: #F2EDE7;
+      --high: #dc2626;
+      --medium: #f59e0b;
+      --low: #fde047;
+      --pass: #16a34a;
+      --neutral: #8A8580;
+      --font-heading: 'Lora', Georgia, serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      background-color: var(--cream);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Report Header */
+    .report-header {
+      background: linear-gradient(135deg, var(--teal-deep) 0%, var(--accent-teal) 100%);
+      color: white;
+      padding: 64px 24px;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .report-header h1 {
+      font-family: var(--font-heading);
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .report-header .subtitle {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 24px;
+      opacity: 0.95;
+    }
+
+    .report-header .meta {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .report-header .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .report-header .meta-label {
+      font-weight: 600;
+      opacity: 0.85;
+    }
+
+    .report-header .tagline {
+      font-style: italic;
+      margin-top: 32px;
+      font-size: 16px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.95;
+    }
+
+    /* Executive Summary Section */
+    .executive-summary {
+      background-color: white;
+      border: 1px solid var(--cream-dark);
+      border-radius: 8px;
+      padding: 48px;
+      margin-bottom: 48px;
+    }
+
+    .executive-summary h2 {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 32px;
+      color: var(--slate);
+    }
+
+    .executive-summary .shift-section {
+      margin-bottom: 48px;
+    }
+
+    .executive-summary .shift-section h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--slate);
+    }
+
+    .executive-summary .shift-section p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    /* Result Cards Grid */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .result-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 24px;
+      border-left: 4px solid var(--accent-teal);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .result-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .result-card h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--slate);
+    }
+
+    .result-card .question {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .result-card .verdict {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .severity-bar {
+      display: flex;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      gap: 0;
+    }
+
+    .severity-segment {
+      display: flex;
+    }
+
+    .severity-segment.high {
+      background-color: var(--high);
+    }
+
+    .severity-segment.medium {
+      background-color: var(--medium);
+    }
+
+    .severity-segment.low {
+      background-color: var(--low);
+    }
+
+    .severity-segment.pass {
+      background-color: var(--pass);
+    }
+
+    /* Severity Badges */
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .badge.high {
+      background-color: var(--high);
+      color: white;
+    }
+
+    .badge.medium {
+      background-color: #f59e0b;
+      color: white;
+    }
+
+    .badge.low {
+      background-color: #fde047;
+      color: var(--slate);
+    }
+
+    .badge.pass {
+      background-color: var(--pass);
+      color: white;
+    }
+
+    /* Count Badges */
+    .count-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .count-badge.high {
+      background-color: var(--high);
+      color: white;
+    }
+
+    .count-badge.medium {
+      background-color: var(--medium);
+      color: var(--slate);
+    }
+
+    .count-badge.low {
+      background-color: var(--low);
+      color: var(--slate);
+    }
+
+    .count-badge.pass {
+      background-color: var(--pass);
+      color: white;
+    }
+
+    .count-badge.neutral {
+      background-color: var(--neutral);
+      color: white;
+    }
+
+    /* Tabs */
+    .tab-container {
+      margin-bottom: 48px;
+    }
+
+    .tab-nav {
+      display: flex;
+      border-bottom: 2px solid var(--cream-dark);
+      margin-bottom: 32px;
+    }
+
+    .tab-button {
+      background: none;
+      border: none;
+      padding: 16px 24px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+      margin-bottom: -2px;
+    }
+
+    .tab-button:hover {
+      color: var(--accent-teal);
+    }
+
+    .tab-button.active {
+      color: var(--accent-teal);
+      border-bottom-color: var(--accent-teal);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Heatmap Table */
+    .heatmap-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .heatmap-table th,
+    .heatmap-table td {
+      padding: 12px 16px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .heatmap-table th {
+      background-color: var(--slate);
+      color: white;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .heatmap-table th:first-child {
+      text-align: left;
+    }
+
+    .heatmap-table td {
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .heatmap-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .heatmap-table tbody tr:nth-child(odd) {
+      background-color: var(--cream);
+    }
+
+    /* <span class="redacted">Jabian</span> column special styling */
+    .jabian-column {
+      background-color: #fef2f2;
+    }
+
+    .jabian-column.heatmap-cell {
+      background-color: #fee2e2;
+      font-weight: 600;
+    }
+
+    /* Heatmap cells with color coding */
+    .heatmap-cell {
+      border-radius: 4px;
+    }
+
+    .heatmap-cell.zero {
+      background-color: #fecaca;
+      color: var(--slate);
+    }
+
+    .heatmap-cell.low-range {
+      background-color: #fed7aa;
+      color: var(--slate);
+    }
+
+    .heatmap-cell.medium-range {
+      background-color: #bbf7d0;
+      color: var(--slate);
+    }
+
+    .heatmap-cell.high-range {
+      background-color: #6ee7b7;
+      color: var(--slate);
+    }
+
+    /* Dimension Headers */
+    .layer-header {
+      background: linear-gradient(135deg, var(--teal-deep) 0%, var(--accent-teal) 100%);
+      color: white;
+      padding: 28px 28px 24px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+
+    .layer-header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .layer-header h3 {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .layer-header .badges {
+      display: flex;
+      gap: 8px;
+    }
+
+    .layer-header .layer-description {
+      font-size: 14px;
+      line-height: 1.7;
+      opacity: 0.92;
+      margin: 0;
+    }
+
+    /* Findings Section */
+    .findings-section {
+      background-color: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 32px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .findings-section h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--slate);
+    }
+
+    details {
+      margin-bottom: 16px;
+      border-left: 3px solid var(--cream-dark);
+      padding-left: 16px;
+    }
+
+    details[open] {
+      border-left-color: var(--accent-teal);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+      list-style: none;
+      padding: 8px 0;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+    summary::marker { display: none; content: ""; }
+
+    summary::before {
+      content: "▶";
+      font-size: 10px;
+      color: var(--accent-teal);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+      width: 14px;
+    }
+
+    details[open] > summary::before {
+      transform: rotate(90deg);
+    }
+
+    /* Level 2 expandable: "What we found" */
+    details details summary {
+      font-size: 14px;
+      color: var(--teal-deep);
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--cream-dark);
+    }
+
+    details details summary::before {
+      content: "+";
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-teal);
+      width: 14px;
+      text-align: center;
+    }
+
+    details details[open] > summary::before {
+      content: "−";
+      transform: none;
+    }
+
+    /* Level 3 expandable: "Technical detail" */
+    details details details summary {
+      font-size: 13px;
+      color: var(--text-secondary);
+      border-bottom: none;
+    }
+
+    details details details summary::before {
+      content: "◦";
+      font-size: 12px;
+      color: var(--slate-mid);
+    }
+
+    details details details[open] > summary::before {
+      content: "•";
+      transform: none;
+    }
+
+    .finding-content {
+      margin-top: 12px;
+      padding-top: 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .topic-intro {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin: -4px 0 16px 0;
+      padding: 8px 12px;
+      background: rgba(106, 159, 160, 0.06);
+      border-radius: 4px;
+      line-height: 1.6;
+    }
+
+    /* Roadmap Phase Cards */
+    .phase-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .phase-header {
+      background-color: var(--slate);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .phase-card table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .phase-card table th {
+      background-color: var(--cream);
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--slate);
+      border-bottom: 2px solid var(--cream-dark);
+    }
+
+    .phase-card table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .phase-card table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Finding Checklist */
+    .checklist-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .checklist-table th {
+      background-color: var(--slate);
+      color: white;
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .checklist-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--cream-dark);
+      font-size: 13px;
+    }
+
+    .checklist-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .checklist-table tbody tr:nth-child(odd) {
+      background-color: var(--cream);
+    }
+
+    .severity-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .severity-dot.high {
+      background-color: var(--high);
+    }
+
+    .severity-dot.medium {
+      background-color: var(--medium);
+    }
+
+    .severity-dot.low {
+      background-color: var(--low);
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--slate);
+      color: var(--text-light);
+      padding: 40px 24px;
+      text-align: center;
+      margin-top: 64px;
+    }
+
+    .footer p {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .footer a {
+      color: var(--teal-light);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background-color: white;
+      }
+
+      .tab-container {
+        break-inside: avoid;
+      }
+
+      .tab-button {
+        display: none;
+      }
+
+      .tab-nav {
+        display: none;
+      }
+
+      .tab-content {
+        display: block !important;
+      }
+
+      details {
+        border-left: 3px solid var(--accent-teal) !important;
+      }
+
+      details > summary::before { content: "▼" !important; transform: none !important; }
+      details details > summary::before { content: "−" !important; }
+      details details details > summary::before { content: "•" !important; }
+
+      details[open] {
+        break-inside: avoid;
+      }
+
+      .result-card,
+      .findings-section,
+      .phase-card,
+      .executive-summary {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      .report-header {
+        break-inside: avoid;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .report-header h1 {
+        font-size: 36px;
+      }
+
+      .report-header .meta {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      .executive-summary {
+        padding: 24px;
+      }
+    }
+
+    /* Redaction blur for sample version */
+    .redacted {
+      filter: blur(5px);
+      -webkit-filter: blur(5px);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .report-header .redacted {
+      filter: blur(10px);
+      -webkit-filter: blur(10px);
+    }
+    .redacted-note {
+      text-align: center;
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      padding: 12px 24px;
+      border-radius: 6px;
+      margin: 0 auto 32px;
+      max-width: 960px;
+      font-size: 13px;
+      color: #856404;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sample Notice -->
+  <div class="redacted-note" style="margin-top: 24px;">
+    <strong>Sample Report</strong> — Client identity redacted for confidentiality. All findings, data, and recommendations are from a real engagement.
+  </div>
+
+  <!-- Report Header -->
+  <div class="report-header">
+    <h1><span class="redacted">Jabian</span> Consulting</span></h1>
+    <div class="subtitle" style="font-size: 14px; opacity: 0.85; margin-bottom: 4px;"><span class="redacted">jabian.com</span></div>
+    <div style="font-family: var(--font-heading); font-size: 24px; font-weight: 600; margin-bottom: 24px; letter-spacing: 0.5px;">Agent Readiness Audit™</div>
+    <div class="meta">
+      <div class="meta-item">
+        <span class="meta-label">Prepared by</span>
+        <span>Liz Micik, lizmicik.com</span>
+        <span style="font-size: 13px; opacity: 0.8; margin-top: 2px;">March 31, 2026</span>
+      </div>
+    </div>
+    <div class="tagline">Every company built a website to talk to humans.<br>Nobody built one to talk to AI.</div>
+  </div>
+
+  <!-- Executive Summary -->
+  <div class="container">
+    <section class="executive-summary">
+      <h2>Executive Summary</h2>
+
+      <div class="shift-section">
+        <h3>The Shift</h3>
+        <p>Your buyers are increasingly asking AI instead of searching Google. When a mid-market executive asks ChatGPT, Claude, or Perplexity for a management consulting recommendation, the AI builds its answer from your digital footprint: your structured data, your content depth, and how consistently you show up across platforms. If your website doesn't speak that language, you don't exist in those answers.</p>
+      </div>
+
+      <div class="shift-section">
+        <h3>Your Results</h3>
+        <div class="results-grid">
+          <!-- Card 1 -->
+          <div class="result-card" style="border-left-color: var(--high);">
+            <h3>Find</h3>
+            <div class="question">Can AI access your website?</div>
+            <div class="verdict">Your doors are mostly open. Robots.txt is permissive, sitemaps are current, and Cloudflare provides solid infrastructure. But there's no llms.txt file to communicate directly with AI models, Cloudflare's Markdown for Agents feature isn't configured, and only Claude-specific crawler rules exist. The foundation is there, but the AI-specific handshake is missing.</div>
+            <div class="severity-bar">
+              <div class="severity-segment high" style="flex: 1;"></div>
+              <div class="severity-segment medium" style="flex: 2;"></div>
+              <div class="severity-segment low" style="flex: 2;"></div>
+              <div class="severity-segment pass" style="flex: 2;"></div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="result-card" style="border-left-color: var(--high);">
+            <h3>Understand</h3>
+            <div class="question">Does AI get what you do?</div>
+            <div class="verdict">AI can reach your pages, but it can't extract meaning from them. Only 1% of your HTML uses semantic tags. There's no Service, CaseStudy, or Person schema anywhere. Service descriptions run just 226 words. Case studies list no client names or metrics. Your 18 leaders have zero structured data connecting them to their expertise.</div>
+            <div class="severity-bar">
+              <div class="severity-segment high" style="flex: 8;"></div>
+              <div class="severity-segment medium" style="flex: 3;"></div>
+              <div class="severity-segment low" style="flex: 1;"></div>
+              <div class="severity-segment pass" style="flex: 2;"></div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="result-card" style="border-left-color: var(--high);">
+            <h3>Trust</h3>
+            <div class="question">Will AI recommend you?</div>
+            <div class="verdict">No. Across 80 AI conversations spanning 4 model families and 4 buyer personas, <span class="redacted">Jabian</span> was mentioned zero times. Competitors BCG, Bain, and Accenture capture 30 to 65% of recommendations. Your website was cited 0 times out of 397 total source citations. This is not a ranking problem. It is complete absence.</div>
+            <div class="severity-bar">
+              <div class="severity-segment high" style="flex: 7;"></div>
+              <div class="severity-segment medium" style="flex: 4;"></div>
+              <div class="severity-segment low" style="flex: 0;"></div>
+              <div class="severity-segment pass" style="flex: 1;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shift-section">
+        <h3>What This Means</h3>
+        <p>When mid-market executives ask AI for consulting recommendations, your competitors are the answer and you are not. Across every model, every persona, and every topic we tested, <span class="redacted">Jabian</span> is invisible. This is not a ranking problem. It is complete absence. The good news: the causes are identifiable and fixable, and the highest-impact changes are within reach.</p>
+      </div>
+
+      <div class="shift-section">
+        <h3>Key Findings</h3>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: var(--cream); border-radius: 6px; border-left: 4px solid var(--high);">
+            <span class="badge high" style="flex-shrink: 0; margin-top: 2px;">HIGH</span>
+            <div>
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Zero AI visibility across all models and personas</div>
+              <div style="font-size: 14px; color: var(--text-secondary);">Across 80 AI conversations, <span class="redacted">Jabian</span> was recommended 0 times. Competitors BCG, Bain, and Accenture capture 30–65% of recommendations.</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: var(--cream); border-radius: 6px; border-left: 4px solid var(--high);">
+            <span class="badge high" style="flex-shrink: 0; margin-top: 2px;">HIGH</span>
+            <div>
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">No structured data for services, people, or case studies</div>
+              <div style="font-size: 14px; color: var(--text-secondary);">AI systems cannot machine-read what <span class="redacted">Jabian</span> does, who works there, or what results they've delivered. Service, Person, and CaseStudy schema are all missing.</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: var(--cream); border-radius: 6px; border-left: 4px solid var(--high);">
+            <span class="badge high" style="flex-shrink: 0; margin-top: 2px;">HIGH</span>
+            <div>
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Content lacks the depth and specificity AI needs to cite</div>
+              <div style="font-size: 14px; color: var(--text-secondary);">Service pages average 226 words with zero "we help" statements. Case studies name no clients and cite no metrics. AI has nothing substantive to reference.</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: var(--cream); border-radius: 6px; border-left: 4px solid var(--medium);">
+            <span class="badge medium" style="flex-shrink: 0; margin-top: 2px;">MEDIUM</span>
+            <div>
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Semantic HTML at 1% — AI can't parse page structure</div>
+              <div style="font-size: 14px; color: var(--text-secondary);">No &lt;main&gt; tags, missing H1s across key pages, and 80%+ images lack alt text. AI crawlers see a flat wall of &lt;div&gt; elements with no meaningful structure.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- HOW WE TESTED Section -->
+  <div class="container">
+    <section class="findings-section" style="padding: 0; box-shadow: none; background: transparent;">
+      <h3 style="font-size: 28px; margin-bottom: 32px; color: var(--slate);">Methodology</h3>
+
+      <div class="tab-container">
+        <div class="tab-nav">
+          <button class="tab-button active" data-tab="howwetested-tab">How We Tested</button>
+          <button class="tab-button" data-tab="models-tab">Models</button>
+          <button class="tab-button" data-tab="tools-tab">Tools</button>
+          <button class="tab-button" data-tab="benchmark-tab">Benchmark</button>
+        </div>
+
+        <!-- Tab 1: How We Tested -->
+        <div id="howwetested-tab" class="tab-content active" style="background-color: white; padding: 32px; border-radius: 8px;">
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8;">This audit evaluated <strong>8 page templates</strong> sampled from <span class="redacted">jabian.com</span>, selected to represent the major content types on the site: homepage, services overview, service detail, case studies, blog, leadership, about, and contact.</p>
+
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8;">We also tested <strong>four buyer personas</strong> that represent <span class="redacted">Jabian</span>'s target decision-makers: Growth-Focused Operations VP, Digital Transformation CIO, Strategic Transformation CEO, and Performance-Driven HR Director. Each persona was used to generate <strong>20 conversations across all models</strong>, for a total of 80 structured AI conversations.</p>
+
+          <p style="color: var(--text-secondary); margin-bottom: 0; line-height: 1.8; padding: 16px; background-color: var(--cream); border-radius: 6px;">A full <strong>Agent Readiness Assessment™</strong> expands this analysis to cover additional pages, deeper content evaluation, competitive benchmarking across multiple focus areas, and a detailed implementation roadmap with technical specifications for your development team.</p>
+
+          <div style="font-size: 12px; color: var(--text-secondary); margin-top: 24px; opacity: 0.7;">&copy; 2026 Liz Micik. All rights reserved. Agent Readiness Audit™ is a trademark of Liz Micik.</div>
+        </div>
+
+        <!-- Tab 2: Models -->
+        <div id="models-tab" class="tab-content" style="background-color: white; padding: 32px; border-radius: 8px;">
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8;">We use the most widely available free and low-tier AI models — the ones your buyers are actually using every day to research providers like you.</p>
+
+          <h4 style="font-family: var(--font-heading); font-size: 16px; font-weight: 600; margin-bottom: 16px; color: var(--slate);">Our Direct Testing</h4>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-bottom: 32px;">
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">GPT-5.4 (OpenAI)</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">largest consumer market share</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Claude (Anthropic)</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">growing enterprise adoption</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Gemini 3 Flash (Google)</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">integrated into Google Search ecosystem</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Perplexity Sonar</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">purpose-built AI answer engine</div>
+            </div>
+          </div>
+
+          <h4 style="font-family: var(--font-heading); font-size: 16px; font-weight: 600; margin-bottom: 16px; color: var(--slate);">Gumshoe AI Visibility Platform</h4>
+          <p style="color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8;">Gumshoe regularly updates their available models to ensure you get top-of-the-line AI thinking. Their current model set includes:</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">GPT-5.4 (OpenAI)</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Claude (Anthropic)</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Gemini (Google)</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">DeepSeek</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Tools -->
+        <div id="tools-tab" class="tab-content" style="background-color: white; padding: 32px; border-radius: 8px;">
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8; font-weight: 500;">Our proprietary analysis</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 32px;">
+            <div style="background: white; border: 2px solid var(--accent-teal); padding: 20px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 12px; font-size: 15px;">Custom Schema &amp; Semantic Crawl</div>
+              <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">7 customized, proprietary skill sets designed to extract deeper data than standard validation tools — going beyond checking whether a field exists to evaluating whether your content actually communicates meaning to AI systems.</div>
+            </div>
+            <div style="background: white; border: 2px solid var(--accent-teal); padding: 20px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 12px; font-size: 15px;">AI Query Testing</div>
+              <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">Direct brand recognition and recommendation testing across multiple AI models, using structured buyer-persona conversations to measure how AI systems perceive and surface your firm.</div>
+            </div>
+          </div>
+
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8; font-weight: 500;">Supplemental tools</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+            <div style="background: white; border: 1px solid var(--cream-dark); padding: 20px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 12px; font-size: 15px;">Gumshoe AI Visibility Platform</div>
+              <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">Measures how often AI models mention and recommend your company vs. competitors across multiple buyer personas and topic areas.</div>
+            </div>
+            <div style="background: white; border: 1px solid var(--cream-dark); padding: 20px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 12px; font-size: 15px;">Wordlift Entity Analysis</div>
+              <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">Evaluates schema.org structured data implementation, semantic HTML quality, and content organization for machine comprehension.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Benchmark -->
+        <div id="benchmark-tab" class="tab-content" style="background-color: white; padding: 32px; border-radius: 8px;">
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8;">We benchmarked <span class="redacted">Jabian</span> against five firms that appear in the same AI conversations where management consulting is discussed: BCG, Bain, Accenture, Slalom, and Deloitte.</p>
+
+          <table class="heatmap-table" style="margin-bottom: 24px;">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Persona</th>
+                <th>BCG</th>
+                <th>Bain</th>
+                <th>Accenture</th>
+                <th>Slalom</th>
+                <th>Deloitte</th>
+                <th style="background-color: #fee2e2; font-weight: 700; color: var(--slate);"><span class="redacted">Jabian</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: left;">Growth-Focused Ops VP</td>
+                <td><span class="heatmap-cell medium-range" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">50%</span></td>
+                <td><span class="heatmap-cell high-range" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">65%</span></td>
+                <td><span class="heatmap-cell medium-range" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">50%</span></td>
+                <td><span class="heatmap-cell zero" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">0%</span></td>
+                <td><span class="heatmap-cell zero" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">0%</span></td>
+                <td class="jabian-column" style="background-color: #fecaca;"><span class="heatmap-cell zero" style="display: inline-block; padding: 6px 10px; border-radius: 4px; background: transparent;">0%</span></td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Digital Transformation CIO</td>
+                <td><span class="heatmap-cell low-range" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">30%</span></td>
+                <td><span class="heatmap-cell low-range" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">10%</span></td>
+                <td><span class="heatmap-cell high-range" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">65%</span></td>
+                <td><span class="heatmap-cell low-range" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">15%</span></td>
+                <td><span class="heatmap-cell zero" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">0%</span></td>
+                <td class="jabian-column" style="background-color: #fecaca;"><span class="heatmap-cell zero" style="display: inline-block; padding: 6px 10px; border-radius: 4px; background: transparent;">0%</span></td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Strategic Transformation CEO</td>
+                <td><span class="heatmap-cell high-range" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">65%</span></td>
+                <td><span class="heatmap-cell high-range" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">65%</span></td>
+                <td><span class="heatmap-cell medium-range" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">45%</span></td>
+                <td><span class="heatmap-cell zero" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">0%</span></td>
+                <td><span class="heatmap-cell zero" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">0%</span></td>
+                <td class="jabian-column" style="background-color: #fecaca;"><span class="heatmap-cell zero" style="display: inline-block; padding: 6px 10px; border-radius: 4px; background: transparent;">0%</span></td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Performance-Driven HR Director</td>
+                <td><span class="heatmap-cell medium-range" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">50%</span></td>
+                <td><span class="heatmap-cell medium-range" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">45%</span></td>
+                <td><span class="heatmap-cell low-range" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">10%</span></td>
+                <td><span class="heatmap-cell zero" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">0%</span></td>
+                <td><span class="heatmap-cell zero" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">0%</span></td>
+                <td class="jabian-column" style="background-color: #fecaca;"><span class="heatmap-cell zero" style="display: inline-block; padding: 6px 10px; border-radius: 4px; background: transparent;">0%</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.7;">Visibility % represents how often each firm appeared in AI answers for that persona's questions, based on 20 conversations per persona across 4 AI models.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FIND Dimension Section -->
+  <div class="container">
+    <div class="layer-header">
+      <div class="layer-header-top">
+        <h3>Find: Can AI Access Your Website?</h3>
+        <div class="badges">
+          <span class="count-badge high">1</span>
+          <span class="count-badge medium">2</span>
+          <span class="count-badge low">2</span>
+          <span class="count-badge pass">2</span>
+        </div>
+      </div>
+      <p class="layer-description">Before AI systems can say anything about your business, they need to be able to reach your website. This dimension checks whether your technical infrastructure welcomes or blocks AI crawlers, and whether you've set up the specific files and configurations that AI models look for.</p>
+    </div>
+
+    <!-- AI Crawler Access Topic Group -->
+    <div class="findings-section">
+      <h3>AI Crawler Access</h3>
+      <p class="topic-intro">AI crawlers are the automated systems that models send to read your website. If crawlers can't get in, AI can't learn about you. These checks verify that your technical infrastructure welcomes AI traffic.</p>
+
+      <!-- PASS finding -->
+      <details>
+        <summary><span class="badge pass">PASS</span> robots.txt Allows AI Crawlers</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">A robots.txt file sits at the root of your website and tells web crawlers (including AI systems) which pages they can and cannot access. It is the first thing any AI model checks before reading your site.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Your robots.txt is permissive. The default rule (User-Agent: *) allows all crawlers full access. No AI crawlers are blocked. This is good. Your front door is open.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Raw robots.txt includes specific rules for Claude-SearchBot, Claude-User, and ClaudeBot with Allow: / directives. A 'Stop Claude' text artifact at the end appears to be from a WordPress plugin. All other crawlers fall under the permissive wildcard rule.</p>
+                </div>
+              </details>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- MEDIUM finding -->
+      <details>
+        <summary><span class="badge medium">MEDIUM</span> Selective AI Crawler Management <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-011)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Modern AI platforms each send their own named crawler to read your website. Explicitly allowing these crawlers by name (GPTBot for OpenAI, PerplexityBot, Google-Extended) signals that your site welcomes AI indexing and can improve crawl priority.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Your robots.txt has explicit rules for Claude's bots but does not address GPTBot, PerplexityBot, Google-Extended, Bytespider, or other AI crawlers. While these crawlers are technically allowed under the wildcard rule, adding explicit Allow directives for each signals intent and can improve how thoroughly they index your content.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>AI crawlers not specifically addressed: GPTBot, Google-Extended, Bytespider, CCBot, Anthropic-AI, PerplexityBot, Amazonbot. These all fall under User-Agent: * (permissive). The selective Claude-only approach may be from an early implementation before other AI crawlers became standard.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Add explicit Allow: / directives for GPTBot, Google-Extended, PerplexityBot, Bytespider, CCBot, and Amazonbot.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+
+    <!-- AI Model Handshake Topic Group -->
+    <div class="findings-section">
+      <h3>AI Model Handshake</h3>
+      <p class="topic-intro">Beyond basic crawl access, newer AI systems look for dedicated files that provide structured information about your organization. These are explicit channels for communicating with AI platforms on your terms.</p>
+
+      <!-- LOW finding: llms.txt -->
+      <details>
+        <summary><span class="badge low">LOW</span> llms.txt Not Implemented <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-012)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">An llms.txt file sits at the root of your website and provides AI models with a structured summary of who you are, what you do, and how to describe you. Think of it as a handshake between your website and every AI platform.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Your site returns a 404 for both /llms.txt and /.well-known/llms.txt. This means AI models have no direct channel to learn your preferred positioning, key services, or how to accurately describe your firm.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Both root and .well-known paths return 404. Wordlift also flagged this as missing. Implementation requires creating a static text file and deploying to the web root or .well-known directory.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Create an llms.txt file with <span class="redacted">Jabian</span>'s core positioning, service areas, differentiators (local model, senior team access), target industries, and preferred description language.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- LOW finding: Cloudflare Markdown -->
+      <details>
+        <summary><span class="badge low">LOW</span> Cloudflare Markdown for Agents Not Configured <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-015)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Cloudflare (your CDN provider) offers a feature called 'Markdown for Agents' that automatically reformats your web pages into clean, structured markdown when an AI crawler requests them. This makes your content significantly easier for AI models to parse and understand.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">This feature is not currently enabled. Your website serves raw HTML to AI crawlers, which requires them to strip out navigation, styling, and layout code to find your actual content. Enabling Markdown for Agents is a low-effort, high-impact configuration change.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>CDN analysis shows Cloudflare with cache_status: DYNAMIC (not cached at edge). Markdown for Agents was introduced February 2026. It is a dashboard toggle, not a code change.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Enable Markdown for Agents in Cloudflare dashboard settings. Test that markdown versions render correctly for key pages.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+
+    <!-- Sitemap and Infrastructure Topic Group -->
+    <div class="findings-section">
+      <h3>Sitemap and Infrastructure</h3>
+      <p class="topic-intro">Sitemaps, CDN configuration, and metadata freshness ensure AI crawlers can efficiently find and trust what they read. These are the technical foundations that support everything else.</p>
+
+      <!-- PASS finding: Sitemap -->
+      <details>
+        <summary><span class="badge pass">PASS</span> Sitemap Exists and Is Current</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">An XML sitemap tells search engines and AI crawlers which pages on your site exist, when they were last updated, and how to find them. It is essential for comprehensive indexing.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span> has a sitemap index generated by Yoast SEO with 9 sub-sitemaps covering pages, posts, case studies, locations, podcasts, solutions, tags, leadership categories, and authors. The page sitemap was last modified March 19, 2026.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Sitemap index at https://<span class="redacted">jabian.com</span>/sitemap_index.xml. Sub-sitemaps: post-sitemap.xml (2026-02-24), page-sitemap.xml (2026-03-19), case_studies-sitemap.xml (2025-09-04), locations-sitemap.xml (2026-02-23), podcasts-sitemap.xml (2026-03-24), solutions-sitemap.xml (2025-10-21), post_tag-sitemap.xml (2026-01-02), leadership_category-sitemap.xml (2025-06-03), author-sitemap.xml (2025-01-09). Note: case_studies sitemap last modified September 2025, which may indicate stale content.</p>
+                </div>
+              </details>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- PASS finding: Cloudflare CDN -->
+      <details>
+        <summary><span class="badge pass">PASS</span> Cloudflare CDN Detected</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">A Content Delivery Network (CDN) serves your website from servers around the world, ensuring fast load times for both human visitors and AI crawlers. Fast, reliable access improves crawl success rates.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p>Your site runs on Cloudflare, one of the most AI-friendly CDN providers. Cloudflare supports AI-specific features including bot management, Markdown for Agents, and crawler analytics.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- MEDIUM finding: dateModified -->
+      <details>
+        <summary><span class="badge medium">MEDIUM</span> dateModified Freshness Signal May Be Inaccurate <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-007)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">The dateModified field in your structured data tells AI models when your content was last updated. AI systems use this as a freshness signal, with more recently updated content receiving higher confidence in recommendations.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Wordlift's analysis flagged that the dateModified property in your Organization schema was set to 2026-02-06. Depending on when it was originally configured, this may have been a future date at the time, which signals an error or manipulation to AI agents. Even if currently in the past, it should be dynamically updated to reflect actual content changes.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Wordlift structured_data report: 'dateModified set to 2026-02-06 (was future date at time of original publication setup)'. This is likely hardcoded in the Yoast SEO homepage settings or theme template.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Configure your CMS (WordPress/Yoast) to dynamically update dateModified whenever page content changes, rather than setting it as a static value.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- UNDERSTAND Dimension Section -->
+  <div class="container">
+    <div class="layer-header">
+      <div class="layer-header-top">
+        <h3>Understand: Does AI Get What You Do?</h3>
+        <div class="badges">
+          <span class="count-badge high">8</span>
+          <span class="count-badge medium">3</span>
+          <span class="count-badge low">1</span>
+          <span class="count-badge pass">2</span>
+        </div>
+      </div>
+      <p class="layer-description">Once AI systems can access your site, the question becomes: do they understand what they are reading? This dimension checks whether your website communicates clearly in the language machines rely on: structured data, semantic markup, and content that answers the questions buyers ask.</p>
+    </div>
+
+    <!-- Schema Implementation Topic Group -->
+    <div class="findings-section">
+      <h3>Schema Implementation</h3>
+      <p class="topic-intro">Schema markup is the machine-readable vocabulary that tells AI exactly what your content represents. Service pages need Service schema. Case studies need CaseStudy schema. Leaders need Person schema. Without these explicit labels, AI must guess what each page is about.</p>
+
+      <!-- HIGH finding: Services Pages Lack Service Schema -->
+      <details>
+        <summary><span class="badge high">HIGH</span> Services Pages Lack Service Schema <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-002)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Schema.org Service markup is a structured data format that tells AI systems 'this page describes a professional service.' Without it, AI models must guess whether a page is about services, a blog post, or something else entirely.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Both the services overview (/service-areas) and the Strategy and Scale detail page (/service-areas/strategy-scale) use generic WebPage schema. Neither declares Service or ProfessionalService type. When a prospect asks AI 'What services does <span class="redacted">Jabian</span> offer?', the AI cannot cite structured schema and must parse unstructured text instead.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p style="margin-bottom: 12px;">WordPress theme defaults to WebPage type for all pages. Yoast SEO does not auto-generate Service schema. Requires custom post type schema template in child theme.</p>
+                  <p style="margin-bottom: 8px; font-weight: 600;">Pages affected:</p>
+                  <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; font-family: monospace;">
+                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted">jabian.com</span>/service-areas — <code>has_service: false</code></li>
+                    <li style="padding: 6px 0;">https://<span class="redacted">jabian.com</span>/service-areas/strategy-scale — <code>has_service: false</code></li>
+                  </ul>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Implement schema.org/Service on all service pages with properties: name, description, provider (Organization), areaServed, serviceType.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- HIGH finding: Case Studies Have No Structured Data -->
+      <details>
+        <summary><span class="badge high">HIGH</span> Case Studies Have No Structured Data <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-003)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Case study schema (CreativeWork or CaseStudy) tells AI systems that a page contains evidence of your work: who the client was, what industry they are in, what you accomplished, and what results you delivered. This is the structured proof AI needs to recommend you.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The case studies page has zero structured data beyond generic WebPage. No client names, industries, outcome metrics, or engagement details appear in schema. AI systems reading this page cannot extract evidence of <span class="redacted">Jabian</span>'s expertise in a machine-readable format.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p style="margin-bottom: 12px;">No client names, no industry tags, no outcome metrics in schema. case_studies-sitemap.xml last modified September 2025, which may indicate stale content. WordPress likely has a case_studies custom post type (based on sitemap).</p>
+                  <p style="margin-bottom: 8px; font-weight: 600;">Page affected:</p>
+                  <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; font-family: monospace;">
+                    <li style="padding: 6px 0;">https://<span class="redacted">jabian.com</span>/resources/case-studies — <code>has_case_study_schema: false</code></li>
+                  </ul>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Add CreativeWork or CaseStudy schema to each case study with: name (outcome-focused title), description, client (Organization with industry), metrics (quantified outcomes), and serviceArea.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- HIGH finding: 18 Leaders Have Zero Person Schema -->
+      <details>
+        <summary><span class="badge high">HIGH</span> 18 Leaders Have Zero Person Schema <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-005)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Person schema tells AI systems that a page contains information about a specific individual: their name, title, expertise, and organizational affiliation. This is how AI builds authority profiles for the people behind a company, which feeds directly into E-E-A-T (Experience, Expertise, Authority, Trustworthiness) scoring.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The leadership page lists 18 named leaders (3 founders plus 15 executive team members) with no Person schema for any of them. There are 35 images (likely headshots) with only 1 alt tag. AI systems cannot determine who leads which practice, what their expertise is, or how to cite them as authority figures.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p style="margin-bottom: 12px;">CollectionPage type is appropriate but no Person entities in the @graph. person_patterns: nameElements: 34, titleReferences: 15. Images: total 35, withAlt: 1. Named leaders include Brian Betkowski, Chris Reinking, Nigel Zelcer, Rob Amberg, and 14 others.</p>
+                  <p style="margin-bottom: 8px; font-weight: 600;">Page affected:</p>
+                  <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; font-family: monospace;">
+                    <li style="padding: 6px 0;">https://<span class="redacted">jabian.com</span>/about/leadership — <code>has_person_schema: false</code></li>
+                  </ul>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Create Person schema for each leader with: name, jobTitle, description (bio with expertise areas), image, worksFor (<span class="redacted">Jabian</span> Organization), and knowsAbout (expertise topics).</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- HIGH finding: No Author Attribution in Content Schema -->
+      <details>
+        <summary><span class="badge high">HIGH</span> No Author Attribution in Content Schema <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-010)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Author schema connects content (blog posts, case studies, articles) to the specific person who created it. This tells AI that a thought leadership piece on AI strategy was written by an actual expert at your firm, not anonymous content. It is a key signal for credibility.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Blog articles, case studies, and service pages contain no author attribution in schema. Blog posts have no Article/BlogPosting schema that would include an author field. Case studies do not identify which consultants delivered the results. This breaks the chain between your content and your people.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>case_studies: 'No client names, no specific metrics, no Person schema connecting expertise to individuals.' blog: 'No Article or BlogPosting schema for individual posts [which would include author field].' strategy_scale: 'no Person schema connecting expertise to individuals.' Pages affected: /service-areas/strategy-scale, /resources/case-studies, /resources/blog.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Add author properties to Article schema on blog posts (linked to Person schema). Add contributors to case studies linking to the consulting team members involved.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- MEDIUM finding: Organization Schema Missing Contact Properties -->
+      <details>
+        <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> Organization Schema Missing Contact Properties <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-001)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Organization schema is the foundation of how AI systems understand your company. Beyond your name and type, it should include how to reach you: physical addresses, phone numbers, and email contacts for each office location.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The Organization schema on your homepage, about, and contact pages declares the <span class="redacted">Jabian</span> entity but lacks address and contactPoint properties. AI agents cannot extract office addresses or contact information from structured data. Given <span class="redacted">Jabian</span>'s 6 office locations, this is a significant gap.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>WordLift: 'Organization schema missing address and contactPoint properties'. Contact page declares Organization type but no ContactPoint schema. <span class="redacted">Jabian</span> operates offices in Atlanta, Charlotte, Chicago, Dallas-Fort Worth, Denver, Houston. Pages affected: /, /about, /contact.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Add postal addresses for each office location and at least one telephone and email via ContactPoint schema.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- MEDIUM finding: Boilerplate Schema Across All Pages -->
+      <details>
+        <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> Boilerplate Schema Across All Pages <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-006)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Ideally, each page on your website has schema tailored to its content type. A service page should have Service schema, a blog post should have Article schema, and a leadership page should have Person schema. Using the same generic template everywhere tells AI that every page is identical.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Every page includes the same Organization + WebPage + BreadcrumbList schema combination. This site-wide template from Yoast SEO was never customized per content type. AI agents see the same schema whether they land on a service page, a case study, or a blog post.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Schema matrix shows identical type list across 6 of 8 pages. Minor variations: service pages add an extra ImageObject, blog missing WebPage. WordPress + Yoast SEO + Divi Child theme. Yoast settings > Search Appearance > Post Types controls this. Pages affected: all 8 sampled.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Configure Yoast SEO to output page-type-specific schema per post type. Services should output Service schema, case studies should output CreativeWork, blog posts should output Article.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- MEDIUM finding: Blog Articles Lack Article Schema -->
+      <details>
+        <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> Blog Articles Lack Article Schema <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-004)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Article or BlogPosting schema tells AI systems that a page is a published piece of content with an author, publication date, and topic. Without it, your thought leadership is just another page with text on it.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The blog index has no WebPage type declared. Individual posts lack Article or BlogPosting schema. This is particularly damaging because <span class="redacted">Jabian</span> has published relevant content like '5 Content Tips for GEO' and strategic articles targeting executive decision-makers, but AI systems cannot identify these as authored thought leadership.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>blog page analysis: 'No WebPage type on blog index. No Article or BlogPosting schema for individual posts.' Yoast SEO has built-in Article/BlogPosting support. Check Settings > Search Appearance > Post Types > Post. Pages affected: /resources/blog.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Enable Article schema output in Yoast SEO settings for the Post post type. Ensure author, datePublished, and headline properties are populated.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- LOW finding: No LocalBusiness Schema -->
+      <details>
+        <summary><span class="badge low">LOW</span> No LocalBusiness Schema for 6 Office Locations <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-009)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">LocalBusiness schema tells AI systems about your physical office locations: where each office is, what services it offers, and how to reach it. For a consulting firm with multiple offices, this helps AI answer 'Is there a <span class="redacted">Jabian</span> office near me?' with structured, accurate data.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span> operates 6 offices (Atlanta, Charlotte, Chicago, Dallas-Fort Worth, Denver, Houston). A locations-sitemap.xml exists (confirming location pages are in the CMS), but no LocalBusiness schema was found. AI systems cannot connect the firm to geographic locations in structured data.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>locations-sitemap.xml lastmod 2026-02-23 confirms location pages exist. Assumed URLs: /locations/atlanta, /locations/charlotte, etc. Location pages were not in the 8-page sample but are confirmed via sitemap.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Add LocalBusiness schema to each location page with: name, address, telephone, geo coordinates, and parentOrganization link to the global Organization entity.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- PASS finding: Basic Organization Entity -->
+      <details>
+        <summary><span class="badge pass">PASS</span> Basic Organization Entity Declared</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">The most fundamental schema type is Organization, which declares that your website represents a business entity. This is the starting point for all other structured data.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span> correctly declares Organization schema on the homepage and major pages. Yoast SEO generates this automatically. The foundation exists for building richer, page-specific schema on top of it.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+
+    <!-- Semantic HTML Structure Topic Group -->
+    <div class="findings-section">
+      <h3>Semantic HTML Structure</h3>
+      <p class="topic-intro">Semantic HTML uses purpose-built tags (main, article, section, h1) to give AI a structural map of your content. Without these tags, your pages are a flat wall of divs with no landmarks for AI to navigate.</p>
+
+      <!-- HIGH finding: Missing H1 Tags -->
+      <details>
+        <summary><span class="badge high">HIGH</span> Missing H1 Tags on Most Pages <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-001)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">The H1 tag is the primary heading on any web page. It tells AI systems and search engines 'this is what this page is about.' Every page should have exactly one H1 that clearly states its topic.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The homepage has no H1 tag (8 headings, all H2). Case studies page: no H1. Blog page: empty H1. Leadership page: no H1. Service detail pages start with H2 instead of H1. Without H1 tags, AI agents must guess which heading is the page topic.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p style="margin-bottom: 12px;">Site-wide CMS/theme issue — most page templates do not output an H1.</p>
+                  <p style="margin-bottom: 8px; font-weight: 600;">Pages affected:</p>
+                  <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; font-family: monospace;">
+                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted">jabian.com</span>/ — 8 H2 tags, 0 H1</li>
+                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted">jabian.com</span>/service-areas/strategy-scale — starts with H2, no H1</li>
+                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted">jabian.com</span>/resources/case-studies — no H1, all case study titles are H2</li>
+                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted">jabian.com</span>/resources/blog — empty H1 tag</li>
+                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted">jabian.com</span>/about/leadership — no H1</li>
+                  </ul>
+                  <p style="margin-top: 8px; font-size: 12px; color: var(--slate-mid);">Note: https://<span class="redacted">jabian.com</span>/service-areas has an H1 ("Service Areas") but uses H4 for all service category headings, skipping H2/H3.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Add a descriptive H1 to every page. Homepage: '<span class="redacted">Jabian</span> Consulting: Mid-Market Strategy, Operations, and Transformation.' Case studies: 'Client Results and Case Studies.' Leadership: '<span class="redacted">Jabian</span> Leadership Team.'</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- HIGH finding: Only 1% Semantic HTML Usage -->
+      <details>
+        <summary><span class="badge high">HIGH</span> Only 1% Semantic HTML Usage <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-002)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Semantic HTML uses tags like article, section, nav, header, and footer to tell AI systems what each part of a page IS, not just how it looks. Without semantic tags, AI models see a flat wall of div and span elements with no structure.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Wordlift reports only 1% semantic element usage across the entire site. Pages rely almost entirely on generic div/span markup. The homepage has 7 sections but no main tag. Service pages have 0 section and 0 article tags. The Divi theme builder generates div-heavy markup that obscures content boundaries from AI parsers.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Wordlift: 'semantic_ratio: 1%'. Homepage semantics: section: 7, article: 1, main: 0. Service Areas: section: 0, article: 1, main: 0. Case Studies: section: 0, article: 1, main: 0. Blog: section: 0, article: 1, main: 0. Site-wide, all 8 templates affected.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Wrap primary content in main tags. Use article tags for repeating content units (case studies, blog posts, service offerings). Use section for grouped subsections. This is a theme-level change in the Divi child theme.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- HIGH finding: No Main Tag -->
+      <details>
+        <summary><span class="badge high">HIGH</span> No Main Tag on Any Page <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-009)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">The main HTML tag tells AI systems 'this is the primary content of the page.' It allows crawlers to skip navigation bars, sidebars, and footers and focus on what matters. Without it, AI may extract header or footer text as if it were body content.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">None of the 8 pages sampled use a main tag. Every page shows main: 0. AI agents processing these pages cannot reliably distinguish primary content from navigation, footers, or sidebar elements. This is a site-wide structural issue.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p style="margin-bottom: 12px;">Site-wide WordPress/Divi theme issue — no page template wraps content in a <code>&lt;main&gt;</code> element.</p>
+                  <p style="margin-bottom: 8px; font-weight: 600;">All 8 sampled pages affected (<code>main: 0</code>):</p>
+                  <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; font-family: monospace;">
+                    <li style="padding: 4px 0;">https://<span class="redacted">jabian.com</span>/</li>
+                    <li style="padding: 4px 0;">https://<span class="redacted">jabian.com</span>/about</li>
+                    <li style="padding: 4px 0;">https://<span class="redacted">jabian.com</span>/about/leadership</li>
+                    <li style="padding: 4px 0;">https://<span class="redacted">jabian.com</span>/contact</li>
+                    <li style="padding: 4px 0;">https://<span class="redacted">jabian.com</span>/service-areas</li>
+                    <li style="padding: 4px 0;">https://<span class="redacted">jabian.com</span>/service-areas/strategy-scale</li>
+                    <li style="padding: 4px 0;">https://<span class="redacted">jabian.com</span>/resources/case-studies</li>
+                    <li style="padding: 4px 0;">https://<span class="redacted">jabian.com</span>/resources/blog</li>
+                  </ul>
+                  <p style="margin-top: 8px; font-size: 12px; color: var(--slate-mid);">To replicate: View page source on any page and search for <code>&lt;main</code>. No results.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Add a single main tag wrapping all primary page content on every template. Implement in the Divi parent theme template or child theme override.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- MEDIUM finding: Blog Page Empty H1 -->
+      <details>
+        <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> Blog Page Has Empty H1 Tag <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-010)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">An empty H1 tag is worse than no H1 at all. It tells AI 'this page has a primary heading' but then provides no content, forcing the AI to ignore the semantic signal entirely.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The blog index page has an H1 tag that contains no text. Blog post titles are H2s beneath it. AI agents see a blank primary heading and must fall back to the page title meta tag to understand this is a blog.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Blog page headings: 'tag: H1, text: (empty)'. Assessment: 'Empty H1 tag. Blog post titles are H2s.' Pages affected: /resources/blog.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Replace the empty H1 with descriptive text: '<span class="redacted">Jabian</span> Consulting Blog and Insights' or 'News and Insights from <span class="redacted">Jabian</span>.'</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- MEDIUM finding: Decorative H4 Tags -->
+      <details>
+        <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> Decorative Use of H4 Tags <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-011)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Heading tags (H1 through H6) exist to create a content hierarchy, not for visual formatting. Using heading tags for decorative purposes (like numbering items) confuses AI systems about the actual structure of your content.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The About page uses H4 tags to display numbers (1 through 10) rather than for actual subheading content. This misuse of heading hierarchy signals false content structure to AI parsers.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>About page: 'H4 tags used for numbering (1-10) rather than content structure. Decorative use of heading tags.' Pages affected: /about.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Replace decorative H4 tags with span or p elements styled visually. Reserve heading tags for actual content hierarchy.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- PASS finding: Leadership Page Heading Hierarchy -->
+      <details>
+        <summary><span class="badge pass">PASS</span> Leadership Page Uses Appropriate Heading Hierarchy</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">A well-structured heading hierarchy (H2 for section names, H3 for individual entries) helps AI systems understand how content is organized within a page.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The leadership page correctly uses H2 for section headers (Founders, Executive Team) and H3 for individual leader names. While Person schema is missing (see Schema findings above), the HTML heading structure itself is sound.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+
+    <!-- Content Queryability Topic Group -->
+    <div class="findings-section">
+      <h3>Content Queryability</h3>
+      <p class="topic-intro">Queryability measures whether AI can extract specific, useful answers from your content. Does your services page answer 'What do you do?' Does your case study page answer 'What have you achieved?' These checks test whether your content speaks in terms AI can act on.</p>
+
+      <!-- HIGH finding: Service Pages Lack Clarity -->
+      <details>
+        <summary><span class="badge high">HIGH</span> Service Pages Lack Clarity Signals <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-005)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Content queryability measures whether AI can extract clear answers from your pages. For service pages, AI looks for 'we help' statements, specific numbers, audience language, and outcome descriptions. These are the signals that let AI answer 'What does this company do?'</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The services overview page has only 226 words, zero 'we help/provide/offer' statements, and zero specific numbers. A prospect asking AI 'What does <span class="redacted">Jabian</span> do?' would get only vague service category names. The Strategy and Scale detail page is better (623 words, 3 'we' statements) but still has only 1 specific number and no named clients.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Service Areas content_queryability: totalWordCount: 226, hasWeStatements: 0, hasOutcomeLanguage: 4, hasAudienceLanguage: 2, hasSpecificNumbers: 0. Strategy Scale: totalWordCount: 623, hasWeStatements: 3, hasOutcomeLanguage: 8, hasAudienceLanguage: 5, hasSpecificNumbers: 1. Pages affected: /service-areas, /service-areas/strategy-scale.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Expand the services overview to 600+ words with 'We help [audience] achieve [outcome]' language. Add specific numbers: clients served, industries covered, years of experience. Add named case study references per service.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- HIGH finding: Case Studies Provide Zero Proof -->
+      <details>
+        <summary><span class="badge high">HIGH</span> Case Studies Provide Zero Proof Evidence <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-006)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Case studies are the primary evidence AI uses when deciding whether to recommend a consulting firm. AI looks for named clients, quantified outcomes (revenue impact, time saved, efficiency gained), and clear problem-to-solution narratives. Without these, your case studies are just stories.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The case studies page has 431 words with zero client names, zero specific metrics, and zero quantified results. Titles are self-referential ('<span class="redacted">Jabian</span> Defines Business Intelligence Strategy...', '<span class="redacted">Jabian</span> Assesses and Designs PMO...') rather than outcome-focused. AI systems reading this page find no citable evidence of expertise.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Case Studies content_queryability: totalWordCount: 431, hasWeStatements: 0, hasOutcomeLanguage: 3, hasAudienceLanguage: 1, hasSpecificNumbers: 0, proofStructure: hasProblemSolution: 4, hasClientNames: 0, hasMetrics: 0. Heading issues: 'Titles are <span class="redacted">Jabian</span>-centric.' Pages affected: /resources/case-studies.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Rewrite titles to lead with client outcomes: 'Manufacturing Leader Reduced Reporting Cycle from 6 Weeks to 3 Days.' Add client names (with permission), industry, company size, and quantified metrics to every case study. Expand to 800+ words per study.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- HIGH finding: Leadership Cannot Connect Expertise -->
+      <details>
+        <summary><span class="badge high">HIGH</span> Leadership Page Cannot Connect Expertise to Individuals <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-007)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">For a consulting firm, connecting individual leaders to their specific expertise areas is how AI builds authority profiles. When AI can link 'Brian Betkowski, CEO' to 'digital transformation' and 'growth strategy,' it can recommend the firm for those topics.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The leadership page lists 18 leaders with titles but provides no structured connection between people and their domains of expertise. No detailed bios, no links to thought leadership, no expertise tags. 35 headshot images have only 1 alt tag. AI cannot answer 'Who at <span class="redacted">Jabian</span> specializes in supply chain?' because the expertise-to-person linkage does not exist.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Leadership page: has_person_schema: false. Images: total 35, withAlt: 1. person_patterns: nameElements: 34, titleReferences: 15. Pages affected: /about/leadership.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Add 150-200 word bios per leader linking them to service areas, industries, and past wins. Add alt text to all headshots. Link each leader to their authored content and relevant case studies.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- PASS finding: Blog Covers Relevant Topics -->
+      <details>
+        <summary><span class="badge pass">PASS</span> Blog Covers Relevant Topics</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Blog content signals thought leadership to AI systems. Articles covering topics your target buyers care about position your firm as a knowledgeable source that AI can cite.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span>'s blog includes relevant articles like 'The 5 Hard Questions Every Executive Should Ask Before Starting an AI Initiative' and 'How Strategic Goals Get Lost in the First Full Week of the Year.' These topics align directly with the firm's service areas. The content exists, but it needs deeper treatment and proper schema to become citable by AI (see Schema findings).</p>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+
+    <!-- Form Accessibility Topic Group -->
+    <div class="findings-section">
+      <h3>Form Accessibility</h3>
+      <p class="topic-intro">AI agents are increasingly capable of filling out forms on behalf of users. For this to work, every form field needs a clear label that tells the agent what data goes where.</p>
+
+      <!-- HIGH finding: Contact Form Unlabeled -->
+      <details>
+        <summary><span class="badge high">HIGH</span> Contact Form Has 75% Unlabeled Inputs <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-004)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Form labels tell AI agents and assistive technologies what each input field expects: name, email, phone number, company. Without labels, AI-powered form-filling tools cannot reliably map user data to the correct fields.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The contact page has 20 form inputs with only 5 properly labeled. That is 75% unlabeled. Even if an AI agent wants to help a prospect fill out <span class="redacted">Jabian</span>'s contact form, it cannot reliably determine which field is for email versus phone versus company name. This directly breaks the conversion path for AI-mediated lead generation.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p style="margin-bottom: 12px;">Wordlift automation_readiness P1 critical: "Programmatic Label Association: Input field missing associated label, automation likely to fail."</p>
+                  <p style="margin-bottom: 8px; font-weight: 600;">Pages affected:</p>
+                  <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; font-family: monospace;">
+                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted">jabian.com</span>/contact — 20 inputs, 5 labeled (75% unlabeled)</li>
+                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted">jabian.com</span>/ — 5 inputs, 2 labeled</li>
+                    <li style="padding: 6px 0;">https://<span class="redacted">jabian.com</span>/about — 5 inputs, 2 labeled</li>
+                  </ul>
+                  <p style="margin-top: 8px; font-size: 12px; color: var(--slate-mid);">To replicate: Inspect any form on /contact and check for <code>&lt;label for="..."&gt;</code> elements matching each <code>&lt;input&gt;</code> id.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Add label elements to all form inputs with the 'for' attribute matching each input's ID. Add autocomplete attributes (autocomplete='email', 'tel', 'organization') to help both AI and browsers.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+
+    <!-- Image Accessibility Topic Group -->
+    <div class="findings-section">
+      <h3>Image Accessibility</h3>
+      <p class="topic-intro">Alt text is how AI understands images. Without it, headshots, diagrams, and illustrations are invisible to AI systems, and the information they convey is lost.</p>
+
+      <!-- HIGH finding: 80% Images Missing Alt Text -->
+      <details>
+        <summary><span class="badge high">HIGH</span> 80%+ of Images Missing Alt Text <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-003)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Alt text describes what an image shows, allowing AI systems, screen readers, and search engines to understand visual content. For consulting firm websites, this includes headshots, process diagrams, infographics, and service illustrations.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Across all pages, more than 80% of images lack alt text. The leadership page has 35 images (headshots) with only 1 alt tag, meaning 34 leaders' photos are invisible to AI. Contact page: 17 images, 1 with alt text. Service pages: 6-7% coverage. AI cannot connect images to the people, services, or concepts they represent.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Homepage: 22 images, 6 with alt (27%). About: 12 images, 4 with alt (33%). Contact: 17 images, 1 with alt (6%). Service Areas: 18 images, 1 with alt (6%). Strategy Scale: 15 images, 1 with alt (7%). Leadership: 35 images, 1 with alt (3%). Wordlift lists specific missing alt URLs. Pages affected: all 8 sampled pages.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Add descriptive alt text to all meaningful images. Headshots: 'Name, Title at <span class="redacted">Jabian</span> Consulting.' Diagrams: describe the process or flow. Decorative images: use empty alt text (alt='') to signal 'skip this.'</p>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- TRUST DIMENSION SECTION -->
+  <div class="container">
+    <div class="layer-header">
+      <div class="layer-header-top">
+        <h3>Trust: Will AI Recommend You?</h3>
+        <div class="badges">
+          <span class="count-badge high">7</span>
+          <span class="count-badge medium">4</span>
+          <span class="count-badge low">0</span>
+          <span class="count-badge pass">1</span>
+        </div>
+      </div>
+      <p class="layer-description">AI agents don't just look at your website. They cross-reference what they find across platforms, compare you to competitors, and check whether your content is authoritative enough to cite. This dimension measures whether AI systems trust your firm enough to recommend it.</p>
+    </div>
+
+  <!-- AI Platform Visibility Topic Group -->
+  <div class="findings-section">
+    <h3>AI Platform Visibility</h3>
+    <p class="topic-intro">This is the bottom line: when real people ask AI for consulting recommendations, does your firm appear? We measure this by running structured conversations across multiple AI models and tracking who gets mentioned.</p>
+
+    <!-- HIGH finding: Zero Visibility Across All AI Models -->
+    <details id="BV-001">
+      <summary><span class="badge high">HIGH</span> Zero Visibility Across All AI Models <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-001)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">AI visibility measures whether AI systems mention your firm when users ask questions in your industry. We test this by running structured conversations across multiple AI models and tracking which firms are mentioned.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span> has 0% visibility across all four AI model families tested: DeepSeek, Perplexity, Google Gemini 3 Flash, and OpenAI GPT-5.4-mini. In 80 AI conversations, <span class="redacted">Jabian</span> was never mentioned. This is not a ranking problem (appearing lower in results). Your firm is completely absent from AI answers about management consulting.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> This finding is the result of compounding failures across Find and Understand dimensions. Fixing schema, content depth, and authority signals will begin building the foundation for visibility. Re-run Gumshoe testing in 90 days after implementing Phase 1 and 2 roadmap items.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <p>Gumshoe report (2026-03-30): 20 prompts generating 80 conversations across 4 model families. <span class="redacted">jabian.com</span>: 0 mentions across 397 total source citations. Top cited: bcg.com (23), mckinsey.com (22), youtube.com (17), pwc.com (17), deloitte.com (15), bain.com (15). Report URL: app.gumshoe.ai/r/jabiancom/management-consulting/19684.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- HIGH finding: Model-Agnostic Visibility Gap -->
+    <details id="BV-003">
+      <summary><span class="badge high">HIGH</span> Model-Agnostic Visibility Gap <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-003)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">Some firms have uneven AI visibility: strong on one platform, weak on others. A model-agnostic gap means every AI platform has the same blind spot, which points to a fundamental content or authority problem rather than a platform-specific technical issue.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span> shows 0% visibility uniformly across all tested models. Not a single AI platform favors the firm. This suggests the root cause is not technical (crawler access is fine) but rather that <span class="redacted">Jabian</span>'s content lacks the authority signals, depth, and structured data that all AI models rely on when building consulting recommendations.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Focus on content depth and schema implementation rather than platform-specific optimizations. The visibility problem is systemic and requires foundational fixes.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <p>Model visibility: DeepSeek: 0%, Perplexity: 0%, Gemini 3 Flash: 0%, OpenAI GPT-5.4-mini: 0%. Claude testing: brand_recognized_count: 6/8 queries, recommended_count: 0, website_citations: 3. Claude recognizes <span class="redacted">Jabian</span> exists but does not recommend or cite the website.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- HIGH finding: All Buyer Personas See 0% Visibility -->
+    <details id="BV-004">
+      <summary><span class="badge high">HIGH</span> All Buyer Personas See 0% Visibility <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-004)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">We test AI visibility through the lens of specific buyer personas because different decision-makers ask different questions. An Operations VP asks about efficiency. A CIO asks about technology. If no persona sees you, no buyer profile can find you through AI.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">All four tested personas returned 0% visibility for <span class="redacted">Jabian</span>: Growth-Focused Operations VP, Digital Transformation CIO, Strategic Transformation CEO, and Performance-Driven HR Director. Competitors like BCG show 30-65% visibility across the same personas. <span class="redacted">Jabian</span> cannot reach its target buyers through AI-mediated discovery, regardless of the buyer's role.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Develop persona-specific content: 'For Operations VPs: managing rapid growth through proven operational frameworks.' Create case studies targeting each persona with measurable outcomes in their domain.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <p>Gumshoe persona visibility: Ops VP: 0%, CIO: 0%, CEO: 0%, HR Director: 0%. Competitor benchmarks: BCG 30-65%, Bain 10-65%, Accenture 10-65% across the same personas.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </details>
+  </div>
+
+  <!-- Topic and Competitive Positioning Topic Group -->
+  <div class="findings-section">
+    <h3>Topic and Competitive Positioning</h3>
+    <p class="topic-intro">Beyond overall visibility, we test whether AI associates your firm with specific topics and service areas that matter to your buyers. This reveals which competitors own which conversations.</p>
+
+    <!-- HIGH finding: Zero Visibility Across All 10 Service Topics -->
+    <details id="BV-002">
+      <summary><span class="badge high">HIGH</span> Zero Visibility Across All 10 Service Topics <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-002)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">Beyond personas, we test AI visibility across specific topics that matter to your buyers: Strategic Fit, Cultural Fit, Implementation Capability, ROI and Outcomes, and others. These represent the criteria decision-makers use when choosing a consulting firm.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span> has 0% visibility on every topic tested, including topics that align directly with the firm's stated differentiators. Cultural Fit (which maps to <span class="redacted">Jabian</span>'s people-first culture) shows 0%. Senior Team Access (which maps to <span class="redacted">Jabian</span>'s local model with senior involvement) shows 0%. Meanwhile, BCG dominates Strategic Fit at 61%, Accenture dominates Implementation Capability at 56%, and Bain dominates Cultural Fit at 60%.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Do not try to outbid BCG or Bain on general consulting queries. Instead, focus on 3-4 core differentiator topics where you can build deep authority: Cultural Fit, Senior Team Access, and regional mid-market expertise.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <p>Topic visibility (all <span class="redacted">Jabian</span> 0%): Strategic Fit, Cultural Fit, Implementation Capability, ROI And Outcomes, Speed To Value, Senior Team Access, Change Management, Industry Expertise, Data Driven Insights, Cross Functional Alignment. See Benchmark tab in 'How We Tested' for full competitor heatmap.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- HIGH finding: Competitor Dominance Across All Segments -->
+    <details id="BV-005">
+      <summary><span class="badge high">HIGH</span> Competitor Dominance Across All Segments <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-005)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">Understanding who owns the AI conversation space helps identify where to compete and where to differentiate. If one competitor dominates a topic you care about, you know you need to build content specifically to challenge that position.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">BCG, Bain, and Accenture dominate almost every persona-topic intersection with 30-65% visibility. BCG leads Strategic Fit (61%) and Senior Team Access (63%). Accenture leads Digital Transformation CIO (65%) and Implementation Capability (56%). Bain leads Cultural Fit (60%). <span class="redacted">Jabian</span> appears in none of these segments. The competitive gap is wide but concentrated among Tier 1 firms. Notably, Slalom (a closer peer) also shows low visibility (0-15%), and Deloitte shows 0% across the board.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> The Slalom and Deloitte results suggest an opportunity: AI visibility for mid-market and regional consulting is undeveloped. <span class="redacted">Jabian</span> can be the first mid-market firm to claim this space through targeted content, schema, and authority building.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <p>Persona x competitor heatmap: BCG 30-65% across personas, Bain 10-65%, Accenture 10-65%, Slalom 0-15%, Deloitte 0% everywhere. Topic x competitor: BCG leads 6/10 topics, Bain leads 2/10, Accenture leads 2/10. <span class="redacted">Jabian</span> 0% on all.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </details>
+  </div>
+
+  <!-- Source Authority and Citations Topic Group -->
+  <div class="findings-section">
+    <h3>Source Authority and Citations</h3>
+    <p class="topic-intro">When AI answers questions, it often cites sources. The domains AI cites most frequently have the highest authority in its knowledge base. These checks measure whether your website is part of that trusted evidence set.</p>
+
+    <!-- HIGH finding: jabian.com Never Cited as a Source -->
+    <details id="BV-006">
+      <summary><span class="badge high">HIGH</span> <span class="redacted">jabian.com</span> Never Cited as a Source <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-006)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">When AI systems answer questions, they often cite their sources, just like a research paper. The domains that AI cites most frequently have the highest 'authority' in AI's knowledge base. Being cited means AI considers your content trustworthy evidence.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">Across 397 total source citations in AI responses about management consulting, <span class="redacted">jabian.com</span> appears zero times. The top cited domains are bcg.com (23), mckinsey.com (22), pwc.com (17), deloitte.com (15), and bain.com (15). Third-party sites like consulting.us (13) and managementconsulted.com (12) also outrank <span class="redacted">Jabian</span>. Even YouTube (17 citations) is more authoritative to AI than <span class="redacted">jabian.com</span>.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Increase content 'citability' through original research, proprietary data, detailed case studies with metrics, and expert-authored thought leadership. Build presence on third-party industry publications that AI already trusts.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <p>Source distribution: business_service_sites: 336/397 (85%), social_networks: 17, news_media: 12, educational_sites: 7, directory_review_sites: 7. jabian_com_mentions: 0.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- HIGH finding: Case Studies Not Citable by AI -->
+    <details id="BV-008">
+      <summary><span class="badge high">HIGH</span> Case Studies Not Citable by AI <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-008)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">For AI to cite your case studies as evidence of expertise, they need specific, verifiable details: named clients, quantified results, and clear problem-to-solution narratives. Vague case studies give AI nothing to work with.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span>'s case studies page has 431 words total, with zero named clients, zero metrics, and zero quantified outcomes. Titles like '<span class="redacted">Jabian</span> Defines Business Intelligence Strategy' tell AI about what <span class="redacted">Jabian</span> did but not what the client achieved. Even if AI indexed this page, it would find nothing specific enough to cite as evidence.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> This finding compounds with SEM-006 (case study content) and SCH-003 (case study schema). Fix the content first, then add schema, then monitor for citation improvements.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <p>Case study queryability: totalWordCount 431, hasClientNames 0, hasMetrics 0, hasProblemSolution 4. All 4 case study titles are <span class="redacted">Jabian</span>-centric.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- HIGH finding: Service Page Content Too Vague for AI Knowledge Base -->
+    <details id="BV-009">
+      <summary><span class="badge high">HIGH</span> Service Page Content Too Vague for AI Knowledge Base <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-009)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">AI builds internal knowledge base entries for companies based on what it reads on service pages. If those pages lack specificity ('we help' statements, target audiences, measurable outcomes), the AI entry for your firm will be thin and generic.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">The services overview has only 226 words with zero 'we help' statements and zero specific numbers. An AI system reading this page would know <span class="redacted">Jabian</span> offers 'strategy,' 'operations,' and 'technology' services but would have no specifics about who you serve, how you differ, or what outcomes you deliver. This directly limits AI's ability to recommend <span class="redacted">Jabian</span> for specific consulting needs.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> This finding compounds with SEM-005 (service content clarity). Expand service pages with audience, approach, and outcome specificity.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <p>Service areas: 226 words, 0 'we' statements, 0 specific numbers. Strategy Scale: 623 words, 3 'we' statements, 1 specific number.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- HIGH finding: Leadership Has No Entity Authority Signals -->
+    <details id="BV-010">
+      <summary><span class="badge high">HIGH</span> Leadership Has No Entity Authority Signals <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-010)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">Entity authority is how AI systems recognize individuals as experts in specific topics. When an AI knows 'Brian Betkowski is the CEO of <span class="redacted">Jabian</span> Consulting and specializes in digital transformation and growth strategy,' it can recommend both the person and the firm for those topics.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">With zero Person schema on the leadership page, AI systems have no structured way to build authority profiles for <span class="redacted">Jabian</span>'s 18 leaders. Individual leaders cannot be recommended as topic experts, which weakens the firm's overall authority score. Competitors whose leaders have Person schema, LinkedIn optimization, and published thought leadership will always outrank <span class="redacted">Jabian</span> in expertise queries.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> This compounds with SCH-005 (Person schema) and SEM-007 (expertise-to-person linkage). Implement Person schema, expand bios, and link leaders to their authored content.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <p>Leadership page: has_person_schema: false. 18 named leaders, 35 images, 1 alt tag.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- MEDIUM finding: Blog Content Not Deep Enough to Be Cited -->
+    <details id="BV-014">
+      <summary><span class="badge medium">MEDIUM</span> Blog Content Not Deep Enough to Be Cited <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-014)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">Thought leadership content (blog posts, articles, research) is a key avenue for building AI citation authority. But AI systems only cite content that is deep, data-backed, and authoritative enough to serve as evidence.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span>'s blog covers relevant topics (AI strategy, executive decision-making, customer retention) but is never cited by AI systems. Industry publications like consulting.us (13 citations) and managementconsulted.com (12 citations) are preferred. This suggests <span class="redacted">Jabian</span>'s blog content lacks the depth, data, or original research that AI considers citable.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Expand blog posts to 1,500-2,000 words with original research, data, and expert quotes. Create downloadable resources (benchmarks, templates) that increase citability. Promote on platforms that feed AI training data.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <p>Blog content includes relevant titles like 'The 5 Hard Questions Every Executive Should Ask Before Starting an AI Initiative' but appears 0 times in Gumshoe cited sources.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </details>
+  </div>
+
+  <!-- Geographic Visibility Topic Group -->
+  <div class="findings-section">
+    <h3>Geographic Visibility</h3>
+    <p class="topic-intro">For a firm with multiple offices, local presence should be a discovery advantage. These checks test whether AI connects your firm to the geographic markets you serve.</p>
+
+    <!-- MEDIUM finding: Low Visibility Even in Home Market -->
+    <details id="BV-016">
+      <summary><span class="badge medium">MEDIUM</span> Low Visibility Even in Home Market <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-016)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">Geographic visibility measures whether AI recommends your firm when buyers specify a location. For a firm with 6 offices, local presence should be a strong differentiator in AI answers.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">Despite being headquartered in Atlanta with offices in 6 cities, <span class="redacted">Jabian</span> has low geographic visibility even in its home market. When Atlanta-based executives ask AI for local consulting recommendations, <span class="redacted">Jabian</span> is not suggested. Six physical offices are not translating into AI-powered local discovery.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Develop location-specific landing pages with local case studies, team introductions, and community involvement. Add LocalBusiness schema (see SCH-009). Create location-specific blog content.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <p>Gumshoe summary: 'Low geographic visibility even in home market (Atlanta).' 6 locations: Atlanta, Charlotte, Chicago, Dallas-Fort Worth, Denver, Houston. locations-sitemap.xml confirms location pages exist.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- MEDIUM finding: Service-Specific Queries Return Zero Results -->
+    <details id="BV-017">
+      <summary><span class="badge medium">MEDIUM</span> Service-Specific Queries Return Zero Results <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-017)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">When a buyer already knows what type of consulting they need ('digital transformation consultant' or 'operational excellence firm'), they ask AI very specific questions. Visibility for these high-intent queries is critical for lead generation.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">Queries for specific service areas (strategy, digital transformation, operations, talent and culture) all returned 0% visibility. Despite having service area pages covering these exact topics, <span class="redacted">Jabian</span>'s content does not register with AI models for service-specific discovery. A prospect specifically searching for a digital transformation consultant will never see <span class="redacted">Jabian</span> in AI answers.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Audit each service page for depth and specificity. Develop 1-2 detailed case studies per service area. Create 'Why <span class="redacted">Jabian</span>' positioning pages with differentiators per service. Add Service schema.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <p>Service pages tested: /service-areas/strategy-scale, /service-areas/operational-excellence, /service-areas/technology-enablement, /service-areas/artificial-intelligence, /service-areas/talent-culture, /service-areas/digital-transformation.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- PASS finding: AI Recognizes Jabian Brand When Asked Directly -->
+    <details id="PASS-Brand-Recognition">
+      <summary><span class="badge pass">PASS</span> AI Recognizes <span class="redacted">Jabian</span> Brand When Asked Directly</summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">Brand recognition measures whether AI knows your company exists at all, even if it doesn't recommend you. Recognition without recommendation means the brand is in AI's training data but lacks the authority signals for active recommendation.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">When Claude was asked directly about <span class="redacted">Jabian</span>, it recognized the brand in 6 out of 8 queries and cited the website 3 times. This confirms AI knows <span class="redacted">Jabian</span> exists. The gap is between 'knows you exist' and 'recommends you to prospects.' Bridging that gap is the purpose of this audit.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+  </div>
+  </div>
+
+  <!-- WHAT TO DO NEXT SECTION -->
+  <div class="container" style="margin-top: 64px;">
+    <h2 style="font-family: var(--font-heading); font-size: 32px; font-weight: 700; margin-bottom: 32px; color: var(--slate);">What to Do Next</h2>
+
+    <!-- Quick Wins -->
+    <div class="phase-card">
+      <div class="phase-header">Quick Wins — Do This Week</div>
+      <p style="margin-bottom: 16px; color: var(--text-secondary); font-size: 14px;">Low-effort changes that start improving AI readiness immediately. No development resources required for most of these.</p>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="padding: 16px; background: white; border-radius: 6px; border-left: 3px solid var(--pass);">
+          <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Create an llms.txt file</div>
+          <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">A simple text file at your site root that tells AI models who you are, what you do, and how to describe you. This is the single fastest way to start communicating with AI platforms on your terms. <span style="font-size: 12px; color: var(--slate-mid);">(BV-012)</span></div>
+        </div>
+        <div style="padding: 16px; background: white; border-radius: 6px; border-left: 3px solid var(--pass);">
+          <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Enable Cloudflare Markdown for Agents</div>
+          <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">A single toggle in your Cloudflare dashboard that reformats pages into clean markdown when AI crawlers visit. Makes your content significantly easier for AI to parse. <span style="font-size: 12px; color: var(--slate-mid);">(BV-015)</span></div>
+        </div>
+        <div style="padding: 16px; background: white; border-radius: 6px; border-left: 3px solid var(--pass);">
+          <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Add explicit AI crawler directives to robots.txt</div>
+          <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">Your robots.txt already allows AI crawlers, but adding named directives for GPTBot, PerplexityBot, and Google-Extended signals active intent and can improve crawl priority. <span style="font-size: 12px; color: var(--slate-mid);">(BV-011)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Critical Issues -->
+    <div class="phase-card" style="margin-top: 32px;">
+      <div class="phase-header">Critical Issues — The Gaps That Matter Most</div>
+      <p style="margin-bottom: 16px; color: var(--text-secondary); font-size: 14px;">These three issues have the highest impact on <span class="redacted">Jabian</span>'s AI visibility and are the foundation for everything else.</p>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="padding: 16px; background: white; border-radius: 6px; border-left: 4px solid var(--high);">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+            <span class="badge high">HIGH</span>
+            <span style="font-weight: 600; color: var(--slate);">Missing structured data across the entire site</span>
+          </div>
+          <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">AI systems rely on schema.org markup to understand what a company does, who works there, and what results they deliver. <span class="redacted">Jabian</span> has no Service, Person, or CaseStudy schema anywhere. This means AI literally cannot machine-read your core value proposition. <span style="font-size: 12px; color: var(--slate-mid);">(SCH-002, SCH-003, SCH-005)</span></div>
+        </div>
+        <div style="padding: 16px; background: white; border-radius: 6px; border-left: 4px solid var(--high);">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+            <span class="badge high">HIGH</span>
+            <span style="font-weight: 600; color: var(--slate);">Content lacks the depth and specificity AI needs to cite</span>
+          </div>
+          <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">Service pages average 226 words with no "we help" statements, numbers, or audiences. Case studies name no clients and cite no metrics. AI needs substantive, specific evidence to include a firm in recommendations — and right now it has nothing to work with. <span style="font-size: 12px; color: var(--slate-mid);">(SEM-005, SEM-006, SEM-007)</span></div>
+        </div>
+        <div style="padding: 16px; background: white; border-radius: 6px; border-left: 4px solid var(--high);">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+            <span class="badge high">HIGH</span>
+            <span style="font-weight: 600; color: var(--slate);">Complete absence from AI recommendations</span>
+          </div>
+          <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">Zero visibility across 80 AI conversations, 4 buyer personas, 10 topics, and 4 model families. This is the downstream consequence of the issues above. Fixing schema, content depth, and semantic structure will begin building the foundation AI needs to find and recommend you. <span style="font-size: 12px; color: var(--slate-mid);">(BV-001, BV-002, BV-003, BV-004)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Next Steps CTA -->
+    <div style="background: linear-gradient(135deg, var(--teal-deep) 0%, var(--accent-teal) 100%); color: white; padding: 36px 32px; border-radius: 8px; margin-top: 32px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 800px; margin: 0 auto;">
+        <div>
+          <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 600; margin-bottom: 12px;">Need to dig deeper?</h3>
+          <p style="font-size: 14px; opacity: 0.92; line-height: 1.7; margin-bottom: 16px;">Especially with larger or more established firms, the issues identified here often run deeper than a diagnostic audit can cover. A full <strong>Agent Readiness Assessment™</strong> can zero in on a specific area or cast a wider net across your entire digital presence.</p>
+          <a href="https://lizmicik.com/#contact" style="color: white; font-weight: 600; font-size: 14px; text-decoration: underline; text-underline-offset: 3px;">Let's talk &rarr;</a>
+        </div>
+        <div>
+          <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 600; margin-bottom: 12px;">Need hands-on implementation help?</h3>
+          <p style="font-size: 14px; opacity: 0.92; line-height: 1.7; margin-bottom: 16px;">Implementing these recommendations is beyond the scope of this audit, but over the years I have developed strong working relationships with firms that specialize in exactly this kind of work. I'm happy to make an introduction.</p>
+          <a href="https://lizmicik.com/#contact" style="color: white; font-weight: 600; font-size: 14px; text-decoration: underline; text-underline-offset: 3px;">Let's talk &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER SECTION -->
+  <footer class="report-footer" style="background-color: var(--slate); color: var(--text-light); padding: 40px 24px; text-align: center; margin-top: 64px; border-radius: 8px;">
+    <div style="margin-bottom: 24px;">
+      <p style="font-size: 16px; font-style: italic; margin-bottom: 12px; color: var(--teal-light); font-weight: 500;">Every company built a website to talk to humans.<br>Nobody built one to talk to AI.</p>
+      <p style="font-size: 14px; margin-bottom: 0;">Prepared by Liz Micik | <a href="https://lizmicik.com" style="color: var(--teal-light); text-decoration: none;">lizmicik.com</a></p>
+    </div>
+    <div style="font-size: 12px; line-height: 1.6; color: var(--cream); opacity: 0.7; margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 16px;">
+      <p>&copy; 2026 Liz Micik. All rights reserved. Agent Readiness Audit™ and Agent Signal Check™ are trademarks of Liz Micik. This report is confidential and prepared exclusively for <span class="redacted">Jabian</span> Consulting</span>.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.tab-button').forEach(button => {
+      button.addEventListener('click', function() {
+        const tabName = this.getAttribute('data-tab');
+        const tabContainer = this.closest('.tab-container');
+
+        tabContainer.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+        tabContainer.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+        this.classList.add('active');
+        document.getElementById(tabName).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
