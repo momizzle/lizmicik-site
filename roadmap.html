@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B9S40S2SKG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-B9S40S2SKG');
+  </script>
+  <!-- End Google tag -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Readiness Roadmap - The Implementation Blueprint for the Agentic Web | Liz Micik</title>
+  <meta name="description" content="Your audit told you what's wrong. The Agent Readiness Roadmap tells your team exactly how to fix it: per-template schema, semantic HTML blueprints, and content recommendations your developers can implement today.">
+  <link rel="canonical" href="https://lizmicik.com/roadmap">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Agent Readiness Roadmap",
+    "description": "A per-template implementation blueprint that gives your development and content teams exactly what to build: JSON-LD schema blocks, semantic HTML structures, and content recommendations mapped to the Find/Understand/Trust framework.",
+    "provider": {
+      "@type": "Person",
+      "name": "Liz Micik",
+      "url": "https://lizmicik.com",
+      "jobTitle": "SEO Strategist & AI Readiness Consultant",
+      "knowsAbout": ["Search Engine Optimization", "AI Agent Optimization", "Schema Markup", "Structured Data", "Content Strategy", "Semantic HTML", "Web Architecture"]
+    },
+    "serviceType": "Consulting",
+    "areaServed": "Worldwide",
+    "offers": {
+      "@type": "Offer",
+      "name": "Agent Readiness Roadmap",
+      "price": "3500",
+      "priceCurrency": "USD",
+      "description": "Per-template implementation blueprint scoped to site complexity. Includes JSON-LD schema blocks, semantic HTML blueprints, mini content briefs, annotated screenshots, entity authority graph, and implementation priority timeline."
+    }
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #2C3038;
+      background: #FAF8F5;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    :root {
+      --charcoal: #2C3038;
+      --cream: #FAF8F5;
+      --warm-gold: #B07D5B;
+      --warm-gold-light: #C4956A;
+      --warm-gold-bg: rgba(176, 125, 91, 0.06);
+      --warm-gold-border: rgba(176, 125, 91, 0.25);
+      --teal: #6A9FA0;
+      --teal-deep: #4E7F80;
+      --teal-light: #8ABCBD;
+      --teal-bg: rgba(106, 159, 160, 0.08);
+      --teal-border: rgba(106, 159, 160, 0.25);
+      --sage: #5B7B6A;
+      --sage-light: #6d9a7e;
+      --sage-bg: rgba(91, 123, 106, 0.06);
+      --sage-border: rgba(91, 123, 106, 0.2);
+      --slate: #6b7280;
+      --slate-light: #9ca3af;
+      --red: #c53030;
+      --red-bg: rgba(197, 48, 48, 0.06);
+      --green: #2f855a;
+      --border: rgba(44, 48, 56, 0.08);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
+      /* Roadmap-specific: copper-teal blend */
+      --gradient-warm: linear-gradient(135deg, #B07D5B, #6A9FA0);
+      --gradient-warm-hover: linear-gradient(135deg, #9A6B4A, #4E7F80);
+    }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .container-wide { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* ============================================================
+       HEADER
+       ============================================================ */
+    .site-header {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .site-header .container-wide {
+      display: flex; align-items: center;
+    }
+    .back-link { font-size: 0.85rem; color: var(--slate); text-decoration: none; }
+    .back-link:hover { color: var(--charcoal); }
+
+    /* ============================================================
+       HERO (copper-teal gradient bottom edge)
+       ============================================================ */
+    .hero {
+      padding: 80px 0 64px;
+      text-align: center;
+      background: linear-gradient(180deg, var(--cream) 0%, #f0ece6 70%, rgba(176, 125, 91, 0.04) 100%);
+    }
+    .hero h1 {
+      font-family: 'Lora', serif; font-size: 2.6rem; font-weight: 700;
+      line-height: 1.2; color: var(--charcoal);
+      margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto;
+    }
+    .hero .subtitle {
+      font-size: 1.1rem; color: var(--slate);
+      max-width: 580px; margin: 0 auto 16px; line-height: 1.6;
+    }
+    .hero .credential {
+      font-size: 0.88rem; color: var(--slate-light);
+      margin-bottom: 36px;
+    }
+    .hero .credential strong { color: var(--slate); font-weight: 500; }
+
+    .cta-btn {
+      display: inline-block; padding: 14px 36px;
+      background: var(--gradient-warm); color: #fff; border: none;
+      border-radius: 8px; font-size: 1rem; font-weight: 600;
+      text-decoration: none; cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .cta-btn:hover { background: var(--gradient-warm-hover); transform: translateY(-1px); }
+    .cta-btn-outline {
+      display: inline-block; padding: 12px 28px;
+      background: transparent; color: var(--teal); border: 2px solid var(--teal);
+      border-radius: 8px; font-size: 0.95rem; font-weight: 600;
+      text-decoration: none; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .cta-btn-outline:hover { background: var(--teal); color: #fff; }
+    .cta-btn-warm-outline {
+      display: inline-block; padding: 12px 28px;
+      background: transparent; color: var(--warm-gold); border: 2px solid var(--warm-gold);
+      border-radius: 8px; font-size: 0.95rem; font-weight: 600;
+      text-decoration: none; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .cta-btn-warm-outline:hover { background: var(--warm-gold); color: #fff; }
+
+    /* ============================================================
+       SECTIONS
+       ============================================================ */
+    section { padding: 64px 0; }
+    section + section { border-top: 1px solid var(--border); }
+
+    .section-label {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--warm-gold); margin-bottom: 12px;
+    }
+    .section-heading {
+      font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700;
+      line-height: 1.3; color: var(--charcoal); margin-bottom: 20px;
+    }
+    .section-body { font-size: 1rem; color: var(--slate); line-height: 1.7; }
+    .section-body p + p { margin-top: 16px; }
+
+    /* ============================================================
+       STATS (copper + teal mixed)
+       ============================================================ */
+    .shift-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      margin-top: 32px;
+    }
+    .stat-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; text-align: center;
+    }
+    .stat-card.copper { border-top: 3px solid var(--warm-gold); }
+    .stat-card.teal { border-top: 3px solid var(--teal); }
+    .stat-number {
+      font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 700;
+      line-height: 1.2;
+    }
+    .stat-card.copper .stat-number { color: var(--warm-gold); }
+    .stat-card.teal .stat-number { color: var(--teal-deep); }
+    .stat-label {
+      font-size: 0.82rem; color: var(--slate); margin-top: 8px; line-height: 1.4;
+    }
+
+    /* ============================================================
+       COMPARISON TABLE (copper/teal dual accent)
+       ============================================================ */
+    .compare-table {
+      width: 100%; border-collapse: collapse; margin-top: 28px;
+      font-size: 0.9rem;
+    }
+    .compare-table th {
+      padding: 14px 16px; text-align: left; font-weight: 600;
+      border-bottom: 2px solid var(--warm-gold);
+    }
+    .compare-table th:first-child { color: var(--slate); width: 36%; }
+    .compare-table th:nth-child(2) { color: var(--warm-gold); }
+    .compare-table th:nth-child(3) { color: var(--teal); }
+    .compare-table td {
+      padding: 12px 16px; border-bottom: 1px solid var(--border);
+      color: var(--slate); vertical-align: top;
+    }
+    .compare-table td:nth-child(3) {
+      color: var(--charcoal); font-weight: 500;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-check { color: var(--teal); font-weight: 700; }
+    .compare-check-warm { color: var(--warm-gold); font-weight: 700; }
+    .compare-x { color: var(--slate-light); }
+
+    /* ============================================================
+       THREE LAYERS (roadmap-adapted)
+       ============================================================ */
+    .layers-grid {
+      display: grid; grid-template-columns: 1fr; gap: 24px;
+      margin-top: 32px;
+    }
+    .layer-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 12px;
+      padding: 32px; box-shadow: var(--shadow-sm);
+    }
+    .layer-card.find { border-left: 4px solid var(--warm-gold); }
+    .layer-card.understand { border-left: 4px solid var(--teal); }
+    .layer-card.trust { border-left: 4px solid var(--teal-deep); }
+    .layer-card h3 {
+      font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .layer-card.find h3 { color: var(--warm-gold); }
+    .layer-card.understand h3 { color: var(--teal); }
+    .layer-card.trust h3 { color: var(--teal-deep); }
+    .layer-card .layer-principle {
+      font-size: 0.78rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.05em; margin-bottom: 10px;
+    }
+    .layer-card.find .layer-principle { color: var(--warm-gold); }
+    .layer-card.understand .layer-principle { color: var(--teal); }
+    .layer-card.trust .layer-principle { color: var(--teal-deep); }
+    .layer-card p {
+      font-size: 0.95rem; color: var(--slate); line-height: 1.6;
+    }
+    .layer-deliverables {
+      margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .layer-tag {
+      font-size: 0.72rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 12px; white-space: nowrap;
+    }
+    .layer-card.find .layer-tag { background: var(--warm-gold-bg); color: var(--warm-gold); border: 1px solid var(--warm-gold-border); }
+    .layer-card.understand .layer-tag { background: var(--teal-bg); color: var(--teal); border: 1px solid var(--teal-border); }
+    .layer-card.trust .layer-tag { background: rgba(78, 127, 128, 0.08); color: var(--teal-deep); border: 1px solid rgba(78, 127, 128, 0.25); }
+
+    /* ============================================================
+       PREVIEW ACCORDION (copper-teal gradient headers)
+       ============================================================ */
+    .preview-accordion { margin-top: 48px; }
+    .preview-accordion-intro {
+      font-size: 0.92rem; color: var(--slate); line-height: 1.6;
+      margin-bottom: 24px; text-align: center;
+    }
+    .preview-item {
+      border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden; margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s;
+    }
+    .preview-item:hover { box-shadow: var(--shadow-md); }
+    .preview-item:last-child { margin-bottom: 0; }
+    .preview-toggle {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 24px; border: none; cursor: pointer;
+      background: var(--gradient-warm);
+      color: #fff; font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+    }
+    .preview-toggle:hover {
+      background: var(--gradient-warm-hover);
+    }
+    .preview-toggle-left {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .preview-toggle-left .layer-label {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; opacity: 0.85;
+    }
+    .preview-toggle-left h4 {
+      font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600;
+      margin: 0;
+    }
+    .preview-toggle .toggle-icon {
+      font-size: 1.4rem; font-weight: 300; transition: transform 0.3s;
+      flex-shrink: 0; width: 28px; text-align: center;
+    }
+    .preview-item.open .toggle-icon { transform: rotate(45deg); }
+
+    .preview-body {
+      max-height: 0; overflow: hidden; padding: 0 28px;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      background: #fff;
+    }
+    .preview-item.open .preview-body {
+      max-height: 1200px;
+      padding: 28px;
+    }
+    .preview-sample-block {
+      margin-bottom: 20px;
+    }
+    .preview-sample-label {
+      font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.06em; margin-bottom: 8px;
+    }
+    .preview-sample-label.copper { color: var(--warm-gold); }
+    .preview-sample-label.teal { color: var(--teal); }
+    .preview-code-block {
+      font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.78rem;
+      background: #f7f5f2; border: 1px solid var(--border); border-radius: 8px;
+      padding: 16px; overflow-x: auto; line-height: 1.6;
+      color: #545B6A;
+    }
+    .preview-rec-block {
+      font-size: 0.88rem; color: var(--charcoal); line-height: 1.5;
+      padding: 12px 16px; background: var(--warm-gold-bg);
+      border-left: 3px solid var(--warm-gold); border-radius: 4px;
+      margin-top: 12px;
+    }
+    .preview-rec-block strong { font-weight: 600; }
+    .preview-note {
+      text-align: center; margin-top: 24px;
+      font-size: 0.82rem; color: var(--slate-light); font-style: italic;
+    }
+
+    /* ============================================================
+       WHAT YOU GET
+       ============================================================ */
+    .deliverables-list {
+      margin-top: 24px; list-style: none;
+    }
+    .deliverables-list li {
+      padding: 16px 0; border-bottom: 1px solid var(--border);
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .deliverables-list li:last-child { border-bottom: none; }
+    .deliverable-icon {
+      flex-shrink: 0; width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .deliverable-icon.copper { background: var(--warm-gold-bg); border: 1px solid var(--warm-gold-border); color: var(--warm-gold); }
+    .deliverable-icon.teal { background: var(--teal-bg); border: 1px solid var(--teal-border); color: var(--teal); }
+    .deliverable-icon.sage { background: var(--sage-bg); border: 1px solid var(--sage-border); color: var(--sage); }
+    .deliverable-content h4 {
+      font-size: 0.95rem; font-weight: 600; color: var(--charcoal); margin-bottom: 4px;
+    }
+    .deliverable-content p {
+      font-size: 0.88rem; color: var(--slate); line-height: 1.5;
+    }
+
+    /* ============================================================
+       PROCESS TIMELINE
+       ============================================================ */
+    .process-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+      margin-top: 28px;
+    }
+    .process-step {
+      text-align: center; position: relative;
+    }
+    .process-step::after {
+      content: ""; position: absolute; top: 20px; right: -12px;
+      width: 10px; height: 2px; background: var(--warm-gold-border);
+    }
+    .process-step:last-child::after { display: none; }
+    .step-number {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 50%;
+      font-size: 0.88rem; font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .step-number.copper { background: var(--warm-gold-bg); border: 2px solid var(--warm-gold-border); color: var(--warm-gold); }
+    .step-number.teal { background: var(--teal-bg); border: 2px solid var(--teal-border); color: var(--teal); }
+    .process-step h4 {
+      font-size: 0.88rem; font-weight: 600; color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+    .process-step p {
+      font-size: 0.78rem; color: var(--slate); line-height: 1.4;
+    }
+
+    /* ============================================================
+       PRICING (single starting-at + scoping)
+       ============================================================ */
+    .pricing-section { text-align: center; }
+    .pricing-card {
+      background: #fff; border: 2px solid var(--warm-gold-border); border-radius: 16px;
+      padding: 48px 40px; max-width: 560px; margin: 32px auto 0;
+      box-shadow: var(--shadow-lg);
+    }
+    .pricing-amount {
+      font-family: 'Lora', serif; font-size: 3.2rem; font-weight: 700;
+      color: var(--charcoal); line-height: 1;
+    }
+    .pricing-starting {
+      font-size: 1rem; color: var(--slate); font-weight: 400;
+    }
+    .pricing-label {
+      font-size: 0.92rem; color: var(--slate); margin-top: 8px; margin-bottom: 28px;
+      line-height: 1.5;
+    }
+    .pricing-includes {
+      text-align: left; list-style: none; margin-bottom: 28px;
+    }
+    .pricing-includes li {
+      padding: 6px 0; font-size: 0.9rem; color: var(--slate);
+      padding-left: 24px; position: relative;
+    }
+    .pricing-includes li::before {
+      content: "\2713"; position: absolute; left: 0; color: var(--sage); font-weight: 600;
+    }
+    .pricing-credit {
+      background: var(--teal-bg); border: 1px solid var(--teal-border);
+      border-radius: 8px; padding: 16px; margin-top: 20px; margin-bottom: 24px;
+      font-size: 0.88rem; color: var(--teal-deep); line-height: 1.5;
+    }
+    .pricing-credit strong { color: var(--teal-deep); }
+    .pricing-scoping {
+      margin-top: 32px; text-align: left;
+    }
+    .pricing-scoping h3 {
+      font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 600;
+      color: var(--charcoal); margin-bottom: 16px;
+    }
+    .scoping-factors {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .scoping-factor {
+      background: #fff; border: 1px solid var(--border); border-radius: 8px;
+      padding: 16px;
+    }
+    .scoping-factor h4 {
+      font-size: 0.88rem; font-weight: 600; color: var(--charcoal); margin-bottom: 4px;
+    }
+    .scoping-factor p {
+      font-size: 0.82rem; color: var(--slate); line-height: 1.4;
+    }
+    .pricing-note {
+      font-size: 0.82rem; color: var(--slate-light); margin-top: 16px;
+      font-style: italic;
+    }
+
+    /* ============================================================
+       IS THIS RIGHT FOR YOU?
+       ============================================================ */
+    .fit-columns {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+      margin-top: 24px;
+    }
+    .fit-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 28px;
+    }
+    .fit-card h3 {
+      font-size: 1rem; font-weight: 600; margin-bottom: 12px;
+    }
+    .fit-card.yes h3 { color: var(--sage); }
+    .fit-card.no h3 { color: var(--slate); }
+    .fit-card ul {
+      list-style: none; font-size: 0.9rem; color: var(--slate); line-height: 1.7;
+    }
+    .fit-card ul li { padding: 4px 0; padding-left: 20px; position: relative; }
+    .fit-card.yes ul li::before { content: "\2713"; position: absolute; left: 0; color: var(--sage); font-weight: 600; }
+    .fit-card.no ul li::before { content: "\2014"; position: absolute; left: 0; color: var(--slate-light); }
+
+    /* ============================================================
+       TESTIMONIALS
+       ============================================================ */
+    .testimonial-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 12px;
+      padding: 28px; margin-top: 16px;
+    }
+    .testimonial-quote {
+      font-size: 0.95rem; color: var(--charcoal); line-height: 1.65;
+      font-style: italic; margin-bottom: 12px;
+    }
+    .testimonial-attribution {
+      font-size: 0.82rem; color: var(--slate); font-weight: 500;
+    }
+
+    /* ============================================================
+       FAQ
+       ============================================================ */
+    .faq-list { margin-top: 24px; }
+    .faq-item {
+      border-bottom: 1px solid var(--border); padding: 20px 0;
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-question {
+      font-size: 1rem; font-weight: 600; color: var(--charcoal);
+      cursor: pointer; display: flex; justify-content: space-between;
+      align-items: center; gap: 16px;
+      background: none; border: none; width: 100%; text-align: left;
+      font-family: inherit; padding: 0;
+    }
+    .faq-question:hover { color: var(--warm-gold); }
+    .faq-toggle {
+      flex-shrink: 0; font-size: 1.2rem; color: var(--slate-light);
+      transition: transform 0.2s;
+    }
+    .faq-answer {
+      max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-answer.open { max-height: 500px; padding-top: 12px; }
+    .faq-answer p {
+      font-size: 0.92rem; color: var(--slate); line-height: 1.6;
+    }
+
+    /* ============================================================
+       APPLICATION FORM
+       ============================================================ */
+    .form-section { background: linear-gradient(180deg, var(--cream) 0%, #f0ece6 100%); }
+    .form-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 16px;
+      padding: 48px 40px; box-shadow: var(--shadow-md);
+      max-width: 600px; margin: 0 auto;
+    }
+    .form-card h2 {
+      font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 600;
+      color: var(--charcoal); margin-bottom: 8px; text-align: center;
+    }
+    .form-card .form-subtitle {
+      font-size: 0.92rem; color: var(--slate); text-align: center;
+      margin-bottom: 32px; line-height: 1.5;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block; font-size: 0.88rem; font-weight: 500;
+      color: var(--charcoal); margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%; padding: 12px 16px; border: 1px solid var(--border);
+      border-radius: 8px; font-size: 0.95rem; font-family: inherit;
+      color: var(--charcoal); background: #fff;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none; border-color: var(--warm-gold);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      width: 100%; padding: 14px;
+      background: var(--gradient-warm);
+      color: #fff; border: none; border-radius: 8px;
+      font-size: 1rem; font-weight: 600; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .form-submit:hover { background: var(--gradient-warm-hover); }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .site-footer {
+      padding: 32px 0; text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .site-footer p { font-size: 0.82rem; color: var(--slate-light); }
+    .site-footer a { color: var(--slate); text-decoration: none; }
+    .site-footer a:hover { color: var(--charcoal); }
+    .footer-links { margin-top: 8px; }
+    .footer-links a { margin: 0 8px; font-size: 0.78rem; }
+
+    /* ============================================================
+       COOKIE BANNER
+       ============================================================ */
+    .cookie-banner {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--charcoal); color: #fff; padding: 16px 24px;
+      font-size: 0.82rem; display: flex; justify-content: center;
+      align-items: center; gap: 16px; z-index: 1000;
+    }
+    .cookie-banner a { color: var(--warm-gold-light); }
+    .cookie-btn {
+      padding: 6px 20px; border-radius: 6px; font-size: 0.82rem;
+      font-weight: 600; cursor: pointer; border: none;
+    }
+    .cookie-accept { background: var(--warm-gold); color: #fff; }
+    .cookie-decline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .hero { padding: 56px 0 48px; }
+      section { padding: 48px 0; }
+      .shift-stats { grid-template-columns: 1fr; }
+      .fit-columns { grid-template-columns: 1fr; }
+      .pricing-card { padding: 36px 24px; }
+      .scoping-factors { grid-template-columns: 1fr; }
+      .form-card { padding: 32px 24px; }
+      .compare-table { font-size: 0.82rem; }
+      .compare-table th, .compare-table td { padding: 10px 8px; }
+      .process-steps { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .process-step::after { display: none; }
+      .cookie-banner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.7rem; }
+      .section-heading { font-size: 1.5rem; }
+      .pricing-amount { font-size: 2rem; }
+      .process-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header">
+    <div class="container-wide">
+      <a href="/" class="back-link">&larr; Back to lizmicik.com</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="hero">
+      <div class="container">
+        <h1>Your Team Knows What's Wrong. Now Show Them Exactly How to Fix It.</h1>
+        <p class="subtitle">The <strong>Agent Readiness Roadmap</strong> is a per-template implementation blueprint: JSON-LD schema blocks your developers can copy into your CMS, semantic HTML structures they can build from, and content recommendations your team can act on today.</p>
+        <p class="subtitle">Paint by numbers for the agentic web.</p>
+        <p class="credential">Built by <strong>Liz Micik</strong> &mdash; 28 years in SEO, content strategy, and web architecture</p>
+        <a href="#apply" class="cta-btn">Get Your Roadmap</a>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         THE GAP (context / urgency)
+         ============================================================ -->
+    <section id="the-gap">
+      <div class="container">
+        <p class="section-label">The Problem</p>
+        <h2 class="section-heading">Knowing what's broken doesn't fix it.</h2>
+        <div class="section-body">
+          <p>Most companies that get an audit end up in the same place: a PDF full of findings, a dev team that doesn't know where to start, and a content team that doesn't know what to change. The gap between "here's what's wrong" and "here's what to build" is where projects stall.</p>
+          <p>The Agent Readiness Roadmap closes that gap. Instead of a list of problems, your teams get implementation-ready specifications they can start building from on day one.</p>
+        </div>
+        <div class="shift-stats">
+          <div class="stat-card copper">
+            <div class="stat-number">Dev Team</div>
+            <div class="stat-label">Gets copy-paste JSON-LD and annotated HTML blueprints per template</div>
+          </div>
+          <div class="stat-card teal">
+            <div class="stat-number">Content Team</div>
+            <div class="stat-label">Gets scored recommendations with before/after patterns per page type</div>
+          </div>
+          <div class="stat-card teal">
+            <div class="stat-number">Leadership</div>
+            <div class="stat-label">Gets a prioritized timeline with effort estimates and a clear implementation order</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         AUDIT VS ROADMAP (comparison table)
+         ============================================================ -->
+    <section id="comparison">
+      <div class="container">
+        <p class="section-label">Audit vs. Roadmap</p>
+        <h2 class="section-heading">The audit diagnoses. The roadmap prescribes.</h2>
+        <div class="section-body">
+          <p>The Agent Readiness Audit tells you what's wrong and where to focus. The Roadmap picks up exactly where the audit leaves off and gives each team the specific deliverables they need to execute.</p>
+        </div>
+        <table class="compare-table" role="table">
+          <thead>
+            <tr>
+              <th>What you get</th>
+              <th>Audit ($1,500)</th>
+              <th>Roadmap ($3,500+)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Scored findings across Find, Understand, Trust</td>
+              <td><span class="compare-check-warm">&check;</span> 30-point diagnostic</td>
+              <td><span class="compare-check">&check;</span> Included or imported</td>
+            </tr>
+            <tr>
+              <td>Prioritized action plan</td>
+              <td><span class="compare-check-warm">&check;</span> What to fix first</td>
+              <td><span class="compare-check">&check;</span> Phased timeline with effort estimates</td>
+            </tr>
+            <tr>
+              <td>Per-template JSON-LD schema blocks</td>
+              <td><span class="compare-x">&mdash;</span></td>
+              <td><span class="compare-check">&check;</span> Copy-paste ready, real content</td>
+            </tr>
+            <tr>
+              <td>Semantic HTML blueprints</td>
+              <td><span class="compare-x">&mdash;</span></td>
+              <td><span class="compare-check">&check;</span> Annotated with before/after</td>
+            </tr>
+            <tr>
+              <td>Mini content briefs per template</td>
+              <td><span class="compare-x">&mdash;</span></td>
+              <td><span class="compare-check">&check;</span> Section-level writing direction</td>
+            </tr>
+            <tr>
+              <td>Annotated screenshots &amp; before/after visuals</td>
+              <td><span class="compare-x">&mdash;</span></td>
+              <td><span class="compare-check">&check;</span> What changes where, visually</td>
+            </tr>
+            <tr>
+              <td>Content queryability recommendations</td>
+              <td><span class="compare-x">&mdash;</span></td>
+              <td><span class="compare-check">&check;</span> Per-template callouts with patterns</td>
+            </tr>
+            <tr>
+              <td>Entity authority graph</td>
+              <td><span class="compare-x">&mdash;</span></td>
+              <td><span class="compare-check">&check;</span> Visual map of missing connections</td>
+            </tr>
+            <tr>
+              <td>Template inventory with complexity ratings</td>
+              <td><span class="compare-x">&mdash;</span></td>
+              <td><span class="compare-check">&check;</span> Every page type mapped</td>
+            </tr>
+            <tr>
+              <td>Live AI agent test results</td>
+              <td><span class="compare-check-warm">&check;</span> 4 platforms</td>
+              <td><span class="compare-check">&check;</span> Included or imported from audit</td>
+            </tr>
+            <tr>
+              <td>Video highlights</td>
+              <td><span class="compare-check-warm">&check;</span> Findings walkthrough</td>
+              <td><span class="compare-check">&check;</span> Implementation priorities</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         THREE LAYERS (implementation-focused)
+         ============================================================ -->
+    <section id="framework">
+      <div class="container">
+        <p class="section-label">The Framework</p>
+        <h2 class="section-heading">Three layers. Two sides per layer. Every template covered.</h2>
+        <div class="section-body">
+          <p>The Roadmap is organized around the same Find / Understand / Trust framework as the audit, but splits each layer into what humans see (content and structure) and what machines read (schema and code). Every recommendation maps to a specific layer and side.</p>
+        </div>
+        <div class="layers-grid">
+          <div class="layer-card find">
+            <div class="layer-principle">Be Clear</div>
+            <h3>Find: Can machines access and navigate your site?</h3>
+            <p>The infrastructure layer. Semantic HTML structure, heading hierarchy, breadcrumb navigation, and crawler access. The Roadmap delivers annotated HTML blueprints showing your dev team exactly how to restructure each template.</p>
+            <div class="layer-deliverables">
+              <span class="layer-tag">HTML Blueprints</span>
+              <span class="layer-tag">Heading Hierarchy</span>
+              <span class="layer-tag">BreadcrumbList Schema</span>
+            </div>
+          </div>
+          <div class="layer-card understand">
+            <div class="layer-principle">Be Complete</div>
+            <h3>Understand: Can machines interpret what you do?</h3>
+            <p>The structure layer. Schema type mapping, JSON-LD blocks with real content, content queryability recommendations, and entity identification. This is the bulk of the Roadmap: per-template schema specifications your team can copy directly into your CMS.</p>
+            <div class="layer-deliverables">
+              <span class="layer-tag">JSON-LD Blocks</span>
+              <span class="layer-tag">Schema Type Map</span>
+              <span class="layer-tag">Content Recommendations</span>
+              <span class="layer-tag">FAQ Patterns</span>
+            </div>
+          </div>
+          <div class="layer-card trust">
+            <div class="layer-principle">Be Consistent</div>
+            <h3>Trust: Can machines verify who you are?</h3>
+            <p>The authority layer. Entity graph visualization showing where the connections between your people, your content, and your brand are strong and where they're missing. The Roadmap maps every entity relationship that should exist and shows which ones don't yet.</p>
+            <div class="layer-deliverables">
+              <span class="layer-tag">Entity Graph</span>
+              <span class="layer-tag">sameAs Links</span>
+              <span class="layer-tag">Authority Chain</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preview Accordion -->
+        <div class="preview-accordion">
+          <p class="preview-accordion-intro">Here's what Roadmap deliverables actually look like.</p>
+
+          <!-- JSON-LD preview -->
+          <div class="preview-item">
+            <button class="preview-toggle" onclick="togglePreview(this)">
+              <div class="preview-toggle-left">
+                <div>
+                  <span class="layer-label">Schema</span>
+                  <h4>Copy-paste JSON-LD for a services page</h4>
+                </div>
+              </div>
+              <span class="toggle-icon">+</span>
+            </button>
+            <div class="preview-body">
+              <div class="preview-sample-block">
+                <p class="preview-sample-label teal">JSON-LD Block (sample)</p>
+                <pre class="preview-code-block">{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "{{CMS:service_name}}",
+  "description": "{{CMS:service_description}}",
+  "provider": {
+    "@type": "Organization",
+    "@id": "https://yoursite.com/#organization"
+  },
+  "serviceType": "{{CMS:service_category}}",
+  "areaServed": "{{CMS:service_region}}"
+}</pre>
+              </div>
+              <div class="preview-rec-block">
+                <strong>Why this matters:</strong> Without Service schema, AI agents must guess whether your page describes a service, a blog post, or something else entirely. This block tells them explicitly.
+              </div>
+            </div>
+          </div>
+
+          <!-- HTML Blueprint preview -->
+          <div class="preview-item">
+            <button class="preview-toggle" onclick="togglePreview(this)">
+              <div class="preview-toggle-left">
+                <div>
+                  <span class="layer-label">HTML</span>
+                  <h4>Annotated semantic HTML blueprint</h4>
+                </div>
+              </div>
+              <span class="toggle-icon">+</span>
+            </button>
+            <div class="preview-body">
+              <div class="preview-sample-block">
+                <p class="preview-sample-label copper">HTML Blueprint (sample)</p>
+                <pre class="preview-code-block">&lt;main&gt;
+  &lt;!-- WHY: &lt;main&gt; identifies primary content for agents.
+       Exactly one per page. --&gt;
+  &lt;article&gt;
+    &lt;h1&gt;{{CMS:service_name}}&lt;/h1&gt;
+    &lt;!-- FIX: Current template uses div, not article.
+         Article wrapper enables per-service parsing. --&gt;
+    &lt;section aria-label="Overview"&gt;
+      &lt;h2&gt;What We Do&lt;/h2&gt;
+      &lt;p&gt;{{CMS:service_description}}&lt;/p&gt;
+    &lt;/section&gt;
+    &lt;section aria-label="Results"&gt;
+      &lt;h2&gt;Results&lt;/h2&gt;
+      &lt;!-- WHY: Proof section. AI agents weight factual
+           claims backed by specific metrics. --&gt;
+    &lt;/section&gt;
+  &lt;/article&gt;
+&lt;/main&gt;</pre>
+              </div>
+              <div class="preview-rec-block">
+                <strong>Every change is annotated.</strong> WHY comments explain the reasoning. FIX comments flag what needs to change from the current template. Your dev team never has to guess.
+              </div>
+            </div>
+          </div>
+
+          <!-- Content recommendations preview -->
+          <div class="preview-item">
+            <button class="preview-toggle" onclick="togglePreview(this)">
+              <div class="preview-toggle-left">
+                <div>
+                  <span class="layer-label">Content</span>
+                  <h4>Content queryability recommendations</h4>
+                </div>
+              </div>
+              <span class="toggle-icon">+</span>
+            </button>
+            <div class="preview-body">
+              <div class="preview-sample-block">
+                <p class="preview-sample-label copper">Content Recommendation (sample)</p>
+                <div style="background: #f7f5f2; border: 1px solid var(--border); border-radius: 8px; padding: 16px; font-size: 0.88rem; color: #545B6A; line-height: 1.6;">
+                  <div style="font-weight: 600; color: var(--charcoal); margin-bottom: 8px;">Add outcome-focused language <span style="font-size: 0.72rem; font-weight: 600; padding: 2px 8px; border-radius: 12px; background: #dc2626; color: #fff; margin-left: 8px;">High Priority</span></div>
+                  <p style="margin-bottom: 10px;">Pages describe activities but not outcomes. AI agents recommending services need to cite specific results.</p>
+                  <p style="margin-bottom: 4px; font-weight: 500; color: var(--charcoal); font-size: 0.82rem;">Pattern:</p>
+                  <p>Replace "We provide strategic consulting services..." with "We help mid-market firms reduce operational costs by 15-30% within 6 months..."</p>
+                </div>
+              </div>
+              <div class="preview-rec-block">
+                <strong>Each recommendation includes a pattern.</strong> Your content team gets the before/after example, the priority level, and the reasoning.
+              </div>
+            </div>
+          </div>
+
+          <p class="preview-note">Each Roadmap covers every template on your site with all three deliverable types plus an entity authority graph.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WHAT YOU GET (deliverables)
+         ============================================================ -->
+    <section id="what-you-get">
+      <div class="container">
+        <p class="section-label">What's Included</p>
+        <h2 class="section-heading">Two teams. Two sets of deliverables. One implementation plan.</h2>
+        <div class="section-body">
+          <p>Most implementation projects stall because the dev team gets technical specs and the content team gets nothing. The Roadmap delivers to both, organized by template, with a shared priority timeline so everyone is working from the same plan.</p>
+        </div>
+
+        <p class="section-label" style="margin-top: 40px;">For Your Development Team</p>
+        <ul class="deliverables-list">
+          <li>
+            <div class="deliverable-icon teal">&#123;&#125;</div>
+            <div class="deliverable-content">
+              <h4>Per-Template JSON-LD Schema Blocks</h4>
+              <p>Complete, valid JSON-LD blocks populated with your actual page content. Placeholder markers for CMS-dynamic fields. Ready to copy into your templates after replacing dynamic values.</p>
+            </div>
+          </li>
+          <li>
+            <div class="deliverable-icon teal">&lt;/&gt;</div>
+            <div class="deliverable-content">
+              <h4>Semantic HTML Blueprints</h4>
+              <p>Annotated HTML structure for each template type. Every change marked with WHY (the reasoning) and FIX (what's different from your current markup) comments. Dev effort estimates included.</p>
+            </div>
+          </li>
+          <li>
+            <div class="deliverable-icon teal">&#9673;</div>
+            <div class="deliverable-content">
+              <h4>Entity Authority Graph</h4>
+              <p>Visual map of the connections between your people, your content, and your organization. Green lines are verified connections. Red dashed lines are missing. Your dev team sees exactly which schema relationships to implement.</p>
+            </div>
+          </li>
+        </ul>
+
+        <p class="section-label" style="margin-top: 40px;">For Your Content &amp; Marketing Team</p>
+        <ul class="deliverables-list">
+          <li>
+            <div class="deliverable-icon copper">&#9998;</div>
+            <div class="deliverable-content">
+              <h4>Mini Content Briefs Per Template</h4>
+              <p>Section-by-section writing direction for each page type. Not "add outcome language" in the abstract, but "this hero section needs a 2-sentence client outcome with a specific metric" with a pattern and example to follow. Mapped to the schema fields that depend on the content.</p>
+            </div>
+          </li>
+          <li>
+            <div class="deliverable-icon copper">&#128247;</div>
+            <div class="deliverable-content">
+              <h4>Annotated Page Screenshots</h4>
+              <p>Full-page captures of your current pages with visual callouts showing exactly what changes where. Your content manager sees the problem on the actual page, not in a spreadsheet.</p>
+            </div>
+          </li>
+          <li>
+            <div class="deliverable-icon copper">&#9776;</div>
+            <div class="deliverable-content">
+              <h4>Content Queryability Recommendations</h4>
+              <p>Template-by-template callouts on what your content says versus how AI agents interpret it. Prioritized recommendations on clarity, proof, and specificity with before/after patterns your writers can follow.</p>
+            </div>
+          </li>
+        </ul>
+
+        <p class="section-label" style="margin-top: 40px;">For Everyone</p>
+        <ul class="deliverables-list">
+          <li>
+            <div class="deliverable-icon sage">&#9650;</div>
+            <div class="deliverable-content">
+              <h4>Implementation Priority Timeline</h4>
+              <p>Four-phase build order with dev and content effort estimates per template. Foundation first, then revenue pages, then authority assets, then supporting pages. Both teams working from the same plan.</p>
+            </div>
+          </li>
+          <li>
+            <div class="deliverable-icon sage">&#9654;</div>
+            <div class="deliverable-content">
+              <h4>Video Highlights</h4>
+              <p>A recorded walkthrough of the key implementation priorities, what to tackle first, and how the pieces connect. Share it with your dev lead, your content manager, and your executive team.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROCESS TIMELINE
+         ============================================================ -->
+    <section id="process">
+      <div class="container">
+        <p class="section-label">The Process</p>
+        <h2 class="section-heading">From request to implementation-ready in 15 business days.</h2>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="step-number copper">1</div>
+            <h4>Scoping</h4>
+            <p>We review your site, count templates, and determine the right tier. If you've already had an audit, we import those findings directly.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number copper">2</div>
+            <h4>Analysis</h4>
+            <p>Deep template-by-template analysis: schema mapping, HTML structure review, content queryability recommendations, entity graph construction.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number teal">3</div>
+            <h4>Build</h4>
+            <p>Per-template deliverables are generated, validated, and assembled into your Roadmap report with implementation priorities.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number teal">4</div>
+            <h4>Deliver</h4>
+            <p>You receive the full Roadmap: interactive report, JSON-LD files, HTML blueprints, entity graph, priority timeline, and video highlights.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         IS THIS RIGHT FOR YOU?
+         ============================================================ -->
+    <section id="fit">
+      <div class="container">
+        <p class="section-label">Is This Right for You?</p>
+        <h2 class="section-heading">The Roadmap is built for teams ready to execute.</h2>
+        <div class="fit-columns">
+          <div class="fit-card yes">
+            <h3>The Roadmap is a good fit if:</h3>
+            <ul>
+              <li>You have a dev team (in-house or agency) ready to implement</li>
+              <li>You've had an audit or know your site has schema/structure gaps</li>
+              <li>Your site has multiple page templates (services, case studies, team, blog)</li>
+              <li>You want specific deliverables, not more strategy decks</li>
+              <li>You're a B2B professional services firm, agency, or consultancy</li>
+            </ul>
+          </div>
+          <div class="fit-card no">
+            <h3>You might want the Audit first if:</h3>
+            <ul>
+              <li>You haven't assessed your current AI readiness at all</li>
+              <li>You need the diagnostic findings to build a business case internally</li>
+              <li>You're not sure whether schema or content is the bigger problem</li>
+              <li>You want to understand the landscape before committing to implementation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TESTIMONIALS
+         ============================================================ -->
+    <section style="padding: 40px 0 0; border-top: none;">
+      <div class="container" style="display: flex; gap: 24px; max-width: 760px;">
+        <div class="testimonial-card" style="flex: 1; margin: 0; padding: 20px 24px;">
+          <p class="testimonial-quote" style="font-size: 0.88rem;">"Liz is a true professional: thorough, strategic, and collaborative. She led major initiatives like a complex site migration with exceptional organization and attention to detail."</p>
+          <p class="testimonial-attribution">&mdash; Theresa Bass, Ignite Visibility</p>
+        </div>
+        <div class="testimonial-card" style="flex: 1; margin: 0; padding: 20px 24px;">
+          <p class="testimonial-quote" style="font-size: 0.88rem;">"Liz is an expert in the truest sense of the word when it comes to SEO, content and AIO. She breaks down nuanced concepts into strategic, focused plans and actions."</p>
+          <p class="testimonial-attribution">&mdash; Sean Balaban, Dun &amp; Bradstreet</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PRICING
+         ============================================================ -->
+    <section id="pricing" class="pricing-section">
+      <div class="container">
+        <p class="section-label">Pricing</p>
+        <h2 class="section-heading">Scoped to your site. Transparent from day one.</h2>
+        <div class="pricing-card">
+          <div class="pricing-amount"><span class="pricing-starting">Starting at </span>$3,500</div>
+          <p class="pricing-label">Scoped per engagement based on your site's complexity. No recurring fees. No hidden costs.</p>
+          <ul class="pricing-includes">
+            <li>Template inventory with complexity ratings</li>
+            <li>Per-template JSON-LD schema blocks (copy-paste ready)</li>
+            <li>Semantic HTML blueprints with annotated changes</li>
+            <li>Mini content briefs per template with section-level direction</li>
+            <li>Annotated page screenshots and component before/after visuals</li>
+            <li>Entity authority graph with gap analysis</li>
+            <li>Implementation priority timeline with effort estimates</li>
+            <li>Interactive Roadmap report</li>
+            <li>Video highlights</li>
+          </ul>
+          <div class="pricing-credit">
+            <strong>Already had an Agent Readiness Audit?</strong> Your $1,500 audit investment applies as a credit toward the Roadmap price.
+          </div>
+          <a href="#apply" class="cta-btn" style="width: 100%; text-align: center;">Get Your Roadmap</a>
+          <p class="pricing-note">I'll review your site and recommend a scope before any commitment.</p>
+        </div>
+
+        <div class="pricing-scoping">
+          <h3>What affects the price?</h3>
+          <div class="scoping-factors">
+            <div class="scoping-factor">
+              <h4>Number of templates</h4>
+              <p>Each unique page type (services, case studies, blog, team, etc.) gets its own schema, blueprint, and content brief.</p>
+            </div>
+            <div class="scoping-factor">
+              <h4>Content complexity</h4>
+              <p>How much content rewriting is implied by the findings. A site with thin content across 8 templates needs more direction than one with strong copy that just needs restructuring.</p>
+            </div>
+            <div class="scoping-factor">
+              <h4>CMS environment</h4>
+              <p>WordPress with a standard theme is simpler than a custom React build. The deliverables are tailored to how your team actually implements changes.</p>
+            </div>
+            <div class="scoping-factor">
+              <h4>Scope of visual deliverables</h4>
+              <p>Annotated screenshots, component before/after visuals, and the level of detail your content and marketing teams need to execute without guessing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FAQ
+         ============================================================ -->
+    <section id="faq">
+      <div class="container">
+        <p class="section-label">Questions</p>
+        <h2 class="section-heading">Frequently asked</h2>
+        <div class="faq-list">
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>Do I need the audit before getting a Roadmap?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>No. The Roadmap can stand on its own. If you haven't had an audit, the Roadmap engagement includes the diagnostic analysis needed to build the implementation plan. That said, the audit gives you the strategic big picture first, which many clients find valuable for internal alignment. And if you do start with the audit, your $1,500 investment applies as a credit toward the Roadmap price.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>What does "per-template" mean?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Your website is built from templates: a homepage template, a services page template, a blog post template, a team member template, etc. Each unique template gets its own schema block, HTML blueprint, content brief, and annotated screenshots. A site with 8 templates gets 8 of each. This is more efficient than analyzing every individual page because pages of the same type share the same structural improvements.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>Can my teams actually implement from this?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>That's the entire point. Your dev team gets valid, tested JSON-LD blocks and annotated HTML blueprints they can implement directly in your CMS. Your content team gets mini briefs with section-level writing direction, annotated screenshots showing exactly what changes on each page, and before/after visuals of key components. Nobody has to guess what "agent-ready" looks like.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>How is pricing determined?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Pricing starts at $3,500 and is based on four variables: number of unique page templates, content complexity (how much rewriting is implied), your CMS environment, and the scope of visual deliverables your teams need. I review your site during scoping and recommend a price before any commitment. Most B2B professional services firms with 6-12 templates land in the $3,500-$7,500 range.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>How long does the Roadmap take?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Most Roadmaps are delivered within 15 business days. Larger or more complex engagements may take longer. You'll receive the full package at once: interactive report, schema blocks, blueprints, content briefs, annotated screenshots, entity graph, priority timeline, and video highlights.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>What if we need help with the implementation?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>The Roadmap is designed so your existing team or agency can implement from it independently. The developer deliverables are copy-paste ready. The content deliverables include patterns and examples, not just abstract recommendations. If you need additional support, I can recommend trusted specialists based on your specific findings.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         APPLICATION FORM
+         ============================================================ -->
+    <section id="apply" class="form-section">
+      <div class="container">
+        <div class="form-card">
+          <h2>Request Your Agent Readiness Roadmap</h2>
+          <p class="form-subtitle">Tell me about your business and I'll scope your Roadmap. No commitment until we agree on templates and tier.</p>
+
+          <form name="roadmap-application" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/roadmap-thank-you">
+            <input type="hidden" name="form-name" value="roadmap-application">
+            <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" required placeholder="Jane Smith">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required placeholder="jane@company.com">
+            </div>
+
+            <div class="form-group">
+              <label for="website">Company Website</label>
+              <input type="url" id="website" name="website" required placeholder="https://yourcompany.com">
+            </div>
+
+            <div class="form-group">
+              <label for="had-audit">Have you had an Agent Readiness Audit?</label>
+              <select id="had-audit" name="had-audit">
+                <option value="" disabled selected>Select one</option>
+                <option value="yes-liz">Yes, with Liz Micik</option>
+                <option value="yes-other">Yes, with someone else</option>
+                <option value="no">No, not yet</option>
+                <option value="not-sure">Not sure / need guidance</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="about-business">Tell me about your business and what you're hoping to fix</label>
+              <textarea id="about-business" name="about-business" rows="4" placeholder="What does your company do? Do you know which areas of your site need the most work? Do you have a dev team ready to implement?"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="how-found">How did you hear about me?</label>
+              <input type="text" id="how-found" name="how-found" placeholder="Audit results, referral, LinkedIn, etc.">
+            </div>
+
+            <button type="submit" class="form-submit">Submit Request</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BOTTOM CTA
+         ============================================================ -->
+    <section style="text-align: center; padding: 48px 0;">
+      <div class="container">
+        <p class="section-body" style="margin-bottom: 20px;">Not sure if you need the full Roadmap?</p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="/audit" class="cta-btn-outline">Start with the Agent Readiness Audit</a>
+          <a href="/signal-check" class="cta-btn-warm-outline">Try the free Agent Signal Check</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 <a href="/">Liz Micik</a> &middot; lizmicik.com</p>
+      <div class="footer-links">
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       COOKIE BANNER
+       ============================================================ -->
+  <div class="cookie-banner" id="cookie-banner" style="display: none;">
+    <span>This site uses cookies for analytics. <a href="/privacy-policy">Privacy Policy</a></span>
+    <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button>
+    <button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button>
+  </div>
+
+  <script>
+    // Preview accordion toggle
+    function togglePreview(btn) {
+      var item = btn.parentElement;
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.preview-item').forEach(function(i) { i.classList.remove('open'); });
+      if (!isOpen) {
+        item.classList.add('open');
+      }
+    }
+
+    // FAQ toggle
+    function toggleFaq(btn) {
+      var answer = btn.nextElementSibling;
+      var toggle = btn.querySelector('.faq-toggle');
+      var isOpen = answer.classList.contains('open');
+      document.querySelectorAll('.faq-answer').forEach(function(a) { a.classList.remove('open'); });
+      document.querySelectorAll('.faq-toggle').forEach(function(t) { t.textContent = '+'; });
+      if (!isOpen) {
+        answer.classList.add('open');
+        toggle.textContent = '\u2212';
+      }
+    }
+
+    // Cookie banner
+    function acceptCookies() {
+      localStorage.setItem('cookies-accepted', 'true');
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+    function declineCookies() {
+      localStorage.setItem('cookies-accepted', 'false');
+      document.getElementById('cookie-banner').style.display = 'none';
+      window['ga-disable-G-B9S40S2SKG'] = true;
+    }
+    if (!localStorage.getItem('cookies-accepted')) {
+      document.getElementById('cookie-banner').style.display = 'flex';
+    } else if (localStorage.getItem('cookies-accepted') === 'false') {
+      window['ga-disable-G-B9S40S2SKG'] = true;
+    }
+
+    // Roadmap application form: Kit subscription + email notification
+    (function() {
+      var form = document.querySelector('form[name="roadmap-application"]');
+      if (!form) return;
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var btn = form.querySelector('.form-submit');
+        var origText = btn.textContent;
+        btn.textContent = 'Submitting...';
+        btn.disabled = true;
+
+        var name = form.querySelector('[name="name"]').value;
+        var email = form.querySelector('[name="email"]').value;
+        var website = form.querySelector('[name="website"]').value;
+        var hadAudit = form.querySelector('[name="had-audit"]').value;
+        var aboutBusiness = form.querySelector('[name="about-business"]').value;
+        var howFound = form.querySelector('[name="how-found"]').value;
+
+        // Fire Kit subscribe + notification in parallel
+        var kitCall = fetch('/api/subscribe-kit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, source: 'roadmap' })
+        }).catch(function(err) { console.warn('Kit subscribe failed:', err); });
+
+        var notifyCall = fetch('/api/notify-form', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            source: 'roadmap',
+            name: name,
+            email: email,
+            website: website,
+            hadAudit: hadAudit,
+            aboutBusiness: aboutBusiness,
+            howFound: howFound
+          })
+        }).catch(function(err) { console.warn('Notify failed:', err); });
+
+        // Wait for both, then submit to Netlify Forms and redirect
+        Promise.allSettled([kitCall, notifyCall]).then(function() {
+          var formData = new FormData(form);
+          fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString()
+          }).then(function() {
+            window.location.href = '/roadmap-thank-you';
+          }).catch(function() {
+            window.location.href = '/roadmap-thank-you';
+          });
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
