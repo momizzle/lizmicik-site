@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
-  <title>Agent Readiness Audit™ - Sample Report</title>
+  <title>Agent Readiness Audit - Sample Report</title>
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -360,7 +359,7 @@
     }
 
     /* <span class="redacted">Jabian</span> column special styling */
-    .jabian-column {
+    .<span class="redacted">jabian</span>-column {
       background-color: #fef2f2;
     }
 
@@ -730,42 +729,40 @@
         padding: 24px;
       }
     }
-
+  
     /* Redaction blur for sample version */
     .redacted {
       filter: blur(5px);
       -webkit-filter: blur(5px);
       user-select: none;
-      -webkit-user-select: none;
     }
     .report-header .redacted {
       filter: blur(10px);
       -webkit-filter: blur(10px);
     }
     .redacted-note {
+      background: linear-gradient(135deg, #1a2332 0%, #0d1b2a 100%);
+      border: 2px solid var(--copper);
+      border-radius: 12px;
+      padding: 20px 28px;
       text-align: center;
-      background: #fff3cd;
-      border: 1px solid #ffc107;
-      padding: 12px 24px;
-      border-radius: 6px;
-      margin: 0 auto 32px;
-      max-width: 960px;
-      font-size: 13px;
-      color: #856404;
+      color: var(--text-primary);
+      font-size: 15px;
+      line-height: 1.6;
     }
+
   </style>
 </head>
 <body>
-
-  <!-- Sample Notice -->
   <div class="redacted-note" style="margin-top: 24px;">
     <strong>Sample Report</strong> — Client identity redacted for confidentiality. All findings, data, and recommendations are from a real engagement.
   </div>
 
+
   <!-- Report Header -->
   <div class="report-header">
-    <h1><span class="redacted">Jabian</span> Consulting</span></h1>
-    <div class="subtitle" style="font-size: 14px; opacity: 0.85; margin-bottom: 4px;"><span class="redacted">jabian.com</span></div>
+    <h1><span class="redacted">Jabian</span> Consulting</h1>
+    <div class="subtitle" style="font-size: 14px; opacity: 0.85; margin-bottom: 4px;"><span class="redacted"><span class="redacted">jabian</span>.com</span></div>
     <div style="font-family: var(--font-heading); font-size: 24px; font-weight: 600; margin-bottom: 24px; letter-spacing: 0.5px;">Agent Readiness Audit™</div>
     <div class="meta">
       <div class="meta-item">
@@ -820,10 +817,10 @@
           <div class="result-card" style="border-left-color: var(--high);">
             <h3>Trust</h3>
             <div class="question">Will AI recommend you?</div>
-            <div class="verdict">No. Across 80 AI conversations spanning 4 model families and 4 buyer personas, <span class="redacted">Jabian</span> was mentioned zero times. Competitors BCG, Bain, and Accenture capture 30 to 65% of recommendations. Your website was cited 0 times out of 397 total source citations. This is not a ranking problem. It is complete absence.</div>
+            <div class="verdict">No. Across 80 AI conversations spanning 4 model families and 4 buyer personas, <span class="redacted">Jabian</span> was mentioned zero times. Competitors BCG, Bain, and Accenture capture 30 to 65% of recommendations. Your website was cited 0 times out of 397 total source citations. The schema gaps from the Understand layer compound here: incomplete entity data, no person-to-content authority chain, and pages that prove more than the schema claims all erode AI confidence.</div>
             <div class="severity-bar">
-              <div class="severity-segment high" style="flex: 7;"></div>
-              <div class="severity-segment medium" style="flex: 4;"></div>
+              <div class="severity-segment high" style="flex: 9;"></div>
+              <div class="severity-segment medium" style="flex: 5;"></div>
               <div class="severity-segment low" style="flex: 0;"></div>
               <div class="severity-segment pass" style="flex: 1;"></div>
             </div>
@@ -887,11 +884,11 @@
 
         <!-- Tab 1: How We Tested -->
         <div id="howwetested-tab" class="tab-content active" style="background-color: white; padding: 32px; border-radius: 8px;">
-          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8;">This audit evaluated <strong>8 page templates</strong> sampled from <span class="redacted">jabian.com</span>, selected to represent the major content types on the site: homepage, services overview, service detail, case studies, blog, leadership, about, and contact.</p>
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8;">This audit evaluated <strong>8 page templates</strong> sampled from <span class="redacted"><span class="redacted">jabian</span>.com</span>, selected to represent the major content types on the site: homepage, services overview, service detail, case studies, blog, leadership, about, and contact.</p>
 
           <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8;">We also tested <strong>four buyer personas</strong> that represent <span class="redacted">Jabian</span>'s target decision-makers: Growth-Focused Operations VP, Digital Transformation CIO, Strategic Transformation CEO, and Performance-Driven HR Director. Each persona was used to generate <strong>20 conversations across all models</strong>, for a total of 80 structured AI conversations.</p>
 
-          <p style="color: var(--text-secondary); margin-bottom: 0; line-height: 1.8; padding: 16px; background-color: var(--cream); border-radius: 6px;">A full <strong>Agent Readiness Assessment™</strong> expands this analysis to cover additional pages, deeper content evaluation, competitive benchmarking across multiple focus areas, and a detailed implementation roadmap with technical specifications for your development team.</p>
+          <p style="color: var(--text-secondary); margin-bottom: 0; line-height: 1.8; padding: 16px; background-color: var(--cream); border-radius: 6px;">The <strong>Agent Readiness Roadmap</strong> takes these findings and builds a complete implementation blueprint: schema type mapping for every page template, sample JSON-LD with your real content, semantic HTML recommendations, and a prioritized build sequence your team can execute.</p>
 
           <div style="font-size: 12px; color: var(--text-secondary); margin-top: 24px; opacity: 0.7;">&copy; 2026 Liz Micik. All rights reserved. Agent Readiness Audit™ is a trademark of Liz Micik.</div>
         </div>
@@ -1167,7 +1164,7 @@
               <details style="margin-top: 12px;">
                 <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
                 <div class="finding-content">
-                  <p>Sitemap index at https://<span class="redacted">jabian.com</span>/sitemap_index.xml. Sub-sitemaps: post-sitemap.xml (2026-02-24), page-sitemap.xml (2026-03-19), case_studies-sitemap.xml (2025-09-04), locations-sitemap.xml (2026-02-23), podcasts-sitemap.xml (2026-03-24), solutions-sitemap.xml (2025-10-21), post_tag-sitemap.xml (2026-01-02), leadership_category-sitemap.xml (2025-06-03), author-sitemap.xml (2025-01-09). Note: case_studies sitemap last modified September 2025, which may indicate stale content.</p>
+                  <p>Sitemap index at https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/sitemap_index.xml. Sub-sitemaps: post-sitemap.xml (2026-02-24), page-sitemap.xml (2026-03-19), case_studies-sitemap.xml (2025-09-04), locations-sitemap.xml (2026-02-23), podcasts-sitemap.xml (2026-03-24), solutions-sitemap.xml (2025-10-21), post_tag-sitemap.xml (2026-01-02), leadership_category-sitemap.xml (2025-06-03), author-sitemap.xml (2025-01-09). Note: case_studies sitemap last modified September 2025, which may indicate stale content.</p>
                 </div>
               </details>
             </div>
@@ -1237,7 +1234,7 @@
       <p class="topic-intro">Schema markup is the machine-readable vocabulary that tells AI exactly what your content represents. Service pages need Service schema. Case studies need CaseStudy schema. Leaders need Person schema. Without these explicit labels, AI must guess what each page is about.</p>
 
       <!-- HIGH finding: Services Pages Lack Service Schema -->
-      <details>
+      <details id="SCH-002">
         <summary><span class="badge high">HIGH</span> Services Pages Lack Service Schema <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-002)</span></summary>
         <div class="finding-content">
           <p style="margin-bottom: 12px;">Schema.org Service markup is a structured data format that tells AI systems 'this page describes a professional service.' Without it, AI models must guess whether a page is about services, a blog post, or something else entirely.</p>
@@ -1253,8 +1250,8 @@
                   <p style="margin-bottom: 12px;">WordPress theme defaults to WebPage type for all pages. Yoast SEO does not auto-generate Service schema. Requires custom post type schema template in child theme.</p>
                   <p style="margin-bottom: 8px; font-weight: 600;">Pages affected:</p>
                   <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; font-family: monospace;">
-                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted">jabian.com</span>/service-areas — <code>has_service: false</code></li>
-                    <li style="padding: 6px 0;">https://<span class="redacted">jabian.com</span>/service-areas/strategy-scale — <code>has_service: false</code></li>
+                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/service-areas — <code>has_service: false</code></li>
+                    <li style="padding: 6px 0;">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/service-areas/strategy-scale — <code>has_service: false</code></li>
                   </ul>
                 </div>
               </details>
@@ -1266,7 +1263,7 @@
       </details>
 
       <!-- HIGH finding: Case Studies Have No Structured Data -->
-      <details>
+      <details id="SCH-003">
         <summary><span class="badge high">HIGH</span> Case Studies Have No Structured Data <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-003)</span></summary>
         <div class="finding-content">
           <p style="margin-bottom: 12px;">Case study schema (CreativeWork or CaseStudy) tells AI systems that a page contains evidence of your work: who the client was, what industry they are in, what you accomplished, and what results you delivered. This is the structured proof AI needs to recommend you.</p>
@@ -1282,7 +1279,7 @@
                   <p style="margin-bottom: 12px;">No client names, no industry tags, no outcome metrics in schema. case_studies-sitemap.xml last modified September 2025, which may indicate stale content. WordPress likely has a case_studies custom post type (based on sitemap).</p>
                   <p style="margin-bottom: 8px; font-weight: 600;">Page affected:</p>
                   <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; font-family: monospace;">
-                    <li style="padding: 6px 0;">https://<span class="redacted">jabian.com</span>/resources/case-studies — <code>has_case_study_schema: false</code></li>
+                    <li style="padding: 6px 0;">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/resources/case-studies — <code>has_case_study_schema: false</code></li>
                   </ul>
                 </div>
               </details>
@@ -1294,7 +1291,7 @@
       </details>
 
       <!-- HIGH finding: 18 Leaders Have Zero Person Schema -->
-      <details>
+      <details id="SCH-005">
         <summary><span class="badge high">HIGH</span> 18 Leaders Have Zero Person Schema <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-005)</span></summary>
         <div class="finding-content">
           <p style="margin-bottom: 12px;">Person schema tells AI systems that a page contains information about a specific individual: their name, title, expertise, and organizational affiliation. This is how AI builds authority profiles for the people behind a company, which feeds directly into E-E-A-T (Experience, Expertise, Authority, Trustworthiness) scoring.</p>
@@ -1310,7 +1307,7 @@
                   <p style="margin-bottom: 12px;">CollectionPage type is appropriate but no Person entities in the @graph. person_patterns: nameElements: 34, titleReferences: 15. Images: total 35, withAlt: 1. Named leaders include Brian Betkowski, Chris Reinking, Nigel Zelcer, Rob Amberg, and 14 others.</p>
                   <p style="margin-bottom: 8px; font-weight: 600;">Page affected:</p>
                   <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; font-family: monospace;">
-                    <li style="padding: 6px 0;">https://<span class="redacted">jabian.com</span>/about/leadership — <code>has_person_schema: false</code></li>
+                    <li style="padding: 6px 0;">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/about/leadership — <code>has_person_schema: false</code></li>
                   </ul>
                 </div>
               </details>
@@ -1322,7 +1319,7 @@
       </details>
 
       <!-- HIGH finding: No Author Attribution in Content Schema -->
-      <details>
+      <details id="SCH-010">
         <summary><span class="badge high">HIGH</span> No Author Attribution in Content Schema <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-010)</span></summary>
         <div class="finding-content">
           <p style="margin-bottom: 12px;">Author schema connects content (blog posts, case studies, articles) to the specific person who created it. This tells AI that a thought leadership piece on AI strategy was written by an actual expert at your firm, not anonymous content. It is a key signal for credibility.</p>
@@ -1346,7 +1343,7 @@
       </details>
 
       <!-- MEDIUM finding: Organization Schema Missing Contact Properties -->
-      <details>
+      <details id="SCH-001">
         <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> Organization Schema Missing Contact Properties <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-001)</span></summary>
         <div class="finding-content">
           <p style="margin-bottom: 12px;">Organization schema is the foundation of how AI systems understand your company. Beyond your name and type, it should include how to reach you: physical addresses, phone numbers, and email contacts for each office location.</p>
@@ -1354,7 +1351,7 @@
           <details style="margin-top: 12px;">
             <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
             <div class="finding-content">
-              <p style="margin-bottom: 12px;">The Organization schema on your homepage, about, and contact pages declares the <span class="redacted">Jabian</span> entity but lacks address and contactPoint properties. AI agents cannot extract office addresses or contact information from structured data. Given <span class="redacted">Jabian</span>'s 6 office locations, this is a significant gap.</p>
+              <p style="margin-bottom: 12px;">The Organization schema on your homepage, about, and contact pages declares the <span class="redacted">Jabian</span> entity but lacks address and contactPoint properties. AI agents cannot extract office addresses or contact information from structured data. Given Jabian's 6 office locations, this is a significant gap.</p>
 
               <details style="margin-top: 12px;">
                 <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
@@ -1370,7 +1367,7 @@
       </details>
 
       <!-- MEDIUM finding: Boilerplate Schema Across All Pages -->
-      <details>
+      <details id="SCH-006">
         <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> Boilerplate Schema Across All Pages <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-006)</span></summary>
         <div class="finding-content">
           <p style="margin-bottom: 12px;">Ideally, each page on your website has schema tailored to its content type. A service page should have Service schema, a blog post should have Article schema, and a leadership page should have Person schema. Using the same generic template everywhere tells AI that every page is identical.</p>
@@ -1394,7 +1391,7 @@
       </details>
 
       <!-- MEDIUM finding: Blog Articles Lack Article Schema -->
-      <details>
+      <details id="SCH-004">
         <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> Blog Articles Lack Article Schema <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-004)</span></summary>
         <div class="finding-content">
           <p style="margin-bottom: 12px;">Article or BlogPosting schema tells AI systems that a page is a published piece of content with an author, publication date, and topic. Without it, your thought leadership is just another page with text on it.</p>
@@ -1418,7 +1415,7 @@
       </details>
 
       <!-- LOW finding: No LocalBusiness Schema -->
-      <details>
+      <details id="SCH-009">
         <summary><span class="badge low">LOW</span> No LocalBusiness Schema for 6 Office Locations <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-009)</span></summary>
         <div class="finding-content">
           <p style="margin-bottom: 12px;">LocalBusiness schema tells AI systems about your physical office locations: where each office is, what services it offers, and how to reach it. For a consulting firm with multiple offices, this helps AI answer 'Is there a <span class="redacted">Jabian</span> office near me?' with structured, accurate data.</p>
@@ -1479,17 +1476,17 @@
                   <p style="margin-bottom: 12px;">Site-wide CMS/theme issue — most page templates do not output an H1.</p>
                   <p style="margin-bottom: 8px; font-weight: 600;">Pages affected:</p>
                   <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; font-family: monospace;">
-                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted">jabian.com</span>/ — 8 H2 tags, 0 H1</li>
-                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted">jabian.com</span>/service-areas/strategy-scale — starts with H2, no H1</li>
-                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted">jabian.com</span>/resources/case-studies — no H1, all case study titles are H2</li>
-                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted">jabian.com</span>/resources/blog — empty H1 tag</li>
-                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted">jabian.com</span>/about/leadership — no H1</li>
+                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/ — 8 H2 tags, 0 H1</li>
+                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/service-areas/strategy-scale — starts with H2, no H1</li>
+                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/resources/case-studies — no H1, all case study titles are H2</li>
+                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/resources/blog — empty H1 tag</li>
+                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/about/leadership — no H1</li>
                   </ul>
-                  <p style="margin-top: 8px; font-size: 12px; color: var(--slate-mid);">Note: https://<span class="redacted">jabian.com</span>/service-areas has an H1 ("Service Areas") but uses H4 for all service category headings, skipping H2/H3.</p>
+                  <p style="margin-top: 8px; font-size: 12px; color: var(--slate-mid);">Note: https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/service-areas has an H1 ("Service Areas") but uses H4 for all service category headings, skipping H2/H3.</p>
                 </div>
               </details>
 
-              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Add a descriptive H1 to every page. Homepage: '<span class="redacted">Jabian</span> Consulting: Mid-Market Strategy, Operations, and Transformation.' Case studies: 'Client Results and Case Studies.' Leadership: '<span class="redacted">Jabian</span> Leadership Team.'</p>
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Add a descriptive H1 to every page. Homepage: '<span class="redacted">Jabian</span> Consulting: Mid-Market Strategy, Operations, and Transformation.' Case studies: 'Client Results and Case Studies.' Leadership: 'Jabian Leadership Team.'</p>
             </div>
           </details>
         </div>
@@ -1536,14 +1533,14 @@
                   <p style="margin-bottom: 12px;">Site-wide WordPress/Divi theme issue — no page template wraps content in a <code>&lt;main&gt;</code> element.</p>
                   <p style="margin-bottom: 8px; font-weight: 600;">All 8 sampled pages affected (<code>main: 0</code>):</p>
                   <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; font-family: monospace;">
-                    <li style="padding: 4px 0;">https://<span class="redacted">jabian.com</span>/</li>
-                    <li style="padding: 4px 0;">https://<span class="redacted">jabian.com</span>/about</li>
-                    <li style="padding: 4px 0;">https://<span class="redacted">jabian.com</span>/about/leadership</li>
-                    <li style="padding: 4px 0;">https://<span class="redacted">jabian.com</span>/contact</li>
-                    <li style="padding: 4px 0;">https://<span class="redacted">jabian.com</span>/service-areas</li>
-                    <li style="padding: 4px 0;">https://<span class="redacted">jabian.com</span>/service-areas/strategy-scale</li>
-                    <li style="padding: 4px 0;">https://<span class="redacted">jabian.com</span>/resources/case-studies</li>
-                    <li style="padding: 4px 0;">https://<span class="redacted">jabian.com</span>/resources/blog</li>
+                    <li style="padding: 4px 0;">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/</li>
+                    <li style="padding: 4px 0;">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/about</li>
+                    <li style="padding: 4px 0;">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/about/leadership</li>
+                    <li style="padding: 4px 0;">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/contact</li>
+                    <li style="padding: 4px 0;">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/service-areas</li>
+                    <li style="padding: 4px 0;">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/service-areas/strategy-scale</li>
+                    <li style="padding: 4px 0;">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/resources/case-studies</li>
+                    <li style="padding: 4px 0;">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/resources/blog</li>
                   </ul>
                   <p style="margin-top: 8px; font-size: 12px; color: var(--slate-mid);">To replicate: View page source on any page and search for <code>&lt;main</code>. No results.</p>
                 </div>
@@ -1573,7 +1570,7 @@
                 </div>
               </details>
 
-              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Replace the empty H1 with descriptive text: '<span class="redacted">Jabian</span> Consulting Blog and Insights' or 'News and Insights from <span class="redacted">Jabian</span>.'</p>
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Replace the empty H1 with descriptive text: '<span class="redacted">Jabian</span> Consulting Blog and Insights' or 'News and Insights from Jabian.'</p>
             </div>
           </details>
         </div>
@@ -1657,7 +1654,7 @@
           <details style="margin-top: 12px;">
             <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
             <div class="finding-content">
-              <p style="margin-bottom: 12px;">The case studies page has 431 words with zero client names, zero specific metrics, and zero quantified results. Titles are self-referential ('<span class="redacted">Jabian</span> Defines Business Intelligence Strategy...', '<span class="redacted">Jabian</span> Assesses and Designs PMO...') rather than outcome-focused. AI systems reading this page find no citable evidence of expertise.</p>
+              <p style="margin-bottom: 12px;">The case studies page has 431 words with zero client names, zero specific metrics, and zero quantified results. Titles are self-referential ('<span class="redacted">Jabian</span> Defines Business Intelligence Strategy...', 'Jabian Assesses and Designs PMO...') rather than outcome-focused. AI systems reading this page find no citable evidence of expertise.</p>
 
               <details style="margin-top: 12px;">
                 <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
@@ -1734,9 +1731,9 @@
                   <p style="margin-bottom: 12px;">Wordlift automation_readiness P1 critical: "Programmatic Label Association: Input field missing associated label, automation likely to fail."</p>
                   <p style="margin-bottom: 8px; font-weight: 600;">Pages affected:</p>
                   <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; font-family: monospace;">
-                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted">jabian.com</span>/contact — 20 inputs, 5 labeled (75% unlabeled)</li>
-                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted">jabian.com</span>/ — 5 inputs, 2 labeled</li>
-                    <li style="padding: 6px 0;">https://<span class="redacted">jabian.com</span>/about — 5 inputs, 2 labeled</li>
+                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/contact — 20 inputs, 5 labeled (75% unlabeled)</li>
+                    <li style="padding: 6px 0; border-bottom: 1px solid var(--cream-dark);">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/ — 5 inputs, 2 labeled</li>
+                    <li style="padding: 6px 0;">https://<span class="redacted"><span class="redacted">jabian</span>.com</span>/about — 5 inputs, 2 labeled</li>
                   </ul>
                   <p style="margin-top: 8px; font-size: 12px; color: var(--slate-mid);">To replicate: Inspect any form on /contact and check for <code>&lt;label for="..."&gt;</code> elements matching each <code>&lt;input&gt;</code> id.</p>
                 </div>
@@ -1786,14 +1783,92 @@
       <div class="layer-header-top">
         <h3>Trust: Will AI Recommend You?</h3>
         <div class="badges">
-          <span class="count-badge high">7</span>
-          <span class="count-badge medium">4</span>
+          <span class="count-badge high">9</span>
+          <span class="count-badge medium">5</span>
           <span class="count-badge low">0</span>
           <span class="count-badge pass">1</span>
         </div>
       </div>
       <p class="layer-description">AI agents don't just look at your website. They cross-reference what they find across platforms, compare you to competitors, and check whether your content is authoritative enough to cite. This dimension measures whether AI systems trust your firm enough to recommend it.</p>
     </div>
+
+  <!-- Schema Credibility Topic Group -->
+  <div class="findings-section">
+    <h3>Schema Credibility</h3>
+    <p class="topic-intro">Schema markup doesn't just help AI understand your content (that's the Understand layer). It also makes verifiable claims about your business: who you are, where you're located, what services you offer, who your people are. When those claims are incomplete, inconsistent, or contradicted by what's actually on the page, AI agents lose confidence in your entire site. This section evaluates whether your structured data builds trust or undermines it.</p>
+
+    <!-- HIGH finding: Entity Identity Breaks Across the Trust Trifecta -->
+    <details id="SCH-012">
+      <summary><span class="badge high">HIGH</span> Entity Identity Breaks Across the Trust Trifecta <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-012)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">AI agents triangulate your identity by cross-checking structured data across your most authoritative pages: homepage, about page, and contact page. When these three pages tell different stories in their schema, or when the schema omits basic facts that appear on the page, agents flag the inconsistency and reduce confidence.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span>'s Organization schema is present on the homepage, about, and contact pages (a good foundation), but it lacks the properties that build trust: no address, no contactPoint, no telephone. The contact page displays 6 office addresses and a phone number in the visible content, but none of this appears in the schema. AI agents see an Organization that claims to exist but won't say where it is. This directly undermines the trust signal that consistent, complete entity data provides.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Add PostalAddress and ContactPoint properties to Organization schema on the homepage and contact page. All 6 office addresses should appear in schema, matching the visible content exactly. This closes the gap between what AI can verify on the page and what the schema claims.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <p>Organization schema present on /, /about, /contact but missing: address (PostalAddress), contactPoint (ContactPoint), telephone. Visible content on /contact includes 6 office addresses (Atlanta, Charlotte, Chicago, Dallas-Fort Worth, Denver, Houston) and contact form. Schema-to-content gap: structured data claims less than the page proves. Cross-references: <a href="#SCH-001">SCH-001</a> (Understand layer), <a href="#SCH-009">SCH-009</a> (LocalBusiness).</p>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- HIGH finding: No Person-to-Content Authority Chain -->
+    <details id="SCH-013">
+      <summary><span class="badge high">HIGH</span> No Person-to-Content Authority Chain <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-013)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">For AI to trust that your firm has real expertise, it needs to connect three things: a person (with credentials), their content (articles, case studies), and the organization they belong to. This chain is what builds authority profiles. Without it, your thought leadership is anonymous and your people are invisible.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span> has 18 named leaders, published blog content on relevant topics, and case studies referencing consulting engagements. But none of these are connected through schema. No Person schema on the leadership page. No author attribution on blog posts. No contributor links on case studies. AI agents cannot build the authority chain: Person &rarr; authored Content &rarr; Organization expertise. Each piece exists in isolation, and the sum is less than the parts.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> This is a compound fix. Start with Person schema on the leadership page (<a href="#SCH-005">SCH-005</a>). Then add Article schema with author properties to blog posts (<a href="#SCH-010">SCH-010</a>). Then link case study contributors to Person entities. The chain builds incrementally, and each link strengthens the whole.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <p>Leadership: has_person_schema: false, 18 named leaders, 0 Person entities. Blog: no Article/BlogPosting schema, no author field. Case studies: no contributor/author properties. The trust chain requires: Person schema (knowsAbout, worksFor) &rarr; Article schema (author &rarr; Person) &rarr; Organization schema (member/employee &rarr; Person). Zero links in this chain exist. Cross-references: <a href="#SCH-005">SCH-005</a>, <a href="#SCH-010">SCH-010</a> (Understand layer), <a href="#BV-010">BV-010</a>, <a href="#BV-008">BV-008</a> (below).</p>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- MEDIUM finding: Schema Claims Less Than the Page Proves -->
+    <details id="SCH-014">
+      <summary><span class="badge medium">MEDIUM</span> Schema Claims Less Than the Page Proves <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-014)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">The opposite of schema overclaiming is schema underclaiming: your pages contain valuable, trust-building information that isn't reflected in structured data. AI agents can only use what's in the schema for structured reasoning. Everything else requires inference, which is less reliable and less likely to result in citations or recommendations.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">Several pages contain rich content that the schema doesn't capture. The services overview describes 6 service areas, but schema declares only generic WebPage. Case studies describe real consulting engagements, but schema captures none of the client industries, outcomes, or service types. The blog has topically relevant articles with clear expertise signals, but no Article schema exists to surface them. In every case, the page proves more than the schema claims.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> This finding reinforces the schema implementation recommendations in the Understand section. The priority order: Service schema on service pages (immediate buyer-intent queries), CaseStudy/CreativeWork on case studies (evidence of expertise), Article on blog posts (thought leadership authority). Each addition closes a gap between what the page proves and what AI can verify through structured data.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <p>Services: 6 service areas described in content, 0 represented in schema. Case studies: 4 studies with problem/solution narratives, 0 with CreativeWork/CaseStudy schema. Blog: relevant titles ('5 Hard Questions Every Executive Should Ask Before Starting an AI Initiative'), no Article schema. This is a systematic pattern: the CMS (WordPress + Yoast + Divi) generates only default Organization + WebPage + BreadcrumbList regardless of content type. Cross-references: <a href="#SCH-002">SCH-002</a>, <a href="#SCH-003">SCH-003</a>, <a href="#SCH-004">SCH-004</a>, <a href="#SCH-006">SCH-006</a> (Understand layer).</p>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </details>
+  </div>
 
   <!-- AI Platform Visibility Topic Group -->
   <div class="findings-section">
@@ -1809,14 +1884,14 @@
         <details style="margin-top: 12px;">
           <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
           <div class="finding-content">
-            <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span> has 0% visibility across all four AI model families tested: DeepSeek, Perplexity, Google Gemini 3 Flash, and OpenAI GPT-5.4-mini. In 80 AI conversations, <span class="redacted">Jabian</span> was never mentioned. This is not a ranking problem (appearing lower in results). Your firm is completely absent from AI answers about management consulting.</p>
+            <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span> has 0% visibility across all four AI model families tested: DeepSeek, Perplexity, Google Gemini 3 Flash, and OpenAI GPT-5.4-mini. In 80 AI conversations, Jabian was never mentioned. This is not a ranking problem (appearing lower in results). Your firm is completely absent from AI answers about management consulting.</p>
 
             <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> This finding is the result of compounding failures across Find and Understand dimensions. Fixing schema, content depth, and authority signals will begin building the foundation for visibility. Re-run Gumshoe testing in 90 days after implementing Phase 1 and 2 roadmap items.</p>
 
             <details style="margin-top: 12px;">
               <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
               <div class="finding-content">
-                <p>Gumshoe report (2026-03-30): 20 prompts generating 80 conversations across 4 model families. <span class="redacted">jabian.com</span>: 0 mentions across 397 total source citations. Top cited: bcg.com (23), mckinsey.com (22), youtube.com (17), pwc.com (17), deloitte.com (15), bain.com (15). Report URL: app.gumshoe.ai/r/jabiancom/management-consulting/19684.</p>
+                <p>Gumshoe report (2026-03-30): 20 prompts generating 80 conversations across 4 model families. <span class="redacted"><span class="redacted">jabian</span>.com</span>: 0 mentions across 397 total source citations. Top cited: bcg.com (23), mckinsey.com (22), youtube.com (17), pwc.com (17), deloitte.com (15), bain.com (15). Report URL: app.gumshoe.ai/r/<span class="redacted">jabian</span>com/management-consulting/19684.</p>
               </div>
             </details>
           </div>
@@ -1833,7 +1908,7 @@
         <details style="margin-top: 12px;">
           <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
           <div class="finding-content">
-            <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span> shows 0% visibility uniformly across all tested models. Not a single AI platform favors the firm. This suggests the root cause is not technical (crawler access is fine) but rather that <span class="redacted">Jabian</span>'s content lacks the authority signals, depth, and structured data that all AI models rely on when building consulting recommendations.</p>
+            <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span> shows 0% visibility uniformly across all tested models. Not a single AI platform favors the firm. This suggests the root cause is not technical (crawler access is fine) but rather that Jabian's content lacks the authority signals, depth, and structured data that all AI models rely on when building consulting recommendations.</p>
 
             <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Focus on content depth and schema implementation rather than platform-specific optimizations. The visibility problem is systemic and requires foundational fixes.</p>
 
@@ -1857,7 +1932,7 @@
         <details style="margin-top: 12px;">
           <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
           <div class="finding-content">
-            <p style="margin-bottom: 12px;">All four tested personas returned 0% visibility for <span class="redacted">Jabian</span>: Growth-Focused Operations VP, Digital Transformation CIO, Strategic Transformation CEO, and Performance-Driven HR Director. Competitors like BCG show 30-65% visibility across the same personas. <span class="redacted">Jabian</span> cannot reach its target buyers through AI-mediated discovery, regardless of the buyer's role.</p>
+            <p style="margin-bottom: 12px;">All four tested personas returned 0% visibility for <span class="redacted">Jabian</span>: Growth-Focused Operations VP, Digital Transformation CIO, Strategic Transformation CEO, and Performance-Driven HR Director. Competitors like BCG show 30-65% visibility across the same personas. Jabian cannot reach its target buyers through AI-mediated discovery, regardless of the buyer's role.</p>
 
             <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Develop persona-specific content: 'For Operations VPs: managing rapid growth through proven operational frameworks.' Create case studies targeting each persona with measurable outcomes in their domain.</p>
 
@@ -1887,7 +1962,7 @@
         <details style="margin-top: 12px;">
           <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
           <div class="finding-content">
-            <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span> has 0% visibility on every topic tested, including topics that align directly with the firm's stated differentiators. Cultural Fit (which maps to <span class="redacted">Jabian</span>'s people-first culture) shows 0%. Senior Team Access (which maps to <span class="redacted">Jabian</span>'s local model with senior involvement) shows 0%. Meanwhile, BCG dominates Strategic Fit at 61%, Accenture dominates Implementation Capability at 56%, and Bain dominates Cultural Fit at 60%.</p>
+            <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span> has 0% visibility on every topic tested, including topics that align directly with the firm's stated differentiators. Cultural Fit (which maps to Jabian's people-first culture) shows 0%. Senior Team Access (which maps to Jabian's local model with senior involvement) shows 0%. Meanwhile, BCG dominates Strategic Fit at 61%, Accenture dominates Implementation Capability at 56%, and Bain dominates Cultural Fit at 60%.</p>
 
             <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Do not try to outbid BCG or Bain on general consulting queries. Instead, focus on 3-4 core differentiator topics where you can build deep authority: Cultural Fit, Senior Team Access, and regional mid-market expertise.</p>
 
@@ -1934,21 +2009,21 @@
 
     <!-- HIGH finding: jabian.com Never Cited as a Source -->
     <details id="BV-006">
-      <summary><span class="badge high">HIGH</span> <span class="redacted">jabian.com</span> Never Cited as a Source <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-006)</span></summary>
+      <summary><span class="badge high">HIGH</span> <span class="redacted"><span class="redacted">jabian</span>.com</span> Never Cited as a Source <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-006)</span></summary>
       <div class="finding-content">
         <p style="margin-bottom: 12px;">When AI systems answer questions, they often cite their sources, just like a research paper. The domains that AI cites most frequently have the highest 'authority' in AI's knowledge base. Being cited means AI considers your content trustworthy evidence.</p>
 
         <details style="margin-top: 12px;">
           <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
           <div class="finding-content">
-            <p style="margin-bottom: 12px;">Across 397 total source citations in AI responses about management consulting, <span class="redacted">jabian.com</span> appears zero times. The top cited domains are bcg.com (23), mckinsey.com (22), pwc.com (17), deloitte.com (15), and bain.com (15). Third-party sites like consulting.us (13) and managementconsulted.com (12) also outrank <span class="redacted">Jabian</span>. Even YouTube (17 citations) is more authoritative to AI than <span class="redacted">jabian.com</span>.</p>
+            <p style="margin-bottom: 12px;">Across 397 total source citations in AI responses about management consulting, <span class="redacted"><span class="redacted">jabian</span>.com</span> appears zero times. The top cited domains are bcg.com (23), mckinsey.com (22), pwc.com (17), deloitte.com (15), and bain.com (15). Third-party sites like consulting.us (13) and managementconsulted.com (12) also outrank <span class="redacted">Jabian</span>. Even YouTube (17 citations) is more authoritative to AI than <span class="redacted"><span class="redacted">jabian</span>.com</span>.</p>
 
             <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Increase content 'citability' through original research, proprietary data, detailed case studies with metrics, and expert-authored thought leadership. Build presence on third-party industry publications that AI already trusts.</p>
 
             <details style="margin-top: 12px;">
               <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
               <div class="finding-content">
-                <p>Source distribution: business_service_sites: 336/397 (85%), social_networks: 17, news_media: 12, educational_sites: 7, directory_review_sites: 7. jabian_com_mentions: 0.</p>
+                <p>Source distribution: business_service_sites: 336/397 (85%), social_networks: 17, news_media: 12, educational_sites: 7, directory_review_sites: 7. <span class="redacted">jabian</span>_com_mentions: 0.</p>
               </div>
             </details>
           </div>
@@ -1965,7 +2040,7 @@
         <details style="margin-top: 12px;">
           <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
           <div class="finding-content">
-            <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span>'s case studies page has 431 words total, with zero named clients, zero metrics, and zero quantified outcomes. Titles like '<span class="redacted">Jabian</span> Defines Business Intelligence Strategy' tell AI about what <span class="redacted">Jabian</span> did but not what the client achieved. Even if AI indexed this page, it would find nothing specific enough to cite as evidence.</p>
+            <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span>'s case studies page has 431 words total, with zero named clients, zero metrics, and zero quantified outcomes. Titles like 'Jabian Defines Business Intelligence Strategy' tell AI about what Jabian did but not what the client achieved. Even if AI indexed this page, it would find nothing specific enough to cite as evidence.</p>
 
             <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> This finding compounds with SEM-006 (case study content) and SCH-003 (case study schema). Fix the content first, then add schema, then monitor for citation improvements.</p>
 
@@ -1989,7 +2064,7 @@
         <details style="margin-top: 12px;">
           <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
           <div class="finding-content">
-            <p style="margin-bottom: 12px;">The services overview has only 226 words with zero 'we help' statements and zero specific numbers. An AI system reading this page would know <span class="redacted">Jabian</span> offers 'strategy,' 'operations,' and 'technology' services but would have no specifics about who you serve, how you differ, or what outcomes you deliver. This directly limits AI's ability to recommend <span class="redacted">Jabian</span> for specific consulting needs.</p>
+            <p style="margin-bottom: 12px;">The services overview has only 226 words with zero 'we help' statements and zero specific numbers. An AI system reading this page would know <span class="redacted">Jabian</span> offers 'strategy,' 'operations,' and 'technology' services but would have no specifics about who you serve, how you differ, or what outcomes you deliver. This directly limits AI's ability to recommend Jabian for specific consulting needs.</p>
 
             <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> This finding compounds with SEM-005 (service content clarity). Expand service pages with audience, approach, and outcome specificity.</p>
 
@@ -2013,7 +2088,7 @@
         <details style="margin-top: 12px;">
           <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
           <div class="finding-content">
-            <p style="margin-bottom: 12px;">With zero Person schema on the leadership page, AI systems have no structured way to build authority profiles for <span class="redacted">Jabian</span>'s 18 leaders. Individual leaders cannot be recommended as topic experts, which weakens the firm's overall authority score. Competitors whose leaders have Person schema, LinkedIn optimization, and published thought leadership will always outrank <span class="redacted">Jabian</span> in expertise queries.</p>
+            <p style="margin-bottom: 12px;">With zero Person schema on the leadership page, AI systems have no structured way to build authority profiles for <span class="redacted">Jabian</span>'s 18 leaders. Individual leaders cannot be recommended as topic experts, which weakens the firm's overall authority score. Competitors whose leaders have Person schema, LinkedIn optimization, and published thought leadership will always outrank Jabian in expertise queries.</p>
 
             <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> This compounds with SCH-005 (Person schema) and SEM-007 (expertise-to-person linkage). Implement Person schema, expand bios, and link leaders to their authored content.</p>
 
@@ -2037,7 +2112,7 @@
         <details style="margin-top: 12px;">
           <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
           <div class="finding-content">
-            <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span>'s blog covers relevant topics (AI strategy, executive decision-making, customer retention) but is never cited by AI systems. Industry publications like consulting.us (13 citations) and managementconsulted.com (12 citations) are preferred. This suggests <span class="redacted">Jabian</span>'s blog content lacks the depth, data, or original research that AI considers citable.</p>
+            <p style="margin-bottom: 12px;"><span class="redacted">Jabian</span>'s blog covers relevant topics (AI strategy, executive decision-making, customer retention) but is never cited by AI systems. Industry publications like consulting.us (13 citations) and managementconsulted.com (12 citations) are preferred. This suggests Jabian's blog content lacks the depth, data, or original research that AI considers citable.</p>
 
             <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Expand blog posts to 1,500-2,000 words with original research, data, and expert quotes. Create downloadable resources (benchmarks, templates) that increase citability. Promote on platforms that feed AI training data.</p>
 
@@ -2067,7 +2142,7 @@
         <details style="margin-top: 12px;">
           <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
           <div class="finding-content">
-            <p style="margin-bottom: 12px;">Despite being headquartered in Atlanta with offices in 6 cities, <span class="redacted">Jabian</span> has low geographic visibility even in its home market. When Atlanta-based executives ask AI for local consulting recommendations, <span class="redacted">Jabian</span> is not suggested. Six physical offices are not translating into AI-powered local discovery.</p>
+            <p style="margin-bottom: 12px;">Despite being headquartered in Atlanta with offices in 6 cities, <span class="redacted">Jabian</span> has low geographic visibility even in its home market. When Atlanta-based executives ask AI for local consulting recommendations, Jabian is not suggested. Six physical offices are not translating into AI-powered local discovery.</p>
 
             <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Develop location-specific landing pages with local case studies, team introductions, and community involvement. Add LocalBusiness schema (see SCH-009). Create location-specific blog content.</p>
 
@@ -2091,7 +2166,7 @@
         <details style="margin-top: 12px;">
           <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
           <div class="finding-content">
-            <p style="margin-bottom: 12px;">Queries for specific service areas (strategy, digital transformation, operations, talent and culture) all returned 0% visibility. Despite having service area pages covering these exact topics, <span class="redacted">Jabian</span>'s content does not register with AI models for service-specific discovery. A prospect specifically searching for a digital transformation consultant will never see <span class="redacted">Jabian</span> in AI answers.</p>
+            <p style="margin-bottom: 12px;">Queries for specific service areas (strategy, digital transformation, operations, talent and culture) all returned 0% visibility. Despite having service area pages covering these exact topics, <span class="redacted">Jabian</span>'s content does not register with AI models for service-specific discovery. A prospect specifically searching for a digital transformation consultant will never see Jabian in AI answers.</p>
 
             <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Audit each service page for depth and specificity. Develop 1-2 detailed case studies per service area. Create 'Why <span class="redacted">Jabian</span>' positioning pages with differentiators per service. Add Service schema.</p>
 
@@ -2115,7 +2190,7 @@
         <details style="margin-top: 12px;">
           <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
           <div class="finding-content">
-            <p style="margin-bottom: 12px;">When Claude was asked directly about <span class="redacted">Jabian</span>, it recognized the brand in 6 out of 8 queries and cited the website 3 times. This confirms AI knows <span class="redacted">Jabian</span> exists. The gap is between 'knows you exist' and 'recommends you to prospects.' Bridging that gap is the purpose of this audit.</p>
+            <p style="margin-bottom: 12px;">When Claude was asked directly about <span class="redacted">Jabian</span>, it recognized the brand in 6 out of 8 queries and cited the website 3 times. This confirms AI knows Jabian exists. The gap is between 'knows you exist' and 'recommends you to prospects.' Bridging that gap is the purpose of this audit.</p>
           </div>
         </details>
       </div>
@@ -2180,13 +2255,13 @@
     <div style="background: linear-gradient(135deg, var(--teal-deep) 0%, var(--accent-teal) 100%); color: white; padding: 36px 32px; border-radius: 8px; margin-top: 32px;">
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 800px; margin: 0 auto;">
         <div>
-          <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 600; margin-bottom: 12px;">Need to dig deeper?</h3>
-          <p style="font-size: 14px; opacity: 0.92; line-height: 1.7; margin-bottom: 16px;">Especially with larger or more established firms, the issues identified here often run deeper than a diagnostic audit can cover. A full <strong>Agent Readiness Assessment™</strong> can zero in on a specific area or cast a wider net across your entire digital presence.</p>
-          <a href="https://lizmicik.com/#contact" style="color: white; font-weight: 600; font-size: 14px; text-decoration: underline; text-underline-offset: 3px;">Let's talk &rarr;</a>
+          <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 600; margin-bottom: 12px;">Ready for the fix?</h3>
+          <p style="font-size: 14px; opacity: 0.92; line-height: 1.7; margin-bottom: 16px;">The <strong>Agent Readiness Roadmap</strong> turns these findings into a page-by-page, template-by-template implementation blueprint. Schema type mapping, sample JSON-LD with your real content, semantic HTML recommendations, and a prioritized build sequence your team or agency can execute immediately.</p>
+          <a href="https://lizmicik.com/#contact" style="color: white; font-weight: 600; font-size: 14px; text-decoration: underline; text-underline-offset: 3px;">Get your Roadmap &rarr;</a>
         </div>
         <div>
-          <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 600; margin-bottom: 12px;">Need hands-on implementation help?</h3>
-          <p style="font-size: 14px; opacity: 0.92; line-height: 1.7; margin-bottom: 16px;">Implementing these recommendations is beyond the scope of this audit, but over the years I have developed strong working relationships with firms that specialize in exactly this kind of work. I'm happy to make an introduction.</p>
+          <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 600; margin-bottom: 12px;">Need someone to execute the plan?</h3>
+          <p style="font-size: 14px; opacity: 0.92; line-height: 1.7; margin-bottom: 16px;">Whether you work from this audit or a full Roadmap, implementation takes hands on the keyboard. Over the years I have developed strong working relationships with firms that specialize in exactly this kind of work. I'm happy to make an introduction.</p>
           <a href="https://lizmicik.com/#contact" style="color: white; font-weight: 600; font-size: 14px; text-decoration: underline; text-underline-offset: 3px;">Let's talk &rarr;</a>
         </div>
       </div>
@@ -2200,7 +2275,7 @@
       <p style="font-size: 14px; margin-bottom: 0;">Prepared by Liz Micik | <a href="https://lizmicik.com" style="color: var(--teal-light); text-decoration: none;">lizmicik.com</a></p>
     </div>
     <div style="font-size: 12px; line-height: 1.6; color: var(--cream); opacity: 0.7; margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 16px;">
-      <p>&copy; 2026 Liz Micik. All rights reserved. Agent Readiness Audit™ and Agent Signal Check™ are trademarks of Liz Micik. This report is confidential and prepared exclusively for <span class="redacted">Jabian</span> Consulting</span>.</p>
+      <p>&copy; 2026 Liz Micik. All rights reserved. Agent Readiness Audit™ and Agent Signal Check™ are trademarks of Liz Micik. This report is confidential and prepared exclusively for <span class="redacted">Jabian</span> Consulting.</p>
     </div>
   </footer>
 
