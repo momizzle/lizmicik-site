@@ -696,7 +696,7 @@
           <tbody>
             <tr>
               <td>Scored findings across Find, Understand, Trust</td>
-              <td><span class="compare-check-warm">&check;</span> 30-point diagnostic</td>
+              <td><span class="compare-check-warm">&check;</span> 31-point diagnostic</td>
               <td><span class="compare-check">&check;</span> Included or imported</td>
             </tr>
             <tr>
@@ -1203,7 +1203,12 @@
 
           <form name="roadmap-application" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/roadmap-thank-you">
             <input type="hidden" name="form-name" value="roadmap-application">
+            <input type="hidden" name="_loaded" value="">
             <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+            <div style="position:absolute;left:-9999px;height:0;overflow:hidden;" aria-hidden="true">
+                <label for="phone-roadmap">Phone</label>
+                <input type="text" id="phone-roadmap" name="phone" tabindex="-1" autocomplete="off">
+            </div>
 
             <div class="form-group">
               <label for="name">Your Name</label>
@@ -1324,16 +1329,38 @@
       window['ga-disable-G-B9S40S2SKG'] = true;
     }
 
-    // Roadmap application form: Kit subscription + email notification
+    // Roadmap application form: Kit subscription + email notification (with anti-spam)
     (function() {
       var form = document.querySelector('form[name="roadmap-application"]');
       if (!form) return;
+
+      // Set timestamp on load for bot speed detection
+      var loadedField = form.querySelector('[name="_loaded"]');
+      if (loadedField) loadedField.value = Date.now().toString();
+
       form.addEventListener('submit', function(e) {
         e.preventDefault();
         var btn = form.querySelector('.form-submit');
         var origText = btn.textContent;
         btn.textContent = 'Submitting...';
         btn.disabled = true;
+
+        // Anti-spam: check second honeypot and submission speed
+        var honeypot2 = form.querySelector('[name="phone"]');
+        var loadTime = parseInt(loadedField.value, 10) || 0;
+        var tooFast = loadTime > 0 && (Date.now() - loadTime) < 3000;
+
+        if ((honeypot2 && honeypot2.value) || tooFast) {
+          var formData = new FormData(form);
+          fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString()
+          }).finally(function() {
+            window.location.href = '/roadmap-thank-you';
+          });
+          return;
+        }
 
         var name = form.querySelector('[name="name"]').value;
         var email = form.querySelector('[name="email"]').value;
@@ -1346,7 +1373,7 @@
         var kitCall = fetch('/api/subscribe-kit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, source: 'roadmap' })
+          body: JSON.stringify({ email: email, name: name, source: 'roadmap' })
         }).catch(function(err) { console.warn('Kit subscribe failed:', err); });
 
         var notifyCall = fetch('/api/notify-form', {

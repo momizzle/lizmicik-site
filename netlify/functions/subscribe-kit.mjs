@@ -17,6 +17,32 @@
  *   Maps to the corresponding KIT_*_FORM_ID env var.
  */
 
+/**
+ * Spam detection: catches gibberish names/text from bots.
+ * Checks for random capitalization, low vowel ratio, and long no-space runs.
+ */
+function looksLikeSpam(text) {
+  if (!text || text.length < 3) return false;
+  const letters = text.replace(/[^a-zA-Z]/g, '');
+  if (letters.length < 3) return false;
+
+  // Check vowel ratio (gibberish has very few vowels)
+  const vowels = letters.replace(/[^aeiouAEIOU]/g, '').length;
+  const vowelRatio = vowels / letters.length;
+  if (vowelRatio < 0.15 && letters.length > 5) return true;
+
+  // Check random capitalization (real names: "Jane Smith", spam: "aSryNGGlEmh")
+  const midCaps = letters.slice(1).replace(/[^A-Z]/g, '').length;
+  const midCapRatio = midCaps / (letters.length - 1);
+  if (midCapRatio > 0.35 && letters.length > 5) return true;
+
+  // Check for very long strings without spaces (real messages have words)
+  const longestRun = text.split(/\s+/).reduce((max, w) => Math.max(max, w.length), 0);
+  if (longestRun > 20) return true;
+
+  return false;
+}
+
 export default async (request) => {
   // CORS preflight
   if (request.method === 'OPTIONS') {
@@ -39,12 +65,22 @@ export default async (request) => {
 
   try {
     const body = await request.json();
-    const { email, source } = body;
+    const { email, source, name, message } = body;
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return new Response(JSON.stringify({ error: 'Valid email required' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Spam check: reject gibberish names or messages
+    if (looksLikeSpam(name) || looksLikeSpam(message)) {
+      console.warn('Spam blocked (subscribe-kit):', JSON.stringify({ email, name, source }));
+      // Return 200 so bots think it worked — no Kit subscriber created
+      return new Response(JSON.stringify({ success: true }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
       });
     }
 

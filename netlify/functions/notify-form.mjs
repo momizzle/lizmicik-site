@@ -14,6 +14,32 @@
  *   Additional fields depend on form type.
  */
 
+/**
+ * Spam detection: catches gibberish names/text from bots.
+ * Checks for random capitalization, low vowel ratio, and long no-space runs.
+ */
+function looksLikeSpam(text) {
+  if (!text || text.length < 3) return false;
+  const letters = text.replace(/[^a-zA-Z]/g, '');
+  if (letters.length < 3) return false;
+
+  // Check vowel ratio (gibberish has very few vowels)
+  const vowels = letters.replace(/[^aeiouAEIOU]/g, '').length;
+  const vowelRatio = vowels / letters.length;
+  if (vowelRatio < 0.15 && letters.length > 5) return true;
+
+  // Check random capitalization (real names: "Jane Smith", spam: "aSryNGGlEmh")
+  const midCaps = letters.slice(1).replace(/[^A-Z]/g, '').length;
+  const midCapRatio = midCaps / (letters.length - 1);
+  if (midCapRatio > 0.35 && letters.length > 5) return true;
+
+  // Check for very long strings without spaces (real messages have words)
+  const longestRun = text.split(/\s+/).reduce((max, w) => Math.max(max, w.length), 0);
+  if (longestRun > 20) return true;
+
+  return false;
+}
+
 export default async (request) => {
   const headers = {
     'Content-Type': 'application/json',
@@ -42,6 +68,13 @@ export default async (request) => {
       });
     }
 
+    // Spam check: reject gibberish names or messages — no email sent to Liz
+    if (looksLikeSpam(name) || looksLikeSpam(body.message) || looksLikeSpam(body.aboutBusiness)) {
+      console.warn('Spam blocked (notify-form):', JSON.stringify({ email, name, source }));
+      // Return 200 so bots think it worked
+      return new Response(JSON.stringify({ success: true }), { status: 200, headers });
+    }
+
     const apiKey = Netlify.env.get('RESEND_API_KEY');
     if (!apiKey) {
       console.error('Missing RESEND_API_KEY environment variable');
@@ -63,6 +96,16 @@ export default async (request) => {
         email,
         website: body.website || '',
         companySize: body.companySize || '',
+        aboutBusiness: body.aboutBusiness || '',
+        howFound: body.howFound || '',
+      });
+    } else if (source === 'roadmap') {
+      subject = `New roadmap application: ${name || email}`;
+      html = buildAuditEmail({
+        name,
+        email,
+        website: body.website || '',
+        companySize: body.hadAudit || '',
         aboutBusiness: body.aboutBusiness || '',
         howFound: body.howFound || '',
       });

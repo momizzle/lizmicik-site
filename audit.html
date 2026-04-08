@@ -25,7 +25,7 @@
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Agent Readiness Audit",
-    "description": "A 30-point diagnostic that evaluates how well AI agents can find, understand, and trust your website. Covers infrastructure access, content structure, schema implementation, entity authority, and AI platform visibility.",
+    "description": "A 31-point diagnostic that evaluates how well AI agents can find, understand, and trust your website. Covers infrastructure access, content structure, schema implementation, entity authority, and AI platform visibility.",
     "provider": {
       "@type": "Person",
       "name": "Liz Micik",
@@ -40,7 +40,7 @@
       "name": "Agent Readiness Audit",
       "price": "1500",
       "priceCurrency": "USD",
-      "description": "One-time 30-point diagnostic for AI agent readiness"
+      "description": "One-time 31-point diagnostic for AI agent readiness"
     }
   }
   </script>
@@ -685,7 +685,7 @@
       <div class="container">
         <h1>Is Your Website Ready for AI Agents?</h1>
         <p class="subtitle">You built your website for humans, but they aren't the only ones visiting it today. If what you've built can't be read or understood by AI agents, all your hard work goes down the drain.</p>
-        <p class="subtitle" style="margin-top: 16px;">The <strong>Agent Readiness Audit</strong> is a 30-point website diagnostic checkup and roadmap that shows you what works, what doesn't, and what to fix first.</p>
+        <p class="subtitle" style="margin-top: 16px;">The <strong>Agent Readiness Audit</strong> is a 31-point website diagnostic checkup and roadmap that shows you what works, what doesn't, and what to fix first.</p>
         <a href="#apply" class="cta-btn">Get Your Audit</a>
       </div>
     </section>
@@ -801,7 +801,7 @@
     <section id="what-we-evaluate">
       <div class="container">
         <p class="section-label">The Framework</p>
-        <h2 class="section-heading">Three questions. 30 points. Every layer that matters.</h2>
+        <h2 class="section-heading">Three questions. 31 points. Every layer that matters.</h2>
         <div class="section-body">
           <p>The Agent Readiness Audit evaluates your site against a proprietary framework built from real-world testing across hundreds of AI agent interactions. It's not a checklist -it's a diagnostic that tells you what's broken, why it matters, and what to prioritize.</p>
         </div>
@@ -956,7 +956,7 @@
             <div class="deliverable-icon">&#x1F4CA;</div>
             <div class="deliverable-content">
               <h4>Interactive Diagnostic Report</h4>
-              <p>Scored assessment across all 30 points, organized by the three layers. Each point rated with specific recommendations that each of your teams can begin implementing today.</p>
+              <p>Scored assessment across all 31 points, organized by the three layers. Each point rated with specific recommendations that each of your teams can begin implementing today.</p>
             </div>
           </li>
           <li>
@@ -1000,7 +1000,7 @@
           <div class="process-step">
             <div class="step-number">2</div>
             <h4>We Get to Work</h4>
-            <p>If we have questions, we'll reach out. Otherwise, your 30-point diagnostic is underway. Most audits are delivered within 10 business days.</p>
+            <p>If we have questions, we'll reach out. Otherwise, your 31-point diagnostic is underway. Most audits are delivered within 10 business days.</p>
           </div>
           <div class="process-step">
             <div class="step-number">3</div>
@@ -1039,7 +1039,7 @@
           <p class="pricing-label">One-time diagnostic. No retainer. No recurring fees.</p>
           <ul class="pricing-includes">
             <li>Executive summary for leadership</li>
-            <li>30-point scored diagnostic report across all three layers</li>
+            <li>31-point scored diagnostic report across all three layers</li>
             <li>Prioritized action roadmap ranked by impact and effort</li>
             <li>Live AI agent test results (ChatGPT, Claude, Perplexity, Gemini)</li>
             <li>Personalized video walkthrough from Liz</li>
@@ -1070,11 +1070,11 @@
 
           <div class="faq-item">
             <button class="faq-question" onclick="toggleFaq(this)">
-              <span>What if we need more than the 30-point diagnostic?</span>
+              <span>What if we need more than the 31-point diagnostic?</span>
               <span class="faq-toggle">+</span>
             </button>
             <div class="faq-answer">
-              <p>That's what the Agent Readiness Assessment is for. Where the Audit gives you the full picture across 30 points, the Assessment goes deeper into the specific areas that need the most attention - more pages evaluated, more detailed analysis, and a more comprehensive strategic roadmap. Assessments are scoped per engagement and range from $3,500 to $15,000.</p>
+              <p>That's what the Agent Readiness Assessment is for. Where the Audit gives you the full picture across 31 points, the Assessment goes deeper into the specific areas that need the most attention - more pages evaluated, more detailed analysis, and a more comprehensive strategic roadmap. Assessments are scoped per engagement and range from $3,500 to $15,000.</p>
             </div>
           </div>
 
@@ -1133,7 +1133,12 @@
 
           <form name="audit-application" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/audit-thank-you">
             <input type="hidden" name="form-name" value="audit-application">
+            <input type="hidden" name="_loaded" value="">
             <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+            <div style="position:absolute;left:-9999px;height:0;overflow:hidden;" aria-hidden="true">
+                <label for="phone-audit">Phone</label>
+                <input type="text" id="phone-audit" name="phone" tabindex="-1" autocomplete="off">
+            </div>
 
             <div class="form-group">
               <label for="name">Your Name</label>
@@ -1254,16 +1259,38 @@
       window['ga-disable-G-B9S40S2SKG'] = true;
     }
 
-    // Audit application form: Kit subscription + email notification
+    // Audit application form: Kit subscription + email notification (with anti-spam)
     (function() {
       var form = document.querySelector('form[name="audit-application"]');
       if (!form) return;
+
+      // Set timestamp on load for bot speed detection
+      var loadedField = form.querySelector('[name="_loaded"]');
+      if (loadedField) loadedField.value = Date.now().toString();
+
       form.addEventListener('submit', function(e) {
         e.preventDefault();
         var btn = form.querySelector('.form-submit');
         var origText = btn.textContent;
         btn.textContent = 'Submitting...';
         btn.disabled = true;
+
+        // Anti-spam: check second honeypot and submission speed
+        var honeypot2 = form.querySelector('[name="phone"]');
+        var loadTime = parseInt(loadedField.value, 10) || 0;
+        var tooFast = loadTime > 0 && (Date.now() - loadTime) < 3000;
+
+        if ((honeypot2 && honeypot2.value) || tooFast) {
+          var formData = new FormData(form);
+          fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString()
+          }).finally(function() {
+            window.location.href = '/audit-thank-you';
+          });
+          return;
+        }
 
         var name = form.querySelector('[name="name"]').value;
         var email = form.querySelector('[name="email"]').value;
@@ -1276,7 +1303,7 @@
         var kitCall = fetch('/api/subscribe-kit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, source: 'audit' })
+          body: JSON.stringify({ email: email, name: name, source: 'audit' })
         }).catch(function(err) { console.warn('Kit subscribe failed:', err); });
 
         var notifyCall = fetch('/api/notify-form', {
@@ -1303,7 +1330,6 @@
           }).then(function() {
             window.location.href = '/audit-thank-you';
           }).catch(function() {
-            // Still redirect even if Netlify form fails
             window.location.href = '/audit-thank-you';
           });
         });

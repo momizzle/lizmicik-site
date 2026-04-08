@@ -1038,7 +1038,7 @@
             <div class="working-cards fade-in">
                 <div class="working-card working-card--audit">
                     <h3>The Agent Readiness Audit</h3>
-                    <p>A 30-point diagnostic that evaluates how well AI agents can find, understand, and trust your business online. Covers technical infrastructure, content structure, and entity authority across four major AI platforms. <a href="/audit">Learn more</a></p>
+                    <p>A 31-point diagnostic that evaluates how well AI agents can find, understand, and trust your business online. Covers technical infrastructure, content structure, and entity authority across four major AI platforms. <a href="/audit">Learn more</a></p>
                 </div>
                 <div class="working-card working-card--signal">
                     <h3>The Signal Check</h3>
@@ -1057,9 +1057,14 @@
             <p class="contact-intro fade-in">The transition to an agentic first web has begun. Don't get left behind.</p>
             <form class="contact-form fade-in" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
                 <input type="hidden" name="form-name" value="contact">
+                <input type="hidden" name="_loaded" value="">
                 <p class="visually-hidden" style="display:none;">
                     <label>Don't fill this out if you're human: <input name="bot-field"></label>
                 </p>
+                <div style="position:absolute;left:-9999px;height:0;overflow:hidden;" aria-hidden="true">
+                    <label for="phone-contact">Phone</label>
+                    <input type="text" id="phone-contact" name="phone" tabindex="-1" autocomplete="off">
+                </div>
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" required autocomplete="name">
@@ -1169,16 +1174,39 @@
             });
         })();
 
-        // Contact form: Kit subscription + email notification
+        // Contact form: Kit subscription + email notification (with anti-spam)
         (function() {
             var form = document.querySelector('form[name="contact"]');
             if (!form) return;
+
+            // Set timestamp on load for bot speed detection
+            var loadedField = form.querySelector('[name="_loaded"]');
+            if (loadedField) loadedField.value = Date.now().toString();
+
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 var btn = form.querySelector('.form-submit');
                 var origText = btn.textContent;
                 btn.textContent = 'Sending...';
                 btn.disabled = true;
+
+                // Anti-spam: check second honeypot and submission speed
+                var honeypot2 = form.querySelector('[name="phone"]');
+                var loadTime = parseInt(loadedField.value, 10) || 0;
+                var tooFast = loadTime > 0 && (Date.now() - loadTime) < 3000;
+
+                if ((honeypot2 && honeypot2.value) || tooFast) {
+                    // Bot detected — silently submit to Netlify only (skip Kit + Resend)
+                    var formData = new FormData(form);
+                    fetch('/', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: new URLSearchParams(formData).toString()
+                    }).finally(function() {
+                        form.innerHTML = '<p style="text-align:center;font-size:1.1rem;color:#018799;padding:24px 0;">Thank you! I\'ll be in touch within 24 hours.</p>';
+                    });
+                    return;
+                }
 
                 var name = form.querySelector('[name="name"]').value;
                 var email = form.querySelector('[name="email"]').value;
@@ -1188,7 +1216,7 @@
                 var kitCall = fetch('/api/subscribe-kit', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: email, source: 'contact' })
+                    body: JSON.stringify({ email: email, name: name, message: message, source: 'contact' })
                 }).catch(function(err) { console.warn('Kit subscribe failed:', err); });
 
                 var notifyCall = fetch('/api/notify-form', {
