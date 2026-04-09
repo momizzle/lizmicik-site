@@ -97,16 +97,16 @@
            ======================================== */
         :root {
             /* Primary palette */
-            --cream: #FAF8F5;
-            --cream-dark: #F2EDE7;
+            --cream: #FAFAF7;
+            --cream-dark: #FAF8F5;
             --slate: #2C3038;
             --slate-light: #3D424D;
             --slate-mid: #545B6A;
             /* Accent colors — muted, pulled from reference images */
             --accent-amber: #C4956A;
-            --accent-teal: #6A9FA0;
-            --accent-blue: #7B8DAE;
-            --accent-copper: #B07D5B;
+            --accent-teal: #5B7C5E;
+            --accent-blue: #8B9A7E;
+            --accent-copper: #5B7C5E;
             /* Text colors */
             --text-primary: #2C3038;
             --text-secondary: #545B6A;
@@ -152,7 +152,7 @@
             transition: color 0.2s ease;
         }
         a:hover {
-            color: var(--accent-copper);
+            color: var(--accent-amber);
         }
         /* ========================================
            Typography
@@ -206,7 +206,7 @@
             left: 0;
             right: 0;
             z-index: 100;
-            background-color: rgba(250, 248, 245, 0.92);
+            background-color: rgba(250, 250, 247, 0.92);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(44, 48, 56, 0.06);
@@ -261,7 +261,7 @@
             transition: background 0.2s ease, transform 0.2s ease;
         }
         .nav-cta:hover {
-            background: #9a6a3e;
+            background: #4A6B4D;
             color: #fff !important;
             transform: translateY(-1px);
         }
@@ -293,6 +293,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            background-color: #6B3D2E;
         }
         .hero::after {
             content: '';
@@ -303,7 +304,7 @@
             width: 500px;
             height: 600px;
             background: url('images/html%20block.png') center/contain no-repeat;
-            opacity: 0.22;
+            opacity: 0.10;
             pointer-events: none;
             z-index: 0;
         }
@@ -315,18 +316,18 @@
         }
         .hero h1 {
             margin-bottom: 1.75rem;
-            color: var(--text-primary);
+            color: var(--text-light);
         }
         .hero h1 .line-break {
             display: block;
             margin-top: 0.3em;
-            color: var(--accent-copper);
+            color: var(--accent-amber);
         }
         .hero-cta {
             display: inline-block;
             margin-top: 0.5rem;
             padding: 1rem 2.2rem;
-            background: linear-gradient(135deg, var(--accent-copper) 0%, #9a6a3e 100%);
+            background: linear-gradient(135deg, #5B7C5E 0%, #4A6B4D 100%);
             color: #fff !important;
             font-family: var(--font-body);
             font-size: 1.05rem;
@@ -334,11 +335,11 @@
             border-radius: 8px;
             text-decoration: none;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 4px 16px rgba(176, 125, 91, 0.25);
+            box-shadow: 0 4px 16px rgba(91, 124, 94, 0.3);
         }
         .hero-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(176, 125, 91, 0.35);
+            box-shadow: 0 6px 24px rgba(91, 124, 94, 0.4);
             color: #fff !important;
         }
         /* ========================================
@@ -618,7 +619,7 @@
             border-radius: 8px 0 0 0;
         }
         .working-card--signal {
-            background-color: var(--accent-copper);
+            background-color: var(--accent-amber);
             border-radius: 0 8px 0 0;
         }
         .working-card--writing {
@@ -702,7 +703,7 @@
         .form-group input:focus,
         .form-group textarea:focus {
             border-color: var(--accent-teal);
-            box-shadow: 0 0 0 3px rgba(106, 159, 160, 0.12);
+            box-shadow: 0 0 0 3px rgba(91, 124, 94, 0.12);
         }
         .form-group textarea {
             min-height: 140px;
@@ -765,7 +766,7 @@
                 left: 0;
                 right: 0;
                 flex-direction: column;
-                background-color: rgba(250, 248, 245, 0.98);
+                background-color: rgba(250, 250, 247, 0.98);
                 backdrop-filter: blur(12px);
                 padding: 1rem 1.5rem 1.5rem;
                 gap: 1rem;
@@ -879,7 +880,7 @@
             transition: background 0.2s ease;
         }
         .cookie-accept:hover {
-            background: #9a6a3e;
+            background: #4A6B4D;
         }
         @media (max-width: 640px) {
             .cookie-banner-inner {
@@ -931,9 +932,9 @@
             <div class="stat-callout fade-in">
                 <svg class="stat-visual" viewBox="0 0 90 90" aria-hidden="true">
                     <!-- Background circle -->
-                    <circle cx="45" cy="45" r="36" fill="none" stroke="#F2EDE7" stroke-width="8"/>
+                    <circle cx="45" cy="45" r="36" fill="none" stroke="#FAF8F5" stroke-width="8"/>
                     <!-- Bot portion: 51% = 183.6 degrees. Stroke-dasharray: circumference = 2*pi*36 = 226.2 -->
-                    <circle cx="45" cy="45" r="36" fill="none" stroke="#6A9FA0" stroke-width="8"
+                    <circle cx="45" cy="45" r="36" fill="none" stroke="#5B7C5E" stroke-width="8"
                         stroke-dasharray="115.4 110.8"
                         stroke-dashoffset="56.5"
                         stroke-linecap="round"
@@ -981,10 +982,10 @@
                 <div class="layer fade-in">
                     <div class="layer-header">
                         <svg class="layer-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                            <rect x="6" y="6" width="20" height="20" rx="3" stroke="#6A9FA0" stroke-width="1.5" opacity="0.7"/>
-                            <line x1="6" y1="13" x2="26" y2="13" stroke="#6A9FA0" stroke-width="1" opacity="0.4"/>
-                            <line x1="6" y1="19" x2="26" y2="19" stroke="#6A9FA0" stroke-width="1" opacity="0.4"/>
-                            <line x1="16" y1="6" x2="16" y2="26" stroke="#6A9FA0" stroke-width="1" opacity="0.4"/>
+                            <rect x="6" y="6" width="20" height="20" rx="3" stroke="#5B7C5E" stroke-width="1.5" opacity="0.7"/>
+                            <line x1="6" y1="13" x2="26" y2="13" stroke="#5B7C5E" stroke-width="1" opacity="0.4"/>
+                            <line x1="6" y1="19" x2="26" y2="19" stroke="#5B7C5E" stroke-width="1" opacity="0.4"/>
+                            <line x1="16" y1="6" x2="16" y2="26" stroke="#5B7C5E" stroke-width="1" opacity="0.4"/>
                         </svg>
                         <h3>Can agents understand you?</h3>
                     </div>
@@ -993,8 +994,8 @@
                 <div class="layer fade-in">
                     <div class="layer-header">
                         <svg class="layer-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                            <path d="M16 4 L28 10 L28 22 L16 28 L4 22 L4 10 Z" stroke="#7B8DAE" stroke-width="1.5" opacity="0.7" fill="none"/>
-                            <path d="M16 12 L20 14.5 L20 19.5 L16 22 L12 19.5 L12 14.5 Z" stroke="#7B8DAE" stroke-width="1" opacity="0.5" fill="#7B8DAE" fill-opacity="0.1"/>
+                            <path d="M16 4 L28 10 L28 22 L16 28 L4 22 L4 10 Z" stroke="#8B9A7E" stroke-width="1.5" opacity="0.7" fill="none"/>
+                            <path d="M16 12 L20 14.5 L20 19.5 L16 22 L12 19.5 L12 14.5 Z" stroke="#8B9A7E" stroke-width="1" opacity="0.5" fill="#8B9A7E" fill-opacity="0.1"/>
                         </svg>
                         <h3>Can agents trust you?</h3>
                     </div>
