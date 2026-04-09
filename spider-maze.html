@@ -107,6 +107,7 @@
             <h1>The AI Spider Maze</h1>
             <h2>5 websites enter. Only 1 gets through.</h2>
             <p class="intro-description">AI agents crawl websites looking for structure, not style. Watch what happens when five very different websites try to get through the gauntlet. Can you pick the winner?</p>
+            <p style="font-size:13px;color:#64748b;margin-top:8px;max-width:500px;margin-left:auto;margin-right:auto;">This is deliberately simple. We're all still learning how AI agents evaluate websites, and sometimes a rough sketch teaches more than a polished demo.</p>
             <button class="btn btn-primary" onclick="Game.goToPicker()">Start the Maze</button>
         </div>
     </div>
@@ -849,9 +850,10 @@ const Game = {
         // Results — brief, one line each, names revealed
         const res = document.getElementById('revResults');
         res.innerHTML = '';
+        // First eliminated at top, winner at bottom (builds suspense)
         const order = [...SPIDERS].sort((a, b) => {
-            if (a.id === 's5') return -1; if (b.id === 's5') return 1;
-            return (b.blockerTime || 0) - (a.blockerTime || 0);
+            if (a.id === 's5') return 1; if (b.id === 's5') return -1;
+            return (a.blockerTime || 0) - (b.blockerTime || 0);
         });
         order.forEach(sp => {
             const div = document.createElement('div');
