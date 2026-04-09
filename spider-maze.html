@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="5 websites enter the maze. Only 1 gets through. Pick your favorite and watch what happens when AI agents try to crawl, understand, and trust what they find.">
+    <meta property="og:title" content="The AI Spider Maze — Can Your Website Beat the Bots?">
+    <meta property="og:description" content="5 websites enter the maze. Only 1 gets through. Pick your favorite and watch what happens when AI agents try to crawl, understand, and trust what they find.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lizmicik.com/spider-maze">
+    <meta name="theme-color" content="#0a0a1a">
+    <title>The AI Spider Maze | lizmicik.com</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B9S40S2SKG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-B9S40S2SKG');
+    </script>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html, body { width:100%; height:100%; background:#0a0a1a; color:#e2e8f0; font-family:'Inter',sans-serif; overflow:hidden; }
+        body { display:flex; flex-direction:column; align-items:center; justify-content:center; }
+        .screen { width:100%; height:100%; position:absolute; top:0; left:0; display:none; flex-direction:column; align-items:center; justify-content:center; padding:20px; overflow:hidden; }
+        .screen.active { display:flex; }
+        .nav-bar { position:absolute; top:20px; left:20px; z-index:100; }
+        .logo-link { font-family:'Lora',serif; font-size:20px; font-weight:600; color:#B87333; text-decoration:none; }
+        .logo-link:hover { color:#d4a574; }
+
+        .intro-container { text-align:center; max-width:700px; z-index:10; }
+        .intro-container h1 { font-family:'Lora',serif; font-size:clamp(32px,6vw,56px); font-weight:600; margin-bottom:16px; background:linear-gradient(135deg,#2A9D8F,#34D399); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        .intro-container h2 { font-family:'Lora',serif; font-size:clamp(18px,4vw,26px); font-weight:400; color:#a0aec0; margin-bottom:32px; line-height:1.6; }
+        .intro-description { font-size:16px; color:#cbd5e1; line-height:1.8; margin-bottom:40px; max-width:600px; margin-left:auto; margin-right:auto; }
+
+        .btn { padding:14px 48px; font-size:16px; font-weight:600; border:none; border-radius:8px; cursor:pointer; transition:all .3s ease; font-family:'Inter',sans-serif; text-decoration:none; display:inline-block; margin:8px; }
+        .btn-primary { background:linear-gradient(135deg,#B87333,#d4a574); color:#0a0a1a; }
+        .btn-primary:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(184,115,51,.3); }
+        .btn-secondary { background:transparent; color:#2A9D8F; border:2px solid #2A9D8F; }
+        .btn-secondary:hover { background:rgba(42,157,143,.1); }
+        .btn-tertiary { background:transparent; color:#a0aec0; border:2px solid rgba(160,174,192,.3); }
+
+        /* PICKER */
+        .picker-wrap { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:30px 20px; }
+        .picker-wrap h1 { font-family:'Lora',serif; font-size:32px; font-weight:600; margin-bottom:8px; }
+        .picker-wrap p { font-size:16px; color:#a0aec0; margin-bottom:24px; }
+        .spider-grid { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; max-width:1000px; margin-bottom:20px; }
+        .spider-pick { cursor:pointer; transition:all .3s ease; border:3px solid rgba(42,157,143,.2); border-radius:16px; padding:12px; background:rgba(20,20,40,.6); text-align:center; }
+        .spider-pick canvas { display:block; margin:0 auto; }
+        .spider-pick .pick-label { font-size:13px; color:#a0aec0; margin-top:8px; }
+        .spider-pick:hover { border-color:#B87333; transform:translateY(-4px); background:rgba(42,157,143,.06); }
+        .spider-pick.selected { border-color:#B87333; box-shadow:0 0 25px rgba(184,115,51,.35); background:rgba(184,115,51,.08); transform:scale(1.05); }
+        .spider-pick.lure { border-color:rgba(184,115,51,.4); box-shadow:0 0 15px rgba(184,115,51,.12); }
+        .spider-pick.lure canvas { transform:scale(1.05); }
+        .spider-pick.plain { opacity:.8; }
+        .picker-bet { font-size:16px; color:#B87333; font-weight:600; min-height:24px; margin-bottom:10px; }
+
+        /* RACE */
+        .race-wrap { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+        #raceCanvas { border:2px solid rgba(42,157,143,.3); border-radius:8px; display:block; max-width:96vw; height:auto; }
+        .status-bar { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:10px; max-width:1400px; }
+        .si { padding:6px 12px; font-size:12px; background:rgba(30,30,50,.8); border-left:4px solid #555; border-radius:4px; min-width:120px; }
+        .si.racing { border-left-color:#2A9D8F; }
+        .si.blocked { border-left-color:#ef4444; background:rgba(239,68,68,.05); }
+        .si.finished { border-left-color:#34D399; background:rgba(52,211,153,.06); }
+
+        /* REVEAL */
+        .reveal-scroll { width:100%; height:100%; overflow-y:auto; display:flex; flex-direction:column; align-items:center; padding:40px 20px; }
+        .reveal-inner { max-width:860px; width:100%; text-align:center; }
+        .reveal-inner h1 { font-family:'Lora',serif; font-size:40px; font-weight:600; margin-bottom:12px; color:#34D399; }
+        .reveal-bet { font-size:18px; color:#FFD93D; margin-bottom:24px; font-weight:500; }
+        .reveal-inner h2 { font-family:'Lora',serif; font-size:22px; font-weight:600; color:#2A9D8F; margin:24px 0 12px; }
+        .reveal-inner p { font-size:15px; color:#cbd5e1; line-height:1.8; margin-bottom:10px; }
+        .reveal-inner p strong { color:#e2e8f0; }
+        .result-line { text-align:left; padding:10px 16px; margin-bottom:6px; border-radius:6px; font-size:14px; line-height:1.5; border-left:4px solid; }
+        .result-line.won { border-color:#34D399; background:rgba(52,211,153,.06); }
+        .result-line.lost { border-color:#ef4444; background:rgba(239,68,68,.03); }
+        .result-line.your-pick { outline:2px solid #FFD93D; outline-offset:2px; }
+        .lesson-box { background:rgba(42,157,143,.05); border:1px solid rgba(42,157,143,.2); border-radius:12px; padding:24px; margin:24px 0; text-align:left; }
+        .lesson-box p { font-size:16px; line-height:1.8; }
+        .cta-buttons { display:flex; gap:16px; justify-content:center; margin-top:30px; flex-wrap:wrap; padding-bottom:40px; }
+
+        /* Winner celebration image area */
+        .winner-celebration { position:relative; margin:32px auto; max-width:480px; }
+        .winner-celebration canvas { display:block; margin:0 auto; }
+        .winner-img-wrap { position:relative; text-align:center; }
+        .winner-img-wrap img { max-width:100%; height:auto; border-radius:12px; }
+        .winner-img-wrap .flower-overlay { position:absolute; font-size:13px; font-weight:600; padding:4px 10px; border-radius:20px; white-space:nowrap; }
+        .winner-caption { text-align:center; margin-top:12px; }
+        .winner-caption h3 { font-family:'Lora',serif; font-size:20px; color:#FF6B6B; margin-bottom:4px; }
+        .winner-caption p { font-size:14px; color:#94a3b8; }
+        .attribution { font-size:11px; color:#64748b; margin-top:24px; text-align:center; }
+        .attribution a { color:#94a3b8; text-decoration:underline; }
+
+        @media(max-width:768px) {
+            .spider-grid { gap:12px; }
+            .spider-pick canvas { width:100px !important; height:100px !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar"><a href="/" class="logo-link">lizmicik</a></div>
+
+    <!-- INTRO -->
+    <div id="introScreen" class="screen active">
+        <div class="intro-container">
+            <h1>The AI Spider Maze</h1>
+            <h2>5 websites enter. Only 1 gets through.</h2>
+            <p class="intro-description">AI agents crawl websites looking for structure, not style. Watch what happens when five very different websites try to get through the gauntlet. Can you pick the winner?</p>
+            <button class="btn btn-primary" onclick="Game.goToPicker()">Start the Maze</button>
+        </div>
+    </div>
+
+    <!-- PICKER -->
+    <div id="pickerScreen" class="screen">
+        <div class="picker-wrap">
+            <h1>Pick Your Spider</h1>
+            <p>Choose by instinct. Which one looks like a winner?</p>
+            <div class="spider-grid" id="spiderGrid"></div>
+            <div class="picker-bet" id="betMsg"></div>
+            <div>
+                <button class="btn btn-primary" onclick="Game.startRace()">Watch the Race</button>
+                <button class="btn btn-secondary" onclick="Game.goToIntro()">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RACE -->
+    <div id="raceScreen" class="screen">
+        <div class="race-wrap">
+            <canvas id="raceCanvas"></canvas>
+            <div class="status-bar" id="statusBar"></div>
+        </div>
+    </div>
+
+    <!-- REVEAL -->
+    <div id="revealScreen" class="screen">
+        <div class="reveal-scroll">
+            <div class="reveal-inner">
+                <h1 id="revTitle"></h1>
+                <div class="reveal-bet" id="revBet"></div>
+                <h2>Final Results</h2>
+                <div id="revResults"></div>
+                <div class="winner-celebration" id="winnerCelebration">
+                    <div class="winner-img-wrap">
+                        <img src="/images/red%20spider%20transparent.png" alt="The Quiet One — a mechanical spider that built its website right" id="winnerImg">
+                        <span class="flower-overlay" style="top:8%;left:5%;background:rgba(52,211,153,.85);color:#fff;">mentions</span>
+                        <span class="flower-overlay" style="top:12%;right:8%;background:rgba(42,157,143,.85);color:#fff;">citations</span>
+                        <span class="flower-overlay" style="bottom:15%;left:10%;background:rgba(184,115,51,.85);color:#fff;">recommendations</span>
+                        <span class="flower-overlay" style="bottom:8%;right:12%;background:rgba(255,217,61,.85);color:#0a0a1a;">mentions</span>
+                        <span class="flower-overlay" style="top:45%;left:2%;background:rgba(167,139,250,.85);color:#fff;">citations</span>
+                        <span class="flower-overlay" style="top:40%;right:3%;background:rgba(52,211,153,.85);color:#fff;">recommendations</span>
+                    </div>
+                    <div class="winner-caption">
+                        <h3>The Quiet One</h3>
+                        <p>Built right. Found, understood, trusted.</p>
+                    </div>
+                </div>
+                <div class="lesson-box" id="revLesson"></div>
+                <div class="attribution"><a href="https://www.freepik.com/free-photos-vectors/robot-spider">Image by freepik</a></div>
+                <div class="cta-buttons">
+                    <a href="/audit" class="btn btn-primary" onclick="gtag('event','maze_cta',{cta:'audit'})">How Does YOUR Site Run the Maze?</a>
+                    <a href="/signal-check" class="btn btn-tertiary" onclick="gtag('event','maze_cta',{cta:'signal_check'})">Run a Free Signal Check</a>
+                    <button class="btn btn-secondary" onclick="Game.reset()">Play Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+// ====================================================================
+// CONSTANTS
+// ====================================================================
+const W = 1400, H = 500;
+const ZD = [W/3, W*2/3]; // zone dividers ~467, ~933
+
+// ====================================================================
+// SPIDERS — names hidden until reveal
+// ====================================================================
+const SPIDERS = [
+    { id:'s1', color:'#94A3B8', name:'The Showstopper', pickerLabel:'Spider 1',
+      lure:false, plain:false,
+      blockerTime:1.8, blockerLabel:'BLOCKED: JavaScript Rendering Wall', blockerZone:'FIND',
+      speed:0.85, revealNote:'Eliminated in FIND — JavaScript rendering wall. AI crawlers cannot execute JS.' },
+    { id:'s2', color:'#A78BFA', name:'The Checkbox', pickerLabel:'Spider 2',
+      lure:false, plain:false,
+      blockerTime:5.0, blockerLabel:'STUCK: No Schema Markup', blockerZone:'UNDERSTAND',
+      speed:0.7, revealNote:'Eliminated in UNDERSTAND — No schema markup. AI had no structured data to work with.' },
+    { id:'s3', color:'#FFD93D', name:'The Content King', pickerLabel:'Spider 3',
+      lure:true, plain:false,
+      blockerTime:8.0, blockerLabel:'STUCK: 580 DIVs, No Semantic HTML', blockerZone:'UNDERSTAND',
+      speed:0.82, revealNote:'Eliminated in UNDERSTAND — 580 DIVs, no semantic HTML. Rich content trapped in meaningless markup.' },
+    { id:'s4', color:'#34D399', name:'The Almost', pickerLabel:'Spider 4',
+      lure:true, plain:false,
+      blockerTime:10.5, blockerLabel:'DEAD END: Inconsistent Entity Data', blockerZone:'TRUST',
+      speed:0.92, revealNote:'Eliminated in TRUST — Inconsistent entity data. Schema, content, and LinkedIn told three different stories.' },
+    { id:'s5', color:'#FF6B6B', name:'The Quiet One', pickerLabel:'Spider 5',
+      lure:false, plain:true,
+      blockerTime:null, blockerLabel:null, blockerZone:null,
+      speed:1.05, revealNote:null }
+];
+
+// ====================================================================
+// MAZE WALLS [x1,y1,x2,y2]
+// ====================================================================
+const WALLS = [
+    // Outer boundary
+    [20,60,W-20,60], [20,H-60,W-20,H-60], [20,60,20,H-60], [W-20,60,W-20,H-60],
+    // FIND: Gate 1 (x=160) gap y=170-220
+    [160,60,160,170], [160,220,160,H-60],
+    // FIND: Gate 2 (x=300) gap y=130-185 and y=320-370
+    [300,60,300,130], [300,185,300,320], [300,370,300,H-60],
+    // FIND: Gate 3 (x=430) gap y=190-260
+    [430,60,430,190], [430,260,430,H-60],
+    // UNDERSTAND: upper corridor (y=140 area)
+    [500,140,700,140], [500,100,500,140],
+    // UNDERSTAND: central maze block
+    [600,200,600,300], [600,300,720,300], [720,200,720,300],
+    // UNDERSTAND: lower corridor
+    [520,350,700,350], [700,350,700,400],
+    // UNDERSTAND: dead end pocket
+    [780,180,780,280], [780,280,860,280], [860,180,860,280],
+    // TRUST: upper blind alley
+    [960,100,960,210], [1060,100,1060,210], [960,210,1060,210],
+    // TRUST: lower blind alley
+    [980,310,980,420], [1080,310,1080,420], [980,420,1080,420],
+    // TRUST: narrow passage (x=1200) gap y=210-270
+    [1200,60,1200,210], [1200,270,1200,H-60],
+    // TRUST: final wall (x=1300)
+    [1300,100,1300,200], [1300,300,1300,H-80],
+];
+
+// ====================================================================
+// PATHS — diverging routes through the maze
+// ====================================================================
+const PATHS = {
+    // S1 (Showstopper): fast start, upper route, dies approaching gate 2
+    s1: [
+        {x:40,y:195}, {x:80,y:195}, {x:120,y:195}, {x:155,y:195},
+        {x:170,y:195}, {x:200,y:180}, {x:230,y:160}, {x:260,y:155},
+        {x:285,y:155}
+    ],
+    // S2 (Checkbox): lower route through gate 2 lower gap, into UNDERSTAND lower area
+    s2: [
+        {x:40,y:300}, {x:80,y:310}, {x:120,y:330}, {x:150,y:340},
+        {x:155,y:210}, {x:170,y:205}, {x:200,y:220}, {x:240,y:280},
+        {x:270,y:340}, {x:295,y:345},
+        {x:310,y:345}, {x:360,y:340}, {x:400,y:300},
+        {x:425,y:250}, {x:440,y:245},
+        {x:480,y:280}, {x:520,y:320}, {x:560,y:340},
+        {x:600,y:335}
+    ],
+    // S3 (Content King): upper route over central block, stuck at dead-end pocket
+    s3: [
+        {x:40,y:195}, {x:85,y:195}, {x:130,y:195}, {x:155,y:195},
+        {x:170,y:195}, {x:210,y:195}, {x:250,y:170},
+        {x:295,y:160}, {x:310,y:160}, {x:350,y:175},
+        {x:390,y:210}, {x:425,y:225}, {x:440,y:225},
+        // stay above central block (y < 200, block is x=600-720 y=200-300)
+        {x:480,y:195}, {x:520,y:175}, {x:560,y:165},
+        {x:620,y:170}, {x:660,y:168}, {x:700,y:172},
+        // pass between block right wall (x=720) and pocket (x=780) staying y < 180
+        {x:740,y:178}, {x:760,y:175},
+        {x:775,y:178}
+    ],
+    // S4 (Almost): south route under block and floor, past pocket, dies in TRUST
+    s4: [
+        {x:40,y:250}, {x:90,y:230}, {x:130,y:210},
+        {x:155,y:200}, {x:175,y:198}, {x:220,y:195},
+        {x:260,y:170}, {x:295,y:160}, {x:310,y:160},
+        {x:370,y:195}, {x:425,y:225}, {x:445,y:235},
+        // south below central block
+        {x:480,y:270}, {x:510,y:310}, {x:540,y:330},
+        // corridor between block bottom (y=300) and floor (y=350)
+        {x:570,y:340}, {x:600,y:345}, {x:650,y:340},
+        {x:670,y:330}, {x:695,y:325}, {x:710,y:320},
+        // east of floor post (x=700), below pocket (y > 280)
+        {x:730,y:315}, {x:770,y:310}, {x:820,y:320},
+        {x:870,y:330},
+        // north into TRUST corridor between alleys (y=210-310)
+        {x:910,y:300}, {x:940,y:275},
+        {x:960,y:265}, {x:1010,y:255}, {x:1060,y:260},
+        {x:1100,y:265}, {x:1140,y:255},
+        // stuck before narrow passage
+        {x:1175,y:248}
+    ],
+    // S5 (Quiet One): steady south route, avoids all traps, reaches winner's lane
+    s5: [
+        {x:40,y:220}, {x:90,y:210}, {x:130,y:200},
+        {x:155,y:195}, {x:175,y:195}, {x:220,y:200},
+        // south to gate 2 lower gap (320-370)
+        {x:260,y:260}, {x:280,y:310}, {x:295,y:340},
+        {x:310,y:340}, {x:360,y:320},
+        // up to gate 3 gap (190-260)
+        {x:400,y:260}, {x:425,y:230}, {x:445,y:230},
+        // south corridor: between block bottom and floor
+        {x:480,y:260}, {x:510,y:300}, {x:530,y:325},
+        {x:560,y:340}, {x:595,y:342},
+        // tight corridor y=300-350 through central block area
+        {x:630,y:335}, {x:670,y:330}, {x:695,y:325},
+        // east of floor (x=700), below pocket (y > 280)
+        {x:710,y:320}, {x:730,y:315},
+        {x:770,y:310}, {x:820,y:320}, {x:870,y:330},
+        // north into TRUST corridor
+        {x:910,y:300}, {x:940,y:275},
+        {x:960,y:265}, {x:1000,y:255}, {x:1050,y:250},
+        {x:1090,y:255}, {x:1130,y:248},
+        // through narrow passage gap (x=1200, y=210-270)
+        {x:1170,y:242}, {x:1195,y:240}, {x:1210,y:240},
+        // through final wall gap (x=1300, y=200-300)
+        {x:1250,y:242}, {x:1295,y:245},
+        {x:1310,y:248},
+        // WINNER'S LANE (inside boundary, before x=1380)
+        {x:1345,y:250}, {x:1360,y:250}
+    ]
+};
+
+// ====================================================================
+// AUDIO
+// ====================================================================
+let audioCtx=null;
+function initAudio(){if(audioCtx)return;try{audioCtx=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}
+function playBuzzer(){if(!audioCtx)return;const n=audioCtx.currentTime,o=audioCtx.createOscillator(),g=audioCtx.createGain();o.connect(g);g.connect(audioCtx.destination);o.type='sawtooth';o.frequency.setValueAtTime(400,n);o.frequency.exponentialRampToValueAtTime(80,n+.25);g.gain.setValueAtTime(.25,n);g.gain.exponentialRampToValueAtTime(.001,n+.25);o.start(n);o.stop(n+.25)}
+function playBells(){if(!audioCtx)return;const n=audioCtx.currentTime;[523,659,784,1047].forEach((f,i)=>{const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.connect(g);g.connect(audioCtx.destination);o.type='sine';const t=n+i*.15;o.frequency.setValueAtTime(f,t);g.gain.setValueAtTime(.18,t);g.gain.exponentialRampToValueAtTime(.001,t+.4);o.start(t);o.stop(t+.4)})}
+function playClick(){if(!audioCtx)return;const n=audioCtx.currentTime,o=audioCtx.createOscillator(),g=audioCtx.createGain();o.connect(g);g.connect(audioCtx.destination);o.frequency.setValueAtTime(600,n);g.gain.setValueAtTime(.08,n);g.gain.exponentialRampToValueAtTime(.001,n+.04);o.start(n);o.stop(n+.04)}
+
+// ====================================================================
+// DRAW SPIDER (3D mechanical look)
+// ====================================================================
+function drawSpider3D(ctx, x, y, size, color, time, blocked, large) {
+    ctx.save();
+    if (blocked) ctx.globalAlpha = 0.3;
+    const s = large ? size * 1.4 : size;
+
+    // Shadow underneath
+    ctx.fillStyle = 'rgba(0,0,0,0.3)';
+    ctx.beginPath();
+    ctx.ellipse(x + 2, y + 3, s * 0.9, s * 0.5, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 8 legs with joints
+    ctx.strokeStyle = color;
+    ctx.lineWidth = large ? 3 : 2;
+    const legLen = s * 1.5;
+    for (let i = 0; i < 8; i++) {
+        const baseAngle = (i / 8) * Math.PI * 2;
+        const wiggle = blocked ? 0 : Math.sin((time || 0) * 10 + i * 1.2) * 0.15;
+        const angle = baseAngle + wiggle;
+        const knee = 0.55;
+        const kneeX = x + Math.cos(angle) * (legLen * knee);
+        const kneeY = y + Math.sin(angle) * (legLen * knee);
+        const endAngle = angle + (blocked ? 0 : 0.35);
+        const endX = x + Math.cos(endAngle) * legLen;
+        const endY = y + Math.sin(endAngle) * legLen;
+        ctx.beginPath();
+        ctx.moveTo(x + Math.cos(angle) * s * 0.7, y + Math.sin(angle) * s * 0.7);
+        ctx.lineTo(kneeX, kneeY);
+        ctx.lineTo(endX, endY);
+        ctx.stroke();
+    }
+
+    // Body: hexagon with gradient
+    const grad = ctx.createRadialGradient(x - s * 0.3, y - s * 0.3, s * 0.1, x, y, s);
+    grad.addColorStop(0, lighten(color, 40));
+    grad.addColorStop(0.6, color);
+    grad.addColorStop(1, darken(color, 40));
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    for (let i = 0; i < 6; i++) {
+        const a = (Math.PI / 3) * i - Math.PI / 6;
+        const px = x + Math.cos(a) * s;
+        const py = y + Math.sin(a) * s;
+        i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    }
+    ctx.closePath();
+    ctx.fill();
+
+    // Highlight
+    ctx.fillStyle = 'rgba(255,255,255,0.15)';
+    ctx.beginPath();
+    ctx.ellipse(x - s * 0.2, y - s * 0.25, s * 0.4, s * 0.25, -0.5, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Eyes
+    ctx.fillStyle = blocked ? '#666' : '#fff';
+    ctx.beginPath(); ctx.arc(x - s * 0.25, y - s * 0.15, s * 0.15, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(x + s * 0.25, y - s * 0.15, s * 0.15, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = blocked ? '#444' : '#0a0a1a';
+    ctx.beginPath(); ctx.arc(x - s * 0.22, y - s * 0.15, s * 0.07, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(x + s * 0.28, y - s * 0.15, s * 0.07, 0, Math.PI * 2); ctx.fill();
+
+    // X if blocked
+    if (blocked) {
+        ctx.globalAlpha = 1;
+        ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 3;
+        const o = s * 0.6;
+        ctx.beginPath(); ctx.moveTo(x-o,y-o); ctx.lineTo(x+o,y+o); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(x+o,y-o); ctx.lineTo(x-o,y+o); ctx.stroke();
+    }
+    ctx.restore();
+}
+
+function lighten(hex, pct) {
+    let r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+    r = Math.min(255, r + pct); g = Math.min(255, g + pct); b = Math.min(255, b + pct);
+    return '#' + [r,g,b].map(v => v.toString(16).padStart(2,'0')).join('');
+}
+function darken(hex, pct) {
+    let r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+    r = Math.max(0, r - pct); g = Math.max(0, g - pct); b = Math.max(0, b - pct);
+    return '#' + [r,g,b].map(v => v.toString(16).padStart(2,'0')).join('');
+}
+
+// ====================================================================
+// FLOWERS — "mentions", "citations", "recommendations"
+// ====================================================================
+function drawFlower(ctx, x, y, size, text, color, opacity) {
+    ctx.save();
+    ctx.globalAlpha = opacity;
+    // Petals
+    const petalCount = 5;
+    for (let i = 0; i < petalCount; i++) {
+        const angle = (i / petalCount) * Math.PI * 2;
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.ellipse(
+            x + Math.cos(angle) * size * 0.4,
+            y + Math.sin(angle) * size * 0.4,
+            size * 0.35, size * 0.2,
+            angle, 0, Math.PI * 2
+        );
+        ctx.fill();
+    }
+    // Center
+    ctx.fillStyle = '#FFD93D';
+    ctx.beginPath(); ctx.arc(x, y, size * 0.2, 0, Math.PI * 2); ctx.fill();
+    // Label
+    ctx.font = 'bold ' + Math.max(10, size * 0.55) + 'px Inter';
+    ctx.fillStyle = '#fff';
+    ctx.textAlign = 'center';
+    ctx.fillText(text, x, y + size + 14);
+    ctx.restore();
+}
+
+// ====================================================================
+// STOPWATCH DRAWING
+// ====================================================================
+function drawStopwatch(ctx, cx, cy, radius, seconds) {
+    ctx.save();
+    // Face
+    ctx.fillStyle = 'rgba(20,20,40,0.9)';
+    ctx.beginPath(); ctx.arc(cx, cy, radius, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#B87333'; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.arc(cx, cy, radius, 0, Math.PI * 2); ctx.stroke();
+    // Crown
+    ctx.fillStyle = '#B87333';
+    ctx.fillRect(cx - 6, cy - radius - 14, 12, 16);
+    ctx.beginPath(); ctx.arc(cx, cy - radius - 14, 8, 0, Math.PI * 2); ctx.fill();
+    // Tick marks
+    for (let i = 0; i < 12; i++) {
+        const a = (i / 12) * Math.PI * 2 - Math.PI / 2;
+        const inner = i % 3 === 0 ? radius * 0.75 : radius * 0.85;
+        ctx.strokeStyle = i % 3 === 0 ? '#B87333' : 'rgba(184,115,51,0.4)';
+        ctx.lineWidth = i % 3 === 0 ? 3 : 1;
+        ctx.beginPath();
+        ctx.moveTo(cx + Math.cos(a) * inner, cy + Math.sin(a) * inner);
+        ctx.lineTo(cx + Math.cos(a) * (radius * 0.9), cy + Math.sin(a) * (radius * 0.9));
+        ctx.stroke();
+    }
+    // Hand (seconds)
+    const sAngle = ((seconds % 15) / 15) * Math.PI * 2 - Math.PI / 2;
+    ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + Math.cos(sAngle) * radius * 0.7, cy + Math.sin(sAngle) * radius * 0.7);
+    ctx.stroke();
+    // Center pin
+    ctx.fillStyle = '#ef4444';
+    ctx.beginPath(); ctx.arc(cx, cy, 4, 0, Math.PI * 2); ctx.fill();
+    // Time text
+    ctx.font = 'bold 16px Inter';
+    ctx.fillStyle = '#e2e8f0';
+    ctx.textAlign = 'center';
+    ctx.fillText(seconds.toFixed(1) + 's', cx, cy + radius * 0.45);
+    ctx.restore();
+}
+
+// ====================================================================
+// GAME ENGINE
+// ====================================================================
+const Game = {
+    sel: null,
+    raceTime: 0,
+    startTs: 0,
+    running: false,
+    done: false,
+    animId: null,
+    state: {},
+    labels: [],
+    flowers: [],
+    winTime: 0,
+
+    goToScreen(id) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    },
+    goToIntro() { this.goToScreen('introScreen'); },
+
+    goToPicker() {
+        initAudio();
+        this.buildPicker();
+        this.goToScreen('pickerScreen');
+    },
+
+    buildPicker() {
+        const g = document.getElementById('spiderGrid');
+        g.innerHTML = '';
+        this.sel = null;
+        document.getElementById('betMsg').textContent = '';
+
+        SPIDERS.forEach(sp => {
+            const pick = document.createElement('div');
+            pick.className = 'spider-pick' + (sp.lure ? ' lure' : '') + (sp.plain ? ' plain' : '');
+            pick.dataset.id = sp.id;
+
+            const cvs = document.createElement('canvas');
+            cvs.width = 130; cvs.height = 130;
+            pick.appendChild(cvs);
+
+            const lbl = document.createElement('div');
+            lbl.className = 'pick-label';
+            lbl.textContent = sp.pickerLabel;
+            pick.appendChild(lbl);
+
+            pick.onclick = () => {
+                document.querySelectorAll('.spider-pick').forEach(p => p.classList.remove('selected'));
+                pick.classList.add('selected');
+                this.sel = sp.id;
+                document.getElementById('betMsg').textContent = "You're betting on " + sp.pickerLabel + "!";
+                playClick();
+                gtag('event', 'spider_selected', { spider_id: sp.id, spider_color: sp.color });
+            };
+
+            g.appendChild(pick);
+
+            // Draw 3D spider preview
+            setTimeout(() => {
+                const ctx = cvs.getContext('2d');
+                drawSpider3D(ctx, 65, 65, 22, sp.color, 0, false, true);
+            }, 50);
+        });
+    },
+
+    startRace() {
+        this.raceTime = 0;
+        this.running = true;
+        this.done = false;
+        this.labels = [];
+        this.flowers = [];
+        this.winTime = 0;
+        this.state = {};
+
+        SPIDERS.forEach(sp => {
+            const p = PATHS[sp.id];
+            this.state[sp.id] = {
+                pathIdx: 0, x: p[0].x, y: p[0].y,
+                blocked: false, finished: false,
+                frozenX: 0, frozenY: 0
+            };
+        });
+
+        this.goToScreen('raceScreen');
+        const c = document.getElementById('raceCanvas');
+        c.width = W; c.height = H;
+        const maxW = window.innerWidth * 0.96;
+        const maxH = window.innerHeight * 0.72;
+        let cw = maxW, ch = cw * (H / W);
+        if (ch > maxH) { ch = maxH; cw = ch * (W / H); }
+        c.style.width = cw + 'px'; c.style.height = ch + 'px';
+
+        this.updateStatus();
+        this.startTs = performance.now();
+        this.animId = requestAnimationFrame(ts => this.loop(ts));
+    },
+
+    loop(ts) {
+        this.raceTime = (ts - this.startTs) / 1000;
+        this.moveSpiders();
+        this.checkBlockers();
+        this.draw();
+        this.updateStatus();
+
+        if (this.done && this.raceTime - this.winTime > 4) {
+            // Show reveal after 4s of celebration
+            cancelAnimationFrame(this.animId);
+            this.showReveal();
+            return;
+        }
+
+        this.animId = requestAnimationFrame(t => this.loop(t));
+    },
+
+    moveSpiders() {
+        SPIDERS.forEach(sp => {
+            const st = this.state[sp.id];
+            if (st.blocked || st.finished) return;
+            const path = PATHS[sp.id];
+            if (st.pathIdx >= path.length - 1) {
+                st.finished = true;
+                st.x = path[path.length - 1].x;
+                st.y = path[path.length - 1].y;
+                if (!this.done) {
+                    this.done = true;
+                    this.winTime = this.raceTime;
+                    playBells();
+                    this.spawnFlowers(st.x, st.y);
+                }
+                return;
+            }
+            const tgt = path[st.pathIdx + 1];
+            const dx = tgt.x - st.x, dy = tgt.y - st.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const pps = sp.speed * 110;
+            const move = pps / 60;
+            if (dist < move + 2) {
+                st.pathIdx++;
+                st.x = tgt.x; st.y = tgt.y;
+            } else {
+                st.x += (dx / dist) * move;
+                st.y += (dy / dist) * move;
+            }
+        });
+    },
+
+    checkBlockers() {
+        SPIDERS.forEach(sp => {
+            if (!sp.blockerTime) return;
+            const st = this.state[sp.id];
+            if (st.blocked) return;
+            if (this.raceTime >= sp.blockerTime) {
+                st.blocked = true;
+                st.frozenX = st.x; st.frozenY = st.y;
+                playBuzzer();
+                this.labels.push({
+                    text: sp.blockerLabel, x: st.x, y: st.y,
+                    t: this.raceTime, zone: sp.blockerZone, color: sp.color
+                });
+            }
+        });
+    },
+
+    spawnFlowers(wx, wy) {
+        const labels = ['mentions', 'citations', 'recommendations', 'mentions', 'citations', 'recommendations', 'mentions', 'citations'];
+        const colors = ['#34D399', '#2A9D8F', '#B87333', '#FFD93D', '#A78BFA', '#34D399', '#B87333', '#2A9D8F'];
+        for (let i = 0; i < 8; i++) {
+            this.flowers.push({
+                x: wx + (Math.random() - 0.5) * 200,
+                baseY: wy + 40 + Math.random() * 60,
+                label: labels[i],
+                color: colors[i],
+                size: 14 + Math.random() * 10,
+                delay: i * 0.3,
+                speed: 30 + Math.random() * 20
+            });
+        }
+    },
+
+    draw() {
+        const c = document.getElementById('raceCanvas');
+        const ctx = c.getContext('2d');
+
+        // Clear
+        ctx.fillStyle = '#0a0a1a';
+        ctx.fillRect(0, 0, W, H);
+
+        // Grid
+        ctx.strokeStyle = 'rgba(42,157,143,.05)'; ctx.lineWidth = 1;
+        for (let x = 0; x < W; x += 40) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+        for (let y = 0; y < H; y += 40) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+        ctx.fillStyle = 'rgba(42,157,143,.06)';
+        for (let x = 0; x < W; x += 40) for (let y = 0; y < H; y += 40) { ctx.beginPath(); ctx.arc(x,y,1.5,0,Math.PI*2); ctx.fill(); }
+
+        // Zone backgrounds
+        ctx.fillStyle = 'rgba(239,68,68,.02)'; ctx.fillRect(20,60,ZD[0]-20,H-120);
+        ctx.fillStyle = 'rgba(245,158,11,.02)'; ctx.fillRect(ZD[0],60,ZD[1]-ZD[0],H-120);
+        ctx.fillStyle = 'rgba(42,157,143,.02)'; ctx.fillRect(ZD[1],60,W-20-ZD[1],H-120);
+
+        // Zone labels
+        ctx.font = 'bold 26px Inter'; ctx.textAlign = 'center';
+        ctx.fillStyle = 'rgba(239,68,68,.1)'; ctx.fillText('FIND', (20+ZD[0])/2, H/2+8);
+        ctx.fillStyle = 'rgba(245,158,11,.1)'; ctx.fillText('UNDERSTAND', (ZD[0]+ZD[1])/2, H/2+8);
+        ctx.fillStyle = 'rgba(42,157,143,.1)'; ctx.fillText('TRUST', (ZD[1]+W-20)/2, H/2+8);
+
+        // Zone dividers
+        ctx.strokeStyle = 'rgba(42,157,143,.12)'; ctx.lineWidth = 2; ctx.setLineDash([8,8]);
+        [ZD[0],ZD[1]].forEach(x => { ctx.beginPath(); ctx.moveTo(x,60); ctx.lineTo(x,H-60); ctx.stroke(); });
+        ctx.setLineDash([]);
+
+        // Maze walls
+        ctx.strokeStyle = '#2A9D8F'; ctx.lineWidth = 4;
+        ctx.shadowBlur = 8; ctx.shadowColor = 'rgba(42,157,143,.4)';
+        WALLS.forEach(([x1,y1,x2,y2]) => { ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke(); });
+        ctx.shadowBlur = 0;
+
+        // Winner's Lane (between final wall and right boundary)
+        ctx.fillStyle = 'rgba(52,211,153,.06)';
+        ctx.fillRect(1300, 200, 80, 100);
+        ctx.strokeStyle = 'rgba(52,211,153,.2)'; ctx.lineWidth = 1; ctx.setLineDash([4,4]);
+        ctx.strokeRect(1302, 202, 76, 96);
+        ctx.setLineDash([]);
+        ctx.font = 'bold 11px Inter'; ctx.fillStyle = 'rgba(52,211,153,.35)'; ctx.textAlign = 'center';
+        ctx.save();
+        ctx.translate(1340, 260);
+        ctx.fillText("WINNER'S", 0, -8);
+        ctx.fillText('LANE', 0, 6);
+        ctx.restore();
+
+        // START label
+        ctx.fillStyle = 'rgba(184,115,51,.3)'; ctx.font = 'bold 12px Inter'; ctx.textAlign = 'center';
+        ctx.fillText('START', 40, 78);
+
+        // Draw spiders
+        SPIDERS.forEach(sp => {
+            const st = this.state[sp.id];
+            const x = st.blocked ? st.frozenX : st.x;
+            const y = st.blocked ? st.frozenY : st.y;
+            drawSpider3D(ctx, x, y, 11, sp.color, this.raceTime, st.blocked, false);
+        });
+
+        // Winner celebration: glow + flowers
+        if (this.done) {
+            const winner = SPIDERS.find(s => s.id === 's5');
+            const wst = this.state['s5'];
+            const elapsed = this.raceTime - this.winTime;
+
+            // Pulsing glow on winner
+            const pulse = Math.sin(this.raceTime * 6) * 0.4 + 0.6;
+            ctx.save();
+            ctx.shadowBlur = 30 * pulse;
+            ctx.shadowColor = 'rgba(52,211,153,.6)';
+            ctx.strokeStyle = 'rgba(52,211,153,' + (pulse * 0.5) + ')';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.arc(wst.x, wst.y, 22, 0, Math.PI * 2); ctx.stroke();
+            ctx.restore();
+
+            // Flowers floating up
+            this.flowers.forEach(f => {
+                const age = elapsed - f.delay;
+                if (age < 0) return;
+                const floatY = f.baseY - age * f.speed;
+                const opacity = Math.max(0, Math.min(1, age * 2) * (1 - Math.max(0, (age - 2.5) / 1)));
+                drawFlower(ctx, f.x, floatY, f.size, f.label, f.color, opacity);
+            });
+
+            // Stopwatch appears in upper-right
+            const swOpacity = Math.min(1, elapsed / 0.5);
+            ctx.save();
+            ctx.globalAlpha = swOpacity;
+            drawStopwatch(ctx, W - 100, 160, 55, this.winTime);
+            ctx.restore();
+
+            // WINNER text
+            if (elapsed > 0.5) {
+                const txtOpacity = Math.min(1, (elapsed - 0.5) / 0.5);
+                ctx.save();
+                ctx.globalAlpha = txtOpacity;
+                ctx.font = 'bold 24px Lora, serif';
+                ctx.fillStyle = '#34D399';
+                ctx.textAlign = 'center';
+                ctx.shadowBlur = 12; ctx.shadowColor = 'rgba(52,211,153,.5)';
+                ctx.fillText('WINNER!', wst.x, wst.y - 35);
+                ctx.restore();
+            }
+        }
+
+        // Blocker labels
+        this.labels.forEach(lb => {
+            const age = this.raceTime - lb.t;
+            if (age > 4) return;
+            const op = age < 3 ? 1 : Math.max(0, 1 - (age - 3));
+            ctx.save(); ctx.globalAlpha = op;
+
+            ctx.font = 'bold 12px Inter';
+            const m = ctx.measureText(lb.text);
+            const pw = m.width + 16, ph = 24;
+            const px = lb.x - pw / 2, py = lb.y - 40;
+
+            let bg = 'rgba(239,68,68,.9)';
+            if (lb.zone === 'UNDERSTAND') bg = 'rgba(245,158,11,.9)';
+            if (lb.zone === 'TRUST') bg = 'rgba(42,157,143,.9)';
+            ctx.fillStyle = bg;
+            ctx.beginPath();
+            if (ctx.roundRect) ctx.roundRect(px, py, pw, ph, 5);
+            else { ctx.moveTo(px+5,py); ctx.lineTo(px+pw-5,py); ctx.arcTo(px+pw,py,px+pw,py+5,5); ctx.lineTo(px+pw,py+ph-5); ctx.arcTo(px+pw,py+ph,px+pw-5,py+ph,5); ctx.lineTo(px+5,py+ph); ctx.arcTo(px,py+ph,px,py+ph-5,5); ctx.lineTo(px,py+5); ctx.arcTo(px,py,px+5,py,5); }
+            ctx.fill();
+            ctx.fillStyle = '#fff'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+            ctx.fillText(lb.text, lb.x, py + ph / 2);
+
+            // Burst
+            if (age < 0.4) {
+                const bp = age / 0.4;
+                for (let i = 0; i < 6; i++) {
+                    const a = (i / 6) * Math.PI * 2;
+                    ctx.fillStyle = lb.color; ctx.globalAlpha = op * (1 - bp);
+                    ctx.fillRect(lb.x + Math.cos(a) * bp * 30 - 3, lb.y + Math.sin(a) * bp * 30 - 3, 6, 6);
+                }
+            }
+            ctx.restore();
+        });
+    },
+
+    updateStatus() {
+        const bar = document.getElementById('statusBar');
+        bar.innerHTML = '';
+        SPIDERS.forEach(sp => {
+            const st = this.state[sp.id];
+            const item = document.createElement('div');
+            item.className = 'si';
+            const dot = '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:' + sp.color + ';margin-right:6px;vertical-align:middle"></span>';
+            if (st.finished) {
+                item.className += ' finished';
+                item.innerHTML = dot + sp.pickerLabel + ' — <strong style="color:#34D399">FINISHED</strong>';
+            } else if (st.blocked) {
+                item.className += ' blocked';
+                item.innerHTML = dot + sp.pickerLabel + ' — <span style="color:#ef4444">eliminated</span>';
+            } else {
+                item.className += ' racing';
+                item.style.borderLeftColor = sp.color;
+                item.innerHTML = dot + sp.pickerLabel + ' — racing...';
+            }
+            bar.appendChild(item);
+        });
+    },
+
+    showReveal() {
+        const winner = SPIDERS.find(s => s.id === 's5');
+        document.getElementById('revTitle').textContent = winner.name + ' Won the Maze';
+
+        const betEl = document.getElementById('revBet');
+        if (this.sel === 's5') {
+            betEl.innerHTML = '<span style="color:#34D399">You picked the winner! You see what AI sees.</span>';
+        } else if (this.sel) {
+            const picked = SPIDERS.find(s => s.id === this.sel);
+            betEl.textContent = 'Your pick (' + picked.pickerLabel + ') was ' + picked.name + '. ' + picked.revealNote;
+        } else {
+            betEl.textContent = '';
+        }
+
+        // Results — brief, one line each, names revealed
+        const res = document.getElementById('revResults');
+        res.innerHTML = '';
+        const order = [...SPIDERS].sort((a, b) => {
+            if (a.id === 's5') return -1; if (b.id === 's5') return 1;
+            return (b.blockerTime || 0) - (a.blockerTime || 0);
+        });
+        order.forEach(sp => {
+            const div = document.createElement('div');
+            div.className = 'result-line ' + (sp.id === 's5' ? 'won' : 'lost');
+            if (sp.id === this.sel) div.className += ' your-pick';
+            if (sp.id === 's5') {
+                div.innerHTML = '<span style="color:' + sp.color + '"><strong>' + sp.pickerLabel + '</strong> = ' + sp.name + '</span> — Made it through. Found, understood, and trusted.';
+            } else {
+                div.innerHTML = '<span style="color:' + sp.color + '"><strong>' + sp.pickerLabel + '</strong> = ' + sp.name + '</span> — ' + sp.revealNote;
+            }
+            res.appendChild(div);
+        });
+
+        document.getElementById('revLesson').innerHTML =
+            '<p><strong>Every company built a website to talk to humans. Nobody built one to talk to AI.</strong></p>' +
+            '<p>The website that looks best to your eyes is not the one AI agents can actually read. Technical foundations matter: ' +
+            'semantic HTML so AI can parse your page, structured data so it understands what you offer, and entity consistency so it trusts what it finds.</p>' +
+            '<p>' + winner.name + ' did not try to impress anyone. It just did the technical work right.</p>';
+
+        gtag('event', 'race_completed', {
+            winner: 's5', time: this.winTime.toFixed(1),
+            selected: this.sel || 'none', won: this.sel === 's5'
+        });
+
+        this.goToScreen('revealScreen');
+    },
+
+    reset() {
+        if (this.animId) cancelAnimationFrame(this.animId);
+        this.sel = null; this.running = false; this.done = false;
+        this.labels = []; this.flowers = [];
+        this.goToPicker();
+    }
+};
+
+// ====================================================================
+// INIT
+// ====================================================================
+document.addEventListener('click', () => initAudio(), { once: true });
+</script>
+</body>
+</html>
