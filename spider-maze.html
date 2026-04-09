@@ -10,7 +10,7 @@
     <meta property="og:url" content="https://lizmicik.com/spider-maze">
     <meta name="theme-color" content="#0a0a1a">
     <title>The AI Spider Maze | lizmicik.com</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-B9S40S2SKG"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -20,20 +20,20 @@
     </script>
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
-        html, body { width:100%; height:100%; background:#0a0a1a; color:#e2e8f0; font-family:'Inter',sans-serif; overflow:hidden; }
+        html, body { width:100%; height:100%; background:#0a0a1a; color:#e2e8f0; font-family:'Manrope',sans-serif; overflow:hidden; }
         body { display:flex; flex-direction:column; align-items:center; justify-content:center; }
         .screen { width:100%; height:100%; position:absolute; top:0; left:0; display:none; flex-direction:column; align-items:center; justify-content:center; padding:20px; overflow:hidden; }
         .screen.active { display:flex; }
         .nav-bar { position:absolute; top:20px; left:20px; z-index:100; }
-        .logo-link { font-family:'Lora',serif; font-size:20px; font-weight:600; color:#B87333; text-decoration:none; }
+        .logo-link { font-family:'Manrope',sans-serif; font-size:20px; font-weight:600; color:#B87333; text-decoration:none; }
         .logo-link:hover { color:#d4a574; }
 
         .intro-container { text-align:center; max-width:700px; z-index:10; }
-        .intro-container h1 { font-family:'Lora',serif; font-size:clamp(32px,6vw,56px); font-weight:600; margin-bottom:16px; background:linear-gradient(135deg,#2A9D8F,#34D399); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-        .intro-container h2 { font-family:'Lora',serif; font-size:clamp(18px,4vw,26px); font-weight:400; color:#a0aec0; margin-bottom:32px; line-height:1.6; }
+        .intro-container h1 { font-family:'Manrope',sans-serif; font-size:clamp(32px,6vw,56px); font-weight:600; margin-bottom:16px; background:linear-gradient(135deg,#2A9D8F,#34D399); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        .intro-container h2 { font-family:'Manrope',sans-serif; font-size:clamp(18px,4vw,26px); font-weight:400; color:#a0aec0; margin-bottom:32px; line-height:1.6; }
         .intro-description { font-size:16px; color:#cbd5e1; line-height:1.8; margin-bottom:40px; max-width:600px; margin-left:auto; margin-right:auto; }
 
-        .btn { padding:14px 48px; font-size:16px; font-weight:600; border:none; border-radius:8px; cursor:pointer; transition:all .3s ease; font-family:'Inter',sans-serif; text-decoration:none; display:inline-block; margin:8px; }
+        .btn { padding:14px 48px; font-size:16px; font-weight:600; border:none; border-radius:8px; cursor:pointer; transition:all .3s ease; font-family:'Manrope',sans-serif; text-decoration:none; display:inline-block; margin:8px; }
         .btn-primary { background:linear-gradient(135deg,#B87333,#d4a574); color:#0a0a1a; }
         .btn-primary:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(184,115,51,.3); }
         .btn-secondary { background:transparent; color:#2A9D8F; border:2px solid #2A9D8F; }
@@ -42,7 +42,7 @@
 
         /* PICKER */
         .picker-wrap { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:30px 20px; }
-        .picker-wrap h1 { font-family:'Lora',serif; font-size:32px; font-weight:600; margin-bottom:8px; }
+        .picker-wrap h1 { font-family:'Manrope',sans-serif; font-size:32px; font-weight:600; margin-bottom:8px; }
         .picker-wrap p { font-size:16px; color:#a0aec0; margin-bottom:24px; }
         .spider-grid { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; max-width:1000px; margin-bottom:20px; }
         .spider-pick { cursor:pointer; transition:all .3s ease; border:3px solid rgba(42,157,143,.2); border-radius:16px; padding:12px; background:rgba(20,20,40,.6); text-align:center; }
@@ -67,9 +67,9 @@
         /* REVEAL */
         .reveal-scroll { width:100%; height:100%; overflow-y:auto; display:flex; flex-direction:column; align-items:center; padding:40px 20px; }
         .reveal-inner { max-width:860px; width:100%; text-align:center; }
-        .reveal-inner h1 { font-family:'Lora',serif; font-size:40px; font-weight:600; margin-bottom:12px; color:#34D399; }
+        .reveal-inner h1 { font-family:'Manrope',sans-serif; font-size:40px; font-weight:600; margin-bottom:12px; color:#34D399; }
         .reveal-bet { font-size:18px; color:#FFD93D; margin-bottom:24px; font-weight:500; }
-        .reveal-inner h2 { font-family:'Lora',serif; font-size:22px; font-weight:600; color:#2A9D8F; margin:24px 0 12px; }
+        .reveal-inner h2 { font-family:'Manrope',sans-serif; font-size:22px; font-weight:600; color:#2A9D8F; margin:24px 0 12px; }
         .reveal-inner p { font-size:15px; color:#cbd5e1; line-height:1.8; margin-bottom:10px; }
         .reveal-inner p strong { color:#e2e8f0; }
         .result-line { text-align:left; padding:10px 16px; margin-bottom:6px; border-radius:6px; font-size:14px; line-height:1.5; border-left:4px solid; }
@@ -87,7 +87,7 @@
         .winner-img-wrap img { max-width:100%; height:auto; border-radius:12px; }
         .winner-img-wrap .flower-overlay { position:absolute; font-size:13px; font-weight:600; padding:4px 10px; border-radius:20px; white-space:nowrap; }
         .winner-caption { text-align:center; margin-top:12px; }
-        .winner-caption h3 { font-family:'Lora',serif; font-size:20px; color:#FF6B6B; margin-bottom:4px; }
+        .winner-caption h3 { font-family:'Manrope',sans-serif; font-size:20px; color:#FF6B6B; margin-bottom:4px; }
         .winner-caption p { font-size:14px; color:#94a3b8; }
         .attribution { font-size:11px; color:#64748b; margin-top:24px; text-align:center; }
         .attribution a { color:#94a3b8; text-decoration:underline; }
@@ -436,7 +436,7 @@ function drawFlower(ctx, x, y, size, text, color, opacity) {
     ctx.fillStyle = '#FFD93D';
     ctx.beginPath(); ctx.arc(x, y, size * 0.2, 0, Math.PI * 2); ctx.fill();
     // Label
-    ctx.font = 'bold ' + Math.max(10, size * 0.55) + 'px Inter';
+    ctx.font = 'bold ' + Math.max(10, size * 0.55) + 'px Manrope';
     ctx.fillStyle = '#fff';
     ctx.textAlign = 'center';
     ctx.fillText(text, x, y + size + 14);
@@ -479,7 +479,7 @@ function drawStopwatch(ctx, cx, cy, radius, seconds) {
     ctx.fillStyle = '#ef4444';
     ctx.beginPath(); ctx.arc(cx, cy, 4, 0, Math.PI * 2); ctx.fill();
     // Time text
-    ctx.font = 'bold 16px Inter';
+    ctx.font = 'bold 16px Manrope';
     ctx.fillStyle = '#e2e8f0';
     ctx.textAlign = 'center';
     ctx.fillText(seconds.toFixed(1) + 's', cx, cy + radius * 0.45);
@@ -687,7 +687,7 @@ const Game = {
         ctx.fillStyle = 'rgba(42,157,143,.02)'; ctx.fillRect(ZD[1],60,W-20-ZD[1],H-120);
 
         // Zone labels
-        ctx.font = 'bold 26px Inter'; ctx.textAlign = 'center';
+        ctx.font = 'bold 26px Manrope'; ctx.textAlign = 'center';
         ctx.fillStyle = 'rgba(239,68,68,.1)'; ctx.fillText('FIND', (20+ZD[0])/2, H/2+8);
         ctx.fillStyle = 'rgba(245,158,11,.1)'; ctx.fillText('UNDERSTAND', (ZD[0]+ZD[1])/2, H/2+8);
         ctx.fillStyle = 'rgba(42,157,143,.1)'; ctx.fillText('TRUST', (ZD[1]+W-20)/2, H/2+8);
@@ -709,7 +709,7 @@ const Game = {
         ctx.strokeStyle = 'rgba(52,211,153,.2)'; ctx.lineWidth = 1; ctx.setLineDash([4,4]);
         ctx.strokeRect(1302, 202, 76, 96);
         ctx.setLineDash([]);
-        ctx.font = 'bold 11px Inter'; ctx.fillStyle = 'rgba(52,211,153,.35)'; ctx.textAlign = 'center';
+        ctx.font = 'bold 11px Manrope'; ctx.fillStyle = 'rgba(52,211,153,.35)'; ctx.textAlign = 'center';
         ctx.save();
         ctx.translate(1340, 260);
         ctx.fillText("WINNER'S", 0, -8);
@@ -717,7 +717,7 @@ const Game = {
         ctx.restore();
 
         // START label
-        ctx.fillStyle = 'rgba(184,115,51,.3)'; ctx.font = 'bold 12px Inter'; ctx.textAlign = 'center';
+        ctx.fillStyle = 'rgba(184,115,51,.3)'; ctx.font = 'bold 12px Manrope'; ctx.textAlign = 'center';
         ctx.fillText('START', 40, 78);
 
         // Draw spiders
@@ -765,7 +765,7 @@ const Game = {
                 const txtOpacity = Math.min(1, (elapsed - 0.5) / 0.5);
                 ctx.save();
                 ctx.globalAlpha = txtOpacity;
-                ctx.font = 'bold 24px Lora, serif';
+                ctx.font = 'bold 24px Manrope';
                 ctx.fillStyle = '#34D399';
                 ctx.textAlign = 'center';
                 ctx.shadowBlur = 12; ctx.shadowColor = 'rgba(52,211,153,.5)';
@@ -781,7 +781,7 @@ const Game = {
             const op = age < 3 ? 1 : Math.max(0, 1 - (age - 3));
             ctx.save(); ctx.globalAlpha = op;
 
-            ctx.font = 'bold 12px Inter';
+            ctx.font = 'bold 12px Manrope';
             const m = ctx.measureText(lb.text);
             const pw = m.width + 16, ph = 24;
             const px = lb.x - pw / 2, py = lb.y - 40;
