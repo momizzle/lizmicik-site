@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website Isn't the Problem. Your Proof Is.</title>
+    <meta name="description" content="Why AI can't verify who you are (and it's not a technical issue). The real problem is Layer 3: third-party evidence.">
+    <meta name="author" content="Liz Micik">
+    <link rel="canonical" href="https://lizmicik.com/blog/your-proof-is-the-problem">
+
+    <!-- GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B9S40S2SKG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-B9S40S2SKG');
+    </script>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Your Website Isn't the Problem. Your Proof Is.",
+        "description": "Why AI can't verify who you are (and it's not a technical issue). The real problem is Layer 3: third-party evidence.",
+        "author": {
+            "@type": "Person",
+            "name": "Liz Micik",
+            "url": "https://lizmicik.com"
+        },
+        "datePublished": "2026-04-09",
+        "image": "https://lizmicik.com/blog/images/your-proof.svg",
+        "mainEntity": {
+            "@type": "Article",
+            "articleSection": "AI Visibility",
+            "keywords": "third-party verification, AI trust, Layer 3, corroboration"
+        }
+    }
+    </script>
+
+    <style>
+        :root {
+            --cream: #FAF8F5;
+            --cream-dark: #F2EDE7;
+            --slate: #2C3038;
+            --slate-light: #3D424D;
+            --slate-mid: #545B6A;
+            --accent-amber: #C4956A;
+            --accent-teal: #6A9FA0;
+            --accent-blue: #7B8DAE;
+            --accent-copper: #B07D5B;
+            --text-primary: #2C3038;
+            --text-secondary: #545B6A;
+            --text-light: #F2EDE7;
+            --text-light-secondary: #B8B5B0;
+            --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --section-padding: clamp(4rem, 8vw, 7rem);
+            --content-width: 720px;
+            --wide-width: 960px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: var(--text-primary);
+            background-color: var(--cream);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav.nav {
+            background-color: var(--cream);
+            border-bottom: 1px solid var(--cream-dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        nav.nav.hide {
+            transform: translateY(-100%);
+        }
+
+        .nav-inner {
+            max-width: var(--wide-width);
+            margin: 0 auto;
+            padding: 1rem clamp(1rem, 5vw, 2rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .nav-name a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 0.35rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            width: 24px;
+            height: 2px;
+            background-color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-amber);
+        }
+
+        .nav-cta {
+            background-color: var(--accent-amber);
+            color: white !important;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover {
+            background-color: var(--accent-copper);
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--cream);
+                flex-direction: column;
+                gap: 1rem;
+                padding: 2rem;
+                border-bottom: 1px solid var(--cream-dark);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            width: 100%;
+            background-color: var(--cream-dark);
+            padding: 3rem clamp(1rem, 5vw, 2rem);
+        }
+
+        .hero-svg {
+            max-width: 100%;
+            height: auto;
+            max-height: 400px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .article-container {
+            max-width: var(--wide-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            padding: var(--section-padding) clamp(1rem, 5vw, 2rem);
+        }
+
+        .article-main {
+            max-width: var(--content-width);
+        }
+
+        .article-toc {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .toc-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .toc-links {
+            list-style: none;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            border-left: 3px solid var(--accent-amber);
+            padding-left: 1rem;
+        }
+
+        .toc-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: block;
+            transition: color 0.2s;
+        }
+
+        .toc-links a:hover {
+            color: var(--accent-amber);
+        }
+
+        /* Article Typography */
+        h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            border-left: 3px solid var(--accent-copper);
+            padding-left: 1rem;
+        }
+
+        h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            color: var(--accent-amber);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        a:hover {
+            border-bottom: 1px solid var(--accent-amber);
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+        }
+
+        ul li::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-amber);
+            border-radius: 50%;
+            margin-right: 0.75rem;
+            margin-left: -1.5rem;
+            transform: rotate(45deg);
+        }
+
+        /* Pull Quotes */
+        .pull-quote {
+            font-style: italic;
+            border-left: 3px solid var(--accent-amber);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Stat Callout */
+        .stat-block {
+            background-color: var(--cream-dark);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            border: 1px solid #e8e2dc;
+        }
+
+        .stat-number {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--accent-amber);
+        }
+
+        .stat-text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Trust Trifecta Visual */
+        .trust-trifecta {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .trust-card {
+            background-color: var(--cream-dark);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid var(--accent-blue);
+            border-radius: 8px;
+        }
+
+        .trust-card h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        .trust-card p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Corroboration Threshold Visual */
+        .corroboration-gauge {
+            background-color: var(--cream-dark);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .gauge-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .gauge-container {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        .gauge-zone {
+            flex: 1;
+            height: 30px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .zone-hedged {
+            background-color: #999;
+        }
+
+        .zone-definitive {
+            background-color: var(--accent-amber);
+        }
+
+        .gauge-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Source Distribution Visual */
+        .source-distribution {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .source-platform {
+            background-color: var(--cream-dark);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 3px solid var(--accent-blue);
+        }
+
+        .source-platform h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .source-stat {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-amber);
+            margin-bottom: 0.5rem;
+        }
+
+        .source-detail {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Consistency Checklist */
+        .consistency-checklist {
+            background-color: var(--cream-dark);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .checklist-title {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .checklist-item input {
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .checklist-item label {
+            flex: 1;
+            cursor: pointer;
+        }
+
+        /* CTA Bands */
+        .cta-band {
+            margin: 3rem 0;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-band-mid {
+            background: linear-gradient(135deg, var(--accent-copper) 0%, var(--accent-amber) 100%);
+        }
+
+        .cta-band-end {
+            background-color: var(--slate);
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-amber);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-copper);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--accent-teal);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a8a8b;
+            transform: translateY(-2px);
+        }
+
+        /* FAQ Accordion */
+        .faq-section {
+            margin: 3rem 0;
+        }
+
+        .faq-item {
+            background-color: var(--cream-dark);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid #e8e2dc;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            user-select: none;
+            transition: background-color 0.2s;
+        }
+
+        .faq-question:hover {
+            background-color: #ece6de;
+        }
+
+        .faq-toggle {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--accent-amber);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        /* Author Bio */
+        .author-bio {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            background-color: var(--cream-dark);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 3rem 0;
+        }
+
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            min-width: 80px;
+            border-radius: 50%;
+            background-color: var(--accent-amber);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .author-info h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.1rem;
+        }
+
+        .author-info p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Related Posts */
+        .related-section {
+            margin: 3rem 0;
+        }
+
+        .related-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .related-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .related-post {
+            background-color: var(--cream-dark);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e8e2dc;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .related-post:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .related-image {
+            width: 100%;
+            height: 180px;
+            background-color: #ede8e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .related-image svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .related-content {
+            padding: 1.5rem;
+        }
+
+        .related-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--accent-amber);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .related-title-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .related-link {
+            color: var(--accent-amber);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .related-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer.footer {
+            background-color: var(--slate);
+            color: var(--text-light);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--slate-light);
+        }
+
+        footer a {
+            color: var(--text-light);
+            text-decoration: underline;
+        }
+
+        footer a:hover {
+            color: var(--accent-amber);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile TOC */
+        .toc-mobile {
+            display: none;
+            margin-bottom: 2rem;
+            background-color: var(--cream-dark);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .toc-mobile-button {
+            width: 100%;
+            padding: 1rem;
+            background: none;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        .toc-mobile-button:hover {
+            color: var(--accent-amber);
+        }
+
+        .toc-mobile-links {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .toc-mobile-links.active {
+            max-height: 400px;
+        }
+
+        .toc-mobile-links a {
+            display: block;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 1024px) {
+            .article-container {
+                grid-template-columns: 1fr;
+            }
+
+            .article-toc {
+                display: none;
+            }
+
+            .toc-mobile {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            .article-container {
+                padding: 2rem 1rem;
+            }
+
+            .stat-block {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .trust-trifecta {
+                grid-template-columns: 1fr;
+            }
+
+            .source-distribution {
+                grid-template-columns: 1fr;
+            }
+
+            .related-posts {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <span class="nav-name"><a href="/">Liz Micik</a></span>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/audit">Agent Readiness Audit</a></li>
+                <li><a href="/signal-check" class="nav-cta">Free Signal Check</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <svg class="hero-svg" viewBox="0 0 800 350" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <filter id="soft-shadow">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" />
+                </filter>
+            </defs>
+
+            <!-- Network nodes - left solid, right hollow -->
+            <!-- Left side: Solid, verified nodes -->
+            <g id="verified-network">
+                <!-- Main network hub -->
+                <circle cx="150" cy="100" r="20" fill="#2C3038" opacity="0.9"/>
+                <circle cx="250" cy="80" r="15" fill="#2C3038" opacity="0.8"/>
+                <circle cx="280" cy="150" r="12" fill="#2C3038" opacity="0.7"/>
+                <circle cx="200" cy="200" r="10" fill="#C4956A" opacity="0.8"/>
+                <circle cx="120" cy="180" r="11" fill="#2C3038" opacity="0.7"/>
+
+                <!-- Connecting lines -->
+                <line x1="150" y1="100" x2="250" y2="80" stroke="#2C3038" stroke-width="1.5" opacity="0.5"/>
+                <line x1="150" y1="100" x2="280" y2="150" stroke="#2C3038" stroke-width="1.5" opacity="0.5"/>
+                <line x1="150" y1="100" x2="200" y2="200" stroke="#C4956A" stroke-width="2" opacity="0.7"/>
+                <line x1="150" y1="100" x2="120" y2="180" stroke="#2C3038" stroke-width="1.5" opacity="0.5"/>
+                <line x1="250" y1="80" x2="280" y2="150" stroke="#2C3038" stroke-width="1" opacity="0.3"/>
+            </g>
+
+            <!-- Right side: Hollow, unverified nodes -->
+            <g id="unverified-network">
+                <!-- Main network -->
+                <circle cx="550" cy="100" r="20" fill="none" stroke="#7B8DAE" stroke-width="2" opacity="0.6"/>
+                <circle cx="650" cy="80" r="15" fill="none" stroke="#7B8DAE" stroke-width="2" opacity="0.5" stroke-dasharray="3,3"/>
+                <circle cx="680" cy="150" r="12" fill="none" stroke="#7B8DAE" stroke-width="1.5" opacity="0.4"/>
+                <circle cx="600" cy="200" r="10" fill="none" stroke="#7B8DAE" stroke-width="1.5" opacity="0.4" stroke-dasharray="3,3"/>
+                <circle cx="520" cy="180" r="11" fill="none" stroke="#7B8DAE" stroke-width="1.5" opacity="0.4"/>
+
+                <!-- Dotted connecting lines -->
+                <line x1="550" y1="100" x2="650" y2="80" stroke="#7B8DAE" stroke-width="1" opacity="0.3" stroke-dasharray="3,3"/>
+                <line x1="550" y1="100" x2="680" y2="150" stroke="#7B8DAE" stroke-width="1" opacity="0.3" stroke-dasharray="3,3"/>
+                <line x1="550" y1="100" x2="600" y2="200" stroke="#7B8DAE" stroke-width="1" opacity="0.3" stroke-dasharray="3,3"/>
+                <line x1="550" y1="100" x2="520" y2="180" stroke="#7B8DAE" stroke-width="1" opacity="0.3" stroke-dasharray="3,3"/>
+            </g>
+
+            <!-- Center dividing line -->
+            <line x1="400" y1="20" x2="400" y2="320" stroke="#C4956A" stroke-width="2" stroke-dasharray="5,5" opacity="0.5"/>
+
+            <!-- Labels -->
+            <text x="150" y="260" font-family="Manrope" font-size="14" text-anchor="middle" fill="#2C3038" font-weight="600">Verified Entities</text>
+            <text x="550" y="260" font-family="Manrope" font-size="14" text-anchor="middle" fill="#7B8DAE">Unverified Entities</text>
+        </svg>
+    </section>
+
+    <!-- Main Article Container -->
+    <div class="article-container">
+        <!-- Sidebar TOC (Desktop) -->
+        <aside class="article-toc">
+            <div class="toc-title">On This Page</div>
+            <ul class="toc-links">
+                <li><a href="#assumption">The Assumption That's Hurting You</a></li>
+                <li><a href="#layer-3">What Layer 3 Actually Measures</a></li>
+                <li><a href="#trust-trifecta">The Trust Trifecta</a></li>
+                <li><a href="#earned-media">Why Earned Media Became Essential</a></li>
+                <li><a href="#where-ai-finds">Where AI Actually Finds Information</a></li>
+                <li><a href="#corroboration">The Corroboration Threshold</a></li>
+                <li><a href="#consistency">The Consistency Problem</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Article -->
+        <main class="article-main">
+            <!-- Mobile TOC -->
+            <div class="toc-mobile">
+                <button class="toc-mobile-button">
+                    <span>Jump to section</span>
+                    <span class="toc-toggle">+</span>
+                </button>
+                <div class="toc-mobile-links">
+                    <a href="#assumption">The Assumption That's Hurting You</a>
+                    <a href="#layer-3">What Layer 3 Actually Measures</a>
+                    <a href="#trust-trifecta">The Trust Trifecta</a>
+                    <a href="#earned-media">Why Earned Media Became Essential</a>
+                    <a href="#where-ai-finds">Where AI Actually Finds Information</a>
+                    <a href="#corroboration">The Corroboration Threshold</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+            </div>
+
+            <h1>Your Website Isn't the Problem. Your Proof Is.</h1>
+
+            <p class="intro-text">You just redesigned your website. It's fast, clean, ADA compliant. It scores 95 on PageSpeed. Your schema is structured. Your content is clear and organized for both humans and machines.</p>
+
+            <p class="intro-text">And AI still can't reliably tell your customers who you are.</p>
+
+            <p>This is the moment most B2B leaders reach for the same solution they reached for in 2015: make the website better. Optimize it more. Add more schema. Rewrite the homepage. The assumption is always technical.</p>
+
+            <p>But I've audited 120 B2B companies across professional services, SaaS, and advisory, and the pattern is consistent: the website is not the bottleneck. Your website is fine. What's missing is third-party verification. AI doesn't believe what you say about yourself until someone else says it too.</p>
+
+            <p class="pull-quote">This is Layer 3. And it's the most overlooked reason AI agents can't establish your authority.</p>
+
+            <h2 id="assumption">The Assumption That's Hurting You</h2>
+
+            <p>For 28 years, I've watched B2B marketers try to solve visibility problems by improving the thing they control: the website. It made sense in the Google era. Search engines crawled your site. Better site structure = better rankings.</p>
+
+            <p>But AI agents don't work that way.</p>
+
+            <p>When Perplexity, ChatGPT, or Claude looks up your company, it's not evaluating your homepage. It's searching for corroborating evidence. Third-party sources. Mentions. Directory listings. Press coverage. Expert profiles that independently confirm who you are and what you do.</p>
+
+            <div class="stat-block">
+                <div class="stat-number">82%</div>
+                <div class="stat-text">of AI-cited links come from third-party sources, not company websites. Let that land. If a customer asks an AI agent about your firm, there's an 82% chance the source the AI cites to prove you exist comes from somewhere other than your domain.</div>
+            </div>
+
+            <p>This creates a math problem: if 82% of citations are third-party, and you have zero third-party presence, the AI agent has nothing to cite. It either makes something up (hallucination), fills the gap with a competitor's information, or tells the customer it doesn't have enough data.</p>
+
+            <div class="stat-block">
+                <div class="stat-number">3 of 4</div>
+                <div class="stat-text">AI platforms returned zero verifiable facts for most B2B companies in our testing. Zero. Not "incomplete." Zero facts the AI was confident enough to cite.</div>
+            </div>
+
+            <p>This isn't a website problem. Your website is working. The problem is Layer 3: Trust. And trust is built off-page.</p>
+
+            <h2 id="layer-3">What Layer 3 Actually Measures</h2>
+
+            <p>Layer 3 is the third critical dimension AI agents use to evaluate companies. (The first two are technical soundness and content clarity, which we covered in Pillars 1 and 2.)</p>
+
+            <p>Layer 3 measures entity consistency and third-party corroboration. It answers: Is there independent evidence that you are who you claim to be?</p>
+
+            <p>AI agents check this through several signals:</p>
+
+            <p><strong>Entity consistency across properties.</strong> When your Organization schema says your name is "Smith Advisory Partners," but your LinkedIn company page says "Smith Advisory," but your industry directory listing says "Smith Partners Advisors," the AI agent sees three different entities. Are they the same company? It doesn't know. Conflicting signals break trust.</p>
+
+            <p><strong>Named leader verification.</strong> When you claim Jane Doe is your CEO, does Jane Doe's LinkedIn profile confirm she works at your company? Does her profile have a schema link back to your company entity? Or is Jane Doe's profile just a blank professional account with no institutional affiliation? AI agents cross-reference this. Verified leader relationships are a trust signal. Unverified claims are noise.</p>
+
+            <p><strong>Corroboration from high-authority sources.</strong> A single mention of your expertise means nothing. A mention in your own blog post means less than nothing. But when your methodology is cited in a Gartner report, explained in a Harvard Business Review article, and referenced in a Reddit thread (all independently, not because you seeded them), the AI agent now has corroborating evidence. That threshold is usually 2-3 independent high-authority sources confirming the same claim. Once you hit that threshold, AI shifts from "sometimes mentions your firm" to "reliably recommends your firm."</p>
+
+            <p><strong>Source depth over mention volume.</strong> This is counterintuitive. It doesn't matter if 50 random websites mention your company name. It matters if a few high-authority sources have rich, detailed information about your company. An Authoritas controlled experiment showed that entity depth (the richness and specificity of information about one entity) moves the needle more than raw mention count.</p>
+
+            <p>This is why the firms that invested in earned media and brand building 15 years ago are winning today. They have depth. They have third-party corroboration. They have named leaders with verified profiles. They have Wikipedia entries. They have industry recognition. When an AI agent looks them up, there's actually something to find.</p>
+
+            <p>The firms that skipped brand and earned media and focused only on organic search are discovering that their website success doesn't translate to AI success.</p>
+
+            <h2 id="trust-trifecta">The Trust Trifecta: Where AI Agents Actually Look</h2>
+
+            <p>AI agents don't treat all web content equally. They have a narrowing funnel.</p>
+
+            <p>When establishing who a company is, AI agents prioritize three specific pages on your domain:</p>
+
+            <!-- Trust Trifecta Visual -->
+            <div class="trust-trifecta">
+                <div class="trust-card">
+                    <h3>Your Homepage</h3>
+                    <p>Organization schema, company name, logo, address, phone number, leadership team links. This is where entity facts begin.</p>
+                </div>
+                <div class="trust-card">
+                    <h3>Your About Page</h3>
+                    <p>Company mission, history, values, notable clients or projects. Specificity matters. Concrete claims AI can verify.</p>
+                </div>
+                <div class="trust-card">
+                    <h3>Your Contact Page</h3>
+                    <p>Physical location and contact method. Establishes you as a real, locatable business. A real address is a trust signal.</p>
+                </div>
+            </div>
+
+            <p>These three pages form the Trust Trifecta. They're your homepage anchor. Everything else (your blog, your resource library, your case studies) hangs off this foundation.</p>
+
+            <p>Here's the test: Pull the key claims from each of these three pages. Your company name, your leadership names, your founding date, your service areas, your industry focus, your notable clients or achievements. Now cross-check:</p>
+
+            <ul>
+                <li>Does your Organization schema on the homepage match the language on your about page?</li>
+                <li>Do your named leaders have Person schema linked to their LinkedIn profiles?</li>
+                <li>Are your service descriptions consistent between your homepage, about page, and any industry directory listings (Crunchbase, G2, LinkedIn)?</li>
+                <li>Do you have a verified business location that appears consistently across your site, LinkedIn, Google Business Profile, and industry directories?</li>
+            </ul>
+
+            <p>If you answer "no" to any of these, you have a Trust Layer gap. AI agents will struggle to verify who you are.</p>
+
+            <h2 id="earned-media">Why Earned Media Became Essential Again</h2>
+
+            <p>There's a line I've been using for two years now: "Everything old is new again."</p>
+
+            <p>In the early 2000s, off-page SEO (backlinks, brand authority, earned media) was the hardest leg to master because you couldn't fully control it. You could optimize your site all day, but if nobody else was linking to you, nobody was talking about you, you had no press coverage, you weren't getting mentioned in industry reports, your rankings suffered. The firms that won were the ones that invested in brand. Real relationships with journalists. Real press coverage. Real industry recognition.</p>
+
+            <p>Then Google shifted focus. Backlinks mattered less. Content mattered more. The firms that had invested in brand 10 years prior still had a moat, but suddenly you could rank without press coverage. You could rank on sheer content quality and link velocity.</p>
+
+            <p>B2B marketing abandoned brand. We all went all-in on content. Blog posts, whitepapers, webinars. Owned media became the strategy.</p>
+
+            <p>Now AI agents are here, and the off-page leg matters again.</p>
+
+            <p>But it matters differently. It's not about Google juice anymore. It's about verification.</p>
+
+            <p>When your firm has earned mentions in industry reports, that's third-party evidence. When you're quoted in trade publications, that's a source AI agents can cite. When your methodology is discussed in academic or professional contexts, that's depth. When your named leaders have strong professional profiles with institutional affiliation, that's verification. When your company appears in relevant directories and maintains consistent information across those listings, that's corroboration.</p>
+
+            <p>The firms that have all of these things are not scrambling. They're confident when customers ask AI agents about them because the AI has plenty to work with.</p>
+
+            <p>The firms that skipped brand and earned media are discovering that their content strategy, their technical SEO, their website optimization has not prepared them for the AI era.</p>
+
+            <p>This is not a failure of your website. It's a consequence of where the marketing pendulum swung. And now it needs to swing back.</p>
+
+            <h2 id="where-ai-finds">Where AI Actually Finds Information (And Why It Matters)</h2>
+
+            <p>You might assume AI agents pull information from the same sources in the same proportions. They don't.</p>
+
+            <!-- Source Distribution Visual -->
+            <div class="source-distribution">
+                <div class="source-platform">
+                    <h3>Perplexity's Approach</h3>
+                    <div class="source-stat">46.7%</div>
+                    <div class="source-detail">Reddit. Perplexity is built on real-time web search and values authentic, real-world discussion and expert commentary. If your brand conversation is happening on Reddit, Perplexity can find it.</div>
+                </div>
+                <div class="source-platform">
+                    <h3>ChatGPT's Approach</h3>
+                    <div class="source-stat">47.9%</div>
+                    <div class="source-detail">Wikipedia. ChatGPT was trained on internet data with a knowledge cutoff. It prefers structured, encyclopedic information. If your firm is cited in Wikipedia, ChatGPT has integrated that.</div>
+                </div>
+            </div>
+
+            <p><strong>Claude's approach:</strong> Claude blends training data with real-time search capability depending on the implementation. It values comprehensive, primary sources and tends to weight source diversity higher than single-platform dominance.</p>
+
+            <p>The insight: Different AI agents have different source preferences. Your Layer 3 strategy can't assume one platform. You need third-party presence across multiple categories: press, directories, industry publications, professional communities, Wikipedia-adjacent reference sources.</p>
+
+            <p>For B2B firms, that typically means:</p>
+            <ul>
+                <li>Industry-specific directories and databases</li>
+                <li>Trade publication coverage</li>
+                <li>Analyst mentions (Gartner, Forrester, IDC)</li>
+                <li>Professional association listings</li>
+                <li>Business news coverage</li>
+                <li>Relevant Wikipedia references</li>
+                <li>LinkedIn company page richness</li>
+                <li>Google Business Profile consistency</li>
+            </ul>
+
+            <p>Each of these is a potential source an AI agent might cite when establishing your authority.</p>
+
+            <!-- Mid-Article CTA -->
+            <div class="cta-band cta-band-mid">
+                <div class="cta-text">Map your Layer 3 gaps and build your AI-readiness roadmap</div>
+                <div class="cta-buttons">
+                    <a href="/audit" class="btn btn-primary">Get Your Audit</a>
+                </div>
+            </div>
+
+            <h2 id="corroboration">The Corroboration Threshold: When AI Shifts from "Maybe" to "Definitely"</h2>
+
+            <p>There's a critical inflection point in Layer 3 trust.</p>
+
+            <p>When an AI agent finds a single source claiming you're an expert in something, it hedges. "According to one source..." It's cautious. Confirmation bias is a real risk.</p>
+
+            <p>But when an AI agent finds 2-3 independent high-authority sources confirming the same claim, something shifts. The language changes from hedged to definitive. "Companies in this space typically..." becomes "Smith Advisory Partners specializes in..."</p>
+
+            <!-- Corroboration Gauge -->
+            <div class="corroboration-gauge">
+                <div class="gauge-title">The Corroboration Threshold</div>
+                <div class="gauge-container">
+                    <div class="gauge-zone zone-hedged" style="width: 40%; justify-content: center;">1 source</div>
+                    <div class="gauge-zone zone-definitive" style="width: 60%; justify-content: center;">2-3+ sources</div>
+                </div>
+                <div class="gauge-labels">
+                    <span>Hedged Zone</span>
+                    <span>Definitive Zone</span>
+                </div>
+            </div>
+
+            <p>This is testable. Pick a key claim about your firm. Your core methodology. A notable result you've achieved. A specific expertise area. Now Google it with your company name. How many independent sources (not your own site) confirm this claim?</p>
+
+            <ul>
+                <li><strong>If it's zero or one:</strong> You're in the hedged zone. AI will mention you tentatively.</li>
+                <li><strong>If it's 2-3 or more:</strong> You're in the definitive zone. AI will recommend you with confidence.</li>
+            </ul>
+
+            <p>The practical path to corroboration:</p>
+            <ul>
+                <li>Earn a mention in an industry publication (not a press release you wrote, but actual editorial coverage)</li>
+                <li>Get cited in an analyst report</li>
+                <li>Have your methodology referenced in an academic or professional context</li>
+                <li>Secure a board position or advisory role that gets published</li>
+                <li>Contribute to a recognized industry standard or framework that gets documented elsewhere</li>
+            </ul>
+
+            <p>Each of these is independent, third-party verification. Each one moves the needle.</p>
+
+            <h2 id="consistency">The Consistency Problem: When Your Own Properties Contradict Each Other</h2>
+
+            <p>Here's a tactical trap most firms don't see coming.</p>
+
+            <p>Your homepage says you were founded in 2010. Your LinkedIn company page says 2009. Your Crunchbase profile says 2011. Your industry directory entry says 2010.</p>
+
+            <p>To a human, this is noise. "Close enough."</p>
+
+            <p>To an AI agent, this is conflicting information. The AI sees four different founding dates for what it thinks is one company, but it's not sure these are actually the same entity. Conflicting signals break entity consolidation.</p>
+
+            <p>Same problem with leader names. Your about page lists "Robert Smith, Founder and CEO." Your LinkedIn page lists "Bob Smith, Founder and CEO." Your company directory listing lists "Robert S. Smith, CEO." Are these three people or one? An AI agent can't assume. It flags this as unverified.</p>
+
+            <p>This is fixable, but it requires a disciplined audit.</p>
+
+            <!-- Consistency Checklist -->
+            <div class="consistency-checklist">
+                <div class="checklist-title">Layer 3 Consistency Audit</div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check1">
+                    <label for="check1">Your Organization schema matches your legal company name everywhere</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check2">
+                    <label for="check2">Founding date is consistent across homepage, LinkedIn, Crunchbase, and directories</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check3">
+                    <label for="check3">Physical address matches across all properties (no P.O. boxes)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check4">
+                    <label for="check4">Key leaders listed with full names consistently</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check5">
+                    <label for="check5">Core service areas described identically across homepage, about page, and directories</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check6">
+                    <label for="check6">Leaders have Person schema linked to their LinkedIn profiles</label>
+                </div>
+            </div>
+
+            <p>Go through these properties and check for consistency:</p>
+            <ul>
+                <li>Your Organization schema (on your homepage)</li>
+                <li>Your LinkedIn company page</li>
+                <li>Your Crunchbase profile (if you have one)</li>
+                <li>Your industry-specific directory listings</li>
+                <li>Your Google Business Profile</li>
+                <li>Any analyst profiles (Gartner, Forrester)</li>
+                <li>Your business registration documents (Secretary of State, etc.)</li>
+            </ul>
+
+            <p>The facts should match exactly: Company legal name, founded date, physical address, key leaders (and their official titles), core service areas, primary industry classification.</p>
+
+            <p>If they don't match, standardize them. Pick one source of truth and update the others.</p>
+
+            <p>This won't instantly fix your Layer 3 gaps, but it removes a major trust blocker.</p>
+
+            <!-- FAQ Section -->
+            <h2 id="faq">FAQ: Layer 3 Questions We Hear Constantly</h2>
+
+            <div class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Does having a Wikipedia entry really matter for B2B companies?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Only if it's in scope for your industry. Enterprise software, consulting, professional services: these are Wikipedia-notable if you have genuine industry impact. But "small boutique consulting firm" probably isn't. What matters more is being cited within Wikipedia articles about your space (methodology, industry trends, frameworks). If you created something that's referenced in Wikipedia's coverage of your industry, that's a signal.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What counts as "third-party" if I'm cited in a guest article I wrote?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>It doesn't. A guest article you authored is first-party content dressed up as third-party. An AI agent can usually tell. What counts is editorial coverage you didn't write. A journalist covering your firm. An analyst including you in a report. A blogger citing your work. A colleague mentioning you in their content. That's third-party.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can we buy our way into these signals?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Partially. You can hire a PR agency to pitch stories, which creates the opportunity for earned media. You can sponsor industry research, which can lead to analyst mentions. You can support professional associations, which can lead to directory listings. But the corroboration has to be genuine. If three sources mention you only because you paid for placement, and they're not independently assessing you, that's not trust. It's astroturfing. AI agents are getting better at detecting this. What you can't buy is credibility. You have to earn it.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Our firm is pre-revenue or very early stage. Can we do Layer 3?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, but differently. You don't have press coverage yet. You don't have analyst mentions. But you can have founder credentials. You can have advisory board members with public profiles. You can contribute to open-source projects or industry forums. You can speak at conferences. You can publish in relevant communities. You can build profile depth for your leaders. These are pre-revenue Layer 3 signals.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>If AI shifts and doesn't use Reddit, does my Layer 3 strategy become obsolete?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No. The principle is consistent: third-party evidence from authoritative sources. The specific sources might shift (Reddit to TikTok, Wikipedia to Something Else), but the fundamental layer remains. Invest in genuine earned media and brand, and you're hedged against platform shifts.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Your Next Step: The Agent Readiness Audit</h2>
+
+            <p>You can't fix what you don't measure.</p>
+
+            <p>Most firms don't know their Layer 3 gaps because they've never looked. They assume if their website is good and their content is clear, they're ready for AI. They're not.</p>
+
+            <p>An Agent Readiness Audit maps your Layer 3 across all three pillars: technical soundness, content clarity, and trust signals. It identifies which AI agents can verify who you are, where the corroboration gaps are, and what your competitors have that you don't.</p>
+
+            <p>Most audits find the same pattern: you're solid on website and content. You're weak on third-party evidence. Once you see the gaps, you can build a roadmap to fill them.</p>
+
+            <p>If you're not ready to commit to the full audit, run the free Signal Check first. It's a 15-minute questionnaire that flags your most critical gaps and gives you a baseline Layer 3 score against your industry.</p>
+
+            <p>The firms that are ahead in the AI era are not the ones that have the best websites. They're the ones that invested in brand, earned media, and third-party verification years ago.</p>
+
+            <p>The good news: if you didn't, there's still time to start.</p>
+
+            <!-- Author Bio -->
+            <div class="author-bio fade-in">
+                <div class="author-avatar">LM</div>
+                <div class="author-info">
+                    <h3>Liz Micik</h3>
+                    <p>SEO & Content Strategist | AI Transition Consultant</p>
+                    <p>Liz has spent 28 years helping companies navigate structural shifts in how the web works.</p>
+                </div>
+            </div>
+
+            <!-- Related Posts -->
+            <section class="related-section fade-in">
+                <h2 class="related-title">Continue Reading</h2>
+                <div class="related-posts">
+                    <article class="related-post">
+                        <div class="related-image">
+                            <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="300" height="180" fill="#F2EDE7"/>
+                                <text x="150" y="90" font-family="Manrope" font-size="14" text-anchor="middle" fill="#545B6A" dominant-baseline="middle">Pillar 1: Website for Humans</text>
+                            </svg>
+                        </div>
+                        <div class="related-content">
+                            <div class="related-label">Pillar 1</div>
+                            <div class="related-title-text">Your Website Was Built for Humans. AI Agents Can't Read It.</div>
+                            <a href="/blog/website-built-for-humans" class="related-link">Read article →</a>
+                        </div>
+                    </article>
+
+                    <article class="related-post">
+                        <div class="related-image">
+                            <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="300" height="180" fill="#F2EDE7"/>
+                                <text x="150" y="90" font-family="Manrope" font-size="14" text-anchor="middle" fill="#545B6A" dominant-baseline="middle">Pillar 2: ChatGPT & Facts</text>
+                            </svg>
+                        </div>
+                        <div class="related-content">
+                            <div class="related-label">Pillar 2</div>
+                            <div class="related-title-text">What Does ChatGPT Say About Your Company?</div>
+                            <a href="/blog/what-chatgpt-says-about-your-company" class="related-link">Read article →</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- End CTA -->
+    <section class="cta-band cta-band-end" style="max-width: var(--wide-width); margin: var(--section-padding) auto; padding: 3rem 2rem;">
+        <div class="cta-text">Ready to see where you stand?</div>
+        <div class="cta-buttons">
+            <a href="/audit" class="btn btn-secondary">Agent Readiness Audit</a>
+            <a href="/signal-check" class="btn btn-primary">Free Signal Check</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+        <p style="margin-top:0.5rem;"><a href="/privacy-policy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms">Terms of Use</a></p>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        navToggle?.addEventListener('click', () => {
+            navLinks?.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', navLinks?.classList.contains('active'));
+        });
+
+        // Close nav when link clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks?.classList.remove('active');
+                navToggle?.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Mobile TOC Toggle
+        const tocMobileButton = document.querySelector('.toc-mobile-button');
+        const tocMobileLinks = document.querySelector('.toc-mobile-links');
+        const tocToggle = document.querySelector('.toc-toggle');
+
+        tocMobileButton?.addEventListener('click', () => {
+            tocMobileLinks?.classList.toggle('active');
+            tocToggle.textContent = tocMobileLinks?.classList.contains('active') ? '−' : '+';
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const toggle = question.querySelector('.faq-toggle');
+
+                answer?.classList.toggle('active');
+                toggle.textContent = answer?.classList.contains('active') ? '−' : '+';
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Navigation hide/show on scroll
+        let lastScrollTop = 0;
+        const nav = document.querySelector('nav.nav');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                nav?.classList.add('hide');
+            } else {
+                nav?.classList.remove('hide');
+            }
+
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target?.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Cookie consent banner (simple version)
+        function initCookieBanner() {
+            const cookieConsent = localStorage.getItem('cookieConsent');
+            if (!cookieConsent) {
+                const banner = document.createElement('div');
+                banner.style.cssText = `
+                    position: fixed;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: var(--slate);
+                    color: var(--text-light);
+                    padding: 1rem;
+                    text-align: center;
+                    z-index: 999;
+                    font-size: 0.9rem;
+                `;
+                banner.innerHTML = `
+                    <p style="margin-bottom: 1rem;">We use analytics to understand how you use our site. By continuing, you agree to our use of cookies.</p>
+                    <button onclick="localStorage.setItem('cookieConsent', 'true'); this.parentElement.remove();" style="padding: 0.5rem 1rem; background: var(--accent-amber); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;">Accept</button>
+                `;
+                document.body.appendChild(banner);
+            }
+        }
+
+        initCookieBanner();
+    </script>
+</body>
+</html>

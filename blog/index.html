@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Research, frameworks, and field notes on the transition from the human web to the agentic web.">
+    <meta name="theme-color" content="#FAF8F5">
+    <title>Blog - Liz Micik | SEO Strategist</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B9S40S2SKG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-B9S40S2SKG');
+    </script>
+
+    <style>
+        :root {
+            --cream: #FAF8F5;
+            --cream-dark: #F2EDE7;
+            --slate: #2C3038;
+            --slate-light: #3D424D;
+            --slate-mid: #545B6A;
+            --accent-amber: #C4956A;
+            --accent-teal: #6A9FA0;
+            --accent-blue: #7B8DAE;
+            --accent-copper: #B07D5B;
+            --text-primary: #2C3038;
+            --text-secondary: #545B6A;
+            --text-light: #F2EDE7;
+            --text-light-secondary: #B8B5B0;
+            --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --section-padding: clamp(4rem, 8vw, 7rem);
+            --content-width: 720px;
+            --wide-width: 960px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--cream);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav.nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(250, 248, 245, 0.7);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(44, 48, 56, 0.1);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        nav.nav.nav-hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-100%);
+        }
+
+        .nav-inner {
+            max-width: var(--wide-width);
+            margin: 0 auto;
+            padding: 1rem clamp(1rem, 5vw, 2rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .nav-name a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-copper);
+        }
+
+        .nav-links .nav-cta {
+            background-color: var(--accent-copper);
+            color: var(--cream) !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+
+        .nav-links .nav-cta:hover {
+            background-color: var(--accent-amber);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+            gap: 0.4rem;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            width: 1.5rem;
+            height: 0.15rem;
+            background-color: var(--text-primary);
+            border-radius: 0.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+            transform: rotate(45deg) translate(0.6rem, 0.6rem);
+        }
+
+        .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+            transform: rotate(-45deg) translate(0.6rem, -0.6rem);
+        }
+
+        /* ===== MOBILE NAV ===== */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--cream);
+                border-bottom: 1px solid rgba(44, 48, 56, 0.1);
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.5rem;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .nav-links.nav-open {
+                max-height: 500px;
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+            }
+
+            .nav-links .nav-cta {
+                display: block;
+                text-align: center;
+            }
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        main {
+            padding-top: 5rem;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding: var(--section-padding) clamp(1rem, 5vw, 2rem);
+            text-align: center;
+            max-width: var(--content-width);
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-secondary);
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        /* ===== BLOG CARDS SECTION ===== */
+        .blog-section {
+            padding: var(--section-padding) clamp(1rem, 5vw, 2rem);
+            max-width: var(--content-width);
+            margin: 0 auto;
+        }
+
+        .blog-card {
+            margin-bottom: clamp(4rem, 10vw, 6rem);
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(1rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .blog-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .blog-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .blog-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-0.5rem);
+        }
+
+        /* Featured Image */
+        .blog-card-image {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            background-color: var(--cream-dark);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover .blog-card-image {
+            transform: scale(1.02);
+        }
+
+        .blog-card-image svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Card Content */
+        .blog-card-pillar {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-copper);
+            margin-bottom: 0.75rem;
+        }
+
+        .blog-card h2 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .blog-card h2 a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .blog-card h2 a:hover {
+            color: var(--accent-copper);
+        }
+
+        .blog-card-excerpt {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .blog-card-link {
+            display: inline-block;
+            color: var(--accent-copper);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            position: relative;
+            padding-bottom: 0.25rem;
+            border-bottom: 2px solid transparent;
+        }
+
+        .blog-card-link:hover {
+            color: var(--accent-amber);
+            border-bottom-color: var(--accent-amber);
+        }
+
+        /* ===== FOOTER ===== */
+        footer.footer {
+            background-color: var(--slate);
+            color: var(--text-light);
+            padding: var(--section-padding) clamp(1rem, 5vw, 2rem);
+            text-align: center;
+            margin-top: var(--section-padding);
+        }
+
+        footer.footer p {
+            font-size: 0.95rem;
+        }
+
+        footer.footer a {
+            color: var(--accent-amber);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        footer.footer a:hover {
+            color: var(--accent-teal);
+        }
+
+        /* ===== COOKIE BANNER ===== */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--slate);
+            color: var(--text-light);
+            padding: 1.5rem;
+            z-index: 999;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .cookie-banner-inner {
+            max-width: var(--wide-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cookie-banner p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cookie-banner a {
+            color: var(--accent-amber);
+            text-decoration: none;
+        }
+
+        .cookie-banner a:hover {
+            text-decoration: underline;
+        }
+
+        .cookie-accept {
+            background-color: var(--accent-copper);
+            color: var(--cream);
+            border: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 0.375rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .cookie-accept:hover {
+            background-color: var(--accent-amber);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 640px) {
+            .cookie-banner-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .cookie-accept {
+                width: 100%;
+                text-align: center;
+            }
+
+            .blog-card-image {
+                aspect-ratio: 4 / 3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <span class="nav-name"><a href="/" style="color:inherit;text-decoration:none;">Liz Micik</a></span>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/audit">Agent Readiness Audit</a></li>
+                <li><a href="/signal-check" class="nav-cta">Free Signal Check</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Insights</h1>
+            <p>Research, frameworks, and field notes on the transition from the human web to the agentic web.</p>
+        </section>
+
+        <!-- Blog Cards Section -->
+        <section class="blog-section">
+            <!-- Post 1 -->
+            <article class="blog-card">
+                <a href="/blog/website-built-for-humans" class="blog-card-image">
+                    <svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6A9FA0;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#C4956A;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="800" height="450" fill="#F2EDE7"/>
+                        <!-- Website structure grid -->
+                        <g opacity="0.3" stroke="#6A9FA0" stroke-width="1.5">
+                            <line x1="100" y1="80" x2="700" y2="80"/>
+                            <line x1="100" y1="150" x2="700" y2="150"/>
+                            <line x1="100" y1="220" x2="700" y2="220"/>
+                            <line x1="100" y1="290" x2="700" y2="290"/>
+                            <line x1="100" y1="360" x2="700" y2="360"/>
+                            <line x1="150" y1="50" x2="150" y2="400"/>
+                            <line x1="300" y1="50" x2="300" y2="400"/>
+                            <line x1="450" y1="50" x2="450" y2="400"/>
+                            <line x1="600" y1="50" x2="600" y2="400"/>
+                        </g>
+                        <!-- AI scanning beams -->
+                        <g opacity="0.4">
+                            <circle cx="750" cy="225" r="8" fill="#C4956A"/>
+                            <line x1="758" y1="225" x2="650" y2="225" stroke="#C4956A" stroke-width="2.5"/>
+                            <line x1="758" y1="225" x2="680" y2="140" stroke="#C4956A" stroke-width="2" opacity="0.6"/>
+                            <line x1="758" y1="225" x2="680" y2="310" stroke="#C4956A" stroke-width="2" opacity="0.6"/>
+                        </g>
+                        <!-- Abstract geometric shapes -->
+                        <g fill="#6A9FA0" opacity="0.5">
+                            <circle cx="200" cy="120" r="35"/>
+                            <rect x="400" y="280" width="60" height="60" rx="8"/>
+                            <polygon points="550,100 580,130 520,130"/>
+                        </g>
+                        <!-- Accent circles -->
+                        <circle cx="350" cy="300" r="45" fill="none" stroke="#C4956A" stroke-width="2" opacity="0.4"/>
+                        <circle cx="600" cy="150" r="35" fill="none" stroke="#C4956A" stroke-width="2.5" opacity="0.5"/>
+                    </svg>
+                </a>
+                <div class="blog-card-pillar">Pillar 1 of 3</div>
+                <h2><a href="/blog/website-built-for-humans">Your Website Was Built for Humans. AI Agents Can't Read It.</a></h2>
+                <p class="blog-card-excerpt">Why your website is invisible to AI agents and how to fix Layer 1, 2, and 3 of the new AI-mediated search landscape.</p>
+                <a href="/blog/website-built-for-humans" class="blog-card-link">Read article →</a>
+            </article>
+
+            <!-- Post 2 -->
+            <article class="blog-card">
+                <a href="/blog/what-chatgpt-says-about-your-company" class="blog-card-image">
+                    <svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                        <defs>
+                            <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                                <circle cx="20" cy="20" r="3" fill="#B07D5B" opacity="0.3"/>
+                            </pattern>
+                        </defs>
+                        <rect width="800" height="450" fill="#F2EDE7"/>
+                        <!-- Data pattern background -->
+                        <rect width="800" height="450" fill="url(#dots)"/>
+                        <!-- Fact bars (left side) -->
+                        <g opacity="0.6">
+                            <rect x="80" y="100" width="120" height="40" fill="#B07D5B" rx="4"/>
+                            <rect x="80" y="160" width="160" height="40" fill="#B07D5B" rx="4"/>
+                            <rect x="80" y="220" width="90" height="40" fill="#B07D5B" rx="4"/>
+                            <rect x="80" y="280" width="140" height="40" fill="#B07D5B" rx="4"/>
+                            <rect x="80" y="340" width="110" height="40" fill="#B07D5B" rx="4"/>
+                        </g>
+                        <!-- Vibe representation (right side, more diffuse) -->
+                        <g opacity="0.4">
+                            <circle cx="650" cy="120" r="45" fill="#7B8DAE"/>
+                            <circle cx="680" cy="180" r="55" fill="#7B8DAE"/>
+                            <circle cx="630" cy="250" r="50" fill="#7B8DAE"/>
+                            <circle cx="670" cy="320" r="40" fill="#7B8DAE"/>
+                        </g>
+                        <!-- Dividing line -->
+                        <line x1="400" y1="50" x2="400" y2="400" stroke="#7B8DAE" stroke-width="2" opacity="0.3" stroke-dasharray="5,5"/>
+                        <!-- Labels -->
+                        <text x="150" y="55" font-family="Manrope, sans-serif" font-size="18" font-weight="600" fill="#B07D5B" opacity="0.5">FACT</text>
+                        <text x="630" y="55" font-family="Manrope, sans-serif" font-size="18" font-weight="600" fill="#7B8DAE" opacity="0.5">VIBE</text>
+                    </svg>
+                </a>
+                <div class="blog-card-pillar">Pillar 2 of 3</div>
+                <h2><a href="/blog/what-chatgpt-says-about-your-company">What Does ChatGPT Say About Your Company? (And Is It True?)</a></h2>
+                <p class="blog-card-excerpt">57% of B2B companies get zero facts from ChatGPT. See the Fact vs. Vibe framework and test your company right now.</p>
+                <a href="/blog/what-chatgpt-says-about-your-company" class="blog-card-link">Read article →</a>
+            </article>
+
+            <!-- Post 3 -->
+            <article class="blog-card">
+                <a href="/blog/your-proof-is-the-problem" class="blog-card-image">
+                    <svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                        <defs>
+                            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#2C3038;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#7B8DAE;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="800" height="450" fill="#F2EDE7"/>
+                        <!-- Network nodes -->
+                        <g>
+                            <!-- Central hub -->
+                            <circle cx="400" cy="225" r="20" fill="#2C3038" opacity="0.8"/>
+                            <!-- Connected nodes -->
+                            <circle cx="250" cy="120" r="16" fill="#7B8DAE" opacity="0.6"/>
+                            <circle cx="550" cy="130" r="16" fill="#7B8DAE" opacity="0.6"/>
+                            <circle cx="300" cy="320" r="16" fill="#7B8DAE" opacity="0.6"/>
+                            <circle cx="550" cy="310" r="16" fill="#7B8DAE" opacity="0.6"/>
+                            <circle cx="150" cy="225" r="14" fill="#C4956A" opacity="0.5"/>
+                            <circle cx="700" cy="225" r="14" fill="#C4956A" opacity="0.5"/>
+                            <!-- Connections -->
+                            <line x1="400" y1="225" x2="250" y2="120" stroke="#7B8DAE" stroke-width="2" opacity="0.5"/>
+                            <line x1="400" y1="225" x2="550" y2="130" stroke="#7B8DAE" stroke-width="2" opacity="0.5"/>
+                            <line x1="400" y1="225" x2="300" y2="320" stroke="#7B8DAE" stroke-width="2" opacity="0.5"/>
+                            <line x1="400" y1="225" x2="550" y2="310" stroke="#7B8DAE" stroke-width="2" opacity="0.5"/>
+                            <line x1="400" y1="225" x2="150" y2="225" stroke="#C4956A" stroke-width="2" opacity="0.4"/>
+                            <line x1="400" y1="225" x2="700" y2="225" stroke="#C4956A" stroke-width="2" opacity="0.4"/>
+                            <!-- Secondary connections -->
+                            <line x1="250" y1="120" x2="150" y2="225" stroke="#2C3038" stroke-width="1.5" opacity="0.3" stroke-dasharray="3,3"/>
+                            <line x1="550" y1="130" x2="700" y2="225" stroke="#2C3038" stroke-width="1.5" opacity="0.3" stroke-dasharray="3,3"/>
+                            <line x1="300" y1="320" x2="150" y2="225" stroke="#2C3038" stroke-width="1.5" opacity="0.3" stroke-dasharray="3,3"/>
+                        </g>
+                        <!-- Verification checkmarks -->
+                        <g opacity="0.3">
+                            <circle cx="250" cy="120" r="22" fill="none" stroke="#C4956A" stroke-width="2"/>
+                            <circle cx="550" cy="310" r="22" fill="none" stroke="#C4956A" stroke-width="2"/>
+                        </g>
+                    </svg>
+                </a>
+                <div class="blog-card-pillar">Pillar 3 of 3</div>
+                <h2><a href="/blog/your-proof-is-the-problem">Your Website Isn't the Problem. Your Proof Is.</a></h2>
+                <p class="blog-card-excerpt">Why AI can't verify who you are (and it's not a technical issue). The real problem is Layer 3: third-party evidence.</p>
+                <a href="/blog/your-proof-is-the-problem" class="blog-card-link">Read article →</a>
+            </article>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+        <p style="margin-top:0.5rem;"><a href="/privacy-policy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms">Terms of Use</a></p>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="cookie-banner" role="alert" aria-label="Cookie notice" style="display:none;">
+        <div class="cookie-banner-inner">
+            <p>This site uses cookies to analyze traffic and improve your experience. By continuing to browse, you accept the use of cookies. <a href="/privacy-policy">Privacy Policy</a></p>
+            <button id="cookie-accept" class="cookie-accept" aria-label="Accept cookies">Got it</button>
+        </div>
+    </div>
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Liz Micik Blog",
+        "description": "Research, frameworks, and field notes on the transition from the human web to the agentic web.",
+        "url": "https://lizmicik.com/blog",
+        "hasPart": [
+            {
+                "@type": "BlogPosting",
+                "headline": "Your Website Was Built for Humans. AI Agents Can't Read It.",
+                "description": "Why your website is invisible to AI agents and how to fix Layer 1, 2, and 3 of the new AI-mediated search landscape.",
+                "url": "https://lizmicik.com/blog/website-built-for-humans",
+                "author": {
+                    "@type": "Person",
+                    "name": "Liz Micik"
+                },
+                "datePublished": "2026-01-01",
+                "keywords": "SEO, AI agents, website optimization, agentic web"
+            },
+            {
+                "@type": "BlogPosting",
+                "headline": "What Does ChatGPT Say About Your Company? (And Is It True?)",
+                "description": "57% of B2B companies get zero facts from ChatGPT. See the Fact vs. Vibe framework and test your company right now.",
+                "url": "https://lizmicik.com/blog/what-chatgpt-says-about-your-company",
+                "author": {
+                    "@type": "Person",
+                    "name": "Liz Micik"
+                },
+                "datePublished": "2026-02-01",
+                "keywords": "ChatGPT, AI, B2B, fact verification, content strategy"
+            },
+            {
+                "@type": "BlogPosting",
+                "headline": "Your Website Isn't the Problem. Your Proof Is.",
+                "description": "Why AI can't verify who you are (and it's not a technical issue). The real problem is Layer 3: third-party evidence.",
+                "url": "https://lizmicik.com/blog/your-proof-is-the-problem",
+                "author": {
+                    "@type": "Person",
+                    "name": "Liz Micik"
+                },
+                "datePublished": "2026-03-01",
+                "keywords": "verification, AI, trust, third-party evidence, proof"
+            }
+        ]
+    }
+    </script>
+
+    <!-- JavaScript -->
+    <script>
+        // ===== NAVIGATION TOGGLE =====
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        navToggle.addEventListener('click', () => {
+            const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', !isExpanded);
+            navLinks.classList.toggle('nav-open');
+        });
+
+        // Close menu when link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('nav-open');
+            });
+        });
+
+        // ===== NAV HIDE ON SCROLL =====
+        let lastScrollTop = 0;
+        const nav = document.querySelector('nav.nav');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > 100) {
+                if (scrollTop > lastScrollTop) {
+                    // Scrolling down
+                    nav.classList.add('nav-hidden');
+                } else {
+                    // Scrolling up
+                    nav.classList.remove('nav-hidden');
+                }
+            }
+
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        // ===== FADE IN ON SCROLL (IntersectionObserver) =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.blog-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // ===== COOKIE BANNER =====
+        const cookieBanner = document.getElementById('cookie-banner');
+        const cookieAccept = document.getElementById('cookie-accept');
+        const cookieKey = 'lizmicik_cookie_consent';
+
+        // Show cookie banner if consent not recorded
+        if (!localStorage.getItem(cookieKey)) {
+            cookieBanner.style.display = 'block';
+        }
+
+        // Handle cookie acceptance
+        cookieAccept.addEventListener('click', () => {
+            localStorage.setItem(cookieKey, 'accepted');
+            cookieBanner.style.display = 'none';
+        });
+
+        // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
