@@ -1008,72 +1008,64 @@
 
             <p>The mechanics are familiar. The audience changed.</p>
 
-            <!-- Framework Graphic -->
-            <svg class="framework-graphic" viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-                <defs>
-                    <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" style="stop-color:#C4956A;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#5B7C5E;stop-opacity:1" />
-                    </linearGradient>
-                    <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" style="stop-color:#5B7C5E;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#579496;stop-opacity:1" />
-                    </linearGradient>
-                    <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" style="stop-color:#8B9A7E;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#6B7A9A;stop-opacity:1" />
-                    </linearGradient>
-                </defs>
+            <!-- Framework Evolution Diagram: Old SEO Model → New AI Agent Model -->
+            <div style="background:#FAF8F5; border-radius:12px; padding:clamp(1.5rem,4vw,2.5rem); margin:2.5rem 0;">
+                <svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="width:100%; height:auto; display:block;" aria-label="Diagram comparing the traditional SEO framework to the new AI agent readiness framework">
+                    <!-- Column Headers -->
+                    <text x="185" y="30" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" font-weight="700" fill="#8B9A7E" letter-spacing="0.08em">SEARCH ENGINE ERA</text>
+                    <text x="535" y="30" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" font-weight="700" fill="#5B7C5E" letter-spacing="0.08em">AI AGENT ERA</text>
 
-                <!-- Layer 1 - Find -->
-                <rect x="40" y="20" width="160" height="100" fill="url(#grad1)" rx="8"/>
-                <circle cx="120" cy="45" r="8" fill="white" opacity="0.8"/>
-                <circle cx="85" cy="70" r="6" fill="white" opacity="0.6"/>
-                <circle cx="155" cy="75" r="6" fill="white" opacity="0.6"/>
-                <circle cx="100" cy="105" r="5" fill="white" opacity="0.5"/>
-                <text x="120" y="145" text-anchor="middle" font-size="16" font-weight="700" fill="#2C3038">Layer 1</text>
-                <text x="120" y="165" text-anchor="middle" font-size="13" font-weight="600" fill="#2C3038">Find</text>
-                <text x="120" y="183" text-anchor="middle" font-size="11" fill="#545B6A">Can AI access</text>
-                <text x="120" y="197" text-anchor="middle" font-size="11" fill="#545B6A">your content?</text>
+                    <!-- Row 1: Technical SEO → Layer 1: Find -->
+                    <rect x="30" y="50" width="310" height="80" rx="8" fill="white" stroke="#8B9A7E" stroke-width="1.5"/>
+                    <text x="50" y="80" font-family="Manrope, sans-serif" font-size="15" font-weight="700" fill="#2C3038">Technical SEO</text>
+                    <text x="50" y="103" font-family="Manrope, sans-serif" font-size="12" fill="#545B6A">Can search engines crawl it?</text>
 
-                <!-- Arrow -->
-                <path d="M 220 70 L 260 70" stroke="#C4956A" stroke-width="3" marker-end="url(#arrowhead)"/>
+                    <!-- Arrow -->
+                    <line x1="350" y1="90" x2="370" y2="90" stroke="#C4956A" stroke-width="2.5" stroke-linecap="round"/>
+                    <polygon points="370,85 380,90 370,95" fill="#C4956A"/>
 
-                <!-- Layer 2 - Understand -->
-                <rect x="280" y="20" width="160" height="100" fill="url(#grad2)" rx="8"/>
-                <rect x="310" y="35" width="30" height="30" fill="white" opacity="0.7"/>
-                <rect x="350" y="35" width="30" height="30" fill="white" opacity="0.6"/>
-                <rect x="310" y="75" width="30" height="30" fill="white" opacity="0.6"/>
-                <rect x="350" y="75" width="30" height="30" fill="white" opacity="0.5"/>
-                <text x="360" y="145" text-anchor="middle" font-size="16" font-weight="700" fill="white">Layer 2</text>
-                <text x="360" y="165" text-anchor="middle" font-size="13" font-weight="600" fill="white">Understand</text>
-                <text x="360" y="183" text-anchor="middle" font-size="11" fill="white">Can AI parse</text>
-                <text x="360" y="197" text-anchor="middle" font-size="11" fill="white">your meaning?</text>
+                    <rect x="390" y="50" width="300" height="80" rx="8" fill="#5B7C5E"/>
+                    <text x="410" y="80" font-family="Manrope, sans-serif" font-size="15" font-weight="700" fill="white">Layer 1: Find</text>
+                    <text x="410" y="103" font-family="Manrope, sans-serif" font-size="12" fill="rgba(255,255,255,0.85)">Can AI access and crawl your content?</text>
 
-                <!-- Arrow -->
-                <path d="M 460 70 L 500 70" stroke="#5B7C5E" stroke-width="3" marker-end="url(#arrowhead2)"/>
+                    <!-- Row 2: On-Page SEO → Layer 2: Understand -->
+                    <rect x="30" y="165" width="310" height="80" rx="8" fill="white" stroke="#8B9A7E" stroke-width="1.5"/>
+                    <text x="50" y="195" font-family="Manrope, sans-serif" font-size="15" font-weight="700" fill="#2C3038">On-Page SEO</text>
+                    <text x="50" y="218" font-family="Manrope, sans-serif" font-size="12" fill="#545B6A">Can search engines understand it?</text>
 
-                <!-- Layer 3 - Trust -->
-                <rect x="520" y="20" width="160" height="100" fill="url(#grad3)" rx="8"/>
-                <circle cx="560" cy="45" r="8" fill="white" opacity="0.8"/>
-                <circle cx="605" cy="50" r="7" fill="white" opacity="0.7"/>
-                <path d="M 575 75 L 595 65 L 600 85 Z" fill="white" opacity="0.6"/>
-                <circle cx="575" cy="95" r="6" fill="white" opacity="0.5"/>
-                <text x="600" y="145" text-anchor="middle" font-size="16" font-weight="700" fill="white">Layer 3</text>
-                <text x="600" y="165" text-anchor="middle" font-size="13" font-weight="600" fill="white">Trust</text>
-                <text x="600" y="183" text-anchor="middle" font-size="11" fill="white">Can AI verify</text>
-                <text x="600" y="197" text-anchor="middle" font-size="11" fill="white">you're real?</text>
+                    <!-- Arrow -->
+                    <line x1="350" y1="205" x2="370" y2="205" stroke="#C4956A" stroke-width="2.5" stroke-linecap="round"/>
+                    <polygon points="370,200 380,205 370,210" fill="#C4956A"/>
 
-                <!-- Arrow markers -->
-                <defs>
-                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                        <polygon points="0 0, 10 3, 0 6" fill="#C4956A"/>
-                    </marker>
-                    <marker id="arrowhead2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                        <polygon points="0 0, 10 3, 0 6" fill="#5B7C5E"/>
-                    </marker>
-                </defs>
-            </svg>
+                    <rect x="390" y="165" width="300" height="80" rx="8" fill="#2C3038"/>
+                    <text x="410" y="195" font-family="Manrope, sans-serif" font-size="15" font-weight="700" fill="white">Layer 2: Understand</text>
+                    <text x="410" y="218" font-family="Manrope, sans-serif" font-size="12" fill="rgba(255,255,255,0.85)">Can AI parse your structure and meaning?</text>
+
+                    <!-- Row 3: Off-Page SEO → Layer 3: Trust -->
+                    <rect x="30" y="280" width="310" height="80" rx="8" fill="white" stroke="#8B9A7E" stroke-width="1.5"/>
+                    <text x="50" y="310" font-family="Manrope, sans-serif" font-size="15" font-weight="700" fill="#2C3038">Off-Page SEO</text>
+                    <text x="50" y="333" font-family="Manrope, sans-serif" font-size="12" fill="#545B6A">Can search engines trust it?</text>
+
+                    <!-- Arrow -->
+                    <line x1="350" y1="320" x2="370" y2="320" stroke="#C4956A" stroke-width="2.5" stroke-linecap="round"/>
+                    <polygon points="370,315 380,320 370,325" fill="#C4956A"/>
+
+                    <rect x="390" y="280" width="300" height="80" rx="8" fill="#8B9A7E"/>
+                    <text x="410" y="310" font-family="Manrope, sans-serif" font-size="15" font-weight="700" fill="white">Layer 3: Trust</text>
+                    <text x="410" y="333" font-family="Manrope, sans-serif" font-size="12" fill="rgba(255,255,255,0.85)">Can AI verify you from independent sources?</text>
+
+                    <!-- Vertical connecting lines (left column) -->
+                    <line x1="185" y1="130" x2="185" y2="165" stroke="#8B9A7E" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
+                    <line x1="185" y1="245" x2="185" y2="280" stroke="#8B9A7E" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
+
+                    <!-- Vertical connecting lines (right column) -->
+                    <line x1="540" y1="130" x2="540" y2="165" stroke="white" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+                    <line x1="540" y1="245" x2="540" y2="280" stroke="white" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+
+                    <!-- Bottom caption -->
+                    <text x="360" y="395" text-anchor="middle" font-family="Manrope, sans-serif" font-size="13" font-weight="600" fill="#C4956A" font-style="italic">Same framework. Different audience.</text>
+                </svg>
+            </div>
 
             <h2 id="layer1">Layer 1: Find. Does AI See Your Website at All?</h2>
 
