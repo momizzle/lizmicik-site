@@ -169,6 +169,9 @@
     </div>
 
 <script>
+// Ensure gtag is always defined (safe fallback if GA script is blocked or stripped)
+if (typeof gtag !== 'function') { function gtag(){} }
+
 // ====================================================================
 // CONSTANTS
 // ====================================================================
