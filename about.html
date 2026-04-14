@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-B9S40S2SKG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-B9S40S2SKG');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Liz Micik — 28 Years of Website Structure, Now Focused on AI Visibility</title>
+    <meta name="description" content="Liz Micik has spent 28 years solving structural problems for enterprise websites — migrations, CMS overhauls, content restructurings. Now she helps businesses prepare for the agentic web.">
+    <meta name="author" content="Liz Micik">
+    <!-- Open Graph -->
+    <meta property="og:title" content="About Liz Micik — 28 Years of Website Structure, Now Focused on AI Visibility">
+    <meta property="og:description" content="Liz Micik has spent 28 years solving structural problems for enterprise websites. Now she helps businesses prepare for the agentic web.">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://lizmicik.com/about">
+    <meta property="og:image" content="https://lizmicik.com/images/headshot.png">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "AboutPage",
+                "@id": "https://lizmicik.com/about#webpage",
+                "url": "https://lizmicik.com/about",
+                "name": "About Liz Micik",
+                "description": "Liz Micik has spent 28 years solving structural problems for enterprise websites. Now she helps businesses prepare for the agentic web.",
+                "isPartOf": { "@id": "https://lizmicik.com/#website" },
+                "about": { "@id": "https://lizmicik.com/#person" },
+                "mainEntity": { "@id": "https://lizmicik.com/#person" }
+            },
+            {
+                "@type": "Person",
+                "@id": "https://lizmicik.com/#person",
+                "name": "Liz Micik",
+                "givenName": "Liz",
+                "familyName": "Micik",
+                "url": "https://lizmicik.com",
+                "image": "https://lizmicik.com/images/headshot.png",
+                "email": "mailto:info@lizmicik.com",
+                "sameAs": [
+                    "https://www.linkedin.com/in/lizmicik"
+                ],
+                "jobTitle": "SEO Strategist & AI Visibility Consultant",
+                "description": "28-year veteran of SEO and content strategy specializing in website structure, now focused on the agentic web transition.",
+                "knowsAbout": [
+                    "Search Engine Optimization",
+                    "Agentic Web",
+                    "AI Search Optimization",
+                    "Technical SEO",
+                    "Schema Markup",
+                    "Structured Data",
+                    "Content Strategy",
+                    "B2B Marketing",
+                    "Website Architecture",
+                    "Entity Authority",
+                    "Answer Engine Optimization",
+                    "Digital Transformation"
+                ],
+                "alumniOf": {
+                    "@type": "CollegeOrUniversity",
+                    "name": "Northern Illinois University"
+                }
+            }
+        ]
+    }
+    </script>
+    <style>
+        :root {
+            --cream: #FAFAF7;
+            --cream-dark: #FAF8F5;
+            --slate: #2C3038;
+            --slate-mid: #545B6A;
+            --accent-amber: #C4956A;
+            --accent-teal: #5B7C5E;
+            --accent-sage: #8B9A7E;
+            --text-primary: #2C3038;
+            --text-secondary: #545B6A;
+            --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --content-width: 720px;
+            --wide-width: 960px;
+            --section-padding: clamp(4rem, 8vw, 7rem);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body {
+            font-family: var(--font-body);
+            font-weight: 400;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background-color: var(--cream);
+        }
+        img { max-width: 100%; height: auto; display: block; }
+        a { color: #C4956A; text-decoration: none; transition: color 0.2s ease; }
+        a:hover { color: #3D6B4E; }
+        h1, h2, h3 { font-family: var(--font-heading); font-weight: 600; line-height: 1.25; }
+        h1 { font-size: clamp(2rem, 5vw, 2.8rem); letter-spacing: -0.02em; margin-bottom: 1rem; }
+        h2 { font-size: clamp(1.4rem, 3vw, 1.8rem); letter-spacing: -0.01em; margin-bottom: 1.25rem; margin-top: 2.5rem; }
+        h3 { font-size: clamp(1.1rem, 2.2vw, 1.3rem); margin-bottom: 0.75rem; }
+        p { margin-bottom: 1.25rem; font-size: clamp(0.95rem, 1.8vw, 1.05rem); }
+        p:last-child { margin-bottom: 0; }
+
+        /* Navigation */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background-color: rgba(250, 250, 247, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(44, 48, 56, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .nav--hidden { transform: translateY(-100%); }
+        .nav--shadow { box-shadow: 0 1px 8px rgba(44, 48, 56, 0.06); }
+        .nav-inner {
+            max-width: var(--wide-width);
+            margin: 0 auto;
+            padding: 0.9rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-name {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+        .nav-name a { color: var(--text-primary); }
+        .nav-name a:hover { color: var(--text-primary); }
+        .nav-links {
+            display: flex;
+            gap: 1.75rem;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-cta {
+            background: var(--accent-teal);
+            color: #fff !important;
+            padding: 0.45rem 1.1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-transform: none !important;
+            letter-spacing: 0 !important;
+            font-size: 0.82rem !important;
+        }
+        .nav-cta:hover {
+            background: #4A6B4D;
+            color: #fff !important;
+        }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background-color: var(--text-primary);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Page header */
+        .page-header {
+            padding: calc(var(--section-padding) + 2rem) 1.5rem 2rem;
+            text-align: center;
+            background-color: var(--cream);
+        }
+        .page-header-inner {
+            max-width: var(--content-width);
+            margin: 0 auto;
+        }
+        .page-header .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--accent-amber);
+            margin-bottom: 1rem;
+        }
+        .page-header p.intro {
+            font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+            color: var(--text-secondary);
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        /* Profile block */
+        .profile {
+            padding: 2rem 1.5rem var(--section-padding);
+        }
+        .profile-inner {
+            max-width: var(--content-width);
+            margin: 0 auto;
+        }
+        .profile-photo-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: var(--cream-dark);
+            border: 3px solid var(--cream-dark);
+        }
+        .profile-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .profile-name {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+        .profile-title {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 0.25rem;
+            text-align: center;
+        }
+        .profile-body p { color: var(--text-secondary); }
+        .profile-body > p:first-of-type {
+            color: var(--text-primary);
+            font-size: clamp(1.05rem, 2vw, 1.15rem);
+        }
+        .profile-emphasis {
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            color: var(--text-primary) !important;
+        }
+        .profile-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0 1.5rem 0;
+        }
+        .profile-list li {
+            position: relative;
+            padding-left: 1.6rem;
+            margin-bottom: 0.6rem;
+            font-size: clamp(0.93rem, 1.7vw, 1.02rem);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .profile-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5em;
+            width: 10px;
+            height: 5px;
+            border-left: 2px solid var(--accent-amber);
+            border-bottom: 2px solid var(--accent-amber);
+            transform: rotate(-45deg);
+            opacity: 0.8;
+        }
+
+        /* What I'm building now section */
+        .building {
+            background-color: #fff;
+            padding: var(--section-padding) 1.5rem;
+            border-top: 1px solid rgba(44, 48, 56, 0.06);
+            border-bottom: 1px solid rgba(44, 48, 56, 0.06);
+        }
+        .building-inner {
+            max-width: var(--content-width);
+            margin: 0 auto;
+        }
+        .building h2 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        .building-intro {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+        .building-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 1.25rem;
+        }
+        .building-list li {
+            padding: 1.25rem 1.5rem;
+            background: var(--cream-dark);
+            border-left: 3px solid var(--accent-amber);
+        }
+        .building-list li strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        .building-list li p {
+            margin-top: 0.4rem;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* CTA strip */
+        .cta-strip {
+            padding: var(--section-padding) 1.5rem;
+            text-align: center;
+            background-color: var(--cream);
+        }
+        .cta-strip h2 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        .cta-strip p {
+            color: var(--text-secondary);
+            max-width: 560px;
+            margin: 0 auto 2rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 0.85rem 1.6rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .cta-button--primary {
+            background: var(--accent-teal);
+            color: #fff !important;
+        }
+        .cta-button--primary:hover {
+            background: #4A6B4D;
+            color: #fff !important;
+            transform: translateY(-1px);
+        }
+        .cta-button--secondary {
+            background: transparent;
+            color: var(--text-primary) !important;
+            border: 1.5px solid var(--slate-mid);
+        }
+        .cta-button--secondary:hover {
+            border-color: var(--accent-amber);
+            color: var(--accent-amber) !important;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--slate);
+            color: #B8B5B0;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            font-size: 0.85rem;
+        }
+        .footer a { color: #B8B5B0; }
+        .footer a:hover { color: #fff; }
+
+        /* Cookie banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--slate);
+            color: #fff;
+            z-index: 200;
+            padding: 1rem 1.5rem;
+            font-size: 0.9rem;
+        }
+        .cookie-banner-inner {
+            max-width: var(--wide-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        .cookie-banner a { color: #fff; text-decoration: underline; }
+        .cookie-accept {
+            background: var(--accent-teal);
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1.1rem;
+            border-radius: 6px;
+            font-family: var(--font-body);
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .cookie-accept:hover { background: #4A6B4D; }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: var(--cream);
+                padding: 1rem 1.5rem;
+                border-bottom: 1px solid rgba(44, 48, 56, 0.06);
+                gap: 1rem;
+            }
+            .nav-links.active { display: flex; }
+        }
+        @media (max-width: 640px) {
+            .cookie-banner-inner {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <span class="nav-name"><a href="/">Liz Micik</a></span>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/#framework">Framework</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/#contact">Contact</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/audit">Agent Readiness Audit</a></li>
+                <li><a href="/signal-check" class="nav-cta">Free Signal Check</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page header -->
+    <header class="page-header" role="banner">
+        <div class="page-header-inner">
+            <p class="eyebrow">About</p>
+            <h1>28 years of website structure, and one structural shift bigger than any of them.</h1>
+            <p class="intro">I've spent nearly three decades being the person companies call when the structure of the website itself is the problem. The agentic web is the biggest structural shift I've seen in my career.</p>
+        </div>
+    </header>
+
+    <!-- Profile body -->
+    <section class="profile">
+        <div class="profile-inner">
+            <div class="profile-photo-block">
+                <div class="profile-photo">
+                    <img src="images/headshot.png" alt="Liz Micik — SEO &amp; Content Strategist" width="200" height="200">
+                </div>
+                <p class="profile-name">Liz Micik</p>
+                <p class="profile-title">SEO &amp; Content Strategist<br>AI Visibility Consultant</p>
+            </div>
+
+            <div class="profile-body">
+                <p>For nearly three decades, I've been the person companies call when the structure of the website itself is the problem.</p>
+                <p class="profile-emphasis">Not the copy. Not the campaign. The foundation underneath.</p>
+                <ul class="profile-list">
+                    <li>Domain migrations</li>
+                    <li>Platform moves</li>
+                    <li>Content restructuring to match a business pivot</li>
+                    <li>CMS overhauls that touch every URL</li>
+                    <li>International expansions and company divestitures</li>
+                </ul>
+                <p>I've cleaned out the attic and the basement of websites for enterprise B2B companies, global SaaS platforms, insurance groups, and lead generation networks.</p>
+                <p>Every one of those projects had the same shape: something fundamental about the website has to change, and if you get the structure wrong, everything built on top of it breaks.</p>
+
+                <h2>Why the agentic web is different</h2>
+                <p>Now the entire web is facing the biggest structural shift I've seen in my career. AI agents have become a primary surface for discovery. They read websites differently than people do, and most websites were never designed to be read that way in the first place.</p>
+                <p>The companies that figure out how to communicate clearly, completely, and consistently to AI agents will own the next decade of discovery. The ones that don't will watch their visibility erode and never quite know why.</p>
+                <p>I'm here to help clients lay the foundations they'll need to survive and thrive in this new agentic web. No one can know yet what it will fully become. But I couldn't be more excited to be part of the transition.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What I'm building now -->
+    <section class="building" aria-labelledby="building-heading">
+        <div class="building-inner">
+            <h2 id="building-heading">What I'm building now</h2>
+            <p class="building-intro">Three ways to work with me, each designed for a different point in the transition.</p>
+            <ul class="building-list">
+                <li>
+                    <strong><a href="/signal-check">The Signal Check</a></strong> &nbsp;·&nbsp; Free
+                    <p>A two-minute diagnostic that shows you exactly what four major AI platforms say about your business right now: the facts, the gaps, and the made-up parts. Email-gated, no sales pitch.</p>
+                </li>
+                <li>
+                    <strong><a href="/audit">The Agent Readiness Audit</a></strong> &nbsp;·&nbsp; $1,500
+                    <p>A 31-point diagnostic across the three layers of the framework: can AI find you, can it understand you, can it trust you. Delivered as an interactive HTML report plus a PDF executive summary.</p>
+                </li>
+                <li>
+                    <strong><a href="/roadmap">The Agent Readiness Roadmap</a></strong> &nbsp;·&nbsp; Starting at $3,500
+                    <p>The implementation blueprint that follows the audit. Page template inventory, schema type mapping, semantic HTML blueprints, content structure recommendations. We deliver the plan; your team or agency executes.</p>
+                </li>
+            </ul>
+            <p style="margin-top:2rem;">I also write about the transition, starting with the three-part diagnostic framework: <a href="/blog/ai-searchability-find-layer">FIND</a>, <a href="/blog/ai-understand-brand-visibility">UNDERSTAND</a>, and <a href="/blog/ai-trust-brand-authority">TRUST</a>.</p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-strip" aria-labelledby="cta-heading">
+        <h2 id="cta-heading">Let's talk.</h2>
+        <p>The transition to an agentic-first web has begun. If your business depends on being found, understood, and trusted online, the structural work starts now.</p>
+        <div class="cta-buttons">
+            <a href="/signal-check" class="cta-button cta-button--primary">Run Your Free Signal Check</a>
+            <a href="/#contact" class="cta-button cta-button--secondary">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="cookie-banner" role="alert" aria-label="Cookie notice" style="display:none;">
+      <div class="cookie-banner-inner">
+        <p>This site uses cookies to analyze traffic and improve your experience. By continuing to browse, you accept the use of cookies. <a href="/privacy-policy">Privacy Policy</a></p>
+        <button id="cookie-accept" class="cookie-accept" aria-label="Accept cookies">Got it</button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+        <p style="margin-top:0.5rem;"><a href="/privacy-policy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms">Terms of Use</a></p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile nav toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                navToggle.setAttribute('aria-expanded',
+                    navToggle.classList.contains('active'));
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+        // Hide/show nav on scroll
+        let lastScroll = 0;
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 80) {
+                nav.classList.add('nav--shadow');
+            } else {
+                nav.classList.remove('nav--shadow');
+            }
+            if (currentScroll > lastScroll && currentScroll > 200) {
+                nav.classList.add('nav--hidden');
+            } else {
+                nav.classList.remove('nav--hidden');
+            }
+            lastScroll = currentScroll;
+        }, { passive: true });
+        // Cookie banner
+        (function() {
+            var banner = document.getElementById('cookie-banner');
+            var btn = document.getElementById('cookie-accept');
+            if (!banner || !btn) return;
+            if (document.cookie.indexOf('cookie_notice=1') === -1) {
+                banner.style.display = 'block';
+            }
+            btn.addEventListener('click', function() {
+                document.cookie = 'cookie_notice=1;path=/;max-age=' + (60*60*24*365) + ';SameSite=Lax';
+                banner.style.display = 'none';
+            });
+        })();
+    </script>
+</body>
+</html>

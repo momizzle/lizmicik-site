@@ -116,7 +116,7 @@
             --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             /* Spacing */
-            --section-padding: clamp(4rem, 8vw, 7rem);
+            --section-padding: clamp(2.5rem, 5vw, 4.5rem);
             --content-width: 720px;
             --wide-width: 960px;
         }
@@ -399,60 +399,109 @@
             color: var(--text-primary);
         }
         /* ========================================
-           FRAMEWORK Section (slate bg)
+           FRAMEWORK Section (light, 3-card layout)
            ======================================== */
         .framework {
-            background-color: var(--slate);
-            color: var(--text-light);
+            background-color: var(--cream);
+            color: var(--text-primary);
             position: relative;
-            overflow: hidden;
-        }
-        .framework::before {
-            content: '';
-            position: absolute;
-            right: -40px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 320px;
-            height: 260px;
-            background: url('images/html%20block%20interacts%20with%20function%20block.png') center/cover no-repeat;
-            opacity: 0.12;
-            pointer-events: none;
-            mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
-            -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
         }
         .framework h2 {
-            color: var(--text-light);
+            color: var(--text-primary);
         }
         .framework-intro {
-            color: var(--text-light-secondary);
+            color: var(--text-secondary);
             margin-bottom: 2.5rem;
             font-size: clamp(1rem, 2vw, 1.1rem);
         }
         .framework-layers {
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: var(--wide-width);
+            margin: 0 auto;
         }
         .layer {
-            padding-left: 1.5rem;
-            border-left: 2px solid var(--slate-mid);
-            transition: border-color 0.3s ease;
+            background: #fff;
+            border-top: 4px solid var(--accent-amber);
+            padding: 2rem 1.75rem 1.75rem;
+            box-shadow: 0 1px 3px rgba(44, 48, 56, 0.04);
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.25s ease, transform 0.25s ease;
         }
         .layer:hover {
-            border-left-color: var(--accent-amber);
+            box-shadow: 0 6px 18px rgba(44, 48, 56, 0.08);
+            transform: translateY(-3px);
         }
+        .layer--find { border-top-color: var(--accent-amber); }
+        .layer--understand { border-top-color: var(--accent-teal); }
+        .layer--trust { border-top-color: var(--accent-blue); }
         .layer h3 {
             font-family: var(--font-heading);
-            color: var(--cream);
-            font-size: clamp(1.1rem, 2.2vw, 1.35rem);
-            font-weight: 600;
-            margin-bottom: 0.6rem;
+            color: var(--text-primary);
+            font-size: clamp(1.5rem, 2.8vw, 1.8rem);
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.01em;
+        }
+        .layer-question {
+            font-family: var(--font-heading);
+            font-size: clamp(0.95rem, 1.8vw, 1.02rem);
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.4;
         }
         .layer p {
-            color: var(--text-light-secondary);
-            font-size: clamp(0.9rem, 1.6vw, 0.98rem);
+            color: var(--text-secondary);
+            font-size: clamp(0.93rem, 1.6vw, 0.98rem);
+            line-height: 1.65;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        .layer-link {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--accent-amber);
+            margin-top: auto;
+            display: inline-block;
+            letter-spacing: 0.01em;
+        }
+        .layer--find .layer-link { color: var(--accent-amber); }
+        .layer--understand .layer-link { color: var(--accent-teal); }
+        .layer--trust .layer-link { color: var(--accent-blue); }
+        .layer-link:hover { color: #3D6B4E; }
+
+        /* ========================================
+           MEET LIZ (compact homepage teaser)
+           ======================================== */
+        .meet-liz {
+            background-color: #fff;
+            border-top: 1px solid rgba(44, 48, 56, 0.06);
+            border-bottom: 1px solid rgba(44, 48, 56, 0.06);
+        }
+        .meet-liz-inner {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            text-align: center;
+        }
+        .meet-liz-inner h2 {
+            font-size: clamp(1.3rem, 2.8vw, 1.6rem);
+            margin-bottom: 1rem;
+        }
+        .meet-liz-inner p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: clamp(1rem, 1.9vw, 1.08rem);
             line-height: 1.7;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .meet-liz-link {
+            font-weight: 600;
+            font-size: 0.95rem;
         }
         /* ========================================
            ABOUT Section
@@ -566,21 +615,13 @@
             display: block;
         }
         /* ========================================
-           Framework layer icons
+           Framework responsive
            ======================================== */
-        .layer-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.6rem;
-        }
-        .layer-icon {
-            flex-shrink: 0;
-            width: 32px;
-            height: 32px;
-        }
-        .layer-header h3 {
-            margin-bottom: 0;
+        @media (max-width: 900px) {
+            .framework-layers {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
         }
         /* ========================================
            Shift pull-quote
@@ -596,14 +637,10 @@
             line-height: 1.5;
         }
         /* ========================================
-           WORKING ON Section
+           OFFERS Section (Audit + Signal Check cards)
            ======================================== */
-        .working-on {
+        .offers {
             background-color: var(--cream);
-            padding-bottom: 0;
-        }
-        .working-on h2 {
-            margin-bottom: 1.5rem;
         }
         .working-cards {
             display: grid;
@@ -622,8 +659,8 @@
             background-color: var(--accent-amber);
             border-radius: 0 8px 0 0;
         }
-        .working-card--writing {
-            background-color: var(--slate-light);
+        .working-card--roadmap {
+            background-color: #6B3D2E;
             grid-column: 1 / -1;
             border-radius: 0 0 8px 8px;
         }
@@ -656,7 +693,7 @@
             }
             .working-card--audit { border-radius: 8px 8px 0 0; }
             .working-card--signal { border-radius: 0; }
-            .working-card--writing { border-radius: 0 0 8px 8px; }
+            .working-card--roadmap { border-radius: 0 0 8px 8px; }
         }
         /* ========================================
            CONTACT Section
@@ -904,7 +941,7 @@
             <ul class="nav-links">
                 <li><a href="#shift">The Shift</a></li>
                 <li><a href="#framework">Framework</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="/blog">Blog</a></li>
                 <li><a href="/audit">Agent Readiness Audit</a></li>
@@ -965,91 +1002,52 @@
             <h2 id="framework-heading" class="fade-in">The Framework</h2>
             <p class="framework-intro fade-in">I evaluate readiness for the agentic web across three layers:</p>
             <div class="framework-layers">
-                <div class="layer fade-in">
-                    <div class="layer-header">
-                        <svg class="layer-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                            <circle cx="16" cy="16" r="11" stroke="#C4956A" stroke-width="1.5" opacity="0.7"/>
-                            <path d="M16 8 L16 16 L22 16" stroke="#C4956A" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
-                            <circle cx="16" cy="5" r="1.5" fill="#C4956A" opacity="0.5"/>
-                            <circle cx="27" cy="16" r="1.5" fill="#C4956A" opacity="0.5"/>
-                            <circle cx="16" cy="27" r="1.5" fill="#C4956A" opacity="0.5"/>
-                            <circle cx="5" cy="16" r="1.5" fill="#C4956A" opacity="0.5"/>
-                        </svg>
-                        <h3>Can agents find you?</h3>
-                    </div>
-                    <p>The infrastructure layer. Are AI crawlers blocked or welcomed? Can agents actually access and render your content? Do you have the signals — robots.txt directives, llms.txt, proper rendering — that tell agents your site is open for business?</p>
+                <div class="layer layer--find fade-in">
+                    <h3>Find</h3>
+                    <p class="layer-question">Can agents find you?</p>
+                    <p>The infrastructure layer. Are AI crawlers blocked, welcomed, or bewildered?</p>
+                    <a href="/blog/ai-searchability-find-layer" class="layer-link">Learn more &rarr;</a>
                 </div>
-                <div class="layer fade-in">
-                    <div class="layer-header">
-                        <svg class="layer-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                            <rect x="6" y="6" width="20" height="20" rx="3" stroke="#5B7C5E" stroke-width="1.5" opacity="0.7"/>
-                            <line x1="6" y1="13" x2="26" y2="13" stroke="#5B7C5E" stroke-width="1" opacity="0.4"/>
-                            <line x1="6" y1="19" x2="26" y2="19" stroke="#5B7C5E" stroke-width="1" opacity="0.4"/>
-                            <line x1="16" y1="6" x2="16" y2="26" stroke="#5B7C5E" stroke-width="1" opacity="0.4"/>
-                        </svg>
-                        <h3>Can agents understand you?</h3>
-                    </div>
-                    <p>The structure layer. Is your content semantically organized so agents can parse it — not just read it, but interpret it? Schema markup, entity relationships, and content architecture, turn a website from a wall of text into a knowledge source agents can work with.</p>
+                <div class="layer layer--understand fade-in">
+                    <h3>Understand</h3>
+                    <p class="layer-question">Can agents understand you?</p>
+                    <p>The structure layer. If agents can parse it, can they interpret it?</p>
+                    <a href="/blog/ai-understand-brand-visibility" class="layer-link">Learn more &rarr;</a>
                 </div>
-                <div class="layer fade-in">
-                    <div class="layer-header">
-                        <svg class="layer-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                            <path d="M16 4 L28 10 L28 22 L16 28 L4 22 L4 10 Z" stroke="#8B9A7E" stroke-width="1.5" opacity="0.7" fill="none"/>
-                            <path d="M16 12 L20 14.5 L20 19.5 L16 22 L12 19.5 L12 14.5 Z" stroke="#8B9A7E" stroke-width="1" opacity="0.5" fill="#8B9A7E" fill-opacity="0.1"/>
-                        </svg>
-                        <h3>Can agents trust you?</h3>
-                    </div>
-                    <p>The authority layer. When an AI agent evaluates whether or not to cite you, recommend you, or surface you in an answer — what does it find? Earned media, consistent entity signals across platforms, and verified claims are what separate the businesses agents trust from the ones they ignore.</p>
+                <div class="layer layer--trust fade-in">
+                    <h3>Trust</h3>
+                    <p class="layer-question">Can agents trust you?</p>
+                    <p>The authority layer. Will you earn the citations, or be ignored?</p>
+                    <a href="/blog/ai-trust-brand-authority" class="layer-link">Learn more &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- OFFERS -->
+    <section class="section offers" aria-label="Ways to work with Liz">
+        <div class="section-inner section-inner--wide">
+            <div class="working-cards fade-in">
+                <div class="working-card working-card--audit">
+                    <h3>The Agent Readiness Audit</h3>
+                    <p>A 31-point diagnostic across four major AI platforms. Covers technical infrastructure, content structure, and entity authority, so you see exactly where brand value is leaking out of AI answers. <a href="/audit">Learn more</a></p>
+                </div>
+                <div class="working-card working-card--signal">
+                    <h3>The Signal Check</h3>
+                    <p>A free tool that shows you exactly what AI platforms are saying about your business right now: the facts, the gaps, and the made-up parts. <a href="/signal-check">Try it free</a></p>
+                </div>
+                <div class="working-card working-card--roadmap">
+                    <h3>The Agent Readiness Roadmap</h3>
+                    <p>The step-by-step implementation blueprint that fixes what the audit found. Template inventory, schema mapping, semantic HTML, and content recommendations delivered as a plan your team can execute. The fastest road from invisible to cited. <a href="/roadmap">Learn more</a></p>
                 </div>
             </div>
         </div>
     </section>
     <!-- ABOUT -->
-    <section id="about" class="section about" aria-labelledby="about-heading">
-        <div class="section-inner">
-            <h2 id="about-heading" class="fade-in">About</h2>
-            <div class="about-content fade-in">
-                <div class="about-photo-block">
-                    <div class="about-photo-container">
-                        <img src="images/headshot.png" alt="Liz Micik — SEO & Content Strategist" width="200" height="200">
-                    </div>
-                    <p class="about-name"><strong>Liz Micik</strong><br>SEO & Content Strategist<br>AI Transition Consultant</p>
-                </div>
-                <div class="about-text">
-                    <p>For nearly three decades, I've been the person companies call when the structure of the website itself is the problem.</p>
-                    <p class="about-emphasis">Not the copy. Not the campaign. The foundation underneath.</p>
-                    <ul class="about-list">
-                        <li>Domain migrations</li>
-                        <li>Platform moves</li>
-                        <li>Content restructuring to match a business pivot</li>
-                        <li>CMS overhauls that touch every URL</li>
-                        <li>International expansions and company divestitures</li>
-                    </ul>
-                    <p>I've cleaned out the attic and the basement of websites for enterprise B2B companies, global SaaS platforms, insurance groups, and lead generation networks.</p>
-                    <p>Every one of those projects had the same shape: something fundamental about the website has to change, and if you get the structure wrong, everything built on top of it breaks.</p>
-                    <p>Now the entire web is facing the biggest structural shift I've seen in my career.</p>
-                    <p>I'm here to help my clients lay the foundations they'll need to survive and thrive in this new agentic web. No one can know yet what it will fully become, but I couldn't be more excited to be part of this transition.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- WHAT I'M WORKING ON -->
-    <section id="working" class="section working-on" aria-labelledby="working-heading">
-        <div class="section-inner section-inner--wide">
-            <h2 id="working-heading" class="fade-in">What I'm Working On</h2>
-            <div class="working-cards fade-in">
-                <div class="working-card working-card--audit">
-                    <h3>The Agent Readiness Audit</h3>
-                    <p>A 31-point diagnostic that evaluates how well AI agents can find, understand, and trust your business online. Covers technical infrastructure, content structure, and entity authority across four major AI platforms. <a href="/audit">Learn more</a></p>
-                </div>
-                <div class="working-card working-card--signal">
-                    <h3>The Signal Check</h3>
-                    <p>A free tool that shows you exactly what AI platforms are saying about your business right now — the facts, the gaps, and the made-up parts. <a href="/signal-check">Try it free</a></p>
-                </div>
-                <div class="working-card working-card--writing">
-                    <p>I also write and speak about the human-to-agentic web transition and what it means for businesses that built their online presence for a world that's changing faster than most realize.</p>
-                </div>
-            </div>
+    <section class="section meet-liz" aria-labelledby="meet-liz-heading">
+        <div class="section-inner meet-liz-inner fade-in">
+            <h2 id="meet-liz-heading">Meet Liz Micik</h2>
+            <p>Liz Micik has spent 28 years as the person companies call when the structure of the website itself is the problem. Now she's tackling the biggest structural shift any of us have seen: the transition from a human to an agentic web.</p>
+            <a href="/about" class="meet-liz-link">Read Liz's full story &rarr;</a>
         </div>
     </section>
     <!-- CONTACT -->
