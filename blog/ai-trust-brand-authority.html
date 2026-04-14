@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Is your brand authority at risk? Here are the trust signals you need to check to ensure AI can confidently mention or cite your site in its answers.">
+    <meta name="keywords" content="ai visibility platform, ai brand trust signals, ai citation authority, AI search monitoring tools, brand mentions AI search visibility, ai trust signals">
+    <title>AI Doesn't Trust Your Brand. Here's What That Costs You | Liz Micik</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI Cites Your Competitors. Not You. Here's Why.">
+    <meta property="og:description" content="Is your brand authority at risk? Here are the trust signals you need to check to ensure AI can confidently mention or cite your site in its answers.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://lizmicik.com/blog/ai-trust-brand-authority">
+    <meta property="og:site_name" content="Liz Micik">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "AI Cites Your Competitors. Not You. Here's Why.",
+        "description": "Is your brand authority at risk? Here are the trust signals you need to check to ensure AI can confidently mention or cite your site in its answers.",
+        "author": {
+            "@type": "Person",
+            "name": "Liz Micik",
+            "url": "https://lizmicik.com"
+        },
+        "datePublished": "2026-04-13",
+        "dateModified": "2026-04-13",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://lizmicik.com/blog/ai-trust-brand-authority"
+        },
+        "keywords": "ai visibility platform, ai brand trust signals, ai citation authority, AI trust, entity consistency, corroboration threshold",
+        "isPartOf": {
+            "@type": "BlogPosting",
+            "name": "Find/Understand/Trust Framework Series",
+            "url": "https://lizmicik.com/blog"
+        }
+    }
+    </script>
+
+    <style>
+        :root {
+            --cream: #FAFAF7;
+            --cream-dark: #FAF8F5;
+            --slate: #2C3038;
+            --slate-light: #3D424D;
+            --slate-mid: #545B6A;
+            --accent-amber: #C4956A;
+            --accent-teal: #5B7C5E;
+            --accent-blue: #8B9A7E;
+            --accent-copper: #5B7C5E;
+            --hero-brown: #6B3D2E;
+            --muted-red: #C25E4A;
+            --text-primary: #2C3038;
+            --text-secondary: #545B6A;
+            --text-light: #F2EDE7;
+            --text-light-secondary: #B8B5B0;
+            --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --section-padding: clamp(4rem, 8vw, 7rem);
+            --content-width: 720px;
+            --wide-width: 960px;
+            --toc-width: 220px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--cream); color: var(--text-primary); font-family: var(--font-body); line-height: 1.6; }
+
+        /* Navigation */
+        .nav { position: fixed; top: 0; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--cream-dark); z-index: 1000; transition: transform 0.3s ease; }
+        .nav.nav-hidden { transform: translateY(-100%); }
+        .nav-inner { max-width: var(--wide-width); margin: 0 auto; padding: 1.5rem clamp(1.5rem, 4vw, 2rem); display: flex; justify-content: space-between; align-items: center; }
+        .nav-name { font-weight: 700; color: var(--text-primary); font-size: 1.25rem; }
+        .nav-name a { color: inherit; text-decoration: none; }
+        .nav-toggle { display: none; flex-direction: column; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .nav-toggle span { width: 24px; height: 2px; background: var(--text-primary); margin: 5px 0; transition: 0.3s; }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+        .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--accent-teal); }
+        .nav-cta { background: var(--accent-teal) !important; color: white !important; padding: 0.75rem 1.5rem; border-radius: 0.5rem; transition: background 0.3s ease; }
+        .nav-cta:hover { background: var(--accent-copper) !important; }
+
+        @media (max-width: 768px) {
+            .nav-toggle { display: flex; }
+            .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(10px, 10px); }
+            .nav-toggle.open span:nth-child(2) { opacity: 0; }
+            .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+            .nav-links { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--cream); gap: 1.5rem; padding: 2rem; border-bottom: 1px solid var(--cream-dark); display: none; }
+            .nav-links.active { display: flex; }
+            .nav-links a { font-size: 1.1rem; }
+        }
+
+        /* Hero */
+        header.blog-hero { margin-top: 60px; padding: var(--section-padding) clamp(1.5rem, 4vw, 2rem); text-align: center; }
+        .blog-meta { display: flex; justify-content: center; gap: 1rem; margin: 1.5rem 0 2rem; font-size: 0.95rem; color: var(--text-secondary); flex-wrap: wrap; }
+        .pillar-badge { background: var(--hero-brown); color: white; padding: 0.35rem 0.8rem; border-radius: 4px; font-weight: 600; font-size: 0.85rem; }
+        h1 { font-family: var(--font-heading); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 700; line-height: 1.2; color: var(--text-primary); margin: 2rem 0 1.5rem; max-width: var(--wide-width); margin-left: auto; margin-right: auto; }
+
+        /* Two-column layout with sticky TOC */
+        .blog-layout {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 2rem clamp(1.5rem, 4vw, 2rem);
+            display: grid;
+            grid-template-columns: var(--toc-width) 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* Table of Contents */
+        .toc {
+            position: sticky;
+            top: 80px;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+        .toc-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--hero-brown);
+        }
+        .toc-list { list-style: none; padding: 0; }
+        .toc-list li { margin: 0; }
+        .toc-list a {
+            display: block;
+            padding: 0.4rem 0 0.4rem 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            transition: all 0.2s ease;
+            line-height: 1.4;
+        }
+        .toc-list a:hover { color: var(--hero-brown); border-left-color: var(--hero-brown); }
+        .toc-list a.active { color: var(--hero-brown); border-left-color: var(--hero-brown); font-weight: 600; }
+
+        /* Article content */
+        article.blog-content { max-width: var(--content-width); }
+        article p { font-size: 1.05rem; line-height: 1.75; margin: 1.5rem 0; color: var(--text-primary); }
+        article h2 { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 600; margin: 3rem 0 1.5rem; color: var(--text-primary); border-left: 3px solid var(--hero-brown); padding-left: 1rem; }
+        article h2:first-of-type { margin-top: 0; }
+        article h3 { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--text-primary); }
+        article strong { font-weight: 700; color: var(--hero-brown); }
+        article ul, article ol { margin: 1.5rem 0; padding-left: 2rem; }
+        article li { margin: 0.8rem 0; line-height: 1.75; color: var(--text-primary); }
+        article a { color: #3D6B4E; text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        article a:hover { color: var(--accent-amber); text-decoration: underline; }
+
+        /* TLDR */
+        .tldr { font-style: italic; color: var(--text-secondary); border-left: 3px solid var(--hero-brown); padding-left: 1.5rem; margin: 2rem 0; }
+        .tldr p { color: var(--text-secondary); font-style: italic; margin: 0.75rem 0; }
+
+        /* Visual containers */
+        .visual-container {
+            margin: 2.5rem 0;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid #E8DDD5;
+            background: #FFFFFF;
+        }
+        .visual-container svg { display: block; width: 100%; height: auto; }
+        .visual-caption {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 0.75rem 1rem;
+            background: var(--cream-dark);
+            border-top: 1px solid #E8DDD5;
+            font-style: italic;
+        }
+
+        /* Comparison table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+        }
+        .comparison-table th {
+            background: var(--slate);
+            color: white;
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .comparison-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #E8DDD5;
+            line-height: 1.6;
+        }
+        .comparison-table tr:nth-child(even) td { background: var(--cream-dark); }
+        .comparison-table tr:last-child td { font-weight: 600; color: var(--hero-brown); }
+
+        /* Blockquotes */
+        article blockquote { border-left: 4px solid var(--accent-amber); padding-left: 2rem; margin: 2.5rem 0; font-style: italic; font-size: 1.15rem; color: var(--text-secondary); line-height: 1.7; }
+
+        /* CTA Box */
+        .cta-box { background: var(--cream-dark); border: 2px solid var(--hero-brown); border-radius: 0.75rem; padding: 2rem; margin: 3rem 0; text-align: center; }
+        .cta-box p { margin: 0.5rem 0; font-size: 1rem; }
+        .cta-box strong { color: var(--text-primary); font-size: 1.1rem; }
+        .cta-box a { color: var(--hero-brown); font-weight: 700; }
+        .cta-box a:hover { color: var(--accent-amber); }
+
+        /* Author Bio */
+        .author-bio { display: flex; gap: 2rem; padding: 2.5rem; background: var(--cream-dark); border-radius: 0.75rem; border: 1px solid #E8DDD5; margin: 3rem 0; align-items: flex-start; }
+        .author-avatar { width: 100px; height: 100px; border-radius: 50%; background: var(--hero-brown); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 700; flex-shrink: 0; }
+        .author-info h3 { margin-top: 0; margin-bottom: 0.5rem; }
+        .author-title { font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 0.8rem; }
+        .author-bio p { font-size: 0.95rem; margin: 0; color: var(--text-primary); }
+
+        /* Related Posts */
+        .related-posts { margin: 4rem 0 3rem; border-top: 2px solid var(--cream-dark); padding-top: 3rem; }
+        .related-posts h2 { border: none; padding: 0; text-align: center; margin-bottom: 2.5rem; }
+        .related-posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .post-card { background: var(--cream-dark); border: 1px solid #E8DDD5; border-radius: 0.75rem; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .post-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); }
+        .post-card a { text-decoration: none; color: inherit; }
+        .post-card-image { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
+        .post-card-content { padding: 1.5rem; }
+        .post-card-meta { font-size: 0.8rem; color: var(--hero-brown); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+        .post-card h3 { font-size: 1.2rem; margin: 0.8rem 0; color: var(--text-primary); }
+
+        /* Final CTA */
+        .final-cta { background: var(--slate); color: white; padding: 3rem 2rem; text-align: center; margin: 4rem 0 0; }
+        .final-cta h2 { border: none; padding: 0; color: white; margin-bottom: 1.5rem; }
+        .final-cta p { color: rgba(255, 255, 255, 0.95); margin-bottom: 2rem; }
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .cta-button { display: inline-block; background: var(--hero-brown); color: white; padding: 0.75rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 700; transition: all 0.3s ease; border: 2px solid var(--hero-brown); }
+        .cta-button:hover { background: transparent; color: white; }
+        .cta-button.copper { background: var(--accent-amber); border-color: var(--accent-amber); }
+
+        /* Footer */
+        .footer { background: var(--cream-dark); padding: 2rem; text-align: center; color: var(--text-secondary); font-size: 0.9rem; }
+        .footer a { color: var(--accent-teal); text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        /* Responsive: collapse TOC on smaller screens */
+        @media (max-width: 968px) {
+            .blog-layout {
+                grid-template-columns: 1fr;
+                max-width: var(--content-width);
+            }
+            .toc {
+                position: relative;
+                top: 0;
+                max-height: none;
+                border: 1px solid #E8DDD5;
+                border-radius: 0.75rem;
+                padding: 1.25rem;
+                background: var(--cream-dark);
+                margin-bottom: 1rem;
+            }
+            .author-bio { flex-direction: column; text-align: center; }
+            .author-avatar { margin: 0 auto; }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            article p { font-size: 1rem; }
+            article h2 { font-size: 1.4rem; }
+            .cta-buttons { flex-direction: column; }
+            .cta-buttons .cta-button { display: block; width: 100%; }
+            .related-posts-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Fade-in */
+        .fade-in { opacity: 0; animation: fadeIn 0.6s ease-in forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <span class="nav-name"><a href="/">Liz Micik</a></span>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/audit">Agent Readiness Audit</a></li>
+                <li><a href="/signal-check" class="nav-cta">Free Signal Check</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="blog-hero">
+        <div class="blog-meta">
+            <span class="pillar-badge">TRUST Layer</span>
+            <span>April 13, 2026</span>
+            <span>&bull;</span>
+            <span>By Liz Micik</span>
+            <span>&bull;</span>
+            <span>9 min read</span>
+        </div>
+        <h1>AI Cites Your Competitors. Not You. Here's Why.</h1>
+    </header>
+
+    <!-- Two-column: TOC + Content -->
+    <div class="blog-layout">
+
+        <!-- Left Sticky TOC -->
+        <nav class="toc" aria-label="Table of contents">
+            <div class="toc-title">In This Article</div>
+            <ul class="toc-list">
+                <li><a href="#signal-check">The Signal Check That Changed Everything</a></li>
+                <li><a href="#trust-accumulates">Trust Accumulates</a></li>
+                <li><a href="#recipe">What AI Is Synthesizing About You</a></li>
+                <li><a href="#corroboration">The Corroboration Threshold</a></li>
+                <li><a href="#fan-out">The Fan-Out Revisited</a></li>
+                <li><a href="#freshness">The Freshness Factor</a></li>
+                <li><a href="#framework">The Find/Understand/Trust Framework</a></li>
+            </ul>
+        </nav>
+
+        <!-- Article Content -->
+        <article class="blog-content">
+
+            <!-- TLDR -->
+            <div class="tldr">
+                <p>You passed the gates. AI can find you. You've clarified your entity: AI understands what you do. But when a buyer asks which firm they should hire, AI cites your competitor with confidence and mentions you with a hedge. Or doesn't mention you at all.</p>
+                <p>Trust isn't a switch you flip. It accumulates, the way brand authority does, across every source that's ever mentioned you, including the ones you've forgotten exist. The question isn't whether you can fix it. The question is whether you know where the damage is.</p>
+            </div>
+
+            <h2 id="signal-check">The Signal Check That Changed Everything</h2>
+
+            <p>A VP of Marketing at a mid-market B2B firm runs his company through a <a href="/signal-check">Signal Check</a>. He's expecting to see roughly what the website says: a specialized consultancy with deep expertise in a specific vertical, 27 years of client results, a leadership team with industry pedigree.</p>
+
+            <p>What he sees instead is a stranger's description of his company.</p>
+
+            <p>One AI platform calls them "a general consulting firm." Another mentions a product they discontinued four years ago. A third gets the founder's name right but attributes a completely different specialization to the firm. The fourth doesn't mention them at all.</p>
+
+            <p>His first instinct is the one everybody has: find the wrong fact. Fix it. Move on.</p>
+
+            <p>He traces the discontinued product mention to a G2 profile nobody's updated since 2022. Easy enough. He removes it. Done.</p>
+
+            <p>Except now G2 says they offer six products, but their Clutch profile still says seven. Their LinkedIn company page says "strategic advisory," their website says "management consulting," and an old Inc. magazine feature from 2019 calls them a "technology consultancy." The founder's former firm still lists him as a partner on their alumni page with a completely different description of his expertise.</p>
+
+            <p>He didn't have one wrong fact. He had dozens of small contradictions scattered across two decades of digital presence. And every one of them was feeding AI a slightly different story about who his company is.</p>
+
+            <p>This is the trust layer. There's not one dramatic failure, but death by a thousand papercuts.</p>
+
+            <h2 id="trust-accumulates">Trust Accumulates</h2>
+
+            <p>Here's the thing nobody in B2B marketing wants to hear: you don't build trust with AI the way you build a campaign. You can't brief it, launch it, and measure it in a quarter. Trust accumulates. Or it erodes. Slowly, across every source that mentions your business, including sources you didn't create and have never seen.</p>
+
+            <p>Think about how brand authority works in the real world. A company crafts its positioning with intention: the messaging, the visual identity, the value proposition. But the actual brand, the thing that lives in the market's mind, isn't what the company says about itself. It's what the audience believes after absorbing everything they've encountered.</p>
+
+            <p>The intentional messaging is there. But so are the Glassdoor reviews, the offhand mention in a trade publication, the conference panel where the CEO said something slightly different from what the website says.</p>
+
+            <p>In the second article in this series outlining <a href="/blog/ai-understand-brand-visibility">the UNDERSTAND layer</a>, we talked throughout about the precision AI training requires. We also diagrammed the way AI searches through fan out queries. An AI agent absorbs everything simultaneously and has no ability to weigh your intentions.</p>
+
+            <p>As it's working, AI can see that the G2 profile was added 4 years ago, but it doesn't know whether that information is still valid. It can see that your CEO was quoted in Inc. magazine, but can't tell that the quote was taken out of context. It treats every source as a data point until it can synthesize the information and builds a final score that is its understanding from the aggregate.</p>
+
+            <!-- VISUAL: AI Confidence Spectrum -->
+            <div class="visual-container">
+                <svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The AI Confidence Spectrum showing four levels of how AI describes a brand. From left to right: Confident (green, uses definitive 'is' language), Qualified (muted green, uses 'appears to' language), Hedged (amber, uses 'reportedly' language), and Absent (brown, brand not mentioned at all). A gradient bar connects all four levels.">
+                    <rect width="720" height="340" fill="#FAFAF7"/>
+                    <!-- Title -->
+                    <text x="360" y="28" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" font-weight="700" fill="#2C3038">The AI Confidence Spectrum</text>
+                    <text x="360" y="46" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" fill="#545B6A">Where does your brand fall?</text>
+
+                    <!-- Gradient bar -->
+                    <defs>
+                        <linearGradient id="confidence-gradient" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#5B7C5E"/>
+                            <stop offset="35%" stop-color="#8B9A7E"/>
+                            <stop offset="65%" stop-color="#C4956A"/>
+                            <stop offset="100%" stop-color="#6B3D2E"/>
+                        </linearGradient>
+                    </defs>
+                    <rect x="60" y="65" width="600" height="8" rx="4" fill="url(#confidence-gradient)"/>
+
+                    <!-- Marker dots on gradient -->
+                    <circle cx="120" cy="69" r="6" fill="#5B7C5E" stroke="#FAFAF7" stroke-width="2"/>
+                    <circle cx="280" cy="69" r="6" fill="#8B9A7E" stroke="#FAFAF7" stroke-width="2"/>
+                    <circle cx="440" cy="69" r="6" fill="#C4956A" stroke="#FAFAF7" stroke-width="2"/>
+                    <circle cx="600" cy="69" r="6" fill="#6B3D2E" stroke="#FAFAF7" stroke-width="2"/>
+
+                    <!-- CONFIDENT -->
+                    <text x="120" y="100" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#5B7C5E">CONFIDENT</text>
+                    <rect x="30" y="112" width="180" height="72" rx="6" fill="#5B7C5E" opacity="0.08" stroke="#5B7C5E" stroke-width="1"/>
+                    <text x="120" y="133" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038" font-style="italic">"Harbor Strategies is a</text>
+                    <text x="120" y="148" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038" font-style="italic">supply chain optimization</text>
+                    <text x="120" y="163" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038" font-style="italic">firm for mid-market F&amp;B."</text>
+                    <text x="120" y="200" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5B7C5E" font-weight="600">Sources agree.</text>
+                    <text x="120" y="213" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5B7C5E" font-weight="600">AI asserts.</text>
+
+                    <!-- QUALIFIED -->
+                    <text x="280" y="100" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#8B9A7E">QUALIFIED</text>
+                    <rect x="190" y="112" width="180" height="72" rx="6" fill="#8B9A7E" opacity="0.08" stroke="#8B9A7E" stroke-width="1"/>
+                    <text x="280" y="133" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038" font-style="italic">"Harbor Strategies appears</text>
+                    <text x="280" y="148" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038" font-style="italic">to specialize in supply</text>
+                    <text x="280" y="163" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038" font-style="italic">chain consulting."</text>
+                    <text x="280" y="200" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#8B9A7E" font-weight="600">Some gaps.</text>
+                    <text x="280" y="213" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#8B9A7E" font-weight="600">AI qualifies.</text>
+
+                    <!-- HEDGED -->
+                    <text x="440" y="100" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#C4956A">HEDGED</text>
+                    <rect x="350" y="112" width="180" height="72" rx="6" fill="#C4956A" opacity="0.08" stroke="#C4956A" stroke-width="1"/>
+                    <text x="440" y="133" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038" font-style="italic">"Harbor Strategies reportedly</text>
+                    <text x="440" y="148" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038" font-style="italic">offers some consulting</text>
+                    <text x="440" y="163" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038" font-style="italic">services."</text>
+                    <text x="440" y="200" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#C4956A" font-weight="600">Sources conflict.</text>
+                    <text x="440" y="213" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#C4956A" font-weight="600">AI hedges.</text>
+
+                    <!-- ABSENT -->
+                    <text x="600" y="100" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#6B3D2E">ABSENT</text>
+                    <rect x="510" y="112" width="180" height="72" rx="6" fill="#6B3D2E" opacity="0.06" stroke="#6B3D2E" stroke-width="1" stroke-dasharray="4,3"/>
+                    <text x="600" y="148" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A" font-style="italic">[not mentioned]</text>
+                    <text x="600" y="200" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#6B3D2E" font-weight="600">Not enough signal.</text>
+                    <text x="600" y="213" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#6B3D2E" font-weight="600">AI skips you.</text>
+
+                    <!-- Bottom annotation -->
+                    <line x1="80" y1="245" x2="640" y2="245" stroke="#E8DDD5" stroke-width="1"/>
+                    <!-- Left arrow label -->
+                    <text x="130" y="270" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#5B7C5E" font-weight="600">Sources aligned</text>
+                    <text x="130" y="284" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#5B7C5E" font-weight="600">Entity consistent</text>
+                    <!-- Right arrow label -->
+                    <text x="590" y="270" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#6B3D2E" font-weight="600">Sources fragmented</text>
+                    <text x="590" y="284" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#6B3D2E" font-weight="600">Entity inconsistent</text>
+                    <!-- Arrow -->
+                    <line x1="210" y1="276" x2="500" y2="276" stroke="#545B6A" stroke-width="1.5" opacity="0.4"/>
+                    <polygon points="500,272 512,276 500,280" fill="#545B6A" opacity="0.4"/>
+
+                    <!-- Diagnostic prompt -->
+                    <rect x="180" y="300" width="360" height="28" rx="14" fill="#6B3D2E" opacity="0.08"/>
+                    <text x="360" y="319" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#6B3D2E" font-weight="600">Ask any AI about your company. Listen to the language it uses.</text>
+                </svg>
+            </div>
+
+            <p>When those data points align, when your website, your LinkedIn, your press coverage, your directory listings, your leadership bios, and your client case studies all tell the same story, AI cites you with confidence. When they contradict each other, even in small ways, AI hedges. "Reportedly offers." "Appears to specialize in." "May provide services related to."</p>
+
+            <p>That hedging language isn't a bug in AI. It's AI accurately reflecting the state of your digital footprint: inconsistent.</p>
+
+            <h2 id="recipe">What AI Is Synthesizing About You</h2>
+
+            <p>If trust accumulates from everything AI touches, then every page, profile, and mention that describes your business is a data point. Some are current. Some are years out of date. AI weighs all of them, but not in the same way that traditional SEO does.</p>
+
+            <!-- SEO Authority vs AI Trust comparison table -->
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Signal</th>
+                        <th>SEO Authority</th>
+                        <th>AI Trust</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Primary driver</strong></td>
+                        <td>Backlinks from many domains</td>
+                        <td>Consistent claims across independent authoritative sources</td>
+                    </tr>
+                    <tr>
+                        <td><strong>What counts</strong></td>
+                        <td>Quantity of links</td>
+                        <td>Specificity of corroboration</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Entity foundation</strong></td>
+                        <td>Domain strength</td>
+                        <td>Entity consistency across all sources</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Decay rate</strong></td>
+                        <td>Slow (backlinks persist)</td>
+                        <td>Fast (AI retrains; outdated sources lose weight)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Volume play</strong></td>
+                        <td>Works (more links = stronger)</td>
+                        <td>Fails (100 vague mentions &lt; 3 specific corroborating ones)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>The last row is the critical insight. In SEO, spray-and-pray content strategy worked (at least for a while) because Google's algorithm rewards cumulative signal. In AI, spray-and-pray fails because AI is looking for consensus, not noise.</p>
+
+            <p>Here are just some of the places AI could surface information about your business. They're listed in order from easy to change to difficult, to help you prioritize making not just that one fix that jumped out to the VP. You need to make as many of the little fixes as you can, across as many surfaces as you can, to improve the accuracy and consistency of your brand reputation.</p>
+
+            <h3>Your website</h3>
+
+            <p>Your website is the single largest signal. <a href="https://www.growth-memo.com/p/state-of-ai-search-optimization-2026">Kevin Indig's 2026 research</a> found that 94.7% of AI citations reference corporate websites. What you say on your about page, your service pages, your case studies, your leadership bios, and your blog is the dominant input. But it's not the only one.</p>
+
+            <p>Your structured data layer is also on your website, and it matters more than most B2B firms realize. It's you telling AI, in its own language, what your entity is: your name, your category, your location, your services. <a href="https://medium.com/reflections-and-realities/schema-markup-ai-search-visibility-what-every-marketer-needs-to-know-in-2026-3efcd633c1fe">MarkeStac's 2026 analysis</a> found that pages with valid schema markup are 2-4x more likely to appear in Google's AI Overviews, and pages with FAQPage schema specifically achieve up to 2.7x higher citation rates. Without structured data, AI has to guess what it's looking at. With it, you're handing AI a verified label for every entity on your site.</p>
+
+            <h3>Your owned profiles and directories</h3>
+
+            <p>Your LinkedIn company page, Google Business Profile, listings on G2, Clutch, and industry-specific directories. These are your claims about yourself, repeated across platforms you control or can update. When they're consistent with your website, they reinforce the signal. When they drift, they dilute it.</p>
+
+            <h3>Third-party sources you can influence</h3>
+
+            <p>Old press coverage that describes a version of your company from five years ago. Former employee profiles that still list your firm with outdated titles and descriptions. Archived partnership pages on other companies' websites. Event speaker bios from conferences you attended in 2019. Product listings on review sites that nobody's maintained.</p>
+
+            <p>A company that's been in business for 20 or 30 years has an enormous digital trail. Most of that trail was never intended to be permanent. But AI doesn't distinguish between "current" and "archived." It doesn't know that the 2019 conference bio is outdated. It just knows that one more source describes your company differently from the others. Many of these can be corrected if you know they exist. Most companies don't.</p>
+
+            <h3>Sources you can't control, including your competitors</h3>
+
+            <p>This next part is going to sound very familiar to anyone who has worked in SEO. When your competitor earns a confident citation from AI, that citation becomes training data. The model learns to associate your competitor with your category. The next query reinforces it. The next one solidifies it.</p>
+
+            <!-- VISUAL 1: The Compound Citation Gap -->
+            <div class="visual-container">
+                <svg viewBox="0 0 720 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dual-line graph showing two companies over 12 months. Company A builds citation authority early and rises steadily. Company B enters 6 months late and struggles to close a widening gap. The shaded area between lines represents cumulative opportunity cost.">
+                    <rect width="720" height="400" fill="#FAFAF7"/>
+                    <!-- Title -->
+                    <text x="360" y="30" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" font-weight="700" fill="#2C3038">The Compound Citation Gap</text>
+                    <!-- Axes -->
+                    <line x1="80" y1="50" x2="80" y2="340" stroke="#E8DDD5" stroke-width="1.5"/>
+                    <line x1="80" y1="340" x2="680" y2="340" stroke="#E8DDD5" stroke-width="1.5"/>
+                    <!-- Y-axis label -->
+                    <text x="25" y="195" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A" transform="rotate(-90, 25, 195)">Citation Authority</text>
+                    <!-- X-axis labels -->
+                    <text x="130" y="358" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">Month 1</text>
+                    <text x="230" y="358" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">Month 3</text>
+                    <text x="380" y="358" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">Month 6</text>
+                    <text x="530" y="358" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">Month 9</text>
+                    <text x="650" y="358" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">Month 12</text>
+                    <!-- Shaded gap area -->
+                    <path d="M130,310 C230,285 330,240 380,200 C430,160 530,110 650,70 L650,310 C530,280 430,310 380,320 C330,330 230,335 130,340 Z" fill="#C4956A" opacity="0.1"/>
+                    <!-- Company A line (early mover) -->
+                    <path d="M130,310 C230,285 330,240 380,200 C430,160 530,110 650,70" fill="none" stroke="#5B7C5E" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="130" cy="310" r="4" fill="#5B7C5E"/>
+                    <circle cx="650" cy="70" r="4" fill="#5B7C5E"/>
+                    <!-- Company B line (late entrant) -->
+                    <path d="M380,320 C430,310 530,280 650,240" fill="none" stroke="#C4956A" stroke-width="3" stroke-linecap="round" stroke-dasharray="8,4"/>
+                    <circle cx="380" cy="320" r="4" fill="#C4956A"/>
+                    <circle cx="650" cy="240" r="4" fill="#C4956A"/>
+                    <!-- Legend -->
+                    <rect x="420" y="370" width="14" height="3" rx="1" fill="#5B7C5E"/>
+                    <text x="440" y="375" font-family="Manrope, sans-serif" font-size="10" fill="#5B7C5E" font-weight="600">Company A (early mover)</text>
+                    <rect x="420" y="383" width="14" height="3" rx="1" fill="#C4956A"/>
+                    <text x="440" y="388" font-family="Manrope, sans-serif" font-size="10" fill="#C4956A" font-weight="600">Company B (6 months late)</text>
+                    <!-- Gap label -->
+                    <text x="560" y="170" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" fill="#6B3D2E" font-weight="600">Cumulative</text>
+                    <text x="560" y="184" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" fill="#6B3D2E" font-weight="600">opportunity cost</text>
+                    <!-- Arrow pointing to gap -->
+                    <line x1="560" y1="190" x2="560" y2="210" stroke="#6B3D2E" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+                    <defs><marker id="arrowhead" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6B3D2E"/></marker></defs>
+                </svg>
+                <div class="visual-caption">Each month of delay compounds the gap. Early citation authority is exponentially harder to catch.</div>
+            </div>
+
+            <p>Jason Barnard calls this cascading confidence. Early citation authority compounds. Late entrants fight against feedback loops they didn't create. The model has already "decided" who the authorities are, and breaking that pattern requires exponentially more effort the longer you wait.</p>
+
+            <p>Digital Bloom's 2026 AI Citation Position and Revenue Report found that early movers in AI visibility reported a 527% AI traffic surge and 3x higher visibility compared to late adopters. Not because they had better content. Because each citation reinforced their authority, and each of your missed citations reinforced your absence.</p>
+
+            <h2 id="corroboration">The Corroboration Threshold</h2>
+
+            <p>If that last bit sounded like a traditional SEO setup, here's where trust diverges from everything B2B marketers know about SEO.</p>
+
+            <p>AI trust operates on a completely different principle: corroboration. It doesn't care how many sources mention you. It cares whether each one of those essential facts it needs to describe your company is corroborated by another source. If independent, authoritative sources make the same claims about your business as you do, that data point becomes a quotable fact.</p>
+
+            <p>When two to three independent high-authority sources confirm the same description of your firm, something shifts. AI platforms move from "sometimes includes" to "reliably cites" you in their responses. That's the corroboration threshold: the point where AI's internal confidence in your entity crosses from uncertain to authoritative.</p>
+
+            <p><a href="https://sparktoro.com/blog/new-research-ais-are-highly-inconsistent-when-recommending-brands-or-products-marketers-should-take-care-when-tracking-ai-visibility/">Rand Fishkin's SparkToro research</a> quantified this across thousands of AI queries, and <a href="https://metricusapp.com/blog/ai-visibility-what-to-fix-first/">Metricus corroborated it</a> across 73 million brand profiles. Brands above the corroboration threshold appeared in 55-97% of AI responses. Brands below it surfaced intermittently. The language shifts too: below the threshold, AI hedges with "claims to be" and "reportedly offers." Above it, AI asserts with "is" and includes you consistently.</p>
+
+            <!-- VISUAL: Corroboration Threshold -->
+            <div class="visual-container">
+                <svg viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar chart showing the corroboration threshold effect. Brands with fewer than 2-3 independent corroborating sources appear intermittently in AI responses. Brands above the threshold appear in 55 to 97 percent of responses. A vertical dashed line marks the threshold point.">
+                    <rect width="720" height="380" fill="#FAFAF7"/>
+                    <!-- Title -->
+                    <text x="360" y="28" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" font-weight="700" fill="#2C3038">The Corroboration Threshold</text>
+                    <text x="360" y="46" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" fill="#545B6A">AI citation frequency by number of independent corroborating sources</text>
+
+                    <!-- Y-axis -->
+                    <line x1="100" y1="70" x2="100" y2="290" stroke="#E8DDD5" stroke-width="1.5"/>
+                    <text x="30" y="180" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A" transform="rotate(-90, 30, 180)">Appears in AI Responses</text>
+                    <!-- Y-axis labels -->
+                    <text x="92" y="290" text-anchor="end" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">0%</text>
+                    <text x="92" y="235" text-anchor="end" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">25%</text>
+                    <text x="92" y="180" text-anchor="end" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">50%</text>
+                    <text x="92" y="125" text-anchor="end" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">75%</text>
+                    <text x="92" y="78" text-anchor="end" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">100%</text>
+                    <!-- Grid lines -->
+                    <line x1="100" y1="232" x2="660" y2="232" stroke="#E8DDD5" stroke-width="0.5"/>
+                    <line x1="100" y1="177" x2="660" y2="177" stroke="#E8DDD5" stroke-width="0.5"/>
+                    <line x1="100" y1="122" x2="660" y2="122" stroke="#E8DDD5" stroke-width="0.5"/>
+
+                    <!-- X-axis baseline -->
+                    <line x1="100" y1="290" x2="660" y2="290" stroke="#E8DDD5" stroke-width="1.5"/>
+
+                    <!-- Bars: Below threshold (intermittent, low) -->
+                    <!-- 0 sources -->
+                    <rect x="125" y="272" width="55" height="18" rx="3" fill="#6B3D2E" opacity="0.4"/>
+                    <text x="152" y="265" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#6B3D2E" font-weight="600">~8%</text>
+                    <text x="152" y="308" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">0</text>
+                    <!-- 1 source -->
+                    <rect x="205" y="254" width="55" height="36" rx="3" fill="#6B3D2E" opacity="0.55"/>
+                    <text x="232" y="247" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#6B3D2E" font-weight="600">~16%</text>
+                    <text x="232" y="308" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">1</text>
+
+                    <!-- Threshold line -->
+                    <line x1="310" y1="60" x2="310" y2="300" stroke="#6B3D2E" stroke-width="2" stroke-dasharray="6,4"/>
+                    <rect x="275" y="316" width="70" height="20" rx="4" fill="#6B3D2E"/>
+                    <text x="310" y="330" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="white">THRESHOLD</text>
+
+                    <!-- Bars: Above threshold (55-97%, tall) -->
+                    <!-- 2-3 sources -->
+                    <rect x="345" y="167" width="55" height="123" rx="3" fill="#5B7C5E" opacity="0.7"/>
+                    <text x="372" y="160" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5B7C5E" font-weight="600">55%</text>
+                    <text x="372" y="308" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">2-3</text>
+                    <!-- 4-5 sources -->
+                    <rect x="425" y="114" width="55" height="176" rx="3" fill="#5B7C5E" opacity="0.8"/>
+                    <text x="452" y="107" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5B7C5E" font-weight="600">80%</text>
+                    <text x="452" y="308" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">4-5</text>
+                    <!-- 6+ sources -->
+                    <rect x="505" y="83" width="55" height="207" rx="3" fill="#5B7C5E" opacity="0.9"/>
+                    <text x="532" y="77" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5B7C5E" font-weight="600">97%</text>
+                    <text x="532" y="308" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">6+</text>
+
+                    <!-- X-axis label -->
+                    <text x="380" y="352" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" fill="#545B6A">Independent Corroborating Sources</text>
+
+                    <!-- Annotation: hedged vs confident -->
+                    <rect x="112" y="340" width="90" height="18" rx="9" fill="#6B3D2E" opacity="0.15"/>
+                    <text x="157" y="353" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#6B3D2E" font-weight="600">"claims to be"</text>
+                    <rect x="460" y="340" width="120" height="18" rx="9" fill="#5B7C5E" opacity="0.15"/>
+                    <text x="520" y="353" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5B7C5E" font-weight="600">"is" (confident)</text>
+                </svg>
+                <div class="visual-caption">Data: SparkToro (2,961 queries) and Metricus (73M brand profiles). The jump at 2-3 independent sources is where AI shifts from hedging to asserting.</div>
+            </div>
+
+            <p>This is why a hundred directory listings describing you as "a consulting firm" do nothing, while three well-placed industry publication mentions describing you as "a supply chain optimization firm for mid-market food manufacturers" change everything. AI is looking for consensus among sources it already trusts, not volume from sources it doesn't.</p>
+
+            <h2 id="fan-out">The Fan-Out Revisited: What AI Is Actually Checking</h2>
+
+            <p>Remember the fan out queries AI uses to gather its information. AI isn't just using those on your website. They're checking everything: your site, your competitors' sites, industry publications, review platforms, LinkedIn profiles, press coverage, conference proceedings. Every source those sub-queries touch is a data point that either reinforces or undermines your entity.</p>
+
+            <!-- VISUAL 2: Entity Consistency vs. Fragmentation -->
+            <div class="visual-container">
+                <svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two-panel diagram. Left panel shows a Consistent Entity where website, LinkedIn, publication, and directory all point to the same description with converging lines and confident AI language. Right panel shows a Fragmented Entity where the same sources each have different descriptions with diverging lines and hedged AI language.">
+                    <rect width="720" height="420" fill="#FAFAF7"/>
+                    <!-- Left panel: Consistent Entity -->
+                    <rect x="20" y="15" width="335" height="390" rx="8" fill="#FFFFFF" stroke="#5B7C5E" stroke-width="1.5" opacity="0.3"/>
+                    <text x="187" y="40" text-anchor="middle" font-family="Manrope, sans-serif" font-size="13" font-weight="700" fill="#5B7C5E">Consistent Entity</text>
+                    <!-- Source nodes -->
+                    <rect x="40" y="60" width="100" height="32" rx="4" fill="#5B7C5E" opacity="0.15"/>
+                    <text x="90" y="81" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" font-weight="600" fill="#5B7C5E">Website</text>
+                    <rect x="40" y="104" width="100" height="32" rx="4" fill="#5B7C5E" opacity="0.15"/>
+                    <text x="90" y="125" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" font-weight="600" fill="#5B7C5E">LinkedIn</text>
+                    <rect x="40" y="148" width="100" height="32" rx="4" fill="#5B7C5E" opacity="0.15"/>
+                    <text x="90" y="169" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" font-weight="600" fill="#5B7C5E">Publication</text>
+                    <rect x="40" y="192" width="100" height="32" rx="4" fill="#5B7C5E" opacity="0.15"/>
+                    <text x="90" y="213" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" font-weight="600" fill="#5B7C5E">Directory</text>
+                    <!-- Converging lines to single description -->
+                    <line x1="140" y1="76" x2="215" y2="145" stroke="#5B7C5E" stroke-width="1.5" opacity="0.5"/>
+                    <line x1="140" y1="120" x2="215" y2="145" stroke="#5B7C5E" stroke-width="1.5" opacity="0.5"/>
+                    <line x1="140" y1="164" x2="215" y2="145" stroke="#5B7C5E" stroke-width="1.5" opacity="0.5"/>
+                    <line x1="140" y1="208" x2="215" y2="145" stroke="#5B7C5E" stroke-width="1.5" opacity="0.5"/>
+                    <!-- Central description -->
+                    <rect x="215" y="125" width="120" height="40" rx="6" fill="#5B7C5E" opacity="0.2" stroke="#5B7C5E" stroke-width="1"/>
+                    <text x="275" y="142" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5B7C5E" font-weight="600">"Supply chain</text>
+                    <text x="275" y="155" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5B7C5E" font-weight="600">optimization firm"</text>
+                    <!-- AI response box -->
+                    <rect x="40" y="260" width="295" height="70" rx="6" fill="#5B7C5E" opacity="0.08" stroke="#5B7C5E" stroke-width="1"/>
+                    <text x="52" y="278" font-family="Manrope, sans-serif" font-size="9" font-weight="600" fill="#5B7C5E">AI RESPONSE</text>
+                    <text x="52" y="295" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038">"Harbor Strategies is a supply chain</text>
+                    <text x="52" y="310" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038">optimization firm for mid-market food</text>
+                    <text x="52" y="325" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038">and beverage manufacturers."</text>
+                    <!-- Confidence label -->
+                    <rect x="90" y="342" width="120" height="24" rx="12" fill="#5B7C5E"/>
+                    <text x="150" y="358" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" font-weight="700" fill="white">Confident</text>
+
+                    <!-- Right panel: Fragmented Entity -->
+                    <rect x="365" y="15" width="335" height="390" rx="8" fill="#FFFFFF" stroke="#6B3D2E" stroke-width="1.5" opacity="0.3"/>
+                    <text x="532" y="40" text-anchor="middle" font-family="Manrope, sans-serif" font-size="13" font-weight="700" fill="#6B3D2E">Fragmented Entity</text>
+                    <!-- Source nodes with different descriptions -->
+                    <rect x="385" y="60" width="135" height="32" rx="4" fill="#6B3D2E" opacity="0.1"/>
+                    <text x="452" y="75" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#6B3D2E">Website: "mgmt consulting"</text>
+                    <rect x="385" y="104" width="135" height="32" rx="4" fill="#6B3D2E" opacity="0.1"/>
+                    <text x="452" y="119" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#6B3D2E">LinkedIn: "strategic advisory"</text>
+                    <rect x="385" y="148" width="135" height="32" rx="4" fill="#6B3D2E" opacity="0.1"/>
+                    <text x="452" y="163" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#6B3D2E">Inc.: "technology consultancy"</text>
+                    <rect x="385" y="192" width="135" height="32" rx="4" fill="#6B3D2E" opacity="0.1"/>
+                    <text x="452" y="207" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#6B3D2E">G2: "7 products offered"</text>
+                    <!-- Diverging lines -->
+                    <line x1="520" y1="76" x2="600" y2="90" stroke="#6B3D2E" stroke-width="1.5" opacity="0.4"/>
+                    <line x1="520" y1="120" x2="620" y2="120" stroke="#6B3D2E" stroke-width="1.5" opacity="0.4"/>
+                    <line x1="520" y1="164" x2="610" y2="155" stroke="#6B3D2E" stroke-width="1.5" opacity="0.4"/>
+                    <line x1="520" y1="208" x2="595" y2="200" stroke="#6B3D2E" stroke-width="1.5" opacity="0.4"/>
+                    <!-- Scattered endpoints (no convergence) -->
+                    <circle cx="600" cy="90" r="5" fill="#6B3D2E" opacity="0.3"/>
+                    <circle cx="620" cy="120" r="5" fill="#6B3D2E" opacity="0.3"/>
+                    <circle cx="610" cy="155" r="5" fill="#6B3D2E" opacity="0.3"/>
+                    <circle cx="595" cy="200" r="5" fill="#6B3D2E" opacity="0.3"/>
+                    <!-- Question mark -->
+                    <text x="615" y="155" text-anchor="middle" font-family="Manrope, sans-serif" font-size="28" font-weight="800" fill="#6B3D2E" opacity="0.2">?</text>
+                    <!-- AI response box -->
+                    <rect x="385" y="260" width="295" height="70" rx="6" fill="#6B3D2E" opacity="0.06" stroke="#6B3D2E" stroke-width="1"/>
+                    <text x="397" y="278" font-family="Manrope, sans-serif" font-size="9" font-weight="600" fill="#6B3D2E">AI RESPONSE</text>
+                    <text x="397" y="295" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038">"Harbor Strategies reportedly offers</text>
+                    <text x="397" y="310" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038">some consulting services and appears</text>
+                    <text x="397" y="325" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038">to work across various industries."</text>
+                    <!-- Hedged label -->
+                    <rect x="435" y="342" width="120" height="24" rx="12" fill="#6B3D2E"/>
+                    <text x="495" y="358" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" font-weight="700" fill="white">Hedged</text>
+                </svg>
+                <div class="visual-caption">Consistent sources produce confident citations. Fragmented sources produce hedged language.</div>
+            </div>
+
+            <p>A firm that's been online for 5 to 30 years has content scattered across hundreds of sources. Some of it is current. Some of it reflects a version of the company that no longer exists. Some of it was written by someone who never got the messaging quite right.</p>
+
+            <p>AI touches all of it. And when what it finds across those sources doesn't match what your website says, it doesn't pick a winner. It hedges.</p>
+
+            <p>This is why the VP who fixed one G2 listing wasn't done. AI wasn't looking at one source. It was synthesizing across dozens. And most of those sources were telling a slightly different story.</p>
+
+            <h2 id="freshness">The Freshness Factor</h2>
+
+            <p>There's one more variable that changes the equation: time.</p>
+
+            <p>Digital Bloom's 2026 research found that 76.4% of ChatGPT's top-cited pages were updated within the last 30 days. Content freshness within 30 days earns approximately 3.2x more AI citations than content older than 90 days. Pages without updates for three or more months are 3x more likely to lose their citation position. <a href="https://www.trysight.ai/blog/brand-monitoring-for-ai-platforms">Sight AI's 2026 brand monitoring research</a> confirmed the pattern at a broader scale: more than 70% of all pages cited by AI have been updated within the past 12 months.</p>
+
+            <p>This isn't AI preferring "new" content. It's AI using freshness as a proxy for authority. Content that someone maintains signals that someone considers it important. Content that sits untouched for a year signals abandonment.</p>
+
+            <p>And the compounding works here too. Fresh content gets cited. Citations reinforce authority. Authority earns more citations on the next query. Stale content gets skipped. Skipped content loses authority. Lost authority means fewer citations next cycle. The flywheel spins in both directions.</p>
+
+            <p>For a company with decades of history, this creates an uncomfortable math problem. You might have several hundred pages of content across your site and other platforms. Some of it was last touched in 2021. AI is weighing all of it, and the stale pages aren't just neutral. They're actively pulling down the freshness signal of the pages you do maintain.</p>
+
+            <h2 id="framework">The Find/Understand/Trust Framework</h2>
+
+            <p>This is the third and final layer.</p>
+
+            <p>FIND asks: Can AI access your content? This is the technical layer where you control what AI agents can and cannot access through your CDN, your robots.txt file and the type of code you use to create your pages. This one's binary. You pass or you don't.</p>
+
+            <p>UNDERSTAND asks: Does AI comprehend what your business does? This is the content layer where you work on entity clarity, your fact-to-vibe ratio, and your semantic structure. There's an awful lot of grey area making sorting facts from vibes difficult.</p>
+
+            <p>TRUST asks: Can AI trust the information it found about your company enough to include you in its answer as a mention or citation? This is the reputation layer and the most expensive to ignore.</p>
+
+            <p>TRUST is where citations are born. And citations become revenue.</p>
+
+            <p>A buyer who sees AI describe your firm with specific, confident, corroborated facts doesn't need to be convinced. They need to be contacted. A buyer who sees AI hedge, "Harbor Strategies reportedly offers some supply chain consulting services," keeps searching. Hedged citations are vibes with extra steps.</p>
+
+            <!-- VISUAL 3: Three-Layer Framework -->
+            <div class="visual-container">
+                <svg viewBox="0 0 720 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three-layer vertical stack showing FIND at the base (Can AI access you?), UNDERSTAND in the middle (Does AI comprehend you?), and TRUST at the top emphasized (Can AI cite you with confidence?). An arrow along the side is labeled Accumulates upward. Each layer depends on the ones below it.">
+                    <rect width="720" height="450" fill="#FAFAF7"/>
+                    <!-- Title -->
+                    <text x="360" y="30" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" font-weight="700" fill="#2C3038">The Find / Understand / Trust Framework</text>
+
+                    <!-- FIND layer (base) -->
+                    <rect x="160" y="320" width="380" height="85" rx="8" fill="#5B7C5E" opacity="0.15" stroke="#5B7C5E" stroke-width="2"/>
+                    <text x="350" y="352" text-anchor="middle" font-family="Manrope, sans-serif" font-size="18" font-weight="800" fill="#5B7C5E">FIND</text>
+                    <text x="350" y="375" text-anchor="middle" font-family="Manrope, sans-serif" font-size="12" fill="#5B7C5E">Can AI access you?</text>
+                    <text x="350" y="395" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">Technical layer: CDN, robots.txt, JS rendering, structured data</text>
+
+                    <!-- UNDERSTAND layer (middle) -->
+                    <rect x="160" y="220" width="380" height="85" rx="8" fill="#C4956A" opacity="0.15" stroke="#C4956A" stroke-width="2"/>
+                    <text x="350" y="252" text-anchor="middle" font-family="Manrope, sans-serif" font-size="18" font-weight="800" fill="#C4956A">UNDERSTAND</text>
+                    <text x="350" y="275" text-anchor="middle" font-family="Manrope, sans-serif" font-size="12" fill="#C4956A">Does AI comprehend you?</text>
+                    <text x="350" y="295" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">Content layer: entity clarity, fact-to-vibe ratio, semantic structure</text>
+
+                    <!-- TRUST layer (top, emphasized) -->
+                    <rect x="150" y="110" width="400" height="95" rx="10" fill="#6B3D2E" opacity="0.12" stroke="#6B3D2E" stroke-width="3"/>
+                    <text x="350" y="145" text-anchor="middle" font-family="Manrope, sans-serif" font-size="22" font-weight="800" fill="#6B3D2E">TRUST</text>
+                    <text x="350" y="170" text-anchor="middle" font-family="Manrope, sans-serif" font-size="13" fill="#6B3D2E" font-weight="600">Can AI cite you with confidence?</text>
+                    <text x="350" y="192" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">Reputation layer: corroboration, consistency, freshness, authority</text>
+
+                    <!-- Upward arrow on the side -->
+                    <line x1="110" y1="390" x2="110" y2="130" stroke="#2C3038" stroke-width="2" opacity="0.3"/>
+                    <polygon points="105,130 110,115 115,130" fill="#2C3038" opacity="0.3"/>
+                    <text x="100" y="265" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A" font-weight="600" transform="rotate(-90, 100, 265)">Accumulates upward</text>
+
+                    <!-- Callout -->
+                    <text x="360" y="435" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" fill="#545B6A" font-style="italic">Each layer depends on the ones below it.</text>
+                </svg>
+            </div>
+
+            <!-- CTA Box -->
+            <div class="cta-box">
+                <p><strong>Our Signal Check Shows Your Real Results Over All Three Layers.</strong></p>
+                <p><em>You're findable. AI understands what you do. But does it trust you enough to cite you over your competitors? That's the question this article was built to diagnose. And it's the question Signal Check answers in two minutes.</em></p>
+                <p><a href="/signal-check">Run your free Signal Check now &rarr;</a></p>
+            </div>
+
+
+            <!-- Author Bio -->
+            <div class="author-bio">
+                <div class="author-avatar">LM</div>
+                <div class="author-info">
+                    <h3>Liz Micik</h3>
+                    <p class="author-title">AI Visibility Strategist &amp; SEO Expert</p>
+                    <p>28 years in SEO, content strategy, and B2B marketing. Liz helps professional services firms become visible, understood, and trusted by AI platforms.</p>
+                </div>
+            </div>
+
+            <!-- Related Posts -->
+            <div class="related-posts">
+                <h2>More in This Series</h2>
+                <div class="related-posts-grid">
+                    <div class="post-card fade-in">
+                        <a href="/blog/ai-understand-brand-visibility">
+                        <div class="post-card-image" style="background: linear-gradient(135deg, #C4956A 0%, #2C3038 100%);">
+                            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
+                                <rect width="280" height="180" fill="none"/>
+                                <text x="140" y="75" text-anchor="middle" font-family="Manrope, sans-serif" font-size="32" font-weight="800" fill="rgba(255,255,255,0.4)">UNDERSTAND</text>
+                                <text x="140" y="115" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)">Layer 2: Facts vs. Vibes</text>
+                            </svg>
+                        </div>
+                        <div class="post-card-content">
+                            <p class="post-card-meta">Previous</p>
+                            <h3>AI Found Your Website. It Has No Idea What You Do.</h3>
+                        </div>
+                        </a>
+                    </div>
+
+                    <div class="post-card fade-in">
+                        <a href="/blog/ai-searchability-find-layer">
+                        <div class="post-card-image" style="background: linear-gradient(135deg, #5B7C5E 0%, #2C3038 100%);">
+                            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
+                                <rect width="280" height="180" fill="none"/>
+                                <text x="140" y="75" text-anchor="middle" font-family="Manrope, sans-serif" font-size="32" font-weight="800" fill="rgba(255,255,255,0.4)">FIND</text>
+                                <text x="140" y="115" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)">Layer 1: The Four Gates</text>
+                            </svg>
+                        </div>
+                        <div class="post-card-content">
+                            <p class="post-card-meta">First in Series</p>
+                            <h3>AI Searchability is Binary: Can AI Crawlers FIND you?</h3>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="final-cta">
+        <h2>Does AI trust you enough to cite you?</h2>
+        <p>The Signal Check shows you what AI platforms actually say about your business across all three layers. The full Audit diagnoses every gap.</p>
+        <div class="cta-buttons">
+            <a href="/signal-check" class="cta-button">Free Signal Check</a>
+            <a href="/audit" class="cta-button copper">Agent Readiness Audit</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+        <p style="margin-top:0.5rem;"><a href="/privacy-policy">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms">Terms of Use</a></p>
+    </footer>
+
+    <script>
+        // Cookie Banner & GA4
+        (function() {
+            var COOKIE_KEY = 'lizmicik-cookie-consent';
+            var GA_ID = 'G-B9S40S2SKG';
+
+            if (!localStorage.getItem(COOKIE_KEY)) {
+                var banner = document.createElement('div');
+                banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#2C3038;color:white;padding:1.5rem 2rem;text-align:center;z-index:999;font-size:0.9rem;';
+                banner.innerHTML = '<p style="margin-bottom:1rem;">We use analytics to understand how you use our site and improve it.</p><button id="accept-cookies" style="background:#5B7C5E;color:white;border:none;padding:0.75rem 1.5rem;border-radius:0.5rem;cursor:pointer;font-weight:600;margin-right:1rem;">Accept</button><button id="decline-cookies" style="background:transparent;color:white;border:1px solid white;padding:0.75rem 1.5rem;border-radius:0.5rem;cursor:pointer;font-weight:600;">Decline</button>';
+                document.body.appendChild(banner);
+                document.getElementById('accept-cookies').addEventListener('click', function() { localStorage.setItem(COOKIE_KEY, 'true'); loadGA(); banner.remove(); });
+                document.getElementById('decline-cookies').addEventListener('click', function() { localStorage.setItem(COOKIE_KEY, 'false'); banner.remove(); });
+            } else if (localStorage.getItem(COOKIE_KEY) === 'true') { loadGA(); }
+
+            function loadGA() {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', GA_ID);
+                var script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+                document.head.appendChild(script);
+            }
+        })();
+
+        // Mobile Navigation Toggle
+        var navToggle = document.querySelector('.nav-toggle');
+        var navLinks = document.querySelector('.nav-links');
+        navToggle.addEventListener('click', function() {
+            navToggle.classList.toggle('open');
+            navLinks.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+        });
+
+        // Hide nav on scroll down, show on scroll up
+        var lastScrollTop = 0;
+        var nav = document.querySelector('.nav');
+        window.addEventListener('scroll', function() {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) { nav.classList.add('nav-hidden'); }
+            else { nav.classList.remove('nav-hidden'); }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                var href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    var target = document.querySelector(href);
+                    var offsetTop = target.offsetTop - 80;
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                    if (navLinks.classList.contains('active')) { navToggle.classList.remove('open'); navLinks.classList.remove('active'); }
+                }
+            });
+        });
+
+        // TOC active state tracking
+        var tocLinks = document.querySelectorAll('.toc-list a');
+        var sections = [];
+        tocLinks.forEach(function(link) {
+            var id = link.getAttribute('href').substring(1);
+            var section = document.getElementById(id);
+            if (section) sections.push({ el: section, link: link });
+        });
+
+        function updateTOC() {
+            var scrollPos = window.scrollY + 120;
+            var current = null;
+            sections.forEach(function(s) {
+                if (s.el.offsetTop <= scrollPos) current = s;
+            });
+            tocLinks.forEach(function(l) { l.classList.remove('active'); });
+            if (current) current.link.classList.add('active');
+        }
+        window.addEventListener('scroll', updateTOC);
+        updateTOC();
+
+        // IntersectionObserver for fade-in animations
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; observer.unobserve(entry.target); }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+            el.style.opacity = '0'; el.style.transform = 'translateY(10px)'; el.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; observer.observe(el);
+        });
+    </script>
+</body>
+</html>
