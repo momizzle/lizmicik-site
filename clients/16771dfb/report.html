@@ -791,7 +791,7 @@
           <div class="result-card" style="border-left-color: var(--high);">
             <h3>Find</h3>
             <div class="question">Can AI access your website?</div>
-            <div class="verdict">Your doors are mostly open. Robots.txt is permissive, sitemaps are current, and Cloudflare provides solid infrastructure. But there's no llms.txt file to communicate directly with AI models, Cloudflare's Markdown for Agents feature isn't configured, and only Claude-specific crawler rules exist. The foundation is there, but the AI-specific handshake is missing.</div>
+            <div class="verdict">Your doors are mostly open. Robots.txt is permissive, sitemaps are current, and Cloudflare provides solid infrastructure. But Cloudflare's Markdown for Agents feature isn't configured, and only Claude-specific crawler rules exist. The foundation is there, but the AI-specific edge features are left on the table.</div>
             <div class="severity-bar">
               <div class="severity-segment high" style="flex: 1;"></div>
               <div class="severity-segment medium" style="flex: 2;"></div>
@@ -1093,30 +1093,18 @@
 
     <!-- AI Model Handshake Topic Group -->
     <div class="findings-section">
-      <h3>AI Model Handshake</h3>
-      <p class="topic-intro">Beyond basic crawl access, newer AI systems look for dedicated files that provide structured information about your organization. These are explicit channels for communicating with AI platforms on your terms.</p>
+      <h3>Edge AI Features</h3>
+      <p class="topic-intro">Beyond basic crawl access, your CDN and edge infrastructure can offer AI-specific capabilities — content reformatting, bot management, agent governance — that make it easier for AI systems to process your site on their terms and yours.</p>
 
-      <!-- LOW finding: llms.txt -->
+      <!-- INFO note: llms.txt status update -->
       <details>
-        <summary><span class="badge low">LOW</span> llms.txt Not Implemented <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-012)</span></summary>
+        <summary><span class="badge low">INFO</span> llms.txt: Not a Required Standard <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-012)</span></summary>
         <div class="finding-content">
-          <p style="margin-bottom: 12px;">An llms.txt file sits at the root of your website and provides AI models with a structured summary of who you are, what you do, and how to describe you. Think of it as a handshake between your website and every AI platform.</p>
+          <p style="margin-bottom: 12px;"><strong>Update:</strong> llms.txt was proposed in 2024 as a plain-text file AI models could read for a structured site summary. Since then, the major AI crawlers — OpenAI/GPTBot, Anthropic/ClaudeBot, Google/Google-Extended, and Perplexity — have not adopted the standard. None of them fetch or use llms.txt today.</p>
 
-          <details style="margin-top: 12px;">
-            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
-            <div class="finding-content">
-              <p style="margin-bottom: 12px;">Your site returns a 404 for both /llms.txt and /.well-known/llms.txt. This means AI models have no direct channel to learn your preferred positioning, key services, or how to accurately describe your firm.</p>
+          <p style="margin-bottom: 12px;">We flagged this file as "missing" in earlier versions of this report. That guidance has been retired. You do not need to create an llms.txt file, and if one were added it would not change how AI platforms describe your firm.</p>
 
-              <details style="margin-top: 12px;">
-                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
-                <div class="finding-content">
-                  <p>Both root and .well-known paths return 404. Wordlift also flagged this as missing. Implementation requires creating a static text file and deploying to the web root or .well-known directory.</p>
-                </div>
-              </details>
-
-              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Create an llms.txt file with <span class="redacted">Jabian</span>'s core positioning, service areas, differentiators (local model, senior team access), target industries, and preferred description language.</p>
-            </div>
-          </details>
+          <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>What to do instead:</strong> Invest the effort that would have gone into llms.txt into schema.org markup (Organization, Service, Person, CaseStudy), clean semantic HTML, robots.txt clarity for AI crawlers, and — where available — edge features like Cloudflare's Markdown for Agents. These are the channels major AI platforms actually use.</p>
         </div>
       </details>
 
@@ -2207,10 +2195,6 @@
       <div class="phase-header">Quick Wins — Do This Week</div>
       <p style="margin-bottom: 16px; color: var(--text-secondary); font-size: 14px;">Low-effort changes that start improving AI readiness immediately. No development resources required for most of these.</p>
       <div style="display: flex; flex-direction: column; gap: 12px;">
-        <div style="padding: 16px; background: white; border-radius: 6px; border-left: 3px solid var(--pass);">
-          <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Create an llms.txt file</div>
-          <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">A simple text file at your site root that tells AI models who you are, what you do, and how to describe you. This is the single fastest way to start communicating with AI platforms on your terms. <span style="font-size: 12px; color: var(--slate-mid);">(BV-012)</span></div>
-        </div>
         <div style="padding: 16px; background: white; border-radius: 6px; border-left: 3px solid var(--pass);">
           <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Enable Cloudflare Markdown for Agents</div>
           <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">A single toggle in your Cloudflare dashboard that reformats pages into clean markdown when AI crawlers visit. Makes your content significantly easier for AI to parse. <span style="font-size: 12px; color: var(--slate-mid);">(BV-015)</span></div>
