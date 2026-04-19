@@ -202,50 +202,73 @@
             }
         }
 
-        /* Header/Hero */
+        /* Header/Hero — v6 redesign: image left, text right, cream confined to 1080px hero */
         header.blog-hero {
-            margin-top: 60px;
-            padding: var(--section-padding) clamp(1.5rem, 4vw, 2rem);
-            text-align: center;
+            max-width: 1080px;
+            margin: 60px auto 0;
+            padding: 2.5rem clamp(1.5rem, 4vw, 3rem);
+            background: #F5EFE4;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            text-align: left;
         }
 
         .blog-hero-image {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto 2rem;
+            width: 290px;
+            height: auto;
+            max-width: 100%;
+            margin: 0;
             display: block;
             border-radius: 6px;
         }
 
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .pillar-eyebrow {
+            display: inline-block;
+            align-self: flex-start;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin: 0;
+            color: var(--accent-amber);
+        }
+
         .blog-meta {
             display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 1.5rem 0 2rem;
-            font-size: 0.95rem;
+            justify-content: flex-start;
+            gap: 0.75rem;
+            margin: 0.25rem 0 0;
+            font-size: 0.85rem;
             color: var(--text-secondary);
             flex-wrap: wrap;
+            align-items: center;
         }
 
-        .pillar-badge {
-            background: var(--accent-amber);
-            color: white;
-            padding: 0.35rem 0.8rem;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-
-        h1 {
+        header.blog-hero h1 {
             font-family: var(--font-heading);
-            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-size: clamp(1.5rem, 3.2vw, 2.1rem);
             font-weight: 700;
-            line-height: 1.2;
+            line-height: 1.25;
             color: var(--text-primary);
-            margin: 2rem 0 1.5rem;
-            max-width: var(--wide-width);
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0;
+            text-align: left;
+        }
+
+        @media (max-width: 720px) {
+            header.blog-hero { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; }
+            .blog-hero-image { width: 220px; margin: 0 auto; }
+            .hero-text { align-items: center; }
+            .pillar-eyebrow { align-self: center; }
+            .blog-meta { justify-content: center; }
+            header.blog-hero h1 { text-align: center; font-size: clamp(1.35rem, 5vw, 1.75rem); }
         }
 
         .blog-subheader {
@@ -725,14 +748,17 @@
     <!-- Hero Section -->
     <header class="blog-hero">
         <img class="blog-hero-image" src="/images/transition-phrasebook-hero.png" alt="Editorial illustration: an open phrasebook translating old search terminology into the language AI systems actually use — signifying that the transition from search to AI visibility requires new vocabulary, not new effort." loading="eager" />
-        <div class="blog-meta">
-            <span class="pillar-badge">AI Visibility</span>
-            <span>April 10, 2026</span>
-            <span>&bull;</span>
-            <span>By Liz Micik</span>
+        <div class="hero-text">
+            <span class="pillar-eyebrow">AI Visibility</span>
+            <h1>From Search to AI Visibility: The Transition Needs Translation</h1>
+            <div class="blog-meta">
+                <span>April 10, 2026</span>
+                <span>&bull;</span>
+                <span>By Liz Micik</span>
+                <span>&bull;</span>
+                <span>8 min read</span>
+            </div>
         </div>
-
-        <h1>From Search to AI Visibility: The Transition Needs Translation</h1>
     </header>
 
     <!-- Main Content -->
