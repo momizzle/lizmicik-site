@@ -291,6 +291,40 @@
             background: #4A6B4D;
             color: #fff !important;
         }
+        /* Services dropdown */
+        .nav-item.has-dropdown { position: relative; }
+        .nav-caret { font-size: 0.7em; margin-left: 0.15rem; transition: transform 0.2s ease; display: inline-block; }
+        .nav-item.has-dropdown:hover .nav-caret,
+        .nav-item.has-dropdown:focus-within .nav-caret { transform: rotate(180deg); }
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 260px;
+            margin: 0;
+            padding: 0.45rem 0;
+            list-style: none;
+            background: rgba(250, 250, 247, 0.98);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(44, 48, 56, 0.06);
+            border-radius: 6px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+        }
+        .nav-item.has-dropdown:hover .nav-dropdown,
+        .nav-item.has-dropdown:focus-within .nav-dropdown { display: block; }
+        .nav-dropdown li { padding: 0; }
+        .nav-dropdown a {
+            display: block;
+            padding: 0.55rem 1.2rem;
+            white-space: nowrap;
+            text-transform: none !important;
+            letter-spacing: 0 !important;
+            font-size: 0.9rem !important;
+        }
+        .nav-dropdown a:hover { background: rgba(44, 48, 56, 0.04); }
+
         .nav-toggle {
             display: none;
             background: none;
@@ -656,6 +690,19 @@
                 gap: 1rem;
             }
             .nav-links.active { display: flex; }
+            /* Services dropdown: nested list on mobile */
+            .nav-dropdown {
+                display: block;
+                position: static;
+                min-width: 0;
+                padding: 0.25rem 0 0 1rem;
+                background: transparent;
+                backdrop-filter: none;
+                border: none;
+                box-shadow: none;
+            }
+            .nav-caret { display: none; }
+
         }
         @media (max-width: 640px) {
             .cookie-banner-inner {
@@ -680,7 +727,13 @@
                 <li><a href="/about">About</a></li>
                 <li><a href="/blog">Blog</a></li>
                 <li><a href="/resources">Resources</a></li>
-                <li><a href="/audit">Agent Readiness Audit</a></li>
+                <li class="nav-item has-dropdown">
+                    <a href="/audit" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Services <span class="nav-caret">&#9662;</span></a>
+                    <ul class="nav-dropdown">
+                        <li><a href="/audit">Agent Readiness Audit</a></li>
+                        <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+                    </ul>
+                </li>
                 <li><a href="/signal-check" class="nav-cta">Free Signal Check</a></li>
             </ul>
         </div>
