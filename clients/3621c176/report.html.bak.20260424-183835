@@ -1,0 +1,2166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Agent Readiness Audit — Sanitized Sample</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FAFAF7;
+      --cream-dark: #FAF8F5;
+      --slate: #2C3038;
+      --slate-light: #3D424D;
+      --slate-mid: #545B6A;
+      --accent-teal: #5B7C5E;
+      --teal-deep: #4E7F80;
+      --teal-light: #8ABCBD;
+      --accent-copper: #5B7C5E;
+      --accent-blue: #8B9A7E;
+      --text-primary: #2C3038;
+      --text-secondary: #545B6A;
+      --text-light: #F2EDE7;
+      --high: #dc2626;
+      --medium: #f59e0b;
+      --low: #fde047;
+      --pass: #16a34a;
+      --neutral: #8A8580;
+      --font-heading: 'Manrope', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      background-color: var(--cream);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Report Header */
+    .report-header {
+      background: linear-gradient(135deg, var(--teal-deep) 0%, var(--accent-teal) 100%);
+      color: white;
+      padding: 64px 24px;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .report-header h1 {
+      font-family: var(--font-heading);
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .report-header .subtitle {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 24px;
+      opacity: 0.95;
+    }
+
+    .report-header .meta {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .report-header .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .report-header .meta-label {
+      font-weight: 600;
+      opacity: 0.85;
+    }
+
+    .report-header .tagline {
+      font-style: italic;
+      margin-top: 32px;
+      font-size: 16px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.95;
+    }
+
+    /* Executive Summary Section */
+    .executive-summary {
+      background-color: white;
+      border: 1px solid var(--cream-dark);
+      border-radius: 8px;
+      padding: 48px;
+      margin-bottom: 48px;
+    }
+
+    .executive-summary h2 {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 32px;
+      color: var(--slate);
+    }
+
+    .executive-summary .shift-section {
+      margin-bottom: 48px;
+    }
+
+    .executive-summary .shift-section h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--slate);
+    }
+
+    .executive-summary .shift-section p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    /* Result Cards Grid */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .result-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 24px;
+      border-left: 4px solid var(--accent-teal);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .result-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .result-card h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--slate);
+    }
+
+    .result-card .question {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .result-card .verdict {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .severity-bar {
+      display: flex;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      gap: 0;
+    }
+
+    .severity-segment {
+      display: flex;
+    }
+
+    .severity-segment.high {
+      background-color: var(--high);
+    }
+
+    .severity-segment.medium {
+      background-color: var(--medium);
+    }
+
+    .severity-segment.low {
+      background-color: var(--low);
+    }
+
+    .severity-segment.pass {
+      background-color: var(--pass);
+    }
+
+    /* Severity Badges */
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .badge.high {
+      background-color: var(--high);
+      color: white;
+    }
+
+    .badge.medium {
+      background-color: #f59e0b;
+      color: white;
+    }
+
+    .badge.low {
+      background-color: #fde047;
+      color: var(--slate);
+    }
+
+    .badge.pass {
+      background-color: var(--pass);
+      color: white;
+    }
+
+    /* Count Badges */
+    .count-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .count-badge.high {
+      background-color: var(--high);
+      color: white;
+    }
+
+    .count-badge.medium {
+      background-color: var(--medium);
+      color: var(--slate);
+    }
+
+    .count-badge.low {
+      background-color: var(--low);
+      color: var(--slate);
+    }
+
+    .count-badge.pass {
+      background-color: var(--pass);
+      color: white;
+    }
+
+    .count-badge.neutral {
+      background-color: var(--neutral);
+      color: white;
+    }
+
+    /* Tabs */
+    .tab-container {
+      margin-bottom: 48px;
+    }
+
+    .tab-nav {
+      display: flex;
+      border-bottom: 2px solid var(--cream-dark);
+      margin-bottom: 32px;
+    }
+
+    .tab-button {
+      background: none;
+      border: none;
+      padding: 16px 24px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+      margin-bottom: -2px;
+    }
+
+    .tab-button:hover {
+      color: var(--accent-teal);
+    }
+
+    .tab-button.active {
+      color: var(--accent-teal);
+      border-bottom-color: var(--accent-teal);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Heatmap Table */
+    .heatmap-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .heatmap-table th,
+    .heatmap-table td {
+      padding: 12px 16px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .heatmap-table th {
+      background-color: var(--slate);
+      color: white;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .heatmap-table th:first-child {
+      text-align: left;
+    }
+
+    .heatmap-table td {
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .heatmap-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .heatmap-table tbody tr:nth-child(odd) {
+      background-color: var(--cream);
+    }
+
+    /* Marq column special styling */
+    .marq-column {
+      background-color: #fef2f2;
+    }
+
+    .marq-column.heatmap-cell {
+      background-color: #fee2e2;
+      font-weight: 600;
+    }
+
+    /* Heatmap cells with color coding */
+    .heatmap-cell {
+      border-radius: 4px;
+    }
+
+    .heatmap-cell.zero {
+      background-color: #fecaca;
+      color: var(--slate);
+    }
+
+    .heatmap-cell.low-range {
+      background-color: #fed7aa;
+      color: var(--slate);
+    }
+
+    .heatmap-cell.medium-range {
+      background-color: #bbf7d0;
+      color: var(--slate);
+    }
+
+    .heatmap-cell.high-range {
+      background-color: #6ee7b7;
+      color: var(--slate);
+    }
+
+    /* Dimension Headers */
+    .layer-header {
+      background: linear-gradient(135deg, var(--teal-deep) 0%, var(--accent-teal) 100%);
+      color: white;
+      padding: 28px 28px 24px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+
+    .layer-header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .layer-header h3 {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .layer-header .badges {
+      display: flex;
+      gap: 8px;
+    }
+
+    .layer-header .layer-description {
+      font-size: 14px;
+      line-height: 1.7;
+      opacity: 0.92;
+      margin: 0;
+    }
+
+    /* Findings Section */
+    .findings-section {
+      background-color: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 32px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .findings-section h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--slate);
+    }
+
+    details {
+      margin-bottom: 16px;
+      border-left: 3px solid var(--cream-dark);
+      padding-left: 16px;
+    }
+
+    details[open] {
+      border-left-color: var(--accent-teal);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+      list-style: none;
+      padding: 8px 0;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+    summary::marker { display: none; content: ""; }
+
+    summary::before {
+      content: "▶";
+      font-size: 10px;
+      color: var(--accent-teal);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+      width: 14px;
+    }
+
+    details[open] > summary::before {
+      transform: rotate(90deg);
+    }
+
+    /* Level 2 expandable: "What we found" */
+    details details summary {
+      font-size: 14px;
+      color: var(--teal-deep);
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--cream-dark);
+    }
+
+    details details summary::before {
+      content: "+";
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-teal);
+      width: 14px;
+      text-align: center;
+    }
+
+    details details[open] > summary::before {
+      content: "−";
+      transform: none;
+    }
+
+    /* Level 3 expandable: "Technical detail" */
+    details details details summary {
+      font-size: 13px;
+      color: var(--text-secondary);
+      border-bottom: none;
+    }
+
+    details details details summary::before {
+      content: "◦";
+      font-size: 12px;
+      color: var(--slate-mid);
+    }
+
+    details details details[open] > summary::before {
+      content: "•";
+      transform: none;
+    }
+
+    .finding-content {
+      margin-top: 12px;
+      padding-top: 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .topic-intro {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin: -4px 0 16px 0;
+      padding: 8px 12px;
+      background: rgba(91, 124, 94, 0.06);
+      border-radius: 4px;
+      line-height: 1.6;
+    }
+
+    /* Roadmap Phase Cards */
+    .phase-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .phase-header {
+      background-color: var(--slate);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .phase-card table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .phase-card table th {
+      background-color: var(--cream);
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--slate);
+      border-bottom: 2px solid var(--cream-dark);
+    }
+
+    .phase-card table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .phase-card table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Finding Checklist */
+    .checklist-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .checklist-table th {
+      background-color: var(--slate);
+      color: white;
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .checklist-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--cream-dark);
+      font-size: 13px;
+    }
+
+    .checklist-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .checklist-table tbody tr:nth-child(odd) {
+      background-color: var(--cream);
+    }
+
+    .severity-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .severity-dot.high {
+      background-color: var(--high);
+    }
+
+    .severity-dot.medium {
+      background-color: var(--medium);
+    }
+
+    .severity-dot.low {
+      background-color: var(--low);
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--slate);
+      color: var(--text-light);
+      padding: 40px 24px;
+      text-align: center;
+      margin-top: 64px;
+    }
+
+    .footer p {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .footer a {
+      color: var(--teal-light);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background-color: white;
+      }
+
+      .tab-container {
+        break-inside: avoid;
+      }
+
+      .tab-button {
+        display: none;
+      }
+
+      .tab-nav {
+        display: none;
+      }
+
+      .tab-content {
+        display: block !important;
+      }
+
+      details {
+        border-left: 3px solid var(--accent-teal) !important;
+      }
+
+      details > summary::before { content: "▼" !important; transform: none !important; }
+      details details > summary::before { content: "−" !important; }
+      details details details > summary::before { content: "•" !important; }
+
+      details[open] {
+        break-inside: avoid;
+      }
+
+      .result-card,
+      .findings-section,
+      .phase-card,
+      .executive-summary {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      .report-header {
+        break-inside: avoid;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .report-header h1 {
+        font-size: 36px;
+      }
+
+      .report-header .meta {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      .executive-summary {
+        padding: 24px;
+      }
+    }
+  
+    /* Redaction blur for sample version */
+    .redacted {
+      filter: blur(5px);
+      -webkit-filter: blur(5px);
+      user-select: none;
+    }
+    .report-header .redacted {
+      filter: blur(10px);
+      -webkit-filter: blur(10px);
+    }
+    .redacted-note {
+      background: linear-gradient(135deg, #1a2332 0%, #0d1b2a 100%);
+      border: 2px solid var(--copper);
+      border-radius: 12px;
+      padding: 20px 28px;
+      text-align: center;
+      color: var(--text-primary);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Report Header -->
+  <div class="report-header">
+    <h1>Marq</h1>
+    <div class="subtitle" style="font-size: 14px; opacity: 0.85; margin-bottom: 4px;">marq.com</div>
+    <div style="font-family: var(--font-heading); font-size: 24px; font-weight: 600; margin-bottom: 24px; letter-spacing: 0.5px;">Agent Readiness Audit™</div>
+    <div class="meta">
+      <div class="meta-item">
+        <span class="meta-label">Prepared by</span>
+        <span>Liz Micik, lizmicik.com</span>
+        <span style="font-size: 13px; opacity: 0.8; margin-top: 2px;">March 31, 2026</span>
+      </div>
+    </div>
+    <div class="tagline">Every company built a website to talk to humans.<br>Nobody built one to talk to AI.</div>
+  </div>
+
+  <!-- Executive Summary -->
+  <div class="container">
+    <section class="executive-summary">
+      <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600;">Audit date: April 24, 2026</div>
+      <div style="background: #FFF8E7; border-left: 4px solid #B48A3A; padding: 14px 18px; margin-bottom: 24px; border-radius: 4px; font-size: 14px; line-height: 1.6; color: var(--slate);">
+        <strong style="display: block; margin-bottom: 4px; font-family: var(--font-heading);">Sanitized sample &mdash; shared with Forge &amp; Fathom.</strong>
+        This is a redacted version of a real Agent Readiness Audit. Finding titles, severity, and framework structure are intact; the strategic synthesis, the prioritized playbook (Quick Wins / Critical Issues), per-finding Recommendations, and proprietary benchmark data have been redacted. Shared to demonstrate audit scope and method, not as a usable roadmap.
+      </div>
+      <h2>Executive Summary</h2>
+
+      <div class="shift-section">
+        <h3>The Shift</h3>
+        <p>Your buyers are increasingly asking AI instead of searching Google. When a marketing leader asks ChatGPT, Claude, or Perplexity for a brand templating platform — or when a developer asks whether Marq can be invoked programmatically — the AI builds its answer from your digital footprint: your structured data, your capability surface, and how consistently you signal what you do across platforms. If your website doesn't speak that language, you don't exist in those answers.</p>
+        <p>Marq has already done the hard part. A live MCP server, an OAuth-protected REST API, webhooks, SCIM, and comprehensive developer docs sit on developers.marq.com. The capability exists. What's missing is the bridge between that capability and the brand home at www.marq.com — the signals that let an agent standing on www.marq.com know that any of this machine-integrable surface is yours.</p>
+
+        <p>The gap is measurable. An 80-conversation multi-model visibility scan placed the company in the lower half of its competitive set for brand recognition in AI answers. <em>[Specific benchmark figures redacted for this sample.]</em> The structural gaps this audit surfaces aren't theoretical; they show up in AI answers today.</p>
+      </div>
+
+      <div class="shift-section">
+        <h3>Your Results</h3>
+        <div class="results-grid">
+          <!-- Card 1 -->
+          <div class="result-card" style="border-left-color: var(--high);">
+            <h3>Find</h3>
+            <div class="question">Can AI discover and access your content?</div>
+            <div class="verdict">Your doors are open. Crawlers can reach your pages and no crawl blockers exist. But there is no roadmap to your capability surface: no /developers or /api path, no Organization schema sameAs link, and none of the standard agent-discovery manifests that an agent can follow. Compounding the silence: a CAPTCHA on the marketing site actively blocks agent-initiated form submissions on the same property whose MCP server is designed to invite them. The infrastructure is sound; the discovery signals are silent and the automation door is shut.</div>
+            <div class="severity-bar">
+              <div class="severity-segment high" style="flex: 3;"></div>
+              <div class="severity-segment medium" style="flex: 1;"></div>
+              <div class="severity-segment low" style="flex: 2;"></div>
+              <div class="severity-segment pass" style="flex: 2;"></div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="result-card" style="border-left-color: var(--high);">
+            <h3>Understand</h3>
+            <div class="question">Can AI figure out what you do?</div>
+            <div class="verdict">Your prose is clear, but your structure is silent. Text-to-HTML ratios sit at 1.1–2.1% across all six templates — agents must parse through 50× more markup than content. The pricing page displays four tiers and visible prices but emits zero Product/Offer/Service schema. The platform page has a flat 12 H2 / 0 H3 hierarchy and no SoftwareApplication schema. The Marq AI page sells AI to humans but contains zero mentions of API, MCP, agent, LLM, Claude, or ChatGPT. The About page uses "we" 24 times and names no audience.</div>
+            <div class="severity-bar">
+              <div class="severity-segment high" style="flex: 9;"></div>
+              <div class="severity-segment medium" style="flex: 4;"></div>
+              <div class="severity-segment low" style="flex: 0;"></div>
+              <div class="severity-segment pass" style="flex: 2;"></div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="result-card" style="border-left-color: var(--high);">
+            <h3>Trust</h3>
+            <div class="question">Will AI recommend you?</div>
+            <div class="verdict">You lack proof the way machines need it. Sixteen case studies emit zero Article, CaseStudy, or Review schema — customer outcomes are detailed in prose and invisible in markup. The About page mentions founders by name but has no Person schema. Organization schema on the homepage lists six sameAs links (strong entity authority, including Wikipedia) but includes zero link to developers.marq.com — the brand home and the capability home are architecturally disjoint. Marq has what other SaaS companies are scrambling to build; the trust work is making it visible.</div>
+            <div class="severity-bar">
+              <div class="severity-segment high" style="flex: 7;"></div>
+              <div class="severity-segment medium" style="flex: 0;"></div>
+              <div class="severity-segment low" style="flex: 1;"></div>
+              <div class="severity-segment pass" style="flex: 1;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shift-section">
+        <h3>What This Means</h3>
+        <p><em>Strategic synthesis redacted for this sanitized sample.</em></p>
+      </div>
+
+      <div class="shift-section">
+        <h3>Key Findings</h3>
+        <p><em>Seven HIGH-severity findings identified across the three layers. Full summary list redacted for this sanitized sample.</em></p>
+      </div>
+    </section>
+  </div>
+
+  <!-- HOW WE TESTED Section -->
+  <div class="container">
+    <section class="findings-section" style="padding: 0; box-shadow: none; background: transparent;">
+      <h3 style="font-size: 28px; margin-bottom: 32px; color: var(--slate);">Methodology</h3>
+
+      <div class="tab-container">
+        <div class="tab-nav">
+          <button class="tab-button active" data-tab="howwetested-tab">How We Tested</button>
+          <button class="tab-button" data-tab="pages-tab">What We Examined</button>
+          <button class="tab-button" data-tab="models-tab">Models</button>
+          <button class="tab-button" data-tab="tools-tab">Tools</button>
+        </div>
+
+        <!-- Tab 1: How We Tested -->
+        <div id="howwetested-tab" class="tab-content active" style="background-color: white; padding: 32px; border-radius: 8px;">
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8;">This audit evaluated <strong>6 page templates</strong> sampled from marq.com, selected to represent the major content types on the site: homepage, About, Pricing, Platform, Marq AI product page, and a Case Study detail page.</p>
+
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8;">Each page was scored across the <strong>three-layer Agent Readiness framework</strong>: <em>Find</em> (can AI agents reach and discover your content), <em>Understand</em> (can they parse what you mean), and <em>Trust</em> (can they confirm the facts match what you claim). We examined raw HTML, rendered DOM, schema.org markup, robots.txt, sitemap, response headers, and cross-page structural consistency.</p>
+
+          <p style="color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8;">In addition to our proprietary crawl and scoring skills, every audit incorporates two supplemental tools: the <strong>Gumshoe AI Visibility Platform</strong> (to measure how often AI models mention and recommend you versus competitors across buyer personas and topic areas) and <strong>Wordlift Entity Analysis</strong> (to cross-check schema.org implementation, semantic HTML quality, and entity linkage). Findings from both tools are integrated into the layer scores and recommendations below.</p>
+
+          <p style="color: var(--text-secondary); margin-bottom: 0; line-height: 1.8;"><strong>Wordlift result for www.marq.com:</strong> overall AI-readiness score <strong>54/100 (Needs Improvement)</strong>, dated April 24, 2026. Wordlift flagged three headline issues &mdash; a "severe lack of internal linking" (3 of 211 total links are internal), an "extremely low" semantic-tag ratio of 1%, and a P1 automation-readiness blocker (CAPTCHA on page body). All three are folded into this report's findings and recommendations. Marq's schema.org foundation scored ✅ Good at the homepage level and SEO fundamentals were rated ✅ Good; the structural gaps this audit surfaces sit below that foundation at the template and page-type level.</p>
+
+          <div style="font-size: 12px; color: var(--text-secondary); margin-top: 24px; opacity: 0.7;">&copy; 2026 Liz Micik. All rights reserved. Agent Readiness Audit™ is a trademark of Liz Micik.</div>
+        </div>
+
+        <!-- Tab 2: What We Examined -->
+        <div id="pages-tab" class="tab-content" style="background-color: white; padding: 32px; border-radius: 8px;">
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8;">The six templates below were sampled to give full coverage of the Marq marketing site. Each template was scored independently; cross-page findings (e.g., missing Organization sameAs links) are reported once at the site level.</p>
+          <table class="heatmap-table" style="margin-bottom: 0;">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Template</th>
+                <th style="text-align: left;">URL</th>
+                <th style="text-align: left;">Why it was chosen</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: left;">Homepage</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">www.marq.com/</td>
+                <td style="text-align: left;">Entry point; carries Organization schema and anchors all sameAs links.</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">About</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">www.marq.com/about</td>
+                <td style="text-align: left;">Carries company narrative, leadership references, and Person-schema opportunities.</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Pricing</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">www.marq.com/pricing</td>
+                <td style="text-align: left;">Displays four visible tiers — the highest-value page for Product/Offer schema.</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Platform</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">www.marq.com/platform</td>
+                <td style="text-align: left;">Core product surface; should emit SoftwareApplication schema.</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Marq AI</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">www.marq.com/marq-ai</td>
+                <td style="text-align: left;">AI product page; tested for machine-integration signals and LLM-aware positioning.</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Case Study (sample)</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">www.marq.com/customer-stories/&hellip;</td>
+                <td style="text-align: left;">Representative of the 16-case-study template; tested for Article / CaseStudy / Review schema.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Tab 3: Models -->
+        <div id="models-tab" class="tab-content" style="background-color: white; padding: 32px; border-radius: 8px;">
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8;">We use the most widely available free and low-tier AI models — the ones your buyers are actually using every day to research providers like you.</p>
+
+          <h4 style="font-family: var(--font-heading); font-size: 16px; font-weight: 600; margin-bottom: 16px; color: var(--slate);">Our Direct Testing</h4>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-bottom: 32px;">
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">GPT-5.4 (OpenAI)</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">largest consumer market share</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Claude (Anthropic)</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">growing enterprise adoption</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Gemini 3 Flash (Google)</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">integrated into Google Search ecosystem</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Perplexity Sonar</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">purpose-built AI answer engine</div>
+            </div>
+          </div>
+
+          <h4 style="font-family: var(--font-heading); font-size: 16px; font-weight: 600; margin-bottom: 16px; color: var(--slate);">Gumshoe AI Visibility Platform</h4>
+          <p style="color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8;">Gumshoe regularly updates their available models to ensure you get top-of-the-line AI thinking. Their current model set includes:</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">GPT-5.4 (OpenAI)</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Claude (Anthropic)</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Gemini (Google)</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">DeepSeek</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Tools -->
+        <div id="tools-tab" class="tab-content" style="background-color: white; padding: 32px; border-radius: 8px;">
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8; font-weight: 500;">Our proprietary analysis</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 32px;">
+            <div style="background: white; border: 2px solid var(--accent-teal); padding: 20px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 12px; font-size: 15px;">Custom Schema &amp; Semantic Crawl</div>
+              <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">Seven customized, proprietary skill sets designed to extract deeper data than standard validation tools — going beyond checking whether a field exists to evaluating whether your content actually communicates meaning to AI systems.</div>
+            </div>
+            <div style="background: white; border: 2px solid var(--accent-teal); padding: 20px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 12px; font-size: 15px;">AI Query Testing</div>
+              <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">Direct brand recognition and recommendation testing across multiple AI models, using structured buyer-persona conversations to measure how AI systems perceive and surface your firm.</div>
+            </div>
+          </div>
+
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8; font-weight: 500;">Supplemental tools</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+            <div style="background: white; border: 1px solid var(--cream-dark); padding: 20px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 12px; font-size: 15px;">Gumshoe AI Visibility Platform</div>
+              <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">Measures how often AI models mention and recommend your company vs. competitors across multiple buyer personas and topic areas. <a href="#gumshoe-results" style="color: var(--accent-teal);">See Marq&rsquo;s results &darr;</a></div>
+            </div>
+            <div style="background: white; border: 1px solid var(--cream-dark); padding: 20px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 12px; font-size: 15px;">Wordlift Entity Analysis</div>
+              <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">Evaluates schema.org structured data implementation, semantic HTML quality, and content organization for machine comprehension.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FIND Dimension Section -->
+  <div class="container">
+    <div class="layer-header">
+      <div class="layer-header-top">
+        <h3>Find: Can AI Access Your Website?</h3>
+        <div class="badges">
+          <span class="count-badge high">3</span>
+          <span class="count-badge medium">2</span>
+          <span class="count-badge low">2</span>
+          <span class="count-badge pass">3</span>
+        </div>
+      </div>
+      <p class="layer-description">Before AI systems can say anything about your business, they need to be able to reach your website. This dimension checks whether your technical infrastructure welcomes or blocks AI crawlers, and whether you've set up the specific files and configurations that AI models look for. For Marq, this also covers whether the <strong>capability surface</strong> — the MCP server and public API at developers.marq.com — is discoverable from the brand home at all.</p>
+    </div>
+
+    <!-- AI Crawler Access Topic Group -->
+    <div class="findings-section">
+      <h3>AI Crawler Access</h3>
+      <p class="topic-intro">AI crawlers are the automated systems that models send to read your website. If crawlers can't get in, AI can't learn about you. These checks verify that your technical infrastructure welcomes AI traffic.</p>
+
+      <!-- PASS finding: robots.txt -->
+      <details>
+        <summary><span class="badge pass">PASS</span> robots.txt Allows AI Crawlers</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">A robots.txt file sits at the root of your website and tells web crawlers (including AI systems) which pages they can and cannot access. It is the first thing any AI model checks before reading your site.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Marq's robots.txt is permissive. The default rule (User-Agent: *) allows all crawlers full access. No AI crawlers are blocked. This is good. Your front door is open.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Raw robots.txt at www.marq.com/robots.txt contains only a sitemap reference and a permissive wildcard rule. No Disallow directives target named AI user-agents. The developers.marq.com subdomain serves its own robots.txt, also permissive.</p>
+                </div>
+              </details>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- MEDIUM finding: Selective crawler management -->
+      <details>
+        <summary><span class="badge medium">MEDIUM</span> No Explicit AI Crawler Directives <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-011)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Modern AI platforms each send their own named crawler to read your website. Explicitly allowing these crawlers by name (GPTBot for OpenAI, PerplexityBot, Google-Extended, ClaudeBot) signals that your site welcomes AI indexing and can improve crawl priority.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Marq's robots.txt has no explicit rules for any AI crawler. GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Bytespider, and CCBot all fall under the permissive wildcard. They will crawl the site, but there is no explicit signal that Marq intends to be AI-readable — and no way to differentiate treatment between a design-template SaaS brand and a generic marketing site.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>AI crawlers not specifically addressed on www.marq.com: GPTBot, Google-Extended, Bytespider, CCBot, Anthropic-AI, ClaudeBot, PerplexityBot, Amazonbot. All fall under User-Agent: * (permissive). Same pattern on developers.marq.com — no explicit AI-crawler Allow rules to flag the capability surface as especially machine-relevant.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+
+    <!-- Discovery & Capability Surface Topic Group -->
+    <div class="findings-section">
+      <h3>Discovery &amp; Capability Surface</h3>
+      <p class="topic-intro">Reaching your home page is only step one. For a SaaS company with a developer-addressable surface (MCP, API, webhooks), AI agents also need a path from the brand home to the capability surface. Without that path, the capability is invisible even when it exists.</p>
+
+      <!-- HIGH finding: Headless capability surface -->
+      <details>
+        <summary><span class="badge high">HIGH</span> Headless Capability Surface: No Discovery Path to developers.marq.com <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-001)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Marq has two things most of its competitors do not: a published MCP server and a public API at <strong>developers.marq.com</strong>. This is a structural advantage for the agentic era — an AI agent that knows about Marq's MCP can call Marq directly to generate, brand-check, or distribute content on behalf of a user. But an agent can only use a capability it can discover, and there is no discovery path from www.marq.com to developers.marq.com today.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Three independent gaps all reinforce the same problem:</p>
+              <ul style="margin: 0 0 12px 24px; line-height: 1.8;">
+                <li>The Marq homepage global navigation has no link labeled Developers, API, Integrations, or Build. The capability surface is not in the IA.</li>
+                <li>The Organization schema block on www.marq.com lists six sameAs links (LinkedIn, X, Facebook, YouTube, Instagram, Crunchbase) but does not include developers.marq.com. A machine reading the schema will not learn the two domains belong to the same entity.</li>
+                <li>There is no /developers or /api path on www.marq.com that 301-redirects or soft-links to the subdomain. A crawler that starts at the root sees no signal the subdomain exists.</li>
+              </ul>
+              <p style="margin-bottom: 12px;">The net effect: an AI agent asked "which design-template platforms expose an MCP or API I can call?" cannot connect Marq to its own answer. The capability is live but unclaimed.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p style="margin-bottom: 8px;">www.marq.com homepage Organization JSON-LD sameAs array: [linkedin.com/company/marq, x.com/marq, facebook.com/marq, youtube.com/marq, instagram.com/marq, crunchbase.com/organization/marq]. Zero entries for developers.marq.com.</p>
+                  <p style="margin-bottom: 8px;">www.marq.com global nav (as rendered): Product, Solutions, Templates, Pricing, Customers, Resources, Log in, Book demo. No Developers/API/Integrations entry.</p>
+                  <p>developers.marq.com responds 200 OK and has its own schema and sitemap, confirming the capability surface is fully live. The problem is purely a discovery/linkage failure, not a technology failure.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: rgba(91, 124, 94, 0.08); border-left: 3px solid var(--accent-teal); border-radius: 4px; font-size: 14px;"><strong>Behavioral corroboration:</strong> <em>Supporting AI-visibility benchmark data redacted for this sanitized sample.</em></p>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- HIGH finding: No agent discovery signals -->
+      <details id="BV-016">
+        <summary><span class="badge high">HIGH</span> Agent Discovery Signals Absent Despite MCP Server Existing <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-016)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">The agentic web has a small, specific set of files and link elements that tell AI agents "this site exposes callable capabilities, and here's where to find them." They are the digital equivalent of a business card for machines. Marq operates an MCP server at developers.marq.com — exactly the kind of capability these signals exist to advertise — but publishes none of them on www.marq.com.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Wordlift's agent-discovery scan returned "Not Found" for every standard discovery signal on www.marq.com:</p>
+              <ul style="margin: 0 0 12px 24px; line-height: 1.8;">
+                <li><code>&lt;link rel="mcp"&gt;</code> in the page head &mdash; not present</li>
+                <li><code>/.well-known/mcp.json</code> &mdash; not present</li>
+                <li><code>/.well-known/webmcp/tools.json</code> &mdash; not present</li>
+                <li><code>/.well-known/mcp/server-card.json</code> &mdash; not present</li>
+                <li><code>/.well-known/agent-skills/index.json</code> &mdash; not present</li>
+              </ul>
+              <p style="margin-bottom: 12px;">This is the machine-layer counterpart to finding BV-001. BV-001 covers the human/schema-layer invisibility (no "Developers" nav link, no sameAs entry, no /developers path). BV-016 covers the agent-layer invisibility (no manifest files any MCP-aware client would check). Together they mean an AI agent has <em>no path at all</em> from marq.com to the capability surface &mdash; neither by reading the page nor by checking the standard discovery endpoints.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p style="margin-bottom: 8px;">Standard discovery endpoints checked: <code>/.well-known/mcp.json</code>, <code>/.well-known/webmcp/tools.json</code>, <code>/.well-known/mcp/server-card.json</code>, <code>/.well-known/agent-skills/index.json</code>. All return 404.</p>
+                  <p style="margin-bottom: 8px;">Page head inspection on homepage, Product, Platform, Pricing, and Marq AI: zero <code>&lt;link rel="mcp"&gt;</code> or <code>&lt;link rel="agent-skills"&gt;</code> elements.</p>
+                  <p>developers.marq.com hosts the MCP implementation but does not publish a discovery manifest at its own <code>/.well-known/</code> path either &mdash; so even an agent that knows the subdomain exists has to hand-parse the docs rather than read a manifest.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- HIGH finding: CAPTCHA blocks agents -->
+      <details id="BV-017">
+        <summary><span class="badge high">HIGH</span> CAPTCHA on Marketing Site Blocks the Same Agents Marq's MCP Invites <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-017)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Wordlift's automation-readiness scan returned a single P1 (block-level) issue: a CAPTCHA is active on www.marq.com page bodies. CAPTCHAs are, by design, built to stop machines. Any AI agent attempting to complete a form, submit an inquiry, or follow an interactive flow on the marketing site will be blocked at the CAPTCHA step.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The structural irony matters more than the CAPTCHA itself. Marq operates an MCP server at developers.marq.com whose entire purpose is to let agents call Marq on behalf of a user &mdash; generate a doc, apply a brand kit, push to a channel. On the marketing site, the same agents are stopped at a CAPTCHA before they can even submit a book-a-demo form. The front door says "no bots." The side door says "call our API, bots welcome." An agent arriving cold cannot reconcile that.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p style="margin-bottom: 8px;">Wordlift flagged this as a P1 automation blocker: "A CAPTCHA was detected on the page. CAPTCHAs are designed to block bots and will prevent AI agents from interacting with the page, especially forms."</p>
+                  <p>The CAPTCHA is likely bound to the book-demo and contact flows (anti-spam hygiene on lead capture). It was not designed with agent-initiated inquiry in mind &mdash; a reasonable 2023 assumption that has aged poorly.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- INFO note: llms.txt status update -->
+      <details>
+        <summary><span class="badge low">INFO</span> llms.txt: Not a Required Standard <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-012)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;"><strong>Update:</strong> llms.txt was proposed in 2024 as a plain-text file AI models could read for a structured site summary. Since then, the major AI crawlers — OpenAI/GPTBot, Anthropic/ClaudeBot, Google/Google-Extended, and Perplexity — have not adopted the standard. None of them fetch or use llms.txt today.</p>
+
+          <p style="margin-bottom: 12px;">We flagged this file as "missing" in earlier versions of this audit. That guidance has been retired. You do not need to create an llms.txt file, and if one were added it would not change how AI platforms describe Marq.</p>
+
+          <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+        </div>
+      </details>
+
+      <!-- LOW finding: Cloudflare Markdown -->
+      <details>
+        <summary><span class="badge low">LOW</span> Cloudflare Markdown for Agents Not Configured <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-015)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Cloudflare (Marq's CDN provider) offers a feature called "Markdown for Agents" that automatically reformats pages into clean, structured markdown when an AI crawler requests them. This makes content significantly easier for AI models to parse and understand — especially useful on image-heavy, JS-heavy pages like a template-preview site.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The feature is not currently enabled. www.marq.com serves raw HTML to AI crawlers, which requires them to strip out navigation, JS, styling, and the image-heavy template gallery to find the actual narrative content. Enabling Markdown for Agents is a low-effort, high-impact configuration change.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Response headers confirm Cloudflare with cache_status: DYNAMIC (not cached at edge). cf-ray header present; cf-markdown-for-agents not present. Markdown for Agents was introduced February 2026 and is a dashboard toggle, not a code change.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+
+    <!-- Sitemap and Infrastructure Topic Group -->
+    <div class="findings-section">
+      <h3>Sitemap and Infrastructure</h3>
+      <p class="topic-intro">Sitemaps, CDN configuration, and metadata freshness ensure AI crawlers can efficiently find and trust what they read. These are the technical foundations that support everything else.</p>
+
+      <!-- PASS finding: Sitemap -->
+      <details>
+        <summary><span class="badge pass">PASS</span> Sitemap Exists and Is Current</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">An XML sitemap tells search engines and AI crawlers which pages on your site exist, when they were last updated, and how to find them. It is essential for comprehensive indexing.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Marq has a sitemap at www.marq.com/sitemap.xml that lists all primary marketing pages and links through to a case-studies sitemap and a template-gallery sitemap. developers.marq.com maintains its own separate sitemap for API reference and docs content. Both are well-formed and referenced in the corresponding robots.txt.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Primary sitemap at https://www.marq.com/sitemap.xml. Sub-sitemaps include the marketing page set, the case-studies content type, and the template library. One observation: the two sitemaps (www and developers) are not cross-referenced, which reinforces the capability-surface discoverability gap flagged in finding BV-001.</p>
+                </div>
+              </details>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- PASS finding: Cloudflare CDN -->
+      <details>
+        <summary><span class="badge pass">PASS</span> Cloudflare CDN Detected</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">A Content Delivery Network (CDN) serves your website from servers around the world, ensuring fast load times for both human visitors and AI crawlers. Fast, reliable access improves crawl success rates.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p>Marq runs on Cloudflare, one of the most AI-friendly CDN providers. Cloudflare supports AI-specific features including bot management, Markdown for Agents, and crawler analytics — all of which are available to enable on the existing plan.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- MEDIUM finding: dateModified -->
+      <details>
+        <summary><span class="badge medium">MEDIUM</span> dateModified Freshness Signals Inconsistent Across Templates <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-007)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">The dateModified field in structured data tells AI models when content was last updated. AI systems use this as a freshness signal — more recently updated content tends to get higher confidence in recommendations, and a missing or stale dateModified reads as "unmaintained."</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Schema-level dateModified handling on marq.com is inconsistent across templates. The Pricing page, Platform page, and Marq AI page emit no dateModified at all (a by-product of emitting no Product, SoftwareApplication, or Offer schema — see UNDERSTAND findings). The case study template does emit a dateModified but reflects the CMS publish date rather than the most recent edit. Only the blog template (WordPress-native) handles dateModified correctly.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>On the 6 sampled templates: homepage emits a dateModified on the Organization node that has not changed across multiple audit passes; Pricing/Platform/Marq AI emit no dateModified because no time-bound schema type is present; Case study emits dateModified from CMS publish field, not last-edit; About and blog handle it correctly. Fix lives downstream of the schema-coverage fixes in UNDERSTAND — when Product/Offer/SoftwareApplication schema is added, ensure the rendering template binds dateModified to the actual last-edit timestamp.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- UNDERSTAND Dimension Section -->
+  <div class="container">
+    <div class="layer-header">
+      <div class="layer-header-top">
+        <h3>Understand: Does AI Get What You Do?</h3>
+        <div class="badges">
+          <span class="count-badge high">12</span>
+          <span class="count-badge medium">9</span>
+          <span class="count-badge low">3</span>
+          <span class="count-badge pass">2</span>
+        </div>
+      </div>
+      <p class="layer-description">Once AI systems can access your site, the question becomes: do they understand what they are reading? This dimension checks whether your website communicates clearly in the language machines rely on &mdash; structured data, semantic markup, and content that answers the questions buyers ask. For Marq, the central pattern across this layer is the same one that appears in Find: the narrative prose is clear to humans, but the <strong>machine signals</strong> &mdash; Product schema on pricing, SoftwareApplication schema on the platform page, LLM-integration markers on Marq AI, CaseStudy schema on customer stories &mdash; are absent.</p>
+    </div>
+
+    <!-- Schema Implementation Topic Group -->
+    <div class="findings-section">
+      <h3>Schema Implementation</h3>
+      <p class="topic-intro">Schema markup is the machine-readable vocabulary that tells AI exactly what each page represents. Pricing pages need Product / Offer schema. Product pages need SoftwareApplication. Case studies need Article or CaseStudy. Without these explicit labels, AI must guess what each page is about &mdash; and on a design-template SaaS site, the default guess is "generic marketing page."</p>
+
+      <!-- HIGH: Pricing Zero Product/Offer Schema -->
+      <details id="SCH-002">
+        <summary><span class="badge high">HIGH</span> Pricing Page Emits Zero Product / Offer Schema <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-002)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">The pricing page is the single highest-value page on a SaaS site for schema markup. Product schema identifies the offering, Offer schema carries price, currency, billing interval, and availability. When both are present, AI answer engines can confidently say "Marq's Pro tier is $20/user/month" with a citation. When both are absent, the same question produces either silence, hallucinated pricing, or a recommendation to "visit the pricing page."</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The Marq pricing page displays four named tiers with visible prices and feature lists in the rendered DOM. The JSON-LD block on the same page contains Organization and WebPage. Zero Product nodes. Zero Offer nodes. Zero PriceSpecification. The page teaches a human what Marq costs; it teaches a machine nothing.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>JSON-LD types present on www.marq.com/pricing: Organization, WebPage, BreadcrumbList. Missing: Product, Offer, AggregateOffer, PriceSpecification. Visible content lists four tiers with monthly prices, seat counts, and feature differentiators &mdash; all of which map cleanly to the Offer schema vocabulary.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- HIGH: Platform Zero SoftwareApplication Schema -->
+      <details id="SCH-005">
+        <summary><span class="badge high">HIGH</span> Platform Page Emits Zero SoftwareApplication Schema <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-005)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">SoftwareApplication is the schema type AI models look for when they need to classify a product as software. It carries applicationCategory, operatingSystem, featureList, and (critically for trust) aggregateRating. On a SaaS platform page, it is the core entity declaration &mdash; the machine equivalent of "this is the product."</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The Platform page describes Marq as a brand-templating and design-distribution platform, with named capabilities (brand locks, bulk template editing, asset library, analytics). The JSON-LD block declares Organization and WebPage. There is no SoftwareApplication node, no applicationCategory, no featureList array, no aggregateRating. A machine crawling this page cannot confirm that "Marq" is a software product as opposed to a consulting service or a physical good.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>JSON-LD on www.marq.com/platform: Organization, WebPage, BreadcrumbList. Missing: SoftwareApplication, applicationCategory (should be "DesignApplication" or "BusinessApplication"), operatingSystem ("Web"), featureList, aggregateRating. The rendered page would populate a SoftwareApplication schema straightforwardly &mdash; the feature list is already written in prose.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- HIGH: 16 Case Studies Zero Schema -->
+      <details id="SCH-004">
+        <summary><span class="badge high">HIGH</span> 16 Case Studies Emit Zero Article / CaseStudy / Review Schema <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-004)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Case studies are the single strongest trust signal a SaaS site can offer. For AI to cite them, they need schema: Article or CaseStudy to classify the page, about.Organization to name the customer, result / mentions to surface outcome metrics, and optionally Review with reviewRating to carry the customer's voice. Without schema, a case study is prose &mdash; readable but not quotable in structured form.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Marq's customer-stories content library contains 16 case studies that appear in the sitemap and render correctly to humans. The sampled case study template emits Organization and WebPage JSON-LD. Zero Article, Zero CaseStudy, Zero Review, Zero about fields, zero mentions of the customer organization, zero numeric result fields. AI agents asked "which brand-marketing teams have reduced template production time with Marq?" cannot surface a cited customer &mdash; they can only hallucinate one or say they don't know.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Customer-stories sitemap lists 16 case study URLs. Sampled template: JSON-LD types = Organization, WebPage, BreadcrumbList. Missing: Article (or CaseStudy), headline, author (Person or Organization), about (the customer Organization), datePublished, publisher, result, and optionally Review + reviewRating if the quote-style testimonials qualify. Fix is template-level, not per-page: one template change updates all 16 case studies.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- MEDIUM: About Page Missing Person Schema -->
+      <details id="SCH-006">
+        <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> About Page Missing Person Schema for Leadership <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-006)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Person schema tells AI who leads your company, what their roles are, and where else they appear online. For a SaaS brand with a named founder and a small leadership team, Person schema on About is low-effort and high-value &mdash; it lets AI tie press coverage, conference talks, and LinkedIn profiles back to the company entity.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The About page names and pictures members of the Marq leadership team but emits zero Person nodes in JSON-LD. The team appears visually but is invisible to machine queries like "who is the CEO of Marq" or "who founded Marq." A complete fix adds one Person entity per named leader with jobTitle, worksFor (linked to the Marq Organization), and sameAs (LinkedIn, X, etc.).</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>JSON-LD on www.marq.com/about: Organization, WebPage, BreadcrumbList. Missing: Person nodes, worksFor linkage, sameAs arrays for individual leaders. Rendered DOM contains the names and titles &mdash; fix is template-level.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- MEDIUM: About Missing BreadcrumbList -->
+      <details id="SCH-008">
+        <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> About Page Missing BreadcrumbList Schema <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-008)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">BreadcrumbList tells crawlers where a page sits in the site hierarchy. It is trivial to add and helps AI models assemble a mental map of the site &mdash; which is especially useful on a site where the About page is the hub for company-identity queries.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">BreadcrumbList is present on most templates (Pricing, Platform, case studies) but missing from the About page specifically. Inconsistent application of a schema that the CMS clearly supports suggests a template-override somewhere in the About render path.</p>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- PASS: Organization Schema Present -->
+      <details>
+        <summary><span class="badge pass">PASS</span> Organization Schema Present on Homepage</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">The most fundamental schema type is Organization, which declares that the website represents a business entity. This is the starting point for all other structured data.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Marq correctly declares Organization schema on the homepage with name, url, logo, description, and a six-entry sameAs array. The foundation is solid. The gap &mdash; covered in the Find layer as BV-001 &mdash; is that developers.marq.com is missing from the sameAs list. Fix the BV-001 finding and this PASS becomes a complete foundation for the rest of the schema work.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+
+    <!-- Semantic HTML & Heading Structure Topic Group -->
+    <div class="findings-section">
+      <h3>Semantic HTML &amp; Heading Structure</h3>
+      <p class="topic-intro">Semantic HTML tags (main, article, section, h1-h6) give AI a structural map of your content. Heading hierarchy tells AI which ideas are primary and which are supporting. When headings flatten or semantic tags collapse to divs, the page still reads cleanly to humans but becomes opaque to machine parsers.</p>
+
+      <!-- HIGH: Low Text-to-HTML Ratio -->
+      <details>
+        <summary><span class="badge high">HIGH</span> Text-to-HTML Ratio 1.1&ndash;2.1% Across Marketing Pages <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-001)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Text-to-HTML ratio measures how much of a page's delivered bytes are actual content versus layout, styling, and JavaScript. On a well-structured content page the ratio typically sits 15&ndash;25%. Below 5% signals that the page is delivering a heavy framework with a thin layer of content &mdash; which is the same experience a crawler has, just without the benefit of rendering the page visually.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Across the six sampled templates, text-to-HTML ratios ranged from 1.1% (homepage) to 2.1% (About). The Pricing, Platform, and Marq AI pages all came in under 1.5%. This reflects the React / Next.js build pattern &mdash; large JS bundles and extensive inline styling &mdash; combined with short body copy on each page. The practical effect: crawlers that do not execute JavaScript see very little content. Crawlers that do execute JavaScript still weight pages by substantive text density, and Marq's is low.</p>
+
+              <p style="margin-bottom: 12px;"><strong>Corroborating signal:</strong> Wordlift's independent AI-readiness audit on www.marq.com returned a semantic-tag ratio of 1% &mdash; effectively the same figure arrived at from a different measurement path. Wordlift characterized the finding as "extremely low&hellip;relying heavily on generic <code>div</code> and <code>span</code> elements," which is the same structural pattern we observed in the template-level drill-down. Two independent scans, one shared conclusion.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Per-template text-to-HTML ratios: Homepage 1.1%, About 2.1%, Pricing 1.3%, Platform 1.4%, Marq AI 1.2%, Case Study 1.8%. Fixes fall into two buckets: (a) lengthen and deepen body copy on Pricing, Platform, and Marq AI; (b) reduce inline style weight by moving to external stylesheets where possible. The schema-coverage fixes in this layer also help indirectly by giving crawlers more structured content to index.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- HIGH: Marq AI Hides Machine Signals -->
+      <details id="SEM-002">
+        <summary><span class="badge high">HIGH</span> Marq AI Product Page Hides Machine-Integration Signals <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-002)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">The /marq-ai page is where a machine-aware prospect &mdash; a developer, an AI buyer, or an LLM crawling on behalf of a user &mdash; should be able to confirm that Marq plays well with AI systems. On a page literally titled "Marq AI," that confirmation should be unambiguous. Today it is absent.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The Marq AI page describes AI-assisted content generation for end users (write copy, generate images, auto-brand). It does not mention: LLM, API, MCP, Claude, GPT, Gemini, webhook, integration, developer, or "build with Marq." The page that should anchor Marq's agentic positioning positions Marq as an AI <em>consumer</em>, not an AI <em>surface</em>. A machine looking for "brand templating platforms I can call" finds nothing here to match against.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Word-frequency analysis of the Marq AI page body copy: zero occurrences of LLM, API, MCP, Claude, GPT, Gemini, webhook, SDK, or integration. Also zero outbound links to developers.marq.com &mdash; the exact page where those concepts live. This is the single most discoverable AI-named page on the site; it is the highest-leverage place to add a "Build with Marq" paragraph.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: rgba(91, 124, 94, 0.08); border-left: 3px solid var(--accent-teal); border-radius: 4px; font-size: 14px;"><strong>Behavioral corroboration:</strong> <em>Supporting AI-visibility benchmark data redacted for this sanitized sample.</em></p>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- HIGH: Case Study Problem-Solution With No Structured Proof -->
+      <details>
+        <summary><span class="badge high">HIGH</span> Case Study Problem-Solution Narrative With No Structured Proof <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-006)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Case studies carry the problem-solution-result narrative well in prose, but AI models weight quantified outcomes heavily. A story that says "cut production time dramatically" reads as marketing copy; a story that says "cut production time from 6 weeks to 3 days, validated across 40 retail locations" reads as evidence. The difference is whether the page makes the numbers machine-extractable.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The sampled case study follows a clean problem-solution-result arc in prose. It includes quoted customer testimonials. It does not include: named quantified outcomes in machine-extractable form (time saved, cost reduced, revenue gained), numeric ranges, or schema bindings for any metric mentioned in the copy. An AI model weighting this against a competitor with numeric case studies will defer to the competitor.</p>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- HIGH: About We-Statements -->
+      <details>
+        <summary><span class="badge high">HIGH</span> About Page Leads With 24 "We" Statements Before Any Customer Outcome <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-005)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">AI models building a company description lean heavily on the About page. Pages that lead with "we believe / we built / we are" for 200+ words before introducing a customer or an outcome are readable by humans but describe the company in terms that do not map to buyer queries. Buyers ask "what problem does this company solve," not "what does this company believe about itself."</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The Marq About page contains 24 first-person-plural ("we") statements in the first half of the page before naming a specific customer segment, a specific problem solved, or a specific outcome delivered. The prose is well-written; the framing is inward. When an AI model is asked "what does Marq do for mid-market marketing teams," the About page offers company-philosophy language rather than audience-anchored answer content.</p>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- MEDIUM: Platform Flat Heading Hierarchy -->
+      <details>
+        <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> Platform Page Uses Flat Heading Hierarchy <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-007)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Heading tags (h1&ndash;h6) build an outline the machine uses to understand page structure. A page with a single h1 and seven h2s in a row reads as a flat list of equal-weight ideas &mdash; which is rarely the true content structure.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The Platform page has one h1 ("Marq Platform") and nine h2s covering capabilities. No h3 sub-groupings. In prose the page does cluster capabilities into themes (content creation, brand control, distribution, analytics) but the heading structure does not reflect that grouping. The fix is small and template-level.</p>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- MEDIUM: Platform Lacks Audience-Specific Content -->
+      <details>
+        <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> Platform Page Lacks Audience-Specific Sections <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-008)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">A platform page that addresses "marketers" generically covers the floor but leaves upside. Marq's buyer map includes brand ops, field marketing, franchise marketing, and in-house creative teams &mdash; each with distinct use cases. Audience-specific content lets AI answer role-scoped queries ("best design tools for franchise marketing") with a Marq citation.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The Platform page addresses a single generalized "marketer" reader. It does not contain role-specific sections or named use cases by team type. The Solutions nav does carry some role pages, but they are not cross-linked from the Platform page, so a crawler entering at /platform sees one undifferentiated audience.</p>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- PASS: About Semantic Structure -->
+      <details>
+        <summary><span class="badge pass">PASS</span> About Page Uses Sound Semantic HTML Structure</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Semantic HTML (main, article, section, header, footer) gives AI a clean structural map. When the semantic tags match the content's actual hierarchy, machines can identify primary content, skip navigation, and summarize accurately.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The About page uses a main tag wrapping primary content, article tags for major content units, and section tags for sub-groupings. Heading hierarchy is orderly (h1 &rarr; h2 &rarr; h3). This is the structural pattern the rest of the site should be audited against &mdash; the Platform, Pricing, and Marq AI pages show weaker semantic discipline.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- MEDIUM: Internal linking collapse -->
+      <details id="SEM-003">
+        <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> Internal Linking Collapse: 3 Internal Links of 211 Total <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-003)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Internal links do two things AI systems rely on: they define topical relationships between pages (this article is related to that product), and they distribute authority so the pages an organization considers important get weighted accordingly. When a crawler lands on a page and finds almost no internal links, it has no cue which other pages on the site continue the topic &mdash; so it treats each page as a topical island.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Wordlift's link audit on www.marq.com returned <strong>3 internal links out of 211 total links</strong>. The other 208 are external (social icons, customer logos, partner badges, a handful of review-site links). In practical terms, a crawler or AI agent landing on the homepage is routed outward more than 60 times before encountering a link that keeps it on marq.com. That's the inverse of what a healthy content site looks like.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p style="margin-bottom: 8px;">Wordlift classifies this as ❌ Poor: "With only 3 internal links out of 211 total links, the content fails to effectively connect related pages within the site. This significantly hinders user navigation, reduces page authority flow, and prevents search engines from fully understanding the site's structure and topic depth."</p>
+                  <p>The likely cause is a React / Next.js build where most inter-page navigation is handled by client-side routing components that do not emit crawlable <code>&lt;a href&gt;</code> elements on the server-rendered page. The fix is a rendering-layer issue, not a content issue &mdash; the site has plenty of internally-relevant content to link <em>to</em>.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- LOW: No Q&amp;A structure -->
+      <details id="SEM-004">
+        <summary><span class="badge low">LOW</span> Content Has No Q&amp;A-Style Headings for Direct-Answer Citation <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-004)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">AI systems surface content in two modes: full-article summarization and direct-answer extraction. Direct-answer extraction &mdash; the mode behind featured snippets, voice-assistant responses, and conversational AI citations &mdash; relies heavily on Q&amp;A-style headings: a question phrased as a heading followed by a compact answer in the first sentence below. Content that uses only descriptive headings ("Templates for Every Team") gets read in full-article mode; content that uses question headings ("What is Marq?", "How much does Marq cost?") gets quoted verbatim.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Wordlift's content-structure analysis found 54 sections and 30 headings across www.marq.com with <em>zero</em> Q&amp;A-style headings. This means Marq's pages are readable in article-summary mode but have no anchors for featured-snippet or direct-answer citation. Competitors that publish FAQ-style content regularly capture these citations by default.</p>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+
+    <!-- Entity Clarity Topic Group -->
+    <div class="findings-section">
+      <h3>Entity Clarity</h3>
+      <p class="topic-intro">Schema markup tells AI what each page <em>is</em>. Semantic HTML gives AI a structural map of each page. <strong>Entity Clarity</strong> is the third leg of UNDERSTAND: does the site's <em>page inventory</em> contain the pages a well-defined entity is expected to have? A site can have clean schema on every page it ships and still fail to establish the entity because the pages a machine needs simply do not exist. The findings below diagnose that inventory gap category by category; the roadmap sequences the work.</p>
+
+      <!-- Category rollup summary -->
+      <details style="margin-bottom: 20px;">
+        <summary style="font-weight: 500; font-size: 14px;">Category rollup (what a machine-readable entity map finds today)</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px; font-size: 14px;">Per-category scoring across the 42-page SaaS framework. Coverage = (Present + Partial) / Expected. Mean quality is the 1&ndash;5 anchored score across present pages. Schema % is the share of pages emitting the framework-recommended schema type. Health band rolls coverage and quality together.</p>
+          <div style="overflow-x: auto; margin-top: 12px;">
+            <table style="width: 100%; font-size: 13px; border-collapse: collapse;">
+              <thead>
+                <tr style="background: var(--cream); border-bottom: 2px solid var(--slate);">
+                  <th style="text-align: left; padding: 8px 10px;">Category</th>
+                  <th style="text-align: right; padding: 8px 10px;">Expected</th>
+                  <th style="text-align: right; padding: 8px 10px;">Coverage</th>
+                  <th style="text-align: right; padding: 8px 10px;">Mean Quality</th>
+                  <th style="text-align: right; padding: 8px 10px;">Schema</th>
+                  <th style="text-align: center; padding: 8px 10px;">Band</th>
+                  <th style="text-align: center; padding: 8px 10px;">Severity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #eee;"><td style="padding: 6px 10px;">Entity definition &amp; identity</td><td style="text-align: right; padding: 6px 10px;">4</td><td style="text-align: right; padding: 6px 10px;">75%</td><td style="text-align: right; padding: 6px 10px;">2.67</td><td style="text-align: right; padding: 6px 10px;">0%</td><td style="text-align: center; padding: 6px 10px;">Weak</td><td style="text-align: center; padding: 6px 10px;"><span class="badge high" style="font-size: 10px;">HIGH</span></td></tr>
+                <tr style="border-bottom: 1px solid #eee;"><td style="padding: 6px 10px;">Product &amp; service understanding</td><td style="text-align: right; padding: 6px 10px;">4</td><td style="text-align: right; padding: 6px 10px;">100%</td><td style="text-align: right; padding: 6px 10px;">2.75</td><td style="text-align: right; padding: 6px 10px;">0%</td><td style="text-align: center; padding: 6px 10px;">Weak</td><td style="text-align: center; padding: 6px 10px;"><span class="badge high" style="font-size: 10px;">HIGH</span></td></tr>
+                <tr style="border-bottom: 1px solid #eee;"><td style="padding: 6px 10px;">Operational transparency &amp; trust</td><td style="text-align: right; padding: 6px 10px;">4</td><td style="text-align: right; padding: 6px 10px;">75%</td><td style="text-align: right; padding: 6px 10px;">3.00</td><td style="text-align: right; padding: 6px 10px;">0%</td><td style="text-align: center; padding: 6px 10px;">Adequate</td><td style="text-align: center; padding: 6px 10px;"><span class="badge medium" style="font-size: 10px; color: var(--slate);">MEDIUM</span></td></tr>
+                <tr style="border-bottom: 1px solid #eee;"><td style="padding: 6px 10px;">Thought leadership &amp; ecosystem</td><td style="text-align: right; padding: 6px 10px;">4</td><td style="text-align: right; padding: 6px 10px;">50%</td><td style="text-align: right; padding: 6px 10px;">3.00</td><td style="text-align: right; padding: 6px 10px;">0%</td><td style="text-align: center; padding: 6px 10px;">Adequate</td><td style="text-align: center; padding: 6px 10px;"><span class="badge medium" style="font-size: 10px; color: var(--slate);">MEDIUM</span></td></tr>
+                <tr style="border-bottom: 1px solid #eee;"><td style="padding: 6px 10px;">LLM-specific support</td><td style="text-align: right; padding: 6px 10px;">3</td><td style="text-align: right; padding: 6px 10px;">33%</td><td style="text-align: right; padding: 6px 10px;">3.00</td><td style="text-align: right; padding: 6px 10px;">0%</td><td style="text-align: center; padding: 6px 10px;">Weak</td><td style="text-align: center; padding: 6px 10px;"><span class="badge high" style="font-size: 10px;">HIGH</span></td></tr>
+                <tr style="border-bottom: 1px solid #eee;"><td style="padding: 6px 10px;">Human connection &amp; differentiation</td><td style="text-align: right; padding: 6px 10px;">3</td><td style="text-align: right; padding: 6px 10px;">67%</td><td style="text-align: right; padding: 6px 10px;">2.50</td><td style="text-align: right; padding: 6px 10px;">0%</td><td style="text-align: center; padding: 6px 10px;">Weak</td><td style="text-align: center; padding: 6px 10px;"><span class="badge low" style="font-size: 10px;">LOW</span></td></tr>
+                <tr style="border-bottom: 1px solid #eee;"><td style="padding: 6px 10px;">Product Reliability</td><td style="text-align: right; padding: 6px 10px;">4</td><td style="text-align: right; padding: 6px 10px;">0%</td><td style="text-align: right; padding: 6px 10px;">&mdash;</td><td style="text-align: right; padding: 6px 10px;">0%</td><td style="text-align: center; padding: 6px 10px;">Failing</td><td style="text-align: center; padding: 6px 10px;"><span class="badge medium" style="font-size: 10px; color: var(--slate);">MEDIUM</span></td></tr>
+                <tr style="border-bottom: 1px solid #eee;"><td style="padding: 6px 10px;">Security &amp; Compliance</td><td style="text-align: right; padding: 6px 10px;">4</td><td style="text-align: right; padding: 6px 10px;">50%</td><td style="text-align: right; padding: 6px 10px;">3.00</td><td style="text-align: right; padding: 6px 10px;">0%</td><td style="text-align: center; padding: 6px 10px;">Adequate</td><td style="text-align: center; padding: 6px 10px;"><span class="badge high" style="font-size: 10px;">HIGH</span></td></tr>
+                <tr style="border-bottom: 1px solid #eee;"><td style="padding: 6px 10px;">Implementation &amp; Success</td><td style="text-align: right; padding: 6px 10px;">4</td><td style="text-align: right; padding: 6px 10px;">75%</td><td style="text-align: right; padding: 6px 10px;">3.00</td><td style="text-align: right; padding: 6px 10px;">0%</td><td style="text-align: center; padding: 6px 10px;">Adequate</td><td style="text-align: center; padding: 6px 10px;"><span class="badge medium" style="font-size: 10px; color: var(--slate);">MEDIUM</span></td></tr>
+                <tr style="border-bottom: 1px solid #eee;"><td style="padding: 6px 10px;">Technical Trust</td><td style="text-align: right; padding: 6px 10px;">4</td><td style="text-align: right; padding: 6px 10px;">50%</td><td style="text-align: right; padding: 6px 10px;">3.00</td><td style="text-align: right; padding: 6px 10px;">0%</td><td style="text-align: center; padding: 6px 10px;">Adequate</td><td style="text-align: center; padding: 6px 10px;"><span class="badge high" style="font-size: 10px;">HIGH</span></td></tr>
+                <tr><td style="padding: 6px 10px;">Community &amp; Ecosystem</td><td style="text-align: right; padding: 6px 10px;">4</td><td style="text-align: right; padding: 6px 10px;">25%</td><td style="text-align: right; padding: 6px 10px;">4.00</td><td style="text-align: right; padding: 6px 10px;">0%</td><td style="text-align: center; padding: 6px 10px;">Weak</td><td style="text-align: center; padding: 6px 10px;"><span class="badge low" style="font-size: 10px;">LOW</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-top: 12px; font-size: 13px; color: var(--text-secondary);">Overall: 42 expected SaaS pages. 13 Present, 11 Partial, 18 Absent. Coverage = 57%. Mean quality across present pages = 2.96. Schema completeness = 0% (no page emits the framework-recommended schema type for its role). The LLM-specific support and Technical Trust categories carry HIGH severity under the <em>agentic positioning override</em>: Marq's core product claim is agentic content workflows, which makes the machine-readable scaffolding that would prove that claim structurally required regardless of business type.</p>
+        </div>
+      </details>
+
+      <!-- EC-001: Entity definition & identity -->
+      <details id="EC-001">
+        <summary><span class="badge high">HIGH</span> Entity Definition &amp; Identity &mdash; Leadership Page Lacks Person Schema, No Company History, Ownership Unstated <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(EC-001)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">A machine walking the entity-identification category on marq.com finds an About page, names five leaders, and stops. It cannot confirm when the company was founded from a canonical timeline, who owns the company, or how the leadership team's credentials tie back to the entity. The identity surface presents a company; it does not substantiate one.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Coverage 75% (3 of 4 Present or Partial), mean content quality 2.67, schema completeness 0%. The About page functions as both the company page and the leadership page &mdash; fine as a content decision, a problem as a machine-readability decision because the page emits WebPage schema and nothing else. No <code>Person</code> nodes for the executives whose names appear in the prose. No <code>foundingDate</code> on the Organization. No Corporate Structure / Ownership page disclosing the Charles Thayne Capital acquisition publicly on site (press coverage is the only record).</p>
+
+              <div style="margin-top: 12px; font-size: 13px;">
+                <strong>Per-page scoring</strong>
+                <ul style="margin-top: 6px; line-height: 1.7;">
+                  <li>About Us &middot; Present &middot; <a href="https://www.marq.com/about/">/about/</a> &middot; L2=3 &middot; no schema</li>
+                  <li>Leadership / Team &middot; Present (as a section of About) &middot; L2=3 &middot; no Person schema</li>
+                  <li>Company History / Timeline &middot; Partial (one paragraph on About) &middot; L2=2 &middot; no schema</li>
+                  <li>Corporate Structure / Ownership &middot; Absent &middot; &mdash;</li>
+                </ul>
+              </div>
+
+              <p style="margin-bottom: 12px;">When an AI model is asked "who runs Marq" or "when was Marq founded," the answer lives in prose on one page with no structured binding. Competitors with individual leadership pages and <code>Person</code> schema get cited first because the model has something to extract; Marq requires the model to read and summarize.</p>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: rgba(91, 124, 94, 0.08); border-left: 3px solid var(--accent-teal); border-radius: 4px; font-size: 14px;"><strong>Cross-references:</strong> <a href="#SEM-005">SEM-005</a> (About page leads with 24 "we" statements) reads the same About page through the semantic lens. <a href="#SCH-005">SCH-005</a> (no SoftwareApplication schema) reflects the same "WebPage-only schema everywhere" pattern.</p>
+
+              <p style="margin-bottom: 12px; font-size: 13px; color: var(--text-secondary);"><strong>Severity reasoning:</strong> HIGH because entity definition is load-bearing for any SaaS audit &mdash; a machine that cannot establish who the company is cannot cite the company. <strong>Addressed in roadmap R-xxx.</strong></p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- EC-002: Product & service understanding -->
+      <details id="EC-002">
+        <summary><span class="badge high">HIGH</span> Product &amp; Service Understanding &mdash; Integrations and Glossary Buried in Help Center, Comparison Content Lives in Blog <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(EC-002)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">This category is 100% covered on paper: a page exists for each of the four expected roles. The issue is where those pages live. The Platform page is the only canonical, brand-domain, entity-anchored answer to "what does Marq sell." Integrations, product taxonomy / glossary, and competitive comparisons all live off the brand domain &mdash; in the help center, on the developer subdomain, or inside the blog. A machine looking to understand the product from canonical pages finds one page; everything else it has to stitch.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Coverage 100%, mean content quality 2.75, schema completeness 0%. Two of the four pages are Partial because the content exists but not at a canonical brand-home location.</p>
+
+              <div style="margin-top: 12px; font-size: 13px;">
+                <strong>Per-page scoring</strong>
+                <ul style="margin-top: 6px; line-height: 1.7;">
+                  <li>Platform / Product Overview &middot; Present &middot; <a href="https://www.marq.com/pages/platform">/pages/platform</a> &middot; L2=3 &middot; no SoftwareApplication schema</li>
+                  <li>Integrations / Ecosystem &middot; Partial (on help.marq.com, not www) &middot; L2=3 &middot; no schema</li>
+                  <li>Comparison / Alternatives &middot; Present (in /blog) &middot; L2=3 &middot; no FAQPage or Product schema</li>
+                  <li>Product Taxonomy / Glossary &middot; Partial (help center, buried) &middot; L2=2 &middot; no DefinedTerm schema</li>
+                </ul>
+              </div>
+
+              <p style="margin-bottom: 12px;">On the surface this looks like a content problem. Structurally it is an inventory problem: the pages exist, but their location pattern (help.marq.com, blog, no glossary surface) means a machine building a product understanding for Marq has to merge at least three subdomains into one entity picture. The schema gap makes that stitching worse &mdash; no page signals its role to the machine explicitly.</p>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: rgba(91, 124, 94, 0.08); border-left: 3px solid var(--accent-teal); border-radius: 4px; font-size: 14px;"><strong>Cross-references:</strong> <a href="#SCH-005">SCH-005</a> (no SoftwareApplication schema on Platform) addresses the same gap on one page through the structured-data lens. <a href="#SEM-002">SEM-002</a> (Marq AI page hides integration signals) is the Marq AI expression of the integrations-visibility gap.</p>
+
+              <p style="margin-bottom: 12px; font-size: 13px; color: var(--text-secondary);"><strong>Severity reasoning:</strong> HIGH because product understanding is load-bearing for any SaaS entity and directly drives the "what is this" answer machines give. <strong>Addressed in roadmap R-xxx.</strong></p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- EC-003: Operational transparency & trust -->
+      <details id="EC-003">
+        <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> Operational Transparency &amp; Trust &mdash; Editorial Policy Absent, Support Discoverability Scattered <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(EC-003)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">The basic trust scaffolding (Privacy, Terms, Support) is in place. What's missing is the editorial-integrity layer AI models increasingly weight for YMYL-adjacent content: a named editorial policy, content standards, or fact-checking guidelines. For a company publishing hundreds of blog posts about brand management and AI, the absence of this surface weakens the argument that Marq's published content is authoritative.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Coverage 75%, mean content quality 3.00, schema completeness 0%. Three of four expected pages Present; Editorial Policy is Absent.</p>
+
+              <div style="margin-top: 12px; font-size: 13px;">
+                <strong>Per-page scoring</strong>
+                <ul style="margin-top: 6px; line-height: 1.7;">
+                  <li>Terms of Service &middot; Present &middot; <a href="https://www.marq.com/legal/">/legal/</a> &middot; L2=3 &middot; no schema</li>
+                  <li>Privacy Policy &middot; Present &middot; <a href="https://www.marq.com/privacy/">/privacy/</a> &middot; L2=3 &middot; no schema</li>
+                  <li>Customer Support &middot; Present (help.marq.com) &middot; L2=3 &middot; no SupportCenter schema</li>
+                  <li>Editorial Policy / Content Standards &middot; Absent &middot; &mdash;</li>
+                </ul>
+              </div>
+
+              <p style="margin-bottom: 12px;">Privacy and Terms are standard; support is present but lives on the help subdomain with no branded "contact us" page on www. Editorial standards are entirely unstated, which weakens the EEAT signal on any blog content the AI model is weighing.</p>
+
+              <p style="margin-bottom: 12px; font-size: 13px; color: var(--text-secondary);"><strong>Severity reasoning:</strong> MEDIUM because the category is not structurally required for machine entity identification but directly affects how AI weights Marq's published content. <strong>Addressed in roadmap R-xxx.</strong></p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- EC-004: Thought leadership & ecosystem context -->
+      <details id="EC-004">
+        <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> Thought Leadership &amp; Ecosystem Context &mdash; Case Studies Strong, Original Research Absent <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(EC-004)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Thought leadership is the category where authority gets established for topics the company wants to own. Marq has case studies and a blog &mdash; adequate baseline. What's missing is the stuff competitors cite: original research, benchmark reports, proprietary data, named industry commentary, or a canonical events / webinars hub. AI models cite research and data over opinion content consistently; the absence of original data means Marq gets cited for templates, not for brand-management expertise.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Coverage 50%, mean content quality 3.00, schema completeness 0%.</p>
+
+              <div style="margin-top: 12px; font-size: 13px;">
+                <strong>Per-page scoring</strong>
+                <ul style="margin-top: 6px; line-height: 1.7;">
+                  <li>Research / Whitepapers / Original Data &middot; Absent (only a whitepaper template, not published research) &middot; &mdash;</li>
+                  <li>Case Studies / Customer Stories &middot; Present &middot; <a href="https://www.marq.com/pages/customers/">/pages/customers/</a> &middot; L2=3 &middot; no CaseStudy schema</li>
+                  <li>Industry Commentary / POV Content &middot; Partial (mixed in blog) &middot; L2=3 &middot; no schema</li>
+                  <li>Events / Webinars &middot; Absent &middot; &mdash;</li>
+                </ul>
+              </div>
+
+              <p style="margin-bottom: 12px;">For AI models asked "what is Marq's view on X in brand management," there is no canonical surface to cite. Blog posts cover opinions in prose; a machine-citable "State of Brand Management 2026" report from Marq would be the authority-anchoring content the category is currently missing.</p>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: rgba(91, 124, 94, 0.08); border-left: 3px solid var(--accent-teal); border-radius: 4px; font-size: 14px;"><strong>Cross-references:</strong> <a href="#SEM-006">SEM-006</a> (case studies lack structured proof) reads the same case-studies surface through the page-quality lens.</p>
+
+              <p style="margin-bottom: 12px; font-size: 13px; color: var(--text-secondary);"><strong>Severity reasoning:</strong> MEDIUM &mdash; the primary authority-establishing category for AI citation; weak scoring here correlates with model hedging on topic leadership. <strong>Addressed in roadmap R-xxx.</strong></p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- EC-005: LLM-specific support -->
+      <details id="EC-005">
+        <summary><span class="badge high">HIGH</span> LLM-Specific Support &mdash; No Brand Facts File, No AI Policy, Developer Docs Orphaned on Subdomain <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(EC-005)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">This is the category where the agentic claim gets structurally substantiated &mdash; or contradicted. Marq's product is positioned as agentic content workflows; the page inventory that would prove the positioning (canonical machine-readable facts, an AI / ethical-use policy, and a developer surface discoverable from the brand home) is almost entirely absent. The developer documentation exists on a separate subdomain that is not linked from www.marq.com or from the Marq AI page itself. A machine confirming the agentic claim finds the claim on the marketing site and nothing corroborating it on the brand home.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Coverage 33% (1 of 3 Partial), mean content quality 3.00, schema completeness 0%.</p>
+
+              <div style="margin-top: 12px; font-size: 13px;">
+                <strong>Per-page scoring</strong>
+                <ul style="margin-top: 6px; line-height: 1.7;">
+                  <li>Brand Facts / Knowledge File &middot; Absent (no /llms.txt, no /.well-known/, no brand-facts.json) &middot; &mdash;</li>
+                  <li>AI Policy / Ethical Use Statement &middot; Absent &middot; &mdash;</li>
+                  <li>Developer / API Documentation &middot; Partial (on <a href="https://developers.marq.com/">developers.marq.com</a>, not linked from www or from /marq-ai) &middot; L2=3 &middot; no schema</li>
+                </ul>
+              </div>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: rgba(91, 124, 94, 0.08); border-left: 3px solid var(--accent-teal); border-radius: 4px; font-size: 14px;"><strong>Behavioral corroboration:</strong> <em>Supporting AI-visibility benchmark data redacted for this sanitized sample.</em></p>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: rgba(91, 124, 94, 0.08); border-left: 3px solid var(--accent-teal); border-radius: 4px; font-size: 14px;"><strong>Cross-references:</strong> <a href="#BV-016">BV-016</a> (absent agent-discovery manifests) is the plumbing-level expression of this gap. <a href="#BV-017">BV-017</a> (CAPTCHA blocks AI agents) is the access-level expression. <a href="#SEM-002">SEM-002</a> (Marq AI page hides machine-integration signals) is the on-page expression. <a href="#SCH-005">SCH-005</a> (no SoftwareApplication schema) is the structured-data expression. Four findings, four layers, one root cause: the agentic claim is visible everywhere on the marketing site, but the machine-readable scaffolding that would let a model confirm the claim is absent across the inventory.</p>
+
+              <p style="margin-bottom: 12px; font-size: 13px; color: var(--text-secondary);"><strong>Severity reasoning:</strong> HIGH under the <em>agentic positioning override</em> &mdash; for any company whose core claim is agentic, AI-native, or machine-readable content, the absence of LLM-specific support pages structurally contradicts the claim. <strong>Addressed in roadmap R-xxx.</strong></p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- EC-006: Human connection & differentiation -->
+      <details id="EC-006">
+        <summary><span class="badge low">LOW</span> Human Connection &amp; Differentiation &mdash; Founder Narrative Thin, Employee Stories Absent, Careers Page Generic <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(EC-006)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Humanizing content is not load-bearing for machine entity identification &mdash; a model can confirm the company exists without a founder's story. It does, however, affect the vividness of the entity for retrieval contexts where the question is about company culture, values, or hiring. Careers pages are increasingly read by AI models building company profiles; Marq's is present but thin.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Coverage 67%, mean content quality 2.50, schema completeness 0%.</p>
+
+              <div style="margin-top: 12px; font-size: 13px;">
+                <strong>Per-page scoring</strong>
+                <ul style="margin-top: 6px; line-height: 1.7;">
+                  <li>Founder's Story / Mission &middot; Partial (mission-ish prose on About) &middot; L2=2 &middot; no schema</li>
+                  <li>Employee Features / Team Spotlights &middot; Absent &middot; &mdash;</li>
+                  <li>Careers / Hiring &middot; Present &middot; <a href="https://www.marq.com/pages/careers/">/pages/careers/</a> &middot; L2=3 &middot; no JobPosting schema</li>
+                </ul>
+              </div>
+
+              <p style="margin-bottom: 12px; font-size: 13px; color: var(--text-secondary);"><strong>Severity reasoning:</strong> LOW &mdash; not structurally required for machine identification, though a richer founder / culture surface would help AI models answer "what's it like to work at Marq" type queries. <strong>Addressed in roadmap R-xxx.</strong></p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- EC-007: Product Reliability -->
+      <details id="EC-007">
+        <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> Product Reliability &mdash; No Status Page, No Changelog, No Public Roadmap, No SLA <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(EC-007)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">This category is entirely absent &mdash; 0% coverage across all four expected pages. For an enterprise SaaS with a security page that discusses compliance, the absence of a system-status page, a public changelog, a roadmap, and an uptime commitment reads as a structural omission. Competitors in the brand-management category (Bynder, Frontify) publish most of these; enterprise buyers notice; AI models comparing vendors pick up on it.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Coverage 0%, mean content quality N/A, schema completeness 0%. This is the only category with a Failing health band.</p>
+
+              <div style="margin-top: 12px; font-size: 13px;">
+                <strong>Per-page scoring</strong>
+                <ul style="margin-top: 6px; line-height: 1.7;">
+                  <li>System Status Page &middot; Absent (no status.marq.com, no /status) &middot; &mdash;</li>
+                  <li>Changelog / Release Notes &middot; Absent &middot; &mdash;</li>
+                  <li>Product Roadmap &middot; Absent &middot; &mdash;</li>
+                  <li>Support SLA / Uptime Commitment &middot; Absent &middot; &mdash;</li>
+                </ul>
+              </div>
+
+              <p style="margin-bottom: 12px;">AI models asked "is Marq reliable" or "what's new in Marq" have no canonical surface to cite. Release announcements appear occasionally in the help center but not as a canonical /changelog or /whats-new page. An enterprise buyer doing due diligence on uptime or SLA has to ask sales; a model trying to answer those questions has no answer to retrieve.</p>
+
+              <p style="margin-bottom: 12px; font-size: 13px; color: var(--text-secondary);"><strong>Severity reasoning:</strong> MEDIUM by default (Product Reliability is not universally load-bearing). Elevated to MEDIUM here rather than LOW because Marq explicitly sells to enterprise, where the absence of these surfaces reads as an operational maturity gap to both buyers and models. <strong>Addressed in roadmap R-xxx.</strong></p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- EC-008: Security & Compliance -->
+      <details id="EC-008">
+        <summary><span class="badge high">HIGH</span> Security &amp; Compliance &mdash; Overview Present but No Trust Center, No Subprocessor List, Certifications Undifferentiated <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(EC-008)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Marq has a security page. What it does not have is the enterprise-grade trust scaffolding enterprise buyers and AI comparison models both expect: a consolidated trust center, a public subprocessor list, dedicated SOC 2 / ISO / GDPR certification pages with downloadable reports, or a DPA landing page. The security page summarizes compliance stances but does not let a machine verify them.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Coverage 50%, mean content quality 3.00, schema completeness 0%.</p>
+
+              <div style="margin-top: 12px; font-size: 13px;">
+                <strong>Per-page scoring</strong>
+                <ul style="margin-top: 6px; line-height: 1.7;">
+                  <li>Security Practices / Overview &middot; Present &middot; <a href="https://www.marq.com/pages/security">/pages/security</a> &middot; L2=3 &middot; no schema</li>
+                  <li>Compliance Certifications &middot; Partial (referenced on security page, no dedicated pages) &middot; L2=3 &middot; no schema</li>
+                  <li>Data Privacy / Subprocessor List &middot; Absent &middot; &mdash;</li>
+                  <li>Trust Center / Policies Portal &middot; Absent (policies spread across /legal, /privacy, /pages/security) &middot; &mdash;</li>
+                </ul>
+              </div>
+
+              <p style="margin-bottom: 12px;">An enterprise buyer evaluating Marq asks for a trust portal URL in the first RFP email. A machine answering "is Marq SOC 2 certified" or "who are Marq's subprocessors" finds an overview paragraph and no canonical verification surface. This is the category where the inventory gap most directly blocks enterprise retrieval.</p>
+
+              <p style="margin-bottom: 12px; font-size: 13px; color: var(--text-secondary);"><strong>Severity reasoning:</strong> HIGH &mdash; for B2B SaaS with enterprise buyers, Security &amp; Compliance is structurally required. The Adequate health band masks the qualitative gap (what's present doesn't enable machine verification). <strong>Addressed in roadmap R-xxx.</strong></p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- EC-009: Implementation & Success -->
+      <details id="EC-009">
+        <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> Implementation &amp; Success &mdash; Onboarding Lives on info.marq.com, No Migration Guide, No ROI Surface <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(EC-009)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Implementation content exists but lives on <code>info.marq.com</code> rather than the brand home, which creates the same discoverability problem as the developer subdomain. Migration guides for switchers (from Canva, InDesign, Adobe Express) are absent &mdash; competitors publish these routinely and capture switcher queries by default. ROI evidence lives inside case study prose rather than a canonical surface.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Coverage 75%, mean content quality 3.00, schema completeness 0%. Three Partials, one Absent.</p>
+
+              <div style="margin-top: 12px; font-size: 13px;">
+                <strong>Per-page scoring</strong>
+                <ul style="margin-top: 6px; line-height: 1.7;">
+                  <li>Implementation Timeline / Onboarding &middot; Partial (info.marq.com/implementation-tiers) &middot; L2=3 &middot; no schema</li>
+                  <li>Success Metrics / ROI &middot; Partial (inside case studies) &middot; L2=3 &middot; no schema</li>
+                  <li>Migration Guide / Switcher Page &middot; Absent (no /switch-from-canva, no /migrate-from-adobe) &middot; &mdash;</li>
+                  <li>Training / Enablement Hub &middot; Partial (help.marq.com/launch-and-training-resources) &middot; L2=3 &middot; no schema</li>
+                </ul>
+              </div>
+
+              <p style="margin-bottom: 12px; font-size: 13px; color: var(--text-secondary);"><strong>Severity reasoning:</strong> MEDIUM &mdash; buyers and models both use this category to reduce switching friction; Partial coverage across multiple subdomains weakens the entity&rsquo;s implementation readiness signal. <strong>Addressed in roadmap R-xxx.</strong></p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- EC-010: Technical Trust -->
+      <details id="EC-010">
+        <summary><span class="badge high">HIGH</span> Technical Trust &mdash; No Architecture Overview, Benchmarks Absent, Data Portability Buried on Developer Subdomain <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(EC-010)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">For a platform claiming agentic and AI-native positioning, Technical Trust pages matter disproportionately: they are where the claim's technical substance gets established. Marq has per-integration documentation scattered across the help center and data-portability APIs documented on the developer subdomain, but no architecture overview, no performance benchmarks, and no canonical integration documentation index discoverable from the brand home.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Coverage 50%, mean content quality 3.00, schema completeness 0%.</p>
+
+              <div style="margin-top: 12px; font-size: 13px;">
+                <strong>Per-page scoring</strong>
+                <ul style="margin-top: 6px; line-height: 1.7;">
+                  <li>Architecture Overview / Technical Diagram &middot; Absent &middot; &mdash;</li>
+                  <li>Integration Documentation (per-integration, deep) &middot; Partial (help.marq.com, no canonical index) &middot; L2=3 &middot; no schema</li>
+                  <li>Performance / Benchmarks &middot; Absent &middot; &mdash;</li>
+                  <li>Data Portability / Export Policy &middot; Partial (developers.marq.com) &middot; L2=3 &middot; no schema</li>
+                </ul>
+              </div>
+
+              <p style="margin-bottom: 12px;">A machine answering "can Marq handle our architecture" or "what does Marq integrate with at scale" finds scattered help-center articles and a developer subdomain it wasn't directed to. The technical substance exists; the inventory doesn't advertise it.</p>
+
+              <p style="margin-bottom: 12px; font-size: 13px; color: var(--text-secondary);"><strong>Severity reasoning:</strong> HIGH under the <em>agentic positioning override</em>. Technical Trust is where the agentic claim's technical evidence lives; the inventory does not assemble that evidence on the brand home. <strong>Addressed in roadmap R-xxx.</strong></p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- EC-011: Community & Ecosystem -->
+      <details id="EC-011">
+        <summary><span class="badge low">LOW</span> Community &amp; Ecosystem &mdash; Template Library Strong, Partner Directory and User Forum Absent <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(EC-011)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">The one strong signal in this category is Marq's template library &mdash; prolific, well-organized, highly indexed. But it's first-party content, not a user-generated marketplace, and it carries no author attribution or licensing schema. A user forum, a partner directory, and a customer advisory / beta program are entirely absent &mdash; ecosystem signals that establish the entity as a platform rather than a product.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Coverage 25%, mean content quality 4.00 (one Partial page at Strong quality), schema completeness 0%. Failing on coverage; rescued from it by the template library&rsquo;s volume and polish.</p>
+
+              <div style="margin-top: 12px; font-size: 13px;">
+                <strong>Per-page scoring</strong>
+                <ul style="margin-top: 6px; line-height: 1.7;">
+                  <li>User Forum / Community &middot; Absent &middot; &mdash;</li>
+                  <li>Partner Directory &middot; Absent &middot; &mdash;</li>
+                  <li>Template Marketplace / UGC &middot; Partial (first-party library, not UGC) &middot; <a href="https://www.marq.com/pages/templates/">/pages/templates/</a> &middot; L2=4 &middot; no schema</li>
+                  <li>Customer Advisory Board / Beta &middot; Absent &middot; &mdash;</li>
+                </ul>
+              </div>
+
+              <p style="margin-bottom: 12px; font-size: 13px; color: var(--text-secondary);"><strong>Severity reasoning:</strong> LOW &mdash; ecosystem signals strengthen entity vividness but are not structurally required for identification. A strong template surface is present. <strong>Addressed in roadmap R-xxx.</strong></p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+    </div>
+
+  </div>
+
+  <!-- TRUST DIMENSION SECTION -->
+  <div class="container">
+    <div class="layer-header">
+      <div class="layer-header-top">
+        <h3>Trust: Will AI Recommend You?</h3>
+        <div class="badges">
+          <span class="count-badge high">5</span>
+          <span class="count-badge medium">2</span>
+          <span class="count-badge low">0</span>
+          <span class="count-badge pass">1</span>
+        </div>
+      </div>
+      <p class="layer-description">AI agents don't just look at your website. They cross-reference what they find across platforms, compare you to competitors, and check whether your content is authoritative enough to cite. This dimension measures whether AI systems trust Marq enough to recommend it. For a SaaS brand with a real capability surface, the central trust question is whether machines can verify the claim that Marq is agent-ready &mdash; and today, the verification chain has three structural breaks.</p>
+    </div>
+
+  <!-- Entity Identity & Proof Structure Topic Group -->
+  <div class="findings-section">
+    <h3>Entity Identity &amp; Proof Structure</h3>
+    <p class="topic-intro">Schema markup doesn't just help AI understand your content (that's the Understand layer). It also makes verifiable claims about your business: who you are, what you build, what customers prove about you. When those claims are incomplete or disjoint across pages, AI agents lose confidence in the whole site. This section evaluates whether Marq's structured data builds trust or undermines it.</p>
+
+    <!-- HIGH: Capability Surface Disjoint From Brand Identity -->
+    <details id="BV-003">
+      <summary><span class="badge high">HIGH</span> Capability Surface Is Disjoint From the Brand Identity <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(BV-003)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">Trust in the agentic era depends on a machine being able to say "this brand, this capability, same entity." For Marq that means being able to prove, in structured form, that www.marq.com and developers.marq.com are the same company. Today they are not linked in either direction: no Organization sameAs entry on the brand home, no reciprocal sameAs on the developer portal, no shared @id, no 301 bridge. An AI agent reading both sites independently will treat them as two companies with confusingly similar names.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">Three reinforcing breaks in the entity-identity chain:</p>
+            <ul style="margin: 0 0 12px 24px; line-height: 1.8;">
+              <li>The Organization schema on www.marq.com lists six sameAs links (social + Crunchbase). It does not list developers.marq.com.</li>
+              <li>The Organization schema on developers.marq.com does not reciprocate with a sameAs link back to www.marq.com.</li>
+              <li>Neither site uses an explicit @id to declare "these two Organization nodes are the same entity."</li>
+            </ul>
+            <p style="margin-bottom: 12px;">This is the TRUST-layer expression of BV-001. In FIND the problem is "agents can't reach the capability." In TRUST the problem is "agents can't verify the capability belongs to Marq." Same root, different failure mode.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- HIGH: Case Study Template Lacks Proof Schema -->
+    <details>
+      <summary><span class="badge high">HIGH</span> Case Study Template Lacks Machine-Extractable Proof <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-004 &mdash; Trust angle)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">This is the same underlying gap flagged in UNDERSTAND (<a href="#SCH-004">SCH-004</a>), viewed through the trust lens. An AI model choosing between Marq and a competitor weights <em>verifiable</em> proof: customer name in schema, industry label, numeric outcome, review rating. Prose-only case studies can be read but cannot be cited in structured form &mdash; and an AI that cannot cite will hedge.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">All 16 case studies render customer logos, names, and testimonial quotes in HTML but emit zero Article / CaseStudy / Review schema. No about.Organization for the customer. No reviewRating. No result field carrying numeric outcomes. Trust side-effect: when Claude or GPT is asked "which brand-marketing teams have shipped faster with Marq," the model cannot produce a cited list. The evidence exists on the site; the citation surface does not.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- HIGH: Case Study Titles Use Generic H1s -->
+    <details>
+      <summary><span class="badge high">HIGH</span> Case Study Titles Use Generic Marq-Centric H1s <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SEM-004)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">A case study H1 is the single text string an AI is most likely to surface verbatim when citing that study. "Customer Story: [Customer] ships X% faster with Marq" cites cleanly. "Marq Helps Brand Teams Scale" does not &mdash; there's no customer named, no outcome quantified, nothing for an answer engine to hang a recommendation on.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">Sampled case study H1s follow a Marq-centric pattern: "Marq [verb]s [capability]" rather than "[Customer] achieved [outcome] with Marq." Combined with the missing schema, this means the two most-cited fields on a case study (the H1 string and the CaseStudy.headline schema property) both fail to surface customer identity or outcome. Twin fix: rewrite titles customer-first, then bind the customer-first title to schema headline.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- HIGH: No Person-to-Content Authority Chain -->
+    <details>
+      <summary><span class="badge high">HIGH</span> No Person-to-Content Authority Chain <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-006 &mdash; Trust angle)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">AI builds authority profiles by linking a Person (with credentials) to their content (blog posts, talks, case studies) to the Organization they represent. Marq has all three pieces &mdash; named leadership on /about, published blog posts, customer stories &mdash; but the chain is not wired. Each piece exists in isolation, so AI sees content without authors, leaders without published work, and an organization without quotable experts.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">No Person schema on /about (see <a href="#SCH-006">SCH-006</a>). No author field on blog posts (no Article schema at all). No contributor links from case studies to named Marq employees. Trust consequence: when an AI model is asked "who at Marq talks about agentic content workflows," the model has no machine-readable answer even if the answer exists in prose somewhere on the site.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- MEDIUM: G2 Rating Not In Schema -->
+    <details>
+      <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> G2 Rating Exists Off-Site But Is Not Bound Into Product Schema <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-009)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">Third-party review aggregators carry weight with AI systems because they are verifiable outside the company's own site. Marq has a strong G2 presence with hundreds of reviews and a public rating, but that rating lives only on G2 &mdash; it is not surfaced as an aggregateRating in Marq's own structured data. When an AI model builds a recommendation, it will find the G2 rating only if it happens to crawl G2 separately; it will not find it via Marq's own schema.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">No aggregateRating property anywhere in Marq's schema graph. No Review schema. The G2 rating exists on g2.com/products/marq; it does not exist in machine-readable form anywhere on marq.com.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- MEDIUM: Blog Lacks Authored Content Schema -->
+    <details>
+      <summary><span class="badge medium" style="color: var(--slate);">MEDIUM</span> Blog Lacks Article Schema, Breaking Thought-Leadership Trust <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(SCH-010)</span></summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">Blog content signals thought leadership to AI systems &mdash; but only when the content is classified as authored, dated, and attributed. Plain WebPage schema on a blog post tells AI "this is a web page." Article schema tells AI "this is a published piece with an author, a publication date, and a topic." The difference matters for anything where AI has to decide whether to cite the source.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">Blog posts on www.marq.com emit Organization + WebPage JSON-LD. No Article, no author, no datePublished, no headline. Given that Marq publishes regular product and industry content, this is leaving authority on the floor &mdash; AI has no reason to prefer a Marq post over a generic marketing source when both appear in search.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; font-style: italic; color: var(--text-secondary);"><strong>Recommendation:</strong> Redacted for this sanitized sample.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- PASS: Organization Schema Foundation Present -->
+    <details>
+      <summary><span class="badge pass">PASS</span> Organization Schema Foundation Is Present</summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">A trust layer built on nothing collapses. Trust built on a correct foundation extends easily. Marq's foundation is present.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">Organization schema is correctly declared on the homepage and reused on child pages via BreadcrumbList references. The entity has a name, a URL, a logo, a description, and a populated (if incomplete) sameAs array. The fixes in this layer are additions to a valid foundation, not rebuilds. A machine already knows Marq is an Organization; the TRUST work is teaching it which Organization, with what proof, and with what reach.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+  </div>
+  </div>
+
+  <!-- WHAT TO DO NEXT SECTION -->
+  <div class="container" style="margin-top: 64px;">
+    <h2 style="font-family: var(--font-heading); font-size: 32px; font-weight: 700; margin-bottom: 32px; color: var(--slate);">What to Do Next</h2>
+
+    <!-- Quick Wins redacted for sanitized sample -->
+    <div class="phase-card">
+      <div class="phase-header">Quick Wins &mdash; Redacted</div>
+      <p style="color: var(--text-secondary); font-size: 14px; font-style: italic;">Prioritized quick-win list redacted for this sanitized sample.</p>
+    </div>
+
+    <!-- Critical Issues redacted for sanitized sample -->
+    <div class="phase-card" style="margin-top: 32px;">
+      <div class="phase-header">Critical Issues &mdash; Redacted</div>
+      <p style="color: var(--text-secondary); font-size: 14px; font-style: italic;">The four-issue &ldquo;gaps that matter most&rdquo; synthesis is redacted for this sanitized sample.</p>
+    </div>
+
+
+    <!-- Next Steps CTA -->
+    <div style="background: linear-gradient(135deg, var(--teal-deep) 0%, var(--accent-teal) 100%); color: white; padding: 36px 32px; border-radius: 8px; margin-top: 32px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 800px; margin: 0 auto;">
+        <div>
+          <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 600; margin-bottom: 12px;">Ready for the fix?</h3>
+          <p style="font-size: 14px; opacity: 0.92; line-height: 1.7; margin-bottom: 16px;">The <strong>Agent Readiness Roadmap</strong> turns these findings into a page-by-page, template-by-template implementation blueprint. Schema type mapping, sample JSON-LD with Marq's real content, semantic HTML recommendations, and a prioritized build sequence your team or agency can execute immediately.</p>
+          <a href="https://lizmicik.com/#contact" style="color: white; font-weight: 600; font-size: 14px; text-decoration: underline; text-underline-offset: 3px;">Get your Roadmap &rarr;</a>
+        </div>
+        <div>
+          <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 600; margin-bottom: 12px;">Need someone to execute the plan?</h3>
+          <p style="font-size: 14px; opacity: 0.92; line-height: 1.7; margin-bottom: 16px;">Whether you work from this audit or a full Roadmap, implementation takes hands on the keyboard. Over the years I have developed strong working relationships with firms that specialize in exactly this kind of work. I'm happy to make an introduction.</p>
+          <a href="https://lizmicik.com/#contact" style="color: white; font-weight: 600; font-size: 14px; text-decoration: underline; text-underline-offset: 3px;">Let's talk &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER SECTION -->
+  <footer class="report-footer" style="background-color: var(--slate); color: var(--text-light); padding: 40px 24px; text-align: center; margin-top: 64px; border-radius: 8px;">
+    <div style="margin-bottom: 24px;">
+      <p style="font-size: 16px; font-style: italic; margin-bottom: 12px; color: var(--teal-light); font-weight: 500;">Every company built a website to talk to humans.<br>Nobody built one to talk to AI.</p>
+      <p style="font-size: 14px; margin-bottom: 0;">Prepared by Liz Micik | <a href="https://lizmicik.com" style="color: var(--teal-light); text-decoration: none;">lizmicik.com</a></p>
+    </div>
+    <div style="font-size: 12px; line-height: 1.6; color: var(--cream); opacity: 0.7; margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 16px;">
+      <p>&copy; 2026 Liz Micik. All rights reserved. Agent Readiness Audit&trade; and Agent Signal Check&trade; are trademarks of Liz Micik. This is a sanitized sample of the Agent Readiness Audit framework, shared with Forge &amp; Fathom. Specific findings data, recommendations, and benchmark numbers have been redacted. Not for redistribution.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.tab-button').forEach(button => {
+      button.addEventListener('click', function() {
+        const tabName = this.getAttribute('data-tab');
+        const tabContainer = this.closest('.tab-container');
+
+        tabContainer.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+        tabContainer.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+        this.classList.add('active');
+        document.getElementById(tabName).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
