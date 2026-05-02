@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELSCO Transformers &mdash; Your Deliverables &mdash; Liz Micik</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAFAF7;
+    --cream-dark: #FAF8F5;
+    --slate: #2C3038;
+    --slate-light: #3D424D;
+    --slate-mid: #545B6A;
+    --teal-deep: #4E7F80;
+    --accent-teal: #5B7C5E;
+    --teal-light: #8ABCBD;
+    --accent-copper: #C4956A;
+    --font-heading: 'Manrope', sans-serif;
+    --font-body: 'Manrope', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--slate);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--slate) 0%, var(--slate-light) 100%);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .header h1 {
+    font-family: var(--font-heading);
+    color: var(--cream);
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .header p {
+    color: var(--teal-light);
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+    flex: 1;
+  }
+
+  .welcome { margin-bottom: 2rem; }
+
+  .welcome .eyebrow {
+    color: var(--accent-teal);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .welcome h2 {
+    font-family: var(--font-heading);
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--slate);
+    margin-bottom: 0.75rem;
+  }
+
+  .welcome p {
+    color: var(--slate-mid);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .welcome p + p { margin-top: 0.75rem; }
+
+  .snapshot {
+    background: #fff;
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--accent-teal);
+    border-radius: 8px;
+    padding: 1.1rem 1.25rem;
+    margin: 1.75rem 0 2.25rem;
+  }
+
+  .snapshot h3 {
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--slate);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .snapshot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .snapshot-item {
+    font-size: 0.82rem;
+    color: var(--slate-mid);
+    line-height: 1.45;
+  }
+
+  .snapshot-item strong {
+    display: block;
+    color: var(--slate);
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.15rem;
+  }
+
+  .deliverables {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .deliverable-card {
+    background: #fff;
+    border: 1px solid var(--cream-dark);
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    text-decoration: none;
+    color: var(--slate);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .deliverable-card:hover {
+    border-color: var(--accent-teal);
+    box-shadow: 0 2px 12px rgba(78, 127, 128, 0.1);
+  }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.25rem;
+  }
+
+  .icon-html { background: linear-gradient(135deg, var(--teal-deep), var(--accent-teal)); color: #fff; }
+  .icon-pdf { background: linear-gradient(135deg, #c0392b, #e74c3c); color: #fff; }
+  .icon-handout { background: linear-gradient(135deg, var(--accent-copper), #d4a574); color: #fff; }
+  .icon-onepager { background: linear-gradient(135deg, var(--teal-light), var(--accent-teal)); color: #fff; }
+  .icon-video { background: linear-gradient(135deg, var(--accent-copper), #c99272); color: #fff; }
+  .icon-deck { background: linear-gradient(135deg, var(--slate), var(--slate-mid)); color: #fff; }
+
+  .card-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  .card-content p {
+    color: var(--slate-mid);
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .card-arrow {
+    margin-left: auto;
+    color: var(--accent-teal);
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .placeholder-card {
+    opacity: 0.45;
+    pointer-events: none;
+    cursor: default;
+  }
+
+  .placeholder-card .card-content p {
+    font-style: italic;
+  }
+
+  .contact-section {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .contact-section p {
+    color: var(--slate-mid);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .contact-section a {
+    color: var(--teal-deep);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .contact-section a:hover {
+    text-decoration: underline;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--slate-mid);
+    font-size: 0.8rem;
+  }
+
+  .footer a {
+    color: var(--slate-mid);
+    text-decoration: none;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 600px) {
+    .header { padding: 2rem 1.25rem; }
+    .header h1 { font-size: 1.4rem; }
+    .container { padding: 2rem 1.25rem; }
+    .deliverable-card { padding: 1.25rem; gap: 1rem; }
+    .snapshot-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Liz Micik</h1>
+    <p>Agent Readiness Audit&#8482;</p>
+  </div>
+
+  <div class="container">
+    <div class="welcome">
+      <div class="eyebrow">Prepared for ELSCO Transformers</div>
+      <h2>Your Deliverables</h2>
+      <p>Everything from this engagement is collected here. The interactive audit covers all findings across the three layers of agent readiness&mdash;Find, Understand, Trust&mdash;with evidence, scoring, and prioritized recommendations.</p>
+      <p>Two companion handouts pair with the audit: a <em>Directory Alignment Guide</em> with claim-and-update steps for the off-site directory work, and two short <em>Schema</em> primers explaining why structured data matters for AI agents and how disambiguation works at the schema layer.</p>
+      <p>A video walkthrough and the highlight presentation deck will appear below as they are finalized.</p>
+    </div>
+
+    <div class="snapshot">
+      <h3>At a Glance</h3>
+      <div class="snapshot-grid">
+        <div class="snapshot-item"><strong>Three Layers</strong>Find &middot; Understand &middot; Trust</div>
+        <div class="snapshot-item"><strong>Scope</strong>elscotransformers.com</div>
+        <div class="snapshot-item"><strong>Evidence</strong>Gumshoe &amp; Wordlift integrated</div>
+      </div>
+    </div>
+
+    <div class="deliverables">
+
+      <a href="report.html" class="deliverable-card">
+        <div class="card-icon icon-html">&#9671;</div>
+        <div class="card-content">
+          <h3>Interactive Audit Report</h3>
+          <p>Full findings across Find, Understand, and Trust&mdash;with evidence, scoring, and prioritized recommendations.</p>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+      <a href="Directory-Alignment-Guide.pdf" class="deliverable-card">
+        <div class="card-icon icon-pdf">&#9724;</div>
+        <div class="card-content">
+          <h3>Directory Alignment Guide</h3>
+          <p>Per-surface claim URLs and step-by-step process to reconcile &ldquo;ELSCO Transformers&rdquo; and &ldquo;Electric Service Co.&rdquo; across off-site directories.</p>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+      <a href="Schema-Is-Disambiguation.pdf" class="deliverable-card">
+        <div class="card-icon icon-handout">&#9670;</div>
+        <div class="card-content">
+          <h3>Schema as Disambiguation (Visual Handout)</h3>
+          <p>One-page primer with paired JSON-LD and knowledge-graph diagrams showing how schema disambiguates entities for AI agents.</p>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+      <a href="Schema-Is-Agent-Language.html" class="deliverable-card">
+        <div class="card-icon icon-onepager">&#9651;</div>
+        <div class="card-content">
+          <h3>Schema is the Language of AI Agents</h3>
+          <p>Sales-reference one-pager: why structured data near-triples AI agent accuracy on retrieval tasks, with verified industry quotes and the data.world benchmark.</p>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+      <div class="deliverable-card placeholder-card">
+        <div class="card-icon icon-video">&#9654;</div>
+        <div class="card-content">
+          <h3>Video Walkthrough</h3>
+          <p>Coming soon</p>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </div>
+
+      <div class="deliverable-card placeholder-card">
+        <div class="card-icon icon-deck">&#9632;</div>
+        <div class="card-content">
+          <h3>Presentation Deck</h3>
+          <p>Coming soon</p>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </div>
+
+    </div>
+
+    <div class="contact-section">
+      <p>This page and its contents are confidential and prepared exclusively for ELSCO Transformers. Questions, comments, or requests for additional formats? Reach out directly at <a href="mailto:info@lizmicik.com">info@lizmicik.com</a>.</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+    <p style="margin-top:0.5rem;"><a href="/privacy-policy">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms">Terms of Use</a></p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,2004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELSCO Transformers — Agent Readiness Audit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FAFAF7;
+      --cream-dark: #FAF8F5;
+      --slate: #2C3038;
+      --slate-light: #3D424D;
+      --slate-mid: #545B6A;
+      --accent-teal: #5B7C5E;
+      --teal-deep: #4E7F80;
+      --teal-light: #8ABCBD;
+      --accent-copper: #5B7C5E;
+      --accent-blue: #8B9A7E;
+      --text-primary: #2C3038;
+      --text-secondary: #545B6A;
+      --text-light: #F2EDE7;
+      --high: #dc2626;
+      --medium: #f59e0b;
+      --low: #fde047;
+      --pass: #16a34a;
+      --neutral: #8A8580;
+      --font-heading: 'Manrope', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      background-color: var(--cream);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Report Header */
+    .report-header {
+      background: linear-gradient(135deg, var(--teal-deep) 0%, var(--accent-teal) 100%);
+      color: white;
+      padding: 64px 24px;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .report-header h1 {
+      font-family: var(--font-heading);
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .report-header .subtitle {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 24px;
+      opacity: 0.95;
+    }
+
+    .report-header .meta {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .report-header .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .report-header .meta-label {
+      font-weight: 600;
+      opacity: 0.85;
+    }
+
+    .report-header .tagline {
+      font-style: italic;
+      margin-top: 32px;
+      font-size: 16px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.95;
+    }
+
+    /* Executive Summary Section */
+    .executive-summary {
+      background-color: white;
+      border: 1px solid var(--cream-dark);
+      border-radius: 8px;
+      padding: 48px;
+      margin-bottom: 48px;
+    }
+
+    .executive-summary h2 {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 32px;
+      color: var(--slate);
+    }
+
+    .executive-summary .shift-section {
+      margin-bottom: 48px;
+    }
+
+    .executive-summary .shift-section h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--slate);
+    }
+
+    .executive-summary .shift-section p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    /* Result Cards Grid */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .result-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 24px;
+      border-left: 4px solid var(--accent-teal);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .result-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .result-card h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--slate);
+    }
+
+    .result-card .question {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .result-card .verdict {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .severity-bar {
+      display: flex;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      gap: 0;
+    }
+
+    .severity-segment {
+      display: flex;
+    }
+
+    .severity-segment.high {
+      background-color: var(--high);
+    }
+
+    .severity-segment.medium {
+      background-color: var(--medium);
+    }
+
+    .severity-segment.low {
+      background-color: var(--low);
+    }
+
+    .severity-segment.pass {
+      background-color: var(--pass);
+    }
+
+    /* Severity Badges */
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .badge.high {
+      background-color: var(--high);
+      color: white;
+    }
+
+    .badge.medium {
+      background-color: #f59e0b;
+      color: white;
+    }
+
+    .badge.low {
+      background-color: #fde047;
+      color: var(--slate);
+    }
+
+    .badge.pass {
+      background-color: var(--pass);
+      color: white;
+    }
+
+    .badge.info {
+      background-color: var(--neutral);
+      color: white;
+    }
+
+    /* Count Badges */
+    .count-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .count-badge.high {
+      background-color: var(--high);
+      color: white;
+    }
+
+    .count-badge.medium {
+      background-color: var(--medium);
+      color: var(--slate);
+    }
+
+    .count-badge.low {
+      background-color: var(--low);
+      color: var(--slate);
+    }
+
+    .count-badge.pass {
+      background-color: var(--pass);
+      color: white;
+    }
+
+    .count-badge.info {
+      background-color: var(--neutral);
+      color: white;
+    }
+
+    .count-badge.neutral {
+      background-color: var(--neutral);
+      color: white;
+    }
+
+    /* Tabs */
+    .tab-container {
+      margin-bottom: 48px;
+    }
+
+    .tab-nav {
+      display: flex;
+      border-bottom: 2px solid var(--cream-dark);
+      margin-bottom: 32px;
+    }
+
+    .tab-button {
+      background: none;
+      border: none;
+      padding: 16px 24px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+      margin-bottom: -2px;
+    }
+
+    .tab-button:hover {
+      color: var(--accent-teal);
+    }
+
+    .tab-button.active {
+      color: var(--accent-teal);
+      border-bottom-color: var(--accent-teal);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Heatmap Table */
+    .heatmap-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .heatmap-table th,
+    .heatmap-table td {
+      padding: 12px 16px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .heatmap-table th {
+      background-color: var(--slate);
+      color: white;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .heatmap-table th:first-child {
+      text-align: left;
+    }
+
+    .heatmap-table td {
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .heatmap-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .heatmap-table tbody tr:nth-child(odd) {
+      background-color: var(--cream);
+    }
+
+    /* ELSCO column special styling */
+    .elsco-column {
+      background-color: #fef2f2;
+    }
+
+    .elsco-column.heatmap-cell {
+      background-color: #fee2e2;
+      font-weight: 600;
+    }
+
+    /* Heatmap cells with color coding */
+    .heatmap-cell {
+      border-radius: 4px;
+    }
+
+    .heatmap-cell.zero {
+      background-color: #fecaca;
+      color: var(--slate);
+    }
+
+    .heatmap-cell.low-range {
+      background-color: #fed7aa;
+      color: var(--slate);
+    }
+
+    .heatmap-cell.medium-range {
+      background-color: #bbf7d0;
+      color: var(--slate);
+    }
+
+    .heatmap-cell.high-range {
+      background-color: #6ee7b7;
+      color: var(--slate);
+    }
+
+    /* Dimension Headers */
+    .layer-header {
+      background: linear-gradient(135deg, var(--teal-deep) 0%, var(--accent-teal) 100%);
+      color: white;
+      padding: 28px 28px 24px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+
+    .layer-header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .layer-header h3 {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .layer-header .badges {
+      display: flex;
+      gap: 8px;
+    }
+
+    .layer-header .layer-description {
+      font-size: 14px;
+      line-height: 1.7;
+      opacity: 0.92;
+      margin: 0;
+    }
+
+    /* Findings Section */
+    .findings-section {
+      background-color: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 32px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .findings-section h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--slate);
+    }
+
+    details {
+      margin-bottom: 16px;
+      border-left: 3px solid var(--cream-dark);
+      padding-left: 16px;
+    }
+
+    details[open] {
+      border-left-color: var(--accent-teal);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+      list-style: none;
+      padding: 8px 0;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+    summary::marker { display: none; content: ""; }
+
+    summary::before {
+      content: "▶";
+      font-size: 10px;
+      color: var(--accent-teal);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+      width: 14px;
+    }
+
+    details[open] > summary::before {
+      transform: rotate(90deg);
+    }
+
+    /* Level 2 expandable: "What we found" */
+    details details summary {
+      font-size: 14px;
+      color: var(--teal-deep);
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--cream-dark);
+    }
+
+    details details summary::before {
+      content: "+";
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-teal);
+      width: 14px;
+      text-align: center;
+    }
+
+    details details[open] > summary::before {
+      content: "−";
+      transform: none;
+    }
+
+    /* Level 3 expandable: "Technical detail" */
+    details details details summary {
+      font-size: 13px;
+      color: var(--text-secondary);
+      border-bottom: none;
+    }
+
+    details details details summary::before {
+      content: "◦";
+      font-size: 12px;
+      color: var(--slate-mid);
+    }
+
+    details details details[open] > summary::before {
+      content: "•";
+      transform: none;
+    }
+
+    .finding-content {
+      margin-top: 12px;
+      padding-top: 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .topic-intro {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin: -4px 0 16px 0;
+      padding: 8px 12px;
+      background: rgba(91, 124, 94, 0.06);
+      border-radius: 4px;
+      line-height: 1.6;
+    }
+
+    /* Roadmap Phase Cards */
+    .phase-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .phase-header {
+      background-color: var(--slate);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .phase-card table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .phase-card table th {
+      background-color: var(--cream);
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--slate);
+      border-bottom: 2px solid var(--cream-dark);
+    }
+
+    .phase-card table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .phase-card table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Finding Checklist */
+    .checklist-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .checklist-table th {
+      background-color: var(--slate);
+      color: white;
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .checklist-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--cream-dark);
+      font-size: 13px;
+    }
+
+    .checklist-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .checklist-table tbody tr:nth-child(odd) {
+      background-color: var(--cream);
+    }
+
+    .severity-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .severity-dot.high {
+      background-color: var(--high);
+    }
+
+    .severity-dot.medium {
+      background-color: var(--medium);
+    }
+
+    .severity-dot.low {
+      background-color: var(--low);
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--slate);
+      color: var(--text-light);
+      padding: 40px 24px;
+      text-align: center;
+      margin-top: 64px;
+    }
+
+    .footer p {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .footer a {
+      color: var(--teal-light);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background-color: white;
+      }
+
+      .tab-container {
+        break-inside: avoid;
+      }
+
+      .tab-button {
+        display: none;
+      }
+
+      .tab-nav {
+        display: none;
+      }
+
+      .tab-content {
+        display: block !important;
+      }
+
+      details {
+        border-left: 3px solid var(--accent-teal) !important;
+      }
+
+      details > summary::before { content: "▼" !important; transform: none !important; }
+      details details > summary::before { content: "−" !important; }
+      details details details > summary::before { content: "•" !important; }
+
+      details[open] {
+        break-inside: avoid;
+      }
+
+      .result-card,
+      .findings-section,
+      .phase-card,
+      .executive-summary {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      .report-header {
+        break-inside: avoid;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .report-header h1 {
+        font-size: 36px;
+      }
+
+      .report-header .meta {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      .executive-summary {
+        padding: 24px;
+      }
+    }
+  
+    /* Redaction blur for sample version */
+    .redacted {
+      filter: blur(5px);
+      -webkit-filter: blur(5px);
+      user-select: none;
+    }
+    .report-header .redacted {
+      filter: blur(10px);
+      -webkit-filter: blur(10px);
+    }
+    .redacted-note {
+      background: linear-gradient(135deg, #1a2332 0%, #0d1b2a 100%);
+      border: 2px solid var(--copper);
+      border-radius: 12px;
+      padding: 20px 28px;
+      text-align: center;
+      color: var(--text-primary);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Report Header -->
+  <div class="report-header">
+    <h1>ELSCO Transformers</h1>
+    <div class="subtitle" style="font-size: 14px; opacity: 0.85; margin-bottom: 4px;">elscotransformers.com</div>
+    <div style="font-family: var(--font-heading); font-size: 24px; font-weight: 600; margin-bottom: 24px; letter-spacing: 0.5px;">Agent Readiness Audit™</div>
+    <div class="meta">
+      <div class="meta-item">
+        <span class="meta-label">Prepared by</span>
+        <span>Liz Micik, lizmicik.com</span>
+        <span style="font-size: 13px; opacity: 0.8; margin-top: 2px;">April 27, 2026</span>
+      </div>
+    </div>
+    <div class="tagline">Every company built a website to talk to humans.<br>Nobody built one to talk to AI.</div>
+  </div>
+
+  <!-- Executive Summary -->
+  <div class="container">
+    <section class="executive-summary">
+      <h2>Executive Summary</h2>
+
+      <div class="shift-section">
+        <h3>The Shift</h3>
+        <p>Your buyers increasingly start their research in AI rather than Google. When a facility manager whose transformer just failed asks ChatGPT, Claude, or Perplexity who stocks medium-voltage replacements for emergency delivery, or when a procurement engineer asks for a comparison of dry-type and pad-mount transformer suppliers, the AI builds its answer from your digital footprint. It uses your structured data, its understanding of your entity relationships, and the consistency of what you say across all earned web properties to do so. Unfortunately, AI agents do not often say &ldquo;I don&rsquo;t know,&rdquo; or &ldquo;I didn&rsquo;t find that information.&rdquo; Instead, they infer or guess with confidence.</p>
+
+        <p>ELSCO has already done a lot of the hard work needed. You have made sure agents are not blocked from your site, and you have made a significant investment in content. What you are missing is the structural backbone &mdash; the schema, the semantic HTML, the entity-graph cohesion &mdash; that translates that content investment into citation share on AI engines that don&rsquo;t search the live web.</p>
+
+        <p>That structural gap is measurable. We use two outside audit tools (Gumshoe and Wordlift) as validation checks on our internal diagnostics. Both of these tools rank ELSCO solidly in the middle (35% and 47% respectively) in terms of AI visibility, noting the same issues we&rsquo;ll discuss in detail in this audit.</p>
+
+        <p>Before we get into those details though, I want to take a moment to congratulate you. Your overall appearance and those scores are among some of the highest I have seen. 35% visibility on a scale of 100 may not seem especially great, but that means you are ranking <strong>6th out of 120 brands</strong> mentioned across the medium-voltage transformer category. Within Gumshoe&rsquo;s leaderboard, ELSCO beats every competitor named (Hammond, MGM, Maddox) and only legitimately trails Eaton (78%) and Schneider Electric (64%).</p>
+      </div>
+
+      <div class="shift-section">
+        <h3>Your Results</h3>
+        <div class="results-grid">
+          <!-- Card 1 -->
+          <div class="result-card" style="border-left-color: var(--medium);">
+            <h3>Find</h3>
+            <div class="question">Can AI discover and access your content?</div>
+            <div class="verdict">Your doors are wide open. Your robots.txt and sitemaps are well formed and you have no JavaScript blockers. You can begin planning for agentic commerce.</div>
+            <div class="severity-bar">
+              <div class="severity-segment high" style="flex: 2;"></div>
+              <div class="severity-segment medium" style="flex: 2;"></div>
+              <div class="severity-segment low" style="flex: 2;"></div>
+              <div class="severity-segment pass" style="flex: 4;"></div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="result-card" style="border-left-color: var(--high);">
+            <h3>Understand</h3>
+            <div class="question">Can AI figure out what you do?</div>
+            <div class="verdict">Your content is almost too rich. With little semantic HTML and no structured data to guide them, AI agents can get lost in overlapping claims and definitions.</div>
+            <div class="severity-bar">
+              <div class="severity-segment high" style="flex: 7;"></div>
+              <div class="severity-segment medium" style="flex: 3;"></div>
+              <div class="severity-segment low" style="flex: 1;"></div>
+              <div class="severity-segment pass" style="flex: 4;"></div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="result-card" style="border-left-color: var(--high);">
+            <h3>Trust</h3>
+            <div class="question">Will AI recommend you?</div>
+            <div class="verdict">ELSCO appears to be winning competitively. The Trust gap surfaces in the extreme visibility variances between the AI models. Disambiguation is needed.</div>
+            <div class="severity-bar">
+              <div class="severity-segment high" style="flex: 5;"></div>
+              <div class="severity-segment medium" style="flex: 3;"></div>
+              <div class="severity-segment low" style="flex: 2;"></div>
+              <div class="severity-segment pass" style="flex: 5;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shift-section">
+        <h3>What This Means</h3>
+        <p style="font-size: 18px; line-height: 1.7; color: var(--slate); font-weight: 600; padding: 20px; background: rgba(91, 124, 94, 0.08); border-left: 4px solid var(--accent-teal); border-radius: 4px;">Disambiguation:<span style="font-weight: 400; color: var(--text-secondary); display: block; margin-top: 8px; font-size: 15px;">to clarify (something ambiguous) especially by providing or considering additional information.<br>It&rsquo;s what ELSCO needs most.</span></p>
+
+        <p style="margin-top: 24px;">We incorporate the results from two outside AI audit tools (Gumshoe and Wordlift) in our audit to verify and provide further depth to the information we uncover. Gumshoe looks at your site from a content perspective. Wordlift evaluates your site strictly from a technical structure and schema perspective.</p>
+
+        <p>In ELSCO&rsquo;s case these two independent measurement approaches converged on the same diagnosis of our own diagnostic points. The 75-point AI visibility gap between Perplexity (75%) and Claude (0%) (reported by Gumshoe) is not a competitive problem; it is a structural one.</p>
+
+        <p style="margin-top: 24px;">ELSCO has provided a great deal of the information a human needs to make a decision to do business with you. However, machines cannot make the logical leaps that are relatively easy for humans to make, such as understanding your name change. We need to take extra care that the truly important pieces of information they need to understand us are presented in ways that are:</p>
+
+        <ul style="margin: 16px 0 16px 24px; line-height: 1.8; color: var(--text-secondary);">
+          <li><strong style="color: var(--slate);">Clear</strong> &mdash; Clarity and specificity often make for very dull reading by humans, which is why we so often recommend adding a structured data layer to your important pages that speaks this precise language (schema).</li>
+          <li><strong style="color: var(--slate);">Complete</strong> &mdash; Similarly, the more details you provide an AI agent, the easier it is for them to understand. A human knows that &ldquo;M.D.&rdquo; after a name means &ldquo;doctor,&rdquo; but AI agents need <code>knowsAbout</code> schema to tell them this doctor is a pediatrician. BTW, people appreciate this too.</li>
+          <li><strong style="color: var(--slate);">Consistent</strong> &mdash; The more often they see a fact repeated, and the more places they see that fact repeated, lead to the verification and validation they need to declare something as a fact. Unfortunately, AI agents don&rsquo;t know how to say, &ldquo;I don&rsquo;t know.&rdquo; If they don&rsquo;t see consistency, they will infer, and present half-truths or complete untruths as fact as well.</li>
+        </ul>
+
+        <p>ELSCO has an opportunity to pull even further ahead of its street competitors by making sure that AI can represent you accurately in a broader array of queries.</p>
+      </div>
+
+      <div class="shift-section">
+        <h3>Key Findings</h3>
+        <p style="margin-bottom: 16px; color: var(--text-secondary);">A scan-level snapshot of the diagnosis. Each finding lives in full detail in its layer-body home, linked below.</p>
+
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+
+          <div style="display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: var(--cream); border-radius: 6px; border-left: 4px solid var(--high);">
+            <span class="badge high" style="flex-shrink: 0; margin-top: 2px;">HIGH</span>
+            <div>
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Organization entity disambiguation needed</div>
+              <div style="font-size: 14px; color: var(--text-secondary);">ELSCO is indexed under two distinct names &mdash; &ldquo;ELSCO Transformers&rdquo; on modern surfaces (LinkedIn, Crunchbase, YouTube) and &ldquo;Electric Service Co.&rdquo; on legacy B2B directories (BBB, ZoomInfo, Manta, Yellow Pages). Without a schema bridge declaring both as one company, training-data-weighted AI engines treat them as two. <em>Full diagnosis: UNDERSTAND &rarr; Entity Clarity (on-site schema bridge) and TRUST &rarr; Entity Identity (off-site directory reconciliation).</em></div>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: var(--cream); border-radius: 6px; border-left: 4px solid var(--high);">
+            <span class="badge high" style="flex-shrink: 0; margin-top: 2px;">HIGH</span>
+            <div>
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Lack of other schema fosters confusion</div>
+              <div style="font-size: 14px; color: var(--text-secondary);">Every sampled page emits only Yoast WordPress defaults. Without detailed <code>Product</code>, <code>Service</code>, <code>LocalBusiness</code>, or <code>Article</code> schema, there is as much confusion between the AI agents over what ELSCO does and how it is positioned in its market as there is about its name. <em>Full diagnosis: UNDERSTAND &rarr; Schema Implementation.</em></div>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: var(--cream); border-radius: 6px; border-left: 4px solid var(--high);">
+            <span class="badge high" style="flex-shrink: 0; margin-top: 2px;">HIGH</span>
+            <div>
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Opportunity cost of missing structured data</div>
+              <div style="font-size: 14px; color: var(--text-secondary);">In two years the least capable LLM model may be able to ascertain ELSCO&rsquo;s organization, product, and service entity relationships easily. However, today there is a huge gap between the 75% citation share on Perplexity, 64% on Gemini &mdash; but 0% on Claude, 4% on ChatGPT, 6% on Google AI Overviews citations &mdash; that clearly demonstrates the opportunity cost of not providing detailed structured data wherever possible. <em>Full diagnosis: TRUST &rarr; Entity Identity &amp; Proof Structure.</em></div>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: var(--cream); border-radius: 6px; border-left: 4px solid var(--medium);">
+            <span class="badge medium" style="flex-shrink: 0; margin-top: 2px;">MEDIUM</span>
+            <div>
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Programmatic content represents three distinct levels of risk</div>
+              <div style="font-size: 14px; color: var(--text-secondary);">Three types of programmatic content exist on ELSCO&rsquo;s site: product-specific, competitor-specific, and location-specific. One could be considered high risk. <em>Full diagnosis: UNDERSTAND &rarr; Entity Clarity.</em></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- HOW WE TESTED Section -->
+  <div class="container">
+    <section class="findings-section" style="padding: 0; box-shadow: none; background: transparent;">
+      <h3 style="font-size: 28px; margin-bottom: 32px; color: var(--slate);">Methodology</h3>
+
+      <div class="tab-container">
+        <div class="tab-nav">
+          <button class="tab-button active" data-tab="howwetested-tab">How We Tested</button>
+          <button class="tab-button" data-tab="pages-tab">What We Examined</button>
+          <button class="tab-button" data-tab="models-tab">Models</button>
+          <button class="tab-button" data-tab="tools-tab">Tools</button>
+        </div>
+
+        <!-- Tab 1: How We Tested -->
+        <div id="howwetested-tab" class="tab-content active" style="background-color: white; padding: 32px; border-radius: 8px;">
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8;">This audit evaluated <strong>12 page templates</strong> sampled from elscotransformers.com, selected to represent every major content surface on the site: homepage, the medium-voltage dry-type and pad-mount product category pages, the emergency-replacements service page (and its duplicate), the Transformer FAQ page, a Hammond competitor-replacement service page, the About page, the Engineering Management Staff page, the Cincinnati location page, an industry vertical page (Manufacturing), a KVA-spec product detail page, and a representative blog post.</p>
+
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8;">Each page was scored across the <strong>three-layer Agent Readiness framework</strong>: <em>Find</em> (can AI agents reach and discover your content), <em>Understand</em> (can they parse what you mean), and <em>Trust</em> (can they confirm the facts match what you claim). We examined raw HTML, rendered DOM, schema.org markup, robots.txt, llms.txt, sitemap, CDN response headers, and cross-page structural consistency. The full sitemap inventory of ~274 URLs was mapped to characterize the site&rsquo;s three programmatic content patterns: ~40 KVA-spec product pages, ~80 state-and-city location pages, and 12+ competitor-brand replacement pages. Each pattern is evaluated separately in the Programmatic SEO Posture finding because they carry different risk profiles in the 2026 Google + AI environment.</p>
+
+          <p style="color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8;">In addition to our proprietary crawl and scoring skills, every audit incorporates two supplemental tools: the <strong>Gumshoe AI Visibility Platform</strong> (to measure how often AI models mention and recommend you versus competitors across buyer personas and topic areas) and <strong>Wordlift Entity Analysis</strong> (to cross-check schema.org implementation, semantic HTML quality, and entity linkage). Findings from both tools are integrated into the layer scores and recommendations below.</p>
+
+          <div style="font-size: 12px; color: var(--text-secondary); margin-top: 24px; opacity: 0.7;">&copy; 2026 Liz Micik. All rights reserved. Agent Readiness Audit™ is a trademark of Liz Micik.</div>
+        </div>
+
+        <!-- Tab 2: What We Examined -->
+        <div id="pages-tab" class="tab-content" style="background-color: white; padding: 32px; border-radius: 8px;">
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8;">The 12 templates below were sampled to give full coverage of the elscotransformers.com site. Each template was scored independently; cross-page findings (e.g., missing schema across templates) are reported once at the site level.</p>
+          <table class="heatmap-table" style="margin-bottom: 0;">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Template</th>
+                <th style="text-align: left;">URL</th>
+                <th style="text-align: left;">Why it was chosen</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: left;">Homepage</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">elscotransformers.com/</td>
+                <td style="text-align: left;">Entry point; should anchor Organization schema and entity-graph cohesion.</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Medium Voltage Dry Type</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">/transformers/medium-voltage-dry-type-transformers/</td>
+                <td style="text-align: left;">Todd&rsquo;s primary topic anchor; should emit Service or Product schema.</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Padmount Transformers</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">/transformers/padmount-transformers/</td>
+                <td style="text-align: left;">Todd&rsquo;s second topic anchor; carries one of the only two existing FAQPage schemas on the site.</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Emergency Replacements (canonical)</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">/services/emergency-replacements/</td>
+                <td style="text-align: left;">Strategic positioning wedge; the page where AI should bind ELSCO to the urgent-buyer scenario.</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Emergency Transformer Replacements (duplicate)</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">/emergency-transformer-replacements/</td>
+                <td style="text-align: left;">Cannibalization risk &mdash; second self-canonical URL covering the same intent.</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Transformer FAQ</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">/transformers/transformer-faq/</td>
+                <td style="text-align: left;">Tests FAQPage schema implementation; one of two pages where it exists.</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Hammond Replacements (competitor service)</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">/services/hammond-transformer-replacements/</td>
+                <td style="text-align: left;">Representative of 12+ competitor-brand replacement pages targeting Hammond, MGM, Square D, Siemens, Westinghouse, and others.</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">About Us</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">/about-us/</td>
+                <td style="text-align: left;">Carries company narrative; only page where Organization schema currently exists.</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Engineering Management Staff</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">/about-us/engineering-management-staff/</td>
+                <td style="text-align: left;">Carries Person schemas for Todd Benadum and Alan Ober; tests TRUST-layer expertise binding.</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Cincinnati Location</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">/who-we-serve/ohio/cincinnati/</td>
+                <td style="text-align: left;">Home-city page representative of ~80 location pages; tests LocalBusiness schema.</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Manufacturing Industry</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">/industries-we-serve/manufacturing/</td>
+                <td style="text-align: left;">Representative of 14 industry vertical pages; tests Service schema consistency.</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KVA-Spec Product Detail</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">/transformers/dry-type-transformers/1500-kva-13800-delta-to-480y-277/</td>
+                <td style="text-align: left;">Representative of ~40 KVA-spec product pages; tests Product/Offer schema and ItemPage classification.</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Blog Post (sample)</td>
+                <td style="text-align: left; font-family: monospace; font-size: 12px;">/blog/how-long-do-dry-type-transformers-last/</td>
+                <td style="text-align: left;">Representative of 75 blog posts; tests Article/BlogPosting + author Person binding.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Tab 3: Models -->
+        <div id="models-tab" class="tab-content" style="background-color: white; padding: 32px; border-radius: 8px;">
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8;">We use the most widely available free and low-tier AI models — the ones your buyers are actually using every day to research providers like you.</p>
+
+          <h4 style="font-family: var(--font-heading); font-size: 16px; font-weight: 600; margin-bottom: 16px; color: var(--slate);">Our Direct Testing</h4>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-bottom: 32px;">
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">GPT-5.4 (OpenAI)</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">largest consumer market share</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Claude (Anthropic)</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">growing enterprise adoption</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Gemini 3 Flash (Google)</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">integrated into Google Search ecosystem</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Perplexity Sonar</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">purpose-built AI answer engine</div>
+            </div>
+          </div>
+
+          <h4 style="font-family: var(--font-heading); font-size: 16px; font-weight: 600; margin-bottom: 16px; color: var(--slate);">Gumshoe AI Visibility Platform</h4>
+          <p style="color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8;">Gumshoe regularly updates their available models to ensure you get top-of-the-line AI thinking. The Elsco scan covered five model families:</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Perplexity AI Sonar</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Google Gemini 3 Flash</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Google Search AI Overviews</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">OpenAI GPT-5.4</div>
+            </div>
+            <div style="background: var(--cream); padding: 16px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 4px;">Anthropic Claude Sonnet 4.6</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Tools -->
+        <div id="tools-tab" class="tab-content" style="background-color: white; padding: 32px; border-radius: 8px;">
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8; font-weight: 500;">Our proprietary analysis</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 32px;">
+            <div style="background: white; border: 2px solid var(--accent-teal); padding: 20px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 12px; font-size: 15px;">Custom Schema &amp; Semantic Crawl</div>
+              <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">Seven customized, proprietary skill sets designed to extract deeper data than standard validation tools — going beyond checking whether a field exists to evaluating whether your content actually communicates meaning to AI systems.</div>
+            </div>
+            <div style="background: white; border: 2px solid var(--accent-teal); padding: 20px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 12px; font-size: 15px;">AI Query Testing</div>
+              <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">Direct brand recognition and recommendation testing across multiple AI models, using structured buyer-persona conversations to measure how AI systems perceive and surface your firm.</div>
+            </div>
+          </div>
+
+          <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.8; font-weight: 500;">Supplemental tools</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+            <div style="background: white; border: 1px solid var(--cream-dark); padding: 20px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 12px; font-size: 15px;">Gumshoe AI Visibility Platform</div>
+              <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">Measures how often AI models mention and recommend your company vs. competitors across multiple buyer personas and topic areas. <a href="https://app.gumshoe.ai/r/elscotransformerscom/dry-type-transformers/20969?reportRunId=44529" target="_blank" rel="noopener" style="color: var(--accent-teal);">See ELSCO&rsquo;s results &nearr;</a></div>
+            </div>
+            <div style="background: white; border: 1px solid var(--cream-dark); padding: 20px; border-radius: 6px;">
+              <div style="font-weight: 600; color: var(--slate); margin-bottom: 12px; font-size: 15px;">Wordlift Entity Analysis</div>
+              <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">Evaluates schema.org structured data implementation, semantic HTML quality, and content organization for machine comprehension. <a href="https://audit.wordlift.io/?s=https%3A%2F%2Felscotransformers.com&amp;embed=y" target="_blank" rel="noopener" style="color: var(--accent-teal);">See ELSCO&rsquo;s results &nearr;</a></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- FIND Dimension Section -->
+  <div class="container">
+    <div class="layer-header">
+      <div class="layer-header-top">
+        <h3>Find: Can AI Access Everything on Your Website?</h3>
+        <div class="badges">
+          <span class="count-badge high">0</span>
+          <span class="count-badge medium">2</span>
+          <span class="count-badge low">1</span>
+          <span class="count-badge info">1</span>
+          <span class="count-badge pass">3</span>
+        </div>
+      </div>
+      <p class="layer-description">Before AI systems can say anything about your business, they need to be able to reach and read the content on the pages in your website. This dimension checks whether your technical infrastructure at your network, site and page levels welcomes or blocks AI crawlers. Can they pass through your Content Delivery Network (CDN), navigate according to your sitemap and robots.txt files, and reach or read your pages? AI agents visiting ELSCO don&rsquo;t encounter any issues until they reach that third, page, level.</p>
+    </div>
+
+    <!-- CDN Access and Capabilities Topic Group -->
+    <div class="findings-section">
+      <h3>CDN Access and Capabilities</h3>
+      <p class="topic-intro">Before an AI agent ever loads a page from your site, it has to interact with the network edge &mdash; the CDN. Two things happen at this layer. The CDN&rsquo;s bot-management policy decides whether the agent gets through, gets challenged, or gets blocked entirely (allow or disallow rules, applied per crawler). And the edge can also <em>advertise</em> capabilities to AI agents &mdash; alternative content formats, API endpoints, MCP servers, and the discovery manifests that announce them &mdash; that let the agent interact with your site as more than just a stack of HTML pages to parse. This topic group looks at how your network edge is set up to receive AI crawlers and what it offers them.</p>
+
+      <!-- LOW finding: Cloudflare CDN Detected, but Not Configured (was PASS; severity changed Session 84 — bot management dashboard not yet configured to explicitly allow AI bots) -->
+      <details>
+        <summary><span class="badge low">LOW</span> Cloudflare CDN Detected, but Not Configured</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">A Content Delivery Network (CDN) serves your website from servers around the world, ensuring fast load times for both human visitors and AI crawlers. The CDN layer is also where modern bot-management and AI-friendly features live.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">ELSCO runs on Cloudflare, one of the most AI-friendly CDN providers. Cloudflare supports AI-specific features including bot management, Markdown for Agents, AI crawler analytics, and emerging WebBotAuth signals &mdash; all of which are available on ELSCO&rsquo;s existing plan.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p><code>cf-ray</code> header on homepage HEAD request confirms Cloudflare delivery. <code>server: cloudflare</code>. <code>cf-cache-status: DYNAMIC</code> (homepage not edge-cached, expected for WordPress). The Cloudflare dashboard exposes a Verified Bots category in Bot Management that, if configured correctly, allow-lists named AI crawlers automatically. If the dashboard is on default settings rather than Verified-Bots-on, AI crawlers may be intermittently challenged.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Inside Cloudflare&rsquo;s Bot Management dashboard you can toggle on a confirmation that allows AI bots to access your site. You can also confirm that CCBot (as well as the other bots you should recognize by name) is allowed. The Common Crawl bot feeds the web index on which AI foundation models are trained.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- INFO finding: Agent-discovery manifests (was LOW; rerouted to CDN Capabilities, severity changed to INFO) -->
+      <details>
+        <summary><span class="badge info">INFO</span> Agent-Discovery Manifests Not Present <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">(forward-looking)</span></summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">A small set of standardized files at predictable paths (the <code>/.well-known/</code> directory) is emerging as the way websites tell AI agents &ldquo;here&rsquo;s what is machine-callable, here&rsquo;s how to address it.&rsquo; The IETF chartered the WebBotAuth working group in early 2026, and major CDN vendors (Cloudflare, AWS, Vercel, Akamai, Shopify) are implementing the related authentication signals on the same timeline. The manifests are not yet a citation lever today, but a 12-18 month forward-looking gap.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">None of the standard manifests are present on elscotransformers.com: <code>/.well-known/mcp.json</code>, <code>/.well-known/agent-skills/index.json</code>, <code>&lt;link rel="mcp"&gt;</code> in the page head, or related agent-discovery surfaces. This is true of most B2B industrial sites today &mdash; ELSCO is not behind, but is also not yet positioned for the agent-callable surface that&rsquo;s likely to matter in 2027 buyer journeys.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p style="margin-bottom: 8px;">Endpoints checked and returned 404: <code>/.well-known/mcp.json</code>, <code>/.well-known/webmcp/tools.json</code>, <code>/.well-known/mcp/server-card.json</code>, <code>/.well-known/agent-skills/index.json</code>. Page head inspection returned zero <code>&lt;link rel="mcp"&gt;</code> or <code>&lt;link rel="agent-skills"&gt;</code> elements.</p>
+                  <p>Practical implication: today, AI engines do not check or weight these manifests. By H2 2026 they begin to matter for agent-callable surfaces. By 2027, sites without manifests will be discoverable only through page-level content, not through the agent-skills layer.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Watch the IETF WebBotAuth working-group milestones (next major check: August 2026 BCP). When ELSCO is ready to expose agent-callable surfaces (a quote-request API, an inventory-check endpoint), add the discovery manifests to advertise them.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+
+    <!-- Server-Level Directives and Locators Topic Group -->
+    <div class="findings-section">
+      <h3>Server-Level Directives and Locators</h3>
+      <p class="topic-intro">Past the CDN, the next gate is your server itself. Well-formed <code>sitemap.xml</code> files tell agents about all the content you have. <code>robots.txt</code> files tell them what you want them to look at &mdash; or not look at. <code>llms.txt</code> files have been suggested (though not yet widely recommended) to help AI agents understand which content you&rsquo;ve specifically aimed at them. This topic group looks at the directives and locators that tell AI agents what&rsquo;s on your site and what they&rsquo;re allowed to do with it.</p>
+
+      <!-- PASS finding: robots.txt welcomes all AI crawlers (merged with prior LOW: No Explicit AI Crawler Directives — explicit named-bot rules earn their place only when selectively excluding crawlers; wildcard is the cleanest expression of "all welcome") -->
+      <details>
+        <summary><span class="badge pass">PASS</span> robots.txt Welcomes All AI Crawlers</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">A <code>robots.txt</code> file sits at the root of your website and tells crawlers (including AI systems) which pages they can and cannot access. It is the first thing any AI model checks before reading your site.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">ELSCO&rsquo;s <code>robots.txt</code> is permissive. The wildcard rule (<code>User-agent: *</code> with <code>Allow: /</code>) gives every named AI crawler full access to the public site. No <code>Disallow</code> directives target AI user-agents. The front door is open.</p>
+
+              <p style="margin-bottom: 12px;">A note on explicit named-bot directives: it&rsquo;s possible to add per-crawler rules (named <code>Allow:</code> lines for GPTBot, ClaudeBot, PerplexityBot, and the others) to spell out AI-readability bot-by-bot rather than relying on the wildcard. Naming them explicitly mostly matters when a site wants to <em>exclude</em> specific crawlers &mdash; the explicit allow rules are how you make sure the &ldquo;good bots&rdquo; don&rsquo;t get caught in disallow logic meant for someone else. Since ELSCO welcomes all AI traffic, the wildcard is the cleanest expression of that intent.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Raw <code>robots.txt</code> at <code>elscotransformers.com/robots.txt</code> contains: <code>User-agent: *</code> + <code>Allow: /</code>, three <code>Disallow</code> rules for WordPress administrative paths (<code>/wp-admin/</code>, internal search query strings, the newsletter path), and three <code>Sitemap</code> references (<code>sitemap_index.xml</code>, <code>page-sitemap.xml</code>, <code>post-sitemap.xml</code>). No named directives target individual AI crawlers (GPTBot, Google-Extended, Bytespider, CCBot, Anthropic-AI, ClaudeBot, PerplexityBot, Amazonbot). All AI crawlers are covered by the wildcard. The Disallow rules for WordPress paths are appropriate exclusions and do not affect AI crawl access to customer-facing content.</p>
+                </div>
+              </details>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- PASS finding: llms.txt present -->
+      <details>
+        <summary><span class="badge pass">PASS</span> llms.txt Present and Well-Formed</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">The <code>llms.txt</code> file was proposed in 2024 as a plain-text directory of a site&rsquo;s most important pages, formatted for AI consumption. Major AI crawlers (OpenAI&rsquo;s GPTBot, Anthropic&rsquo;s ClaudeBot, Google-Extended, PerplexityBot) have not adopted it as a citation signal, and several controlled studies in Q1 2026 confirmed that <code>llms.txt</code> presence does not measurably move AI-citation share.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">ELSCO&rsquo;s hand-built <code>llms.txt</code> is one of the better-formed examples in the wild. It follows the spec format with H1 page identifier, blockquote description, and section headings (Transformers, Transformer Services, Transformer Resources) covering ~37 entries. The descriptive text is accurate and the linked entries cover the priority product, service, and educational pages. <strong>This is real care taken at a layer most B2B sites have skipped.</strong></p>
+              <p style="margin-bottom: 12px;">That said: practitioner consensus through Q1 2026 (and three independent data points in early 2026) suggests <code>llms.txt</code> does not drive AI citations. ELSCO&rsquo;s file is well-formed effort that does not need ongoing maintenance investment as a visibility lever. The right read: acknowledge the effort, do not credit it as a structural advantage, and put forward investment into the structural-data and earned-presence layers where AI-citation lift actually surfaces.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>The file is well-formed and follows the spec. Top-of-file description: &ldquo;ELSCO manufactures high-quality medium-voltage transformers in 500-2500 KVA ratings and 2400-34,500 primary voltages.&rdquo; Three sections cover product pages (6 entries), service pages (6 entries), and resource/blog content (~25 entries).</p>
+                </div>
+              </details>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- PASS finding: Sitemaps -->
+      <details>
+        <summary><span class="badge pass">PASS</span> Sitemaps Declared and Well-Formed</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">An XML sitemap tells search engines and AI crawlers which pages on your site exist and when they were last updated. It is essential for comprehensive indexing.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">ELSCO declares three Yoast-generated sitemaps from <code>robots.txt</code>: <code>sitemap_index.xml</code> (the parent index), <code>page-sitemap.xml</code> (199 page URLs), and <code>post-sitemap.xml</code> (~75 blog post URLs). Total inventory: ~274 URLs. The structure is well-formed, conventionally organized, and immediately discoverable by any AI crawler that reads the <code>robots.txt</code>.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Sitemaps located at <code>elscotransformers.com/sitemap_index.xml</code>, <code>elscotransformers.com/page-sitemap.xml</code>, and <code>elscotransformers.com/post-sitemap.xml</code>. All three are referenced via <code>Sitemap:</code> directives in <code>robots.txt</code>. Yoast SEO plugin generates and maintains them automatically on content change.</p>
+                </div>
+              </details>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+
+    <!-- Page-Level Architecture and Blockers Topic Group -->
+    <div class="findings-section">
+      <h3>Page-Level Architecture and Blockers</h3>
+      <p class="topic-intro">Once an AI agent has permission to crawl, two things at the page level can still get in the way: the architecture that connects pages to each other (which an agent uses to navigate from one page to the next), and what&rsquo;s actually on each page that might stop an agent from reading or interacting. Both are typically owned by your SEO and front-end teams &mdash; these are page-level fixes that don&rsquo;t usually require backend access. This topic group looks at the page-level structures and barriers AI agents encounter once they&rsquo;re on your site.</p>
+
+      <!-- MEDIUM: URL hierarchy / orphan pages -->
+      <details>
+        <summary><span class="badge medium">MEDIUM</span> URL Hierarchy &mdash; Four Orphan Pages Sit at the Site Root That Should Live Under Their Parent Directories</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">A full sweep of the 199-URL page sitemap surfaced four confirmed orphan pages parked at the site root rather than nested under the correct parent directory. None of these are duplicate-content issues &mdash; each orphan has its own page copy &mdash; but each represents a canonicalization gap (both URLs are self-canonical) and an IA inconsistency that weakens AI entity resolution.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <table style="width: 100%; margin-top: 12px; border-collapse: collapse; font-size: 13px;">
+                <thead>
+                  <tr style="background: var(--cream-dark);">
+                    <th style="text-align: left; padding: 8px; border-bottom: 1px solid var(--neutral);">Orphan URL</th>
+                    <th style="text-align: left; padding: 8px; border-bottom: 1px solid var(--neutral);">Canonical it should live under</th>
+                    <th style="text-align: left; padding: 8px; border-bottom: 1px solid var(--neutral);">Why</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td style="padding: 8px; border-bottom: 1px solid var(--cream-dark);"><code>/emergency-transformer-replacements/</code></td><td style="padding: 8px; border-bottom: 1px solid var(--cream-dark);"><code>/services/emergency-replacements/</code></td><td style="padding: 8px; border-bottom: 1px solid var(--cream-dark);">Same buyer intent as the existing canonical service page; site IA places all other services under <code>/services/</code>.</td></tr>
+                  <tr><td style="padding: 8px; border-bottom: 1px solid var(--cream-dark);"><code>/retrofits-custom-bus-work/</code></td><td style="padding: 8px; border-bottom: 1px solid var(--cream-dark);"><code>/services/transformer-retrofits/</code> AND <code>/services/custom-bus-work/</code></td><td style="padding: 8px; border-bottom: 1px solid var(--cream-dark);">Worse than the others: this orphan conflates two distinct services that already exist as separate clean pages under <code>/services/</code>. Audit page content first, then 301 to the dominant single-service page or split.</td></tr>
+                  <tr><td style="padding: 8px; border-bottom: 1px solid var(--cream-dark);"><code>/save-money-with-elsco-quality-and-service/</code></td><td style="padding: 8px; border-bottom: 1px solid var(--cream-dark);"><code>/about-us/save-money-with-elsco-quality-and-service/</code></td><td style="padding: 8px; border-bottom: 1px solid var(--cream-dark);">Value-proposition narrative page. The clear pattern is that ELSCO marketing-narrative pages (&ldquo;why choose us,&rdquo; &ldquo;our difference,&rdquo; &ldquo;our warranty&rdquo;) live under <code>/about-us/</code>.</td></tr>
+                  <tr><td style="padding: 8px; border-bottom: 1px solid var(--cream-dark);"><code>/transformer-glossary/</code></td><td style="padding: 8px; border-bottom: 1px solid var(--cream-dark);"><code>/transformers/transformer-glossary/</code></td><td style="padding: 8px; border-bottom: 1px solid var(--cream-dark);">Sibling content type to <code>/transformers/transformer-faq/</code> (educational reference). Should follow the same convention.</td></tr>
+                  <tr><td style="padding: 8px;"><code>/careers/</code> <em>(likely orphan)</em></td><td style="padding: 8px;"><code>/about-us/careers/</code></td><td style="padding: 8px;">Listed as a sub-item under About Us in the main nav, but the URL is parked at site root. Lower priority &mdash; common HR convention.</td></tr>
+                </tbody>
+              </table>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px; margin-top: 12px;"><strong>Recommendation:</strong> 301 redirect each orphan to its canonical, update internal links across the site to point to the canonical, then resubmit the page sitemap to Google Search Console (and Bing/IndexNow if used). Estimated effort: 30-60 minutes of WordPress CMS work via the Redirection plugin (no developer time required). For <code>/retrofits-custom-bus-work/</code> specifically, audit the page content first to decide single-service vs. bundled-offering before redirecting.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- MEDIUM finding: CAPTCHA on contact form -->
+      <details>
+        <summary><span class="badge medium">MEDIUM</span> CAPTCHA on Contact Form Blocks Agent Submissions</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">A CAPTCHA is a small puzzle a website asks visitors to solve before submitting a form &mdash; designed to block automated submissions. CAPTCHAs are, by design, built to stop machines. Any AI agent attempting to submit a quote request, follow up on an inquiry, or interact with a form on the site is blocked at the CAPTCHA step.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">This finding is closer to a forward-looking caution than an immediate revenue impact. Buyer behavior in industrial B2B is still primarily human-initiated form submission, but the agent-mediated path is growing fast enough to surface in 2026 audits.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>A Google reCAPTCHA is active on the homepage, attached to the Contact Form 7 plugin. The CAPTCHA was almost certainly added for legitimate spam control on lead-capture forms.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> As B2B buyers begin asking ChatGPT or Claude to &ldquo;contact ELSCO and request a quote for a 1500 KVA transformer,&rdquo; the CAPTCHA blocks that request from completing. Consider changing to a more up-to-date contact form.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- UNDERSTAND Dimension Section -->
+  <div class="container">
+    <div class="layer-header">
+      <div class="layer-header-top">
+        <h3>Understand: Does AI Get What You Do?</h3>
+        <div class="badges">
+          <span class="count-badge high">6</span>
+          <span class="count-badge medium">4</span>
+          <span class="count-badge low">2</span>
+          <span class="count-badge pass">2</span>
+        </div>
+      </div>
+      <p class="layer-description">Once AI systems can reach your site, the question becomes whether they understand what they&rsquo;re reading. This dimension checks the three things that build that understanding: <strong>structured data</strong> that tells machines what each page is, <strong>semantic HTML</strong> that gives them a structural map of the content, and <strong>entity coherence</strong> that confirms ELSCO is a single, well-defined business rather than a collection of overlapping claims. The pattern across this layer is consistent: ELSCO has invested heavily in content (274 URLs, programmatic local-SEO architecture, 75 educational blog posts), but the structural backbone underneath the content &mdash; schema markup, HTML5 semantics, and a coherent entity narrative &mdash; is at WordPress/Yoast defaults.</p>
+    </div>
+
+    <!-- Schema Implementation Topic Group -->
+    <div class="findings-section">
+      <h3>Schema Implementation</h3>
+      <p class="topic-intro">Schema markup is the machine-readable vocabulary that tells AI exactly what each page represents. Service pages need <code>Service</code> schema; product pages need <code>Product</code>/<code>Offer</code>; location pages need <code>LocalBusiness</code>; blog posts need <code>Article</code> or <code>BlogPosting</code>. Without these explicit labels, AI must guess what each page is &mdash; and on a WordPress site emitting only Yoast defaults, the guess defaults to &ldquo;generic webpage.&rdquo;</p>
+
+      <!-- HIGH: Schema floor -->
+      <details>
+        <summary><span class="badge high">HIGH</span> Schema Floor &mdash; Yoast WordPress Defaults Across All Sampled Templates</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Across 12 sampled page templates spanning the entire site, the JSON-LD blocks emit only the three schemas Yoast SEO ships out of the box: <code>WebPage</code>, <code>BreadcrumbList</code>, and <code>WebSite</code>. No deliberate schema work has been added at the template level. Every page renders to AI engines as &ldquo;a generic web page within a website&rdquo; rather than as a service, product, location, article, or organization-bound entity.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The schema floor finding is the central UNDERSTAND-layer diagnosis for ELSCO. It is the single root cause that produces most of the other Schema Implementation findings below. Yoast SEO is doing its job &mdash; the defaults are correct, well-formed, and useful. But the WordPress + Yoast baseline is a starting point, not a destination, and ELSCO has not built upward from it at the template level. The two exceptions worth naming: the <code>/about-us/</code> page emits an <code>Organization</code> schema (foundation finding) and two pages emit <code>FAQPage</code> schema (the Padmount Transformers product page and the Transformer FAQ page).</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p style="margin-bottom: 8px;">12 templates inspected: homepage, Medium Voltage Dry Type product page, Padmount product page, Emergency Replacements service page (and its duplicate at root), Transformer FAQ page, Hammond competitor-replacement page, About Us, Engineering Management Staff, Cincinnati location page, Manufacturing industry page, KVA-spec product detail page, sample blog post.</p>
+                  <p>Every page returned <code>WebPage</code> + <code>BreadcrumbList</code> + <code>WebSite</code>. About-Us additionally returned a minimal <code>Organization</code>. Padmount and Transformer FAQ additionally returned <code>FAQPage</code>. The Engineering Staff page returned two <code>Person</code> schemas. The KVA-spec page returned <code>WebPage+ItemPage</code> with no <code>Product</code> or <code>Offer</code> children. A sampled blog post returned <code>WebPage+ImageObject+Person</code> with no <code>Article</code> or <code>BlogPosting</code> wrapper.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Build template-level schema for ELSCO&rsquo;s six high-leverage page types (services, products, locations, blog posts, industry pages, and the homepage Organization graph). One schema build per template closes hundreds of URLs at once.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- HIGH: Template-level schema absences across high-leverage page types -->
+      <details>
+        <summary><span class="badge high">HIGH</span> Template-Level Schema Absences Across the Highest-Leverage Page Types</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">The schema floor has the same expression on every page type, but the operational impact is different per page type. Below is the same root cause, surfaced as the four template-level absences AI engines actually feel: services without <code>Service</code> schema, products without <code>Product</code>/<code>Offer</code>, locations without <code>LocalBusiness</code>, and blog posts without <code>Article</code>/<code>BlogPosting</code>.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <ul style="margin: 0 0 12px 24px; line-height: 1.8;">
+                <li><strong>Services:</strong> The <code>/services/emergency-replacements/</code> page (your strategic wedge) and the 12+ competitor-brand replacement pages (Hammond, MGM, Square D, Siemens, Eaton, ABB, Westinghouse, Hevi-Duty, Federal Pacific, Olsun, Vantran, Rex, GE VaporTran) all emit only Yoast defaults. No <code>Service</code> schema with <code>provider</code>, <code>areaServed</code>, <code>serviceType</code>, or <code>hasOfferCatalog</code>. AI engines see &ldquo;a page about emergency replacement&rdquo; but cannot bind it to ELSCO as the service-providing entity.</li>
+                <li><strong>Products:</strong> ~40 KVA-spec product pages (e.g., <code>/transformers/dry-type-transformers/1500-kva-13800-delta-to-480y-277/</code>) are correctly marked as <code>ItemPage</code> but carry no <code>Product</code> or <code>Offer</code> children. SKU, availability, and pricing data that exists on each page (or could exist) is invisible to AI engines as structured product data.</li>
+                <li><strong>Locations:</strong> ~80 state-and-city programmatic location pages (including the Cincinnati home-city page) emit only Yoast defaults. No <code>LocalBusiness</code> schema with address, geo, areaServed, or openingHours. Local AI-citation surface is effectively zero, and the programmatic location pages without LocalBusiness also read as a thin-content pattern to AI evaluators (see the <em>Programmatic Location Pages</em> finding in Entity Clarity below).</li>
+                <li><strong>Blog posts:</strong> 75 educational blog posts emit <code>WebPage</code>+<code>ImageObject</code>+<code>Person</code> (Todd Benadum as author Person), but no <code>Article</code> or <code>BlogPosting</code> wrapper to bind the post to its author. Todd&rsquo;s authorship floats disconnected from his published expertise. The 75-post technical library is invisible as authored work in the entity graph.</li>
+              </ul>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p style="margin-bottom: 8px;">Each gap is fixable at the WordPress template level. Service schema, Product/Offer schema, LocalBusiness schema, and Article/BlogPosting schema can each be added once at the template level (typically through Yoast Premium, Schema Pro, RankMath, or a custom JSON-LD plugin) and apply to every URL using that template. Four template builds close the gap across hundreds of URLs.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Prioritize the schema builds in this order: Service (highest immediate impact &mdash; protects the strategic wedge), LocalBusiness (largest URL count + highest spam-pattern risk), Product/Offer (commerce-intent buyer queries), Article/BlogPosting (E-E-A-T binding).</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- MEDIUM: Organization graph cohesion -->
+      <details>
+        <summary><span class="badge medium">MEDIUM</span> Organization Schema Isolated &mdash; Graph Cohesion Gap</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">The single <code>Organization</code> schema on the site lives on <code>/about-us/</code>. The homepage <code>WebSite</code> schema does not reference the Organization @id. Pages on the rest of the site aren&rsquo;t connected back to the Organization entity declaration. The organization exists in one room of the house with the door closed, where the front door (the homepage) and every other room (services, products, locations, blog posts) cannot reference it.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The <code>Organization</code> schema on About-Us declares name, alternateName, url, logo, contactPoint, and a sameAs array. Foundation fields are present but minimal: missing <code>address</code>, <code>foundingDate</code>, <code>description</code>, <code>knowsAbout</code>, <code>areaServed</code>, <code>founder</code>, <code>numberOfEmployees</code>, and <code>hasOfferCatalog</code>. The schema&rsquo;s page-level <code>description</code> claims &ldquo;industry leaders... since 1960,&rdquo; but ELSCO has actually been operating since 1912 &mdash; a 113-year history that should be declared via <code>foundingDate</code> of <code>1912</code>, with the description rewritten to match. Each page elsewhere on the site emits its own WebPage schema but does not reference the About-Us Organization, so an AI engine reading the homepage doesn&rsquo;t learn that the Organization exists, and reading a service page doesn&rsquo;t learn that ELSCO is its provider.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Standard fix pattern: assign the Organization schema a stable @id (e.g., <code>https://elscotransformers.com/#organization</code>), move the schema to the homepage so it&rsquo;s the first thing crawlers encounter, and reference that @id from every other schema entity on the site (each Service&rsquo;s <code>provider</code>, each Product&rsquo;s <code>brand</code>, each LocalBusiness&rsquo;s <code>parentOrganization</code>, each Article&rsquo;s <code>publisher</code>). This converts the entity declaration from one isolated page to a graph reference that every other page resolves to.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Move and expand the Organization schema, assign a canonical @id, and reference it from every other entity in the graph.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- PASS: FAQPage schema present on 2 pages -->
+      <details>
+        <summary><span class="badge pass">PASS</span> FAQPage Schema Present on 2 Pages &mdash; Pattern Works, Not Yet Extended</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">The Padmount Transformers product page and the Transformer FAQ page both emit <code>FAQPage</code> schema with question/answer pairs. The implementation is correct, the pattern is working, and AI engines reading those two pages can extract the FAQ content as structured Q&amp;A.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">FAQPage schema is one of the highest-ROI schema types for AI-citation purposes &mdash; it directly maps to the question-and-answer format AI engines use to surface direct-answer content. ELSCO has the pattern working on two pages. Extending it to other high-traffic pages (Emergency Replacements, KVA-spec product pages, the home-city Cincinnati location page, the competitor-replacement service pages) is a clear template-level opportunity covered under the Schema Implementation HIGH findings above.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+
+    <!-- Semantic HTML & Heading Structure Topic Group -->
+    <div class="findings-section">
+      <h3>Semantic HTML &amp; Heading Structure</h3>
+      <p class="topic-intro">Semantic HTML5 tags (<code>article</code>, <code>section</code>, <code>main</code>, <code>time</code>, <code>figure</code>) give AI a structural map of your content beyond what schema describes. Heading hierarchy tells AI which ideas are primary and which are supporting. When the underlying HTML communicates &ldquo;generic page&rdquo; through heavy <code>div</code>/<code>span</code> usage, even rich JSON-LD has less to work with.</p>
+
+      <!-- HIGH: HTML semantic ratio 3% -->
+      <details>
+        <summary><span class="badge high">HIGH</span> HTML Semantic Ratio 3% &mdash; Generic <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> Dominate the Markup</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Wordlift&rsquo;s independent AI-readiness audit measured the homepage&rsquo;s semantic-HTML ratio at 3%. That figure is the share of structural elements on the page that are semantic HTML5 tags (<code>article</code>, <code>section</code>, <code>header</code>, <code>nav</code>, <code>main</code>, <code>footer</code>, <code>time</code>, <code>figure</code>) versus generic <code>div</code> and <code>span</code> tags. Healthy content sites typically sit above 25%. At 3%, the underlying HTML is communicating &ldquo;generic page&rdquo; even when the page is, structurally, an article with sections, a navigation tree, and time-stamped content.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">This is a WordPress theme issue, not a content issue. The theme&rsquo;s rendering layer wraps content in <code>div</code> containers with utility classes rather than semantic elements. Even with full JSON-LD schema, AI parsers use the underlying HTML structure as a corroborating signal &mdash; especially the engines that don&rsquo;t fully execute schema parsing at inference time.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>Wordlift&rsquo;s exact characterization: &ldquo;extremely low&hellip;relying heavily on generic <code>div</code> and <code>span</code> elements.&rdquo; The fix is theme-template-level, not content-level. WordPress + Yoast handle schema and heading hierarchy correctly; the missing piece is the semantic HTML5 wrapper structure in the theme&rsquo;s page templates.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> The fix is at the theme template level. Consider converting the major layout containers (article wrappers, content sections, sidebar regions, page headers and footers) to their semantic HTML5 equivalents.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- LOW: Q&A-style headings absent -->
+      <details>
+        <summary><span class="badge low">LOW</span> Q&amp;A-Style Headings Absent on Most Templates</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">AI engines surface content in two modes: full-article summarization and direct-answer extraction. Direct-answer extraction relies on Q&amp;A-style headings &mdash; a question phrased as a heading followed by a compact answer in the first paragraph below. Pages with descriptive-only headings get summarized; pages with question-phrased headings get quoted verbatim.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Wordlift&rsquo;s content-structure analysis counted 54 sections and 30 headings across the homepage with zero Q&amp;A-style question headings. The Padmount Transformers product page and the Transformer FAQ page do extend the Q&amp;A pattern (and emit FAQPage schema as a result), but the pattern stops there. The Emergency Replacements service page, the KVA-spec product pages, the location pages, the industry pages, and most blog posts use descriptive headings only.</p>
+
+              <p style="margin-bottom: 12px;">For a topic area where buyers ask very specific technical questions (&ldquo;what KVA do I need for a 480V three-phase distribution panel,&rdquo; &ldquo;how long does dry-type transformer installation take,&rdquo; &ldquo;what&rsquo;s the difference between dry-type and pad-mount transformers&rdquo;), Q&amp;A headings extend ELSCO&rsquo;s direct-answer citation surface considerably.</p>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Extend the Q&amp;A heading pattern from the two existing FAQ pages to the Emergency Replacements page, the high-traffic KVA-spec product pages, and the most-read blog posts. Bind each new Q&amp;A section to FAQPage schema.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- PASS: SEO and content fundamentals strong -->
+      <details>
+        <summary><span class="badge pass">PASS</span> SEO and Content Fundamentals Strong</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Wordlift&rsquo;s independent audit rated four foundational dimensions as &ldquo;Good&rdquo; on elscotransformers.com: page titles and meta descriptions are well-written and length-appropriate, heading hierarchy is orderly and consistent, internal linking is healthy (68 internal links of 83 total &mdash; the inverse of the &ldquo;link out more than in&rdquo; pattern), and image accessibility is complete (alt text present on all images). Average section length is ~57 words, in the healthy range for AI parsing.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p>This is the layer of fundamentals where ELSCO has done the work. The structural gaps surfaced elsewhere in this audit sit <em>below</em> these strong fundamentals at the template and entity-graph level &mdash; not at the SEO basics. ELSCO is not starting from a broken foundation; the work is to extend it.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+
+    <!-- Entity Clarity Topic Group -->
+    <div class="findings-section">
+      <h3>Entity Clarity</h3>
+      <p class="topic-intro">An entity is a real-world thing AI engines treat as a single identifiable unit &mdash; a company, a person, a product, a place &mdash; with its own properties and relationships to other entities. AI engines and search engines connect those entities into knowledge graphs to answer questions about you. When the connections are unambiguous and machine-readable, AI confidently describes and recommends the brand. When they&rsquo;re fragmented or contradictory, the AI produces a vague answer or surfaces a competitor instead.</p>
+
+
+      <!-- HIGH: Bifurcated Entity Name — On-Site Schema Bridge Missing -->
+      <details>
+        <summary><span class="badge high">HIGH</span> Bifurcated Entity Name &mdash; On-Site Schema Bridge Missing</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">ELSCO is the acronym for the company&rsquo;s legal name &mdash; <em>The Electric Service Company</em>, still incorporated as Electric Service Co., Inc. The company has used both names interchangeably across its 113-year history. The website tells humans this through prose, but doesn&rsquo;t tell AI engines through schema. Without an explicit on-site declaration that &ldquo;ELSCO Transformers,&rdquo; &ldquo;The Electric Service Company,&rdquo; and &ldquo;Electric Service Co., Inc.&rdquo; all refer to one entity, AI engines reading the structured data have no signal to reconcile training-data mentions under one name with live-web mentions under the other.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The Organization schema on <code>/about-us/</code> includes an <code>alternateName</code> field, but it currently declares only the acronym &mdash; <code>&quot;ELSCO&quot;</code>. The legacy company name is not declared anywhere in the structured data. There is no <code>legalName</code> field. There is no stable <code>@id</code>, which means other schema entities on the site cannot reference back to this Organization as their canonical anchor. AI engines reading the live structured data have no signal that &ldquo;ELSCO Transformers,&rdquo; &ldquo;The Electric Service Company,&rdquo; and &ldquo;Electric Service Co., Inc.&rdquo; refer to one entity.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p style="margin-bottom: 8px;">The complete Organization schema as currently emitted on <code>/about-us/</code>:</p>
+<pre style="margin: 8px 0 12px; padding: 14px 16px; background-color: var(--cream-dark); border: 1px solid var(--neutral); border-left: 3px solid var(--slate-mid); border-radius: 4px; max-height: 320px; overflow-y: auto; font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 12px; line-height: 1.5; color: var(--slate); white-space: pre; tab-size: 2;"><code>{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ELSCO Transformers",
+  "alternateName": "ELSCO",
+  "url": "https://elscotransformers.com/",
+  "logo": "https://elscotransformers.com/wp-content/themes/elsco/assets/img/logo.png",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "800-232-9002",
+      "contactType": "sales",
+      "contactOption": "TollFree",
+      "areaServed": "US",
+      "availableLanguage": "en"
+    },
+    {
+      "@type": "ContactPoint",
+      "telephone": "800-232-9002",
+      "contactType": "customer service",
+      "contactOption": "TollFree",
+      "areaServed": "US",
+      "availableLanguage": "en"
+    },
+    {
+      "@type": "ContactPoint",
+      "telephone": "800-232-9002",
+      "contactType": "emergency",
+      "contactOption": "TollFree",
+      "areaServed": "US",
+      "availableLanguage": "en"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/ELSCOTransformers/",
+    "https://www.youtube.com/channel/UCfax2yc_7BPvF7n5H88exQw",
+    "https://www.linkedin.com/company/elsco-transformers/",
+    "https://elscotransformers.com/"
+  ]
+}</code></pre>
+                  <p style="margin-bottom: 8px;">Four schema fields together establish the on-site entity bridge:</p>
+                  <ul style="margin: 0 0 12px 24px; line-height: 1.7;">
+                    <li><code>name</code> &mdash; the modern preferred name (<code>ELSCO Transformers</code>); already declared</li>
+                    <li><code>alternateName</code> &mdash; currently the acronym <code>&quot;ELSCO&quot;</code> only; expand to an array that also includes <code>&quot;The Electric Service Company&quot;</code></li>
+                    <li><code>legalName</code> &mdash; the registered corporate name (<code>Electric Service Co., Inc.</code>); not currently declared</li>
+                    <li><code>@id</code> &mdash; a stable canonical URI like <code>https://elscotransformers.com/#organization</code>; not currently declared</li>
+                  </ul>
+                  <p>With all four declared and a stable <code>@id</code>, every other schema entity on the site (each Service&rsquo;s <code>provider</code>, each Product&rsquo;s <code>manufacturer</code>, each Article&rsquo;s <code>publisher</code>) resolves to one canonical Organization. AI engines reading the live structured data then have an unambiguous signal that legacy and modern names refer to one entity.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Convert <code>alternateName</code> from a single string to an array containing both <code>&quot;ELSCO&quot;</code> and <code>&quot;The Electric Service Company&quot;</code>. Add <code>legalName</code> (&ldquo;Electric Service Co., Inc.&rdquo;). Assign a stable <code>@id</code> to the Organization, and reference that <code>@id</code> from every other schema entity on the site. <em>The Roadmap specifies the exact field set, the @id pattern, and the per-template schema references that bind every page to the canonical Organization entity.</em></p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- HIGH: Elsco Entity Isolation — Incomplete Knowledge Graph -->
+      <details>
+        <summary><span class="badge high">HIGH</span> Elsco Entity Isolation Leads to an Incomplete Knowledge Graph</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">The Elsco website navigation lists three types of electrical transformers that it sells. The site also outlines six different transformer-related services that it offers. Each product and each service is explained on a stand-alone page. However, a lack of coordinated linking between these pages, coupled with the complete absence of either <code>Product</code> or <code>Service</code> schema, presents isolated entities rather than a complete knowledge graph of information for AI platforms to draw facts from.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">From another angle, AI agents visiting the site can also conclude that ELSCO wears four hats in the transformer market according to the content on your site:</p>
+              <ul style="margin: 0 0 12px 24px; line-height: 1.8;">
+                <li>A manufacturer, as seen on <code>/about-us/elsco-today-manufacturer/</code></li>
+                <li>A stocking distributor, as seen on the orphaned <code>/emergency-transformer-replacements/</code></li>
+                <li>A build-to-order custom shop, as seen on <code>/services/custom-built-transformers/</code></li>
+                <li>A refurbisher, as seen on <code>/transformers/pre-owned-transformers/</code></li>
+              </ul>
+              <p style="margin-bottom: 12px;">Each of these four identities is true. ELSCO does all four of these things.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p style="margin-bottom: 8px;">Retrieval-grounded engines (Perplexity 75%, Gemini 64%) read the live web, see the four positions, and zero in on the strategic wedge closest to the query that brought them to the site, surfacing ELSCO accordingly.</p>
+                  <p style="margin-bottom: 8px;">Training-data-weighted engines (Claude 0%, ChatGPT 4%, AI Overviews 6%) need to corroborate each isolated entity from the pre-training corpora. Since the relationships between the four are not supported by coordinated inter-linking on the visual level of the page, nor by a structured-data layer on the page, these engines cannot cite or mention you confidently.</p>
+                  <p>The same content reads as a clear strategic positioning to a human and as four disagreeing positions to a training-time AI model.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> A robust internal linking strategy should be developed and deployed. Fully developed <code>Product</code>, <code>Service</code>, and <code>FAQ</code> schema should also be deployed across the site on the appropriate pages. <em>The Roadmap specifies the page-template inventory, the schema set per template, and the linking patterns that bind the four identities into a single knowledge graph.</em></p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+
+      <!-- HIGH: Programmatic Location Pages — Highest Risk of Being Labeled as Spam -->
+      <details>
+        <summary><span class="badge high">HIGH</span> Programmatic Location Pages &mdash; Highest Risk of Being Labeled as Spam</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">There are ~80 state-and-city programmatic location pages on the site (including the Cincinnati home-city page). Each carries Yoast WordPress schema defaults only, and not the <code>LocalBusiness</code> schema with address, geo, areaServed, or openingHours that true location pages usually have. Beyond the schema gap, the underlying content question is whether ELSCO actually has a substantive local presence in 80 cities, or whether the page set was generated from a template-and-city-name pattern.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">These pages could become targets of Google&rsquo;s March 2024 scaled-content-abuse spam update. This type of page is generally not mentioned or cited by AI platforms because the content on the page is too thin to answer specific user queries. AI engines building entity profiles see 80 pages with shared template structure and city-name token swaps. The local office details, case studies, or store testimonials that would make each page substantively different are typically not present at this scale.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <p>The Cincinnati location page (<code>/who-we-serve/ohio/cincinnati/</code>) is ELSCO&rsquo;s home-city anchor and emits no <code>LocalBusiness</code> schema. This is the one location that genuinely needs <code>LocalBusiness</code> applied. Defending all 80 reads as scaled-content-abuse to Google&rsquo;s spam evaluators and as thin local-content to AI evaluators. Schema alone won&rsquo;t save thin pages; the schema work makes substantive pages findable.</p>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Consider consolidating the current location pages into regional sales pages, or into a single page in the About-Us section that includes contact information for regional sales. Apply <code>LocalBusiness</code> schema with real address, geo, areaServed, and any in-region case studies to the surfaces that survive consolidation. From there, add additional local content targeting the regions where ELSCO has substantive presence. Without real local presence in 80 cities, defending all 80 carries far more risk than reward.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+
+      <!-- MEDIUM: Programmatic Competitor Pages — Look for Enrichment Opportunities -->
+      <details>
+        <summary><span class="badge medium">MEDIUM</span> Programmatic Competitor Pages &mdash; Look for Enrichment Opportunities</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">12+ competitor-brand replacement pages sit on the site, targeting Hammond, MGM, Square D, Siemens, Westinghouse, and others. The pattern is legitimate when each page is substantively differentiated per competitor (real KVA-by-KVA replacement matrices, real timeline guarantees, real conversion data). It becomes thin-content risk when pages are template + brand-name swap with no real per-competitor substance.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">The Hammond Replacements page (<code>/services/hammond-transformer-replacements/</code>) was sampled as representative. AI engines reading these pages see the brand-name swap pattern. Whether they read the page as legitimately-differentiated content or as scaled brand-name targeting depends on the per-page substance underneath. The ratio of content specifically about Hammond to templated, non-specific content is one indicator they look for, and one that can almost always be improved.</p>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Each page needs substantive per-competitor differentiation that justifies its existence &mdash; KVA-by-KVA replacement matrices, real timeline guarantees, real conversion data, anything that distinguishes the page from a brand-name swap on a template. The upside to re-examining and potentially enriching these pages is that they then read as &ldquo;fresh,&rdquo; which AI platforms reward.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+
+      <!-- MEDIUM: Entity Definition and Clarity -->
+      <details>
+        <summary><span class="badge medium">MEDIUM</span> Entity Definition and Clarity Translate into Strong Brand Recognition if Present</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">Clear, complete, and consistent entity definitions translate into strong brand recognition by AI platforms. For an industrial B2B distributor with a 100+ year operating history (founded 1912 as the Electric Service Company), the canonical entity-establishing pages an AI agent expects to find are thinner than the actual company history warrants.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">Five gaps stand out across the page inventory. None of these gaps individually break entity identification. Together, they leave AI engines with substantially less structural-narrative support than the company actually has.</p>
+
+              <details style="margin-top: 12px;">
+                <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+                <div class="finding-content">
+                  <ul style="margin: 0 0 12px 24px; line-height: 1.8;">
+                    <li><strong>Company history / founding-year surface:</strong> ELSCO has operated since 1912 (a 113-year history; the company was founded as the Electric Service Company by former Westinghouse engineers as the first independent transformer repair facility in the U.S.). No canonical <code>/our-history</code>, <code>/our-story</code>, or timeline page surfaces the chronology. Founding context is buried in About-Us prose if present at all. The <code>Organization</code> schema does not declare <code>foundingDate</code>.</li>
+                    <li><strong>Ownership / corporate structure:</strong> No public disclosure surface (<code>/ownership</code>, <code>/corporate-structure</code>, <code>/parent-company</code>). For B2B buyers doing due diligence and for AI models building entity profiles, public ownership disclosure is a standard expectation that ELSCO does not currently meet.</li>
+                    <li><strong>Certifications / quality standards:</strong> The Warranty page exists, but no dedicated <code>/certifications</code> or <code>/standards</code> page. Industrial B2B buyers heavily weight ISO, UL, ANSI, and CSA certifications when evaluating suppliers. Whatever certifications ELSCO holds are not surfaced as a canonical page.</li>
+                    <li><strong>Industry memberships / trade associations:</strong> No <code>/memberships</code> or <code>/associations</code> surface. NEMA, IEEE, EASA, and similar industry-association affiliations (if held) are invisible to AI models building the entity profile.</li>
+                    <li><strong>Press / news / awards:</strong> No <code>/press</code>, <code>/news</code>, <code>/awards</code>, or <code>/media-room</code> surfaces. For an industrial B2B with a century-long operating history, this is a meaningful entity-vividness gap &mdash; the company almost certainly has press coverage, customer awards, or industry recognition that simply isn&rsquo;t surfaced as canonical pages on the site.</li>
+                  </ul>
+                </div>
+              </details>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Build out the canonical entity-establishing pages &mdash; company history (with founding year), ownership disclosure, certifications, industry memberships, press/news &mdash; with an internal-link strategy and structured data to match.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+
+      <!-- MEDIUM: Person.knowsAbout empty -->
+      <details>
+        <summary><span class="badge medium">MEDIUM</span> Person.knowsAbout Empty for Leadership &mdash; Expertise-Binding Gap</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">The Engineering Management Staff page declares two <code>Person</code> schemas &mdash; Todd Benadum (President) and Alan Ober (Vice President) &mdash; with name, url, image, sameAs (LinkedIn), jobTitle, and worksFor. The foundation is solid. But the <code>knowsAbout</code> field is empty for both. Todd&rsquo;s deep expertise in transformer manufacturing, medium-voltage systems, emergency replacement, and KVA-spec design is implicit in his blog authorship of 75 posts and visible in his bio prose, but not declared as machine-readable expertise terms. Same for Alan.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">This is the E-E-A-T expertise-binding gap. AI engines weighting expertise (the second &ldquo;E&rdquo; in E-E-A-T) lean heavily on machine-readable expertise declarations. With <code>knowsAbout</code> empty, AI cannot reliably attribute Todd&rsquo;s 75-post technical library to his declared expertise areas, even though the prose makes the connection obvious to a human reader. The fix pairs with the Article/BlogPosting template work in Schema Implementation: when the blog template starts emitting <code>Article</code> with <code>author</code> linked to Todd&rsquo;s Person <code>@id</code>, the expertise-binding properties become the bridge between his published work and his declared expertise.</p>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Round out both Person schemas with detailed expertise-binding properties &mdash; <code>knowsAbout</code> terms and a stable <code>@id</code> &mdash; so the Article schema across the blog library can attribute the technical content to its declared author expertise and flesh out the knowledge-graph connections.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+
+      <!-- LOW: Programmatic Product Pages — Defensible Unique Content and Value -->
+      <details>
+        <summary><span class="badge low">LOW</span> Programmatic Product Pages &mdash; Defensible Unique Content and Value</summary>
+        <div class="finding-content">
+          <p style="margin-bottom: 12px;">~40 KVA-spec programmatic product pages sit on the site, each representing a real, distinct product differentiated by KVA rating &times; primary voltage &times; secondary voltage. This is normal industrial-product taxonomy, not the &ldquo;scaled content abuse&rdquo; pattern Google&rsquo;s March 2024 spam update targets. The pattern is structurally defensible. What is missing for these pages is schema, not content.</p>
+
+          <details style="margin-top: 12px;">
+            <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+            <div class="finding-content">
+              <p style="margin-bottom: 12px;">A representative KVA-spec page (<code>/transformers/dry-type-transformers/1500-kva-13800-delta-to-480y-277/</code>) carries WordPress&rsquo;s <code>ItemPage</code> classification but no <code>Product</code> or <code>Offer</code> schema. AI engines see &ldquo;a page&rdquo; but cannot easily and quickly extract product specs, availability, or pricing in machine-readable form. The content substance is real; the structural disclosure layer is missing.</p>
+
+              <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Add <code>Product</code> / <code>Offer</code> schema at the template level. Specifications already exist in your CMS &mdash; this is one schema build that closes the gap across all ~40 pages at once. Adding real proprietary data per page (in-stock availability, lead time, real pricing or pricing range) makes these pages AI-citable for transactional buyer queries.</p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+    </div>
+
+  </div>
+
+  <!-- TRUST DIMENSION SECTION -->
+  <div class="container">
+    <div class="layer-header">
+      <div class="layer-header-top">
+        <h3>Trust: Will AI Recommend You?</h3>
+        <div class="badges">
+          <span class="count-badge high">3</span>
+          <span class="count-badge medium">2</span>
+          <span class="count-badge low">0</span>
+          <span class="count-badge pass">1</span>
+        </div>
+      </div>
+      <p class="layer-description">AI engines don&rsquo;t just read your website. They cross-reference what they found on your website with what they find across platforms. They also compare you to what those other sites say about your competitors. Finally they check whether the full entity profile they&rsquo;ve assembled is consistent enough across sources for them to confidently cite you. It&rsquo;s here that we see the final reason ELSCO gets high visibility on Perplexity and 0% visibility on Claude.</p>
+    </div>
+
+  <!-- Entity Identity & Proof Structure Topic Group -->
+  <div class="findings-section">
+    <h3>Entity Identity &amp; Proof Structure</h3>
+    <p class="topic-intro">Consistency is a cornerstone of AI agent trust. A consistent expression of a company&rsquo;s name, address and phone number (NAP) has been key to local SEO success for decades and is equally important to AI agents. Other trust signals like referrals, testimonials, and SLAs are also used to prove facts claimed by a company on their visible pages and in structured data.</p>
+
+    <!-- HIGH: Entity Identity Consistency Across Websites -->
+    <details>
+      <summary><span class="badge high">HIGH</span> Entity Identity Consistency Across Websites is Lacking</summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">Reconciling what you say about your company on your website with what is said about you on other websites is one of the most common web problems today. In the UNDERSTAND layer we discussed ELSCO&rsquo;s split-identity problem and recommended ways to strengthen the relationship between your corporate name and your current DBA name onsite. Here we take a look at what other sites are saying your name is and whether that can be an issue for you. And it is very much an issue.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">AI engines verifying the entity by cross-referencing external sources see two separate entities and are left guessing about the relationship. Without reconciling the off-site footprint, training-data-weighted AI engines may continue tracking two profiles even after you have done the onsite schema work. We found the name split on several top-tier social and directory websites that are trusted information sources for AI agents.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <ul style="margin: 0 0 12px 24px; line-height: 1.7;">
+                  <li>Modern social and business directories (Crunchbase, LinkedIn, Facebook, YouTube) carry the &ldquo;ELSCO Transformers&rdquo; profile under canonical URL slugs.</li>
+                  <li>Legacy B2B directories (Better Business Bureau, ZoomInfo, Manta, Yellow Pages, NDT) carry the &ldquo;Electric Service Co. / Electric Service Company&rdquo; profile under different canonical slugs.</li>
+                </ul>
+              </div>
+            </details>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Because I believe that bridging this most important entity gap is key for you, I&rsquo;m attaching a standalone <em>Directory Alignment Guide</em> that should help make the job of reconciling your identities faster and easier. It includes the instructions for where to go and what to change for each of the major directories above.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- HIGH: Thin Organization and Person Schema -->
+    <details>
+      <summary><span class="badge high">HIGH</span> Thin Organization and Person Schema Provides Few Trust Signals</summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">Organization schema is perhaps the biggest lever you can use to tell AI agents about your company in an effort to ensure they learn the facts about your business. It can be argued that Person schema is the second most important &mdash; it provides the basis for a company&rsquo;s online E-E-A-T (Experience, Expertise, Authority, Trust) score, which is a huge factor in traditional SEO rankings and a growing factor in AI-citation decisions.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">While we did find Organization schema present, it was the bare minimum provided by the WordPress Yoast plugin. There is also a factual inaccuracy in the <code>description</code> attribute, which says you have been in business since 1960 (about 65 years) instead of since 1912 (113 years).</p>
+
+            <p style="margin-bottom: 12px;">Similarly, your Person schema was almost invisible. There is only one line of substantive schema about both Todd Benadum and Alan Ober, based on one page of the website.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <p style="margin-bottom: 8px;"><strong>Organization schema</strong> &mdash; the complete object as currently emitted on <code>/about-us/</code>:</p>
+<pre style="margin: 8px 0 12px; padding: 14px 16px; background-color: var(--cream-dark); border: 1px solid var(--neutral); border-left: 3px solid var(--slate-mid); border-radius: 4px; max-height: 320px; overflow-y: auto; font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 12px; line-height: 1.5; color: var(--slate); white-space: pre; tab-size: 2;"><code>{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ELSCO Transformers",
+  "alternateName": "ELSCO",
+  "url": "https://elscotransformers.com/",
+  "logo": "https://elscotransformers.com/wp-content/themes/elsco/assets/img/logo.png",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "800-232-9002",
+      "contactType": "sales",
+      "contactOption": "TollFree",
+      "areaServed": "US",
+      "availableLanguage": "en"
+    },
+    {
+      "@type": "ContactPoint",
+      "telephone": "800-232-9002",
+      "contactType": "customer service",
+      "contactOption": "TollFree",
+      "areaServed": "US",
+      "availableLanguage": "en"
+    },
+    {
+      "@type": "ContactPoint",
+      "telephone": "800-232-9002",
+      "contactType": "emergency",
+      "contactOption": "TollFree",
+      "areaServed": "US",
+      "availableLanguage": "en"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/ELSCOTransformers/",
+    "https://www.youtube.com/channel/UCfax2yc_7BPvF7n5H88exQw",
+    "https://www.linkedin.com/company/elsco-transformers/",
+    "https://elscotransformers.com/"
+  ]
+}</code></pre>
+                <p style="margin-bottom: 8px;"><strong>Person schema</strong> &mdash; found on <code>/about-us/engineering-management-staff/</code>. The full description field reads:</p>
+                <p style="margin: 8px 0 0; padding: 10px 14px; background-color: var(--cream-dark); border-left: 3px solid var(--slate-mid); border-radius: 4px; font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 12px; line-height: 1.5; color: var(--slate);">&quot;description&quot;: &quot;The ELSCO Engineering Management staff is led by Todd Benadum and Alan Ober. Call us to talk with Todd or Allan for more information.&quot;</p>
+                <p style="margin-top: 12px;">Beyond the description, each Person carries only <code>name</code>, <code>url</code>, <code>image</code>, <code>jobTitle</code>, <code>worksFor</code>, and a single <code>sameAs</code> entry (LinkedIn). Critically, <code>knowsAbout</code> is empty for both leaders &mdash; their substantive expertise (transformer engineering, industrial-distribution operations) is not declared in machine-readable form.</p>
+              </div>
+            </details>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> There is a wealth of additional information that can be included both on the visible page and in the structured data &mdash; including <code>knowsAbout</code>, <code>mentions</code>, <code>foundingDate</code>, <code>founder</code>, and other schema types that a 113-year-old company should be using. At a minimum, <code>sameAs</code> schema that ties the organization to social media accounts, industry associations, conference talks, and trade-publication interviews &mdash; under both &ldquo;ELSCO Transformers&rdquo; and &ldquo;Electric Service Co.&rdquo; names &mdash; should be employed.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- MEDIUM: Additional Trust Signals Underused -->
+    <details>
+      <summary><span class="badge medium">MEDIUM</span> Additional Trust Signals Underused</summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">Humans frequently make decisions about who to do business with based on referrals or testimonials of others, as well as perceptions about customer service, refund policies, warranties, and similar trust markers. AI agents also look for positive signals in these areas when deciding whether or not to trust and cite a business.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">Trust signals do exist on visible pages in several places on the website. However, when Claude or ChatGPT is asked &ldquo;does ELSCO offer a warranty,&rdquo; or &ldquo;what do ELSCO customers say about lead times,&rdquo; the model has to read the prose and summarize. Models comparing ELSCO against competitors with structured <code>Review</code> schema and explicit warranty claims will defer to those competitors because the comparison is structured-claim vs. prose-summary &mdash; structured wins.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <p style="margin-bottom: 8px;">The structured-proof gap is most visible in three places:</p>
+                <ul style="margin: 0 0 12px 24px; line-height: 1.7;">
+                  <li>Customer testimonials are present in HTML but emit no <code>Review</code> schema.</li>
+                  <li>Warranty terms (5-year warranty) are described in prose on the Warranty page but carry no <code>WarrantyPromise</code> or equivalent schema.</li>
+                  <li>Aggregate satisfaction or service-level claims (e.g., 95% in-stock availability) are stated narratively but not declared as structured data.</li>
+                </ul>
+              </div>
+            </details>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> Bind the existing prose-form proof &mdash; testimonials, warranty terms, in-stock claims &mdash; to <code>Review</code>, <code>AggregateRating</code>, and product-level structured properties so the existing trust content becomes easily machine-extractable.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- PASS: Strategic wedge winning competitively -->
+    <details>
+      <summary><span class="badge pass">PASS</span> Strategic Wedge Winning Competitively in Retrieval-Grounded Engines</summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">Within the engines that read the live web at inference time, ELSCO is performing well above category baseline and beating named competitors. This is the foundation the structural fixes in this audit extend, not rebuild. The competitive map Todd named is correct, and the strategic wedge is breaking through where AI engines read the site directly.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">Gumshoe&rsquo;s 341-conversation visibility scan placed ELSCO at 35% overall brand visibility, ranked 6th of 120 brands mentioned in the medium-voltage transformer category. Of the five brands above ELSCO, only two (Eaton 78%, Schneider Electric 64%) are real competitive threats in ELSCO&rsquo;s segment; the other three (Thomas &amp; Betts/ABB, Proficy/GE Vernova, Siemens) are leaderboard noise from adjacent markets. ELSCO beats the three competitors Todd named (Hammond, MGM, Maddox) in 6 of 8 personas, ties in 2, and loses only to Hammond in the &ldquo;Innovation-Seeking Manufacturing Director&rdquo; persona. Quick Delivery (39%) and Emergency Replacement (39%) are the two highest-visibility topics &mdash; both above the 35% brand average &mdash; confirming the strategic wedge is working in retrieval-grounded engines even with the schema-floor and entity-bifurcation issues elsewhere in this audit.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+  </div>
+
+  <!-- Off-Site & Earned Presence Topic Group -->
+  <div class="findings-section">
+    <h3>Off-Site &amp; Earned Presence</h3>
+    <p class="topic-intro">Even a website that received passing scores on every diagnostic we measure on their site would still have one more hurdle to overcome before being routinely cited and mentioned by AI agents. Third-party verification and validation is just as important to AI agents as it has been to traditional SEO measurement. ELSCO has an opportunity here to pull even further ahead of your direct competitors.</p>
+
+    <!-- HIGH: Earned-content footprint underweight -->
+    <details>
+      <summary><span class="badge high">HIGH</span> Earned-Content Footprint Underweight Given 113-Year Operating History</summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">ELSCO has been operating since 1912 &mdash; founded by former Westinghouse engineers as the first independent transformer repair facility in the United States. Five generations of operating history, a 1988 transition into manufacturing and stocking, and a current strategic position as one of the few mid-market in-stock medium-voltage suppliers. That history is real and substantive. The earned-content footprint that should reflect it is light.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">ELSCO has invested heavily in owned content (274 URLs, 75 educational blog posts, programmatic local-SEO architecture) &mdash; the entry fee is paid. The marginal AI-citation lift now comes from the earned surfaces where the footprint is currently thin. There is an opportunity for ELSCO to expand its off-site footprint through digital PR strategies.</p>
+
+            <details style="margin-top: 12px;">
+              <summary style="font-weight: 500; font-size: 13px;">Technical detail</summary>
+              <div class="finding-content">
+                <p style="margin-bottom: 8px;">Gumshoe&rsquo;s citation source-type breakdown across 1,942 total citations to ELSCO content showed concentration patterns that are diagnostic of an earned-presence gap:</p>
+                <ul style="margin: 0 0 12px 24px; line-height: 1.8;">
+                  <li><strong>Business / Service Sites: 88%</strong> &mdash; the bulk of AI citations to ELSCO content come from elscotransformers.com itself plus a handful of B2B directories.</li>
+                  <li><strong>News / Media Sites: 5%</strong> &mdash; thin trade-press footprint for a company with 113 years of operating history.</li>
+                  <li><strong>Social Networks: 3%</strong> &mdash; LinkedIn, Facebook, YouTube presence exists but cites lightly.</li>
+                  <li><strong>Government / Institutional: 1.4%</strong> &mdash; associations, standards bodies, government supplier registries.</li>
+                  <li><strong>Directory / Review Sites: &lt;1%</strong> &mdash; legacy directory presence under &ldquo;Electric Service Co.&rdquo; is not concentrated in modern review-aggregator surfaces.</li>
+                </ul>
+              </div>
+            </details>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> In addition to bridging the gap between your two entity names in external directories, consider investing in earned-presence campaigns focusing on your 113-year history and your leadership&rsquo;s experience and expertise. Now would also be a good time to promote the onsite work you&rsquo;ll be doing with an offsite link-building or updating campaign as well.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- MEDIUM: Industry Associations and Standards Compliance Not Declared -->
+    <details>
+      <summary><span class="badge medium">MEDIUM</span> Industry Associations and Standards Compliance Not Declared</summary>
+      <div class="finding-content">
+        <p style="margin-bottom: 12px;">ELSCO&rsquo;s product content states that the in-stock dry-type and pad-mount transformers meet or exceed IEEE, NEMA, ANSI, and DOE standards. That&rsquo;s a meaningful technical claim. What&rsquo;s not currently distinguished on the site &mdash; or in any structured-data form AI engines can extract &mdash; is whether ELSCO is a <em>member</em> of any of these organizations as opposed to a <em>compliant manufacturer</em>. AI engines and industrial-B2B buyers both weight membership and compliance differently in trust evaluations.</p>
+
+        <details style="margin-top: 12px;">
+          <summary style="font-weight: 500; font-size: 14px;">What we found</summary>
+          <div class="finding-content">
+            <p style="margin-bottom: 12px;">We found no references on the website to any association memberships. While we did find industry standard compliance claims in visible page text, they were not bound to schema. For an industrial B2B company with a 113-year history and the operating depth ELSCO claims, these absences are conspicuous and can inspire more suspicion than trust.</p>
+
+            <p style="margin-bottom: 12px; padding: 12px; background-color: var(--cream); border-left: 3px solid var(--accent-copper); border-radius: 4px;"><strong>Recommendation:</strong> First, confirm internally which trade associations ELSCO is actually a member of &mdash; the website doesn&rsquo;t currently surface any, though a third-party Thomasnet listing flags EASA among ELSCO&rsquo;s certifications, which is worth verifying. Then build a canonical industry-presence surface that distinguishes association memberships from product compliance, and bind both layers to schema (<code>memberOf</code> for Organization, standards references for Product/Service).</p>
+          </div>
+        </details>
+      </div>
+    </details>
+  </div>
+  </div>
+
+  <!-- WHAT TO DO NEXT SECTION -->
+  <div class="container" style="margin-top: 64px;">
+    <h2 style="font-family: var(--font-heading); font-size: 32px; font-weight: 700; margin-bottom: 32px; color: var(--slate);">What to Do Next</h2>
+
+    <!-- Quick Wins and Most Critical Issues (combined) -->
+    <div class="phase-card">
+      <div class="phase-header">Quick Wins and Most Critical Issues</div>
+      <p style="margin-bottom: 24px; color: var(--text-secondary); font-size: 14px;">Quick wins are low-effort, high-impact changes that start improving AI readiness immediately. The most critical issues listed here may take more time or effort, but should also be started as soon as possible.</p>
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+
+        <div style="border-left: 4px solid var(--pass); padding-left: 16px;">
+          <div style="font-weight: 600; color: var(--slate); margin-bottom: 8px; font-size: 15px;">Add named AI-crawler directives to <code>robots.txt</code></div>
+          <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">Your <code>robots.txt</code> already permits every AI crawler via the wildcard rule &mdash; nothing is blocked. Adding explicit named-bot <code>Allow</code> rules for the major AI crawlers signals intentional AI-readability rather than passive default permission. Single-file edit on the live site.</div>
+        </div>
+
+        <div style="border-left: 4px solid var(--pass); padding-left: 16px;">
+          <div style="font-weight: 600; color: var(--slate); margin-bottom: 8px; font-size: 15px;">Audit Cloudflare bot management for AI-crawler verification</div>
+          <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">The site&rsquo;s HTML-layer <code>robots.txt</code> permits AI crawlers, but the Cloudflare bot-management policy at the CDN edge may or may not be aligned. In the Cloudflare dashboard, confirm that GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Bytespider, Amazonbot, and CCBot are passing as Verified Bots without challenge or rate-limiting. Dashboard verification only, no code change required.</div>
+        </div>
+
+        <div style="border-left: 4px solid var(--pass); padding-left: 16px;">
+          <div style="font-weight: 600; color: var(--slate); margin-bottom: 8px; font-size: 15px;">301 redirect the orphan URLs to their proper parent directories</div>
+          <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">Four URLs sit at the site root that should nest under their proper parent: <code>/emergency-transformer-replacements/</code>, <code>/retrofits-custom-bus-work/</code>, <code>/save-money-with-elsco-quality-and-service/</code>, <code>/transformer-glossary/</code> (and likely <code>/careers/</code>). Each has a clear canonical home in the existing IA. The URL Hierarchy finding in FIND &rarr; Sitemap and Infrastructure lists each canonical destination.</div>
+        </div>
+
+        <div style="border-left: 4px solid var(--high); padding-left: 16px;">
+          <div style="font-weight: 600; color: var(--slate); margin-bottom: 8px; font-size: 15px;">Bridge the two entity names in Organization schema onsite</div>
+          <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">
+            <p style="margin: 0 0 10px;">The Organization schema on <code>/about-us/</code> already includes an <code>alternateName</code> field, but it currently declares only the acronym &mdash; <code>&quot;ELSCO&quot;</code>. Four schema fields together establish the entity bridge:</p>
+            <ul style="margin: 0 0 10px 24px; line-height: 1.7;">
+              <li><code>name</code> &mdash; the modern preferred name (<code>ELSCO Transformers</code>); already declared</li>
+              <li><code>alternateName</code> &mdash; expand from acronym-only to also include the legacy company name (<code>The Electric Service Company</code>); Schema.org permits an array</li>
+              <li><code>legalName</code> &mdash; the registered corporate name (<code>Electric Service Co., Inc.</code>); not currently declared</li>
+              <li><code>@id</code> &mdash; a stable canonical URI (<code>https://elscotransformers.com/#organization</code>) that every other schema entity on the site can reference; not currently declared</li>
+            </ul>
+            <p style="margin: 0;">With all four declared, training-data-weighted AI engines have an explicit signal that legacy and modern mentions refer to one entity.</p>
+          </div>
+        </div>
+
+        <div style="border-left: 4px solid var(--high); padding-left: 16px;">
+          <div style="font-weight: 600; color: var(--slate); margin-bottom: 8px; font-size: 15px;">Claim and update the two entity names in offsite directory listings</div>
+          <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">The schema work above bridges the two names in <em>your</em> structured data. This bridges the names in <em>their</em> data. Claim each directory profile and update it so the listing surfaces both names &mdash; either as primary &ldquo;ELSCO Transformers&rdquo; with &ldquo;formerly / dba The Electric Service Company&rdquo; in the description, or as primary &ldquo;Electric Service Co., Inc.&rdquo; with &ldquo;ELSCO Transformers&rdquo; as a known-as alternate. A standalone <em>Directory Alignment Guide</em> with the claim URLs and step-by-step process for each surface is included as a separate handoff with this audit.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2-Step CTA: Roadmap or Referral -->
+    <div style="background: linear-gradient(135deg, var(--teal-deep) 0%, var(--accent-teal) 100%); color: white; padding: 36px 32px; border-radius: 8px; margin-top: 32px;">
+      <div style="text-align: center; max-width: 720px; margin: 0 auto 28px;">
+        <p style="font-size: 16px; line-height: 1.7; opacity: 0.95; margin-bottom: 0; font-style: italic;">Closing these gaps takes implementation. But not all at once, and not without a deeper map. The audit diagnoses the gaps; the next two steps are about closing them.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 800px; margin: 0 auto;">
+        <div>
+          <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 600; margin-bottom: 12px;">Want a Roadmap?</h3>
+          <p style="font-size: 14px; opacity: 0.92; line-height: 1.7; margin-bottom: 16px;">The Agent Readiness Roadmap takes the audit diagnoses and turns them into an implementation blueprint &mdash; page template inventory, schema specifications per template, semantic HTML refactor blueprints, sample schema with real ELSCO content, and a sequenced build plan your team or agency can execute. The audit tells you what is broken; the Roadmap tells your developers exactly what to ship.</p>
+          <a href="https://lizmicik.com/#contact" style="color: white; font-weight: 600; font-size: 14px; text-decoration: underline; text-underline-offset: 3px;">Get your Roadmap &rarr;</a>
+        </div>
+        <div>
+          <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 600; margin-bottom: 12px;">Need someone to execute the plan?</h3>
+          <p style="font-size: 14px; opacity: 0.92; line-height: 1.7; margin-bottom: 16px;">Whether you work from this audit or a full Roadmap, implementation takes hands on the keyboard. Over the years I&rsquo;ve developed strong working relationships with firms that specialize in exactly this kind of work &mdash; schema implementation, semantic HTML refactors, agentic-web infrastructure. I&rsquo;m happy to make an introduction.</p>
+          <a href="https://lizmicik.com/#contact" style="color: white; font-weight: 600; font-size: 14px; text-decoration: underline; text-underline-offset: 3px;">Let&rsquo;s talk &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER SECTION -->
+  <footer class="report-footer" style="background-color: var(--slate); color: var(--text-light); padding: 40px 24px; text-align: center; margin-top: 64px; border-radius: 8px;">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <p style="font-size: 14px; opacity: 0.85; line-height: 1.7; margin-bottom: 12px;">Agent Readiness Audit&trade; for ELSCO Transformers &middot; Prepared by Liz Micik &middot; May 4, 2026</p>
+      <p style="font-size: 13px; opacity: 0.7; line-height: 1.7; margin-bottom: 0;">&copy; 2026 Liz Micik. All rights reserved. Agent Readiness Audit&trade; is a trademark of Liz Micik. <a href="https://lizmicik.com" style="color: var(--text-light); text-decoration: underline;">lizmicik.com</a></p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.tab-button').forEach(button => {
+      button.addEventListener('click', () => {
+        const tabId = button.getAttribute('data-tab');
+        document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        button.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
