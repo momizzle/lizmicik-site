@@ -199,6 +199,44 @@
     font-style: italic;
   }
 
+  .video-block {
+    background: #fff;
+    border: 1px solid var(--cream-dark);
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .video-block-header {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .video-block-header .card-content {
+    flex: 1;
+  }
+
+  .video-frame {
+    position: relative;
+    padding-bottom: 62.5%;
+    height: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--slate);
+  }
+
+  .video-frame iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
   .contact-section {
     margin-top: 2.5rem;
     padding-top: 2rem;
@@ -289,14 +327,18 @@
         <span class="card-arrow">&#8594;</span>
       </a>
 
-      <a href="https://www.loom.com/share/2b8f4914f65c4ee7a5804298053be98d" target="_blank" rel="noopener noreferrer" class="deliverable-card">
-        <div class="card-icon icon-video">&#9654;</div>
-        <div class="card-content">
-          <h3>Highlight Walkthrough (Video)</h3>
-          <p>A short Loom walking through the priority findings, what they mean for ELSCO, and the recommended sequence of next steps.</p>
+      <div class="video-block">
+        <div class="video-block-header">
+          <div class="card-icon icon-video">&#9654;</div>
+          <div class="card-content">
+            <h3>Highlight Walkthrough (Video)</h3>
+            <p>A short Loom walking through the priority findings, what they mean for ELSCO, and the recommended sequence of next steps.</p>
+          </div>
         </div>
-        <span class="card-arrow">&#8594;</span>
-      </a>
+        <div class="video-frame">
+          <iframe src="https://www.loom.com/embed/2b8f4914f65c4ee7a5804298053be98d" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+      </div>
 
       <a href="Elsco-Audit-Highlight-Reel.pptx" class="deliverable-card">
         <div class="card-icon icon-deck">&#9632;</div>
