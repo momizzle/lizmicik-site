@@ -38,7 +38,7 @@
     "offers": {
       "@type": "Offer",
       "name": "Agent Readiness Roadmap",
-      "price": "3500",
+      "price": "4500",
       "priceCurrency": "USD",
       "description": "Per-template implementation blueprint scoped to site complexity. Includes JSON-LD schema blocks, semantic HTML blueprints, mini content briefs, annotated screenshots, entity authority graph, and implementation priority timeline."
     }
@@ -59,10 +59,11 @@
     :root {
       --charcoal: #2C3038;
       --cream: #FAFAF7;
-      --warm-gold: #5B7C5E;
-      --warm-gold-light: #C4956A;
-      --warm-gold-bg: rgba(91, 124, 94, 0.06);
-      --warm-gold-border: rgba(91, 124, 94, 0.25);
+      /* Roadmap page accent = hero brown #6B3D2E (per brand system: Audit=teal, Signal Check=copper, Roadmap=hero brown) */
+      --warm-gold: #6B3D2E;
+      --warm-gold-light: #8C5742;
+      --warm-gold-bg: rgba(107, 61, 46, 0.06);
+      --warm-gold-border: rgba(107, 61, 46, 0.25);
       --teal: #5B7C5E;
       --teal-deep: #4E7F80;
       --teal-light: #8ABCBD;
@@ -82,8 +83,8 @@
       --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
       --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
       /* Roadmap-specific: copper-teal blend */
-      --gradient-warm: linear-gradient(135deg, #5B7C5E, #5B7C5E);
-      --gradient-warm-hover: linear-gradient(135deg, #9A6B4A, #4E7F80);
+      --gradient-warm: linear-gradient(135deg, #6B3D2E, #8C5742);
+      --gradient-warm-hover: linear-gradient(135deg, #5A3225, #7A4836);
     }
 
     .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
@@ -108,7 +109,7 @@
     .hero {
       padding: 80px 0 64px;
       text-align: center;
-      background: linear-gradient(180deg, var(--cream) 0%, #f0ece6 70%, rgba(91, 124, 94, 0.04) 100%);
+      background: linear-gradient(180deg, var(--cream) 0%, #f0ece6 70%, rgba(107, 61, 46, 0.04) 100%);
     }
     .hero h1 {
       font-family: 'Manrope', sans-serif; font-size: 2.6rem; font-weight: 700;
@@ -179,6 +180,12 @@
       padding: 24px; text-align: center;
     }
     .stat-card.copper { border-top: 3px solid var(--warm-gold); }
+    .stat-source {
+      font-size: 0.72rem; color: var(--slate-light); margin-top: 6px;
+      line-height: 1.3;
+    }
+    .stat-source a { color: var(--warm-gold); text-decoration: none; }
+    .stat-source a:hover { text-decoration: underline; }
     .stat-card.teal { border-top: 3px solid var(--teal); }
     .stat-number {
       font-family: 'Manrope', sans-serif; font-size: 1.5rem; font-weight: 700;
@@ -638,11 +645,9 @@
          HERO
          ============================================================ -->
     <section class="hero">
-      <div class="container">
-        <h1>Your Team Knows What's Wrong. Now Show Them Exactly How to Fix It.</h1>
-        <p class="subtitle">The <strong>Agent Readiness Roadmap</strong> is a per-template implementation blueprint: JSON-LD schema blocks your developers can copy into your CMS, semantic HTML structures they can build from, and content recommendations your team can act on today.</p>
-        <p class="subtitle">Paint by numbers for the agentic web.</p>
-        <p class="credential">Built by <strong>Liz Micik</strong> &mdash; 28 years in SEO, content strategy, and web architecture</p>
+      <div class="container" style="text-align: center;">
+        <h1 style="text-wrap: balance;">Knowing what's broken doesn't fix&nbsp;it</h1>
+        <p class="subtitle">The gap between &ldquo;here's what's wrong&rdquo; and &ldquo;here's what to build&rdquo; is where projects stall. The <strong>Agent Readiness Roadmap</strong> is a per-template implementation blueprint your team can act on today.</p>
         <a href="#apply" class="cta-btn">Get Your Roadmap</a>
       </div>
     </section>
@@ -653,114 +658,40 @@
     <section id="the-gap">
       <div class="container">
         <p class="section-label">The Problem</p>
-        <h2 class="section-heading">Knowing what's broken doesn't fix it.</h2>
+        <h2 class="section-heading">The buyer's journey has moved</h2>
         <div class="section-body">
-          <p>Most companies that get an audit end up in the same place: a PDF full of findings, a dev team that doesn't know where to start, and a content team that doesn't know what to change. The gap between "here's what's wrong" and "here's what to build" is where projects stall.</p>
-          <p>The Agent Readiness Roadmap closes that gap. Instead of a list of problems, your teams get implementation-ready specifications they can start building from on day one.</p>
+          <p>History rhymes. In the early 2000s buyers began shifting the start of their buying journey into a search engine. Today they're beginning to use AI agents to do their preliminary research for them. If you don't take action to be found, understood, and trusted by those agents now, you won't be recommended. Your ideal potential buyer will never know you exist.</p>
         </div>
         <div class="shift-stats">
           <div class="stat-card copper">
-            <div class="stat-number">Dev Team</div>
-            <div class="stat-label">Gets copy-paste JSON-LD and annotated HTML blueprints per template</div>
+            <div class="stat-number">94%</div>
+            <div class="stat-label">B2B buying groups now use LLMs (ChatGPT, Gemini, Claude) before engaging sales.</div>
+            <div class="stat-source"><a href="https://corporatevisions.com/blog/b2b-buying-behavior-statistics-trends/" target="_blank" rel="noopener">Corporate Visions, 2026</a></div>
           </div>
-          <div class="stat-card teal">
-            <div class="stat-number">Content Team</div>
-            <div class="stat-label">Gets scored recommendations with before/after patterns per page type</div>
+          <div class="stat-card copper">
+            <div class="stat-number">70%</div>
+            <div class="stat-label">Of the B2B purchase process happens before buyers engage with sellers.</div>
+            <div class="stat-source"><a href="https://6sense.com/science-of-b2b/buyer-experience-report-2025/" target="_blank" rel="noopener">6sense Buyer Experience Report 2025</a></div>
           </div>
-          <div class="stat-card teal">
-            <div class="stat-number">Leadership</div>
-            <div class="stat-label">Gets a prioritized timeline with effort estimates and a clear implementation order</div>
+          <div class="stat-card copper">
+            <div class="stat-number">41%</div>
+            <div class="stat-label">B2B buyers who have a preferred vendor BEFORE evaluation begins. Citation-presence determines that shortlist.</div>
+            <div class="stat-source"><a href="https://foundationinc.co/lab/g2-answer-economy-report/" target="_blank" rel="noopener">G2 / Foundation, 2026</a></div>
           </div>
+        </div>
+        <div class="section-body" style="margin-top: 28px;">
+          <p>Next year they may be sending those same agents to negotiate a final purchase on their behalf. Are you going to be ready for that?</p>
         </div>
       </div>
     </section>
 
-    <!-- ============================================================
-         AUDIT VS ROADMAP (comparison table)
-         ============================================================ -->
-    <section id="comparison">
-      <div class="container">
-        <p class="section-label">Audit vs. Roadmap</p>
-        <h2 class="section-heading">The audit diagnoses. The roadmap prescribes.</h2>
-        <div class="section-body">
-          <p>The Agent Readiness Audit tells you what's wrong and where to focus. The Roadmap picks up exactly where the audit leaves off and gives each team the specific deliverables they need to execute.</p>
-        </div>
-        <table class="compare-table" role="table">
-          <thead>
-            <tr>
-              <th>What you get</th>
-              <th>Audit ($1,500)</th>
-              <th>Roadmap ($3,500+)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Scored findings across Find, Understand, Trust</td>
-              <td><span class="compare-check-warm">&check;</span> 31-point diagnostic</td>
-              <td><span class="compare-check">&check;</span> Included or imported</td>
-            </tr>
-            <tr>
-              <td>Prioritized action plan</td>
-              <td><span class="compare-check-warm">&check;</span> What to fix first</td>
-              <td><span class="compare-check">&check;</span> Phased timeline with effort estimates</td>
-            </tr>
-            <tr>
-              <td>Per-template JSON-LD schema blocks</td>
-              <td><span class="compare-x">&mdash;</span></td>
-              <td><span class="compare-check">&check;</span> Copy-paste ready, real content</td>
-            </tr>
-            <tr>
-              <td>Semantic HTML blueprints</td>
-              <td><span class="compare-x">&mdash;</span></td>
-              <td><span class="compare-check">&check;</span> Annotated with before/after</td>
-            </tr>
-            <tr>
-              <td>Mini content briefs per template</td>
-              <td><span class="compare-x">&mdash;</span></td>
-              <td><span class="compare-check">&check;</span> Section-level writing direction</td>
-            </tr>
-            <tr>
-              <td>Annotated screenshots &amp; before/after visuals</td>
-              <td><span class="compare-x">&mdash;</span></td>
-              <td><span class="compare-check">&check;</span> What changes where, visually</td>
-            </tr>
-            <tr>
-              <td>Content queryability recommendations</td>
-              <td><span class="compare-x">&mdash;</span></td>
-              <td><span class="compare-check">&check;</span> Per-template callouts with patterns</td>
-            </tr>
-            <tr>
-              <td>Entity authority graph</td>
-              <td><span class="compare-x">&mdash;</span></td>
-              <td><span class="compare-check">&check;</span> Visual map of missing connections</td>
-            </tr>
-            <tr>
-              <td>Template inventory with complexity ratings</td>
-              <td><span class="compare-x">&mdash;</span></td>
-              <td><span class="compare-check">&check;</span> Every page type mapped</td>
-            </tr>
-            <tr>
-              <td>Live AI agent test results</td>
-              <td><span class="compare-check-warm">&check;</span> 4 platforms</td>
-              <td><span class="compare-check">&check;</span> Included or imported from audit</td>
-            </tr>
-            <tr>
-              <td>Video highlights</td>
-              <td><span class="compare-check-warm">&check;</span> Findings walkthrough</td>
-              <td><span class="compare-check">&check;</span> Implementation priorities</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ============================================================
+<!-- ============================================================
          THREE LAYERS (implementation-focused)
          ============================================================ -->
     <section id="framework">
       <div class="container">
         <p class="section-label">The Framework</p>
-        <h2 class="section-heading">Three layers. Two sides per layer. Every template covered.</h2>
+        <h2 class="section-heading">Your Agent Readiness Roadmap shows you the way</h2>
         <div class="section-body">
           <p>The Roadmap is organized around the same Find / Understand / Trust framework as the audit, but splits each layer into what humans see (content and structure) and what machines read (schema and code). Every recommendation maps to a specific layer and side.</p>
         </div>
@@ -908,14 +839,287 @@
     </section>
 
     <!-- ============================================================
+         DETAILED SALES MAP (buyer-question density matrix)
+         ============================================================ -->
+    <section id="sales-map" style="background: var(--cream); padding: 60px 0;">
+      <div class="container">
+        <p class="section-label">Detailed Sales Map</p>
+        <h2 class="section-heading">Where do sales happen on your site?</h2>
+        <div class="section-body">
+          <p>No matter the subject, every buyer asks the same questions of a new company that wants their business. Sales don&rsquo;t happen until all four of these questions are answered:</p>
+          <ul class="sales-map-questions">
+            <li>Who are you?</li>
+            <li>How can you help me?</li>
+            <li>Why should I choose you?</li>
+            <li>What exactly do you do/sell?</li>
+          </ul>
+          <p class="sales-map-bridge"><strong><em>Where</em></strong> these questions get answered on an industrial reseller&rsquo;s site may be wildly different than where they get answered on a professional services site. Our intake process and competitor research makes sure the Agent Readiness Roadmap we deliver to your team tracks an exact priority sales path through your site and positions you to pull ahead of your competition.</p>
+        </div>
+
+        <style>
+          .sales-map-questions {
+            list-style: disc; padding-left: 24px; margin: 16px 0 0 0;
+          }
+          .sales-map-questions li {
+            font-weight: 600; color: var(--charcoal);
+            padding: 4px 0;
+            line-height: 1.5;
+          }
+          .sales-map-bridge {
+            margin-top: 22px; font-size: 1rem; color: var(--slate);
+            line-height: 1.7;
+          }
+          .sales-map-bridge strong em {
+            color: var(--charcoal); font-style: italic; font-weight: 700;
+          }
+          /* MATRIX — shrunk/responsive variant of the one-pager matrix */
+          .sm-matrix-wrap {
+            background: white; border: 1px solid var(--border);
+            border-radius: 12px; padding: 18px;
+            font-family: 'Manrope', system-ui, sans-serif;
+            color: var(--charcoal);
+            overflow: hidden; max-width: 100%;
+            margin-top: 28px;
+          }
+          .sm-matrix-title {
+            font-size: 1.05rem; font-weight: 700; color: var(--warm-gold);
+            margin: 0 0 4px 0; letter-spacing: 0.2px;
+          }
+          .sm-matrix-subtitle {
+            font-size: 0.88rem; color: var(--slate); margin: 0 0 14px 0;
+            font-weight: 400; line-height: 1.5;
+          }
+          table.sm-matrix {
+            border-collapse: collapse; width: 100%;
+            table-layout: fixed; font-size: 0.7rem;
+          }
+          table.sm-matrix th, table.sm-matrix td {
+            padding: 4px 2px; vertical-align: middle; text-align: center;
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+          }
+          table.sm-matrix th.row-label-header {
+            text-align: left; font-weight: 700; color: var(--charcoal);
+            background: var(--cream); border-bottom: 2px solid var(--border);
+            width: 18%; padding-left: 4px;
+          }
+          table.sm-matrix th.group-header {
+            font-weight: 700; color: var(--warm-gold); font-size: 0.72rem;
+            letter-spacing: 0.4px; padding: 6px 4px;
+          }
+          table.sm-matrix th.col-header {
+            font-weight: 600; color: var(--slate); font-size: 0.62rem;
+            text-transform: uppercase; letter-spacing: 0.3px;
+            padding: 4px 2px;
+          }
+          table.sm-matrix td.row-label {
+            text-align: left; font-weight: 600; color: var(--charcoal);
+            background: var(--cream); padding-left: 6px;
+            font-size: 0.72rem;
+          }
+          .sm-dot {
+            display: inline-block; width: 11px; height: 11px;
+            vertical-align: middle;
+          }
+          .sm-dash {
+            font-size: 0.78rem; font-weight: 700;
+          }
+          .sm-legend {
+            margin: 14px 0 0 0; padding: 8px 12px;
+            background: var(--cream); border: 1px solid var(--border);
+            border-radius: 6px; font-size: 0.72rem;
+            display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+            justify-content: center;
+          }
+          .sm-legend-item {
+            display: inline-flex; align-items: center; gap: 5px;
+            color: var(--slate);
+          }
+          @media (max-width: 640px) {
+            table.sm-matrix { font-size: 0.6rem; }
+            table.sm-matrix th, table.sm-matrix td { padding: 3px 1px; }
+            table.sm-matrix th.row-label-header,
+            table.sm-matrix td.row-label { font-size: 0.65rem; padding-left: 3px; }
+            .sm-dot { width: 9px; height: 9px; }
+            .sm-matrix-wrap { padding: 12px 8px; }
+          }
+        </style>
+
+        <div class="sm-matrix-wrap">
+          <p class="sm-matrix-title">Templates that sell per industry</p>
+          <p class="sm-matrix-subtitle">Some page template types carry more of the sales load than others. We map and prioritize your page types.</p>
+          <table class="sm-matrix">
+            <thead>
+              <tr>
+                <th rowspan="2" class="row-label-header">Template Type</th>
+                <th colspan="4" class="group-header" style="background:rgba(196, 149, 106, 0.10);border-bottom:2px solid var(--border);">Industrial Distribution</th>
+                <th colspan="4" class="group-header" style="background:rgba(139, 154, 126, 0.10);border-bottom:2px solid var(--border);">Professional Services</th>
+              </tr>
+              <tr>
+                <th class="col-header" style="background:rgba(196, 149, 106, 0.10);">Who?</th>
+                <th class="col-header" style="background:rgba(196, 149, 106, 0.10);">What?</th>
+                <th class="col-header" style="background:rgba(196, 149, 106, 0.10);">How?</th>
+                <th class="col-header" style="background:rgba(196, 149, 106, 0.10);">Why?</th>
+                <th class="col-header" style="background:rgba(139, 154, 126, 0.10);">Who?</th>
+                <th class="col-header" style="background:rgba(139, 154, 126, 0.10);">What?</th>
+                <th class="col-header" style="background:rgba(139, 154, 126, 0.10);">How?</th>
+                <th class="col-header" style="background:rgba(139, 154, 126, 0.10);">Why?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="row-label">Homepage</td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+              </tr>
+              <tr>
+                <td class="row-label">About / History</td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+              </tr>
+              <tr>
+                <td class="row-label">Capabilities Overview</td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+              </tr>
+              <tr>
+                <td class="row-label">Services Catalog</td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+              </tr>
+              <tr>
+                <td class="row-label">Services Detail</td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+              </tr>
+              <tr>
+                <td class="row-label">Industry-Vertical Landing</td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+              </tr>
+              <tr>
+                <td class="row-label">Product Catalog</td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+              </tr>
+              <tr>
+                <td class="row-label">Product Detail / SKU</td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+              </tr>
+              <tr>
+                <td class="row-label">Case Study</td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+              </tr>
+              <tr>
+                <td class="row-label">Support/Help</td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+              </tr>
+              <tr>
+                <td class="row-label">Location Page</td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+              </tr>
+              <tr>
+                <td class="row-label">Contact / RFQ</td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+                <td style="background:rgba(196, 149, 106, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span></td>
+                <td style="background:rgba(139, 154, 126, 0.10);"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="sm-legend">
+            <span class="sm-legend-item"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="#6B3D2E"/></svg> PRIMARY</span>
+            <span class="sm-legend-item"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#C4956A" stroke-width="1.5"/><path d="M 7 1 A 6 6 0 0 1 7 13 Z" fill="#C4956A"/></svg> supporting</span>
+            <span class="sm-legend-item"><svg viewBox="0 0 14 14" class="sm-dot"><circle cx="7" cy="7" r="6" fill="none" stroke="#545B6A" stroke-width="1.5"/></svg> minimal</span>
+            <span class="sm-legend-item"><span class="sm-dash" style="color:#E8DDD5;">&mdash;</span> not applicable</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <!-- ============================================================
          WHAT YOU GET (deliverables)
          ============================================================ -->
     <section id="what-you-get">
       <div class="container">
         <p class="section-label">What's Included</p>
-        <h2 class="section-heading">Two teams. Two sets of deliverables. One implementation plan.</h2>
+        <h2 class="section-heading">Actionable deliverables for your teams</h2>
         <div class="section-body">
-          <p>Most implementation projects stall because the dev team gets technical specs and the content team gets nothing. The Roadmap delivers to both, organized by template, with a shared priority timeline so everyone is working from the same plan.</p>
+          <p>Your teams get implementation-ready specifications they can start building from on day one. Your dev team gets copy-paste code, your content team gets mini content briefs, and leadership gets a bird&rsquo;s-eye project-management view.</p>
         </div>
 
         <p class="section-label" style="margin-top: 40px;">For Your Development Team</p>
@@ -934,13 +1138,6 @@
               <p>Annotated HTML structure for each template type. Every change marked with WHY (the reasoning) and FIX (what's different from your current markup) comments. Dev effort estimates included.</p>
             </div>
           </li>
-          <li>
-            <div class="deliverable-icon teal">&#9673;</div>
-            <div class="deliverable-content">
-              <h4>Entity Authority Graph</h4>
-              <p>Visual map of the connections between your people, your content, and your organization. Green lines are verified connections. Red dashed lines are missing. Your dev team sees exactly which schema relationships to implement.</p>
-            </div>
-          </li>
         </ul>
 
         <p class="section-label" style="margin-top: 40px;">For Your Content &amp; Marketing Team</p>
@@ -948,8 +1145,8 @@
           <li>
             <div class="deliverable-icon copper">&#9998;</div>
             <div class="deliverable-content">
-              <h4>Mini Content Briefs Per Template</h4>
-              <p>Section-by-section writing direction for each page type. Not "add outcome language" in the abstract, but "this hero section needs a 2-sentence client outcome with a specific metric" with a pattern and example to follow. Mapped to the schema fields that depend on the content.</p>
+              <h4>Per-Template AI Query Ready Content Briefs</h4>
+              <p>A 2015 content brief told a writer the topic, audience, tone, length, and SEO keywords. Our 2026 AI-aware brief will also tell you how to phrase things so AI agents can extract and cite cleanly.</p>
             </div>
           </li>
           <li>
@@ -959,16 +1156,9 @@
               <p>Full-page captures of your current pages with visual callouts showing exactly what changes where. Your content manager sees the problem on the actual page, not in a spreadsheet.</p>
             </div>
           </li>
-          <li>
-            <div class="deliverable-icon copper">&#9776;</div>
-            <div class="deliverable-content">
-              <h4>Content Queryability Recommendations</h4>
-              <p>Template-by-template callouts on what your content says versus how AI agents interpret it. Prioritized recommendations on clarity, proof, and specificity with before/after patterns your writers can follow.</p>
-            </div>
-          </li>
         </ul>
 
-        <p class="section-label" style="margin-top: 40px;">For Everyone</p>
+        <p class="section-label" style="margin-top: 40px;">For Leadership</p>
         <ul class="deliverables-list">
           <li>
             <div class="deliverable-icon sage">&#9650;</div>
@@ -978,10 +1168,10 @@
             </div>
           </li>
           <li>
-            <div class="deliverable-icon sage">&#9654;</div>
+            <div class="deliverable-icon sage">&#9673;</div>
             <div class="deliverable-content">
-              <h4>Video Highlights</h4>
-              <p>A recorded walkthrough of the key implementation priorities, what to tackle first, and how the pieces connect. Share it with your dev lead, your content manager, and your executive team.</p>
+              <h4>Entity, Products, and Services Knowledge Graph</h4>
+              <p>Visual map of the connections between your organization, your people, your products, and your services. Green lines are verified connections. Red dashed lines are missing. Leadership sees the entity authority story at a glance and dev sees exactly which schema relationships to implement.</p>
             </div>
           </li>
         </ul>
@@ -994,7 +1184,7 @@
     <section id="process">
       <div class="container">
         <p class="section-label">The Process</p>
-        <h2 class="section-heading">From request to implementation-ready in 15 business days.</h2>
+        <h2 class="section-heading">From request to implementation-ready in 15 business days</h2>
         <div class="process-steps">
           <div class="process-step">
             <div class="step-number copper">1</div>
@@ -1014,38 +1204,7 @@
           <div class="process-step">
             <div class="step-number teal">4</div>
             <h4>Deliver</h4>
-            <p>You receive the full Roadmap: interactive report, JSON-LD files, HTML blueprints, entity graph, priority timeline, and video highlights.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         IS THIS RIGHT FOR YOU?
-         ============================================================ -->
-    <section id="fit">
-      <div class="container">
-        <p class="section-label">Is This Right for You?</p>
-        <h2 class="section-heading">The Roadmap is built for teams ready to execute.</h2>
-        <div class="fit-columns">
-          <div class="fit-card yes">
-            <h3>The Roadmap is a good fit if:</h3>
-            <ul>
-              <li>You have a dev team (in-house or agency) ready to implement</li>
-              <li>You've had an audit or know your site has schema/structure gaps</li>
-              <li>Your site has multiple page templates (services, case studies, team, blog)</li>
-              <li>You want specific deliverables, not more strategy decks</li>
-              <li>You're a B2B professional services firm, agency, or consultancy</li>
-            </ul>
-          </div>
-          <div class="fit-card no">
-            <h3>You might want the Audit first if:</h3>
-            <ul>
-              <li>You haven't assessed your current AI readiness at all</li>
-              <li>You need the diagnostic findings to build a business case internally</li>
-              <li>You're not sure whether schema or content is the bigger problem</li>
-              <li>You want to understand the landscape before committing to implementation</li>
-            </ul>
+            <p>You receive the full Roadmap: interactive report, JSON-LD files, HTML blueprints, entity graph, and priority timeline.</p>
           </div>
         </div>
       </div>
@@ -1073,9 +1232,9 @@
     <section id="pricing" class="pricing-section">
       <div class="container">
         <p class="section-label">Pricing</p>
-        <h2 class="section-heading">Scoped to your site. Transparent from day one.</h2>
+        <h2 class="section-heading">Scoped to your site. Transparent from day one</h2>
         <div class="pricing-card">
-          <div class="pricing-amount"><span class="pricing-starting">Starting at </span>$3,500</div>
+          <div class="pricing-amount"><span class="pricing-starting">Starting at </span>$4,500</div>
           <p class="pricing-label">Scoped per engagement based on your site's complexity. No recurring fees. No hidden costs.</p>
           <ul class="pricing-includes">
             <li>Template inventory with complexity ratings</li>
@@ -1086,7 +1245,6 @@
             <li>Entity authority graph with gap analysis</li>
             <li>Implementation priority timeline with effort estimates</li>
             <li>Interactive Roadmap report</li>
-            <li>Video highlights</li>
           </ul>
           <div class="pricing-credit">
             <strong>Already had an Agent Readiness Audit?</strong> Your $1,500 audit investment applies as a credit toward the Roadmap price.
@@ -1095,27 +1253,6 @@
           <p class="pricing-note">I'll review your site and recommend a scope before any commitment.</p>
         </div>
 
-        <div class="pricing-scoping">
-          <h3>What affects the price?</h3>
-          <div class="scoping-factors">
-            <div class="scoping-factor">
-              <h4>Number of templates</h4>
-              <p>Each unique page type (services, case studies, blog, team, etc.) gets its own schema, blueprint, and content brief.</p>
-            </div>
-            <div class="scoping-factor">
-              <h4>Content complexity</h4>
-              <p>How much content rewriting is implied by the findings. A site with thin content across 8 templates needs more direction than one with strong copy that just needs restructuring.</p>
-            </div>
-            <div class="scoping-factor">
-              <h4>CMS environment</h4>
-              <p>WordPress with a standard theme is simpler than a custom React build. The deliverables are tailored to how your team actually implements changes.</p>
-            </div>
-            <div class="scoping-factor">
-              <h4>Scope of visual deliverables</h4>
-              <p>Annotated screenshots, component before/after visuals, and the level of detail your content and marketing teams need to execute without guessing.</p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -1164,7 +1301,7 @@
               <span class="faq-toggle">+</span>
             </button>
             <div class="faq-answer">
-              <p>Pricing starts at $3,500 and is based on four variables: number of unique page templates, content complexity (how much rewriting is implied), your CMS environment, and the scope of visual deliverables your teams need. I review your site during scoping and recommend a price before any commitment. Most B2B professional services firms with 6-12 templates land in the $3,500-$7,500 range.</p>
+              <p>Pricing starts at $4,500 and is based on four variables: number of unique page templates, content complexity (how much rewriting is implied), your CMS environment, and the scope of visual deliverables your teams need. I review your site during scoping and recommend a price before any commitment. Most engagements with 6-12 templates land in the $4,500-$10,000 range.</p>
             </div>
           </div>
 
@@ -1174,7 +1311,7 @@
               <span class="faq-toggle">+</span>
             </button>
             <div class="faq-answer">
-              <p>Most Roadmaps are delivered within 15 business days. Larger or more complex engagements may take longer. You'll receive the full package at once: interactive report, schema blocks, blueprints, content briefs, annotated screenshots, entity graph, priority timeline, and video highlights.</p>
+              <p>Most Roadmaps are delivered within 15 business days. Larger or more complex engagements may take longer. You'll receive the full package at once: interactive report, schema blocks, blueprints, content briefs, annotated screenshots, entity graph, and priority timeline.</p>
             </div>
           </div>
 
