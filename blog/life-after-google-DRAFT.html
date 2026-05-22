@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fourth layer just arrived in the Find/Understand/Trust framework, ahead of schedule. Every major player building agent infrastructure has coalesced on a single shared address: your /.well-known/ folder. The ownership is moving to marketing whether marketing was ready or not.">
+    <meta name="keywords" content="Life After Google, agentic web, agent readiness, AI agents, MCP, UCP, ACP, Web Bot Auth, Cloudflare, isitagentready, .well-known, Find Understand Trust Use, agent infrastructure, industrial distribution">
+    <title>Life After Google: The Fourth Layer Nobody in SEO Is Ready For | Liz Micik</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Life After Google: The Fourth Layer Nobody in SEO Is Ready For">
+    <meta property="og:description" content="Google may never be dethroned, but it stopped being that 'Google' a long time ago. A fourth layer of agent readiness is here, the protocols are in flux, and they all publish to the same folder.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://lizmicik.com/blog/life-after-google-DRAFT">
+    <meta property="og:site_name" content="Liz Micik">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Life After Google: The Fourth Layer Nobody in SEO Is Ready For",
+        "description": "A fourth layer just arrived in the Find/Understand/Trust framework, ahead of schedule. Every major player has coalesced on /.well-known/ as the agent's home base, and the ownership is moving to marketing whether marketing was ready or not.",
+        "author": {
+            "@type": "Person",
+            "name": "Liz Micik",
+            "url": "https://lizmicik.com"
+        },
+        "datePublished": "2026-05-17",
+        "dateModified": "2026-05-17",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://lizmicik.com/blog/life-after-google-DRAFT"
+        },
+        "keywords": "Life After Google, agent readiness, Use layer, MCP, UCP, ACP, Web Bot Auth, agent infrastructure, .well-known",
+        "isPartOf": {
+            "@type": "BlogPosting",
+            "name": "Find/Understand/Trust/Use Framework Series",
+            "url": "https://lizmicik.com/blog"
+        }
+    }
+    </script>
+
+    <style>
+        :root {
+            --cream: #FAFAF7;
+            --cream-dark: #FAF8F5;
+            --slate: #2C3038;
+            --slate-light: #3D424D;
+            --slate-mid: #545B6A;
+            --accent-amber: #C4956A;
+            --accent-teal: #5B7C5E;
+            --accent-blue: #8B9A7E;
+            --accent-copper: #5B7C5E;
+            --accent-use: #6E8AA8;
+            --hero-brown: #6B3D2E;
+            --muted-red: #C25E4A;
+            --text-primary: #2C3038;
+            --text-secondary: #545B6A;
+            --text-light: #F2EDE7;
+            --text-light-secondary: #B8B5B0;
+            --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --section-padding: clamp(4rem, 8vw, 7rem);
+            --content-width: 720px;
+            --wide-width: 960px;
+            --toc-width: 220px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--cream); color: var(--text-primary); font-family: var(--font-body); line-height: 1.6; }
+
+        /* Navigation */
+        .nav { position: fixed; top: 0; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--cream-dark); z-index: 1000; transition: transform 0.3s ease; }
+        .nav.nav-hidden { transform: translateY(-100%); }
+        .nav-inner { max-width: var(--wide-width); margin: 0 auto; padding: 1.5rem clamp(1.5rem, 4vw, 2rem); display: flex; justify-content: space-between; align-items: center; }
+        .nav-name { font-weight: 700; color: var(--text-primary); font-size: 1.25rem; }
+        .nav-name a { color: inherit; text-decoration: none; }
+        .nav-toggle { display: none; flex-direction: column; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .nav-toggle span { width: 24px; height: 2px; background: var(--text-primary); margin: 5px 0; transition: 0.3s; }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+        .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--accent-teal); }
+        .nav-cta { background: var(--accent-teal) !important; color: white !important; padding: 0.75rem 1.5rem; border-radius: 0.5rem; transition: background 0.3s ease; }
+        .nav-cta:hover { background: var(--accent-copper) !important; }
+        .nav-item.has-dropdown { position: relative; }
+        .nav-caret { font-size: 0.7em; margin-left: 0.15rem; transition: transform 0.2s ease; display: inline-block; }
+        .nav-item.has-dropdown:hover .nav-caret,
+        .nav-item.has-dropdown:focus-within .nav-caret { transform: rotate(180deg); }
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 260px;
+            margin: 0;
+            padding: 0.45rem 0;
+            list-style: none;
+            background: rgba(250, 250, 247, 0.98);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(44, 48, 56, 0.06);
+            border-radius: 6px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+        }
+        .nav-item.has-dropdown:hover .nav-dropdown,
+        .nav-item.has-dropdown:focus-within .nav-dropdown { display: block; }
+        .nav-dropdown li { padding: 0; }
+        .nav-dropdown a {
+            display: block;
+            padding: 0.55rem 1.2rem;
+            white-space: nowrap;
+            text-transform: none !important;
+            letter-spacing: 0 !important;
+            font-size: 0.9rem !important;
+        }
+        .nav-dropdown a:hover { background: rgba(44, 48, 56, 0.04); }
+
+        @media (max-width: 768px) {
+            .nav-toggle { display: flex; }
+            .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(10px, 10px); }
+            .nav-toggle.open span:nth-child(2) { opacity: 0; }
+            .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+            .nav-links { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--cream); gap: 1.5rem; padding: 2rem; border-bottom: 1px solid var(--cream-dark); display: none; }
+            .nav-links.active { display: flex; }
+            .nav-dropdown {
+                display: block;
+                position: static;
+                min-width: 0;
+                padding: 0.25rem 0 0 1rem;
+                background: transparent;
+                backdrop-filter: none;
+                border: none;
+                box-shadow: none;
+            }
+            .nav-caret { display: none; }
+            .nav-links a { font-size: 1.1rem; }
+        }
+
+        /* Hero */
+        header.blog-hero { max-width: 1080px; margin: 60px auto 0; padding: 2.5rem clamp(1.5rem, 4vw, 3rem); background: #F5EFE4; display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center; text-align: left; }
+        .blog-hero-image { width: 290px; height: auto; max-width: 100%; margin: 0; display: block; border-radius: 6px; background: var(--accent-use); aspect-ratio: 1 / 1; position: relative; overflow: hidden; }
+        .blog-hero-image::after {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(135deg, var(--accent-use) 0%, var(--slate) 100%);
+            border-radius: 6px;
+        }
+        .blog-hero-image::before {
+            content: "USE"; position: absolute; inset: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-heading); font-size: 4rem; font-weight: 800;
+            color: rgba(255,255,255,0.25); letter-spacing: 0.1em;
+            z-index: 2;
+        }
+        .hero-text { display: flex; flex-direction: column; gap: 0.85rem; }
+        .pillar-eyebrow { display: inline-block; align-self: flex-start; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0; color: var(--accent-use); }
+        .blog-meta { display: flex; justify-content: flex-start; gap: 0.75rem; margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--text-secondary); flex-wrap: wrap; align-items: center; }
+        header.blog-hero h1 { font-family: var(--font-heading); font-size: clamp(1.5rem, 3.2vw, 2.1rem); font-weight: 700; line-height: 1.25; color: var(--text-primary); margin: 0; text-align: left; }
+        @media (max-width: 720px) { header.blog-hero { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; } .blog-hero-image { width: 220px; margin: 0 auto; } .hero-text { align-items: center; } .pillar-eyebrow { align-self: center; } .blog-meta { justify-content: center; } header.blog-hero h1 { text-align: center; font-size: clamp(1.35rem, 5vw, 1.75rem); } }
+
+        /* Draft banner */
+        .draft-banner { background: #FFF4D6; border: 2px solid var(--accent-amber); color: var(--hero-brown); text-align: center; padding: 0.75rem 1rem; font-size: 0.9rem; font-weight: 600; max-width: 1080px; margin: 80px auto 0; border-radius: 6px; }
+
+        /* Two-column layout with sticky TOC */
+        .blog-layout {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 2rem clamp(1.5rem, 4vw, 2rem);
+            display: grid;
+            grid-template-columns: var(--toc-width) 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* TOC */
+        .toc {
+            position: sticky;
+            top: 80px;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+        .toc-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-use);
+        }
+        .toc-list { list-style: none; padding: 0; }
+        .toc-list li { margin: 0; }
+        .toc-list a {
+            display: block;
+            padding: 0.4rem 0 0.4rem 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            transition: all 0.2s ease;
+            line-height: 1.4;
+        }
+        .toc-list a:hover { color: var(--accent-use); border-left-color: var(--accent-use); }
+        .toc-list a.active { color: var(--accent-use); border-left-color: var(--accent-use); font-weight: 600; }
+
+        /* Article */
+        article.blog-content { max-width: var(--content-width); }
+        article p { font-size: 1.05rem; line-height: 1.75; margin: 1.5rem 0; color: var(--text-primary); }
+        article h2 { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 600; margin: 3rem 0 1.5rem; color: var(--text-primary); border-left: 3px solid var(--accent-use); padding-left: 1rem; }
+        article h2:first-of-type { margin-top: 0; }
+        article h3 { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--text-primary); }
+        article strong { font-weight: 700; color: var(--accent-use); }
+        article ul, article ol { margin: 1.5rem 0; padding-left: 2rem; }
+        article li { margin: 0.8rem 0; line-height: 1.75; color: var(--text-primary); }
+        article ul li:before { content: "\2713"; color: var(--accent-use); font-weight: 700; display: inline-block; width: 1.5em; margin-left: -1.5em; }
+        article a { color: #C4956A; text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        article a:hover { color: #3D6B4E; text-decoration: underline; }
+
+        /* TLDR */
+        .tldr { font-style: italic; color: var(--text-secondary); border-left: 3px solid var(--accent-amber); padding-left: 1.5rem; margin: 2rem 0; }
+        .tldr p { color: var(--text-secondary); font-style: italic; margin: 0.5rem 0; }
+        .tldr ul { padding-left: 1.5rem; margin: 0.5rem 0; }
+        .tldr li { color: var(--text-secondary); font-style: italic; margin: 0.5rem 0; line-height: 1.6; }
+        .tldr li:before { content: none; }
+
+        /* Plain unordered list (no checkmarks) */
+        .plain-list { list-style: none; padding-left: 0; margin: 1.5rem 0; }
+        .plain-list li { margin: 1.2rem 0; padding-left: 0; }
+        .plain-list li:before { content: none; }
+
+        /* Data highlight list */
+        .data-list { list-style: none; padding-left: 0; margin: 1.5rem 0; }
+        .data-list li { margin: 0.8rem 0; padding-left: 1.5rem; position: relative; }
+        .data-list li:before { content: "\2022"; color: var(--accent-use); font-weight: 700; display: inline-block; width: 1.5em; margin-left: -1.5em; }
+
+        /* Numbered decision list */
+        .decision-list { list-style: none; padding-left: 0; margin: 1.5rem 0; counter-reset: decisions; }
+        .decision-list li { margin: 1rem 0; padding-left: 2.5rem; position: relative; counter-increment: decisions; line-height: 1.7; }
+        .decision-list li:before {
+            content: counter(decisions);
+            position: absolute;
+            left: 0;
+            top: 0.1rem;
+            width: 1.75rem;
+            height: 1.75rem;
+            background: var(--accent-use);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        /* Code block */
+        .code-block {
+            background: var(--slate);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid var(--slate-light);
+        }
+        .code-block-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-amber);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        .code-block pre {
+            margin: 0;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #E8DDD5;
+            white-space: pre;
+        }
+        .code-block .comment { color: #8B9A7E; }
+        .code-block .directive { color: #C4956A; }
+        .code-block .value { color: #E8DDD5; }
+
+        /* Visual containers */
+        .visual-container {
+            margin: 2.5rem 0;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid #E8DDD5;
+            background: #FFFFFF;
+        }
+        .visual-container svg { display: block; width: 100%; height: auto; }
+        .visual-caption {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 0.75rem 1rem;
+            background: var(--cream-dark);
+            border-top: 1px solid #E8DDD5;
+            font-style: italic;
+        }
+
+        /* Priority table (industry priority order graphic) */
+        .priority-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+            font-size: 0.92rem;
+        }
+        .priority-table thead {
+            background: var(--accent-use);
+            color: white;
+        }
+        .priority-table th {
+            text-align: left;
+            padding: 0.85rem 1rem;
+            font-weight: 600;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .priority-table th:first-child { width: 70px; text-align: center; }
+        .priority-table tbody tr { border-bottom: 1px solid #E8DDD5; }
+        .priority-table tbody tr:last-child { border-bottom: none; }
+        .priority-table tbody tr:nth-child(even) { background: var(--cream-dark); }
+        .priority-table td {
+            padding: 0.9rem 1rem;
+            vertical-align: top;
+            color: var(--text-primary);
+            line-height: 1.5;
+            border: none;
+        }
+        .priority-table td:first-child {
+            text-align: center;
+            font-weight: 800;
+            color: var(--accent-use);
+            font-size: 1.25rem;
+        }
+        .priority-table td:nth-child(2) { font-weight: 600; }
+
+        @media (max-width: 720px) {
+            .priority-table thead { display: none; }
+            .priority-table tbody { display: block; }
+            .priority-table tr {
+                display: block;
+                margin: 0;
+                padding: 1rem 1.25rem;
+                border-bottom: 1px solid #E8DDD5;
+            }
+            .priority-table tr:last-child { border-bottom: none; }
+            .priority-table tr:nth-child(even) { background: var(--cream-dark); }
+            .priority-table td {
+                display: block;
+                padding: 0.3rem 0;
+                font-size: 0.92rem;
+            }
+            .priority-table td:before {
+                content: attr(data-label);
+                display: block;
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: var(--text-secondary);
+                margin-bottom: 0.15rem;
+                font-weight: 600;
+            }
+            .priority-table td:first-child {
+                font-size: 1.5rem;
+                text-align: left;
+                padding-bottom: 0.5rem;
+            }
+            .priority-table td:first-child:before { display: none; }
+        }
+
+        /* Blockquotes */
+        article blockquote { border-left: 4px solid var(--accent-amber); padding-left: 2rem; margin: 2.5rem 0; font-style: italic; font-size: 1.15rem; color: var(--text-secondary); line-height: 1.7; }
+        article blockquote.scene { font-style: normal; font-size: 1rem; color: var(--text-primary); background: var(--cream-dark); padding: 1.5rem 2rem; border-left: 4px solid var(--accent-use); border-radius: 0 0.5rem 0.5rem 0; }
+        article blockquote.scene p { margin: 0.75rem 0; font-size: 1rem; line-height: 1.65; }
+        article blockquote.scene p:first-child { margin-top: 0; }
+        article blockquote.scene p:last-child { margin-bottom: 0; }
+
+        /* CTA Box */
+        .cta-box { background: var(--cream-dark); border: 2px solid var(--accent-amber); border-radius: 0.75rem; padding: 2rem; margin: 3rem 0; text-align: center; }
+        .cta-box p { margin: 0.5rem 0; font-size: 1rem; }
+        .cta-box strong { color: var(--text-primary); font-size: 1.1rem; }
+        .cta-box a { color: #C4956A; font-weight: 700; }
+        .cta-box a:hover { color: #3D6B4E; }
+
+        /* Author Bio */
+        .author-bio { display: flex; gap: 2rem; padding: 2.5rem; background: var(--cream-dark); border-radius: 0.75rem; border: 1px solid #E8DDD5; margin: 3rem 0; align-items: flex-start; }
+        .author-avatar { width: 100px; height: 100px; border-radius: 50%; background: var(--accent-use); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 700; flex-shrink: 0; }
+        .author-info h3 { margin-top: 0; margin-bottom: 0.5rem; }
+        .author-title { font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 0.8rem; }
+        .author-bio p { font-size: 0.95rem; margin: 0; color: var(--text-primary); }
+
+        /* Related Posts */
+        .related-posts { margin: 4rem 0 3rem; border-top: 2px solid var(--cream-dark); padding-top: 3rem; }
+        .related-posts h2 { border: none; padding: 0; text-align: center; margin-bottom: 2.5rem; }
+        .related-posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .post-card { background: var(--cream-dark); border: 1px solid #E8DDD5; border-radius: 0.75rem; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .post-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); }
+        .post-card a { text-decoration: none; color: inherit; }
+        .post-card-image { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
+        .post-card-content { padding: 1.5rem; }
+        .post-card-meta { font-size: 0.8rem; color: var(--accent-copper); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+        .post-card h3 { font-size: 1.2rem; margin: 0.8rem 0; color: var(--text-primary); }
+        .post-card p.coming-soon { font-size: 0.85rem; color: var(--text-secondary); font-style: italic; }
+
+        /* Final CTA */
+        .final-cta { background: var(--slate); color: white; padding: 3rem 2rem; text-align: center; margin: 4rem 0 0; }
+        .final-cta h2 { border: none; padding: 0; color: white; margin-bottom: 1.5rem; }
+        .final-cta p { color: rgba(255, 255, 255, 0.95); margin-bottom: 2rem; }
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .cta-button { display: inline-block; background: var(--accent-use); color: white; padding: 0.75rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 700; transition: all 0.3s ease; border: 2px solid var(--accent-use); }
+        .cta-button:hover { background: transparent; color: white; }
+        .cta-button.copper { background: var(--accent-copper); border-color: var(--accent-copper); }
+
+        /* Footer */
+        .footer { background: var(--cream-dark); padding: 2rem; text-align: center; color: var(--text-secondary); font-size: 0.9rem; }
+        .footer a { color: #C4956A; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .blog-layout {
+                grid-template-columns: 1fr;
+                max-width: var(--content-width);
+            }
+            .toc {
+                position: relative;
+                top: 0;
+                max-height: none;
+                border: 1px solid #E8DDD5;
+                border-radius: 0.75rem;
+                padding: 1.25rem;
+                background: var(--cream-dark);
+                margin-bottom: 1rem;
+            }
+            .author-bio { flex-direction: column; text-align: center; }
+            .author-avatar { margin: 0 auto; }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            article p { font-size: 1rem; }
+            article h2 { font-size: 1.4rem; }
+            .cta-buttons { flex-direction: column; }
+            .cta-buttons .cta-button { display: block; width: 100%; }
+            .related-posts-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Fade-in */
+        .fade-in { opacity: 0; animation: fadeIn 0.6s ease-in forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <span class="nav-name"><a href="/">Liz Micik</a></span>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/about">About</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li class="nav-item has-dropdown">
+                    <a href="/audit" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Services <span class="nav-caret">&#9662;</span></a>
+                    <ul class="nav-dropdown">
+                        <li><a href="/audit">Agent Readiness Audit</a></li>
+                        <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+                    </ul>
+                </li>
+                <li><a href="/signal-check" class="nav-cta">Free Signal Check</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Draft Banner (remove before publish) -->
+    <div class="draft-banner">DRAFT &mdash; not for public link sharing. Second pass, May 17, 2026.</div>
+
+    <!-- Hero -->
+    <header class="blog-hero">
+        <div class="blog-hero-image" aria-label="USE Layer pillar post hero image placeholder"></div>
+        <div class="hero-text">
+            <span class="pillar-eyebrow">USE Layer &middot; The 4th Pillar</span>
+            <h1>Life After Google: The Fourth Layer Nobody in SEO Is Ready For</h1>
+            <div class="blog-meta">
+                <span>May 17, 2026</span>
+                <span>&bull;</span>
+                <span>By Liz Micik</span>
+                <span>&bull;</span>
+                <span>13 min read</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Two-column: TOC + Content -->
+    <div class="blog-layout">
+
+        <!-- Left Sticky TOC -->
+        <nav class="toc" aria-label="Table of contents">
+            <div class="toc-title">In This Article</div>
+            <ul class="toc-list">
+                <li><a href="#concession">The Three-Word Concession</a></li>
+                <li><a href="#read-to-used">Read to Used</a></li>
+                <li><a href="#agent-home-base">How /.well-known/ Became Agent Home Base</a></li>
+                <li><a href="#cloudflare">Cloudflare Drew First Blood</a></li>
+                <li><a href="#foundation-first">Don't Throw Stuff in It Yet</a></li>
+                <li><a href="#business-decisions">The Business Decisions That Come First</a></li>
+                <li><a href="#protocol-scramble">The Protocol Scramble in 60 Seconds</a></li>
+                <li><a href="#wabash">What Wabash Has to Do Now</a></li>
+                <li><a href="#monday">What to Do Monday Morning</a></li>
+                <li><a href="#fout">From Use Back to the Foundation</a></li>
+            </ul>
+        </nav>
+
+        <!-- Article Content -->
+        <article class="blog-content">
+
+            <!-- TLDR -->
+            <div class="tldr">
+                <p>The short version:</p>
+                <ul>
+                    <li>Google may never be dethroned, but it stopped being that "Google" a long time ago. The decision is moving off the ten blue links onto surfaces Google doesn't own.</li>
+                    <li>A fourth layer just arrived in the Find/Understand/Trust framework, ahead of schedule. The web isn't just being read anymore. It's being used by agents that book, transact, and act on a buyer's behalf.</li>
+                    <li>Every major player building for that fourth layer disagrees on almost everything &mdash; the schemas, the auth model, the payment rails. Except where to put it. Cloudflare, Google, OpenAI, Stripe, Visa, Mastercard, AWS, Akamai, and Fastly have all coalesced on one shared address: your /.well-known/ folder.</li>
+                    <li>Most marketing teams have never opened that folder. It's about to land on their desk anyway.</li>
+                </ul>
+            </div>
+
+            <h2 id="concession">The Three-Word Concession</h2>
+
+            <p>Let me start with the line I want every search marketer reading this to sit with for a minute:</p>
+
+            <blockquote>Google may never be dethroned, but it stopped being that "Google" a long time ago.</blockquote>
+
+            <p>The three words doing the work are "may never be." This is not a Google-is-dying piece. Search volume is fine. Share is fine. If you came here for a market-share takedown, you're at the wrong post.</p>
+
+            <p>But "that" Google, the one we built the entire SEO industry around for 25 years, has been gone for a while. It got replaced by AI Overviews, AI Mode, zero-click summaries, citation-only mentions, and agent-mediated answers. The blue links are still on the page. They just aren't where the decision gets made anymore.</p>
+
+            <p>The SEO community knows this. Lily Ray, Mike King, Aleyda Solis, Cyrus Shepard, Glenn Gabe, and a long list of other practitioners are mapping where the citations come from now and where the clicks went. The prevailing frame is that Google is evolving. As if "the new Google" is still the same destination.</p>
+
+            <p>It isn't. The change isn't an algorithm update. It's a structural shift in how the web gets consumed, and Google is one of several players in the next chapter, not the host.</p>
+
+            <p>There is a fourth layer in the Find/Understand/Trust framework I've been writing about. Until last quarter, I thought it was at least 12 months out. As of April 17 of this year, it's measurable today. And the infrastructure being built to support it has coalesced around a place most marketers have never heard of.</p>
+
+            <h2 id="read-to-used">We Built the Web to Be Read. Now It Has to Be Used.</h2>
+
+            <p>Up until the last quarter or so, the three-layer framework I've been writing about covered the whole job: machines can FIND your site, UNDERSTAND what it says, and TRUST it enough to cite it. Three layers, one outcome. AI describes your business with specific, confident, corroborated facts.</p>
+
+            <p>That framework assumes the work AI is doing is reading. Reading and citing. Reading and summarizing. Reading and recommending.</p>
+
+            <p>That is no longer the only thing AI is doing on your site.</p>
+
+            <p>The new question is: <strong>can machines do anything with you?</strong></p>
+
+            <p>Not read about you. Use you. Book a discovery call. Pull a price. Place an order. Hand a procurement officer a real quote without a human in the loop. Open a support ticket. Subscribe a newsletter. Run a configurator. Move money.</p>
+
+            <p>An agent that can use your site is doing what a human visitor used to do with a browser, a form, and a credit card. Except the agent doesn't read forms the way humans do. It needs a different surface to act on &mdash; one with a documented API, an advertised capability, an authentication handshake, and a return contract it can trust.</p>
+
+            <p>That surface is the fourth layer. I've been calling it USE in the audit framework. In the Agent Readiness Roadmap I keep the four Cs alliteration intact, so the principle column reads Clear / Complete / Consistent / Capable. The outcome word is USE because that's the buyer-side verb. The principle word is CAPABLE because that's the page-side directive. Same layer, two angles.</p>
+
+            <p>The reason this matters now, and not in 12 months: <a href="https://radar.cloudflare.com/ai-insights" target="_blank" rel="noopener">Cloudflare Radar's April 2026 reading</a> puts bot traffic at 32% of all HTTP requests, and AI crawlers at 22% of all bot traffic &mdash; the second-largest category behind search. 89.4% of that AI crawler traffic is training or mixed-purpose. Only 2.2% is serving a live user query right now. The volume is there. The intent isn't. Use is the layer that flips the intent from memorizing you to acting on you.</p>
+
+            <h2 id="agent-home-base">How /.well-known/ Became Agent Home Base</h2>
+
+            <p>Here's the part that surprised me when I started mapping it. In a landscape where almost nothing agrees, one thing has quietly become consensus.</p>
+
+            <p>Every major player building agent infrastructure has picked the same address for the agent's first stop. <strong>The /.well-known/ folder at the root of your domain.</strong></p>
+
+            <p>If you've never looked at one, you're in the majority. /.well-known/ is an <a href="https://datatracker.ietf.org/doc/html/rfc8615" target="_blank" rel="noopener">IETF standard</a>, defined originally in RFC 5785 in 2010 by Mark Nottingham and Eran Hammer-Lahav, and updated in RFC 8615 in 2019. It's a registered directory at the root of any domain, intended as a single known place for machines to look for metadata, configuration, and capability declarations. About 150 named entries are registered with IANA. It lives at yoursite.com/.well-known/, and the leading dot is the Unix-filesystem convention for "hidden by default."</p>
+
+            <p>Until very recently, almost nothing in it had anything to do with marketing.</p>
+
+            <p>Your DevOps team uses it for SSL certificate renewal (acme-challenge files that Let's Encrypt drops there). Your mobile dev team uses it for Apple Universal Links and Android App Links. Your identity team uses it for OAuth and OIDC discovery. Your security team, if you have one, may have published a security.txt there pointing to a responsible disclosure contact. The standard SEO toolchain &mdash; Screaming Frog, Ahrefs, Semrush &mdash; doesn't even crawl /.well-known/ by default because robots.txt and sitemap.xml live at the root, not in the hidden folder.</p>
+
+            <p>Marketing has, in most companies, never opened it.</p>
+
+            <p>That is about to change, because every agent-readiness protocol shipped in the last 18 months has picked /.well-known/ as its home base:</p>
+
+            <ul class="data-list">
+                <li><strong>Cloudflare's Capabilities checks</strong> &mdash; six of them, all at /.well-known/ paths (API catalog, OAuth discovery, OAuth Protected Resource, MCP server card, Agent Skills index, WebMCP support).</li>
+                <li><strong>Google's Universal Commerce Protocol (UCP)</strong> &mdash; lives at /.well-known/ucp.</li>
+                <li><strong>The MCP Server Cards proposal</strong> &mdash; on the Model Context Protocol's <a href="https://github.com/modelcontextprotocol/modelcontextprotocol/issues/1649" target="_blank" rel="noopener">2026 roadmap</a>, formalized at /.well-known/mcp.json for capability discovery without a full handshake.</li>
+                <li><strong>OpenAI's ChatGPT Apps SDK</strong> &mdash; <a href="https://openai.com/index/introducing-apps-in-chatgpt/" target="_blank" rel="noopener">launched October 6, 2025</a> with Booking.com, Canva, Coursera, Expedia, Figma, Spotify, and Zillow as first-wave partners. Built on MCP, which routes through /.well-known/.</li>
+                <li><strong>Web Bot Authentication</strong> &mdash; cryptographic signing keys published at /.well-known/http-message-signatures-directory.</li>
+                <li><strong>Agent Skills indexes</strong> &mdash; advertised capabilities at /.well-known/agent-skills/index.json.</li>
+                <li><strong>RFC 9727 api-catalog</strong> &mdash; a standardized way to publish your API inventory, at /.well-known/api-catalog, ratified December 2024.</li>
+            </ul>
+
+            <p>Different vendors. Different schemas. Different commercial intent. Same address.</p>
+
+            <p>Forrester's 2026 predictions <a href="https://www.forrester.com/blogs/predictions-2026-ai-agents-changing-business-models-and-workplace-culture-impact-enterprise-software/" target="_blank" rel="noopener">forecast</a> that 30% of enterprise app vendors will launch their own MCP servers this year. The public MCP registry already lists more than 9,400 servers as of April 2026, up from about 1,200 in Q1 2025 &mdash; roughly an 8x expansion in twelve months. Almost all of them advertise their capabilities through /.well-known/.</p>
+
+            <p>The folder has become the agent's home page. And its ownership inside the company is moving with it. The team that decides what gets published, to whom, with what brand voice, at what price visibility, with what guardrails &mdash; that's marketing's call. It hasn't been historically. It is now.</p>
+
+            <h2 id="cloudflare">Cloudflare Drew First Blood</h2>
+
+            <p>The reason this layer became measurable on a specific date is that Cloudflare made it so. On April 17, 2026, they launched <a href="https://isitagentready.com/" target="_blank" rel="noopener">isitagentready.com</a>, a free public scanner that scores any URL against four agent-readiness dimensions. Discoverability. Content. Bot Access Control. Capabilities.</p>
+
+            <p>The first three categories map cleanly onto FIND, UNDERSTAND, and TRUST. They're the layers the SEO community already cares about and already audits. Cloudflare's contribution there is mostly to give you a single shareable number for things you already knew were broken.</p>
+
+            <p>The Capabilities dimension is the one to slow down for. Six checks, every one of them at a /.well-known/ path. The first time most B2B sites run the scanner, that dimension scores zero. Not because the sites are bad. Because nobody had a reason to publish to /.well-known/ until ten weeks ago.</p>
+
+            <p>I ran my first paid audit client, a 113-year-old industrial firm, through it the same morning Cloudflare published the scanner. Score: 33 out of 100. Zero out of six on Capabilities. They're not bad at the web. They've just never built the agent surface, because three months ago nobody was scoring it.</p>
+
+            <p>That 33 is not a Cloudflare-specific number. It's a slice of what every B2B audit is going to start saying in the next 90 days.</p>
+
+            <p>Cloudflare ships the score. They do not ship the fix. The score tells you what's missing. It does not tell you how to prioritize the gaps, which protocols to bet on, what to expose first, or whether your business is operationally ready to honor what an agent commits to on your behalf. That conversation needs translation, sequencing, and context Cloudflare's tool cannot supply.</p>
+
+            <h2 id="foundation-first">Don't Throw Stuff in /.well-known/ Yet. Foundation First.</h2>
+
+            <p>The temptation, once you see the score, is to start filling the folder. Resist it.</p>
+
+            <p>Home base only works if the rest of the house is standing. The fourth layer is additive, not a replacement. <strong>FIND feeds UNDERSTAND feeds TRUST feeds USE.</strong> An agent that can't find your site doesn't care if you've shipped a beautifully documented MCP server card. It will never read it. An agent that finds you but can't tell what you do doesn't trust your Agent Skills index enough to call it. The chain only works in order.</p>
+
+            <p>Google said this themselves, in primary-source documentation, on May 15. They published <a href="https://developers.google.com/search/docs/fundamentals/ai-optimization-guide" target="_blank" rel="noopener">a new optimization guide</a> with a "Mythbusting generative AI search" section. From Google: "From Google Search's perspective, optimizing for generative AI search is optimizing for the search experience, and thus still SEO." The guide explicitly names llms.txt, content chunking, AI-specific rewriting, and special schema beyond standard structured data as practices to ignore.</p>
+
+            <p>Read that the right way. Google is not saying "the agent layer doesn't matter." Google is saying "the ranking layer still works the way it worked, and the agent layer is a different layer." Both are true. Foundation first, agent surface after.</p>
+
+            <p>The work the SEO industry has been doing for 25 years still works. Schema coverage. Entity clarity. NAP consistency. Internal linking. Authority signals. Citation corroboration. Freshness. Every tactic still applies and still matters. Without those three layers solid, none of the fourth layer means anything.</p>
+
+            <p>One specific note on llms.txt, since the question comes up in every audit. Adoption is real &mdash; SE Ranking's <a href="https://seranking.com/blog/llms-txt/" target="_blank" rel="noopener">analysis</a> of about 300,000 domains in early 2026 found 10.13% had an llms.txt file. Google says don't bother for ranking. Citation studies show no measurable lift on visibility. The file isn't a citation booster, and shipping one will not move you up in AI Mode.</p>
+
+            <p>What llms.txt becomes useful for, once you've done the foundation work, is a structured pointer at the Use stage &mdash; a discovery aid that tells agents who already know who you are where to find your standardized content and capabilities. The order is normalize first, llms.txt later, never instead.</p>
+
+            <p>The same logic applies to every /.well-known/ entry. Don't publish an MCP server card if your product data isn't clean. Don't publish an Agent Skills index if you haven't decided which capabilities you actually want to expose. Don't open agent endpoints to authenticated traffic if your team can't operationally honor what the agent commits to.</p>
+
+            <p>Foundation first. Surface after. And before any of that, a conversation that doesn't fit on a developer's checklist.</p>
+
+            <h2 id="business-decisions">The Business Decisions That Come Before "Open for Agent Business"</h2>
+
+            <p>Opening /.well-known/ to agents is a commitment, not a feature flag. Before you publish a single byte to it, your leadership team has business decisions to make. Marketing has never had to make most of them.</p>
+
+            <p>The first one is the hardest, because it's the question most companies have never been asked.</p>
+
+            <p><strong>What do you actually want agents to DO with you?</strong></p>
+
+            <p>Three different commitments live inside that question. Do you want agents to read you and cite you? Recommend you in a buyer's comparison? Transact with you directly &mdash; book the call, place the order, move the money? Each is a different exposure. Each is a different operational lift. Most companies have not separated them in their own heads, let alone in their /.well-known/ folder.</p>
+
+            <p>Where you sit on the industry priority order changes how urgent that question is.</p>
+
+            <div class="visual-container">
+                <table class="priority-table" aria-label="Industries by agent-readiness priority">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Industry</th>
+                            <th scope="col">Why First</th>
+                            <th scope="col">Example Capabilities</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Priority">1</td>
+                            <td data-label="Industry">Ecommerce, retail, marketplaces, grocery</td>
+                            <td data-label="Why First">Agents need product data, price, availability, variants, promotions, checkout, returns, and attribution.</td>
+                            <td data-label="Capabilities">Search catalog, check availability, compare products, add to cart, start checkout.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Priority">2</td>
+                            <td data-label="Industry">Travel, hospitality, restaurants, events</td>
+                            <td data-label="Why First">Already in use for planning and booking. Data changes constantly. Availability matters.</td>
+                            <td data-label="Capabilities">Search trips, compare hotels, check dates, reserve, modify booking.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Priority">3</td>
+                            <td data-label="Industry">Real estate and local services</td>
+                            <td data-label="Why First">Filtered search, maps, availability, appointments, quotes, and qualification.</td>
+                            <td data-label="Capabilities">Search listings, filter by budget/location, schedule viewing, request quote.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Priority">4</td>
+                            <td data-label="Industry">Financial services and insurance</td>
+                            <td data-label="Why First">High-value decisions, eligibility rules, calculators, compliance, and secure workflows.</td>
+                            <td data-label="Capabilities">Estimate rates, check eligibility, explain products, route to advisor.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Priority">5</td>
+                            <td data-label="Industry">Healthcare and provider directories</td>
+                            <td data-label="Why First">Provider availability, insurance acceptance, appointment booking, intake, privacy.</td>
+                            <td data-label="Capabilities">Find provider, check insurance, book appointment, complete intake.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Priority">6</td>
+                            <td data-label="Industry">Education and training</td>
+                            <td data-label="Why First">Course discovery, prerequisites, enrollment, credentials, learning paths.</td>
+                            <td data-label="Capabilities">Find course, compare programs, check eligibility, enroll.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Priority">7</td>
+                            <td data-label="Industry">B2B SaaS, developer tools, data platforms</td>
+                            <td data-label="Why First">API-rich already; agents become direct workflow operators.</td>
+                            <td data-label="Capabilities">Query docs, call APIs, create reports, update records.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Priority">8</td>
+                            <td data-label="Industry">High-consideration B2B services, lead-gen, consulting</td>
+                            <td data-label="Why First">Comparison and qualification are agent-friendly. Action layer is sensitive.</td>
+                            <td data-label="Capabilities">Compare options, filter by criteria, save shortlist, request info.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="visual-caption">A working-order priority that maps to where agents are already operating today.</div>
+            </div>
+
+            <p>Where the early data is loudest: <a href="https://www.salesforce.com/news/stories/agentforce-commerce-capabilities-announcement/" target="_blank" rel="noopener">Salesforce projects</a> AI agents drove 22% of global Cyber Week 2025 retail orders, with AI-assistant retail traffic up 119% year over year. <a href="https://www.gartner.com/en/newsroom/press-releases/2025-11-18-gartner-predicts-by-2028-ai-agents-will-outnumber-sellers-by-10x-yet-fewer-than-40-percent-of-sellers-will-report-ai-agents-improved-productivity" target="_blank" rel="noopener">Gartner forecasts</a> $15 trillion of B2B purchasing intermediated by AI agents by 2028, with 90% of B2B buying agent-mediated. Similarweb's August 2025 reading already pegs ChatGPT at ~20% of Walmart's referral traffic and more than 20% of Etsy's. Travel sits one tier behind: an Expedia consumer survey found only 8% of travelers comfortable letting AI handle the booking itself, even as 36% told Forrester they'd delegate planning <em>and</em> reservation. The Use layer is exactly the comfort gap. Real estate is already mid-flight &mdash; HousingWire reports 67% of homebuyers use an AI tool as their primary research method before contacting an agent, up from 17% eighteen months prior; only 8.4% of practicing US agents appear in any AI-generated response for high-intent searches.</p>
+
+            <p>Where it's quietest: pro services and high-consideration B2B lead-gen. There's no defensible forecast yet for what agent-mediated discovery and qualification will mean to a consultancy. That gap is itself the story. The companies that figure out the answer over the next 12 months are the ones cited when the numbers do land.</p>
+
+            <p>Once you know where you sit, six more business decisions sit between you and any /.well-known/ work:</p>
+
+            <ol class="decision-list">
+                <li><strong>Which pages are your highest-converting or highest-revenue surfaces?</strong> Whatever they are, expose them last, not first. Agents will compare you ruthlessly on whatever you make machine-readable.</li>
+                <li><strong>Who owns /.well-known/ now?</strong> The right answer is a coalition that probably doesn't exist by default &mdash; marketing for brand voice, security for identity, product or engineering for capabilities, finance or legal for transaction limits. Pick the coalition before you publish.</li>
+                <li><strong>What's your CDN posture set to?</strong> Cloudflare, Akamai, AWS, Fastly, or Azure. Five vendors, five different defaults on how agents are treated. If you don't know which one you're on or what it's set to, the vendor is making the call for you.</li>
+                <li><strong>Can you operationally honor agent commitments?</strong> If an agent books a discovery call at 2 p.m. Thursday, is the calendar live and confirmed? If it places an order, is fulfillment ready? If it opens a ticket, is the queue staffed for agent-initiated volume?</li>
+                <li><strong>What's your identity-and-trust policy?</strong> Which agents do you let in? How do you verify them? What do you log? What gets human review before it gets honored?</li>
+                <li><strong>When do you say no?</strong> A site that says yes to every agent that asks is not "ready." It's exposed. Decide what stays human-only.</li>
+            </ol>
+
+            <p>Until those are answered, opening /.well-known/ to agents is a beautiful welcome mat on a falling-down house.</p>
+
+            <h2 id="protocol-scramble">The Protocol Scramble in 60 Seconds</h2>
+
+            <p>While you're answering the business questions, the protocol layer keeps moving. A 60-second tour:</p>
+
+            <ul class="plain-list">
+                <li><strong>Google's UCP</strong> &mdash; commerce protocol at /.well-known/ucp. <a href="https://blog.google/products-and-platforms/products/shopping/ucp-updates/" target="_blank" rel="noopener">Updated May 6, 2026</a> with multi-item cart, real-time pricing and inventory, identity linking. Live with Etsy, Target, Walmart, Wayfair, millions of Shopify merchants. Salesforce, Commerce Inc, and Stripe announced.</li>
+                <li><strong>OpenAI and Stripe's ACP</strong> &mdash; <a href="https://stripe.com/blog/developing-an-open-standard-for-agentic-commerce" target="_blank" rel="noopener">launched September 29, 2025</a>. Structured product feeds with titles, descriptions, images, price, availability, pushed daily as gzip-compressed files. Co-developed with Stripe. About a dozen Shopify merchants live; OpenAI retired Instant Checkout inside ChatGPT in March 2026 in favor of dedicated retailer apps. The spec keeps shipping.</li>
+                <li><strong>Amazon v. Perplexity</strong> &mdash; March 10, 2026 federal court ruling. Perplexity's Comet browser cannot access Amazon accounts on a user's behalf, even with the user's permission. User authorization is not platform authorization. Translation: any agent that wants to act has to be invited in by the destination, not just allowed to try.</li>
+                <li><strong>Authentication scrum</strong> &mdash; Web Bot Authentication, Know Your Agent (KYA), Visa's Trusted Agent Protocol, Mastercard's Agent Pay, the Agent Payment Protocol (A2P), KYAPay. Six standards, one job. At least three will not exist in their current form 18 months from now.</li>
+                <li><strong>CDN postures</strong> &mdash; Cloudflare is monetize-and-route. Akamai is security-first. AWS is neutral with a tooling tilt. Fastly is publisher-tilted. Azure still classifies AI crawlers as Unknown by default, which means a lot of Azure-fronted B2B sites are blocking agents accidentally.</li>
+            </ul>
+
+            <p>The single takeaway from the tour is the one Cloudflare, Google, OpenAI, and the standards bodies all agree on: <strong>standards are in flux. /.well-known/ is the one stable surface across all of them.</strong> Don't bet the company on any one protocol. Do prepare the surface.</p>
+
+            <p>A useful brake on the enthusiasm: Gartner expects 40% of agentic-AI projects to be abandoned by 2027, citing cost overruns, unclear business value, and weak risk controls. Speed isn't the goal. Sequencing is.</p>
+
+            <h2 id="wabash">What Wabash Has to Do Now</h2>
+
+            <p>Let me make this concrete with a different example than the consultancy I've been using in this series, because the urgency lands differently in industrial distribution than it does in pro services.</p>
+
+            <p>Picture <strong>Wabash Facilities Supply.</strong> Third-generation family-owned MRO distributor headquartered in Indianapolis, three distribution centers across Indiana, Ohio, and northern Illinois, $115 million in annual revenue, about 130 employees. Five territorial sales teams of one outside rep paired with one inside rep, each team owning roughly $14 million across their geography. Plus a national accounts function for multi-district co-op deals. The team-of-two pairing is how regional distributors actually work &mdash; the field rep knows the customer's facilities, the inside rep knows the order history, and the customer knows both of their names.</p>
+
+            <p>Wabash has done the SEO work. Three quarters of cleanup. Product data structured cleanly inside NetSuite. Entity clarity tightened. Schema coverage rolled out to product pages. NAP consistent across the three distribution centers. Sourcewell and OMNIA Partners listings verified everywhere. The Find/Understand/Trust layers are in shape. AI describes Wabash accurately when buyers ask about MRO suppliers for K-12 facilities in their region.</p>
+
+            <p>Forty percent of their revenue, about $46 million, already runs through the website &mdash; EDI integrations with their bigger districts, blanket purchase orders, routine reorders by facilities managers who log in every Tuesday. The site does its job for the people who already know to use it.</p>
+
+            <p>Here's what's about to change for Wabash. <strong>Margaret Chen runs facilities for Hamilton County Public Schools.</strong> 42 schools, 35,000 students, $5.8 million annual MRO budget. She's been buying from Wabash for fifteen years. She knows her field rep's daughter's name. Last quarter her purchasing software vendor rolled out a procurement assistant.</p>
+
+            <blockquote class="scene">
+                <p>This morning Margaret needs playground safety mulch restocked at six schools before the May 30 county inspection. She asks the assistant.</p>
+                <p>The assistant pulls up her three approved Sourcewell vendors, queries each of their websites for current pricing and availability, and reports back in twelve seconds:</p>
+                <p>"Coastal Industrial returned structured product data &mdash; 14,200 cubic yards in stock at the Cincinnati DC, Sourcewell contract pricing at $42.10 per cubic yard, delivery available next Tuesday. Wabash Facilities Supply's catalog isn't machine-readable. I can submit a phone-call request, expected response four to six hours. Should I proceed with Coastal?"</p>
+                <p>Margaret says yes, because she has eleven other things to handle before the inspection.</p>
+                <p>Wabash never finds out it lost the order. The next day, two more.</p>
+            </blockquote>
+
+            <p>Margaret didn't bid Coastal against Wabash. Her assistant did. Wabash wasn't outbid. It was unreadable.</p>
+
+            <p>That's the shift the fourth layer forces. Wabash's job is no longer just "what do we want agents to do with us." It's "what does Margaret's agent need to be able to do, and does our site allow it." The decisions Wabash has to make this quarter, before any /.well-known/ JSON gets written:</p>
+
+            <ul>
+                <li>Routine reorders under existing Sourcewell contracts &mdash; agents can place these on behalf of authenticated district accounts.</li>
+                <li>New customer setup, credit terms, large bids &mdash; human only. Inside rep + outside rep team stays in the loop.</li>
+                <li>Pricing visibility &mdash; shown to verified agents acting on behalf of approved accounts under specific contract logic, never anonymously.</li>
+                <li>The territorial team owns the relationship. The agent handles the transaction. It doesn't replace the rep; it routes the work the rep doesn't need to be on.</li>
+            </ul>
+
+            <p>For a pro services consultancy &mdash; the Harbor Strategies example from the earlier posts in this series &mdash; the same six business decisions apply, but at a different cadence. Harbor's runway is longer because pro services sits near the bottom of the industry priority order. Wabash's runway is gone, because industrial distribution is already mid-flight. The decisions are the same. The clock is different.</p>
+
+            <h2 id="monday">What to Do Monday Morning</h2>
+
+            <p>There's no perfect playbook here, because the protocols are still being argued and anyone who tells you they know which ones win is either selling something or guessing. But there is a defensible sequence you can start before lunch tomorrow:</p>
+
+            <ol class="decision-list">
+                <li><strong>Audit the foundation first.</strong> Entity clarity, schema coverage, NAP consistency, internal linking, freshness. If Cloudflare's scanner doesn't score you cleanly on Find / Understand / Trust, the fourth layer is premature.</li>
+                <li><strong>Sit your cross-functional group down for two hours.</strong> Marketing, security, product or engineering, finance or legal. Answer the six business decisions. Don't write a line of /.well-known/ JSON before that meeting.</li>
+                <li><strong>Run the Cloudflare scanner.</strong> Type your domain into isitagentready.com. Save the screenshot. That's your baseline. If you're a marketing leader at a B2B company without one, you're behind.</li>
+                <li><strong>Open a browser tab to yoursite.com/.well-known/.</strong> If you get a 404, that's the audit result. Almost nothing in the agent infrastructure stack works without the folder. Creating it costs nothing. Deciding what goes in it requires the meeting above.</li>
+                <li><strong>Ask your CDN team what your posture is.</strong> Cloudflare, Akamai, AWS, Fastly, or Azure. Five different defaults. Your infrastructure team can look it up in 30 seconds. Then ask what the agent posture is set to.</li>
+                <li><strong>Watch the protocols, don't bet on them.</strong> Track which ones your buyers' platforms are adopting and follow that. If you sell into commerce, UCP is the closest thing to a sure bet. If you sell B2B services, MCP and Web Bot Auth are the two to know cold.</li>
+                <li><strong>Start the conversation in your own company now.</strong> Not in six months. The companies that figure out the fourth layer during the flux period are the ones cited as "the firm that helped us figure out the agent question" when this finally settles in 18 to 24 months. The ones that wait will pay three or four times more to catch up.</li>
+            </ol>
+
+            <p>We need to figure out how to do that soon. Like yesterday soon.</p>
+
+            <!-- CTA Box -->
+            <div class="cta-box">
+                <p><strong>The Agent Readiness Audit grades all four layers.</strong></p>
+                <p>Find. Understand. Trust. Use. One 31-point diagnostic, one report, one prioritized roadmap your team can act on this quarter.</p>
+                <p><a href="/audit">Get your Agent Readiness Audit &rarr;</a></p>
+            </div>
+
+            <h2 id="fout">From Use Back to the Foundation</h2>
+
+            <p>The four layers, said plainly:</p>
+
+            <p><strong>FIND</strong> asks: Can the agent access your content? Robots.txt, CDN posture, JS rendering, structured data. Binary. You pass or you don't.</p>
+
+            <p><strong>UNDERSTAND</strong> asks: Does the agent comprehend what your business does? Entity clarity, fact-to-vibe ratio, semantic structure, schema coverage. The grey-area layer.</p>
+
+            <p><strong>TRUST</strong> asks: Does the agent have enough corroboration to cite you with confidence? Consistency across sources, freshness, third-party verification. The reputation layer.</p>
+
+            <p><strong>USE</strong> asks: Can the agent do anything with you once it's there? APIs at /.well-known/, MCP server cards, Agent Skills index, OAuth discovery, Web Bot Auth, payment protocols. The action layer.</p>
+
+            <p>If the agent can't find you, you're invisible. If it can't understand you, you're forgettable. If it can't trust you, you're hedged. If it can't use you, you're a citation in a result the buyer never acts on.</p>
+
+            <p>All four together is what "agent ready" actually means.</p>
+
+            <p>Life after Google isn't life without Google. It's life on a web where Google is one of several places the buyer goes, several places the agent acts, and several places the transaction lands. The companies that build for all four layers on every relevant surface are going to look, in 18 months, like the only companies still on the map.</p>
+
+            <p>That's the lane. It's open right now. It won't be for long.</p>
+
+            <p><em>P.S. Cloudflare calls the fourth layer Capabilities. I call it Use, because the buyer-side word matters more than the audit-side word. The mnemonic ends in a sound the buyer remembers: F, U, T, U. Find. Understand. Trust. Use. And /.well-known/ was never a marketing folder. It's becoming one whether marketing was ready or not. The em dashes in this post are all mine.</em></p>
+
+            <!-- Author Bio -->
+            <div class="author-bio">
+                <div class="author-avatar">LM</div>
+                <div class="author-info">
+                    <h3>Liz Micik</h3>
+                    <p class="author-title">SEO &amp; Content Strategist | Agent Readiness Consultant</p>
+                    <p>Liz has spent 28 years helping companies navigate structural shifts in how the web works. From the rise of Google to mobile-first indexing to today's agent-mediated web, she works with B2B firms &mdash; especially industrial distribution and professional services &mdash; to ensure they're findable, understood, trusted, and usable by AI agents.</p>
+                </div>
+            </div>
+
+            <!-- Related Posts -->
+            <div class="related-posts">
+                <h2>More in This Series</h2>
+                <div class="related-posts-grid">
+                    <div class="post-card fade-in">
+                        <a href="/blog/ai-trust-brand-authority">
+                        <div class="post-card-image" style="background: linear-gradient(135deg, #6B3D2E 0%, #C4956A 100%);">
+                            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
+                                <rect width="280" height="180" fill="none"/>
+                                <text x="140" y="75" text-anchor="middle" font-family="Manrope, sans-serif" font-size="32" font-weight="800" fill="rgba(255,255,255,0.4)">TRUST</text>
+                                <text x="140" y="115" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)">Layer 3: Authority &amp; Confidence</text>
+                            </svg>
+                        </div>
+                        <div class="post-card-content">
+                            <p class="post-card-meta">Previous</p>
+                            <h3>AI Cites Your Competitors. Not You. Here's Why.</h3>
+                        </div>
+                        </a>
+                    </div>
+
+                    <div class="post-card fade-in">
+                        <a href="/blog">
+                        <div class="post-card-image" style="background: linear-gradient(135deg, #6E8AA8 0%, #2C3038 100%);">
+                            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
+                                <rect width="280" height="180" fill="none"/>
+                                <text x="140" y="75" text-anchor="middle" font-family="Manrope, sans-serif" font-size="32" font-weight="800" fill="rgba(255,255,255,0.4)">USE</text>
+                                <text x="140" y="115" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)">Layer 4: Action &amp; Agent Surface</text>
+                            </svg>
+                        </div>
+                        <div class="post-card-content">
+                            <p class="post-card-meta">This Post</p>
+                            <h3>Life After Google: The Fourth Layer Nobody in SEO Is Ready For</h3>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="final-cta">
+        <h2>Find. Understand. Trust. Use.</h2>
+        <p>The Signal Check tests what AI says about you. The Audit grades all four layers. Both are calibrated for life after Google.</p>
+        <div class="cta-buttons">
+            <a href="/signal-check" class="cta-button">Free Signal Check</a>
+            <a href="/audit" class="cta-button copper">Agent Readiness Audit</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <p style="margin-bottom:0.75rem;">Questions or project inquiries: <a href="mailto:info@lizmicik.com">info@lizmicik.com</a></p>
+        <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+        <p style="margin-top:0.5rem;"><a href="/privacy-policy">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms">Terms of Use</a></p>
+    </footer>
+
+    <script>
+        // Cookie Banner & GA4
+        (function() {
+            var COOKIE_KEY = 'lizmicik-cookie-consent';
+            var GA_ID = 'G-B9S40S2SKG';
+
+            if (!localStorage.getItem(COOKIE_KEY)) {
+                var banner = document.createElement('div');
+                banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#2C3038;color:white;padding:1.5rem 2rem;text-align:center;z-index:999;font-size:0.9rem;';
+                banner.innerHTML = '<p style="margin-bottom:1rem;">We use analytics to understand how you use our site and improve it.</p><button id="accept-cookies" style="background:#5B7C5E;color:white;border:none;padding:0.75rem 1.5rem;border-radius:0.5rem;cursor:pointer;font-weight:600;margin-right:1rem;">Accept</button><button id="decline-cookies" style="background:transparent;color:white;border:1px solid white;padding:0.75rem 1.5rem;border-radius:0.5rem;cursor:pointer;font-weight:600;">Decline</button>';
+                document.body.appendChild(banner);
+                document.getElementById('accept-cookies').addEventListener('click', function() { localStorage.setItem(COOKIE_KEY, 'true'); loadGA(); banner.remove(); });
+                document.getElementById('decline-cookies').addEventListener('click', function() { localStorage.setItem(COOKIE_KEY, 'false'); banner.remove(); });
+            } else if (localStorage.getItem(COOKIE_KEY) === 'true') { loadGA(); }
+
+            function loadGA() {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', GA_ID);
+                var script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+                document.head.appendChild(script);
+            }
+        })();
+
+        // Mobile Navigation Toggle
+        var navToggle = document.querySelector('.nav-toggle');
+        var navLinks = document.querySelector('.nav-links');
+        navToggle.addEventListener('click', function() {
+            navToggle.classList.toggle('open');
+            navLinks.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+        });
+
+        // Hide nav on scroll down, show on scroll up
+        var lastScrollTop = 0;
+        var nav = document.querySelector('.nav');
+        window.addEventListener('scroll', function() {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) { nav.classList.add('nav-hidden'); }
+            else { nav.classList.remove('nav-hidden'); }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                var href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    var target = document.querySelector(href);
+                    var offsetTop = target.offsetTop - 80;
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                    if (navLinks.classList.contains('active')) { navToggle.classList.remove('open'); navLinks.classList.remove('active'); }
+                }
+            });
+        });
+
+        // TOC active state tracking
+        var tocLinks = document.querySelectorAll('.toc-list a');
+        var sections = [];
+        tocLinks.forEach(function(link) {
+            var id = link.getAttribute('href').substring(1);
+            var section = document.getElementById(id);
+            if (section) sections.push({ el: section, link: link });
+        });
+
+        function updateTOC() {
+            var scrollPos = window.scrollY + 120;
+            var current = null;
+            sections.forEach(function(s) {
+                if (s.el.offsetTop <= scrollPos) current = s;
+            });
+            tocLinks.forEach(function(l) { l.classList.remove('active'); });
+            if (current) current.link.classList.add('active');
+        }
+        window.addEventListener('scroll', updateTOC);
+        updateTOC();
+
+        // IntersectionObserver for fade-in animations
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; observer.unobserve(entry.target); }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+            el.style.opacity = '0'; el.style.transform = 'translateY(10px)'; el.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; observer.observe(el);
+        });
+    </script>
+</body>
+</html>
