@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The USE layer of the Find/Understand/Trust framework. AI agents are moving from reading your site to acting on it. The new vocabulary — APIs, MCPs, A2A protocols, /.well-known/ — maps to decisions you have made before. Here is what to look at on your own site and what to decide before your platform vendors decide for you.">
+    <meta name="keywords" content="Life Beyond Google, USE layer, agent readiness, AI agents, MCP, API, A2A protocol, ACP, .well-known, Web Bot Auth, Find Understand Trust Use, agent infrastructure, B2B SaaS, professional services, industrial distribution">
+    <title>Life Beyond Google: The USE Layer of Agent Readiness | Liz Micik</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Life Beyond Google: The USE Layer of Agent Readiness">
+    <meta property="og:description" content="AI agents are moving from reading your site to acting on it. This is the USE layer of the Find/Understand/Trust framework — the next loop of a decision you have made before, with a new audience and a shorter timeline.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://lizmicik.com/blog/life-beyond-google">
+    <meta property="og:site_name" content="Liz Micik">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Life Beyond Google: The USE Layer of Agent Readiness",
+        "description": "The USE layer of the Find/Understand/Trust framework. AI agents are moving from reading your site to acting on it. Includes the four new pieces of vocabulary (API, MCP, A2A, /.well-known/), the audit touchpoints, and the business decisions you have to make before your platform vendors make them for you.",
+        "author": {
+            "@type": "Person",
+            "name": "Liz Micik",
+            "url": "https://lizmicik.com"
+        },
+        "datePublished": "2026-05-19",
+        "dateModified": "2026-05-19",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://lizmicik.com/blog/life-beyond-google"
+        },
+        "keywords": "Life Beyond Google, USE layer, agent readiness, MCP, API, A2A, ACP, Web Bot Auth, .well-known, Find Understand Trust Use",
+        "isPartOf": {
+            "@type": "BlogPosting",
+            "name": "Find/Understand/Trust/Use Framework Series",
+            "url": "https://lizmicik.com/blog"
+        }
+    }
+    </script>
+
+    <style>
+        :root {
+            --cream: #FAFAF7;
+            --cream-dark: #FAF8F5;
+            --slate: #2C3038;
+            --slate-light: #3D424D;
+            --slate-mid: #545B6A;
+            --accent-amber: #C4956A;
+            --accent-teal: #5B7C5E;
+            --accent-blue: #8B9A7E;
+            --accent-copper: #5B7C5E;
+            --accent-use: #8B9A7E;
+            --hero-brown: #6B3D2E;
+            --muted-red: #C25E4A;
+            --text-primary: #2C3038;
+            --text-secondary: #545B6A;
+            --text-light: #F2EDE7;
+            --text-light-secondary: #B8B5B0;
+            --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --section-padding: clamp(4rem, 8vw, 7rem);
+            --content-width: 720px;
+            --wide-width: 960px;
+            --toc-width: 220px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--cream); color: var(--text-primary); font-family: var(--font-body); line-height: 1.6; }
+
+        /* Navigation */
+        .nav { position: fixed; top: 0; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--cream-dark); z-index: 1000; transition: transform 0.3s ease; }
+        .nav.nav-hidden { transform: translateY(-100%); }
+        .nav-inner { max-width: var(--wide-width); margin: 0 auto; padding: 1.5rem clamp(1.5rem, 4vw, 2rem); display: flex; justify-content: space-between; align-items: center; }
+        .nav-name { font-weight: 700; color: var(--text-primary); font-size: 1.25rem; }
+        .nav-name a { color: inherit; text-decoration: none; }
+        .nav-toggle { display: none; flex-direction: column; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .nav-toggle span { width: 24px; height: 2px; background: var(--text-primary); margin: 5px 0; transition: 0.3s; }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+        .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--accent-teal); }
+        .nav-cta { background: var(--accent-teal) !important; color: white !important; padding: 0.75rem 1.5rem; border-radius: 0.5rem; transition: background 0.3s ease; }
+        .nav-cta:hover { background: var(--accent-copper) !important; }
+        .nav-item.has-dropdown { position: relative; }
+        .nav-caret { font-size: 0.7em; margin-left: 0.15rem; transition: transform 0.2s ease; display: inline-block; }
+        .nav-item.has-dropdown:hover .nav-caret,
+        .nav-item.has-dropdown:focus-within .nav-caret { transform: rotate(180deg); }
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 260px;
+            margin: 0;
+            padding: 0.45rem 0;
+            list-style: none;
+            background: rgba(250, 250, 247, 0.98);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(44, 48, 56, 0.06);
+            border-radius: 6px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+        }
+        .nav-item.has-dropdown:hover .nav-dropdown,
+        .nav-item.has-dropdown:focus-within .nav-dropdown { display: block; }
+        .nav-dropdown li { padding: 0; }
+        .nav-dropdown a {
+            display: block;
+            padding: 0.55rem 1.2rem;
+            white-space: nowrap;
+            text-transform: none !important;
+            letter-spacing: 0 !important;
+            font-size: 0.9rem !important;
+        }
+        .nav-dropdown a:hover { background: rgba(44, 48, 56, 0.04); }
+
+        @media (max-width: 768px) {
+            .nav-toggle { display: flex; }
+            .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(10px, 10px); }
+            .nav-toggle.open span:nth-child(2) { opacity: 0; }
+            .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+            .nav-links { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--cream); gap: 1.5rem; padding: 2rem; border-bottom: 1px solid var(--cream-dark); display: none; }
+            .nav-links.active { display: flex; }
+            .nav-dropdown {
+                display: block;
+                position: static;
+                min-width: 0;
+                padding: 0.25rem 0 0 1rem;
+                background: transparent;
+                backdrop-filter: none;
+                border: none;
+                box-shadow: none;
+            }
+            .nav-caret { display: none; }
+            .nav-links a { font-size: 1.1rem; }
+        }
+
+        /* Hero */
+        header.blog-hero { max-width: 1080px; margin: 60px auto 0; padding: 2.5rem clamp(1.5rem, 4vw, 3rem); background: #F5EFE4; display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center; text-align: left; }
+        .blog-hero-image { width: 290px; height: auto; max-width: 100%; margin: 0; display: block; border-radius: 6px; }
+        .hero-text { display: flex; flex-direction: column; gap: 0.85rem; }
+        .pillar-eyebrow { display: inline-block; align-self: flex-start; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0; color: var(--accent-use); }
+        .blog-meta { display: flex; justify-content: flex-start; gap: 0.75rem; margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--text-secondary); flex-wrap: wrap; align-items: center; }
+        header.blog-hero h1 { font-family: var(--font-heading); font-size: clamp(1.5rem, 3.2vw, 2.1rem); font-weight: 700; line-height: 1.25; color: var(--text-primary); margin: 0; text-align: left; }
+        @media (max-width: 720px) { header.blog-hero { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; } .blog-hero-image { width: 220px; margin: 0 auto; } .hero-text { align-items: center; } .pillar-eyebrow { align-self: center; } .blog-meta { justify-content: center; } header.blog-hero h1 { text-align: center; font-size: clamp(1.35rem, 5vw, 1.75rem); } }
+
+
+        /* Two-column layout with sticky TOC */
+        .blog-layout {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 2rem clamp(1.5rem, 4vw, 2rem);
+            display: grid;
+            grid-template-columns: var(--toc-width) 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* TOC */
+        .toc {
+            position: sticky;
+            top: 80px;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+        .toc-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-use);
+        }
+        .toc-list { list-style: none; padding: 0; }
+        .toc-list li { margin: 0; }
+        .toc-list a {
+            display: block;
+            padding: 0.4rem 0 0.4rem 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            transition: all 0.2s ease;
+            line-height: 1.4;
+        }
+        .toc-list a:hover { color: var(--accent-use); border-left-color: var(--accent-use); }
+        .toc-list a.active { color: var(--accent-use); border-left-color: var(--accent-use); font-weight: 600; }
+
+        /* Article */
+        article.blog-content { max-width: var(--content-width); }
+        article p { font-size: 1.05rem; line-height: 1.75; margin: 1.5rem 0; color: var(--text-primary); }
+        article h2 { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 600; margin: 3rem 0 1.5rem; color: var(--text-primary); border-left: 3px solid var(--accent-use); padding-left: 1rem; }
+        article h2:first-of-type { margin-top: 0; }
+        article h3 { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--text-primary); }
+        article strong { font-weight: 700; color: var(--accent-use); }
+        article ul, article ol { margin: 1.5rem 0; padding-left: 2rem; }
+        article li { margin: 0.8rem 0; line-height: 1.75; color: var(--text-primary); }
+        article ul li:before { content: "\2713"; color: var(--accent-use); font-weight: 700; display: inline-block; width: 1.5em; margin-left: -1.5em; }
+        article a { color: #C4956A; text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        article a:hover { color: #3D6B4E; text-decoration: underline; }
+
+        /* TLDR */
+        .tldr { font-style: italic; color: var(--text-secondary); border-left: 3px solid var(--accent-amber); padding-left: 1.5rem; margin: 2rem 0; }
+        .tldr p { color: var(--text-secondary); font-style: italic; margin: 0.5rem 0; }
+        .tldr ul { padding-left: 1.5rem; margin: 0.5rem 0; }
+        .tldr li { color: var(--text-secondary); font-style: italic; margin: 0.5rem 0; line-height: 1.6; }
+        .tldr li:before { content: none; }
+
+        /* Plain unordered list (no checkmarks) */
+        .plain-list { list-style: none; padding-left: 0; margin: 1.5rem 0; }
+        .plain-list li { margin: 1.2rem 0; padding-left: 0; }
+        .plain-list li:before { content: none; }
+
+        /* Data highlight list */
+        .data-list { list-style: none; padding-left: 0; margin: 1.5rem 0; }
+        .data-list li { margin: 0.8rem 0; padding-left: 1.5rem; position: relative; }
+        .data-list li:before { content: "\2022"; color: var(--accent-use); font-weight: 700; display: inline-block; width: 1.5em; margin-left: -1.5em; }
+
+        /* Numbered decision list */
+        .decision-list { list-style: none; padding-left: 0; margin: 1.5rem 0; counter-reset: decisions; }
+        .decision-list li { margin: 1rem 0; padding-left: 2.5rem; position: relative; counter-increment: decisions; line-height: 1.7; }
+        .decision-list li:before {
+            content: counter(decisions);
+            position: absolute;
+            left: 0;
+            top: 0.1rem;
+            width: 1.75rem;
+            height: 1.75rem;
+            background: var(--accent-use);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        /* Code block */
+        .code-block {
+            background: var(--slate);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid var(--slate-light);
+        }
+        .code-block-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-amber);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        .code-block pre {
+            margin: 0;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #E8DDD5;
+            white-space: pre;
+        }
+        .code-block .comment { color: #8B9A7E; }
+        .code-block .directive { color: #C4956A; }
+        .code-block .value { color: #E8DDD5; }
+
+        /* Visual containers */
+        .visual-container {
+            margin: 2.5rem 0;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid #E8DDD5;
+            background: #FFFFFF;
+        }
+        .visual-container svg { display: block; width: 100%; height: auto; }
+        .visual-caption {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 0.75rem 1rem;
+            background: var(--cream-dark);
+            border-top: 1px solid #E8DDD5;
+            font-style: italic;
+        }
+
+        /* Priority table (industry priority order graphic) */
+        .priority-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+            font-size: 0.92rem;
+        }
+        .priority-table thead {
+            background: var(--accent-use);
+            color: white;
+        }
+        .priority-table th {
+            text-align: left;
+            padding: 0.85rem 1rem;
+            font-weight: 600;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .priority-table th:first-child { width: 70px; text-align: center; }
+        .priority-table tbody tr { border-bottom: 1px solid #E8DDD5; }
+        .priority-table tbody tr:last-child { border-bottom: none; }
+        .priority-table tbody tr:nth-child(even) { background: var(--cream-dark); }
+        .priority-table td {
+            padding: 0.9rem 1rem;
+            vertical-align: top;
+            color: var(--text-primary);
+            line-height: 1.5;
+            border: none;
+        }
+        .priority-table td:first-child {
+            text-align: center;
+            font-weight: 800;
+            color: var(--accent-use);
+            font-size: 1.25rem;
+        }
+        .priority-table td:nth-child(2) { font-weight: 600; }
+
+        @media (max-width: 720px) {
+            .priority-table thead { display: none; }
+            .priority-table tbody { display: block; }
+            .priority-table tr {
+                display: block;
+                margin: 0;
+                padding: 1rem 1.25rem;
+                border-bottom: 1px solid #E8DDD5;
+            }
+            .priority-table tr:last-child { border-bottom: none; }
+            .priority-table tr:nth-child(even) { background: var(--cream-dark); }
+            .priority-table td {
+                display: block;
+                padding: 0.3rem 0;
+                font-size: 0.92rem;
+            }
+            .priority-table td:before {
+                content: attr(data-label);
+                display: block;
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: var(--text-secondary);
+                margin-bottom: 0.15rem;
+                font-weight: 600;
+            }
+            .priority-table td:first-child {
+                font-size: 1.5rem;
+                text-align: left;
+                padding-bottom: 0.5rem;
+            }
+            .priority-table td:first-child:before { display: none; }
+        }
+
+        /* Blockquotes */
+        article blockquote { border-left: 4px solid var(--accent-amber); padding-left: 2rem; margin: 2.5rem 0; font-style: italic; font-size: 1.15rem; color: var(--text-secondary); line-height: 1.7; }
+        article blockquote.scene { font-style: normal; font-size: 1rem; color: var(--text-primary); background: var(--cream-dark); padding: 1.5rem 2rem; border-left: 4px solid var(--accent-use); border-radius: 0 0.5rem 0.5rem 0; }
+        article blockquote.scene p { margin: 0.75rem 0; font-size: 1rem; line-height: 1.65; }
+        article blockquote.scene p:first-child { margin-top: 0; }
+        article blockquote.scene p:last-child { margin-bottom: 0; }
+
+        /* CTA Box */
+        .cta-box { background: var(--cream-dark); border: 2px solid var(--accent-amber); border-radius: 0.75rem; padding: 2rem; margin: 3rem 0; text-align: center; }
+        .cta-box p { margin: 0.5rem 0; font-size: 1rem; }
+        .cta-box strong { color: var(--text-primary); font-size: 1.1rem; }
+        .cta-box a { color: #C4956A; font-weight: 700; }
+        .cta-box a:hover { color: #3D6B4E; }
+
+        /* Author Bio */
+        .author-bio { display: flex; gap: 2rem; padding: 2.5rem; background: var(--cream-dark); border-radius: 0.75rem; border: 1px solid #E8DDD5; margin: 3rem 0; align-items: flex-start; }
+        .author-avatar { width: 100px; height: 100px; border-radius: 50%; background: var(--accent-use); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 700; flex-shrink: 0; }
+        .author-info h3 { margin-top: 0; margin-bottom: 0.5rem; }
+        .author-title { font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 0.8rem; }
+        .author-bio p { font-size: 0.95rem; margin: 0; color: var(--text-primary); }
+
+        /* Related Posts */
+        .related-posts { margin: 4rem 0 3rem; border-top: 2px solid var(--cream-dark); padding-top: 3rem; }
+        .related-posts h2 { border: none; padding: 0; text-align: center; margin-bottom: 2.5rem; }
+        .related-posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .post-card { background: var(--cream-dark); border: 1px solid #E8DDD5; border-radius: 0.75rem; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .post-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); }
+        .post-card a { text-decoration: none; color: inherit; }
+        .post-card-image { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
+        .post-card-content { padding: 1.5rem; }
+        .post-card-meta { font-size: 0.8rem; color: var(--accent-copper); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+        .post-card h3 { font-size: 1.2rem; margin: 0.8rem 0; color: var(--text-primary); }
+        .post-card p.coming-soon { font-size: 0.85rem; color: var(--text-secondary); font-style: italic; }
+
+        /* Final CTA */
+        .final-cta { background: var(--slate); color: white; padding: 3rem 2rem; text-align: center; margin: 4rem 0 0; }
+        .final-cta h2 { border: none; padding: 0; color: white; margin-bottom: 1.5rem; }
+        .final-cta p { color: rgba(255, 255, 255, 0.95); margin-bottom: 2rem; }
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .cta-button { display: inline-block; background: var(--accent-use); color: white; padding: 0.75rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 700; transition: all 0.3s ease; border: 2px solid var(--accent-use); }
+        .cta-button:hover { background: transparent; color: white; }
+        .cta-button.copper { background: var(--accent-copper); border-color: var(--accent-copper); }
+
+        /* Footer */
+        .footer { background: var(--cream-dark); padding: 2rem; text-align: center; color: var(--text-secondary); font-size: 0.9rem; }
+        .footer a { color: #C4956A; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .blog-layout {
+                grid-template-columns: 1fr;
+                max-width: var(--content-width);
+            }
+            .toc {
+                position: relative;
+                top: 0;
+                max-height: none;
+                border: 1px solid #E8DDD5;
+                border-radius: 0.75rem;
+                padding: 1.25rem;
+                background: var(--cream-dark);
+                margin-bottom: 1rem;
+            }
+            .author-bio { flex-direction: column; text-align: center; }
+            .author-avatar { margin: 0 auto; }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            article p { font-size: 1rem; }
+            article h2 { font-size: 1.4rem; }
+            .cta-buttons { flex-direction: column; }
+            .cta-buttons .cta-button { display: block; width: 100%; }
+            .related-posts-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Fade-in */
+        .fade-in { opacity: 0; animation: fadeIn 0.6s ease-in forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <span class="nav-name"><a href="/">Liz Micik</a></span>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/about">About</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li class="nav-item has-dropdown">
+                    <a href="/audit" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Services <span class="nav-caret">&#9662;</span></a>
+                    <ul class="nav-dropdown">
+                        <li><a href="/audit">Agent Readiness Audit</a></li>
+                        <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+                    </ul>
+                </li>
+                <li><a href="/signal-check" class="nav-cta">Free Signal Check</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Draft Banner (remove before publish) -->
+
+    <!-- Hero -->
+    <header class="blog-hero">
+        <img class="blog-hero-image" src="/images/use-switchboard-hero.png" alt="Editorial illustration: a vintage telephone switchboard with labeled jacks for the agent protocols (API, MCP, A2A, UCP, AP2, and /.well-known/) and patch cables routing connections between them &mdash; signifying that AI agents now route requests across many surfaces, with /.well-known/ as the directory that decides where each connection goes." loading="eager" />
+        <div class="hero-text">
+            <span class="pillar-eyebrow">USE Layer &middot; The 4th Pillar</span>
+            <h1>AI Read Your Site. Can It DO Anything With Your Business?</h1>
+            <div class="blog-meta">
+                <span>May 19, 2026</span>
+                <span>&bull;</span>
+                <span>By Liz Micik</span>
+                <span>&bull;</span>
+                <span>17 min read</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Two-column: TOC + Content -->
+    <div class="blog-layout">
+
+        <!-- Left Sticky TOC -->
+        <nav class="toc" aria-label="Table of contents">
+            <div class="toc-title">In This Article</div>
+            <ul class="toc-list">
+                <li><a href="#next-loop">What&rsquo;s Old Is New Again</a></li>
+                <li><a href="#use-layer">From One Surface to Many</a></li>
+                <li><a href="#where-you-sit">Where You Sit in This Loop</a></li>
+                <li><a href="#well-known">/.well-known/: Life Beyond Google</a></li>
+                <li><a href="#protocols">The Protocols That Are Found Through /.well-known/</a></li>
+                <li><a href="#your-decisions">Business Decisions for You to Make</a></li>
+                <li><a href="#vendor-decisions">Business Decisions Made for You</a></li>
+                <li><a href="#foundation">Decide Before Your Defaults Decide for You</a></li>
+            </ul>
+        </nav>
+
+        <!-- Article Content -->
+        <article class="blog-content">
+
+<!-- TLDR -->
+            <div class="tldr">
+                <p>The short version:</p>
+                <ul>
+                    <li>The first three layers of the Find/Understand/Trust framework taught machines to read your business. The fourth layer asks whether they can act on it.</li>
+                    <li>There is a new file to be added to root that will tell an agent what protocols you support and allow. Google had nothing to do with it and it has nothing to do with Google, but you&rsquo;ll need it soon.</li>
+                    <li>There are serious business decisions to be made about what agents can do on your site. Your CDN, AI platform or eCommerce platform will make them if you don&rsquo;t, but you may not like their choices.</li>
+                </ul>
+            </div>
+
+            <h2 id="next-loop">What&rsquo;s Old Is New Again</h2>
+
+            <p>Think back to roughly 2010.</p>
+
+            <p>If you ran a B2B catalog business, an industrial distributor, a professional services firm, or any operation that sold to other businesses, you were making three decisions at once. Whether to put your catalog online at all. Whether to show pricing publicly. And whether to actually sell through the website, or just use it as a brochure and route the order through a salesperson.</p>
+
+            <p>None of those decisions felt small. Pricing visibility is a competitive question. Selling online means restructuring how you handle terms, returns, and credit. Putting your catalog where Google can index it means a stranger can find it without ever meeting your sales team.</p>
+
+            <p>Plenty of businesses delayed those decisions for years. Many made some but not others. A few never made them at all and watched marketplaces and search engines make the calls for them &mdash; sometimes painfully.</p>
+
+            <p>The web changed the audience your business had to publish for. It changed who could find you, on what schedule, with what information in hand. The decisions were not new in shape. Salesmen and Yellow Pages and trade-show booklets had asked the same questions in different forms for decades. The web was just the latest loop.</p>
+
+            <p>The agent-mediated web is the next loop.</p>
+
+            <p>This time the audience is not a buyer with a browser. It is an AI agent acting on behalf of a buyer:</p>
+
+            <ul>
+                <li>Sometimes representing a procurement officer running a sourcing list</li>
+                <li>Sometimes representing a homeowner researching contractors</li>
+                <li>Sometimes representing the buyer&rsquo;s own ChatGPT or Gemini that has been asked to &ldquo;find three quotes and bring me the cheapest one with a decent reputation&rdquo;</li>
+            </ul>
+
+            <p>The agent reads, weighs, recommends, and &mdash; with human approval &mdash; acts. Soon it will book the demo, pull the quote, and even place the order on its own IF your website has the requisite &ldquo;surfaces&rdquo; on which it can act.</p>
+
+            <h2 id="use-layer">From One Surface to Many</h2>
+
+            <p>The first three layers of my Agent Readiness framework have a clear logic. FIND asks: can a machine access your content? UNDERSTAND asks: does the machine know what your business does? TRUST asks: does it have enough corroboration to mention you without hedging?</p>
+
+            <p>All three describe a machine that is <em>reading</em> you. Reading and citing. Reading and summarizing. Reading and recommending. The work on your end is making sure your site is legible and trustworthy enough that the machine does not get the story wrong.</p>
+
+            <p>&ldquo;USE&rdquo; adds a fourth layer to the framework because it describes a different relationship. Now, AI agents are no longer reading; they&rsquo;re acting.</p>
+
+            <p>That is the simplest way to say what has changed. Up until very recently, the most an AI platform did with your website was describe it back to a human. Now that the AI platforms have given agents the tools and skills they need to negotiate an action like booking an appointment, the onus shifts to your website and its ability to understand the protocol being used and accept or negotiate the action.</p>
+
+            <p>Before we go further, a word about <em>surfaces</em>. The word means something specific in agent-readiness, and the rest of this article rests on it.</p>
+
+            <p>A <strong>surface</strong> is a defined access point on your website built for a specific type of visitor, with a contract about what that visitor can do there.</p>
+
+            <ul>
+                <li>Your customer-facing web pages are a surface &mdash; built for human readers, with HTML and CSS designed for eyes and screen readers</li>
+                <li>An API endpoint is a different surface &mdash; built for software, with structured data designed to be parsed by code</li>
+                <li>An MCP server is a third surface &mdash; built for AI agents, with description of what the business is and what an agent can do on its behalf</li>
+            </ul>
+
+            <p>Your API has typically been revealed to trusted partners and customers through a developer&rsquo;s page that is linked from the footer of your site. The location of today&rsquo;s MCP server is shown in a file that lives at the root of your site: a /.well-known/ which we&rsquo;ll discuss in more detail below.</p>
+
+            <p>A physical retailer already runs multiple surfaces today. Each one is built for a specific visitor with a specific contract. The agent-mediated web is doing the same thing to your website &mdash; the customer-facing pages stay, and new surfaces get added next to them.</p>
+
+            <div class="visual-container">
+                <figure>
+                    <svg viewBox="0 0 720 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="surfaces-title surfaces-desc" style="max-width:100%;height:auto;font-family:Manrope,sans-serif;display:block;margin:0 auto;">
+                        <title id="surfaces-title">Same business, multiple surfaces</title>
+                        <desc id="surfaces-desc">Four physical retailer surfaces (storefront, wholesale entrance, receiving dock, vendor portal) compared to four website surfaces (web pages, API endpoint, MCP server, /.well-known/ directory).</desc>
+
+                        <text x="360" y="36" text-anchor="middle" font-size="22" font-weight="700" fill="#2C3038">Same Business. Multiple Surfaces.</text>
+
+                        <text x="170" y="90" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="#6B3D2E">PHYSICAL RETAILER</text>
+                        <text x="550" y="90" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="#5B7C5E">YOUR WEBSITE</text>
+                        <line x1="60" y1="100" x2="280" y2="100" stroke="#6B3D2E" stroke-width="1.5" opacity="0.4"/>
+                        <line x1="440" y1="100" x2="660" y2="100" stroke="#5B7C5E" stroke-width="1.5" opacity="0.4"/>
+
+                        <!-- Row 1: Storefront <-> Web pages (teal) -->
+                        <g transform="translate(0, 130)">
+                            <rect x="60" y="0" width="60" height="60" rx="6" fill="#5B7C5E"/>
+                            <path d="M73 16 L107 16 L110 27 L70 27 Z" stroke="white" stroke-width="2" fill="none"/>
+                            <path d="M74 27 L74 52 L106 52 L106 27" stroke="white" stroke-width="2" fill="none"/>
+                            <rect x="83" y="36" width="6" height="16" fill="white"/>
+                            <rect x="93" y="34" width="9" height="8" stroke="white" stroke-width="1.5" fill="none"/>
+                            <text x="135" y="22" font-size="16" font-weight="600" fill="#2C3038">Storefront</text>
+                            <text x="135" y="44" font-size="13" fill="#545B6A">Retail customers</text>
+                            <text x="360" y="38" text-anchor="middle" font-size="22" fill="#545B6A">&#8596;</text>
+                            <rect x="440" y="0" width="60" height="60" rx="6" fill="#5B7C5E"/>
+                            <rect x="452" y="14" width="36" height="26" stroke="white" stroke-width="2" fill="none" rx="2"/>
+                            <line x1="458" y1="44" x2="482" y2="44" stroke="white" stroke-width="2"/>
+                            <line x1="470" y1="40" x2="470" y2="48" stroke="white" stroke-width="2"/>
+                            <text x="515" y="22" font-size="16" font-weight="600" fill="#2C3038">Web pages</text>
+                            <text x="515" y="44" font-size="13" fill="#545B6A">Humans with browsers</text>
+                        </g>
+
+                        <!-- Row 2: Wholesale entrance <-> API endpoint (brown) -->
+                        <g transform="translate(0, 220)">
+                            <rect x="60" y="0" width="60" height="60" rx="6" fill="#6B3D2E"/>
+                            <rect x="76" y="12" width="28" height="42" stroke="white" stroke-width="2" fill="none" rx="2"/>
+                            <circle cx="98" cy="34" r="1.8" fill="white"/>
+                            <line x1="80" y1="22" x2="100" y2="22" stroke="white" stroke-width="1.5" opacity="0.7"/>
+                            <text x="135" y="22" font-size="16" font-weight="600" fill="#2C3038">Wholesale entrance</text>
+                            <text x="135" y="44" font-size="13" fill="#545B6A">B2B buyers</text>
+                            <text x="360" y="38" text-anchor="middle" font-size="22" fill="#545B6A">&#8596;</text>
+                            <rect x="440" y="0" width="60" height="60" rx="6" fill="#6B3D2E"/>
+                            <text x="470" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="white" font-family="ui-monospace, Menlo, Consolas, monospace">&lt;/&gt;</text>
+                            <text x="515" y="22" font-size="16" font-weight="600" fill="#2C3038">API endpoint</text>
+                            <text x="515" y="44" font-size="13" fill="#545B6A">Software clients</text>
+                        </g>
+
+                        <!-- Row 3: Receiving dock <-> MCP server (amber) -->
+                        <g transform="translate(0, 310)">
+                            <rect x="60" y="0" width="60" height="60" rx="6" fill="#C4956A"/>
+                            <rect x="68" y="28" width="24" height="16" stroke="white" stroke-width="2" fill="none"/>
+                            <path d="M92 32 L106 32 L110 38 L110 44 L92 44 Z" stroke="white" stroke-width="2" fill="none"/>
+                            <circle cx="76" cy="48" r="3.5" stroke="white" stroke-width="2" fill="none"/>
+                            <circle cx="102" cy="48" r="3.5" stroke="white" stroke-width="2" fill="none"/>
+                            <text x="135" y="22" font-size="16" font-weight="600" fill="#2C3038">Receiving dock</text>
+                            <text x="135" y="44" font-size="13" fill="#545B6A">Delivery trucks</text>
+                            <text x="360" y="38" text-anchor="middle" font-size="22" fill="#545B6A">&#8596;</text>
+                            <rect x="440" y="0" width="60" height="60" rx="6" fill="#C4956A"/>
+                            <circle cx="456" cy="20" r="4" fill="white"/>
+                            <circle cx="484" cy="20" r="4" fill="white"/>
+                            <circle cx="470" cy="46" r="4" fill="white"/>
+                            <line x1="456" y1="20" x2="470" y2="46" stroke="white" stroke-width="1.5"/>
+                            <line x1="484" y1="20" x2="470" y2="46" stroke="white" stroke-width="1.5"/>
+                            <line x1="456" y1="20" x2="484" y2="20" stroke="white" stroke-width="1.5"/>
+                            <text x="515" y="22" font-size="16" font-weight="600" fill="#2C3038">MCP server</text>
+                            <text x="515" y="44" font-size="13" fill="#545B6A">AI agents acting</text>
+                        </g>
+
+                        <!-- Row 4: Vendor portal <-> /.well-known/ (slate) -->
+                        <g transform="translate(0, 400)">
+                            <rect x="60" y="0" width="60" height="60" rx="6" fill="#2C3038"/>
+                            <rect x="76" y="14" width="28" height="34" stroke="white" stroke-width="2" fill="none" rx="2"/>
+                            <line x1="81" y1="23" x2="99" y2="23" stroke="white" stroke-width="1.5"/>
+                            <line x1="81" y1="31" x2="99" y2="31" stroke="white" stroke-width="1.5"/>
+                            <line x1="81" y1="39" x2="93" y2="39" stroke="white" stroke-width="1.5"/>
+                            <text x="135" y="22" font-size="16" font-weight="600" fill="#2C3038">Vendor portal</text>
+                            <text x="135" y="44" font-size="13" fill="#545B6A">Suppliers + invoices</text>
+                            <text x="360" y="38" text-anchor="middle" font-size="22" fill="#545B6A">&#8596;</text>
+                            <rect x="440" y="0" width="60" height="60" rx="6" fill="#2C3038"/>
+                            <path d="M452 22 L466 22 L470 18 L488 18 L488 48 L452 48 Z" stroke="white" stroke-width="2" fill="none"/>
+                            <text x="515" y="22" font-size="16" font-weight="600" fill="#2C3038">/.well-known/</text>
+                            <text x="515" y="44" font-size="13" fill="#545B6A">Discovery index</text>
+                        </g>
+
+                        <text x="360" y="510" text-anchor="middle" font-size="13" font-style="italic" fill="#545B6A">Each surface serves a specific visitor with a specific contract.</text>
+                    </svg>
+                    <figcaption class="caption">The website is simply adding new surfaces for new visitors. The /.well-known/ directory is the index that tells an agent which surfaces exist and where to find each one.</figcaption>
+                </figure>
+            </div>
+
+            <p>An agent doing those things needs a different surface than a reader does. Reading is forgiving: an AI summarizing your services page can guess, hedge, or skip what it cannot parse. Acting is unforgiving. To book a demo on a buyer's behalf, an agent needs a documented way to do that &mdash; an endpoint, an authentication handshake, a confirmation contract, a defined boundary of what it is allowed to do.</p>
+
+            <p>One number to anchor why this matters now. <a href="https://radar.cloudflare.com/ai-insights" target="_blank" rel="noopener">AI crawlers are already 22% of all bot traffic on the web</a> &mdash; second only to search. Today, almost all of that traffic is platforms reading you: building indexes, refreshing data, fetching pages to answer live questions. Only a small slice is agents actually acting on your behalf &mdash; pulling a specific price, placing an order, completing a transaction. That slice is small because the action surfaces do not exist on most sites yet. It will not stay small. The businesses publishing action surfaces this year are the ones agents will reach for next year.</p>
+
+            <h2 id="where-you-sit">Where You Sit in This Loop</h2>
+
+            <p>Back in 2010, the changes that ushered in widespread adoption of eCommerce did not hit every business type at the same time. This &ldquo;loop&rdquo; of history is also not hitting everyone, everywhere all at once. Some businesses (like Shopify eCommerce stores) have already been pulled into the loop, while others may have as much as 18 months of runway to prepare.</p>
+
+            <p>Here is a working order, based on which industries have agent-action surfaces live in production today, which have surfaces being built, and which have not started.</p>
+
+            <div class="visual-container">
+                <table class="priority-table">
+                    <thead>
+                        <tr>
+                            <th>Loop Position</th>
+                            <th>Industry</th>
+                            <th>What's Already Moving</th>
+                            <th>What That Means For You</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Direct-to-Consumer Commerce</td><td><a href="https://openai.com/index/introducing-apps-in-chatgpt/" target="_blank" rel="noopener">OpenAI's Apps SDK launched October 2025</a> with Booking.com, Canva, Coursera, Expedia, Figma, Spotify, and Zillow as first wave. Salesforce reported AI and agents influenced 20% of all global Cyber Week 2025 orders ($67B in sales).</td><td>You are competing for agent placement now, or you have lost shelf space already.</td></tr>
+                        <tr><td>2</td><td>Travel &amp; Hospitality</td><td>Restaurant and event booking through Google AI Mode is live with OpenTable, Resy, Tock, Ticketmaster, StubHub, and others. Flight and hotel booking is rolling out with Booking.com, Expedia, Marriott, IHG, Wyndham, and Choice Hotels. Forrester reports 36% of consumers are willing to delegate both planning and reservation to AI.</td><td>The booking flow is moving off your site onto the agent. Publish to the surface, or accept being unbookable through it.</td></tr>
+                        <tr><td>3</td><td>Real Estate</td><td>Zillow's conversational AI launched March 2026. HousingWire reports only 8.4% of US agents appear in any AI-generated response for high-intent searches, and the top 1% capture 47% of citation share.</td><td>The citation concentration is hardening fast. The window to be one of the cited 8.4% is closing this year.</td></tr>
+                        <tr><td>4</td><td>Financial Services</td><td>Industry projections place banking and insurance among the fastest-moving sectors on agentic AI production deployment. Compliance gates are being negotiated now.</td><td>The agent-action surface is being built around regulatory constraints. You decide whether you help shape them or live with what gets built without you.</td></tr>
+                        <tr><td>5</td><td>Healthcare</td><td>Deloitte reports 80%+ of executives expect agentic and generative AI to deliver moderate-to-significant value in 2026, and 61% are already building.</td><td>Patient-facing and provider-directory agent surfaces are the early use cases. Discoverability and prior-authorization workflows are next.</td></tr>
+                        <tr><td>6</td><td>Education</td><td>Coursera reports 95% of students and educators use AI on campus. Admissions and course-discovery surfaces are forming.</td><td>Application and enrollment workflows will sit on agent surfaces inside the next year.</td></tr>
+                        <tr><td>7</td><td>B2B SaaS</td><td>Forrester predicts 30% of enterprise app vendors will launch their own MCP servers in 2026. The public MCP server registry has grown roughly 8x in a year.</td><td>Your product needs an agent-action surface or your buyers' agents will route around you to a competitor that has one.</td></tr>
+                        <tr><td>8</td><td>Professional Services &amp; Industrial Distribution</td><td>Quiet so far. Agent-action surfaces here are forming over the next 12-18 months. Cited share is wide open.</td><td>You have runway. You do not have unlimited runway. The companies that publish first are the ones cited when the agent infrastructure here hardens.</td></tr>
+                    </tbody>
+                </table>
+                <p class="caption">A working order based on where agents are already operating today, not a market forecast. Cite the underlying sources, not the table.</p>
+            </div>
+
+            <p>This is not a forecast and should not be cited as one. As you can see, so far this speaks more to the skills and capabilities that have been given to AI agents in these areas than it does for the websites they are likely to interact with.</p>
+
+            <p>Everything I do as a consultant revolves around helping the website owners decide how to deal with and interact with these more capable agents. No one is going to be able to &ldquo;opt out&rdquo; of the agentic web. Even if your website falls into the top three categories above, you can still become one of the top cited and recommended websites because very few websites have even begun building the surfaces agents need to carry out any action.</p>
+
+            <h2 id="well-known">/.well-known/: Life Beyond Google</h2>
+
+            <p>There is a folder that follows the Unix/Linux naming convention for folders that have typically been used for backend purposes called <code>/.well-known/</code>. It has largely been owned and operated by dev teams to add or renew security certificates, for security disclosures or OAuth discovery.</p>
+
+            <p>It&rsquo;s about to become one of the most important folders on your website.</p>
+
+            <p>That&rsquo;s because /.well-known/ has quietly become the agent&rsquo;s front-desk directory. It is defined by <a href="https://datatracker.ietf.org/doc/html/rfc8615" target="_blank" rel="noopener">IETF standards RFC 5785 and RFC 8615</a>, and tells machines where to find those surfaces we talked about earlier. As you add protocol capabilities to your website, you&rsquo;ll add links to them here.</p>
+
+            <p>As SEOs, for the past 25+ years, we&rsquo;ve built our sites to help Google&rsquo;s spider crawl, read, index and reply to human questions about us. One of the first things Googlebot encounters on our site is an XML sitemap that sits at the root of our domain and tells Google what pages our site includes. Alongside it sits a robots.txt file, which tells Googlebot (and other search engine spiders) what folders and files within the site it can and cannot access.</p>
+
+            <p>Until now, AI bots from all of the major platforms have relied on these two files and have crawled our websites in much the same way the search engine spiders do. These bots were built to either extract information that would be used to train future AI agents, or they were built to answer specific user queries through web searches.</p>
+
+            <p>Because their capabilities vary, their ability to find, understand and trust the data they find on our sites differs. These distinctions are not going away because agents now have abilities that allow them to act.</p>
+
+            <p>They may, and frequently do, stumble over reading a site (which could also lead to them not being able to complete an action on your site).</p>
+
+            <p>/.well-known/ represents the first divergence from these parallel tracks search engine spiders and AI bots have been running along. This folder has nothing to do with Google and cannot and will not help you with search visibility in any way. BUT, it is the folder that will determine whether an AI agent will ever know that you offer an MCP server, or stand ready to do business with them.</p>
+
+            <h2 id="protocols">The Protocols That Are Found Through /.well-known/</h2>
+
+            <p>The &ldquo;USE&rdquo; layer of the agent readiness framework follows the same five-step business process we have always known. An agent:</p>
+
+            <ul>
+                <li>discovers what your business offers,</li>
+                <li>reads how you describe it,</li>
+                <li>negotiates the terms,</li>
+                <li>transacts the order,</li>
+                <li>and finally, pays.</li>
+            </ul>
+
+            <p>Each step has a protocol (API, MCP, A2A, UCP, AP2) and each protocol is a published artifact your business will either advertise in /.well-known/ or skip. Skip enough of them and the agent skips your business.</p>
+
+            <h3>Discover</h3>
+
+            <p>The first thing an agent has to do is figure out what your business offers. The protocol for that is the API &mdash; Application Programming Interface. An API is how one piece of software asks another, programmatically, what is available: your product catalog, your prices, your inventory, your availability windows, your order status. The vendor publishes a contract &mdash; here is how to ask, here is what you&rsquo;ll get back &mdash; and any agent following the contract can ask. No human in the middle. No phone call. No web form.</p>
+
+            <p>An AI agent that wants to do something with your business is going to look for an API. If you have one published and documented, the agent can act. If you do not, the agent moves on. Most B2B websites either have no public API or have one buried inside developer documentation, set up for partner integrations, never advertised anywhere an agent would think to look. The entry in /.well-known/api-catalog is what tells the agent where to look.</p>
+
+
+
+            <h3>Describe</h3>
+
+            <p>Once an agent has found you, it needs your business to describe itself in a way every agent can parse the same way. That protocol is MCP &mdash; Model Context Protocol. Released by Anthropic in November 2024 and adopted across the industry through 2025, MCP is a standardized format for telling an agent, in machine-readable form, what your business does, what it sells, how to act on its behalf, and what it will allow. An &ldquo;MCP server&rdquo; is a small, scoped service published at a known address that an agent can query when it needs to understand or act on your business. Anthropic&rsquo;s own framing was that MCP is &ldquo;the USB-C of AI integrations&rdquo; &mdash; a single standard plug that replaces the bespoke wiring every integration used to require.</p>
+
+            <p>Technically, MCP is an API. It speaks JSON over standard transport protocols &mdash; same plumbing as any modern API. What makes MCP different is what gets bundled into the standard. A regular API gives an agent endpoints, inputs, outputs, and an authentication scheme; every API publisher writes their own documentation in their own format and an agent confronted with three different APIs has to learn three different voices before it can use any of them. MCP standardizes the surrounding scaffolding. When an agent connects to an MCP server, the server self-describes in a structured way every MCP-aware agent can already parse: here are my <strong>resources</strong> (read-only data &mdash; your catalog, your case studies, your inventory), here are my <strong>tools</strong> (actions the agent can take through me &mdash; place an order, submit an RFP, schedule a meeting), here are my <strong>prompts</strong> (workflow templates I support &mdash; the steps to book a demo), and here are the permissions on each. The agent does not read documentation. It asks.</p>
+
+            <p>One variant worth knowing about: <strong>WebMCP</strong>. WebMCP is a newer proposal that brings MCP capabilities into the browser context. Instead of running a separate MCP server somewhere on the network, a WebMCP-enabled website declares its MCP-style affordances directly in the page itself, so an agent running inside a user&rsquo;s browser (a Chrome AI Mode session, a Copilot extension, an in-browser assistant) can use those capabilities through the browser&rsquo;s own infrastructure. Lower friction for the site owner because there is no separate service to host. Higher friction for agents that are not browser-based. Both variants advertise their existence in /.well-known/, which is why the audit treats them the same way &mdash; the only thing that matters is that the agent can find an MCP-style surface when it goes looking.</p>
+
+            <p><a href="https://www.forrester.com/blogs/predictions-2026-ai-agents-changing-business-models-and-workplace-culture-impact-enterprise-software/" target="_blank" rel="noopener">Forrester predicts 30% of enterprise app vendors will launch their own MCP servers in 2026</a>. If they are right, MCP is on track to become the default machine-readable business description for the agent era.</p>
+
+            <div class="visual-container">
+            <figure>
+            <svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg" role="img"
+             aria-labelledby="protocols-title protocols-desc"
+             style="max-width:100%;height:auto;font-family:Manrope,sans-serif;display:block;margin:0 auto;">
+            <title id="protocols-title">Five protocols, five /.well-known/ entries</title>
+            <desc id="protocols-desc">Horizontal flow showing the five steps an agent performs (Discover, Describe, Negotiate, Transact, Pay), the protocol used at each step (API, MCP, A2A, UCP, AP2), and the /.well-known/ entry that advertises each protocol.</desc>
+
+            <text x="360" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#2C3038">How an Agent Acts on Your Business</text>
+
+            <g transform="translate(20, 65)">
+                <rect x="0" y="0" width="115" height="78" rx="8" fill="#C4956A"/>
+                <text x="57" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="white">Discover</text>
+                <text x="57" y="58" text-anchor="middle" font-size="13" fill="white" opacity="0.9">API</text>
+            </g>
+            <text x="148" y="110" text-anchor="middle" font-size="22" fill="#545B6A">&#8594;</text>
+
+            <g transform="translate(160, 65)">
+                <rect x="0" y="0" width="115" height="78" rx="8" fill="#5B7C5E"/>
+                <text x="57" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="white">Describe</text>
+                <text x="57" y="58" text-anchor="middle" font-size="13" fill="white" opacity="0.9">MCP</text>
+            </g>
+            <text x="288" y="110" text-anchor="middle" font-size="22" fill="#545B6A">&#8594;</text>
+
+            <g transform="translate(300, 65)">
+                <rect x="0" y="0" width="115" height="78" rx="8" fill="#8B9A7E"/>
+                <text x="57" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="white">Negotiate</text>
+                <text x="57" y="58" text-anchor="middle" font-size="13" fill="white" opacity="0.9">A2A</text>
+            </g>
+            <text x="428" y="110" text-anchor="middle" font-size="22" fill="#545B6A">&#8594;</text>
+
+            <g transform="translate(440, 65)">
+                <rect x="0" y="0" width="115" height="78" rx="8" fill="#C25E4A"/>
+                <text x="57" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="white">Transact</text>
+                <text x="57" y="58" text-anchor="middle" font-size="13" fill="white" opacity="0.9">UCP</text>
+            </g>
+            <text x="568" y="110" text-anchor="middle" font-size="22" fill="#545B6A">&#8594;</text>
+
+            <g transform="translate(580, 65)">
+                <rect x="0" y="0" width="115" height="78" rx="8" fill="#6B3D2E"/>
+                <text x="57" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="white">Pay</text>
+                <text x="57" y="58" text-anchor="middle" font-size="13" fill="white" opacity="0.9">AP2</text>
+            </g>
+
+            <line x1="77" y1="148" x2="77" y2="200" stroke="#545B6A" stroke-width="1" opacity="0.5" stroke-dasharray="3,3"/>
+            <line x1="217" y1="148" x2="217" y2="200" stroke="#545B6A" stroke-width="1" opacity="0.5" stroke-dasharray="3,3"/>
+            <line x1="357" y1="148" x2="357" y2="200" stroke="#545B6A" stroke-width="1" opacity="0.5" stroke-dasharray="3,3"/>
+            <line x1="497" y1="148" x2="497" y2="200" stroke="#545B6A" stroke-width="1" opacity="0.5" stroke-dasharray="3,3"/>
+            <line x1="637" y1="148" x2="637" y2="200" stroke="#545B6A" stroke-width="1" opacity="0.5" stroke-dasharray="3,3"/>
+
+            <rect x="20" y="200" width="680" height="80" rx="8" fill="#FAF8F5" stroke="#545B6A" stroke-width="1.5" stroke-dasharray="6,3"/>
+            <text x="40" y="222" font-size="14" font-weight="700" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#2C3038">/.well-known/</text>
+
+            <text x="77" y="256" text-anchor="middle" font-size="11" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#545B6A">api-catalog</text>
+            <text x="217" y="256" text-anchor="middle" font-size="11" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#545B6A">mcp.json</text>
+            <text x="357" y="256" text-anchor="middle" font-size="11" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#545B6A">agent-skills</text>
+            <text x="497" y="256" text-anchor="middle" font-size="11" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#545B6A">ucp</text>
+            <text x="637" y="256" text-anchor="middle" font-size="11" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#545B6A">ap2</text>
+
+            <text x="360" y="305" text-anchor="middle" font-size="13" font-style="italic" fill="#545B6A">Five steps. Five protocols. Five entries in /.well-known/.</text>
+            </svg>
+            <figcaption class="caption">An agent runs through this five-step sequence to do business with you. Each step has a protocol. Each protocol&rsquo;s address is advertised in /.well-known/.</figcaption>
+            </figure>
+            </div>
+
+            <h3>Negotiate</h3>
+
+            <p>When two agents work out a deal &mdash; one representing the buyer, one representing the seller &mdash; they need a shared language for the back-and-forth. That protocol is A2A. Agent-to-agent. <a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" target="_blank" rel="noopener">Google announced the A2A protocol in April 2025</a> specifically for this case, with more than 50 launch partners. The shape it describes is software-mediated negotiation: each agent has a principal (the buyer&rsquo;s company, the seller&rsquo;s company), a scope of authority (what it can commit to without checking back), and a set of conditions it is working toward (price, quantity, delivery terms, escalation triggers). The two agents exchange offers, counter-offers, and clarifying questions until they land on terms both principals&rsquo; agents are authorized to accept.</p>
+
+            <p>In a B2B context, the negotiation is usually multi-round and parameterized. A buyer&rsquo;s procurement agent says: I need 500 units of part number X, delivered to three distribution centers by end of month, payment net-30. A seller&rsquo;s agent responds: available volume is 380 in stock and 120 in transit, delivery to two of three centers by end of month, net-30 acceptable on prior-customer credit terms. Both agents check stored authority levels and return to the table. Eventually they either land on terms or escalate to humans. A2A is the format of that conversation.</p>
+
+            <p>Payment authorization is its own layer &mdash; see Pay below.</p>
+
+            <h3>Transact</h3>
+
+            <p>Once the negotiation lands, the agent moves to place the order. The protocol for that is UCP &mdash; Universal Commerce Protocol. <a href="https://blog.google/products/ads-commerce/agentic-commerce-ai-tools-protocol-retailers-platforms/" target="_blank" rel="noopener">Announced by Google at I/O 2026</a> and developed in collaboration with Shopify, Etsy, Wayfair, Target, Walmart, and more than 20 launch partners, UCP is an open standard for publishing what a business sells, what those products cost, how they can be ordered, and how the order gets fulfilled &mdash; in a format any AI agent can read and act on. Merchants publish their UCP capabilities at /.well-known/ucp. Once published, an agent representing a buyer can build a cart, check pricing, place an order, and receive fulfillment confirmation without the buyer ever loading the merchant&rsquo;s website.</p>
+
+            <p>The consumer launch is Universal Cart &mdash; a cross-merchant cart inside Google Search and the Gemini app, backed by UCP-published merchant data and Google Wallet, rolling out summer 2026. The B2B version is not built into the protocol yet. Negotiated contract pricing, customer-specific catalogs, credit terms, tax exemptions, ERP-tied order workflows &mdash; none of it lives in UCP v1. Forrester projects 20% of B2B sellers will face agent-led quote negotiations by the end of 2026; Google&rsquo;s stated roadmap is to add the B2B primitives over the next 12 to 18 months.</p>
+
+            <p>The B2B sellers who publish their public-facing catalog in UCP-readable form this year will be the ones whose customers&rsquo; procurement agents can find them when the B2B extensions land. The ones who wait will be the ones agents skip past, the way consumer agents already skip past merchants who never connected to Merchant Center.</p>
+
+            <h3>Pay</h3>
+
+            <p>The last step is paying for the order. The protocol for that is AP2 &mdash; Agent Payments Protocol. <a href="https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol" target="_blank" rel="noopener">Announced at Google I/O 2026</a> and developed with Adyen, American Express, Ant International, Coinbase, Etsy, Mastercard, PayPal, Salesforce, ServiceNow, Worldpay, and more than fifty other partners, AP2 is an open protocol for one agent authorizing payment to another in a way every payment processor in the chain can verify. It works through what AP2 calls <strong>Mandates</strong> &mdash; cryptographically-signed digital contracts that record exactly what the user authorized the agent to do, signed in a way every party can verify after the fact. If a buyer&rsquo;s procurement agent commits to a $42,000 purchase order, the Mandate records the buyer, the agent, the authorized ceiling, and the conditions; the seller, the seller&rsquo;s agent, and the payment processor can all verify the Mandate before any money moves.</p>
+
+            <p>AP2 is payment-agnostic &mdash; credit cards, debit cards, stablecoins, real-time bank transfers, all behind the same protocol. The companion on the OpenAI side is ACP (the Agentic Commerce Protocol, co-developed by OpenAI and Stripe in 2025), which solves the same problem with a narrower partner set. Both are consumer-first today; the B2B work &mdash; agent-mediated purchase orders, customer-specific net-30 credit terms, multi-line freight allocations, escrow for contract negotiations &mdash; is the next 12 to 18 months of protocol evolution.</p>
+
+            <p>The pattern to recognize is that payment authorization is moving from &ldquo;the buyer logs in and clicks pay&rdquo; to &ldquo;the buyer&rsquo;s agent authorizes payment with a cryptographic mandate the seller can verify before fulfillment begins.&rdquo; Different signing party. Same legal weight.</p>
+
+            <h2 id="your-decisions">Business Decisions for You to Make</h2>
+
+            <p>Each of those protocol entries carries a business decision you need to make. They&rsquo;re the same sort of decisions you made back in 2010, and the implications they have for your future business growth are also very similar.</p>
+
+                        <div class="visual-container">
+                <figure>
+                    <svg viewBox="0 0 720 540" xmlns="http://www.w3.org/2000/svg" role="img"
+                         aria-labelledby="parallel-title parallel-desc"
+                         style="max-width:100%;height:auto;font-family:Manrope,sans-serif;display:block;margin:0 auto;">
+                        <title id="parallel-title">2010 questions, 2026 questions</title>
+                        <desc id="parallel-desc">Side-by-side comparison of four business decisions made for the public web in 2010 with their parallel decisions for the agent-mediated web in 2026.</desc>
+
+                        <text x="360" y="36" text-anchor="middle" font-size="22" font-weight="700" fill="#2C3038">Same Shape. New Audience.</text>
+
+                        <text x="170" y="90" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="#6B3D2E">2010 QUESTION</text>
+                        <text x="550" y="90" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="#8B9A7E">2026 QUESTION</text>
+                        <line x1="60" y1="100" x2="280" y2="100" stroke="#6B3D2E" stroke-width="1.5" opacity="0.4"/>
+                        <line x1="440" y1="100" x2="660" y2="100" stroke="#8B9A7E" stroke-width="1.5" opacity="0.4"/>
+
+                        <g transform="translate(0, 130)">
+                            <rect x="60" y="0" width="60" height="60" rx="6" fill="#6B3D2E"/>
+                            <text x="90" y="38" text-anchor="middle" font-size="16" font-weight="700" fill="white">2010</text>
+                            <text x="135" y="22" font-size="15" font-weight="600" fill="#2C3038">Publish pricing online?</text>
+                            <text x="135" y="44" font-size="13" fill="#545B6A">Show it, or send a quote?</text>
+                            <text x="360" y="38" text-anchor="middle" font-size="22" fill="#545B6A">&#8596;</text>
+                            <rect x="440" y="0" width="60" height="60" rx="6" fill="#8B9A7E"/>
+                            <text x="470" y="38" text-anchor="middle" font-size="16" font-weight="700" fill="white">2026</text>
+                            <text x="515" y="22" font-size="15" font-weight="600" fill="#2C3038">What does your API return?</text>
+                            <text x="515" y="44" font-size="13" fill="#545B6A">Public catalog, or gated pricing?</text>
+                        </g>
+
+                        <g transform="translate(0, 220)">
+                            <rect x="60" y="0" width="60" height="60" rx="6" fill="#6B3D2E"/>
+                            <text x="90" y="38" text-anchor="middle" font-size="16" font-weight="700" fill="white">2010</text>
+                            <text x="135" y="22" font-size="15" font-weight="600" fill="#2C3038">Transact through the site?</text>
+                            <text x="135" y="44" font-size="13" fill="#545B6A">Or use it as a brochure?</text>
+                            <text x="360" y="38" text-anchor="middle" font-size="22" fill="#545B6A">&#8596;</text>
+                            <rect x="440" y="0" width="60" height="60" rx="6" fill="#8B9A7E"/>
+                            <text x="470" y="38" text-anchor="middle" font-size="16" font-weight="700" fill="white">2026</text>
+                            <text x="515" y="22" font-size="15" font-weight="600" fill="#2C3038">What can agents do for themselves?</text>
+                            <text x="515" y="44" font-size="13" fill="#545B6A">Quote, order, schedule, negotiate?</text>
+                        </g>
+
+                        <g transform="translate(0, 310)">
+                            <rect x="60" y="0" width="60" height="60" rx="6" fill="#6B3D2E"/>
+                            <text x="90" y="38" text-anchor="middle" font-size="16" font-weight="700" fill="white">2010</text>
+                            <text x="135" y="22" font-size="15" font-weight="600" fill="#2C3038">Welcome any visitor?</text>
+                            <text x="135" y="44" font-size="13" fill="#545B6A">No login required to browse.</text>
+                            <text x="360" y="38" text-anchor="middle" font-size="22" fill="#545B6A">&#8596;</text>
+                            <rect x="440" y="0" width="60" height="60" rx="6" fill="#8B9A7E"/>
+                            <text x="470" y="38" text-anchor="middle" font-size="16" font-weight="700" fill="white">2026</text>
+                            <text x="515" y="22" font-size="15" font-weight="600" fill="#2C3038">Which agents do you trust?</text>
+                            <text x="515" y="44" font-size="13" fill="#545B6A">Any agent, or enrolled agents only?</text>
+                        </g>
+
+                        <g transform="translate(0, 400)">
+                            <rect x="60" y="0" width="60" height="60" rx="6" fill="#6B3D2E"/>
+                            <text x="90" y="38" text-anchor="middle" font-size="16" font-weight="700" fill="white">2010</text>
+                            <text x="135" y="22" font-size="15" font-weight="600" fill="#2C3038">Honor a posted price?</text>
+                            <text x="135" y="44" font-size="13" fill="#545B6A">Stand behind what&rsquo;s on the site.</text>
+                            <text x="360" y="38" text-anchor="middle" font-size="22" fill="#545B6A">&#8596;</text>
+                            <rect x="440" y="0" width="60" height="60" rx="6" fill="#8B9A7E"/>
+                            <text x="470" y="38" text-anchor="middle" font-size="16" font-weight="700" fill="white">2026</text>
+                            <text x="515" y="22" font-size="15" font-weight="600" fill="#2C3038">Honor an agent-quoted price?</text>
+                            <text x="515" y="44" font-size="13" fill="#545B6A">Real-time, transactable, signed.</text>
+                        </g>
+
+                        <text x="360" y="510" text-anchor="middle" font-size="13" font-style="italic" fill="#545B6A">The audience changed. The questions didn&rsquo;t.</text>
+                    </svg>
+                    <figcaption class="caption">Each 2010 question maps to a 2026 question with the same shape. The work is recognizing the parallel and deciding before your platform vendors decide for you.</figcaption>
+                </figure>
+            </div>
+
+
+            <h3>What do you let agents see?</h3>
+
+            <p>In 2010, you decided whether to publish your pricing online. In 2026, you decide what your API surface returns. Public catalog or contract-account pricing? Real-time inventory or yesterday&rsquo;s stock? Most B2B sellers don&rsquo;t realize they&rsquo;re making the decision until a competitor&rsquo;s agent surface is already returning data theirs isn&rsquo;t.</p>
+
+            <h3>What do you let agents do?</h3>
+
+            <p>In 2010, the question was whether to transact online or use the site as a brochure. In 2026, it splits into actions. Can an agent place an order? Pull a quote? Open a ticket? Negotiate terms? Your MCP server draws that line &mdash; what an agent can do for itself, and what it has to hand back to a human.</p>
+
+            <h3>Which agents do you trust to do it?</h3>
+
+            <p>A 2010 catalog didn&rsquo;t ask who the visitor was. Anyone with a browser could see the page. Agent-mediated sites are starting to ask. Do you let any agent transact on a customer&rsquo;s behalf, or only agents you&rsquo;ve explicitly enrolled? Both answers are defensible. Not deciding is a decision your CDN will make for you.</p>
+
+            <h3>How do you stand behind a price an agent quoted?</h3>
+
+            <p>In 2010, the question was whether to publish prices at all. In 2026, it&rsquo;s harder: prices on an agent surface are quotable, transactable, and held the moment they&rsquo;re issued. Inventory caching that was fine for a web visitor isn&rsquo;t fine for a buyer&rsquo;s agent. You decide what the contract is. Your eCommerce platform has to honor it.</p>
+
+            <h2 id="vendor-decisions">Business Decisions Made for You</h2>
+
+            <p>Many companies made a near-fatal decision in 2010 that took them years or decades to overcome: they thought they could wait and see how the marketplace developed. Instead of being able to delay a decision, they had those decisions made for them by platform vendors who won&rsquo;t wait for them.</p>
+
+            <p>Amazon decided pricing visibility for thousands of brands by listing the product anyway. Google decided what your business was called by parsing your site and your reviews. Yelp decided what a customer&rsquo;s first impression of your restaurant looked like. None of those vendors asked permission. They published, and the businesses that had not decided in time inherited whatever the platform vendor chose.</p>
+
+            <p>The same thing is starting at the agent layer. Three places to watch.</p>
+
+            <h3>Your CDN</h3>
+
+            <p>Cloudflare, Akamai, AWS CloudFront, Fastly, and the smaller players have all shipped bot-management consoles. The default settings are vendor-chosen. If your marketing team doesn&rsquo;t make the call, your DevOps team picks whichever default keeps the security team happy &mdash; increasingly, that default is &ldquo;block agents we don&rsquo;t recognize.&rdquo; The decision gets made daily. The marketer&rsquo;s name is rarely on it.</p>
+
+            <h3>Your AI platform vendor</h3>
+
+            <p>When a buyer&rsquo;s ChatGPT, Gemini, or Claude decides what to recommend or how to act, the platform vendor is making the editorial call. OpenAI&rsquo;s Apps SDK launched with seven first-wave partners. Every company not on that list is competing for later inclusion on terms the platform vendor sets. If your industry&rsquo;s first wave is named, your runway is shorter than the priority table suggests.</p>
+
+            <h3>Your eCommerce or commerce platform</h3>
+
+            <p>Shopify, BigCommerce, and the major B2B commerce platforms are publishing agent-readiness defaults &mdash; what they expose, what they hold back, how prices flow. If you&rsquo;re on one of those platforms, you&rsquo;ve already inherited a posture you didn&rsquo;t choose. The work is finding out what that posture is and deciding whether it&rsquo;s the one you want.</p>
+
+            <p>The agent economy is not slowing down. <a href="https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027" target="_blank" rel="noopener">Gartner projects 15% of day-to-day work decisions will be made autonomously by 2028</a>, up from effectively zero in 2024. The hype around the loud first wave is over-bought. The shift underneath it is not. The businesses that come through this loop with a working agent surface are the ones who decide early.</p>
+
+            <h2 id="foundation">Decide Before Your Defaults Decide for You</h2>
+
+            <p>The platform vendors are publishing defaults daily. Some will work for your business. Many won&rsquo;t. The ones that don&rsquo;t, you&rsquo;ll inherit anyway if you wait.</p>
+
+            <p>The 2010 question &mdash; whether to put your catalog online, publish prices, transact through the website &mdash; got harder for every business that delayed. The shape of the 2026 decision is the same. The deadline is shorter. The opportunity to move first is still open, because most of your competitors haven&rsquo;t decided either.</p>
+
+            <p>Build the foundation: findable, understood, trusted. Then publish the action surfaces. Either you make the call, or the platform vendors make it for you.</p>
+
+            <p><strong>Decide.</strong></p>
+
+            <!-- CTA Box -->
+            <div class="cta-box">
+                <p><strong>The Agent Readiness Audit Grades Every Gap Across All Four Layers.</strong></p>
+                <p><em>You now know what Find, Understand, Trust, and Use require. The next question is which gaps are hurting you most &mdash; and which fixes will move citations and conversions fastest. That&rsquo;s what the Audit is built to answer, with a scored diagnostic and a prioritized roadmap your team can act on.</em></p>
+                <p><a href="/audit">Get your Agent Readiness Audit &rarr;</a></p>
+            </div>
+
+            <!-- Author Bio -->
+            <div class="author-bio">
+                <div class="author-avatar">LM</div>
+                <div class="author-info">
+                    <h3>Liz Micik</h3>
+                    <p class="author-title">SEO &amp; Content Strategist | Agent Readiness Consultant</p>
+                    <p>Liz has spent 28 years helping companies navigate structural shifts in how the web works. From the rise of Google to mobile-first indexing to today's agent-mediated web, she works with B2B firms &mdash; especially industrial distribution and professional services &mdash; to ensure they're findable, understood, trusted, and usable by AI agents.</p>
+                </div>
+            </div>
+
+            <!-- Related Posts -->
+            <div class="related-posts">
+                <h2>More in This Series</h2>
+                <div class="related-posts-grid">
+                    <div class="post-card fade-in">
+                        <a href="/blog/ai-trust-brand-authority">
+                        <div class="post-card-image" style="background: linear-gradient(135deg, #6B3D2E 0%, #C4956A 100%);">
+                            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
+                                <rect width="280" height="180" fill="none"/>
+                                <text x="140" y="75" text-anchor="middle" font-family="Manrope, sans-serif" font-size="32" font-weight="800" fill="rgba(255,255,255,0.4)">TRUST</text>
+                                <text x="140" y="115" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)">Layer 3: Authority &amp; Confidence</text>
+                            </svg>
+                        </div>
+                        <div class="post-card-content">
+                            <p class="post-card-meta">Previous</p>
+                            <h3>AI Cites Your Competitors. Not You. Here's Why.</h3>
+                        </div>
+                        </a>
+                    </div>
+
+                    <div class="post-card fade-in">
+                        <a href="/blog/life-beyond-google">
+                        <div class="post-card-image" style="background: linear-gradient(135deg, #8B9A7E 0%, #2C3038 100%);">
+                            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
+                                <rect width="280" height="180" fill="none"/>
+                                <text x="140" y="75" text-anchor="middle" font-family="Manrope, sans-serif" font-size="32" font-weight="800" fill="rgba(255,255,255,0.4)">USE</text>
+                                <text x="140" y="115" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)">Layer 4: Action &amp; Agent Surface</text>
+                            </svg>
+                        </div>
+                        <div class="post-card-content">
+                            <p class="post-card-meta">This Post</p>
+                            <h3>Life Beyond Google: The USE Layer of Agent Readiness</h3>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="final-cta">
+        <h2>You&rsquo;re findable, understood, and trusted. Can AI agents act on you?</h2>
+        <p>The Signal Check shows you what AI platforms say about your business across all four layers. The full Audit diagnoses every gap &mdash; what&rsquo;s working, what&rsquo;s missing, and what to build next.</p>
+        <div class="cta-buttons">
+            <a href="/audit" class="cta-button">Agent Readiness Audit</a>
+            <a href="/signal-check" class="cta-button copper">Free Signal Check</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <p style="margin-bottom:0.75rem;">Questions or project inquiries: <a href="mailto:info@lizmicik.com">info@lizmicik.com</a></p>
+        <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+        <p style="margin-top:0.5rem;"><a href="/privacy-policy">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms">Terms of Use</a></p>
+    </footer>
+
+    <script>
+        // Cookie Banner & GA4
+        (function() {
+            var COOKIE_KEY = 'lizmicik-cookie-consent';
+            var GA_ID = 'G-B9S40S2SKG';
+
+            if (!localStorage.getItem(COOKIE_KEY)) {
+                var banner = document.createElement('div');
+                banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#2C3038;color:white;padding:1.5rem 2rem;text-align:center;z-index:999;font-size:0.9rem;';
+                banner.innerHTML = '<p style="margin-bottom:1rem;">We use analytics to understand how you use our site and improve it.</p><button id="accept-cookies" style="background:#5B7C5E;color:white;border:none;padding:0.75rem 1.5rem;border-radius:0.5rem;cursor:pointer;font-weight:600;margin-right:1rem;">Accept</button><button id="decline-cookies" style="background:transparent;color:white;border:1px solid white;padding:0.75rem 1.5rem;border-radius:0.5rem;cursor:pointer;font-weight:600;">Decline</button>';
+                document.body.appendChild(banner);
+                document.getElementById('accept-cookies').addEventListener('click', function() { localStorage.setItem(COOKIE_KEY, 'true'); loadGA(); banner.remove(); });
+                document.getElementById('decline-cookies').addEventListener('click', function() { localStorage.setItem(COOKIE_KEY, 'false'); banner.remove(); });
+            } else if (localStorage.getItem(COOKIE_KEY) === 'true') { loadGA(); }
+
+            function loadGA() {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', GA_ID);
+                var script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+                document.head.appendChild(script);
+            }
+        })();
+
+        // Mobile Navigation Toggle
+        var navToggle = document.querySelector('.nav-toggle');
+        var navLinks = document.querySelector('.nav-links');
+        navToggle.addEventListener('click', function() {
+            navToggle.classList.toggle('open');
+            navLinks.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+        });
+
+        // Hide nav on scroll down, show on scroll up
+        var lastScrollTop = 0;
+        var nav = document.querySelector('.nav');
+        window.addEventListener('scroll', function() {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) { nav.classList.add('nav-hidden'); }
+            else { nav.classList.remove('nav-hidden'); }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                var href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    var target = document.querySelector(href);
+                    var offsetTop = target.offsetTop - 80;
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                    if (navLinks.classList.contains('active')) { navToggle.classList.remove('open'); navLinks.classList.remove('active'); }
+                }
+            });
+        });
+
+        // TOC active state tracking
+        var tocLinks = document.querySelectorAll('.toc-list a');
+        var sections = [];
+        tocLinks.forEach(function(link) {
+            var id = link.getAttribute('href').substring(1);
+            var section = document.getElementById(id);
+            if (section) sections.push({ el: section, link: link });
+        });
+
+        function updateTOC() {
+            var scrollPos = window.scrollY + 120;
+            var current = null;
+            sections.forEach(function(s) {
+                if (s.el.offsetTop <= scrollPos) current = s;
+            });
+            tocLinks.forEach(function(l) { l.classList.remove('active'); });
+            if (current) current.link.classList.add('active');
+        }
+        window.addEventListener('scroll', updateTOC);
+        updateTOC();
+
+        // IntersectionObserver for fade-in animations
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; observer.unobserve(entry.target); }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+            el.style.opacity = '0'; el.style.transform = 'translateY(10px)'; el.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; observer.observe(el);
+        });
+    </script>
+</body>
+</html>
