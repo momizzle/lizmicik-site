@@ -450,8 +450,8 @@
         }
         .framework-layers {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
             max-width: var(--wide-width);
             margin: 0 auto;
         }
@@ -471,6 +471,7 @@
         .layer--find { border-top-color: var(--accent-amber); }
         .layer--understand { border-top-color: var(--accent-teal); }
         .layer--trust { border-top-color: var(--hero-brown); }
+        .layer--use { border-top-color: var(--accent-blue); }
         .layer h3 {
             font-family: var(--font-heading);
             color: var(--text-primary);
@@ -505,6 +506,7 @@
         .layer--find .layer-link { color: var(--accent-amber); }
         .layer--understand .layer-link { color: var(--accent-teal); }
         .layer--trust .layer-link { color: var(--hero-brown); }
+        .layer--use .layer-link { color: var(--accent-blue); }
         .layer-link:hover { color: #3D6B4E; }
 
         /* ========================================
@@ -653,8 +655,13 @@
            ======================================== */
         @media (max-width: 900px) {
             .framework-layers {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
                 gap: 1.25rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .framework-layers {
+                grid-template-columns: 1fr;
             }
         }
         /* ========================================
@@ -1051,7 +1058,7 @@
     <section id="framework" class="section framework" aria-labelledby="framework-heading">
         <div class="section-inner">
             <h2 id="framework-heading" class="fade-in">The Framework</h2>
-            <p class="framework-intro fade-in">I evaluate readiness for the agentic web across three layers:</p>
+            <p class="framework-intro fade-in">I evaluate readiness for the agentic web across four layers:</p>
             <div class="framework-layers">
                 <div class="layer layer--find fade-in">
                     <h3>Find</h3>
@@ -1070,6 +1077,12 @@
                     <p class="layer-question">Can agents trust you?</p>
                     <p>The authority layer. Will you earn the citations, or be ignored?</p>
                     <a href="/blog/ai-trust-brand-authority" class="layer-link">Learn more &rarr;</a>
+                </div>
+                <div class="layer layer--use fade-in">
+                    <h3>Use</h3>
+                    <p class="layer-question">Can agents do anything with you?</p>
+                    <p>The capability layer. Will agents be able to act on your business, or just describe it?</p>
+                    <a href="/blog/life-beyond-google" class="layer-link">Learn more &rarr;</a>
                 </div>
             </div>
         </div>

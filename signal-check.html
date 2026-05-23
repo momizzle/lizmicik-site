@@ -1034,11 +1034,11 @@
       if (totalFacts === 0) {
         body.innerHTML = `Across all four AI platforms, <strong>not a single verifiable fact</strong> was cited about your business. No founding year, no team size, no named clients, no awards. Every response was generated from vibes &mdash; plausible-sounding descriptions with nothing behind them. That means when someone asks an AI to recommend a <strong>${escapeHtml(primaryKeyword)}</strong> provider, AI has nothing concrete to point to. The full Agent Readiness Audit identifies exactly which signals are missing and what to fix first.`;
       } else if (totalScore < 0) {
-        body.innerHTML = `AI agents produced <strong>more hedges than facts</strong> about your business. That means the dominant signal is uncertainty &mdash; "appears to be," "limited information," "I'd recommend checking." When AI agents aren't sure about you, they don't recommend you. The full Agent Readiness Audit maps exactly where these gaps are across all three layers: Find, Understand, and Trust.`;
+        body.innerHTML = `AI agents produced <strong>more hedges than facts</strong> about your business. That means the dominant signal is uncertainty &mdash; "appears to be," "limited information," "I'd recommend checking." When AI agents aren't sure about you, they don't recommend you. The full Agent Readiness Audit maps exactly where these gaps are across all four layers: Find, Understand, Trust, and Use.`;
       } else if (totalFacts <= 4) {
-        body.innerHTML = `AI agents found <strong>a few facts</strong> about your business, but the coverage is thin and inconsistent across platforms. Some know more than others. The full Agent Readiness Audit identifies which signals are reaching which platforms &mdash; and which aren't &mdash; across 29 diagnostic dimensions.`;
+        body.innerHTML = `AI agents found <strong>a few facts</strong> about your business, but the coverage is thin and inconsistent across platforms. Some know more than others. The full Agent Readiness Audit identifies which signals are reaching which platforms &mdash; and which aren't &mdash; across all four layers of the framework.`;
       } else {
-        body.innerHTML = `AI agents can cite <strong>real facts</strong> about your business &mdash; that's better than most. But are they citing the <em>right</em> facts? The ones that win recommendations? The full Agent Readiness Audit goes beyond what AI knows to test whether it trusts you enough to recommend you, across 29 dimensions and all three layers.`;
+        body.innerHTML = `AI agents can cite <strong>real facts</strong> about your business &mdash; that's better than most. But are they citing the <em>right</em> facts? The ones that win recommendations? The full Agent Readiness Audit goes beyond what AI knows to test whether it trusts you enough to recommend you, across all four layers of the framework.`;
       }
     }
 

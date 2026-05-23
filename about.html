@@ -51,7 +51,7 @@
                     "https://medium.com/@lizmicik"
                 ],
                 "jobTitle": "SEO Strategist & AI Visibility Consultant",
-                "description": "28-year veteran of SEO and content strategy specializing in website structure, now focused on the agentic web transition. Creator of the Find / Understand / Trust framework for diagnosing website readiness for AI agents.",
+                "description": "28-year veteran of SEO and content strategy specializing in website structure, now focused on the agentic web transition. Creator of the Find / Understand / Trust / Use framework for diagnosing website readiness for AI agents.",
                 "knowsAbout": [
                     "Search Engine Optimization",
                     "AI Visibility",
@@ -70,7 +70,7 @@
                     "Content Migration",
                     "International SEO",
                     "Conversion Rate Optimization",
-                    "Find Understand Trust Framework",
+                    "Find Understand Trust Use Framework",
                     "Adobe Experience Manager",
                     "Sitecore",
                     "WordPress",
@@ -150,7 +150,7 @@
                     {
                         "@type": "Offer",
                         "name": "Agent Readiness Audit",
-                        "description": "31-point diagnostic across the Find, Understand, and Trust layers, evaluating how well AI agents can find, understand, and trust your business online.",
+                        "description": "Diagnostic across the Find, Understand, Trust, and Use layers, evaluating how well AI agents can find, understand, trust, and act on your business online.",
                         "url": "https://lizmicik.com/audit",
                         "price": "1500",
                         "priceCurrency": "USD"
@@ -168,8 +168,8 @@
             {
                 "@type": "DefinedTermSet",
                 "@id": "https://lizmicik.com/#framework",
-                "name": "The Find / Understand / Trust framework",
-                "description": "A three-layer diagnostic framework for evaluating website readiness for the agentic web.",
+                "name": "The Find / Understand / Trust / Use framework",
+                "description": "A four-layer diagnostic framework for evaluating website readiness for the agentic web.",
                 "creator": { "@id": "https://lizmicik.com/#person" },
                 "url": "https://lizmicik.com/about",
                 "hasDefinedTerm": [
@@ -193,6 +193,13 @@
                         "description": "The authority layer. Will AI cite you over your competitors?",
                         "inDefinedTermSet": "https://lizmicik.com/#framework",
                         "url": "https://lizmicik.com/blog/ai-trust-brand-authority"
+                    },
+                    {
+                        "@type": "DefinedTerm",
+                        "name": "Use",
+                        "description": "The capability layer. Can AI act on your business, or just describe it?",
+                        "inDefinedTermSet": "https://lizmicik.com/#framework",
+                        "url": "https://lizmicik.com/blog/life-beyond-google"
                     }
                 ]
             }
@@ -208,6 +215,7 @@
             --accent-amber: #C4956A;
             --accent-teal: #5B7C5E;
             --accent-sage: #8B9A7E;
+            --hero-brown: #6B3D2E;
             --text-primary: #2C3038;
             --text-secondary: #545B6A;
             --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -478,7 +486,8 @@
         }
         .framework-layer-about--find { border-left-color: var(--accent-amber); }
         .framework-layer-about--understand { border-left-color: var(--accent-teal); }
-        .framework-layer-about--trust { border-left-color: var(--accent-sage); }
+        .framework-layer-about--trust { border-left-color: var(--hero-brown); }
+        .framework-layer-about--use { border-left-color: var(--accent-sage); }
         .framework-layer-about h3 {
             font-size: 1.1rem;
             font-weight: 700;
@@ -780,11 +789,11 @@
         </div>
     </section>
 
-    <!-- The Find / Understand / Trust framework -->
+    <!-- The Find / Understand / Trust / Use framework -->
     <section class="about-block about-block--white" aria-labelledby="framework-heading-about">
         <div class="about-block-inner">
-            <h2 id="framework-heading-about">The Find / Understand / Trust framework</h2>
-            <p class="about-block-intro">I use a three-layer framework to diagnose websites for the agentic web. Each layer asks a different question, and each one can stop an AI agent cold on its own.</p>
+            <h2 id="framework-heading-about">The Find / Understand / Trust / Use framework</h2>
+            <p class="about-block-intro">I use a four-layer framework to diagnose websites for the agentic web. Each layer asks a different question, and each one can stop an AI agent cold on its own.</p>
             <div class="framework-layers-about">
                 <div class="framework-layer-about framework-layer-about--find">
                     <h3>Find &mdash; Can AI access your site?</h3>
@@ -800,6 +809,11 @@
                     <h3>Trust &mdash; Will AI cite you over your competitors?</h3>
                     <p>The authority layer: consistent entity signals across the open web, corroborating sources, fresh and definitive content. If AI doesn't trust you, it cites someone else.</p>
                     <a href="/blog/ai-trust-brand-authority">Read the TRUST layer &rarr;</a>
+                </div>
+                <div class="framework-layer-about framework-layer-about--use">
+                    <h3>Use &mdash; Can AI act on your business, or just describe it?</h3>
+                    <p>The capability layer: agent-actionable surfaces, /.well-known/ endpoints, MCP servers, A2A and payments protocols. If AI can find, understand, and trust you but can't do anything with you, the deal goes to the company whose website knows how to negotiate.</p>
+                    <a href="/blog/life-beyond-google">Read the USE layer &rarr;</a>
                 </div>
             </div>
         </div>
@@ -829,7 +843,7 @@
                 </li>
                 <li>
                     <strong><a href="/audit">The Agent Readiness Audit</a></strong> &nbsp;·&nbsp; $1,500
-                    <p>A 31-point diagnostic across the three layers of the framework: can AI find you, can it understand you, can it trust you. Delivered as an interactive HTML report plus a PDF executive summary.</p>
+                    <p>A diagnostic across the four layers of the framework: can AI find you, can it understand you, can it trust you, and can it do anything with you. Delivered as an interactive HTML report plus a PDF executive summary.</p>
                 </li>
                 <li>
                     <strong><a href="/roadmap">The Agent Readiness Roadmap</a></strong> &nbsp;·&nbsp; Starting at $3,500
