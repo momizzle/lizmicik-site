@@ -450,9 +450,9 @@
         }
         .framework-layers {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.25rem;
-            max-width: var(--wide-width);
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: var(--content-width);
             margin: 0 auto;
         }
         .layer {
@@ -653,15 +653,10 @@
         /* ========================================
            Framework responsive
            ======================================== */
-        @media (max-width: 900px) {
-            .framework-layers {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.25rem;
-            }
-        }
         @media (max-width: 600px) {
             .framework-layers {
                 grid-template-columns: 1fr;
+                gap: 1.25rem;
             }
         }
         /* ========================================
@@ -1093,7 +1088,7 @@
             <div class="working-cards fade-in">
                 <div class="working-card working-card--audit">
                     <h3>The Agent Readiness Audit</h3>
-                    <p>A 31-point diagnostic across four major AI platforms. Covers technical infrastructure, content structure, and entity authority, so you see exactly where brand value is leaking out of AI answers. <a href="/audit">Learn more</a></p>
+                    <p>A diagnostic across four major AI platforms. Covers technical infrastructure, content structure, entity authority, and agent-action surfaces, so you see exactly where brand value is leaking out of AI answers. <a href="/audit">Learn more</a></p>
                 </div>
                 <div class="working-card working-card--signal">
                     <h3>The Signal Check</h3>
