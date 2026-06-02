@@ -12,7 +12,7 @@
   <!-- End Google tag -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agent Readiness Audit - A 30-Point Diagnostic for the Agentic Web | Liz Micik</title>
+  <title>Agent Readiness Audit - Your Diagnostic for the Agentic Web | Liz Micik</title>
   <meta name="description" content="Find out exactly where your website breaks down for AI agents. The Agent Readiness Audit scores your site across all four layers of the framework: Find, Understand, Trust, and Use. $1,500 one-time diagnostic.">
   <link rel="canonical" href="https://lizmicik.com/audit">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -699,7 +699,7 @@
         <h2 class="section-heading">AI Agents Don't Read Like Humans Do</h2>
         <div class="section-body">
           <p>AI agents, language models, and answer engines are replacing the browser as the primary way businesses get discovered and evaluated. Your customers are asking ChatGPT or Claude before they Google.</p>
-          <p>Before any of those agents and engines will recommend your site, they must be able to:</p>
+          <p>Before any of those agents and engines will recommend your site &mdash; or do business through it &mdash; they must be able to:</p>
         </div>
         <div class="shift-stats">
           <div class="stat-card">
@@ -714,9 +714,13 @@
             <div class="stat-number">Trust it</div>
             <div class="stat-label">Can you be the authority they recommend?</div>
           </div>
+          <div class="stat-card">
+            <div class="stat-number">Act on it</div>
+            <div class="stat-label">Can agents actually do business with you?</div>
+          </div>
         </div>
         <div class="section-body" style="margin-top: 28px;">
-          <p>Only if your website passes all three of these readiness levels can it participate in an Internet economy projected to reach more than $1 trillion in commerce orchestrated by AI agents by 2030.</p>
+          <p>Only if your website passes all four of these readiness levels can it participate in an Internet economy projected to reach more than $1 trillion in commerce orchestrated by AI agents by 2030.</p>
         </div>
       </div>
     </section>
@@ -934,6 +938,37 @@
             </div>
           </div>
 
+          <!-- USE -->
+          <div class="preview-item">
+            <button class="preview-toggle" onclick="togglePreview(this)">
+              <div class="preview-toggle-left">
+                <div>
+                  <span class="layer-label">Use</span>
+                  <h4>Can agents act on your business, not just read it?</h4>
+                </div>
+              </div>
+              <span class="toggle-icon">+</span>
+            </button>
+            <div class="preview-body">
+              <div class="preview-finding">
+                <span class="preview-severity high">High</span>
+                <h5>No Agent-Actionable Surfaces Published</h5>
+                <p class="preview-finding-desc">Agent-actionable surfaces at /.well-known/ tell AI agents what your site can do, not just what it says. Without them, an agent can describe your business in an answer but cannot transact with it, even when the buyer is ready to act.</p>
+                <div class="preview-whatwefound">
+                  <strong>What we found</strong>
+                  None of the expected agent-discovery files are published: /.well-known/api-catalog, /.well-known/mcp/server-card.json, /.well-known/agent-skills/index.json. The site has API documentation pages indexed for humans, but agents querying the standardized discovery paths get a 404. When an agent decides to take action on behalf of a buyer, it routes to a competitor that publishes the right contracts.
+                </div>
+                <details class="preview-techdetail">
+                  <summary>Technical detail</summary>
+                  <div class="preview-techdetail-body">
+                    <p>Three agent-discovery surfaces evaluated: API Catalog (RFC 9727) at <code>/.well-known/api-catalog</code>, MCP Server Card at <code>/.well-known/mcp/server-card.json</code>, and Agent Skills Index at <code>/.well-known/agent-skills/index.json</code>. None present on this site. OAuth discovery (RFC 8414 / RFC 9728) also absent, which rules out authenticated agent flows.</p>
+                  </div>
+                </details>
+                <div class="preview-rec"><strong>Recommendation:</strong> Publish at minimum <code>/.well-known/api-catalog</code> pointing to your public API spec. Add an MCP server card when ready to expose agent-callable tools. Add OAuth discovery when authenticated agent flows are scoped.</div>
+              </div>
+            </div>
+          </div>
+
           <p class="preview-note">Each audit includes scored findings across all four layers, plus a prioritized action plan.</p>
         </div>
 
@@ -966,17 +1001,17 @@
             </div>
           </li>
           <li>
-            <div class="deliverable-icon">&#x1F5FA;</div>
-            <div class="deliverable-content">
-              <h4>Prioritized Action Roadmap</h4>
-              <p>Not just "what's wrong" but "what to fix first and why." Actions ranked by impact and effort, so you know where to spend your first dollar and your first hour.</p>
-            </div>
-          </li>
-          <li>
             <div class="deliverable-icon">&#x1F50D;</div>
             <div class="deliverable-content">
               <h4>Live AI Agent Test Results</h4>
               <p>Real queries run against ChatGPT, Claude, Perplexity, and Gemini about your business. You'll see exactly what AI agents say about you today, the foundation for measuring improvement.</p>
+            </div>
+          </li>
+          <li>
+            <div class="deliverable-icon">&#x26A1;</div>
+            <div class="deliverable-content">
+              <h4>Quick Fixes &amp; Critical Issues</h4>
+              <p>A short, prioritized punch list pulled from your findings: the top items your team can ship this week, plus the one or two critical issues that matter most. A clear starting point without wading back through the full report.</p>
             </div>
           </li>
           <li>
@@ -1046,8 +1081,8 @@
           <ul class="pricing-includes">
             <li>Executive summary for leadership</li>
             <li>Scored diagnostic report across all four layers of the framework</li>
-            <li>Prioritized action roadmap ranked by impact and effort</li>
             <li>Live AI agent test results (ChatGPT, Claude, Perplexity, Gemini)</li>
+            <li>Quick fixes and critical issues &mdash; the top items to ship this week, plus what matters most</li>
             <li>Personalized video walkthrough from Liz</li>
           </ul>
           <a href="#apply" class="cta-btn" style="width: 100%; text-align: center;">Book Your Audit</a>
@@ -1080,7 +1115,7 @@
               <span class="faq-toggle">+</span>
             </button>
             <div class="faq-answer">
-              <p>That's what the Agent Readiness Roadmap is for. The Audit tells you what's broken across all four layers. The Roadmap gives you the paint-by-numbers fix: a page template inventory, schema type mapping per template, semantic HTML blueprints, and sample schema built against your real content. Your internal team or agency executes from the blueprint. Scoped per engagement, $3,500 to $15,000.</p>
+              <p>That's what the Agent Readiness Roadmap is for. The Audit tells you what's broken across all four layers. The Roadmap gives you the paint-by-numbers fix: a page template inventory, schema type mapping per template, semantic HTML blueprints, and sample schema built against your real content. Your internal team or agency executes from the blueprint. Scoped per engagement, $4,500 to $10,000.</p>
             </div>
           </div>
 
