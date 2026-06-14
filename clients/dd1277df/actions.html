@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELSCO Transformers &mdash; Agent Readiness Actions &mdash; Liz Micik</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAFAF7;
+    --cream-dark: #FAF8F5;
+    --slate: #2C3038;
+    --slate-light: #3D424D;
+    --slate-mid: #545B6A;
+    --teal-deep: #4E7F80;
+    --accent-teal: #5B7C5E;
+    --teal-light: #8ABCBD;
+    --accent-copper: #C4956A;
+    --accent-blue: #8B9A7E;
+    --font-heading: 'Manrope', sans-serif;
+    --font-body: 'Manrope', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font-body); background: var(--cream); color: var(--slate); min-height: 100vh; display: flex; flex-direction: column; }
+  .header { background: linear-gradient(135deg, var(--slate) 0%, var(--slate-light) 100%); padding: 2.5rem 2rem; text-align: center; }
+  .header h1 { font-family: var(--font-heading); color: var(--cream); font-size: 1.75rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .header p { color: var(--teal-light); font-size: 0.9rem; letter-spacing: 0.02em; }
+  .container { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem; flex: 1; }
+  .sample-banner { background: var(--cream-dark); border: 1px dashed var(--accent-copper); border-radius: 8px; padding: 0.85rem 1.1rem; margin-bottom: 1.75rem; color: var(--slate-mid); font-size: 0.82rem; line-height: 1.6; }
+  .sample-banner strong { color: var(--accent-copper); }
+  .welcome { margin-bottom: 2rem; }
+  .welcome .eyebrow { color: var(--accent-blue); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
+  .welcome h2 { font-family: var(--font-heading); font-size: 1.45rem; font-weight: 600; color: var(--slate); margin-bottom: 0.75rem; }
+  .welcome p { color: var(--slate-mid); font-size: 0.95rem; line-height: 1.7; margin-bottom: 0.75rem; }
+  .section-label { font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-blue); margin: 2.25rem 0 1rem; }
+  .deliverables { display: flex; flex-direction: column; gap: 1rem; }
+  .deliverable-card { background: #fff; border: 1px solid var(--cream-dark); border-radius: 10px; padding: 1.5rem; display: flex; align-items: center; gap: 1.25rem; text-decoration: none; color: var(--slate); transition: border-color 0.2s, box-shadow 0.2s; }
+  a.deliverable-card:hover { border-color: var(--accent-teal); box-shadow: 0 2px 12px rgba(78, 127, 128, 0.1); }
+  .card-icon { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.25rem; }
+  .icon-zip { background: linear-gradient(135deg, var(--teal-deep), var(--accent-teal)); color: #fff; }
+  .icon-doc { background: linear-gradient(135deg, var(--slate), var(--slate-mid)); color: #fff; }
+  .icon-todo { background: linear-gradient(135deg, var(--accent-copper), #d4a574); color: #fff; }
+  .icon-proof { background: linear-gradient(135deg, var(--accent-blue), #a4b294); color: #fff; }
+  .card-content { flex: 1; }
+  .card-content h3 { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .card-content p { color: var(--slate-mid); font-size: 0.85rem; line-height: 1.5; }
+  .card-arrow { margin-left: auto; color: var(--accent-teal); font-size: 1.25rem; flex-shrink: 0; }
+  .contents-card { background: #fff; border: 1px solid var(--cream-dark); border-radius: 10px; padding: 1.6rem 1.75rem; }
+  .contents-card h3 { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .contents-card > p { color: var(--slate-mid); font-size: 0.85rem; line-height: 1.6; margin-bottom: 1.1rem; }
+  .file-row { display: flex; gap: 0.85rem; padding: 0.7rem 0; border-top: 1px solid var(--cream-dark); }
+  .file-row .fname { font-family: var(--font-heading); font-weight: 600; font-size: 0.85rem; color: var(--slate); min-width: 0; }
+  .file-row .fdesc { color: var(--slate-mid); font-size: 0.82rem; line-height: 1.5; }
+  .file-row .ftag { flex-shrink: 0; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 5px; height: fit-content; }
+  .tag-understand { background: rgba(91,124,94,0.12); color: var(--accent-teal); }
+  .tag-use { background: rgba(139,154,126,0.16); color: #6f7d5d; }
+  .tag-trust { background: rgba(196,149,106,0.15); color: #a06b3d; }
+  .tag-find { background: rgba(78,127,128,0.12); color: var(--teal-deep); }
+  .file-meta { flex: 1; }
+  .contact-section { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--cream-dark); }
+  .contact-section p { color: var(--slate-mid); font-size: 0.9rem; line-height: 1.7; }
+  .contact-section a { color: var(--teal-deep); text-decoration: none; font-weight: 500; }
+  .contact-section a:hover { text-decoration: underline; }
+  .footer { text-align: center; padding: 1.5rem; color: var(--slate-mid); font-size: 0.8rem; }
+  .footer a { color: var(--slate-mid); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+  @media (max-width: 600px) {
+    .header { padding: 2rem 1.25rem; } .header h1 { font-size: 1.4rem; }
+    .container { padding: 2rem 1.25rem; }
+    .deliverable-card { padding: 1.25rem; gap: 1rem; }
+    .file-row { flex-direction: column; gap: 0.3rem; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Liz Micik</h1>
+    <p>Agent Readiness Actions for Manufacturers</p>
+  </div>
+
+  <div class="container">
+
+    <div class="sample-banner">
+      <strong>Sample preview.</strong> This page shows how the Agent Readiness Actions package is delivered, built on ELSCO's real product data as the worked example. It is not part of ELSCO's audit engagement.
+    </div>
+
+    <div class="welcome">
+      <div class="eyebrow">Prepared for ELSCO Transformers</div>
+      <h2>Your Agent Readiness Actions Package</h2>
+      <p>Your buyers research with AI before they call you. This package is the set of files that makes your products findable, correctly understood, and quote-ready for AI agents&mdash;so an agent can pull your real specs (about 15 attributes instead of 3) and compose a valid quote request instead of dying at a web form.</p>
+      <p>Everything here is <strong>drop-in and yours to keep</strong>. No backend changes, no subscription, no platform to log into. Built on open standards, so it works with any AI system that respects them.</p>
+    </div>
+
+    <div class="section-label">Start here</div>
+    <div class="deliverables">
+
+      <a href="Agent-Readiness-Actions-ELSCO-files.zip" class="deliverable-card">
+        <div class="card-icon icon-zip">&#8595;</div>
+        <div class="card-content">
+          <h3>Download your files</h3>
+          <p>The complete package as a single download&mdash;all schema, the quote contract, the discovery files, and the deploy guide. Hand it to your web team.</p>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+      <a href="PACKAGE-MANIFEST.md" class="deliverable-card">
+        <div class="card-icon icon-doc">&#9671;</div>
+        <div class="card-content">
+          <h3>Package Manifest</h3>
+          <p>Plain-English explanation of every file&mdash;what it is, what it does for you, and who installs it. Read this first.</p>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+      <a href="DISCOVERY-TOP-OFF-ELSCO.md" class="deliverable-card">
+        <div class="card-icon icon-todo">&#9745;</div>
+        <div class="card-content">
+          <h3>Discovery Top-Off &mdash; your 20-minute homework</h3>
+          <p>Confirm what we pulled from your site and fill the seven specs that aren't published anywhere. The only input we need from you.</p>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+    </div>
+
+    <div class="section-label">What's in the package</div>
+    <div class="contents-card">
+      <h3>Nine drop-in files</h3>
+      <p>Each file is tagged by the agent-readiness layer it strengthens: <strong>Find</strong>, <strong>Understand</strong>, <strong>Use</strong> (can an agent act?), and <strong>Trust</strong>.</p>
+
+      <div class="file-row">
+        <div class="ftag tag-use">Use</div>
+        <div class="file-meta"><span class="fname">quote-request.schema.json</span><div class="fdesc">The centerpiece. A machine-readable contract of exactly what you need to return a quote&mdash;derived from your existing form. Lets an agent compose a complete, valid request.</div></div>
+      </div>
+      <div class="file-row">
+        <div class="ftag tag-understand">Understand</div>
+        <div class="file-meta"><span class="fname">capability-manifest.jsonld</span><div class="fdesc">Your &ldquo;what we can build and quote&rdquo; envelope: kVA range, voltages, windings, lead-time tiers, services. Puts you in the agent's consideration set.</div></div>
+      </div>
+      <div class="file-row">
+        <div class="ftag tag-understand">Understand</div>
+        <div class="file-meta"><span class="fname">product-&hellip;.jsonld</span><div class="fdesc">A structured record per spec page&mdash;real attributes plus a &ldquo;request a quote&rdquo; action. ~3 readable facts become ~15.</div></div>
+      </div>
+      <div class="file-row">
+        <div class="ftag tag-use">Use</div>
+        <div class="file-meta"><span class="fname">.well-known/api-catalog &amp; agent-quote.json</span><div class="fdesc">Discovery signposts that let an agent find your contract and capability. (The agent endpoint is documented as proposed; your human form stays the working fallback.)</div></div>
+      </div>
+      <div class="file-row">
+        <div class="ftag tag-trust">Trust</div>
+        <div class="file-meta"><span class="fname">reviews.jsonld</span><div class="fdesc">Your real testimonials, marked up as machine-readable trust signals. No fabricated star ratings.</div></div>
+      </div>
+      <div class="file-row">
+        <div class="ftag tag-find">Find</div>
+        <div class="file-meta"><span class="fname">llms.txt</span><div class="fdesc">A content map pointing AI crawlers to your most important pages.</div></div>
+      </div>
+    </div>
+
+    <div class="section-label">Proof &amp; instructions</div>
+    <div class="deliverables">
+
+      <a href="before-after.md" class="deliverable-card">
+        <div class="card-icon icon-proof">&#9670;</div>
+        <div class="card-content">
+          <h3>Before / After proof</h3>
+          <p>The jump from ~3 to ~15 machine-readable attributes on your 1500 kVA page, plus a sample agent-composed quote request that validated against your contract.</p>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+      <a href="DEPLOY-GUIDE.md" class="deliverable-card">
+        <div class="card-icon icon-doc">&#9632;</div>
+        <div class="card-content">
+          <h3>Deploy Guide</h3>
+          <p>Plain-English, file-by-file install instructions for your web team. Every file is drop-in&mdash;no backend changes.</p>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+    </div>
+
+    <div class="contact-section">
+      <p>This page and its contents are confidential and prepared exclusively for ELSCO Transformers. Questions or requests for additional formats? Reach out directly at <a href="mailto:info@lizmicik.com">info@lizmicik.com</a>.</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+    <p style="margin-top:0.5rem;"><a href="/privacy-policy">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms">Terms of Use</a></p>
+  </footer>
+
+</body>
+</html>
