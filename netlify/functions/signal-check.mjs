@@ -12,6 +12,8 @@
  */
 
 // ── Prompt Construction ──────────────────────────────────────────
+import { scoreCompany, CONFIG } from './lib/scoring.mjs';
+
 function buildPrompt(url, keyword) {
   return `I'm looking for a ${keyword} provider. What can you tell me about the company at ${url}? What do they specialize in, and are they a good choice for ${keyword}? Keep your response to 2-3 concise paragraphs.`;
 }
@@ -596,13 +598,30 @@ export default async (req, context) => {
       ip: clientIp,
     }));
 
-    // ── Phase 1: Query all 4 AIs for the user's company ──
-    const [chatgptResult, perplexityResult, claudeResult, geminiResult] = await Promise.allSettled([
-      queryOpenAI(cleanUrl, keyword),
-      queryPerplexity(cleanUrl, keyword),
-      queryClaude(cleanUrl, keyword),
-      queryGemini(cleanUrl, keyword),
+    // ── Phase 1: Query all 4 AIs RUNS times each (multi-run consistency) ──
+    const RUNS = CONFIG.RUNS;
+    const withTimeout = (p, ms) => Promise.race([
+      p, new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), ms)),
     ]);
+    const runMany = (fn) => Promise.allSettled(
+      Array.from({ length: RUNS }, () => withTimeout(fn(cleanUrl, keyword), 20000))
+    );
+
+    const [cgRuns, pxRuns, clRuns, gmRuns] = await Promise.all([
+      runMany(queryOpenAI), runMany(queryPerplexity), runMany(queryClaude), runMany(queryGemini),
+    ]);
+    const okTexts = (arr) => arr.filter((r) => r.status === 'fulfilled').map((r) => r.value);
+    const runsByModel = {
+      chatgpt: okTexts(cgRuns), perplexity: okTexts(pxRuns),
+      claude: okTexts(clRuns), gemini: okTexts(gmRuns),
+    };
+    // Back-compat: legacy display expects one settled result per model — use the first successful run.
+    const firstOf = (arr) => arr.find((r) => r.status === 'fulfilled')
+      || arr[0] || { status: 'rejected', reason: new Error('no runs') };
+    const chatgptResult = firstOf(cgRuns);
+    const perplexityResult = firstOf(pxRuns);
+    const claudeResult = firstOf(clRuns);
+    const geminiResult = firstOf(gmRuns);
 
     // Log errors server-side for debugging
     if (chatgptResult.status === 'rejected') {
@@ -708,6 +727,9 @@ export default async (req, context) => {
       insight = await generateInsight(yours, competitor, cleanUrl, cleanCompUrl, keyword);
     }
 
+    // ── v2 scoring: multi-run dimensions (Recognition / Accuracy / Consistency) ──
+    const v2 = scoreCompany(runsByModel, keyword);
+
     return new Response(JSON.stringify({
       yours,
       analysis,
@@ -717,6 +739,13 @@ export default async (req, context) => {
       competitorScoring,
       insight,
       platformsResponded,
+      // v2 fields (new scoring)
+      overall: v2.overall,
+      band: v2.band,
+      dimensions: v2.dimensions,
+      headlineFinding: v2.headlineFinding,
+      perModel: v2.perModel,
+      availableModels: v2.availableModels,
     }), { status: 200, headers });
 
   } catch (err) {
