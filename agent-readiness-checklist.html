@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A free, interactive checklist: can AI agents find, understand, trust, and act on your website? Score your site across the four layers in two minutes - no email required.">
+    <meta name="theme-color" content="#FAF8F5">
+    <title>Agent-Readiness Checklist - Can AI Agents Use Your Website? | Liz Micik</title>
+    <link rel="canonical" href="https://lizmicik.com/agent-readiness-checklist">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="The Agent-Readiness Checklist - Can AI agents use your website?">
+    <meta property="og:description" content="Score your site across four layers - Find, Understand, Trust, Use - in two minutes. Free, interactive, no email gate.">
+    <meta property="og:url" content="https://lizmicik.com/agent-readiness-checklist">
+    <meta property="og:site_name" content="Liz Micik">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B9S40S2SKG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-B9S40S2SKG');
+    </script>
+
+    <style>
+        :root {
+            --cream: #FAFAF7; --cream-dark: #FAF8F5; --slate: #2C3038; --slate-light: #3D424D; --slate-mid: #545B6A;
+            --accent-amber: #C4956A; --accent-teal: #5B7C5E; --accent-blue: #8B9A7E; --accent-copper: #5B7C5E; --accent-brown: #6B3D2E;
+            --text-primary: #2C3038; --text-secondary: #545B6A; --text-light: #F2EDE7; --text-light-secondary: #B8B5B0;
+            --find:#5B7C5E; --understand:#C4956A; --trust:#6B3D2E; --use:#8B9A7E; --arc-line:rgba(44,48,56,0.10);
+            --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --wide-width: 960px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background-color: var(--cream); color: var(--text-primary); line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+        nav.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(250, 250, 247, 0.7); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(44, 48, 56, 0.1); transition: opacity 0.3s ease, transform 0.3s ease; }
+        nav.nav.nav-hidden { opacity: 0; pointer-events: none; transform: translateY(-100%); }
+        .nav-inner { max-width: var(--wide-width); margin: 0 auto; padding: 1rem clamp(1rem, 5vw, 2rem); display: flex; justify-content: space-between; align-items: center; }
+        .nav-name { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); }
+        .nav-name a { color: inherit; text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+        .nav-links a { color: var(--text-primary); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s ease; }
+        .nav-links a:hover { color: var(--accent-copper); }
+        .nav-links .nav-cta { background-color: var(--accent-copper); color: var(--cream) !important; padding: 0.6rem 1.4rem; border-radius: 0.375rem; font-weight: 600; transition: background-color 0.2s ease; }
+        .nav-links .nav-cta:hover { background-color: var(--accent-amber); }
+        .nav-item.has-dropdown { position: relative; }
+        .nav-caret { font-size: 0.7em; margin-left: 0.15rem; transition: transform 0.2s ease; display: inline-block; }
+        .nav-item.has-dropdown:hover .nav-caret, .nav-item.has-dropdown:focus-within .nav-caret { transform: rotate(180deg); }
+        .nav-dropdown { display: none; position: absolute; top: 100%; left: 0; min-width: 260px; margin: 0; padding: 0.45rem 0; list-style: none; background: rgba(250, 250, 247, 0.98); backdrop-filter: blur(12px); border: 1px solid rgba(44, 48, 56, 0.06); border-radius: 6px; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08); z-index: 100; }
+        .nav-item.has-dropdown:hover .nav-dropdown, .nav-item.has-dropdown:focus-within .nav-dropdown { display: block; }
+        .nav-dropdown li { padding: 0; }
+        .nav-dropdown a { display: block; padding: 0.55rem 1.2rem; white-space: nowrap; font-size: 0.9rem !important; }
+        .nav-dropdown a:hover { background: rgba(44, 48, 56, 0.04); }
+        .nav-toggle { display: none; flex-direction: column; background: none; border: none; cursor: pointer; gap: 0.4rem; padding: 0.5rem; }
+        .nav-toggle span { width: 1.5rem; height: 0.15rem; background-color: var(--text-primary); border-radius: 0.1rem; transition: all 0.3s ease; }
+        .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: rotate(45deg) translate(0.6rem, 0.6rem); }
+        .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+        .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: rotate(-45deg) translate(0.6rem, -0.6rem); }
+        @media (max-width: 768px) {
+            .nav-toggle { display: flex; }
+            .nav-links { position: absolute; top: 100%; left: 0; right: 0; background-color: var(--cream); border-bottom: 1px solid rgba(44, 48, 56, 0.1); flex-direction: column; gap: 1rem; padding: 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+            .nav-links.nav-open { max-height: 500px; }
+            .nav-links a { font-size: 1rem; }
+            .nav-links .nav-cta { display: block; text-align: center; }
+            .nav-dropdown { display: block; position: static; min-width: 0; padding: 0.25rem 0 0 1rem; background: transparent; backdrop-filter: none; border: none; box-shadow: none; }
+            .nav-caret { display: none; }
+        }
+        main { padding-top: 5rem; }
+
+        /* ===== CHECKLIST ===== */
+        .arc-wrap { max-width: 760px; margin: 0 auto; padding: clamp(2.5rem,6vw,4rem) clamp(1rem,5vw,2rem) 5rem; }
+        .arc-hook { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--understand); margin-bottom: 14px; }
+        .arc-wrap h1 { font-size: clamp(2rem,5vw,2.6rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; color: var(--text-primary); }
+        .arc-lede { font-size: 1.08rem; color: var(--slate-mid); max-width: 640px; line-height: 1.7; }
+
+        .arc-scorebar { position: sticky; top: 64px; z-index: 50; background: rgba(250,250,247,0.94); backdrop-filter: blur(6px); border-bottom: 1px solid var(--arc-line); margin: 32px 0 0; padding: 18px 4px; display: flex; align-items: center; gap: 20px; }
+        .arc-ring { position: relative; width: 84px; height: 84px; flex-shrink: 0; }
+        .arc-ring svg { transform: rotate(-90deg); }
+        .arc-ring .arc-track { stroke: rgba(44,48,56,0.08); }
+        .arc-ring .arc-fill { stroke: var(--understand); stroke-linecap: round; transition: stroke-dashoffset 0.5s ease, stroke 0.4s; }
+        .arc-ring .arc-num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 800; }
+        .arc-meta { flex: 1; }
+        .arc-meta .arc-label { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+        .arc-pips { display: flex; gap: 8px; flex-wrap: wrap; }
+        .arc-pip { flex: 1; min-width: 80px; }
+        .arc-pip .arc-pname { font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--slate-mid); margin-bottom: 4px; }
+        .arc-pip .arc-pbar { height: 6px; border-radius: 3px; background: rgba(44,48,56,0.08); overflow: hidden; }
+        .arc-pip .arc-pfill { height: 100%; width: 0; border-radius: 3px; transition: width 0.45s ease; }
+
+        .arc-layer { margin-top: 34px; border: 1px solid var(--arc-line); border-left: 4px solid var(--lc); border-radius: 0 12px 12px 0; background: #fff; padding: 24px 26px; }
+        .arc-layer-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+        .arc-chip { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; color: #fff; background: var(--lc); padding: 4px 11px; border-radius: 20px; }
+        .arc-layer-head h2 { font-size: 1.12rem; font-weight: 700; color: var(--text-primary); margin: 0; }
+        .arc-q { padding: 16px 0; border-top: 1px solid var(--arc-line); }
+        .arc-q:first-of-type { border-top: none; padding-top: 0; }
+        .arc-q p { font-size: 0.98rem; margin-bottom: 12px; }
+        .arc-opts { display: flex; gap: 8px; flex-wrap: wrap; }
+        .arc-opt { font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; cursor: pointer; padding: 8px 18px; border-radius: 22px; border: 1.5px solid var(--arc-line); background: #fff; color: var(--slate-mid); transition: all 0.15s; }
+        .arc-opt:hover { border-color: var(--lc); color: var(--slate); }
+        .arc-opt.sel-yes { background: var(--lc); border-color: var(--lc); color: #fff; }
+        .arc-opt.sel-no { background: var(--slate); border-color: var(--slate); color: #fff; }
+        .arc-opt.sel-uns { background: #EDEAE3; border-color: #D8D3CA; color: var(--slate); }
+
+        .arc-result { margin-top: 36px; border-radius: 14px; background: var(--slate); color: #F2EDE7; padding: 36px 32px; text-align: center; }
+        .arc-result .arc-rtitle { font-size: 1.45rem; font-weight: 800; margin-bottom: 10px; }
+        .arc-result .arc-rbody { font-size: 0.98rem; color: #C9C5BF; max-width: 540px; margin: 0 auto 24px; line-height: 1.7; }
+        .arc-cta { display: inline-block; background: var(--accent-amber); color: #2C3038 !important; font-weight: 700; font-size: 0.95rem; padding: 14px 28px; border-radius: 8px; text-decoration: none; transition: background 0.2s; }
+        .arc-cta:hover { background: #d3a87f; }
+        .arc-reset { display: block; margin: 16px auto 0; background: none; border: none; color: #9b978f; font-size: 0.8rem; cursor: pointer; text-decoration: underline; font-family: var(--font-body); }
+        @media (max-width:560px){ .arc-pip{min-width:64px;} }
+
+        footer.footer { display:none; }
+        .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background-color: var(--slate); color: var(--text-light); padding: 1.5rem; z-index: 999; }
+        .cookie-banner-inner { max-width: var(--wide-width); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; }
+        .cookie-banner p { font-size: 0.9rem; line-height: 1.6; flex: 1; min-width: 300px; }
+        .cookie-banner a { color: var(--accent-amber); text-decoration: none; }
+        .cookie-accept { background-color: var(--accent-copper); color: var(--cream); border: none; padding: 0.6rem 1.4rem; border-radius: 0.375rem; font-family: var(--font-body); font-weight: 600; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
+        .cookie-accept:hover { background-color: var(--accent-amber); }
+        @media (max-width: 640px){ .cookie-banner-inner { flex-direction: column; align-items: stretch; } .cookie-accept { width: 100%; } }
+    </style>
+</head>
+<body>
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <span class="nav-name"><a href="/" style="color:inherit;text-decoration:none;">Liz Micik</a></span>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+            <ul class="nav-links">
+                <li><a href="/about">About</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li class="nav-item has-dropdown">
+                    <a href="/audit" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Services <span class="nav-caret">&#9662;</span></a>
+                    <ul class="nav-dropdown">
+                        <li><a href="/audit">Agent Readiness Audit</a></li>
+                        <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+                        <li><a href="/actions">Agent Readiness Actions</a></li>
+                    </ul>
+                </li>
+                <li><a href="/signal-check" class="nav-cta">Free Signal Check</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+      <div class="arc-wrap">
+        <div class="arc-hook">Life beyond Google</div>
+        <h1>Can AI agents actually use your website?</h1>
+        <p class="arc-lede">Google just told site owners not to "blindly block" AI agents - accessibility to them is the new basic. So can the agents acting for your customers find, understand, trust, and act on your site? Tap through twelve quick questions.</p>
+
+        <div class="arc-scorebar">
+          <div class="arc-ring">
+            <svg width="84" height="84" viewBox="0 0 84 84" aria-hidden="true">
+              <circle class="arc-track" cx="42" cy="42" r="36" fill="none" stroke-width="8"></circle>
+              <circle id="arc-ringfill" class="arc-fill" cx="42" cy="42" r="36" fill="none" stroke-width="8" stroke-dasharray="226.19" stroke-dashoffset="226.19"></circle>
+            </svg>
+            <div class="arc-num" id="arc-pct">0%</div>
+          </div>
+          <div class="arc-meta">
+            <div class="arc-label" id="arc-rlabel">Answer to see your readiness</div>
+            <div class="arc-pips" id="arc-pips"></div>
+          </div>
+        </div>
+
+        <div id="arc-layers"></div>
+
+        <div class="arc-result" id="arc-result">
+          <div class="arc-rtitle" id="arc-rtitle">Your readiness, in two minutes</div>
+          <p class="arc-rbody" id="arc-rbody">Answer the questions above and you'll see roughly how ready your site is for the agent web. Then get the real number - what ChatGPT, Perplexity, Claude, and Gemini actually say about you.</p>
+          <a class="arc-cta" href="/signal-check">Run the free Signal Check &rarr;</a>
+          <button class="arc-reset" id="arc-reset">Start over</button>
+        </div>
+      </div>
+    </main>
+
+    <style>
+.lmf-footer{background:#2C3038;color:#F2EDE7;padding:56px 24px 28px;font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+.lmf-inner{max-width:960px;margin:0 auto;}
+.lmf-top{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,0.10);}
+.lmf-brand{max-width:300px;}
+.lmf-brand .lmf-wordmark{font-size:1.2rem;font-weight:700;letter-spacing:-0.01em;margin-bottom:10px;color:#F2EDE7;}
+.lmf-brand p{font-size:0.88rem;color:#B8B5B0;line-height:1.6;margin:0;}
+.lmf-cols{display:flex;flex-wrap:wrap;gap:48px;}
+.lmf-col h4{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.10em;color:#C4956A;margin:0 0 14px;}
+.lmf-col ul{list-style:none;margin:0;padding:0;}
+.lmf-col li{margin-bottom:9px;}
+.lmf-col a{color:#F2EDE7;text-decoration:none;font-size:0.9rem;transition:color 0.18s;}
+.lmf-col a:hover{color:#C4956A;}
+.lmf-bottom{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding-top:22px;}
+.lmf-bottom p{font-size:0.8rem;color:#B8B5B0;margin:0;}
+.lmf-bottom .lmf-legal a{color:#B8B5B0;text-decoration:none;font-size:0.8rem;}
+.lmf-bottom .lmf-legal a:hover{color:#C4956A;}
+.lmf-bottom .lmf-legal span{color:rgba(255,255,255,0.25);margin:0 8px;}
+@media (max-width:640px){.lmf-top{flex-direction:column;gap:32px;}.lmf-cols{gap:32px;}.lmf-bottom{flex-direction:column;align-items:flex-start;}}
+</style>
+<footer class="lmf-footer" role="contentinfo">
+  <div class="lmf-inner">
+    <div class="lmf-top">
+      <div class="lmf-brand">
+        <div class="lmf-wordmark">Liz Micik</div>
+        <p>Helping businesses transition human websites to usable, agentic websites.</p>
+      </div>
+      <div class="lmf-cols">
+        <div class="lmf-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="/signal-check">Signal Check</a></li>
+            <li><a href="/audit">Agent Readiness Audit</a></li>
+            <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+            <li><a href="/actions">Agent Readiness Actions</a></li>
+          </ul>
+        </div>
+        <div class="lmf-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/about">About</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/resources">Resources</a></li>
+          </ul>
+        </div>
+        <div class="lmf-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="mailto:info@lizmicik.com">info@lizmicik.com</a></li>
+            <li><a href="https://www.linkedin.com/in/lizmicik" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://google.com/preferences/source?q=lizmicik.com" target="_blank" rel="noopener">Add as a preferred source</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="lmf-bottom">
+      <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+      <p class="lmf-legal">
+        <a href="/privacy-policy">Privacy Policy</a>
+        <span>&middot;</span>
+        <a href="/terms">Terms of Use</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+    <div id="cookie-banner" class="cookie-banner" role="alert" aria-label="Cookie notice" style="display:none;">
+        <div class="cookie-banner-inner">
+            <p>This site uses cookies to analyze traffic and improve your experience. By continuing to browse, you accept the use of cookies. <a href="/privacy-policy">Privacy Policy</a></p>
+            <button id="cookie-accept" class="cookie-accept" aria-label="Accept cookies">Got it</button>
+        </div>
+    </div>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Agent-Readiness Checklist",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "url": "https://lizmicik.com/agent-readiness-checklist",
+        "description": "A free, interactive checklist that scores whether AI agents can find, understand, trust, and act on your website across four layers.",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "author": { "@type": "Person", "name": "Liz Micik", "url": "https://lizmicik.com/about" }
+    }
+    </script>
+
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        navToggle.addEventListener('click', () => {
+            const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', !isExpanded);
+            navLinks.classList.toggle('nav-open');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => { navToggle.setAttribute('aria-expanded', 'false'); navLinks.classList.remove('nav-open'); });
+        });
+        let lastScrollTop = 0;
+        const nav = document.querySelector('nav.nav');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > 100) { if (scrollTop > lastScrollTop) { nav.classList.add('nav-hidden'); } else { nav.classList.remove('nav-hidden'); } }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+        const cookieBanner = document.getElementById('cookie-banner');
+        const cookieAccept = document.getElementById('cookie-accept');
+        const cookieKey = 'lizmicik_cookie_consent';
+        if (!localStorage.getItem(cookieKey)) { cookieBanner.style.display = 'block'; }
+        cookieAccept.addEventListener('click', () => { localStorage.setItem(cookieKey, 'accepted'); cookieBanner.style.display = 'none'; });
+    </script>
+
+    <script>
+    const ARC_DATA = [
+      {id:"find", name:"Find", color:"var(--find)", sub:"Can machines reach and navigate your site?", qs:[
+        "Are AI crawlers like GPTBot, ClaudeBot, and PerplexityBot allowed to reach your site, rather than blocked in your robots.txt?",
+        "Does your most important content load in the page itself, without waiting for JavaScript to run? (Most AI crawlers don't.)",
+        "Could someone - or something - land on any single page and tell what it's about from the headings alone?"]},
+      {id:"understand", name:"Understand", color:"var(--understand)", sub:"Can machines interpret what you do?", qs:[
+        "Is what you sell, who you serve, and where you operate stated in plain words, not left to a clever tagline?",
+        "Do your products, services, and key facts live in clear, labeled form, instead of buried in images or one dense paragraph?",
+        "If an AI summarized your business in one sentence right now, would it get it right?"]},
+      {id:"trust", name:"Trust", color:"var(--trust)", sub:"Can machines verify who you are?", qs:[
+        "Does your name, address, and contact info match everywhere - your site, Google, LinkedIn, directories?",
+        "Can a machine confirm your credentials or experience from your site, or does it have to take your word for it?",
+        "Do third-party sources - reviews, listings, mentions - tell the same story your site does?"]},
+      {id:"use", name:"Use", color:"var(--use)", sub:"Can machines act on your site, not just read it?", qs:[
+        "If an agent wanted to request a quote or start an order for a customer, could it - or does every path dead-end at a human-only form?",
+        "Are your key actions available in a structured way a machine could actually complete?",
+        "Have you published anything an agent can discover and act on, or is your front door still humans-only?"]}
+    ];
+    const arcAnswers = {};
+    const arcLayersEl = document.getElementById('arc-layers');
+    const arcPipsEl = document.getElementById('arc-pips');
+    ARC_DATA.forEach((L) => {
+      const sec = document.createElement('div');
+      sec.className = 'arc-layer';
+      sec.style.setProperty('--lc', L.color);
+      let html = `<div class="arc-layer-head"><span class="arc-chip">${L.name}</span><h2>${L.sub}</h2></div>`;
+      L.qs.forEach((q, qi) => {
+        const qid = L.id+'-'+qi;
+        html += `<div class="arc-q"><p>${q}</p><div class="arc-opts">
+          <button class="arc-opt" data-q="${qid}" data-l="${L.id}" data-v="yes">Yes</button>
+          <button class="arc-opt" data-q="${qid}" data-l="${L.id}" data-v="no">No</button>
+          <button class="arc-opt" data-q="${qid}" data-l="${L.id}" data-v="uns">Not sure</button></div></div>`;
+      });
+      sec.innerHTML = html;
+      arcLayersEl.appendChild(sec);
+      const pip = document.createElement('div');
+      pip.className = 'arc-pip';
+      pip.innerHTML = `<div class="arc-pname">${L.name}</div><div class="arc-pbar"><div class="arc-pfill" id="arc-pf-${L.id}" style="background:${L.color}"></div></div>`;
+      arcPipsEl.appendChild(pip);
+    });
+    const ARC_CIRC = 226.19;
+    function arcUpdate(){
+      let yes = 0, total = 0;
+      ARC_DATA.forEach(L=>{
+        let ly=0, lt=L.qs.length;
+        L.qs.forEach((q,qi)=>{ total++; if(arcAnswers[L.id+'-'+qi]==='yes'){yes++; ly++;} });
+        document.getElementById('arc-pf-'+L.id).style.width = (ly/lt*100)+'%';
+      });
+      const answered = Object.keys(arcAnswers).length;
+      const pct = Math.round(yes/total*100);
+      document.getElementById('arc-pct').textContent = pct+'%';
+      const fill = document.getElementById('arc-ringfill');
+      fill.style.strokeDashoffset = ARC_CIRC*(1-yes/total);
+      fill.style.stroke = pct>=67?'var(--use)':pct>=34?'var(--understand)':'#C4956A';
+      const rlabel = document.getElementById('arc-rlabel');
+      if(answered===0){ rlabel.textContent='Answer to see your readiness'; }
+      else if(answered<total){ rlabel.textContent=`${answered} of ${total} answered`; }
+      else { rlabel.textContent='All twelve answered - see your result below'; }
+      const rt=document.getElementById('arc-rtitle'), rb=document.getElementById('arc-rbody');
+      if(answered<total){
+        rt.textContent='Your readiness, in two minutes';
+        rb.textContent="Answer every question to see roughly how ready your site is - then get the real number from a live Signal Check.";
+      } else if(pct<=33){
+        rt.textContent='Largely invisible to AI agents';
+        rb.textContent="That's not a failure - it's the opportunity. Most sites score here. Every 'no' is a place an agent gives up and picks a competitor it can read. The fix usually isn't a rebuild.";
+      } else if(pct<=66){
+        rt.textContent='A partial foundation, with clear gaps';
+        rb.textContent="You're readable in places and invisible in others. Closing the gaps - clear, complete, consistent, then capable - is what gets the agents acting for your buyers all the way through.";
+      } else if(pct<=91){
+        rt.textContent='Strong - a few gaps from agent-ready';
+        rb.textContent="You're ahead of almost everyone. A handful of fixes stand between you and a site agents can fully act on. Worth confirming exactly where you stand.";
+      } else {
+        rt.textContent='Agent-ready on the basics';
+        rb.textContent="Impressive - and rare. Now verify it against what the AI platforms actually say about you, where the gut check and reality sometimes part ways.";
+      }
+    }
+    document.addEventListener('click', e=>{
+      const b = e.target.closest('.arc-opt');
+      if(!b) return;
+      arcAnswers[b.dataset.q]=b.dataset.v;
+      b.parentElement.querySelectorAll('.arc-opt').forEach(o=>o.classList.remove('sel-yes','sel-no','sel-uns'));
+      b.classList.add('sel-'+b.dataset.v);
+      arcUpdate();
+    });
+    document.getElementById('arc-reset').addEventListener('click', ()=>{
+      for(const k in arcAnswers) delete arcAnswers[k];
+      document.querySelectorAll('.arc-opt').forEach(o=>o.classList.remove('sel-yes','sel-no','sel-uns'));
+      arcUpdate();
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+    arcUpdate();
+    </script>
+</body>
+</html>
