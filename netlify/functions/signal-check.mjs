@@ -615,13 +615,20 @@ export default async (req, context) => {
       chatgpt: okTexts(cgRuns), perplexity: okTexts(pxRuns),
       claude: okTexts(clRuns), gemini: okTexts(gmRuns),
     };
-    // Back-compat: legacy display expects one settled result per model — use the first successful run.
-    const firstOf = (arr) => arr.find((r) => r.status === 'fulfilled')
-      || arr[0] || { status: 'rejected', reason: new Error('no runs') };
-    const chatgptResult = firstOf(cgRuns);
-    const perplexityResult = firstOf(pxRuns);
-    const claudeResult = firstOf(clRuns);
-    const geminiResult = firstOf(gmRuns);
+    // Multi-run robustness: show the REPRESENTATIVE run per model (median fact-vs-vibe score),
+    // so the displayed answer is the typical one across tries, not a lucky/unlucky single draw.
+    const representativeOf = (arr) => {
+      const ok = arr.filter((r) => r.status === 'fulfilled');
+      if (ok.length === 0) return arr[0] || { status: 'rejected', reason: new Error('no runs') };
+      const ranked = ok
+        .map((r) => { const sc = scoreFactsVsVibes(r.value); return { r, score: sc.facts - sc.vibes }; })
+        .sort((a, b) => a.score - b.score);
+      return ranked[Math.floor((ranked.length - 1) / 2)].r; // median run
+    };
+    const chatgptResult = representativeOf(cgRuns);
+    const perplexityResult = representativeOf(pxRuns);
+    const claudeResult = representativeOf(clRuns);
+    const geminiResult = representativeOf(gmRuns);
 
     // Log errors server-side for debugging
     if (chatgptResult.status === 'rejected') {
