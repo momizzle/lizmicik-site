@@ -143,11 +143,18 @@ sgh.com, structural engineering building science"></textarea>
   }
 
   function downloadCSV(){
-    const head=['url','keyword','overall','recognition','accuracy','consistency','band','headline','error'];
+    const MODELS=['chatgpt','perplexity','claude','gemini'];
+    const PM=['available','recognized','agrees','agreeRate','specificity','nonRecogFrac','withinModel','facts','vibes'];
+    const head=['url','keyword','overall','recognition','accuracy','consistency','band','headline','error']
+      .concat(MODELS.flatMap(m=>PM.map(k=>m+'_'+k)));
     const rows=results.map(r=>{
       const d=r.data||{}; const dim=d.dimensions||{}; const b=d.band||{};
       const esc=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"';
-      return [r.firm.url, r.firm.keyword, d.overall??'', dim.recognition??'', dim.accuracy??'', dim.consistency??'', b.label??'', d.headlineFinding??'', r.error??''].map(esc).join(',');
+      const base=[r.firm.url, r.firm.keyword, d.overall??'', dim.recognition??'', dim.accuracy??'', dim.consistency??'', b.label??'', d.headlineFinding??'', r.error??''];
+      const pm=(d.perModel)||[];
+      const byId=Object.fromEntries(pm.map(x=>[x.id,x]));
+      MODELS.forEach(m=>{ const x=byId[m]||{}; PM.forEach(k=>base.push(x[k]??'')); });
+      return base.map(esc).join(',');
     });
     const csv=head.join(',')+'\n'+rows.join('\n');
     const blob=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a');
