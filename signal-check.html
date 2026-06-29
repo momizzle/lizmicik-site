@@ -797,15 +797,70 @@
 
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2026 <a href="/">Liz Micik</a> &middot; lizmicik.com</p>
-      <div class="footer-links">
-        <a href="/privacy-policy">Privacy Policy</a>
-        <a href="/terms">Terms of Use</a>
+  <style>
+.lmf-footer{background:#2C3038;color:#F2EDE7;padding:56px 24px 28px;font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+.lmf-inner{max-width:960px;margin:0 auto;}
+.lmf-top{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,0.10);}
+.lmf-brand{max-width:300px;}
+.lmf-brand .lmf-wordmark{font-size:1.2rem;font-weight:700;letter-spacing:-0.01em;margin-bottom:10px;color:#F2EDE7;}
+.lmf-brand p{font-size:0.88rem;color:#B8B5B0;line-height:1.6;margin:0;}
+.lmf-cols{display:flex;flex-wrap:wrap;gap:48px;}
+.lmf-col h4{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.10em;color:#C4956A;margin:0 0 14px;}
+.lmf-col ul{list-style:none;margin:0;padding:0;}
+.lmf-col li{margin-bottom:9px;}
+.lmf-col a{color:#F2EDE7;text-decoration:none;font-size:0.9rem;transition:color 0.18s;}
+.lmf-col a:hover{color:#C4956A;}
+.lmf-bottom{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding-top:22px;}
+.lmf-bottom p{font-size:0.8rem;color:#B8B5B0;margin:0;}
+.lmf-bottom .lmf-legal a{color:#B8B5B0;text-decoration:none;font-size:0.8rem;}
+.lmf-bottom .lmf-legal a:hover{color:#C4956A;}
+.lmf-bottom .lmf-legal span{color:rgba(255,255,255,0.25);margin:0 8px;}
+@media (max-width:640px){.lmf-top{flex-direction:column;gap:32px;}.lmf-cols{gap:32px;}.lmf-bottom{flex-direction:column;align-items:flex-start;}}
+</style>
+<footer class="lmf-footer" role="contentinfo">
+  <div class="lmf-inner">
+    <div class="lmf-top">
+      <div class="lmf-brand">
+        <div class="lmf-wordmark">Liz Micik</div>
+        <p>Helping businesses transition human websites to usable, agentic websites.</p>
+      </div>
+      <div class="lmf-cols">
+        <div class="lmf-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="/signal-check">Signal Check</a></li>
+            <li><a href="/audit">Agent Readiness Audit</a></li>
+            <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+            <li><a href="/actions">Agent Readiness Actions</a></li>
+          </ul>
+        </div>
+        <div class="lmf-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/about">About</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/resources">Resources</a></li>
+          </ul>
+        </div>
+        <div class="lmf-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="mailto:info@lizmicik.com">info@lizmicik.com</a></li>
+            <li><a href="https://www.linkedin.com/in/lizmicik" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
       </div>
     </div>
-  </footer>
+    <div class="lmf-bottom">
+      <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+      <p class="lmf-legal">
+        <a href="/privacy-policy">Privacy Policy</a>
+        <span>&middot;</span>
+        <a href="/terms">Terms of Use</a>
+      </p>
+    </div>
+  </div>
+</footer>
 
   <!-- ============================================================
        COOKIE BANNER
