@@ -1,0 +1,89 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Roadmap Kickoff Intake — Manufacturers</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet"><style>
+:root{
+ --cream:#FAFAF7;--cream-dark:#FAF8F5;--card:#FFFFFF;--slate:#2C3038;--slate-light:#3D424D;
+ --slate-mid:#545B6A;--line:rgba(44,48,56,0.12);--amber:#C4956A;--trust:#6B3D2E;--trust-soft:#F1E9E4;
+ --sage:#8B9A7E;--teal:#4E7F80;--teal-light:#8ABCBD;
+ --font:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.phead{background:linear-gradient(135deg,var(--slate),var(--slate-light));color:var(--cream);padding:20px 28px}
+.phead .pname{font-weight:800;font-size:18px;letter-spacing:-.01em}
+.phead .psub{color:var(--teal-light);font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+.wrap{max-width:860px;margin:0 auto;padding:44px 28px 96px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--trust);font-weight:700;margin:0 0 10px}
+h1{font-size:33px;line-height:1.12;font-weight:800;margin:0 0 14px;letter-spacing:-.01em}
+h2{font-size:20px;font-weight:800;margin:0;letter-spacing:-.005em}
+.lede{font-size:17px;color:var(--slate-mid);margin:0 0 8px;max-width:64ch}
+.rule{height:3px;width:56px;background:var(--trust);border-radius:2px;margin:22px 0 32px}
+.callout{background:var(--trust-soft);border-left:3px solid var(--trust);border-radius:8px;padding:16px 18px;margin:22px 0}
+.callout p{margin:0;color:#4a2c22;font-size:15px}.callout strong{color:var(--trust)}
+.section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 26px 20px;margin:20px 0;box-shadow:0 1px 2px rgba(44,48,56,.04)}
+.section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:2px}
+.num{font-size:13px;font-weight:800;color:#fff;background:var(--trust);min-width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+.badge{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--sage);border:1px solid var(--sage);border-radius:20px;padding:2px 10px;margin-left:8px}
+.why{font-size:14px;color:var(--slate-mid);margin:8px 0 16px;padding-left:38px;max-width:70ch}.why b{color:var(--trust);font-weight:700}
+.block{border:1px dashed var(--line);border-radius:10px;padding:16px 16px 4px;margin:0 0 14px;background:var(--cream-dark)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}
+.field{display:flex;flex-direction:column;margin-bottom:14px}.field.full{grid-column:1 / -1}
+label{font-size:13px;font-weight:700;color:var(--slate);margin-bottom:5px}
+.hint{font-size:12px;color:var(--slate-mid);font-weight:500;margin-left:6px}
+input,select,textarea{font-family:var(--font);font-size:15px;color:var(--slate);background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px 11px;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 3px rgba(196,149,106,.18)}
+textarea{min-height:62px;resize:vertical}
+.addbtn{background:none;border:1px dashed var(--amber);color:var(--trust);font-family:var(--font);font-weight:700;font-size:14px;border-radius:8px;padding:8px 14px;cursor:pointer;margin:2px 0 4px}
+.addbtn:hover{background:#fbf3ea}
+.idcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:6px 0 26px;display:flex;flex-wrap:wrap;gap:14px 18px}
+.hp{position:absolute;left:-9999px}
+.submitbar{display:flex;gap:12px;align-items:center;margin:26px 0 0;flex-wrap:wrap}
+.btn{font-family:var(--font);font-weight:700;font-size:14px;border-radius:8px;padding:10px 18px;cursor:pointer;border:1px solid var(--trust)}
+.btn.primary{background:var(--trust);color:#fff}.btn.ghost{background:#fff;color:var(--trust)}
+.btn.big{padding:14px 30px;font-size:15px}
+.submitbar .note{font-size:13px;color:var(--slate-mid)}
+#thanks{background:#fff;border:1px solid var(--line);border-radius:16px;padding:40px 32px;text-align:center;margin-top:10px}
+#thanks .check{width:56px;height:56px;border-radius:50%;background:var(--sage);color:#fff;font-size:30px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:12px}
+#thanks h2{color:var(--trust);margin-bottom:8px}#thanks p{color:var(--slate-mid);max-width:52ch;margin:0 auto}
+.foot{margin-top:38px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--slate-mid)}.foot a{color:var(--trust)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:8px 0 0}
+.steps li{position:relative;padding:6px 0 14px 44px;margin:0}
+.steps li:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:4px;width:28px;height:28px;border-radius:50%;background:var(--trust);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+.gate{background:#2C3038;color:#F2EDE7;border-radius:12px;padding:20px 22px;margin:24px 0}.gate strong{color:var(--amber)}
+.callbox{border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:22px 0;background:#fff}
+.callbox .ph{color:var(--amber);font-weight:700}
+.portalbox{border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:18px 22px;margin:22px 0;background:#fff}
+.portalbox a{color:var(--teal);font-weight:700;word-break:break-all}
+.pcards{display:flex;flex-direction:column;gap:14px;margin-top:6px}
+.pcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;display:flex;gap:16px;align-items:flex-start;text-decoration:none;color:var(--slate);transition:border-color .2s,box-shadow .2s}
+a.pcard:hover{border-color:var(--teal);box-shadow:0 2px 12px rgba(78,127,128,.12)}
+.pcard .ic{width:44px;height:44px;border-radius:10px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff}
+.ic-start{background:linear-gradient(135deg,var(--trust),#8a5238)}
+.ic-call{background:linear-gradient(135deg,var(--teal),var(--sage))}
+.ic-soon{background:#cfcac3}
+.pcard h3{margin:0 0 4px;font-size:16px}.pcard p{margin:0;color:var(--slate-mid);font-size:14px}
+.pcard.soon{opacity:.75;cursor:default}
+@media(max-width:640px){.grid{grid-template-columns:1fr}h1{font-size:26px}.wrap{padding:30px 18px 72px}}
+@media print{.addbtn,.submitbar{display:none}body{background:#fff}.section{box-shadow:none;break-inside:avoid}.phead{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head><body><div class="phead"><div class="pname">Test Manufacturer Co.</div><div class="psub">Agent Readiness Roadmap &mdash; Kickoff Intake</div></div><div class="wrap"><div id="formcard"><p class="eyebrow">Agent Readiness Roadmap &middot; Kickoff Intake</p>
+<h1>The facts only you hold</h1><div class="rule"></div>
+<p class="lede">We build your Roadmap files from your public website &mdash; the crawl, the extraction,
+the schema, all of it. This short form asks only for what <b>no crawler can find</b>: the numbers,
+dates, licenses and identifiers that live inside your business, not on your site.</p>
+<div class="callout"><p><strong>Why this is short by design.</strong> Everything we can read for
+ourselves, we do. If a field feels like something an AI agent could already find on your site, it
+isn&rsquo;t here. That&rsquo;s the point &mdash; each blank below is also a readiness gap, because a
+buyer&rsquo;s AI agent hits the same wall we did.</p></div><form id="intake" name="roadmap-intake" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return submitForm(event)"><input type="hidden" name="form-name" value="roadmap-intake"><input type="hidden" name="client" value="Test Manufacturer Co."><input type="hidden" name="client_slug" value="_kickoff-test"><input type="hidden" name="flavor" value="manufacturers"><p class="hp"><label>Do not fill this out: <input name="bot-field"></label></p><section class="section"><div class="section-head"><span class="num">1</span><h2>Certifications &amp; standards</h2></div><p class="why">A buyer&rsquo;s agent verifies a certificate by its <b>number against the issuing registry</b> &mdash; the type alone (&ldquo;ISO&nbsp;9001&rdquo;) proves nothing a machine can check. Dates and facility scope stop a stale or mismatched claim from being propagated as fact.</p><div class="repeat-wrap"><div class="block"><div class="grid"><div class="field"><label>Standard / type<span class="hint">NEMA, ISO 9001, ASME stamp, 3-A, UL, CSA, CRN&hellip;</span></label><input type="text" name="cert__1__standard_type"></div><div class="field"><label>Certificate or file number</label><input type="text" name="cert__1__certificate_or_file_number"></div><div class="field"><label>Issuing body / registrar</label><input type="text" name="cert__1__issuing_body_registrar"></div><div class="field"><label>Issue date</label><input type="date" name="cert__1__issue_date"></div><div class="field"><label>Expiry date</label><input type="date" name="cert__1__expiry_date"></div><div class="field full"><label>Facility / entity the scope covers<span class="hint">which plant or legal entity this certificate actually covers</span></label><input type="text" name="cert__1__facility_entity_the_scope_covers"></div></div></div></div><button type="button" class="addbtn" onclick="addBlock(this)">+ Add another certification</button></section><section class="section"><div class="section-head"><span class="num">2</span><h2>Professional &amp; engineering licenses</h2><span class="badge">Optional</span></div><p class="why">License <b>numbers and states are almost never published</b> &mdash; but they&rsquo;re exactly what a vetting agent needs to confirm a real, current credential behind your engineering claims.</p><div class="repeat-wrap"><div class="block"><div class="grid"><div class="field"><label>License type<span class="hint">PE, etc.</span></label><input type="text" name="lic__1__license_type"></div><div class="field"><label>License number</label><input type="text" name="lic__1__license_number"></div><div class="field"><label>State / jurisdiction</label><input type="text" name="lic__1__state_jurisdiction"></div><div class="field"><label>License holder</label><input type="text" name="lic__1__license_holder"></div><div class="field"><label>Expiry</label><input type="date" name="lic__1__expiry"></div></div></div></div><button type="button" class="addbtn" onclick="addBlock(this)">+ Add another license</button></section><section class="section"><div class="section-head"><span class="num">3</span><h2>Product identifiers &amp; unpublished specs</h2></div><p class="why"><b>MPN and SKU</b> are how a procurement agent keys your product across catalogs and maps an inquiry back to your own systems. Publishing spec <b>min/max as facts</b> (not a buried PDF table) is what lets an agent filter you into a shortlist.</p><div class="repeat-wrap"><div class="block"><div class="grid"><div class="field"><label>Model name</label><input type="text" name="prod__1__model_name"></div><div class="field"><label>Manufacturer part number (MPN)</label><input type="text" name="prod__1__manufacturer_part_number_mpn"></div><div class="field"><label>SKU</label><input type="text" name="prod__1__sku"></div><div class="field"><label>Key spec name<span class="hint">e.g. kVA rating, temperature rise</span></label><input type="text" name="prod__1__key_spec_name"></div><div class="field"><label>Value</label><input type="text" name="prod__1__value"></div><div class="field"><label>Unit</label><input type="text" name="prod__1__unit"></div><div class="field"><label>Min</label><input type="text" name="prod__1__min"></div><div class="field"><label>Max</label><input type="text" name="prod__1__max"></div></div></div></div><button type="button" class="addbtn" onclick="addBlock(this)">+ Add another model</button></section><section class="section"><div class="section-head"><span class="num">4</span><h2>Testimonial &amp; case attribution</h2><span class="badge">Optional</span></div><p class="why">An agent <b>weighs attributed proof and discards the anonymous</b>. &ldquo;J. from Ohio&rdquo; carries no verifiable weight; a named, titled reference does. List any first-name-only or anonymous testimonials you can upgrade.</p><div class="repeat-wrap"><div class="block"><div class="grid"><div class="field full"><label>Testimonial as it appears now</label><textarea name="tstm__1__testimonial_as_it_appears_now"></textarea></div><div class="field"><label>Full name</label><input type="text" name="tstm__1__full_name"></div><div class="field"><label>Company</label><input type="text" name="tstm__1__company"></div><div class="field"><label>Title</label><input type="text" name="tstm__1__title"></div><div class="field full"><label>Permission to publish name?</label><select name="tstm__1__permission_to_publish_name"><option>Yes</option><option>Pending &mdash; I&rsquo;ll ask</option><option>Keep anonymous</option></select></div></div></div></div><button type="button" class="addbtn" onclick="addBlock(this)">+ Add another testimonial</button></section><section class="section"><div class="section-head"><span class="num">5</span><h2>Actions endpoints</h2><span class="badge">Optional</span></div><p class="why">Only if you add the <b>Actions</b> module later. These declare a machine-facing quote and catalog surface in <code>/.well-known/</code>. Supplying them now commits to nothing and activates nothing &mdash; the hooks ship dormant.</p><div class="repeat-wrap"><div class="block"><div class="grid"><div class="field full"><label>RFQ / quote-request URL</label><input type="url" name="act__1__rfq_quote_request_url"></div><div class="field full"><label>RFQ endpoint URL (machine-facing)</label><input type="url" name="act__1__rfq_endpoint_url_machine_facing"></div><div class="field full"><label>Product-catalog API URL</label><input type="url" name="act__1__product_catalog_api_url"></div></div></div></div></section><div class="submitbar"><button type="submit" id="submitbtn" class="btn primary big">Submit to Liz</button><button type="button" class="btn ghost" onclick="doPrint()">Print a copy for your records</button><span class="note">Your answers go straight to us &mdash; nothing to send back.</span></div></form></div><div id="thanks" hidden><div class="check">&#10003;</div><h2>Got it &mdash; your answers are in</h2><p>Thank you. We have everything only you could give us. We&rsquo;ll see you on your confirmation call to walk through the rest, then finalize and deliver your Roadmap files.</p></div><div class="foot">Prepared by Liz Micik &middot; <a href="https://lizmicik.com">lizmicik.com</a> &middot; This is your private workspace. Your answers are sent securely to us when you hit Submit.</div></div><script>
+function addBlock(btn){var wrap=btn.previousElementSibling;var blocks=wrap.querySelectorAll('.block');
+ var last=blocks[blocks.length-1];var clone=last.cloneNode(true);var n=blocks.length+1;
+ clone.querySelectorAll('[name]').forEach(function(el){el.name=el.name.replace(/__\d+__/,'__'+n+'__');
+  if(el.tagName==='SELECT'){el.selectedIndex=0;}else{el.value='';}});
+ wrap.appendChild(clone);clone.scrollIntoView({behavior:'smooth',block:'center'});}
+function submitForm(e){e.preventDefault();var form=document.getElementById('intake');
+ var body=new URLSearchParams(new FormData(form)).toString();
+ var btn=document.getElementById('submitbtn');btn.disabled=true;btn.textContent='Sending\u2026';
+ fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body})
+ .then(function(r){if(!r.ok)throw 0;document.getElementById('formcard').hidden=true;
+  var t=document.getElementById('thanks');t.hidden=false;t.scrollIntoView({behavior:'smooth',block:'center'});})
+ .catch(function(){btn.disabled=false;btn.textContent='Submit to Liz';
+  alert('Something went wrong sending the form. Please email info@lizmicik.com and we\u2019ll sort it out.');});
+ return false;}
+function doPrint(){window.print();}
+</script></body></html>
