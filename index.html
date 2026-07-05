@@ -350,13 +350,21 @@
             z-index: 1;
         }
         .hero h1 {
-            margin-bottom: 1.75rem;
-            color: var(--text-light);
+            margin-bottom: 0.75rem;
+            color: var(--accent-amber);
         }
         .hero h1 .line-break {
             display: block;
             margin-top: 0.3em;
             color: var(--accent-amber);
+        }
+        .hero-sub {
+            color: var(--text-light);
+            font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+            line-height: 1.55;
+            max-width: 620px;
+            margin: 0 auto 2rem;
+            opacity: 0.92;
         }
         .hero-cta {
             display: inline-block;
@@ -1014,9 +1022,9 @@
     <header class="section hero" role="banner">
         <div class="hero-inner section-inner">
             <h1 class="fade-in">
-                Everybody built their website for people.
-                <span class="line-break">Nobody built one for AI.</span>
+                Your Next Buyer Isn't Human
             </h1>
+            <p class="hero-sub fade-in">Prepare your website for AI&nbsp;Agents</p>
             <a href="/signal-check" class="hero-cta fade-in">Run Your Agent Signal Check — Free</a>
         </div>
     </header>
