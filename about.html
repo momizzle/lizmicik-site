@@ -132,6 +132,17 @@
                             "@type": "Organization",
                             "name": "Marie Haynes Podcast"
                         }
+                    },
+                    {
+                        "@type": "VideoObject",
+                        "name": "A Better Way to Look at AI",
+                        "description": "Why treating AI as your buyer's advance scout matters: if an AI agent can't find, understand, or trust your website, you're eliminated before a human ever sees you. Then how to fix it.",
+                        "thumbnailUrl": "https://i.ytimg.com/vi/DSuYJ_wXUys/maxresdefault.jpg",
+                        "uploadDate": "2026-07-10",
+                        "duration": "PT1M46S",
+                        "contentUrl": "https://youtu.be/DSuYJ_wXUys",
+                        "embedUrl": "https://www.youtube.com/embed/DSuYJ_wXUys",
+                        "publisher": { "@id": "https://lizmicik.com/#person" }
                     }
                 ]
             },
@@ -727,6 +738,12 @@
                 gap: 0.75rem;
             }
         }
+        /* About video */
+        .about-video { background: var(--cream); padding: 2.5rem 1.5rem 0.5rem; }
+        .about-video-inner { max-width: 860px; margin: 0 auto; }
+        .about-video-heading { text-align: center; margin: 0 0 1.25rem; color: var(--slate); }
+        .about-video-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; box-shadow: 0 12px 34px rgba(44,48,56,0.20); background: #000; }
+        .about-video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
     </style>
 </head>
 <body>
@@ -764,6 +781,16 @@
             <p class="intro">I help complex B2B companies prepare their website, expertise, and conversion processes for AI agents.</p>
         </div>
     </header>
+
+    <!-- About video -->
+    <section class="about-video" aria-labelledby="about-video-heading">
+        <div class="about-video-inner">
+            <h2 id="about-video-heading" class="about-video-heading">A better way to look at AI</h2>
+            <div class="about-video-frame">
+                <iframe src="https://www.youtube-nocookie.com/embed/DSuYJ_wXUys" title="A Better Way to Look at AI — Liz Micik" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
 
     <!-- Profile body -->
     <section class="profile">
