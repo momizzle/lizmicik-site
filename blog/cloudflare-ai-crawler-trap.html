@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="On September 15, Cloudflare turns on new defaults that block AI crawlers for many sites. Block AI the wrong way and you can vanish from Google too. Here is the trap, and the check to run first.">
+    <meta name="keywords" content="Cloudflare AI crawlers, block AI bots, robots.txt, GPTBot, CCBot, Common Crawl, September 15, Googlebot, AI visibility, Life Beyond Google, B2B, professional services">
+    <title>The AI Block That Can Quietly Delete You From Google | Liz Micik</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="The AI Block That Can Quietly Delete You From Google">
+    <meta property="og:description" content="On September 15, Cloudflare blocks AI crawlers by default for many sites. The bots that crawl for AI often crawl for Google in the same breath, so a blunt block can erase you from search. Here is how to do it right.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://lizmicik.com/blog/cloudflare-ai-crawler-trap">
+    <meta property="og:site_name" content="Liz Micik">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "The AI Block That Can Quietly Delete You From Google",
+        "description": "On September 15, Cloudflare turns on new defaults that block AI crawlers on many sites. Because the crawlers that matter most work for both AI and Google, a blunt block can remove you from search. Here is the trap, the CCBot mistake, and the robots.txt fix.",
+        "author": {
+            "@type": "Person",
+            "name": "Liz Micik",
+            "url": "https://lizmicik.com"
+        },
+        "datePublished": "2026-07-16",
+        "dateModified": "2026-07-16",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://lizmicik.com/blog/cloudflare-ai-crawler-trap"
+        },
+        "keywords": "Cloudflare AI crawlers, block AI bots, robots.txt, GPTBot, CCBot, Common Crawl, September 15, Googlebot, AI visibility, Life Beyond Google",
+        "isPartOf": {
+            "@type": "BlogPosting",
+            "name": "Life Beyond Google",
+            "url": "https://lizmicik.com/blog"
+        }
+    }
+    </script>
+
+    <style>
+        :root {
+            --cream: #FAFAF7;
+            --cream-dark: #FAF8F5;
+            --slate: #2C3038;
+            --slate-light: #3D424D;
+            --slate-mid: #545B6A;
+            --accent-amber: #C4956A;
+            --accent-teal: #5B7C5E;
+            --accent-copper: #3D6B4E;
+            --muted-red: #C25E4A;
+            --hero-brown: #6B3D2E;
+            --text-primary: #2C3038;
+            --text-secondary: #545B6A;
+            --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --content-width: 720px;
+            --wide-width: 960px;
+            --toc-width: 220px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--cream); color: var(--text-primary); font-family: var(--font-body); line-height: 1.6; }
+
+        /* Navigation */
+        .nav { position: fixed; top: 0; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--cream-dark); z-index: 1000; transition: transform 0.3s ease; }
+        .nav.nav-hidden { transform: translateY(-100%); }
+        .nav-inner { max-width: var(--wide-width); margin: 0 auto; padding: 1.5rem clamp(1.5rem, 4vw, 2rem); display: flex; justify-content: space-between; align-items: center; }
+        .nav-name { font-weight: 700; color: var(--text-primary); font-size: 1.25rem; }
+        .nav-name a { color: inherit; text-decoration: none; }
+        .nav-toggle { display: none; flex-direction: column; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .nav-toggle span { width: 24px; height: 2px; background: var(--text-primary); margin: 5px 0; transition: 0.3s; }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+        .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--accent-teal); }
+        .nav-cta { background: var(--accent-teal) !important; color: white !important; padding: 0.75rem 1.5rem; border-radius: 0.5rem; transition: background 0.3s ease; }
+        .nav-cta:hover { background: var(--accent-copper) !important; }
+        .nav-item.has-dropdown { position: relative; }
+        .nav-caret { font-size: 0.7em; margin-left: 0.15rem; transition: transform 0.2s ease; display: inline-block; }
+        .nav-item.has-dropdown:hover .nav-caret, .nav-item.has-dropdown:focus-within .nav-caret { transform: rotate(180deg); }
+        .nav-dropdown { display: none; position: absolute; top: 100%; left: 0; min-width: 260px; margin: 0; padding: 0.45rem 0; list-style: none; background: rgba(250, 250, 247, 0.98); backdrop-filter: blur(12px); border: 1px solid rgba(44, 48, 56, 0.06); border-radius: 6px; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08); z-index: 100; }
+        .nav-item.has-dropdown:hover .nav-dropdown, .nav-item.has-dropdown:focus-within .nav-dropdown { display: block; }
+        .nav-dropdown li { padding: 0; }
+        .nav-dropdown a { display: block; padding: 0.55rem 1.2rem; white-space: nowrap; font-size: 0.9rem !important; }
+        .nav-dropdown a:hover { background: rgba(44, 48, 56, 0.04); }
+        @media (max-width: 768px) {
+            .nav-toggle { display: flex; }
+            .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(10px, 10px); }
+            .nav-toggle.open span:nth-child(2) { opacity: 0; }
+            .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+            .nav-links { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--cream); gap: 1.5rem; padding: 2rem; border-bottom: 1px solid var(--cream-dark); display: none; }
+            .nav-links.active { display: flex; }
+            .nav-dropdown { display: block; position: static; min-width: 0; padding: 0.25rem 0 0 1rem; background: transparent; backdrop-filter: none; border: none; box-shadow: none; }
+            .nav-caret { display: none; }
+            .nav-links a { font-size: 1.1rem; }
+        }
+
+        /* Hero (image + text) */
+        header.blog-hero { max-width: 1080px; margin: 60px auto 0; padding: 2.5rem clamp(1.5rem, 4vw, 3rem); background: #F5EFE4; display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center; text-align: left; }
+        .blog-hero-image { width: 280px; height: auto; max-width: 100%; margin: 0; display: block; border-radius: 6px; }
+        .hero-text { display: flex; flex-direction: column; gap: 0.85rem; }
+        .pillar-eyebrow { display: inline-block; align-self: flex-start; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0; color: var(--accent-teal); }
+        .blog-meta { display: flex; justify-content: flex-start; gap: 0.75rem; margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--text-secondary); flex-wrap: wrap; align-items: center; }
+        header.blog-hero h1 { font-family: var(--font-heading); font-size: clamp(1.6rem, 3.4vw, 2.3rem); font-weight: 700; line-height: 1.22; color: var(--text-primary); margin: 0; }
+        @media (max-width: 720px) { header.blog-hero { grid-template-columns: 1fr; gap: 1.5rem; text-align: left; } .blog-hero-image { width: 235px; } header.blog-hero h1 { font-size: clamp(1.4rem, 6vw, 1.85rem); } }
+
+        /* Two-column layout with sticky TOC */
+        .blog-layout { max-width: 1080px; margin: 0 auto; padding: 2rem clamp(1.5rem, 4vw, 2rem); display: grid; grid-template-columns: var(--toc-width) 1fr; gap: 3rem; align-items: start; }
+        .toc { position: sticky; top: 80px; max-height: calc(100vh - 100px); overflow-y: auto; padding-right: 1rem; }
+        .toc-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--accent-teal); }
+        .toc-list { list-style: none; padding: 0; }
+        .toc-list li { margin: 0; }
+        .toc-list a { display: block; padding: 0.4rem 0 0.4rem 0.75rem; font-size: 0.8rem; color: var(--text-secondary); text-decoration: none; border-left: 2px solid transparent; transition: all 0.2s ease; line-height: 1.4; }
+        .toc-list a:hover { color: var(--accent-teal); border-left-color: var(--accent-teal); }
+        .toc-list a.active { color: var(--accent-teal); border-left-color: var(--accent-teal); font-weight: 600; }
+
+        /* Article */
+        article.blog-content { max-width: var(--content-width); }
+        article p { font-size: 1.05rem; line-height: 1.75; margin: 1.5rem 0; color: var(--text-primary); }
+        article h2 { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 600; margin: 3rem 0 1.5rem; color: var(--text-primary); border-left: 3px solid var(--accent-teal); padding-left: 1rem; }
+        article h2:first-of-type { margin-top: 0; }
+        article h3 { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--text-primary); }
+        article strong { font-weight: 700; color: var(--accent-teal); }
+        article a { color: #C4956A; text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        article a:hover { color: #3D6B4E; text-decoration: underline; }
+        article ul { padding-left: 1.4rem; margin: 1.5rem 0; }
+        article li { font-size: 1.05rem; line-height: 1.7; margin: 0.7rem 0; color: var(--text-primary); }
+        .chart-figure { margin: 2.5rem 0; }
+        .chart-figure svg { width: 100%; height: auto; display: block; border: 1px solid #E8DDD5; border-radius: 0.75rem; background: var(--cream); }
+        .chart-figure figcaption { font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.75rem; font-style: italic; }
+
+        /* TLDR */
+        .tldr { font-style: italic; color: var(--text-secondary); border-left: 3px solid var(--accent-amber); padding-left: 1.5rem; margin: 2rem 0; }
+        .tldr p { color: var(--text-secondary); font-style: italic; margin: 0.5rem 0; }
+        .tldr ul { padding-left: 1.5rem; margin: 0.5rem 0; }
+        .tldr li { color: var(--text-secondary); font-style: italic; margin: 0.5rem 0; line-height: 1.6; }
+
+        /* CTA Box */
+        .cta-box { background: var(--cream-dark); border: 2px solid var(--accent-amber); border-radius: 0.75rem; padding: 2rem; margin: 3rem 0; text-align: center; }
+        .cta-box p { margin: 0.5rem 0; font-size: 1rem; }
+        .cta-box strong { color: var(--text-primary); font-size: 1.1rem; }
+        .cta-box a { color: #C4956A; font-weight: 700; }
+        .cta-box a:hover { color: #3D6B4E; }
+
+        /* Author Bio */
+        .author-bio { display: flex; gap: 2rem; padding: 2.5rem; background: var(--cream-dark); border-radius: 0.75rem; border: 1px solid #E8DDD5; margin: 3rem 0; align-items: flex-start; }
+        .author-avatar { width: 100px; height: 100px; border-radius: 50%; background: var(--accent-teal); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 700; flex-shrink: 0; }
+        .author-info h3 { margin-top: 0; margin-bottom: 0.5rem; }
+        .author-title { font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 0.8rem; }
+        .author-bio p { font-size: 0.95rem; margin: 0; color: var(--text-primary); }
+
+        /* Related Posts */
+        .related-posts { margin: 4rem 0 3rem; border-top: 2px solid var(--cream-dark); padding-top: 3rem; }
+        .related-posts h2 { border: none; padding: 0; text-align: center; margin-bottom: 2.5rem; font-family: var(--font-heading); font-size: 1.8rem; font-weight: 600; }
+        .related-posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .post-card { background: var(--cream-dark); border: 1px solid #E8DDD5; border-radius: 0.75rem; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .post-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); }
+        .post-card a { text-decoration: none; color: inherit; }
+        .post-card-content { padding: 1.5rem; }
+        .post-card-meta { font-size: 0.8rem; color: var(--accent-copper); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+        .post-card h3 { font-size: 1.2rem; margin: 0.8rem 0; color: var(--text-primary); }
+
+        /* Final CTA */
+        .final-cta { background: var(--slate); color: white; padding: 3rem 2rem; text-align: center; margin: 4rem 0 0; }
+        .final-cta h2 { border: none; padding: 0; color: white; margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1.8rem; font-weight: 600; }
+        .final-cta p { color: rgba(255, 255, 255, 0.95); margin-bottom: 2rem; }
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .cta-button { display: inline-block; background: var(--accent-teal); color: white; padding: 0.75rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 700; transition: all 0.3s ease; border: 2px solid var(--accent-teal); }
+        .cta-button:hover { background: transparent; color: white; }
+        .cta-button.copper { background: var(--accent-amber); border-color: var(--accent-amber); }
+
+        @media (max-width: 968px) {
+            .blog-layout { grid-template-columns: 1fr; max-width: var(--content-width); }
+            .toc { position: relative; top: 0; max-height: none; border: 1px solid #E8DDD5; border-radius: 0.75rem; padding: 1.25rem; background: var(--cream-dark); margin-bottom: 1rem; }
+            .author-bio { flex-direction: column; text-align: center; }
+            .author-avatar { margin: 0 auto; }
+        }
+        @media (max-width: 600px) {
+            article p { font-size: 1rem; }
+            article h2 { font-size: 1.4rem; }
+            .cta-buttons { flex-direction: column; }
+            .cta-buttons .cta-button { display: block; width: 100%; }
+            .related-posts-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <span class="nav-name"><a href="/">Liz Micik</a></span>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/about">About</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li class="nav-item has-dropdown">
+                    <a href="/audit" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Services <span class="nav-caret">&#9662;</span></a>
+                    <ul class="nav-dropdown">
+                        <li><a href="/audit">Agent Readiness Audit</a></li>
+                        <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+                        <li><a href="/actions">Agent Readiness Actions</a></li>
+                    </ul>
+                </li>
+                <li><a href="/signal-check" class="nav-cta">Free Signal Check</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="blog-hero">
+        <img class="blog-hero-image" src="/images/deadline-trap-hero.png" alt="Editorial illustration: a September wall calendar tilted slightly to the right, the 15th circled in teal with a set mousetrap resting on that date &mdash; signifying that the September 15 crawler-blocking deadline is a trap for the unwary." loading="eager" />
+        <div class="hero-text">
+            <span class="pillar-eyebrow">Life Beyond Google &middot; Before September 15</span>
+            <h1>The AI Block That Can Quietly Delete You From Google</h1>
+            <div class="blog-meta">
+                <span>July 16, 2026</span>
+                <span>&bull;</span>
+                <span>By Liz Micik</span>
+                <span>&bull;</span>
+                <span>6 min read</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Two-column: TOC + Content -->
+    <div class="blog-layout" style="display:block; max-width:760px;">
+        <article class="blog-content" style="margin:0 auto;">
+
+            <div class="tldr">
+                <p>The short version:</p>
+                <ul>
+                    <li>The danger on September 15 is not blocking AI. It is blocking it with an instrument so blunt that it also tells Google to stop indexing you.</li>
+                    <li>Reach for robots.txt instead of a one-click category switch, keep the search crawlers explicitly welcome, and do not reflexively block CCBot.</li>
+                </ul>
+            </div>
+
+            <p>Most of this summer's AI deadlines you can watch from a comfortable distance. But there is one coming in just eight weeks that you cannot afford to ignore, because it can quietly change whether Google can see your website at all.</p>
+
+            <p>On September 15, Cloudflare will turn on a new default setting that will block AI training and agent crawlers on pages that show ads. It won't affect all of the <a href="https://blog.cloudflare.com/content-independence-day-ai-options/" target="_blank" rel="noopener">41 million sites it serves</a> (about 23% of all websites), but it will affect new Cloudflare sites and &ldquo;free tier&rdquo; sites that have not expressly adopted AI allowance settings.</p>
+
+            <h2>Why Everyone Started Blocking</h2>
+
+            <p>To see the risk clearly, it helps to understand why blocking became popular in the first place, because the instinct behind it is completely reasonable.</p>
+
+            <p>For about thirty years the web ran on a simple trade. A crawler read your pages, and in return it sent you visitors. Google's search crawler still honors that deal, reading only about five of your pages for every visitor it sends back. The AI crawlers do not. Measured across Cloudflare's network, Perplexity sits closer to a hundred pages per visitor, OpenAI's crawler near thirteen hundred, and Anthropic's at nearly twenty-four thousand pages taken for every single visitor returned.</p>
+
+            <figure class="chart-figure">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 472" role="img" aria-label="Bar chart: pages an AI crawler takes for every visitor it sends back. Google 5, Perplexity 111, OpenAI 1,276, Anthropic 23,951 pages per referred visitor. Log scale. Source Cloudflare Radar, January to March 2026." font-family="Manrope, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <defs>
+    <symbol id="person" viewBox="0 0 12 16">
+      <circle cx="6" cy="3.2" r="3" fill="#2C3038"/>
+      <path d="M6 6.8c-2.7 0-4.4 1.9-4.4 4.6V16h8.8v-4.6C10.4 8.7 8.7 6.8 6 6.8z" fill="#2C3038"/>
+    </symbol>
+  </defs>
+  <rect x="0" y="0" width="680" height="472" fill="#FAFAF7"/>
+  <!-- Title -->
+  <text x="34" y="30" font-size="18" font-weight="700" fill="#2C3038">Pages an AI crawler takes for every visitor it sends back</text>
+  <text x="34" y="51" font-size="12.5" font-weight="500" fill="#545B6A">Crawl-to-referral ratio by crawler &#183; log scale, so every bar stays visible</text>
+
+  <!-- Gridlines (log): 1,10,100,1k,10k -->
+  <g font-size="11" fill="#8A8580" font-weight="500">
+    <line x1="70" y1="350" x2="640" y2="350" stroke="#D8CFC4" stroke-width="1"/>
+    <text x="62" y="354" text-anchor="end">1</text>
+    <line x1="70" y1="290" x2="640" y2="290" stroke="#ECE4DA" stroke-width="1"/>
+    <text x="62" y="294" text-anchor="end">10</text>
+    <line x1="70" y1="230" x2="640" y2="230" stroke="#ECE4DA" stroke-width="1"/>
+    <text x="62" y="234" text-anchor="end">100</text>
+    <line x1="70" y1="170" x2="640" y2="170" stroke="#ECE4DA" stroke-width="1"/>
+    <text x="62" y="174" text-anchor="end">1,000</text>
+    <line x1="70" y1="110" x2="640" y2="110" stroke="#ECE4DA" stroke-width="1"/>
+    <text x="62" y="114" text-anchor="end">10,000</text>
+  </g>
+  <text x="24" y="205" font-size="11" font-weight="600" fill="#545B6A" transform="rotate(-90 24 205)" text-anchor="middle">Pages crawled per visitor</text>
+
+  <!-- Bars -->
+  <rect x="108" y="308" width="64" height="42" rx="4" fill="#D8B48C"/>
+  <text x="140" y="300" text-anchor="middle" font-size="14" font-weight="700" fill="#2C3038">5</text>
+  <use href="#person" x="158" y="336" width="11" height="14"/>
+  <text x="140" y="372" text-anchor="middle" font-size="13" font-weight="700" fill="#2C3038">Google</text>
+  <text x="140" y="388" text-anchor="middle" font-size="10.5" fill="#8A8580">search</text>
+
+  <rect x="248" y="227" width="64" height="123" rx="4" fill="#C08A5A"/>
+  <text x="280" y="219" text-anchor="middle" font-size="14" font-weight="700" fill="#2C3038">111</text>
+  <use href="#person" x="298" y="336" width="11" height="14"/>
+  <text x="280" y="372" text-anchor="middle" font-size="13" font-weight="700" fill="#2C3038">Perplexity</text>
+
+  <rect x="388" y="164" width="64" height="186" rx="4" fill="#9A5C3C"/>
+  <text x="420" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#2C3038">1,276</text>
+  <use href="#person" x="438" y="336" width="11" height="14"/>
+  <text x="420" y="372" text-anchor="middle" font-size="13" font-weight="700" fill="#2C3038">OpenAI</text>
+  <text x="420" y="388" text-anchor="middle" font-size="10.5" fill="#8A8580">ChatGPT</text>
+
+  <rect x="528" y="87" width="64" height="263" rx="4" fill="#5F3320"/>
+  <text x="560" y="79" text-anchor="middle" font-size="14" font-weight="700" fill="#2C3038">23,951</text>
+  <use href="#person" x="578" y="336" width="11" height="14"/>
+  <text x="560" y="372" text-anchor="middle" font-size="13" font-weight="700" fill="#2C3038">Anthropic</text>
+  <text x="560" y="388" text-anchor="middle" font-size="10.5" fill="#8A8580">Claude</text>
+
+  <!-- Legend -->
+  <use href="#person" x="70" y="408" width="11" height="14"/>
+  <text x="88" y="419" font-size="11.5" font-weight="600" fill="#545B6A">= 1 visitor sent back to your site</text>
+
+  <!-- Caption + source -->
+  <text x="34" y="446" font-size="10.5" fill="#545B6A">For every visitor Google sends you, Anthropic&#8217;s crawler reads nearly 24,000 of your pages.</text>
+  <text x="34" y="463" font-size="10" fill="#8A8580">Source: Cloudflare Radar crawl-to-refer ratios, January&#8211;March 2026.</text>
+</svg>
+            <figcaption>Crawl-to-referral ratios vary by orders of magnitude. A search crawler trades pages for visitors; most AI crawlers mostly take.</figcaption>
+            </figure>
+
+            <p>This was not a deliberate decision by the AI platforms to steal your visitors. Their crawlers were simply not all built to send people your way. There are three kinds:</p>
+
+            <ul>
+                <li><strong>Training crawlers</strong> scrape your content to feed a model's training data.</li>
+                <li><strong>Agent crawlers</strong> show up in real time to do something for a specific person.</li>
+                <li><strong>Search crawlers</strong> index your pages so an AI can answer questions later, and that is the one that can cite you and send a visitor back.</li>
+            </ul>
+
+            <p>Cloudflare found that in May 2026, about half of all AI-crawler requests were for training and fewer than one in ten were for search. That left website owners paying to serve up pages for training crawlers to gobble, with no visitors to offset the cost. It is reasonable to start looking for ways to stem that.</p>
+
+            <p>So site owners started closing the door. By the middle of this year, more than a third of AI-crawler requests on Cloudflare's network were being turned away. Blocking is now the norm, not the exception.</p>
+
+            <h2>The Trap Nobody Is Flagging</h2>
+
+            <p>Here is where a reasonable instinct goes wrong.</p>
+
+            <p>The crawlers that matter most to you are not single-purpose. Googlebot, Bingbot, and Applebot each crawl for search and for AI in the same visit, using one bot. When you tell a system like Cloudflare to block AI training, it applies the most restrictive rule that fits &mdash; and because those bots wear more than one hat, the block meant for AI can catch the search crawler too. The result is a site that set out to keep its content out of AI models and accidentally told Google to stop indexing it for search.</p>
+
+            <p>That is a real, self-inflicted way to disappear, and it is nearly invisible when it happens. There is no error message and no alert &mdash; just a setting a well-meaning person flipped, and a slow slide out of the search results a few weeks later. For a business whose pipeline depends on being found, it may be the most expensive checkbox on the internet.</p>
+
+            <h2>The One Bot You Should Not Block</h2>
+
+            <p>There is one bot you should think long and hard about before blocking, and this cuts against the popular advice.</p>
+
+            <p>That bot is CCBot, the crawler for Common Crawl, and when people block AI crawlers they tend to sweep it up along with everything else. Roughly <strong>one in twenty sites already blocks it</strong>. That is usually a mistake. Common Crawl is not one company's private training set; it is a shared, open archive that feeds a huge slice of the AI ecosystem, from academic research to the models and tools your future customers will use to find you. Blocking GPTBot keeps you out of one company's model. Blocking CCBot shrinks your footprint across the entire neighborhood at once.</p>
+
+            <p>And the effect compounds. Tomorrow's models will be trained in part on the data CCBot gathers today, so a block now quietly narrows how well the next generation of AI knows you exist.</p>
+
+            <p>If your only goal is to protect your content, blocking CCBot is defensible. But if your goal is to be found, which for most professional-services firms it is, then reflexively blocking CCBot means cutting off tomorrow's traffic to save a little cost today. Allow it on purpose.</p>
+
+            <h2>What To Do Before September 15</h2>
+
+            <p>Cloudflare's category switches are a sledgehammer. &ldquo;Block AI training&rdquo; is one blunt motion that sweeps up whatever happens to match, multi-purpose search bots included. There is a better way than serving up more and more pages in exchange for fewer and fewer visitors.</p>
+
+            <p>Your robots.txt file is a scalpel, and that makes it the right tool for this job. You name the exact bots you want to keep out, one line each, and you leave the rest alone. Keep CCBot, Googlebot, and the other search crawlers explicitly welcome, and decide case by case which of the pure training bots to disallow. Even then, two things are worth keeping in mind:</p>
+
+            <ul>
+                <li>Bad actors will not honor your robots.txt. They never have.</li>
+                <li>Some crawlers labeled &ldquo;training&rdquo; are really agent crawlers, sent in real time on behalf of a person. Turn one away and you may be turning away a potential customer whose AI was building a short list of companies to recommend.</li>
+            </ul>
+
+            <p>That second point is the biggest reason I tell clients to be generous with AI crawlers right now. We do not yet know enough to read the intent behind an AI visitor, so I would rather let them in and learn how they read, understand, and ultimately act on a site than lock the door and discover later that I shut out a buyer.</p>
+
+            <p>The future of the web is agentic; there are already more bots visiting most websites than people. You get a vote in how they treat you, but only if you cast it. Take a few minutes before September 15 to decide, deliberately, which crawlers you welcome, or you may find your future quietly cut short and yourself slipping out of Google not long after.</p>
+
+            <p>And if you are not a Cloudflare customer, spend the same five minutes anyway. Your host or CDN is making its own choices about how to treat these bots, and it is worth knowing what they are.</p>
+
+            <div class="cta-box">
+                <p><strong>Not sure what your site is actually telling AI and search crawlers?</strong></p>
+                <p>Run the free <a href="/signal-check">Agent Signal Check</a> and see how the major AI models find, read, and describe your business today.</p>
+            </div>
+
+            <!-- Author Bio -->
+            <div class="author-bio">
+                <div class="author-avatar">LM</div>
+                <div class="author-info">
+                    <h3>Liz Micik</h3>
+                    <div class="author-title">SEO &amp; Content Strategy &middot; Agent Readiness</div>
+                    <p>Liz Micik helps complex B2B companies prepare their website, expertise, and conversion processes for AI agents. After 28 years in SEO, content strategy, and B2B demand generation, she translates the jargon of the agentic web into decisions a business can actually act on.</p>
+                </div>
+            </div>
+
+            <!-- Related Posts -->
+            <div class="related-posts">
+                <h2>Keep Reading</h2>
+                <div class="related-posts-grid">
+                    <div class="post-card">
+                        <a href="/blog/life-beyond-google">
+                            <div class="post-card-content">
+                                <div class="post-card-meta">USE Layer</div>
+                                <h3>AI Read Your Site. Can It DO Anything With Your Business?</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="post-card">
+                        <a href="/blog/ai-visibility-measurement-free-tools">
+                            <div class="post-card-content">
+                                <div class="post-card-meta">Measurement</div>
+                                <h3>Measuring Your AI Visibility With Free Tools</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="post-card">
+                        <a href="/blog/new-old-search-definitions">
+                            <div class="post-card-content">
+                                <div class="post-card-meta">Foundations</div>
+                                <h3>The New Old Language of Search</h3>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </div>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>See what your site is telling the crawlers</h2>
+        <p>Before you change a single setting, find out how the major AI models and search engines actually find, read, and describe your business today.</p>
+        <div class="cta-buttons">
+            <a href="/signal-check" class="cta-button">Run Your Free Signal Check</a>
+            <a href="/audit" class="cta-button copper">Explore the Agent Readiness Audit</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <style>
+        .lmf-footer{background:#2C3038;color:#F2EDE7;padding:56px 24px 28px;}
+        .lmf-inner{max-width:1080px;margin:0 auto;}
+        .lmf-top{display:flex;justify-content:space-between;gap:64px;flex-wrap:wrap;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.1);}
+        .lmf-brand{max-width:300px;}
+        .lmf-wordmark{font-weight:700;font-size:1.25rem;margin-bottom:12px;}
+        .lmf-brand p{color:#B8B5B0;font-size:0.9rem;line-height:1.6;}
+        .lmf-cols{display:flex;gap:56px;flex-wrap:wrap;}
+        .lmf-col h4{font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;color:#B8B5B0;margin-bottom:16px;}
+        .lmf-col ul{list-style:none;padding:0;margin:0;}
+        .lmf-col li{margin-bottom:10px;}
+        .lmf-col a{color:#F2EDE7;text-decoration:none;font-size:0.9rem;}
+        .lmf-col a:hover{color:#C4956A;}
+        .lmf-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;flex-wrap:wrap;gap:12px;}
+        .lmf-bottom p{color:#B8B5B0;font-size:0.8rem;}
+        .lmf-bottom .lmf-legal a{color:#B8B5B0;text-decoration:none;font-size:0.8rem;}
+        .lmf-bottom .lmf-legal a:hover{color:#C4956A;}
+        .lmf-bottom .lmf-legal span{color:rgba(255,255,255,0.25);margin:0 8px;}
+        @media (max-width:640px){.lmf-top{flex-direction:column;gap:32px;}.lmf-cols{gap:32px;}.lmf-bottom{flex-direction:column;align-items:flex-start;}}
+    </style>
+    <footer class="lmf-footer" role="contentinfo">
+      <div class="lmf-inner">
+        <div class="lmf-top">
+          <div class="lmf-brand">
+            <div class="lmf-wordmark">Liz Micik</div>
+            <p>Helping businesses transition human websites to usable, agentic websites.</p>
+          </div>
+          <div class="lmf-cols">
+            <div class="lmf-col">
+              <h4>Services</h4>
+              <ul>
+                <li><a href="/signal-check">Signal Check</a></li>
+                <li><a href="/audit">Agent Readiness Audit</a></li>
+                <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+                <li><a href="/actions">Agent Readiness Actions</a></li>
+              </ul>
+            </div>
+            <div class="lmf-col">
+              <h4>Explore</h4>
+              <ul>
+                <li><a href="/about">About</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/resources">Resources</a></li>
+              </ul>
+            </div>
+            <div class="lmf-col">
+              <h4>Connect</h4>
+              <ul>
+                <li><a href="mailto:info@lizmicik.com">info@lizmicik.com</a></li>
+                <li><a href="https://www.linkedin.com/in/lizmicik" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="https://google.com/preferences/source?q=lizmicik.com" target="_blank" rel="noopener">Add as a preferred source</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="lmf-bottom">
+          <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+          <p class="lmf-legal">
+            <a href="/privacy-policy">Privacy Policy</a>
+            <span>&middot;</span>
+            <a href="/terms">Terms of Use</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        var navToggle = document.querySelector('.nav-toggle');
+        var navLinks = document.querySelector('.nav-links');
+        navToggle.addEventListener('click', function() {
+            navToggle.classList.toggle('open');
+            navLinks.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+        });
+
+        // Hide nav on scroll down, show on scroll up
+        var lastScrollTop = 0;
+        var nav = document.querySelector('.nav');
+        window.addEventListener('scroll', function() {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) { nav.classList.add('nav-hidden'); }
+            else { nav.classList.remove('nav-hidden'); }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                var href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    var target = document.querySelector(href);
+                    var offsetTop = target.offsetTop - 80;
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                    if (navLinks.classList.contains('active')) { navToggle.classList.remove('open'); navLinks.classList.remove('active'); }
+                }
+            });
+        });
+
+        // TOC active state tracking
+        var tocLinks = document.querySelectorAll('.toc-list a');
+        var sections = [];
+        tocLinks.forEach(function(link) {
+            var id = link.getAttribute('href').substring(1);
+            var section = document.getElementById(id);
+            if (section) sections.push({ el: section, link: link });
+        });
+        function updateTOC() {
+            var scrollPos = window.scrollY + 120;
+            var current = null;
+            sections.forEach(function(s) { if (s.el.offsetTop <= scrollPos) current = s; });
+            tocLinks.forEach(function(l) { l.classList.remove('active'); });
+            if (current) current.link.classList.add('active');
+        }
+        window.addEventListener('scroll', updateTOC);
+        updateTOC();
+    </script>
+</body>
+</html>
