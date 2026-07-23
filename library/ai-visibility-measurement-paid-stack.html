@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A buyer's guide to the three stages of AI visibility work — diagnose, fix, measure — and how to pick the paid stack that fits your team and budget.">
+    <meta name="keywords" content="AI visibility paid tools, AI visibility stack, Profound, Evertune, Conductor, AthenaHQ, Relixir, Peec AI, LLM Pulse, Gumshoe, Otterly, Metricus, Ferventers, Ypsilon Digital, AI visibility consulting, AI visibility audit, AI visibility pricing, AI visibility subscription, enterprise AI visibility">
+    <title>The Paid AI Visibility Stack: Can One Tool Do All Three Jobs? | Liz Micik</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="The Paid AI Visibility Stack: Can One Tool Do All Three Jobs?">
+    <meta property="og:description" content="A buyer's guide to the three stages of AI visibility work — diagnose, fix, measure — and how to pick the paid stack that fits your team and budget.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://lizmicik.com/library/ai-visibility-measurement-paid-stack">
+    <meta property="og:site_name" content="Liz Micik">
+    <meta property="og:image" content="https://lizmicik.com/images/measure-3-still-hero.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "The Paid AI Visibility Stack: Can One Tool Do All Three Jobs?",
+    "description": "A buyer's guide to the three stages of AI visibility work — diagnose, fix, measure — and how to pick the paid stack that fits your team, your budget, and the next twelve months of a category that's still being built.",
+    "author": {"@type": "Person", "name": "Liz Micik", "url": "https://lizmicik.com"},
+    "datePublished": "2026-04-19",
+    "dateModified": "2026-04-19",
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://lizmicik.com/library/ai-visibility-measurement-paid-stack"},
+    "keywords": "AI visibility paid tools, AI visibility stack, Profound, Evertune, Conductor, AthenaHQ, Relixir, Peec AI, LLM Pulse, Gumshoe, Otterly, Metricus, Ferventers, Ypsilon Digital, AI visibility consulting, AI visibility audit, AI visibility pricing",
+    "isPartOf": {"@type": "BlogPosting", "name": "AI Visibility Measurement Series", "url": "https://lizmicik.com/library"}
+}
+    </script>
+
+    <style>
+    :root {
+        --cream: #FAFAF7; --cream-dark: #FAF8F5;
+        --slate: #2C3038; --slate-light: #3D424D; --slate-mid: #545B6A;
+        --accent-amber: #C4956A; --accent-teal: #5B7C5E; --accent-blue: #8B9A7E; --accent-copper: #5B7C5E;
+        --hero-brown: #6B3D2E; --muted-red: #C25E4A;
+        --text-primary: #2C3038; --text-secondary: #545B6A; --text-light: #F2EDE7; --text-light-secondary: #B8B5B0;
+        --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --section-padding: clamp(4rem, 8vw, 7rem);
+        --content-width: 720px; --wide-width: 960px; --toc-width: 220px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--text-primary); font-family: var(--font-body); line-height: 1.6; }
+    .nav { position: fixed; top: 0; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--cream-dark); z-index: 1000; transition: transform 0.3s ease; }
+    .nav.nav-hidden { transform: translateY(-100%); }
+    .nav-inner { max-width: var(--wide-width); margin: 0 auto; padding: 1.5rem clamp(1.5rem, 4vw, 2rem); display: flex; justify-content: space-between; align-items: center; }
+    .nav-name { font-weight: 700; color: var(--text-primary); font-size: 1.25rem; }
+    .nav-name a { color: inherit; text-decoration: none; }
+    .nav-toggle { display: none; flex-direction: column; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .nav-toggle span { width: 24px; height: 2px; background: var(--text-primary); margin: 5px 0; transition: 0.3s; }
+    .nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+    .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+    .nav-links a:hover { color: var(--accent-teal); }
+    .nav-cta { background: var(--accent-teal) !important; color: white !important; padding: 0.75rem 1.5rem; border-radius: 0.5rem; transition: background 0.3s ease; }
+    .nav-cta:hover { background: var(--accent-copper) !important; }
+        /* Services dropdown */
+        .nav-item.has-dropdown { position: relative; }
+        .nav-caret { font-size: 0.7em; margin-left: 0.15rem; transition: transform 0.2s ease; display: inline-block; }
+        .nav-item.has-dropdown:hover .nav-caret,
+        .nav-item.has-dropdown:focus-within .nav-caret { transform: rotate(180deg); }
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 260px;
+            margin: 0;
+            padding: 0.45rem 0;
+            list-style: none;
+            background: rgba(250, 250, 247, 0.98);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(44, 48, 56, 0.06);
+            border-radius: 6px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+        }
+        .nav-item.has-dropdown:hover .nav-dropdown,
+        .nav-item.has-dropdown:focus-within .nav-dropdown { display: block; }
+        .nav-dropdown li { padding: 0; }
+        .nav-dropdown a {
+            display: block;
+            padding: 0.55rem 1.2rem;
+            white-space: nowrap;
+            text-transform: none !important;
+            letter-spacing: 0 !important;
+            font-size: 0.9rem !important;
+        }
+        .nav-dropdown a:hover { background: rgba(44, 48, 56, 0.04); }
+
+    @media (max-width: 768px) {
+        .nav-toggle { display: flex; }
+        .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(10px, 10px); }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; }
+        .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+        .nav-links { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--cream); gap: 1.5rem; padding: 2rem; border-bottom: 1px solid var(--cream-dark); display: none; }
+        .nav-links.active { display: flex; }
+            /* Services dropdown: nested list on mobile */
+            .nav-dropdown {
+                display: block;
+                position: static;
+                min-width: 0;
+                padding: 0.25rem 0 0 1rem;
+                background: transparent;
+                backdrop-filter: none;
+                border: none;
+                box-shadow: none;
+            }
+            .nav-caret { display: none; }
+        .nav-links a { font-size: 1.1rem; }
+    }
+    /* Hero — v6 redesign: image left, text right, cream confined to 1080px hero */
+    header.blog-hero { max-width: 1080px; margin: 60px auto 0; padding: 2.5rem clamp(1.5rem, 4vw, 3rem); background: #F5EFE4; display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center; text-align: left; }
+    .blog-hero-image { width: 290px; height: auto; max-width: 100%; margin: 0; display: block; border-radius: 6px; }
+    .hero-text { display: flex; flex-direction: column; gap: 0.85rem; }
+    .pillar-eyebrow { display: inline-block; align-self: flex-start; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0; color: var(--slate); }
+    .blog-meta { display: flex; justify-content: flex-start; gap: 0.75rem; margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--text-secondary); flex-wrap: wrap; align-items: center; }
+    header.blog-hero h1 { font-family: var(--font-heading); font-size: clamp(1.5rem, 3.2vw, 2.1rem); font-weight: 700; line-height: 1.25; color: var(--text-primary); margin: 0; text-align: left; }
+    @media (max-width: 720px) { header.blog-hero { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; } .blog-hero-image { width: 220px; margin: 0 auto; } .hero-text { align-items: center; } .pillar-eyebrow { align-self: center; } .blog-meta { justify-content: center; } header.blog-hero h1 { text-align: center; font-size: clamp(1.35rem, 5vw, 1.75rem); } }
+    .blog-layout { max-width: 1080px; margin: 0 auto; padding: 2rem clamp(1.5rem, 4vw, 2rem); display: grid; grid-template-columns: var(--toc-width) 1fr; gap: 3rem; align-items: start; }
+    .toc { position: sticky; top: 80px; max-height: calc(100vh - 100px); overflow-y: auto; padding-right: 1rem; }
+    .toc-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--hero-brown); }
+    .toc-list { list-style: none; padding: 0; }
+    .toc-list li { margin: 0; }
+    .toc-list a { display: block; padding: 0.4rem 0 0.4rem 0.75rem; font-size: 0.8rem; color: var(--text-secondary); text-decoration: none; border-left: 2px solid transparent; transition: all 0.2s ease; line-height: 1.4; }
+    .toc-list a:hover { color: var(--hero-brown); border-left-color: var(--hero-brown); }
+    .toc-list a.active { color: var(--hero-brown); border-left-color: var(--hero-brown); font-weight: 600; }
+    article.blog-content { max-width: var(--content-width); }
+    article p { font-size: 1.05rem; line-height: 1.75; margin: 1.5rem 0; color: var(--text-primary); }
+    article h2 { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 600; margin: 3rem 0 1.5rem; color: var(--text-primary); border-left: 3px solid var(--hero-brown); padding-left: 1rem; }
+    article h2:first-of-type { margin-top: 0; }
+    article h3 { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--text-primary); }
+    article strong { font-weight: 700; color: var(--hero-brown); }
+    article ul, article ol { margin: 1.5rem 0; padding-left: 2rem; }
+    article li { margin: 0.8rem 0; line-height: 1.75; color: var(--text-primary); }
+    article a { color: #C4956A; text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+    article a:hover { color: #3D6B4E; text-decoration: underline; }
+    .tldr { color: var(--text-secondary); border-left: 3px solid var(--hero-brown); padding-left: 1.5rem; margin: 2rem 0; }
+    .tldr-title { font-family: var(--font-heading); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--hero-brown); margin-bottom: 0.75rem; font-style: normal; }
+    .tldr ul { list-style: disc; padding-left: 1.25rem; margin: 0.5rem 0; }
+    .tldr li { color: var(--text-secondary); font-style: italic; margin: 0.6rem 0; line-height: 1.6; font-size: 1rem; }
+    .tldr a { color: #C4956A; font-style: normal; }
+    .tldr a:hover { color: #3D6B4E; text-decoration: underline; }
+    .article-figure { margin: 2.5rem 0; padding: 1.5rem; background: white; border: 1px solid #E8DDD5; border-radius: 0.75rem; }
+    .article-figure svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+    .article-figure figcaption { margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary); text-align: center; font-style: italic; }
+    .inline-cta { background: var(--hero-brown); color: white; padding: 2rem; border-radius: 0.75rem; margin: 3rem 0; text-align: center; }
+    .inline-cta h3 { font-family: var(--font-heading); color: white; font-size: clamp(1.2rem, 2.5vw, 1.5rem); font-weight: 700; margin: 0 0 0.75rem 0; border: none; padding: 0; }
+    .inline-cta p { color: rgba(255, 255, 255, 0.9); margin: 0 0 1.25rem 0; font-size: 1rem; }
+    .inline-cta a { display: inline-block; background: white; color: var(--hero-brown); padding: 0.75rem 1.75rem; border-radius: 0.5rem; text-decoration: none; font-weight: 700; transition: all 0.3s ease; border: 2px solid white; }
+    .inline-cta a:hover { background: transparent; color: white; text-decoration: none; }
+    .cta-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 3rem 0 0; }
+    .cta-card { border-radius: 0.75rem; padding: 1.75rem; }
+    .cta-card .cta-eyebrow { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+    .cta-card .cta-headline { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; margin-bottom: 0.85rem; line-height: 1.3; color: var(--text-primary); }
+    .cta-card p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--text-primary); }
+    .cta-card .cta-button { display: inline-block; margin-top: 1.1rem; padding: 0.65rem 1.4rem; border-radius: 0.5rem; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: background 0.3s ease; }
+    .cta-card.audit { background: rgba(91, 124, 94, 0.08); border: 2px solid var(--accent-teal); }
+    .cta-card.audit .cta-eyebrow { color: var(--accent-teal); }
+    .cta-card.audit .cta-button { background: var(--accent-teal); color: white; }
+    .cta-card.audit .cta-button:hover { background: var(--hero-brown); }
+    .cta-card.roadmap { background: rgba(107, 61, 46, 0.06); border: 2px solid var(--hero-brown); }
+    .cta-card.roadmap .cta-eyebrow { color: var(--hero-brown); }
+    .cta-card.roadmap .cta-button { background: var(--hero-brown); color: white; }
+    .cta-card.roadmap .cta-button:hover { background: var(--accent-teal); }
+    @media (max-width: 700px) { .cta-pair { grid-template-columns: 1fr; } }
+    .related-posts { margin: 4rem 0 3rem; border-top: 2px solid var(--cream-dark); padding-top: 3rem; }
+    .related-posts h2 { border: none; padding: 0; text-align: center; margin-bottom: 2.5rem; }
+    .related-posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+    .post-card { background: var(--cream-dark); border: 1px solid #E8DDD5; border-radius: 0.75rem; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .post-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); }
+    .post-card a { text-decoration: none; color: inherit; }
+    .post-card-image { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
+    .post-card-content { padding: 1.5rem; }
+    .post-card-meta { font-size: 0.8rem; color: var(--hero-brown); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+    .post-card h3 { font-size: 1.1rem; margin: 0.8rem 0; color: var(--text-primary); border: none; padding: 0; }
+    .final-cta { background: var(--slate); color: white; padding: 3rem 2rem; text-align: center; margin: 4rem 0 0; }
+    .final-cta h2 { border: none; padding: 0; color: white; margin-bottom: 1.5rem; }
+    .final-cta p { color: rgba(255, 255, 255, 0.95); margin-bottom: 2rem; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .cta-button-final { display: inline-block; background: var(--hero-brown); color: white; padding: 0.75rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 700; transition: all 0.3s ease; border: 2px solid var(--hero-brown); }
+    .cta-button-final:hover { background: transparent; color: white; }
+    .cta-button-final.copper { background: var(--accent-amber); border-color: var(--accent-amber); }
+    .footer { background: var(--cream-dark); padding: 2rem; text-align: center; color: var(--text-secondary); font-size: 0.9rem; }
+    .footer a { color: #C4956A; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    @media (max-width: 968px) {
+        .blog-layout { grid-template-columns: 1fr; max-width: var(--content-width); }
+        .toc { position: relative; top: 0; max-height: none; border: 1px solid #E8DDD5; border-radius: 0.75rem; padding: 1.25rem; background: var(--cream-dark); margin-bottom: 1rem; }
+    }
+    @media (max-width: 600px) {
+        h1 { font-size: 1.8rem; }
+        article p { font-size: 1rem; }
+        article h2 { font-size: 1.4rem; }
+        .cta-buttons { flex-direction: column; }
+        .cta-buttons .cta-button-final { display: block; width: 100%; }
+        .related-posts-grid { grid-template-columns: 1fr; }
+    }
+    .fade-in { opacity: 0; animation: fadeIn 0.6s ease-in forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <span class="nav-name"><a href="/">Liz Micik</a></span>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/about">About</a></li>
+                <li><a href="/library">Library</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li class="nav-item has-dropdown">
+                    <a href="/audit" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Services <span class="nav-caret">&#9662;</span></a>
+                    <ul class="nav-dropdown">
+                        <li><a href="/audit">Agent Readiness Audit</a></li>
+                        <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+                        <li><a href="/actions">Agent Readiness Actions</a></li>
+                    </ul>
+                </li>
+                <li><a href="/signal-check" class="nav-cta">Free Signal Check</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="blog-hero">
+        <img class="blog-hero-image" src="/images/measure-3-still-hero.png" alt="Editorial illustration: a vintage copper moonshine still with its curved lyne arm rendered in brand amber, surrounded on a laboratory bench by Erlenmeyer flasks, graduated cylinders, test tubes in a wire rack, and a round-bottom flask — illustrating the full stack of paid AI visibility tools a buyer has to sort through." loading="eager" />
+        <div class="hero-text">
+            <span class="pillar-eyebrow">Measurement &middot; Part 3 of 3</span>
+            <h1>The Paid AI Visibility Stack: Can One Tool Do All Three Jobs?</h1>
+            <div class="blog-meta">
+                <span>April 19, 2026</span>
+                <span>&bull;</span>
+                <span>By Liz Micik</span>
+                <span>&bull;</span>
+                <span>14 min read</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="blog-layout">
+
+        <nav class="toc" aria-label="Table of contents">
+            <div class="toc-title">In This Article</div>
+            <ul class="toc-list">
+                <li><a href="#find-fix-measure">Find, fix, and measure</a></li>
+                <li><a href="#three-questions">Three questions every leader asks</a></li>
+                <li><a href="#three-stages">The three stages, plainly</a></li>
+                <li><a href="#three-lanes">The three economic lanes</a></li>
+                <li><a href="#under-resourced">Under-resourced playbook</a></li>
+                <li><a href="#well-resourced">Well-resourced playbook</a></li>
+                <li><a href="#consultant-lane">The consultant lane</a></li>
+                <li><a href="#scenarios">Two stack scenarios</a></li>
+                <li><a href="#pace-of-change">The pace of change</a></li>
+            </ul>
+        </nav>
+
+        <article class="blog-content">
+
+<div class="tldr">
+    <p class="tldr-title">The Short Version</p>
+    <ul>
+        <li>Free tools tell you <em>whether</em> you have an AI visibility problem. Paid tools split into three economic lanes: DIY (free&ndash;$100/mo), SaaS subscription ($29&ndash;$5,000+/mo), and one-off audits plus consulting ($99&ndash;$25,000+).</li>
+        <li>No single platform under $2,000/month is best-in-class at diagnosis AND fix AND measurement. Enterprise platforms that bundle all three trade depth for consolidation.</li>
+        <li>If you're under-resourced, buy the audit first, do the work, then subscribe. If you're well-resourced, buy best-of-breed across three tools or one enterprise platform &mdash; and budget for outside strategic review.</li>
+        <li>Most vendors you'd contract with today are less than three years old. Buy for 12 months, re-evaluate then. Don't sign a multi-year contract in a category still being built.</li>
+    </ul>
+</div>
+
+<h2 id="find-fix-measure">Find, fix, and measure: what everyone is scrambling to learn</h2>
+
+<p>Bear with me through this article please. I learned to write in an inverted pyramid style back in journalism school. I need to tee this up correctly in order to give you my best thinking on how to get the most out of the many AI visibility measurement tools out there today. If you skip to the details, you'll miss the point entirely.</p>
+
+<p>In the <a href="/library/ai-visibility-measurement-free-tools">last piece of this series</a>, we put 28 free AI visibility tools on our workbench and sorted them on how many facts, vibes, and wrong answers they produced. Only four delivered solid facts. Roughly half fell short in one or two areas. The rest were confidence theater dressed up as instruments.</p>
+
+<p>Here's what I hope you took away from that piece: even the four that were real only got you to first base. Free tools tell you <em>whether</em> you have a problem. They don't tell you what the problem is, where exactly it lives, or what to do about it.</p>
+
+<figure class="article-figure">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 320" role="img" aria-labelledby="callback-title callback-desc" style="max-width:100%;height:auto;display:block;margin:0 auto;font-family:Inter,system-ui,sans-serif">
+  <title id="callback-title">Part 2 recap: 28 free AI visibility tools graded Fact, Vibe, or Wrong</title>
+  <desc id="callback-desc">Four tools delivered solid facts, twelve were vibes, twelve were wrong. Eight of the 28 scored well on transparency.</desc>
+  <text x="40" y="42" font-family="Manrope, system-ui, sans-serif" font-weight="700" font-size="19" fill="#2A2A2A" letter-spacing="0.5">FROM PART 2: 28 FREE AI VISIBILITY TOOLS, GRADED</text>
+  <line x1="40" y1="58" x2="240" y2="58" stroke="#C4956A" stroke-width="3"/>
+  <g transform="translate(40,98)">
+    <rect x="0" y="0" width="143" height="68" fill="#3D6B4E"/>
+    <text x="71.5" y="38" text-anchor="middle" font-weight="700" font-size="28" fill="#FFFFFF">4</text>
+    <text x="71.5" y="58" text-anchor="middle" font-weight="600" font-size="11" fill="#FFFFFF" letter-spacing="1">FACT</text>
+    <rect x="143" y="0" width="428" height="68" fill="#C4956A"/>
+    <text x="357" y="38" text-anchor="middle" font-weight="700" font-size="28" fill="#FFFFFF">12</text>
+    <text x="357" y="58" text-anchor="middle" font-weight="600" font-size="11" fill="#FFFFFF" letter-spacing="1">VIBE</text>
+    <rect x="571" y="0" width="429" height="68" fill="#4A4A4A"/>
+    <text x="785.5" y="38" text-anchor="middle" font-weight="700" font-size="28" fill="#FFFFFF">12</text>
+    <text x="785.5" y="58" text-anchor="middle" font-weight="600" font-size="11" fill="#FFFFFF" letter-spacing="1">WRONG</text>
+  </g>
+  <g transform="translate(40,200)">
+    <line x1="0" y1="0" x2="1000" y2="0" stroke="#D4C9B4" stroke-width="1"/>
+    <text x="0" y="32" font-weight="600" font-size="15" fill="#2A2A2A">
+      <tspan font-weight="700" fill="#6B3D2E">Eight of the 28</tspan>
+      <tspan> scored well on transparency (3 or more out of 4 methodology checks).</tspan>
+    </text>
+    <text x="0" y="58" font-size="14" fill="#5A5A5A" font-style="italic">
+      Even the four Facts only tell you whether you have a problem &mdash; not where it lives or what to do about it.
+    </text>
+  </g>
+</svg>
+<figcaption>Part 2 sorted the field. This piece picks up where those free tools leave off.</figcaption>
+</figure>
+
+<p>In this piece we're going to cover the paid tools and audits that can help you pinpoint where you need to make corrections to your website. We'll also look at which of these tools can help you make those fixes and which ones will help you measure your results.</p>
+
+<p>No matter how big or small, young or old your company is, all of us either have more time than money or more money than time to spend diagnosing what you need to do to prepare for the agentic web transition. That's why we're going to look at the tool choices through a price-vs-resource lens.</p>
+
+<p>But there's a definite bias here. Time is the most precious resource for all of us right now. The increasing rate of change is clear and the bottom line is clear. Most of what is true today will not be true 18 months from now.</p>
+
+<p>So pat yourself on the back one time for being here now and for making a budget and action plan now. Then strap in and let's zoom through the find, fix, and measure decisions you need to make before that Board meeting Tuesday morning.</p>
+
+<h2 id="three-questions">The three questions every leader asks about tools</h2>
+
+<p>Budget is likely to be the first lever every VP evaluating AI visibility is going to pull first. And that usually drives the same three questions in the same order.</p>
+
+<h3>Is there one best tool out there that can do it all?</h3>
+
+<p>The answer depends on what you can spend. If you can afford the enterprise tools that typically start at $2&ndash;3,000 per month, then yes, there are platforms that legitimately cover diagnosis, fix, and measurement. Profound, Evertune, Conductor, and a few others. You could also hire an agency or a consultant in that price range.</p>
+
+<p>If you're not enterprise, the answer is no. The all-in-one claim at sub-enterprise prices is mostly marketing; platforms that promise end-to-end coverage below $600 a month tend to be strong at one stage and thin at the other two.</p>
+
+<p>Consider your traditional SEO measurement stack as your guide here. Both SEMRush and Ahrefs excel at helping you research (find) and outline or draft content (with the right add-on modules) to fill the gaps found. Neither is as good at being a source of truth on results reporting as Google GA4 or Adobe Analytics.</p>
+
+<h3>Do I really need a subscription, or is this something we can do once and be done?</h3>
+
+<p>Not necessarily. There's a real third lane in this market &mdash; one-off audits and project-based consulting &mdash; that most buyers haven't heard of because the subscription vendors don't talk about it. For teams that don't need continuous monitoring, or who need to know what's broken before they start paying monthly to watch it, this lane is the best choice more often than you'd expect.</p>
+
+<p>Here's where I need to interject with a transparency note. After 28 years as an SEO, I have developed an AI agent readiness audit and a readiness roadmap that I sell as one-off products. That's why &mdash; surprise &mdash; I talk and write about this so much. But you won't find my tools called the &ldquo;best&rdquo; in this article or any other.</p>
+
+<h3>How fast is any of this going to be out of date?</h3>
+
+<p>Fast. <a href="https://www.lowtouch.ai/ai-startup-ma-heats-up-what-427-acquisitions-in-2025-mean-for-enterprises/">427 AI acquisitions closed in the first half of 2025</a>, up 18% year over year. If that pace continues, there's a chance the tool you choose today could be bought out or merged with another in two years. So buy for the next 12 months and re-evaluate then &mdash; no matter how tempting that multi-year contract price is.</p>
+
+<h2 id="three-stages">The three stages, plainly</h2>
+
+<p>AI visibility work breaks into three stages any SEO professional will recognize immediately &mdash; because they're the same three stages the community has run for twenty years. Only now we're focused on gaining citations and mentions instead of ranking first in 10 blue links.</p>
+
+<p><strong>DIAGNOSE.</strong> Figure out where AI platforms are currently missing you, misrepresenting you, or citing your competitors when they should be citing you. A real diagnosis covers content gaps, schema problems, entity clarity, crawlability, and competitive positioning across multiple AI platforms, not just one. It tells you:</p>
+
+<ul>
+    <li>which prompts trigger your brand</li>
+    <li>which ones should but don't</li>
+    <li>what AI platforms currently say about you</li>
+    <li>what's preventing them from getting you right</li>
+</ul>
+
+<p><strong>FIX.</strong> Do the actual work to change what AI platforms say. Make your existing pages legible and easy to navigate by AI crawlers. Structure your data for entity clarity (and yes, that means using schema for now). Then tackle content optimization, not &ldquo;AI content generation.&rdquo;</p>
+
+<p>The tools that generate AI content at scale currently generate more problems than they solve. Need proof? Here's some:</p>
+
+<ul>
+    <li><a href="https://almcorp.com/blog/ai-search-press-release-citations/">Syndicated press releases are cited 0.04% of the time</a></li>
+    <li>AI-mass-produced content has lost signal since the March 2024 Google core update</li>
+</ul>
+
+<p>Optimization, on the other hand, is still very much alive and kicking. <a href="https://arxiv.org/abs/2311.09735">Effect sizes from the Princeton&ndash;Georgia Tech GEO study (2024)</a> put the winning interventions on clear record: adding statistics increases visibility by 41%, adding quotations by 28%, adding external citations by 115% &mdash; with the effect concentrated on pages currently ranking around position 5, not position 1.</p>
+
+<p><strong>MEASURE.</strong> Track whether your interventions are moving the number across platforms over time against competitors. This is the stage most prone to vanity metrics, because citation volatility is high. <a href="https://nicklafferty.com/blog/profound-vs-peec-ai/">Google AI Overviews shows 59.3% citation turnover month over month</a>, and citation results for the same brand can vary significantly from one AI response to the next. A good measurement tool tells volatility apart from real change. A bad one gives you pretty dashboards that move for no reason.</p>
+
+<p>Interpreting what the tools are telling you is also a skill you need to address &mdash; or rather, three skills:</p>
+
+<figure class="article-figure">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 420" role="img" aria-labelledby="stages-title stages-desc" style="max-width:100%;height:auto;display:block;margin:0 auto;font-family:Inter,system-ui,sans-serif">
+  <title id="stages-title">The three stages of AI visibility work &mdash; diagnose, fix, and measure &mdash; and the skill each one demands</title>
+  <desc id="stages-desc">Diagnose requires prompt engineering literacy, GA4 fluency, and the ability to read structured data audits. Fix requires content strategy, schema competence, and semantic HTML discipline. Measure requires statistical thinking &mdash; telling noise from signal at small sample sizes across multiple platforms.</desc>
+  <text x="40" y="36" font-family="Manrope, system-ui, sans-serif" font-weight="700" font-size="19" fill="#2A2A2A" letter-spacing="0.5">THREE STAGES, THREE SKILLS</text>
+  <line x1="40" y1="52" x2="240" y2="52" stroke="#C4956A" stroke-width="3"/>
+  <text x="40" y="74" font-size="13" fill="#5A5A5A" font-style="italic">The tools produce raw data at each stage. Reading it correctly is a separate job &mdash; and the bottleneck for most teams.</text>
+  <g fill="#C4956A">
+    <polygon points="355,230 375,215 375,245"/>
+    <polygon points="705,230 725,215 725,245"/>
+  </g>
+  <g transform="translate(40,110)">
+    <rect x="0" y="0" width="315" height="280" fill="#FFFFFF" stroke="#3D6B4E" stroke-width="1.5" rx="4"/>
+    <rect x="0" y="0" width="315" height="46" fill="#3D6B4E"/>
+    <text x="18" y="20" font-family="Manrope, system-ui, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF" letter-spacing="2">STAGE 1</text>
+    <text x="18" y="38" font-family="Manrope, system-ui, sans-serif" font-weight="700" font-size="18" fill="#FFFFFF">DIAGNOSE</text>
+    <text x="18" y="72" font-size="12" font-weight="600" fill="#2A2A2A">Where AI platforms miss, misrepresent, or skip you.</text>
+    <text x="18" y="98" font-size="10" font-weight="700" fill="#3D6B4E" letter-spacing="1">WHAT IT COVERS</text>
+    <g font-size="11" fill="#2A2A2A">
+      <text x="18" y="116">&bull; Which prompts trigger your brand</text>
+      <text x="18" y="132">&bull; Which ones should but don't</text>
+      <text x="18" y="148">&bull; What AI platforms say about you</text>
+      <text x="18" y="164">&bull; What's preventing correct pickup</text>
+    </g>
+    <line x1="18" y1="186" x2="297" y2="186" stroke="#D4C9B4" stroke-width="1"/>
+    <text x="18" y="206" font-size="10" font-weight="700" fill="#3D6B4E" letter-spacing="1">THE SKILL IT DEMANDS</text>
+    <text x="18" y="224" font-size="11" fill="#2A2A2A">Prompt engineering literacy,</text>
+    <text x="18" y="240" font-size="11" fill="#2A2A2A">GA4 fluency, and reading</text>
+    <text x="18" y="256" font-size="11" fill="#2A2A2A">structured-data audits without</text>
+    <text x="18" y="272" font-size="11" fill="#2A2A2A">confusing method quirks</text>
+  </g>
+  <g transform="translate(382,110)">
+    <rect x="0" y="0" width="315" height="280" fill="#FFFFFF" stroke="#C4956A" stroke-width="1.5" rx="4"/>
+    <rect x="0" y="0" width="315" height="46" fill="#C4956A"/>
+    <text x="18" y="20" font-family="Manrope, system-ui, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF" letter-spacing="2">STAGE 2</text>
+    <text x="18" y="38" font-family="Manrope, system-ui, sans-serif" font-weight="700" font-size="18" fill="#FFFFFF">FIX</text>
+    <text x="18" y="72" font-size="12" font-weight="600" fill="#2A2A2A">Do the work that changes what AI platforms say.</text>
+    <text x="18" y="98" font-size="10" font-weight="700" fill="#6B3D2E" letter-spacing="1">WHAT IT COVERS</text>
+    <g font-size="11" fill="#2A2A2A">
+      <text x="18" y="116">&bull; Make pages legible to AI crawlers</text>
+      <text x="18" y="132">&bull; Structure data for entity clarity</text>
+      <text x="18" y="148">&bull; Optimize content (not generate it)</text>
+      <text x="18" y="164">&bull; Earn citations via PR + partners</text>
+    </g>
+    <line x1="18" y1="186" x2="297" y2="186" stroke="#D4C9B4" stroke-width="1"/>
+    <text x="18" y="206" font-size="10" font-weight="700" fill="#6B3D2E" letter-spacing="1">THE SKILL IT DEMANDS</text>
+    <text x="18" y="224" font-size="11" fill="#2A2A2A">Content strategy, schema</text>
+    <text x="18" y="240" font-size="11" fill="#2A2A2A">competence, and semantic</text>
+    <text x="18" y="256" font-size="11" fill="#2A2A2A">HTML discipline</text>
+  </g>
+  <g transform="translate(725,110)">
+    <rect x="0" y="0" width="315" height="280" fill="#FFFFFF" stroke="#4A4A4A" stroke-width="1.5" rx="4"/>
+    <rect x="0" y="0" width="315" height="46" fill="#4A4A4A"/>
+    <text x="18" y="20" font-family="Manrope, system-ui, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF" letter-spacing="2">STAGE 3</text>
+    <text x="18" y="38" font-family="Manrope, system-ui, sans-serif" font-weight="700" font-size="18" fill="#FFFFFF">MEASURE</text>
+    <text x="18" y="72" font-size="12" font-weight="600" fill="#2A2A2A">Track whether the fixes actually moved the number.</text>
+    <text x="18" y="98" font-size="10" font-weight="700" fill="#4A4A4A" letter-spacing="1">WHAT IT COVERS</text>
+    <g font-size="11" fill="#2A2A2A">
+      <text x="18" y="116">&bull; Citation volume + share of voice</text>
+      <text x="18" y="132">&bull; Competitive benchmarking</text>
+      <text x="18" y="148">&bull; Platform-by-platform change</text>
+      <text x="18" y="164">&bull; Volatility vs. real movement</text>
+    </g>
+    <line x1="18" y1="186" x2="297" y2="186" stroke="#D4C9B4" stroke-width="1"/>
+    <text x="18" y="206" font-size="10" font-weight="700" fill="#4A4A4A" letter-spacing="1">THE SKILL IT DEMANDS</text>
+    <text x="18" y="224" font-size="11" fill="#2A2A2A">Statistical thinking &mdash; telling</text>
+    <text x="18" y="240" font-size="11" fill="#2A2A2A">noise from signal at small</text>
+    <text x="18" y="256" font-size="11" fill="#2A2A2A">samples across platforms</text>
+  </g>
+</svg>
+<figcaption>Each stage produces raw data. Reading that data correctly is a separate job, and often the bottleneck.</figcaption>
+</figure>
+
+<ul>
+    <li><strong>DIAGNOSE</strong> needs prompt engineering literacy, GA4 fluency, and the ability to read structured data audits without mistaking a tool's methodology quirk for a platform signal.</li>
+    <li><strong>FIX</strong> needs content strategy, schema competence, and semantic HTML discipline.</li>
+    <li><strong>MEASURE</strong> needs statistical thinking &mdash; the discipline to tell noise from signal at small sample sizes across multiple platforms.</li>
+</ul>
+
+<p>This truly is the bottleneck for most companies. Tools produce raw data. Reading raw data correctly is harder than anyone selling a tool will admit. These resource constraints should play a large part in determining what tools you ultimately use.</p>
+
+<h2 id="three-lanes">The three economic lanes</h2>
+
+<p>Three distinct economic models serve this market. Pick the right lane before you pick the tool.</p>
+
+<h3>DIY (free to ~$100/month)</h3>
+
+<p>This lane is real and it works honestly for about 3&ndash;6 months. Realistic time commitment for serious DIY is <a href="https://searchengineland.com/build-ai-search-visibility-tracker-473178">15&ndash;25 hours per week with 30&ndash;45 days of setup before you produce reliable insight</a>. Some of the ways you can do DIY diagnostics:</p>
+
+<ul>
+    <li>Free plugins from Yoast, RankMath, Schema.org</li>
+    <li>Manual prompt logging in spreadsheets</li>
+    <li>Python scripts against the OpenAI or Anthropic APIs</li>
+    <li>Low-floor monitoring tools like Otterly ($29/month)</li>
+</ul>
+
+<p>Most DIY teams hit a ceiling at 3&ndash;4 months. Why? Because no one owns the work continuously, sample sizes stay too small to distinguish volatility from signal, and cross-platform comparison requires methodological rigor that short-staffed teams rarely have.</p>
+
+<h3>SaaS subscription ($29/month to $5,000+/month)</h3>
+
+<p>The dominant lane. Pricing breaks cleanly into three bands:</p>
+
+<ul>
+    <li><strong>Self-serve</strong> at $29&ndash;$200/month</li>
+    <li><strong>Mid-market</strong> at $295&ndash;$600/month</li>
+    <li><strong>Enterprise</strong> at $2,000+/month</li>
+</ul>
+
+<p>The $2,000/month mark is the real &ldquo;one tool or three tools&rdquo; dividing line. Below it you're assembling best-of-breed parts; above it you're paying for vendor consolidation. Only Profound's range currently straddles that line.</p>
+
+<figure class="article-figure">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 580" role="img" aria-labelledby="lanes-title lanes-desc" style="max-width:100%;height:auto;display:block;margin:0 auto;font-family:Inter,system-ui,sans-serif">
+  <title id="lanes-title">Three economic lanes for AI visibility tools, plotted on a log price axis from $25 to $25,000 per month or per engagement</title>
+  <desc id="lanes-desc">DIY runs from free to about $100 per month. SaaS subscription runs from $29 per month to $5,000 per month. One-off audits and consulting run from $99 per audit up to $25,000+ per engagement, with named practitioners throughout the range.</desc>
+  <text x="40" y="36" font-family="Manrope, system-ui, sans-serif" font-weight="700" font-size="19" fill="#2A2A2A" letter-spacing="0.5">THE THREE ECONOMIC LANES, PLOTTED</text>
+  <line x1="40" y1="52" x2="240" y2="52" stroke="#C4956A" stroke-width="3"/>
+  <text x="40" y="74" font-size="13" fill="#5A5A5A" font-style="italic">Where the vendors actually price across the range.</text>
+  <g transform="translate(0,170)">
+    <text x="40" y="0" font-family="Manrope, system-ui, sans-serif" font-weight="700" font-size="13" fill="#3D6B4E" letter-spacing="0.5">DIY</text>
+    <text x="40" y="17" font-size="11" fill="#5A5A5A">free &rarr; ~$100/mo</text>
+    <line x1="90" y1="30" x2="990" y2="30" stroke="#3D6B4E" stroke-width="2" stroke-opacity="0.35"/>
+    <circle cx="62" cy="30" r="6" fill="#3D6B4E"/>
+    <text x="62" y="52" text-anchor="middle" font-size="11" fill="#2A2A2A" font-weight="600">Free</text>
+    <text x="62" y="64" text-anchor="middle" font-size="10" fill="#5A5A5A">Manual prompts</text>
+    <circle cx="180" cy="30" r="5" fill="#3D6B4E"/>
+    <text x="180" y="52" text-anchor="middle" font-size="11" fill="#2A2A2A" font-weight="600">Otterly $29</text>
+    <line x1="271" y1="22" x2="271" y2="38" stroke="#3D6B4E" stroke-width="1.5" stroke-dasharray="2,2"/>
+    <text x="271" y="14" text-anchor="middle" font-size="10" fill="#5A5A5A" font-style="italic">DIY ceiling</text>
+    <text x="990" y="3" text-anchor="end" font-size="10" fill="#5A5A5A" font-style="italic">Honest for 3&ndash;6 months. Ceiling: time, not price.</text>
+  </g>
+  <g transform="translate(0,280)">
+    <text x="40" y="0" font-family="Manrope, system-ui, sans-serif" font-weight="700" font-size="13" fill="#C4956A" letter-spacing="0.5">SaaS</text>
+    <text x="40" y="17" font-size="11" fill="#5A5A5A">$29 &rarr; $5,000+/mo</text>
+    <line x1="90" y1="30" x2="990" y2="30" stroke="#C4956A" stroke-width="2" stroke-opacity="0.35"/>
+    <line x1="180" y1="30" x2="271" y2="30" stroke="#C4956A" stroke-width="6" stroke-linecap="round"/>
+    <text x="225" y="52" text-anchor="middle" font-size="11" fill="#2A2A2A" font-weight="600">Otterly</text>
+    <text x="225" y="64" text-anchor="middle" font-size="10" fill="#5A5A5A">$29&ndash;$100</text>
+    <circle cx="360" cy="30" r="5" fill="#C4956A"/>
+    <text x="360" y="52" text-anchor="middle" font-size="11" fill="#2A2A2A" font-weight="600">Relixir</text>
+    <text x="360" y="64" text-anchor="middle" font-size="10" fill="#5A5A5A">$199+</text>
+    <line x1="361" y1="18" x2="444" y2="18" stroke="#C4956A" stroke-width="6" stroke-linecap="round"/>
+    <text x="402" y="10" text-anchor="middle" font-size="11" fill="#2A2A2A" font-weight="600">Peec AI $200&ndash;$400</text>
+    <circle cx="410" cy="30" r="5" fill="#C4956A"/>
+    <text x="410" y="78" text-anchor="middle" font-size="11" fill="#2A2A2A" font-weight="600">AthenaHQ</text>
+    <text x="410" y="90" text-anchor="middle" font-size="10" fill="#5A5A5A">$295+</text>
+    <line x1="452" y1="30" x2="661" y2="30" stroke="#C4956A" stroke-width="6" stroke-linecap="round"/>
+    <text x="556" y="52" text-anchor="middle" font-size="11" fill="#2A2A2A" font-weight="600">Profound</text>
+    <text x="556" y="64" text-anchor="middle" font-size="10" fill="#5A5A5A">$399&ndash;$2,000+</text>
+    <line x1="661" y1="30" x2="780" y2="30" stroke="#C4956A" stroke-width="6" stroke-linecap="round"/>
+    <text x="720" y="10" text-anchor="middle" font-size="11" fill="#2A2A2A" font-weight="600">Enterprise tier</text>
+    <text x="720" y="52" text-anchor="middle" font-size="10" fill="#5A5A5A">$2,000&ndash;$5,000+</text>
+    <text x="720" y="64" text-anchor="middle" font-size="10" fill="#5A5A5A">Conductor, Evertune, Profound Ent.</text>
+    <text x="990" y="3" text-anchor="end" font-size="10" fill="#5A5A5A" font-style="italic">Three price bands. $2,000/mo is the line between parts and platforms.</text>
+  </g>
+  <g transform="translate(0,400)">
+    <text x="40" y="0" font-family="Manrope, system-ui, sans-serif" font-weight="700" font-size="13" fill="#6B3D2E" letter-spacing="0.5">ONE-OFF</text>
+    <text x="40" y="17" font-size="11" fill="#5A5A5A">$99 &rarr; $25,000+</text>
+    <line x1="90" y1="30" x2="990" y2="30" stroke="#6B3D2E" stroke-width="2" stroke-opacity="0.35"/>
+    <line x1="90" y1="30" x2="200" y2="30" stroke="#6B3D2E" stroke-width="6" stroke-linecap="round" stroke-opacity="0.4"/>
+    <text x="145" y="52" text-anchor="middle" font-size="11" fill="#2A2A2A" font-weight="600">Gumshoe pay-per-report</text>
+    <text x="145" y="64" text-anchor="middle" font-size="10" fill="#5A5A5A">$25&ndash;$35</text>
+    <line x1="270" y1="30" x2="480" y2="30" stroke="#6B3D2E" stroke-width="6" stroke-linecap="round"/>
+    <text x="375" y="10" text-anchor="middle" font-size="11" fill="#2A2A2A" font-weight="600">Metricus $99&ndash;$499</text>
+    <circle cx="271" cy="30" r="5" fill="#6B3D2E"/>
+    <text x="271" y="78" text-anchor="middle" font-size="11" fill="#2A2A2A" font-weight="600">Ferventers</text>
+    <text x="271" y="90" text-anchor="middle" font-size="10" fill="#5A5A5A">$99</text>
+    <line x1="480" y1="30" x2="571" y2="30" stroke="#6B3D2E" stroke-width="6" stroke-linecap="round"/>
+    <text x="525" y="52" text-anchor="middle" font-size="11" fill="#2A2A2A" font-weight="600">Ypsilon Digital</text>
+    <text x="525" y="64" text-anchor="middle" font-size="10" fill="#5A5A5A">$497&ndash;$997</text>
+    <line x1="623" y1="30" x2="714" y2="30" stroke="#6B3D2E" stroke-width="6" stroke-linecap="round"/>
+    <text x="669" y="10" text-anchor="middle" font-size="11" fill="#2A2A2A" font-weight="600">Budget consulting $1.5K&ndash;$3K</text>
+    <line x1="780" y1="30" x2="990" y2="30" stroke="#6B3D2E" stroke-width="6" stroke-linecap="round"/>
+    <text x="885" y="52" text-anchor="middle" font-size="11" fill="#2A2A2A" font-weight="600">Premium consulting $5K&ndash;$25K+</text>
+    <text x="885" y="64" text-anchor="middle" font-size="10" fill="#5A5A5A">Schwartzman, Pilot, Four Dots, Ramp IQ, Valantic</text>
+    <text x="990" y="3" text-anchor="end" font-size="10" fill="#5A5A5A" font-style="italic">The lane subscription vendors don't talk about.</text>
+  </g>
+  <g transform="translate(0,510)">
+    <line x1="90" y1="0" x2="990" y2="0" stroke="#2A2A2A" stroke-width="1.5"/>
+    <g font-size="10" fill="#5A5A5A" text-anchor="middle">
+      <line x1="90" y1="0" x2="90" y2="6" stroke="#2A2A2A"/>
+      <text x="90" y="20">$25</text>
+      <line x1="271" y1="0" x2="271" y2="6" stroke="#2A2A2A"/>
+      <text x="271" y="20">$100</text>
+      <line x1="414" y1="0" x2="414" y2="6" stroke="#2A2A2A"/>
+      <text x="414" y="20">$300</text>
+      <line x1="504" y1="0" x2="504" y2="6" stroke="#2A2A2A"/>
+      <text x="504" y="20">$600</text>
+      <line x1="571" y1="0" x2="571" y2="6" stroke="#2A2A2A"/>
+      <text x="571" y="20">$1K</text>
+      <line x1="661" y1="0" x2="661" y2="6" stroke="#2A2A2A"/>
+      <text x="661" y="20">$2K</text>
+      <line x1="780" y1="0" x2="780" y2="6" stroke="#2A2A2A"/>
+      <text x="780" y="20">$5K</text>
+      <line x1="870" y1="0" x2="870" y2="6" stroke="#2A2A2A"/>
+      <text x="870" y="20">$10K</text>
+      <line x1="990" y1="0" x2="990" y2="6" stroke="#2A2A2A"/>
+      <text x="990" y="20">$25K</text>
+    </g>
+    <text x="540" y="42" text-anchor="middle" font-size="11" fill="#5A5A5A" font-style="italic">Monthly subscription price, or per-engagement price for one-off work (log scale)</text>
+  </g>
+</svg>
+<figcaption>Three lanes, plotted on a log price axis. The buyer's real decision is which lane fits, not which vendor has the loudest ad.</figcaption>
+</figure>
+
+<h3>One-off audits and consulting ($99 to $25,000+)</h3>
+
+<p>The lane the subscription vendors don't talk about. Some tools sell deliverables without subscriptions:</p>
+
+<ul>
+    <li>Metricus ($99&ndash;$499 per audit)</li>
+    <li>Ferventers ($99)</li>
+    <li>Ypsilon Digital ($497&ndash;$997)</li>
+    <li>Gumshoe offers a pay-per-report option ($25&ndash;$35 per audit) alongside its subscription</li>
+</ul>
+
+<p>Consultants sell audit-and-roadmap engagements in two bands: budget at $1,500&ndash;$3,000 (typically a white-label report plus strategic overlay) and premium at $5,000&ndash;$25,000+ (original diagnostic work and detailed implementation roadmaps). This is the lane my practice sits in.</p>
+
+<h2 id="under-resourced">Under-resourced team: the playbook</h2>
+
+<p>You are an under-resourced team if: marketing budget under $50,000 a year, one or two people covering content, measurement, and technical coordination, and no dedicated engineering headcount for structured data or schema work.</p>
+
+<p>This includes most B2B SaaS companies under Series B, most small agencies, most in-house teams at companies under 200 people, and &mdash; awkwardly &mdash; plenty of enterprise marketing departments run by single overworked PPC, SEO, or Content subject matter experts (been there, done that, burned the t-shirt).</p>
+
+<p>Your playbook has three moves, in order.</p>
+
+<p><strong>First, buy a one-off audit from someone who does this seriously.</strong></p>
+
+<p>If you have $99 to $500 and want a snapshot, Metricus, Ferventers, or Ypsilon Digital will sell you a report. If you have $1,500 to $5,000 and want a snapshot <em>plus</em> a prioritized roadmap you can hand to your engineering team, hire a consultant who specializes in AI visibility.</p>
+
+<p>This is the lane my practice operates in; it's also where Pilot Digital, Four Dots, Ramp IQ, and a handful of others work. The value of this step isn't the audit itself &mdash; <strong>it's the prioritized list of fixes you wouldn't have found on your own, ordered by impact.</strong></p>
+
+<p><strong>Second, do the work the audit identified.</strong></p>
+
+<p>Don't let that audit gather dust. Even if you can only commit to one fix per week or month, please make it a priority.</p>
+
+<ul>
+    <li>Install schema markup through free plugins if your CMS supports it</li>
+    <li>Run a manual FAQ-schema audit on your top 20 pages</li>
+    <li>Log weekly prompt queries against ChatGPT, Perplexity, and Gemini in a spreadsheet for two or three of your highest-priority topics. This gives you a baseline and surfaces the obvious problems. Budget: effectively zero in tools, but plan for 10&ndash;15 hours of real time before you have anything usable.</li>
+</ul>
+
+<p><strong>Third, once you've done the fixes, buy a subscription to monitor progress.</strong></p>
+
+<p>Not before. A subscription tool measures change; there's nothing to measure until you've done the work.</p>
+
+<p>Gumshoe is a good fit here because you can test the tool with their pay-per-report option during your audit phase (we use it in ours), then upgrade to their subscription once you're ready to track progress month over month ($60+/month).</p>
+
+<p>Otterly is the leanest pure-monitoring subscription in the market ($29/month starter). Peec AI ($200&ndash;$400/month) and LLM Pulse (&euro;49&ndash;&euro;299/month) are also credible mid-tier options.</p>
+
+<p>The trap for under-resourced teams is buying the subscription first. Every vendor in this space will sell you a monthly seat starting tomorrow. What they won't sell you is the roadmap of what to actually fix &mdash; and that roadmap is where the first real budget needs to go.</p>
+
+<figure class="article-figure">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 480" role="img" aria-labelledby="teams-title teams-desc" style="max-width:100%;height:auto;display:block;margin:0 auto;font-family:Inter,system-ui,sans-serif">
+  <title id="teams-title">Two playbooks &mdash; one for under-resourced teams, one for well-resourced teams</title>
+  <desc id="teams-desc">Under-resourced teams should buy a one-off audit first, then do the fixes, then subscribe to monitor. Well-resourced teams choose between best-of-breed across three tools or a single enterprise platform that trades depth for consolidation.</desc>
+  <text x="40" y="36" font-family="Manrope, system-ui, sans-serif" font-weight="700" font-size="19" fill="#2A2A2A" letter-spacing="0.5">TWO TEAMS, TWO PLAYBOOKS</text>
+  <line x1="40" y1="52" x2="240" y2="52" stroke="#C4956A" stroke-width="3"/>
+  <text x="40" y="74" font-size="13" fill="#5A5A5A" font-style="italic">Which one you are determines the order of moves &mdash; not whether you spend.</text>
+  <g transform="translate(40,100)">
+    <rect x="0" y="0" width="490" height="360" fill="#FFFFFF" stroke="#6B3D2E" stroke-width="1.5" rx="4"/>
+    <rect x="0" y="0" width="490" height="56" fill="#6B3D2E"/>
+    <text x="24" y="22" font-family="Manrope, system-ui, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF" letter-spacing="2">IF YOU'RE UNDER-RESOURCED</text>
+    <text x="24" y="44" font-family="Manrope, system-ui, sans-serif" font-weight="700" font-size="17" fill="#FFFFFF">Audit &rarr; Fix &rarr; Then subscribe</text>
+    <text x="24" y="82" font-size="10" font-weight="700" fill="#6B3D2E" letter-spacing="1">WHO YOU ARE</text>
+    <text x="24" y="100" font-size="12" fill="#2A2A2A">Under $50K annual marketing budget.</text>
+    <text x="24" y="116" font-size="12" fill="#2A2A2A">One or two people covering content,</text>
+    <text x="24" y="132" font-size="12" fill="#2A2A2A">measurement, and tech coordination.</text>
+    <text x="24" y="148" font-size="12" fill="#2A2A2A">No dedicated schema engineering.</text>
+    <line x1="24" y1="168" x2="466" y2="168" stroke="#D4C9B4" stroke-width="1"/>
+    <text x="24" y="188" font-size="10" font-weight="700" fill="#6B3D2E" letter-spacing="1">THE PLAYBOOK</text>
+    <circle cx="36" cy="212" r="11" fill="#6B3D2E"/>
+    <text x="36" y="216" text-anchor="middle" font-weight="700" font-size="12" fill="#FFFFFF">1</text>
+    <text x="56" y="210" font-size="12" font-weight="600" fill="#2A2A2A">Buy a one-off audit.</text>
+    <text x="56" y="226" font-size="11" fill="#5A5A5A">$99&ndash;$500 for a snapshot, or $1.5K&ndash;$5K</text>
+    <text x="56" y="240" font-size="11" fill="#5A5A5A">for a snapshot + prioritized roadmap.</text>
+    <circle cx="36" cy="262" r="11" fill="#6B3D2E"/>
+    <text x="36" y="266" text-anchor="middle" font-weight="700" font-size="12" fill="#FFFFFF">2</text>
+    <text x="56" y="260" font-size="12" font-weight="600" fill="#2A2A2A">Do the work the audit identified.</text>
+    <text x="56" y="276" font-size="11" fill="#5A5A5A">Schema, top-20 FAQ audit, weekly</text>
+    <text x="56" y="290" font-size="11" fill="#5A5A5A">prompt logging. 10&ndash;15 hrs of real time.</text>
+    <circle cx="36" cy="312" r="11" fill="#6B3D2E"/>
+    <text x="36" y="316" text-anchor="middle" font-weight="700" font-size="12" fill="#FFFFFF">3</text>
+    <text x="56" y="310" font-size="12" font-weight="600" fill="#2A2A2A">Then subscribe to monitor.</text>
+    <text x="56" y="326" font-size="11" fill="#5A5A5A">Gumshoe, Otterly, Peec AI, LLM Pulse.</text>
+    <text x="56" y="340" font-size="11" fill="#5A5A5A" font-style="italic">Not before. Nothing to measure yet.</text>
+  </g>
+  <g transform="translate(550,100)">
+    <rect x="0" y="0" width="490" height="360" fill="#FFFFFF" stroke="#3D6B4E" stroke-width="1.5" rx="4"/>
+    <rect x="0" y="0" width="490" height="56" fill="#3D6B4E"/>
+    <text x="24" y="22" font-family="Manrope, system-ui, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF" letter-spacing="2">IF YOU'RE WELL-RESOURCED</text>
+    <text x="24" y="44" font-family="Manrope, system-ui, sans-serif" font-weight="700" font-size="17" fill="#FFFFFF">Best-of-breed OR one platform</text>
+    <text x="24" y="82" font-size="10" font-weight="700" fill="#3D6B4E" letter-spacing="1">WHO YOU ARE</text>
+    <text x="24" y="100" font-size="12" fill="#2A2A2A">$50K+ earmarked for AI visibility.</text>
+    <text x="24" y="116" font-size="12" fill="#2A2A2A">Three+ people across content,</text>
+    <text x="24" y="132" font-size="12" fill="#2A2A2A">analytics, and engineering &mdash; or an</text>
+    <text x="24" y="148" font-size="12" fill="#2A2A2A">agency backing implementation.</text>
+    <line x1="24" y1="168" x2="466" y2="168" stroke="#D4C9B4" stroke-width="1"/>
+    <text x="24" y="188" font-size="10" font-weight="700" fill="#3D6B4E" letter-spacing="1">TWO VIABLE PATHS</text>
+    <rect x="24" y="200" width="442" height="68" fill="#F5EFE4" stroke="#3D6B4E" stroke-width="1" rx="3"/>
+    <text x="36" y="220" font-size="11" font-weight="700" fill="#3D6B4E" letter-spacing="1">PATH A &middot; BEST-OF-BREED</text>
+    <text x="36" y="238" font-size="12" font-weight="600" fill="#2A2A2A">Profound + AthenaHQ/Relixir + Peec/Evertune</text>
+    <text x="36" y="256" font-size="11" fill="#5A5A5A">Roughly $800&ndash;$3,000/mo. You pay an integration tax.</text>
+    <rect x="24" y="278" width="442" height="68" fill="#F5EFE4" stroke="#3D6B4E" stroke-width="1" rx="3"/>
+    <text x="36" y="298" font-size="11" font-weight="700" fill="#3D6B4E" letter-spacing="1">PATH B &middot; ONE ENTERPRISE PLATFORM</text>
+    <text x="36" y="316" font-size="12" font-weight="600" fill="#2A2A2A">Profound Ent., Evertune, or Conductor</text>
+    <text x="36" y="334" font-size="11" fill="#5A5A5A">$2,000&ndash;$5,000+/mo. You pay a vendor-consolidation tax.</text>
+  </g>
+</svg>
+<figcaption>Two playbooks, one chart: the order of moves matters as much as the price.</figcaption>
+</figure>
+
+<h2 id="well-resourced">Well-resourced team: the playbook</h2>
+
+<p>You are a well-resourced team if you have:</p>
+
+<ul>
+    <li>$50,000+ annual budget specifically earmarked for AI visibility</li>
+    <li>At least three people across content, analytics, and engineering, or an agency relationship backing you for implementation</li>
+</ul>
+
+<p>This group includes enterprise marketing teams with dedicated SEO or digital visibility functions, well-funded Series B+ SaaS with serious content operations, and mid-market companies where AI visibility has become a board-level priority.</p>
+
+<p>You have two viable paths.</p>
+
+<p><strong>Path one: best-of-breed across the three stages.</strong> Buy the strongest tool for each stage and accept the integration overhead.</p>
+
+<ul>
+    <li>For <strong>DIAGNOSE</strong>, Profound is the depth-of-sight leader &mdash; pricing starts at $399/month and climbs to $2,000+/month for enterprise tiers, and <a href="https://www.tryprofound.com/">they run 400M+ anonymized conversations across 10+ models</a>.</li>
+    <li>For <strong>FIX</strong>, AthenaHQ ($295/month+) or Relixir ($199/month+, the most credible end-to-end tool at a mid-market price) are the strongest candidates.</li>
+    <li>For <strong>MEASURE</strong>, Peec AI, LLM Pulse, or Profound's measurement layer.</li>
+</ul>
+
+<p>Your total stack cost will be roughly $800&ndash;$3,000/month. For this you get the best tool for each job and pay an integration tax instead of a vendor-consolidation tax. This is the honest answer for most mid-market teams who can spend.</p>
+
+<p><strong>Path two: one all-in-one enterprise platform.</strong> Profound, Evertune, Conductor, and Relixir Pro all claim to cover all three stages. They legitimately do, but at $2,000&ndash;$5,000+/month.</p>
+
+<p>The trade-off is real though. Each of these platforms is stronger at one stage than the others:</p>
+
+<ul>
+    <li><strong>Profound</strong> is strongest at diagnosis</li>
+    <li><strong>Evertune</strong> is strongest at measurement with model-level perception data</li>
+    <li><strong>Conductor</strong> is strongest if you're already inside a Conductor SEO stack and want AI visibility layered in rather than added standalone</li>
+</ul>
+
+<p>There is no platform that is best-in-class at all three.</p>
+
+<p>Which path is right depends on whether your team can carry the integration overhead of multiple tools. If you have the analyst capacity to pull data from three sources and stitch it together, best-of-breed gives you stronger outputs. If you don't, the all-in-one platform is worth the depth trade-off for workflow consolidation.</p>
+
+<h2 id="consultant-lane">The consultant lane threads them all</h2>
+
+<p>The consulting lane is the one most rarely written about, because most consultancies are small. They also sit awkwardly between &ldquo;tool purchase&rdquo; and &ldquo;agency retainer&rdquo; in a category obsessed with SaaS seats. Here's where they can be of most help:</p>
+
+<p><strong>Budget-band consultants ($1,500&ndash;$3,000 per engagement)</strong> typically buy a white-label report from Metricus or a similar pay-per-report tool, layer two to five hours of strategic analysis on top, and deliver a prioritized action roadmap. The report is real. The strategy layer depends entirely on the consultant. This tier is the commodity of the lane &mdash; useful when you need a snapshot and don't need deep diagnostic work, but not the right answer if your AI visibility problem is structural rather than tactical.</p>
+
+<p><strong>Premium-band consultants ($5,000&ndash;$25,000+)</strong> do original diagnostic work rather than reselling someone else's report. Entity architecture audits, citation-earning strategy, structured data reviews, competitive positioning analysis, and implementation roadmaps detailed enough for an engineering team to execute against. Named practitioners in this tier include Eric Schwartzman, Pilot Digital, Four Dots Agency, Ramp IQ, and Valantic, among others. My own practice sits here.</p>
+
+<p><strong>The pattern to watch out for</strong> is the &ldquo;free audit as retainer bait&rdquo; model. Go Fish Digital is a great example of this. They offer a free AI visibility audit specifically to convert readers into $5,000+/month retainers. The audit itself is fine; the economic model is simply that the audit is marketing, not the product.</p>
+
+<p>If you want the audit as a finished deliverable &mdash; paid, complete, yours to act on without further purchase obligation &mdash; you need to buy from someone who sells the audit <em>as</em> the product. If you want an ongoing relationship, the free-audit-to-retainer pattern is normal and honest; just know which side of that exchange you're stepping into.</p>
+
+<p>The right moment to buy from the consultant lane is when you need a prioritized roadmap more than you need a dashboard. For most under-resourced teams coming out of Part 2 of this series, that is exactly the situation.</p>
+
+<h2 id="scenarios">Two stack scenarios</h2>
+
+<p>To make the economics concrete, here are two realistic scenarios.</p>
+
+<p><strong>Scenario A: Mid-market B2B SaaS, first AI visibility budget (~$30,000&ndash;$60,000 annually, marketing-led, engineering collaboration available on request).</strong></p>
+
+<ul>
+    <li><strong>Month 1:</strong> One-off audit from a consultant ($3,000&ndash;$7,500) with prioritized roadmap.</li>
+    <li><strong>Months 2&ndash;4:</strong> execute the roadmap. Schema fixes by engineering, content fixes by marketing, citation-earning via PR and existing content partnerships.</li>
+    <li><strong>Months 4&ndash;6:</strong> subscribe to a monitoring tool (Gumshoe at $60&ndash;$200/month or Otterly at $29&ndash;$100/month) to track whether the fixes moved the number.</li>
+    <li><strong>Year 2:</strong> reassess. Consider a mid-tier SaaS platform (AthenaHQ, Relixir, Peec AI) if the work has become continuous enough to justify $300&ndash;$500/month.</li>
+</ul>
+
+<p><strong>Scenario B: Enterprise B2B, established AI visibility program ($100,000+ annually, dedicated team across content and analytics, engineering partnered).</strong></p>
+
+<p>Best-of-breed stack purchased:</p>
+
+<ul>
+    <li><strong>Profound</strong> for diagnosis ($1,500&ndash;$2,000/month)</li>
+    <li><strong>AthenaHQ</strong> or <strong>Relixir Pro</strong> for fix work ($500&ndash;$1,500/month)</li>
+    <li><strong>Profound</strong> or <strong>Evertune</strong> for ongoing measurement ($1,500&ndash;$3,000/month)</li>
+</ul>
+
+<p>Total spend for outside tools could be $3,500&ndash;$6,500/month if you follow the pattern above. Or you could purchase a single enterprise platform (Conductor, Evertune, Profound Enterprise) at $4,000&ndash;$8,000+/month.</p>
+
+<p>Here's the cost you probably didn't count on at first: an annual or semi-annual independent consulting engagement ($10,000&ndash;$25,000) for strategic review and to catch the blind spots the platform's own dashboards miss.</p>
+
+<p>Both scenarios leave room for what you'll discover &mdash; not just what you planned.</p>
+
+<h2 id="pace-of-change">The pace of change</h2>
+
+<p>One more thing every buyer should understand before signing any contract. The analogy we used in the <a href="/library/ai-visibility-measurement-frame">first article in this series</a> is very true. We are building this plane as we fly to an unknown destination. And Stephen King's Langoliers are hot on our heels.</p>
+
+<p>A partial list of what's changed in the last twelve months:</p>
+
+<ul>
+    <li><a href="https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview">Bing Webmaster Tools added AI Performance reporting</a> in February 2026 &mdash; the first real first-party AI visibility data from a major platform.</li>
+    <li><a href="https://platform.claude.com/docs/en/build-with-claude/citations">Anthropic shipped a live Citations API</a>.</li>
+    <li><a href="https://www.perplexity.ai/hub/blog/introducing-the-perplexity-publishers-program">Perplexity expanded its Publishers Program</a> to 15+ media partners with revenue-sharing tied to citation frequency.</li>
+    <li>Google announced AI Preview is coming to Search Console but hasn't shipped it yet.</li>
+</ul>
+
+<p>Most of the vendors you're considering are less than three years old. Profound, Peec AI, AthenaHQ, Relixir, and most of their peers were founded between 2023 and 2025.</p>
+
+<p>Meanwhile, <a href="https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation">Model Context Protocol (MCP) became the default agent-integration layer</a> with OpenAI, Google DeepMind, and Anthropic all aligned.</p>
+
+<p>This infrastructure, if it isn't challenged by a competing framework tomorrow, will eventually change how AI agents discover sites. Fortunately though, I think that impact is 2&ndash;3 years out rather than 6&ndash;9 months.</p>
+
+<p>Notice what Google <em>hasn't</em> done: they still haven't added AI visibility data to GA4. That gap is conspicuous. While the platforms catch up, the DIY community has been leading the charge &mdash; building Python-and-API trackers, open-source monitoring scripts, and manual audit templates that the platforms haven't yet formalized.</p>
+
+<p>There is only one dangerous and wrong decision you can make in the midst of all this change. That is to think you can sit it out and wait until the dust settles and Google or Adobe or your CDN will fix all these problems for you.</p>
+
+<p>The dust will settle all right, but it will do so on your company's grave.</p>
+
+<div class="cta-pair">
+    <div class="cta-card audit">
+        <p class="cta-eyebrow">Audit &middot; Full diagnostic</p>
+        <p class="cta-headline">Agent Readiness Audit</p>
+        <p>A diagnostic across Find, Understand, Trust, and Use.</p>
+        <a href="/audit" class="cta-button">See the Audit</a>
+    </div>
+    <div class="cta-card roadmap">
+        <p class="cta-eyebrow">Roadmap &middot; Diagnostic + execution plan</p>
+        <p class="cta-headline">Readiness Roadmap</p>
+        <p>A prioritized, sequenced implementation plan your team (or mine) can execute against.</p>
+        <a href="/roadmap" class="cta-button">See the Roadmap</a>
+    </div>
+</div>
+
+<div class="related-posts">
+    <h2>The full series</h2>
+    <div class="related-posts-grid">
+        <div class="post-card fade-in">
+            <a href="/library/ai-visibility-measurement-frame">
+            <div class="post-card-image" style="background: linear-gradient(135deg, #5B7C5E 0%, #2C3038 100%);">
+                <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
+                    <rect width="280" height="160" fill="none"/>
+                    <text x="140" y="70" text-anchor="middle" font-family="Manrope, sans-serif" font-size="28" font-weight="800" fill="rgba(255,255,255,0.4)">PART 1</text>
+                    <text x="140" y="105" text-anchor="middle" font-family="Manrope, sans-serif" font-size="13" fill="rgba(255,255,255,0.6)">The Measurement Frame</text>
+                </svg>
+            </div>
+            <div class="post-card-content">
+                <p class="post-card-meta">Measurement &middot; Part 1</p>
+                <h3>You Can&rsquo;t Manage What You Can&rsquo;t Measure. You Also Can&rsquo;t Measure What You Can&rsquo;t Manage.</h3>
+            </div>
+            </a>
+        </div>
+        <div class="post-card fade-in">
+            <a href="/library/ai-visibility-measurement-free-tools">
+            <div class="post-card-image" style="background: linear-gradient(135deg, #C4956A 0%, #2C3038 100%);">
+                <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
+                    <rect width="280" height="160" fill="none"/>
+                    <text x="140" y="70" text-anchor="middle" font-family="Manrope, sans-serif" font-size="28" font-weight="800" fill="rgba(255,255,255,0.4)">PART 2</text>
+                    <text x="140" y="105" text-anchor="middle" font-family="Manrope, sans-serif" font-size="13" fill="rgba(255,255,255,0.6)">Free Tools, Graded</text>
+                </svg>
+            </div>
+            <div class="post-card-content">
+                <p class="post-card-meta">Measurement &middot; Part 2</p>
+                <h3>Which of the Free AI Visibility Tools Measure Up?</h3>
+            </div>
+            </a>
+        </div>
+        <div class="post-card fade-in">
+            <a href="/library/ai-searchability-find-layer">
+            <div class="post-card-image" style="background: linear-gradient(135deg, #8B9A7E 0%, #2C3038 100%);">
+                <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
+                    <rect width="280" height="160" fill="none"/>
+                    <text x="140" y="70" text-anchor="middle" font-family="Manrope, sans-serif" font-size="30" font-weight="800" fill="rgba(255,255,255,0.4)">FIND</text>
+                    <text x="140" y="105" text-anchor="middle" font-family="Manrope, sans-serif" font-size="13" fill="rgba(255,255,255,0.6)">Layer 1: AI Searchability</text>
+                </svg>
+            </div>
+            <div class="post-card-content">
+                <p class="post-card-meta">Pillar 1</p>
+                <h3>Why AI Platforms Can&rsquo;t Find Your Website (Yet)</h3>
+            </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+        </article>
+    </div>
+
+    <!-- Footer -->
+    <style>
+.lmf-footer{background:#2C3038;color:#F2EDE7;padding:56px 24px 28px;font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+.lmf-inner{max-width:960px;margin:0 auto;}
+.lmf-top{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,0.10);}
+.lmf-brand{max-width:300px;}
+.lmf-brand .lmf-wordmark{font-size:1.2rem;font-weight:700;letter-spacing:-0.01em;margin-bottom:10px;color:#F2EDE7;}
+.lmf-brand p{font-size:0.88rem;color:#B8B5B0;line-height:1.6;margin:0;}
+.lmf-cols{display:flex;flex-wrap:wrap;gap:48px;}
+.lmf-col h4{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.10em;color:#C4956A;margin:0 0 14px;}
+.lmf-col ul{list-style:none;margin:0;padding:0;}
+.lmf-col li{margin-bottom:9px;}
+.lmf-col a{color:#F2EDE7;text-decoration:none;font-size:0.9rem;transition:color 0.18s;}
+.lmf-col a:hover{color:#C4956A;}
+.lmf-bottom{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding-top:22px;}
+.lmf-bottom p{font-size:0.8rem;color:#B8B5B0;margin:0;}
+.lmf-bottom .lmf-legal a{color:#B8B5B0;text-decoration:none;font-size:0.8rem;}
+.lmf-bottom .lmf-legal a:hover{color:#C4956A;}
+.lmf-bottom .lmf-legal span{color:rgba(255,255,255,0.25);margin:0 8px;}
+@media (max-width:640px){.lmf-top{flex-direction:column;gap:32px;}.lmf-cols{gap:32px;}.lmf-bottom{flex-direction:column;align-items:flex-start;}}
+</style>
+<div style="max-width:680px;margin:2.5rem auto 0;padding:16px 22px;background:#F5EFE4;border:1px solid rgba(44,48,56,0.10);border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;"><span style="font-size:0.95rem;color:#2C3038;font-weight:600;line-height:1.4;">Found this useful? Make Liz Micik a preferred source in Google Search.</span><a href="https://google.com/preferences/source?q=lizmicik.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(44,48,56,0.16);color:#2C3038;font-weight:700;font-size:0.88rem;padding:10px 18px;border-radius:8px;text-decoration:none;white-space:nowrap;"><svg width="16" height="16" viewBox="0 0 48 48" aria-hidden="true" style="flex-shrink:0;"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg> Add as a preferred source</a></div>
+    <footer class="lmf-footer" role="contentinfo">
+  <div class="lmf-inner">
+    <div class="lmf-top">
+      <div class="lmf-brand">
+        <div class="lmf-wordmark">Liz Micik</div>
+        <p>Helping businesses transition human websites to usable, agentic websites.</p>
+      </div>
+      <div class="lmf-cols">
+        <div class="lmf-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="/signal-check">Signal Check</a></li>
+            <li><a href="/audit">Agent Readiness Audit</a></li>
+            <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+            <li><a href="/actions">Agent Readiness Actions</a></li>
+          </ul>
+        </div>
+        <div class="lmf-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/about">About</a></li>
+            <li><a href="/library">Library</a></li>
+            <li><a href="/resources">Resources</a></li>
+          </ul>
+        </div>
+        <div class="lmf-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="mailto:info@lizmicik.com">info@lizmicik.com</a></li>
+            <li><a href="https://www.linkedin.com/in/lizmicik" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://google.com/preferences/source?q=lizmicik.com" target="_blank" rel="noopener">Add as a preferred source</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="lmf-bottom">
+      <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+      <p class="lmf-legal">
+        <a href="/privacy-policy">Privacy Policy</a>
+        <span>&middot;</span>
+        <a href="/terms">Terms of Use</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+    <script>
+        // Cookie Banner & GA4
+        (function() {
+            var COOKIE_KEY = 'lizmicik-cookie-consent';
+            var GA_ID = 'G-B9S40S2SKG';
+            if (!localStorage.getItem(COOKIE_KEY)) {
+                var banner = document.createElement('div');
+                banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#2C3038;color:white;padding:1.5rem 2rem;text-align:center;z-index:999;font-size:0.9rem;';
+                banner.innerHTML = '<p style="margin-bottom:1rem;">We use analytics to understand how you use our site and improve it.</p><button id="accept-cookies" style="background:#5B7C5E;color:white;border:none;padding:0.75rem 1.5rem;border-radius:0.5rem;cursor:pointer;font-weight:600;margin-right:1rem;">Accept</button><button id="decline-cookies" style="background:transparent;color:white;border:1px solid white;padding:0.75rem 1.5rem;border-radius:0.5rem;cursor:pointer;font-weight:600;">Decline</button>';
+                document.body.appendChild(banner);
+                document.getElementById('accept-cookies').addEventListener('click', function() { localStorage.setItem(COOKIE_KEY, 'true'); loadGA(); banner.remove(); });
+                document.getElementById('decline-cookies').addEventListener('click', function() { localStorage.setItem(COOKIE_KEY, 'false'); banner.remove(); });
+            } else if (localStorage.getItem(COOKIE_KEY) === 'true') { loadGA(); }
+            function loadGA() {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', GA_ID);
+                var script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+                document.head.appendChild(script);
+            }
+        })();
+
+        var navToggle = document.querySelector('.nav-toggle');
+        var navLinks = document.querySelector('.nav-links');
+        navToggle.addEventListener('click', function() {
+            navToggle.classList.toggle('open');
+            navLinks.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+        });
+
+        var lastScrollTop = 0;
+        var nav = document.querySelector('.nav');
+        window.addEventListener('scroll', function() {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) { nav.classList.add('nav-hidden'); }
+            else { nav.classList.remove('nav-hidden'); }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                var href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    var target = document.querySelector(href);
+                    var offsetTop = target.offsetTop - 80;
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                    if (navLinks.classList.contains('active')) { navToggle.classList.remove('open'); navLinks.classList.remove('active'); }
+                }
+            });
+        });
+
+        var tocLinks = document.querySelectorAll('.toc-list a');
+        var sections = [];
+        tocLinks.forEach(function(link) {
+            var id = link.getAttribute('href').substring(1);
+            var section = document.getElementById(id);
+            if (section) sections.push({ el: section, link: link });
+        });
+        function updateTOC() {
+            var scrollPos = window.scrollY + 120;
+            var current = null;
+            sections.forEach(function(s) { if (s.el.offsetTop <= scrollPos) current = s; });
+            tocLinks.forEach(function(l) { l.classList.remove('active'); });
+            if (current) current.link.classList.add('active');
+        }
+        window.addEventListener('scroll', updateTOC);
+        updateTOC();
+    </script>
+</body>
+</html>

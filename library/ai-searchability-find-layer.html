@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Only 65% of B2B sites are findable by AI crawlers. Learn the 4 ways you are keeping yourself invisible, what it's costing you and what you can do to be seen.">
+    <meta name="keywords" content="AI searchability, optimize content for google ai overviews, how to show up in ai overviews seo, ai search engine optimization, AI visibility, AI crawlers, structured data, schema markup">
+    <title>If Your Website's Invisible to AI You Lose. Period. | Liz Micik</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="If Your Website's Invisible to AI You Lose. Period.">
+    <meta property="og:description" content="Only 65% of B2B sites are findable by AI crawlers. Learn the 4 ways you are keeping yourself invisible, what it's costing you and what you can do to be seen.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://lizmicik.com/library/ai-searchability-find-layer">
+    <meta property="og:site_name" content="Liz Micik">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "AI Searchability is Binary: Can AI Crawlers FIND you?",
+        "description": "Only 65% of B2B sites are findable by AI crawlers. Learn the 4 ways you are keeping yourself invisible, what it's costing you and what you can do to be seen.",
+        "author": {
+            "@type": "Person",
+            "name": "Liz Micik",
+            "url": "https://lizmicik.com"
+        },
+        "datePublished": "2026-04-12",
+        "dateModified": "2026-04-12",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://lizmicik.com/library/ai-searchability-find-layer"
+        },
+        "keywords": "AI searchability, AI visibility, structured data, schema markup, AI crawlers, robots.txt, JavaScript rendering",
+        "isPartOf": {
+            "@type": "BlogPosting",
+            "name": "Find/Understand/Trust Framework Series",
+            "url": "https://lizmicik.com/library"
+        }
+    }
+    </script>
+
+    <style>
+        :root {
+            --cream: #FAFAF7;
+            --cream-dark: #FAF8F5;
+            --slate: #2C3038;
+            --slate-light: #3D424D;
+            --slate-mid: #545B6A;
+            --accent-amber: #C4956A;
+            --accent-teal: #5B7C5E;
+            --accent-blue: #8B9A7E;
+            --accent-copper: #5B7C5E;
+            --hero-brown: #6B3D2E;
+            --muted-red: #C25E4A;
+            --text-primary: #2C3038;
+            --text-secondary: #545B6A;
+            --text-light: #F2EDE7;
+            --text-light-secondary: #B8B5B0;
+            --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --section-padding: clamp(4rem, 8vw, 7rem);
+            --content-width: 720px;
+            --wide-width: 960px;
+            --toc-width: 220px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--cream); color: var(--text-primary); font-family: var(--font-body); line-height: 1.6; }
+
+        /* Navigation */
+        .nav { position: fixed; top: 0; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--cream-dark); z-index: 1000; transition: transform 0.3s ease; }
+        .nav.nav-hidden { transform: translateY(-100%); }
+        .nav-inner { max-width: var(--wide-width); margin: 0 auto; padding: 1.5rem clamp(1.5rem, 4vw, 2rem); display: flex; justify-content: space-between; align-items: center; }
+        .nav-name { font-weight: 700; color: var(--text-primary); font-size: 1.25rem; }
+        .nav-name a { color: inherit; text-decoration: none; }
+        .nav-toggle { display: none; flex-direction: column; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .nav-toggle span { width: 24px; height: 2px; background: var(--text-primary); margin: 5px 0; transition: 0.3s; }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+        .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--accent-teal); }
+        .nav-cta { background: var(--accent-teal) !important; color: white !important; padding: 0.75rem 1.5rem; border-radius: 0.5rem; transition: background 0.3s ease; }
+        .nav-cta:hover { background: var(--accent-copper) !important; }
+        /* Services dropdown */
+        .nav-item.has-dropdown { position: relative; }
+        .nav-caret { font-size: 0.7em; margin-left: 0.15rem; transition: transform 0.2s ease; display: inline-block; }
+        .nav-item.has-dropdown:hover .nav-caret,
+        .nav-item.has-dropdown:focus-within .nav-caret { transform: rotate(180deg); }
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 260px;
+            margin: 0;
+            padding: 0.45rem 0;
+            list-style: none;
+            background: rgba(250, 250, 247, 0.98);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(44, 48, 56, 0.06);
+            border-radius: 6px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+        }
+        .nav-item.has-dropdown:hover .nav-dropdown,
+        .nav-item.has-dropdown:focus-within .nav-dropdown { display: block; }
+        .nav-dropdown li { padding: 0; }
+        .nav-dropdown a {
+            display: block;
+            padding: 0.55rem 1.2rem;
+            white-space: nowrap;
+            text-transform: none !important;
+            letter-spacing: 0 !important;
+            font-size: 0.9rem !important;
+        }
+        .nav-dropdown a:hover { background: rgba(44, 48, 56, 0.04); }
+
+
+        @media (max-width: 768px) {
+            .nav-toggle { display: flex; }
+            .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(10px, 10px); }
+            .nav-toggle.open span:nth-child(2) { opacity: 0; }
+            .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+            .nav-links { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--cream); gap: 1.5rem; padding: 2rem; border-bottom: 1px solid var(--cream-dark); display: none; }
+            .nav-links.active { display: flex; }
+            /* Services dropdown: nested list on mobile */
+            .nav-dropdown {
+                display: block;
+                position: static;
+                min-width: 0;
+                padding: 0.25rem 0 0 1rem;
+                background: transparent;
+                backdrop-filter: none;
+                border: none;
+                box-shadow: none;
+            }
+            .nav-caret { display: none; }
+            .nav-links a { font-size: 1.1rem; }
+        }
+
+        /* Hero — v6 redesign: image left, text right, cream confined to 1080px hero */
+        header.blog-hero { max-width: 1080px; margin: 60px auto 0; padding: 2.5rem clamp(1.5rem, 4vw, 3rem); background: #F5EFE4; display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center; text-align: left; }
+        .blog-hero-image { width: 290px; height: auto; max-width: 100%; margin: 0; display: block; border-radius: 6px; }
+        .hero-text { display: flex; flex-direction: column; gap: 0.85rem; }
+        .pillar-eyebrow { display: inline-block; align-self: flex-start; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0; color: var(--accent-teal); }
+        .blog-meta { display: flex; justify-content: flex-start; gap: 0.75rem; margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--text-secondary); flex-wrap: wrap; align-items: center; }
+        header.blog-hero h1 { font-family: var(--font-heading); font-size: clamp(1.5rem, 3.2vw, 2.1rem); font-weight: 700; line-height: 1.25; color: var(--text-primary); margin: 0; text-align: left; }
+        @media (max-width: 720px) { header.blog-hero { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; } .blog-hero-image { width: 220px; margin: 0 auto; } .hero-text { align-items: center; } .pillar-eyebrow { align-self: center; } .blog-meta { justify-content: center; } header.blog-hero h1 { text-align: center; font-size: clamp(1.35rem, 5vw, 1.75rem); } }
+
+        /* Two-column layout with sticky TOC */
+        .blog-layout {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 2rem clamp(1.5rem, 4vw, 2rem);
+            display: grid;
+            grid-template-columns: var(--toc-width) 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* Table of Contents */
+        .toc {
+            position: sticky;
+            top: 80px;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+        .toc-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-teal);
+        }
+        .toc-list { list-style: none; padding: 0; }
+        .toc-list li { margin: 0; }
+        .toc-list a {
+            display: block;
+            padding: 0.4rem 0 0.4rem 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            transition: all 0.2s ease;
+            line-height: 1.4;
+        }
+        .toc-list a:hover { color: var(--accent-teal); border-left-color: var(--accent-teal); }
+        .toc-list a.active { color: var(--accent-teal); border-left-color: var(--accent-teal); font-weight: 600; }
+
+        /* Article content */
+        article.blog-content { max-width: var(--content-width); }
+        article p { font-size: 1.05rem; line-height: 1.75; margin: 1.5rem 0; color: var(--text-primary); }
+        article h2 { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 600; margin: 3rem 0 1.5rem; color: var(--text-primary); border-left: 3px solid var(--accent-copper); padding-left: 1rem; }
+        article h2:first-of-type { margin-top: 0; }
+        article h3 { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--text-primary); }
+        article strong { font-weight: 700; color: var(--accent-copper); }
+        article ul, article ol { margin: 1.5rem 0; padding-left: 2rem; }
+        article li { margin: 0.8rem 0; line-height: 1.75; color: var(--text-primary); }
+        article ul li:before { content: "\2713"; color: var(--accent-copper); font-weight: 700; display: inline-block; width: 1.5em; margin-left: -1.5em; }
+        article a { color: #C4956A; text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        article a:hover { color: #3D6B4E; text-decoration: underline; }
+
+        /* TLDR */
+        .tldr { font-style: italic; color: var(--text-secondary); border-left: 3px solid var(--accent-amber); padding-left: 1.5rem; margin: 2rem 0; }
+        .tldr p { color: var(--text-secondary); font-style: italic; margin: 0.5rem 0; }
+        .tldr ul { padding-left: 1.5rem; margin: 0.5rem 0; }
+        .tldr li { color: var(--text-secondary); font-style: italic; margin: 0.5rem 0; line-height: 1.6; }
+        .tldr li:before { content: none; }
+
+        /* Gate summary list (no checkmarks) */
+        .gate-list { list-style: none; padding-left: 0; margin: 1.5rem 0; }
+        .gate-list li { margin: 1.2rem 0; padding-left: 0; }
+        .gate-list li:before { content: none; }
+
+        /* Data highlight list */
+        .data-list { list-style: none; padding-left: 0; margin: 1.5rem 0; }
+        .data-list li { margin: 0.8rem 0; padding-left: 1.5rem; position: relative; }
+        .data-list li:before { content: "\2022"; color: var(--accent-copper); font-weight: 700; display: inline-block; width: 1.5em; margin-left: -1.5em; }
+
+        /* Robots.txt code block */
+        .code-block {
+            background: var(--slate);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid var(--slate-light);
+        }
+        .code-block-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-amber);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        .code-block pre {
+            margin: 0;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #E8DDD5;
+            white-space: pre;
+        }
+        .code-block .comment { color: #8B9A7E; }
+        .code-block .directive { color: #C4956A; }
+        .code-block .value { color: #E8DDD5; }
+
+        /* Visual containers */
+        .visual-container {
+            margin: 2.5rem 0;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid #E8DDD5;
+            background: #FFFFFF;
+        }
+        .visual-container svg { display: block; width: 100%; height: auto; }
+        .visual-caption {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 0.75rem 1rem;
+            background: var(--cream-dark);
+            border-top: 1px solid #E8DDD5;
+            font-style: italic;
+        }
+
+        /* Blockquotes */
+        article blockquote { border-left: 4px solid var(--accent-amber); padding-left: 2rem; margin: 2.5rem 0; font-style: italic; font-size: 1.15rem; color: var(--text-secondary); line-height: 1.7; }
+
+        /* CTA Box */
+        .cta-box { background: var(--cream-dark); border: 2px solid var(--accent-amber); border-radius: 0.75rem; padding: 2rem; margin: 3rem 0; text-align: center; }
+        .cta-box p { margin: 0.5rem 0; font-size: 1rem; }
+        .cta-box strong { color: var(--text-primary); font-size: 1.1rem; }
+        .cta-box a { color: #C4956A; font-weight: 700; }
+        .cta-box a:hover { color: #3D6B4E; }
+
+        /* Crawler list (no checkmarks) */
+        .crawler-list { list-style: disc; padding-left: 2rem; margin: 1.5rem 0; }
+        .crawler-list li { margin: 0.6rem 0; line-height: 1.75; }
+        .crawler-list li:before { content: none; }
+
+        /* CDN check list */
+        .check-list { list-style: disc; padding-left: 2rem; margin: 1.5rem 0; }
+        .check-list li { margin: 0.6rem 0; line-height: 1.75; }
+        .check-list li:before { content: none; }
+
+        /* Author Bio */
+        .author-bio { display: flex; gap: 2rem; padding: 2.5rem; background: var(--cream-dark); border-radius: 0.75rem; border: 1px solid #E8DDD5; margin: 3rem 0; align-items: flex-start; }
+        .author-avatar { width: 100px; height: 100px; border-radius: 50%; background: var(--accent-amber); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 700; flex-shrink: 0; }
+        .author-info h3 { margin-top: 0; margin-bottom: 0.5rem; }
+        .author-title { font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 0.8rem; }
+        .author-bio p { font-size: 0.95rem; margin: 0; color: var(--text-primary); }
+
+        /* Related Posts */
+        .related-posts { margin: 4rem 0 3rem; border-top: 2px solid var(--cream-dark); padding-top: 3rem; }
+        .related-posts h2 { border: none; padding: 0; text-align: center; margin-bottom: 2.5rem; }
+        .related-posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .post-card { background: var(--cream-dark); border: 1px solid #E8DDD5; border-radius: 0.75rem; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .post-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); }
+        .post-card a { text-decoration: none; color: inherit; }
+        .post-card-image { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
+        .post-card-content { padding: 1.5rem; }
+        .post-card-meta { font-size: 0.8rem; color: var(--accent-copper); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+        .post-card h3 { font-size: 1.2rem; margin: 0.8rem 0; color: var(--text-primary); }
+        .post-card p.coming-soon { font-size: 0.85rem; color: var(--text-secondary); font-style: italic; }
+
+        /* Final CTA */
+        .final-cta { background: var(--slate); color: white; padding: 3rem 2rem; text-align: center; margin: 4rem 0 0; }
+        .final-cta h2 { border: none; padding: 0; color: white; margin-bottom: 1.5rem; }
+        .final-cta p { color: rgba(255, 255, 255, 0.95); margin-bottom: 2rem; }
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .cta-button { display: inline-block; background: var(--accent-teal); color: white; padding: 0.75rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 700; transition: all 0.3s ease; border: 2px solid var(--accent-teal); }
+        .cta-button:hover { background: transparent; color: white; }
+        .cta-button.copper { background: var(--accent-copper); border-color: var(--accent-copper); }
+
+        /* Footer */
+        .footer { background: var(--cream-dark); padding: 2rem; text-align: center; color: var(--text-secondary); font-size: 0.9rem; }
+        .footer a { color: #C4956A; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        /* Responsive: collapse TOC on smaller screens */
+        @media (max-width: 968px) {
+            .blog-layout {
+                grid-template-columns: 1fr;
+                max-width: var(--content-width);
+            }
+            .toc {
+                position: relative;
+                top: 0;
+                max-height: none;
+                border: 1px solid #E8DDD5;
+                border-radius: 0.75rem;
+                padding: 1.25rem;
+                background: var(--cream-dark);
+                margin-bottom: 1rem;
+            }
+            .author-bio { flex-direction: column; text-align: center; }
+            .author-avatar { margin: 0 auto; }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            article p { font-size: 1rem; }
+            article h2 { font-size: 1.4rem; }
+            .cta-buttons { flex-direction: column; }
+            .cta-buttons .cta-button { display: block; width: 100%; }
+            .related-posts-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Fade-in */
+        .fade-in { opacity: 0; animation: fadeIn 0.6s ease-in forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <span class="nav-name"><a href="/">Liz Micik</a></span>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/about">About</a></li>
+                <li><a href="/library">Library</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li class="nav-item has-dropdown">
+                    <a href="/audit" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Services <span class="nav-caret">&#9662;</span></a>
+                    <ul class="nav-dropdown">
+                        <li><a href="/audit">Agent Readiness Audit</a></li>
+                        <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+                        <li><a href="/actions">Agent Readiness Actions</a></li>
+                    </ul>
+                </li>
+                <li><a href="/signal-check" class="nav-cta">Free Signal Check</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="blog-hero">
+        <img class="blog-hero-image" src="/images/find-door-hero.png" alt="Editorial illustration: a solid, grounded door in the center of an otherwise empty room — signifying that AI crawlers either find a real entry point or they don't." loading="eager" />
+        <div class="hero-text">
+            <span class="pillar-eyebrow">FIND Layer</span>
+            <h1>AI Searchability is Binary: Can AI Crawlers FIND you?</h1>
+            <div class="blog-meta">
+                <span>April 12, 2026</span>
+                <span>&bull;</span>
+                <span>By Liz Micik</span>
+                <span>&bull;</span>
+                <span>10 min read</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Two-column: TOC + Content -->
+    <div class="blog-layout">
+
+        <!-- Left Sticky TOC -->
+        <nav class="toc" aria-label="Table of contents">
+            <div class="toc-title">In This Article</div>
+            <ul class="toc-list">
+                <li><a href="#not-about-rankings">FIND is Not About Rankings</a></li>
+                <li><a href="#four-gates">The Four Gates of FIND</a></li>
+                <li><a href="#gate-1">Gate 1: CDN / Edge Bot Management</a></li>
+                <li><a href="#gate-2">Gate 2: WAF / Robots.txt</a></li>
+                <li><a href="#gate-3">Gate 3: JavaScript Rendering</a></li>
+                <li><a href="#gate-4">Gate 4: Structured Data</a></li>
+                <li><a href="#why-find-feeds">Why FIND Feeds Everything Else</a></li>
+                <li><a href="#findable-advantage">The Findable Advantage</a></li>
+                <li><a href="#next-steps">Next Steps: FIND to UNDERSTAND</a></li>
+            </ul>
+        </nav>
+
+        <!-- Article Content -->
+        <article class="blog-content">
+
+            <!-- TLDR -->
+            <div class="tldr">
+                <p><em>The short version:</em></p>
+                <ul>
+                    <li>AI visibility at the FIND layer is binary: either AI platforms can access and read your content, or they can't. There is no middle ground.</li>
+                    <li>35% of professional services sites unknowingly block AI crawlers through firewall rules, robots.txt, JavaScript use or lack of structured data.</li>
+                </ul>
+            </div>
+
+            <h2 id="not-about-rankings">FIND is Not About Rankings</h2>
+
+            <p>When we introduced the Find/Understand/Trust framework in our first pillar post, <a href="/library/new-old-search-definitions">"From Search to AI Visibility: The Transition Needs Translation,"</a> we planted a flag: AI visibility requires a new technical infrastructure. That post diagnosed the problem (search engines and AI platforms are fundamentally different). This post goes deep on the first layer of that infrastructure: FIND.</p>
+
+            <p>In 2026, we passed an Internet milestone. 51% of all web traffic is now bots, not humans. Let that sink in a minute. More than half of your potential web visitors are not human.</p>
+
+            <p>FIND answers one question: <em>Can AI crawlers access and read your website?</em> It's simple and binary. You're either findable, or you've shut the door on a little more than half of your potential visitors.</p>
+
+            <p>There's no "partially findable" or "findable for some AI platforms." Your site either responds to AI crawlers, renders your content, and speaks the language these platforms understand (structured data), or it doesn't.</p>
+
+            <p>The only real question here is whether you consciously made the choice to exclude your site from AI searches or not.</p>
+
+            <p>We studied 120 B2B professional services firms with annual revenues between 10 million and 500 million dollars. Here's what we found:</p>
+
+            <ul class="data-list">
+                <li>35 of those 120 companies have zero schema markup</li>
+                <li>26 unknowingly block AI crawlers through firewalls or Web Application Firewalls (WAFs)</li>
+                <li>Four intentionally prevent AI access via robots.txt rules</li>
+            </ul>
+
+            <p>That leaves just 65% of our sample findable by AI platforms. They are the firms that have a chance to win citations and mentions -- the equivalents of search engine rankings. The 35% of our sample above have already lost their chance to be seen and their chance to earn.</p>
+
+            <h2 id="four-gates">The Four Gates of FIND</h2>
+
+            <p>Think of AI searchability at the FIND layer as a four-gate system. Your content has to pass all four.</p>
+
+            <ul class="gate-list">
+                <li><strong>Gate 1: CDN / Edge Bot Management.</strong> Does your content delivery network even allow AI crawlers through? Cloudflare, Akamai, AWS CloudFront, and other CDN providers make bot-level decisions at the network edge, before any request reaches your origin server.</li>
+                <li><strong>Gate 2: WAF / Firewall Rules.</strong> If the request passes the CDN edge, does your origin server's firewall let it through? Web Application Firewalls sit behind the CDN and apply a second layer of bot filtering. A request can survive the CDN and still get killed here.</li>
+            </ul>
+
+            <!-- Four Gates Flow Diagram -->
+            <div style="margin: 1.5rem 0; border-radius: 0.75rem; overflow: hidden;">
+                <svg viewBox="0 0 920 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Horizontal flow diagram showing the four gates of FIND: CDN/Edge Bot Management, WAF/Firewall Rules, JavaScript Rendering, and Structured Data. Pass all four and your content is FINDABLE. Fail any one and you are INVISIBLE to AI.">
+  <defs>
+    <style>
+      .fg-title { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: bold; fill: #2C3038; }
+      .fg-consequence { font-family: system-ui, -apple-system, sans-serif; font-size: 10px; fill: #2C3038; font-style: italic; }
+      .fg-outcome { font-family: system-ui, -apple-system, sans-serif; font-size: 15px; font-weight: bold; }
+    </style>
+    <marker id="fg-arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#C4956A"/>
+    </marker>
+  </defs>
+
+  <rect width="920" height="230" fill="#F0EDE8" rx="8"/>
+
+  <!-- Gate 1 -->
+  <rect x="15" y="18" width="145" height="88" rx="8" fill="#FAFAF7" stroke="#9E8E7E" stroke-width="1.5"/>
+  <circle cx="55" cy="45" r="13" fill="#5B7C5E"/>
+  <text x="55" y="50" text-anchor="middle" font-size="15" fill="#FFFFFF" font-weight="bold">&#x2713;</text>
+  <circle cx="105" cy="45" r="13" fill="#6B3D2E"/>
+  <text x="105" y="50" text-anchor="middle" font-size="15" fill="#FFFFFF" font-weight="bold">&#x2715;</text>
+  <text x="80" y="78" text-anchor="middle" class="fg-title">CDN / Edge Bot</text>
+  <text x="80" y="95" text-anchor="middle" class="fg-title">Management</text>
+  <text x="80" y="125" text-anchor="middle" class="fg-consequence">Request never reaches</text>
+  <text x="80" y="137" text-anchor="middle" class="fg-consequence">your server</text>
+
+  <line x1="160" y1="62" x2="195" y2="62" stroke="#C4956A" stroke-width="2" marker-end="url(#fg-arrow)"/>
+
+  <!-- Gate 2 -->
+  <rect x="195" y="18" width="145" height="88" rx="8" fill="#FAFAF7" stroke="#9E8E7E" stroke-width="1.5"/>
+  <circle cx="235" cy="45" r="13" fill="#5B7C5E"/>
+  <text x="235" y="50" text-anchor="middle" font-size="15" fill="#FFFFFF" font-weight="bold">&#x2713;</text>
+  <circle cx="285" cy="45" r="13" fill="#6B3D2E"/>
+  <text x="285" y="50" text-anchor="middle" font-size="15" fill="#FFFFFF" font-weight="bold">&#x2715;</text>
+  <text x="260" y="78" text-anchor="middle" class="fg-title">WAF / Firewall</text>
+  <text x="260" y="95" text-anchor="middle" class="fg-title">Rules</text>
+  <text x="260" y="125" text-anchor="middle" class="fg-consequence">Crawler gets 403</text>
+  <text x="260" y="137" text-anchor="middle" class="fg-consequence">or timeout</text>
+
+  <line x1="340" y1="62" x2="375" y2="62" stroke="#C4956A" stroke-width="2" marker-end="url(#fg-arrow)"/>
+
+  <!-- Gate 3 -->
+  <rect x="375" y="18" width="145" height="88" rx="8" fill="#FAFAF7" stroke="#9E8E7E" stroke-width="1.5"/>
+  <circle cx="415" cy="45" r="13" fill="#5B7C5E"/>
+  <text x="415" y="50" text-anchor="middle" font-size="15" fill="#FFFFFF" font-weight="bold">&#x2713;</text>
+  <circle cx="465" cy="45" r="13" fill="#6B3D2E"/>
+  <text x="465" y="50" text-anchor="middle" font-size="15" fill="#FFFFFF" font-weight="bold">&#x2715;</text>
+  <text x="440" y="78" text-anchor="middle" class="fg-title">JavaScript</text>
+  <text x="440" y="95" text-anchor="middle" class="fg-title">Rendering</text>
+  <text x="440" y="125" text-anchor="middle" class="fg-consequence">Bot sees empty</text>
+  <text x="440" y="137" text-anchor="middle" class="fg-consequence">page</text>
+
+  <line x1="520" y1="62" x2="555" y2="62" stroke="#C4956A" stroke-width="2" marker-end="url(#fg-arrow)"/>
+
+  <!-- Gate 4 -->
+  <rect x="555" y="18" width="145" height="88" rx="8" fill="#6B3D2E" stroke="#6B3D2E" stroke-width="1.5"/>
+  <circle cx="595" cy="45" r="13" fill="#5B7C5E"/>
+  <text x="595" y="50" text-anchor="middle" font-size="15" fill="#FFFFFF" font-weight="bold">&#x2713;</text>
+  <circle cx="645" cy="45" r="13" fill="#FAFAF7"/>
+  <text x="645" y="50" text-anchor="middle" font-size="15" fill="#6B3D2E" font-weight="bold">&#x2715;</text>
+  <text x="620" y="78" text-anchor="middle" class="fg-title" fill="#FFFFFF">Structured</text>
+  <text x="620" y="95" text-anchor="middle" class="fg-title" fill="#FFFFFF">Data</text>
+  <text x="620" y="125" text-anchor="middle" class="fg-consequence">AI can't understand</text>
+  <text x="620" y="137" text-anchor="middle" class="fg-consequence">your content</text>
+
+  <line x1="700" y1="62" x2="735" y2="62" stroke="#C4956A" stroke-width="2" marker-end="url(#fg-arrow)"/>
+
+  <!-- FINDABLE -->
+  <rect x="735" y="38" width="105" height="48" rx="6" fill="#5B7C5E" opacity="0.12" stroke="#5B7C5E" stroke-width="2"/>
+  <text x="787" y="69" text-anchor="middle" class="fg-outcome" fill="#5B7C5E">FINDABLE</text>
+
+  <!-- INVISIBLE -->
+  <rect x="735" y="160" width="105" height="48" rx="6" fill="#6B3D2E" opacity="0.12" stroke="#6B3D2E" stroke-width="2"/>
+  <text x="787" y="191" text-anchor="middle" class="fg-outcome" fill="#6B3D2E">INVISIBLE</text>
+
+  <!-- Failure path lines -->
+  <line x1="80" y1="142" x2="787" y2="160" stroke="#6B3D2E" stroke-width="1" stroke-dasharray="4,4" opacity="0.35"/>
+  <line x1="260" y1="142" x2="787" y2="160" stroke="#6B3D2E" stroke-width="1" stroke-dasharray="4,4" opacity="0.35"/>
+  <line x1="440" y1="142" x2="787" y2="160" stroke="#6B3D2E" stroke-width="1" stroke-dasharray="4,4" opacity="0.35"/>
+  <line x1="620" y1="142" x2="787" y2="160" stroke="#6B3D2E" stroke-width="1" stroke-dasharray="4,4" opacity="0.35"/>
+</svg>
+            </div>
+
+            <ul class="gate-list">
+                <li><strong>Gate 3: JavaScript Rendering.</strong> Can the crawler see the same content humans see? Or does your site serve a blank page to bots while showing rich content to browsers? This affects the majority of modern web applications.</li>
+                <li><strong>Gate 4: Structured Data.</strong> Does your content speak to AI agents in their native language? Structured data (schema markup, semantic HTML, and metadata) is how AI platforms understand context, relationships, and meaning.</li>
+            </ul>
+
+            <p>Fail any gate and you're invisible.</p>
+
+            <!-- GATE 1 -->
+            <h2 id="gate-1">Gate 1: CDN / Edge Bot Management (The Gate You Don't Control)</h2>
+
+            <p>The first decision about whether an AI crawler reaches your content isn't made by your leadership team. Nor is it made on your website. It's made by your CDN.</p>
+
+            <p>Content Delivery Networks like Cloudflare, Akamai, and AWS CloudFront sit at the network edge. Every request to your domain hits the CDN before it reaches your origin server. And every major CDN now includes bot management features that can accept or reject AI crawlers at the edge.</p>
+
+            <p>Cloudflare's Bot Fight Mode is the most common example. It's a toggle in the dashboard. When enabled, it challenges or blocks requests from bots it classifies as automated. GPTBot, ClaudeBot, Perplexitybot: these can all get caught. Cloudflare also offers a separate "AI Scrapers and Crawlers" setting that lets site owners explicitly allow or block known AI crawlers with a yes/no toggle.</p>
+
+            <p>Akamai's Bot Manager and AWS CloudFront's AWS WAF integration work similarly. They classify incoming traffic and apply rules before the request reaches your server. If the CDN decides a request is a bot and the rule says "block," your server never sees it. Your analytics never record it. You have no idea it happened.</p>
+
+            <p>This matters for a specific reason: <strong>CDN bot rules are often set by your infrastructure or DevOps team, not your marketing team.</strong> The person who toggled Cloudflare's Bot Fight Mode probably wasn't thinking about AI visibility. They were thinking about security, scraping prevention, or cost reduction (bots drive bandwidth). The marketing implications weren't part of the conversation.</p>
+
+            <p>From our 120-company research, the 26 companies with accidental bot blocks split between CDN-level and WAF-level blocks. We couldn't always determine which layer was responsible, because from the outside the result is the same: a 403 Forbidden or a timeout. But the fix depends entirely on which layer is doing the blocking.</p>
+
+            <h3>How to Check Where You Stand</h3>
+
+            <p>Log into your CDN dashboard.</p>
+
+            <ul class="check-list">
+                <li>For Cloudflare: go to Security > Bots. Check whether Bot Fight Mode is enabled. Check the "AI Scrapers and Crawlers" toggle.</li>
+                <li>For Akamai: review your Bot Manager policies.</li>
+                <li>For AWS CloudFront: check your associated AWS WAF rules for bot control rule groups.</li>
+            </ul>
+
+            <p>In each case, look for whether known AI crawler user agents (GPTBot, ClaudeBot, Perplexitybot, Googlebot-Extended) are explicitly allowed, challenged, or blocked.</p>
+
+            <p>If you don't know which CDN your site uses, ask your infrastructure team. If you don't have an infrastructure team, run your domain through a DNS lookup: the nameservers or CNAME records will typically reveal the CDN provider.</p>
+
+            <!-- GATE 2 -->
+            <h2 id="gate-2">Gate 2: WAF / Robots.txt (The Accidental Block?)</h2>
+
+            <p>The CDN makes a broad bot classification decision at the edge. If an AI crawler passes your CDN's edge rules, there are still two barriers they must pass before they reach the actual text on your page: the Web Application Firewall (WAF) and your robots.txt file.</p>
+
+            <h3>The WAF Block</h3>
+
+            <p>A WAF sits behind the CDN, protecting your origin server. The WAF applies more granular rules to stop attacks: SQL injection, cross-site scripting, credential stuffing, DDoS patterns. When a WAF is tuned aggressively, it can treat an AI crawler's request like a threat and return a 403 Forbidden or 429 Too Many Requests response.</p>
+
+            <p>Twenty-six companies in our sample block AI crawlers through WAF or CDN rules. They may or may not even know that they're doing it.</p>
+
+            <p>Someone on your infrastructure team may occasionally scan the logs and see that AI crawlers are being blocked. From any other perspective, the action is invisible. Your website works fine when you browse it. Analytics show normal traffic. There's no error log because the block intercepts the request before it reaches your application.</p>
+
+            <p>The question is: did you mean to do that? Are you knowingly and deliberately cutting yourself off from organic traffic that could lead to conversions?</p>
+
+            <h3>The Robots.txt Block</h3>
+
+            <p>Four companies in our research explicitly prevent AI crawlers from accessing their content. They do this through robots.txt directives that tell search engine and AI crawlers what areas of their site they can and cannot access.</p>
+
+            <p>In the past decade, the rise of "bad bots" intent on scraping sites caused many businesses to become more aggressive in their counter attacks. So these four companies may have been like many others who chose to adopt a "block all bots" posture to protect their data, their brand and their server costs.</p>
+
+            <p>ChatGPT's arrival at the end of 2023 changed this dynamic forever. In addition to bad content-scraping bots, many companies tried to protect themselves by blocking AI crawlers to keep them from training new LLM models on their proprietary data.</p>
+
+            <p>But now that almost all AI models have the capability to do web searches, they can train themselves on any data they find on the Internet. And remember, the bot side of your traffic equation is at 51% and rising.</p>
+
+            <p>The question now is: Do you still want to block them all? How high is the opportunity cost?</p>
+
+            <h3>How to Check Where You Stand</h3>
+
+            <p><strong>For WAF:</strong> use the official crawlers' IP ranges and test them against your firewall rules. Google publishes the IP blocks for Googlebot and Googlebot-Extended. OpenAI publishes ranges for GPTBot. Anthropic publishes ranges for ClaudeBot. Check whether requests from those ranges hit a 200 (success), 403 (blocked), or timeout. If you see anything other than 200, you have a firewall problem. Also check your WAF logs directly for 403s or 429s from AI crawler IP ranges.</p>
+
+            <p><strong>For Robots.txt:</strong> Check to see if you are explicitly excluding bots by name. Your robots.txt file may include lines like this:</p>
+
+            <!-- Robots.txt Code Block -->
+            <div class="code-block">
+                <span class="code-block-label">Example: robots.txt AI crawler blocks</span>
+                <pre><span class="comment"># Block OpenAI (ChatGPT and data crawler)</span>
+<span class="directive">User-agent:</span> <span class="value">GPTBot</span>
+<span class="directive">Disallow:</span> <span class="value">/</span>
+
+<span class="directive">User-agent:</span> <span class="value">ChatGPT-User</span>
+<span class="directive">Disallow:</span> <span class="value">/</span>
+
+<span class="comment"># Block Anthropic (Claude training and searching)</span>
+<span class="directive">User-agent:</span> <span class="value">ClaudeBot</span>
+<span class="directive">Disallow:</span> <span class="value">/</span>
+
+<span class="directive">User-agent:</span> <span class="value">Claude-User</span>
+<span class="directive">Disallow:</span> <span class="value">/</span>
+
+<span class="directive">User-agent:</span> <span class="value">Claude-SearchBot</span>
+<span class="directive">Disallow:</span> <span class="value">/</span>
+
+<span class="comment"># Block Common Crawl (used by many AIs)</span>
+<span class="directive">User-agent:</span> <span class="value">CCBot</span>
+<span class="directive">Disallow:</span> <span class="value">/</span></pre>
+            </div>
+
+            <p>If you want to "test out" allowing AI bots to visit your site, you may choose to allow bots for the AI platforms you recognize. While CCBot is not a name anyone would recognize, this is the "common crawl" bot representing the index most LLM models are trained on. If you aren't visible there, your company does not exist to AI.</p>
+
+            <!-- GATE 3 -->
+            <h2 id="gate-3">Gate 3: JavaScript Rendering (The Invisible Majority Problem)</h2>
+
+            <p>Here's the hardest part of FIND for most marketing leaders to accept: <strong>four out of six major AI crawlers cannot execute JavaScript.</strong></p>
+
+            <ul class="crawler-list">
+                <li>ChatGPT's crawler fetches HTML only</li>
+                <li>Claude's crawler fetches HTML only</li>
+                <li>Perplexity's crawler fetches HTML only</li>
+                <li>Bing's crawler for LLM training can execute some JavaScript, but with severe limitations</li>
+                <li>Google's Gemini crawler and Bard crawler lean on Google's regular Search crawlers, which do execute JavaScript, but they do it on a separate rendering fleet, with a delay, and with known compatibility issues</li>
+            </ul>
+
+            <p>JavaScript execution is expensive. It's slow. It's resource-intensive. When you're crawling billions of pages, you batch what you can fetch without execution. So most AI crawlers take the shortcut: fetch the HTML file, parse it, move on.</p>
+
+            <p>This creates a crisis for any site that renders content with JavaScript.</p>
+
+            <p>Vercel, the platform behind Next.js, published data in 2024 confirming that across 500 million GPTBot fetches, they observed zero JavaScript execution. GPTBot fetches the static HTML and moves on. If the page content lives in JavaScript, the bot sees nothing.</p>
+
+            <p><strong>What humans see vs. what AI crawlers see:</strong></p>
+
+            <p>A user with a browser visits your homepage. The browser downloads the HTML, JavaScript, CSS, and images. JavaScript executes. Your content appears. The user reads your value prop, your case studies, your credentials.</p>
+
+            <p>An AI crawler visits your homepage. The crawler downloads the HTML. That HTML is mostly empty. The crawler sees no content. No value prop. No case studies. No context. The crawler indexes a blank page or moves to the next URL.</p>
+
+            <!-- Split-Screen Visual -->
+            <div class="visual-container">
+                <svg viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Split-screen comparison: Rich content on the left shows what humans see in a browser, while Empty HTML on the right shows the near-empty skeleton that AI crawlers see when JavaScript rendering is required">
+                    <defs>
+                        <style>
+                            .browser-chrome { fill: #2C3038; }
+                            .browser-bg { fill: #FAFAF7; }
+                            .browser-content { fill: #FFFFFF; }
+                            .ss-header-text { font-family: system-ui, -apple-system, sans-serif; font-size: 24px; font-weight: 700; fill: #2C3038; }
+                            .ss-section-title { font-family: system-ui, -apple-system, sans-serif; font-size: 16px; font-weight: 600; fill: #2C3038; }
+                            .ss-body-text { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #666666; }
+                            .ss-card-label { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 600; fill: #2C3038; }
+                            .ss-code-text { font-family: 'Courier New', monospace; font-size: 12px; fill: #8B9A7E; }
+                            .ss-empty-text { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; fill: #C25E4A; font-style: italic; }
+                            .ss-label-text { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600; fill: #2C3038; letter-spacing: 0.5px; }
+                            .ss-accent-green { fill: #5B7C5E; }
+                            .ss-accent-red { fill: #C25E4A; }
+                            .ss-accent-amber { fill: #C4956A; }
+                        </style>
+                    </defs>
+                    <rect width="1440" height="900" fill="#FAFAF7"/>
+                    <!-- LEFT: What Humans See -->
+                    <rect x="40" y="40" width="600" height="820" rx="12" class="browser-chrome"/>
+                    <rect x="40" y="40" width="600" height="50" rx="12" class="browser-chrome"/>
+                    <text x="60" y="68" class="ss-body-text" font-size="12" fill="#FFFFFF">yourcompany.com</text>
+                    <rect x="40" y="90" width="600" height="770" class="browser-bg"/>
+                    <circle cx="620" cy="50" r="20" class="ss-accent-green"/>
+                    <g stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="610,50 615,56 630,44"/></g>
+                    <rect x="40" y="90" width="600" height="45" fill="#FFFFFF" stroke="#E8E8E4" stroke-width="1"/>
+                    <text x="60" y="120" class="ss-section-title">Logo</text>
+                    <rect x="40" y="135" width="600" height="140" fill="#FFFFFF"/>
+                    <text x="70" y="185" class="ss-header-text">Transform Your Business</text>
+                    <text x="70" y="210" class="ss-body-text">Unlock growth with AI-powered strategies</text>
+                    <rect x="70" y="225" width="120" height="40" rx="6" class="ss-accent-green"/>
+                    <text x="90" y="250" class="ss-body-text" fill="#FFFFFF" font-weight="600">Get Started</text>
+                    <text x="70" y="310" class="ss-section-title">Our Services</text>
+                    <rect x="60" y="330" width="160" height="120" rx="8" class="browser-content" stroke="#E8E8E4" stroke-width="1"/>
+                    <circle cx="150" cy="350" r="20" class="ss-accent-green"/>
+                    <text x="75" y="395" class="ss-card-label">Strategy</text>
+                    <text x="75" y="415" class="ss-body-text" font-size="11">Align vision with</text>
+                    <text x="75" y="428" class="ss-body-text" font-size="11">market demand</text>
+                    <rect x="240" y="330" width="160" height="120" rx="8" class="browser-content" stroke="#E8E8E4" stroke-width="1"/>
+                    <circle cx="330" cy="350" r="20" class="ss-accent-amber"/>
+                    <text x="255" y="395" class="ss-card-label">Analytics</text>
+                    <text x="255" y="415" class="ss-body-text" font-size="11">Measure what</text>
+                    <text x="255" y="428" class="ss-body-text" font-size="11">matters most</text>
+                    <rect x="420" y="330" width="160" height="120" rx="8" class="browser-content" stroke="#E8E8E4" stroke-width="1"/>
+                    <circle cx="510" cy="350" r="20" class="ss-accent-green"/>
+                    <text x="435" y="395" class="ss-card-label">Growth</text>
+                    <text x="435" y="415" class="ss-body-text" font-size="11">Scale sustainably</text>
+                    <text x="435" y="428" class="ss-body-text" font-size="11">and profitably</text>
+                    <text x="70" y="490" class="ss-section-title">Why Clients Trust Us</text>
+                    <rect x="60" y="510" width="540" height="70" rx="6" class="browser-content" stroke="#E8E8E4" stroke-width="1"/>
+                    <text x="80" y="535" class="ss-body-text" font-weight="500">"Transformed our entire approach to digital visibility"</text>
+                    <text x="80" y="555" class="ss-body-text" font-size="12">-- Sarah Chen, VP Marketing</text>
+                    <rect x="40" y="800" width="600" height="60" fill="#FFFFFF" stroke="#E8E8E4" stroke-width="1"/>
+                    <text x="70" y="825" class="ss-body-text" font-size="11">2026 AI Consulting. All rights reserved.</text>
+                    <!-- CENTER DIVIDER -->
+                    <line x1="720" y1="60" x2="720" y2="840" stroke="#C4956A" stroke-width="2" stroke-dasharray="5,5"/>
+                    <text x="360" y="880" class="ss-label-text" text-anchor="middle" fill="#5B7C5E">What Humans See</text>
+                    <text x="1080" y="880" class="ss-label-text" text-anchor="middle" fill="#C25E4A">What AI Crawlers See</text>
+                    <!-- Callout: Rich content (left) -->
+                    <rect x="230" y="600" width="180" height="44" rx="8" fill="#5B7C5E" opacity="0.12" stroke="#5B7C5E" stroke-width="2"/>
+                    <text x="320" y="628" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#5B7C5E">Rich content</text>
+                    <!-- Callout: Empty HTML (right) -->
+                    <rect x="990" y="260" width="180" height="44" rx="8" fill="#C25E4A" opacity="0.12" stroke="#C25E4A" stroke-width="2"/>
+                    <text x="1080" y="288" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#C25E4A">Empty HTML</text>
+                    <!-- RIGHT: What AI Crawlers See -->
+                    <rect x="800" y="40" width="600" height="820" rx="12" class="browser-chrome"/>
+                    <rect x="800" y="40" width="600" height="50" rx="12" class="browser-chrome"/>
+                    <text x="820" y="68" class="ss-body-text" font-size="12" fill="#FFFFFF">yourcompany.com</text>
+                    <rect x="800" y="90" width="600" height="770" class="browser-bg"/>
+                    <circle cx="1380" cy="50" r="20" class="ss-accent-red"/>
+                    <g stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round"><line x1="1370" y1="40" x2="1390" y2="60"/><line x1="1390" y1="40" x2="1370" y2="60"/></g>
+                    <rect x="800" y="90" width="600" height="45" fill="#F5F5F2" stroke="#E8E8E4" stroke-width="1"/>
+                    <rect x="800" y="135" width="600" height="140" fill="#F5F5F2"/>
+                    <text x="820" y="160" class="ss-code-text">&lt;div id="app"&gt;</text>
+                    <text x="840" y="180" class="ss-code-text">&lt;noscript&gt;</text>
+                    <text x="860" y="200" class="ss-code-text">Enable JavaScript...</text>
+                    <text x="840" y="220" class="ss-code-text">&lt;/noscript&gt;</text>
+                    <text x="820" y="240" class="ss-code-text">&lt;/div&gt;</text>
+                    <rect x="820" y="320" width="160" height="120" rx="8" fill="#F5F5F2" stroke="#E8E8E4" stroke-width="1" stroke-dasharray="3,3"/>
+                    <rect x="1000" y="320" width="160" height="120" rx="8" fill="#F5F5F2" stroke="#E8E8E4" stroke-width="1" stroke-dasharray="3,3"/>
+                    <rect x="1180" y="320" width="160" height="120" rx="8" fill="#F5F5F2" stroke="#E8E8E4" stroke-width="1" stroke-dasharray="3,3"/>
+                    <rect x="810" y="500" width="540" height="70" rx="6" fill="#F5F5F2" stroke="#E8E8E4" stroke-width="1" stroke-dasharray="3,3"/>
+                    <rect x="820" y="600" width="540" height="60" rx="6" fill="#FEF2F0" stroke="#C25E4A" stroke-width="2"/>
+                    <text x="840" y="625" class="ss-empty-text" font-weight="600" fill="#C25E4A">4 out of 6 AI crawlers see nothing here.</text>
+                    <text x="840" y="645" class="ss-body-text" font-size="12" fill="#C25E4A">JavaScript-rendered content is invisible to AI platforms that don't execute JS.</text>
+                    <rect x="800" y="800" width="600" height="60" fill="#F5F5F2" stroke="#E8E8E4" stroke-width="1"/>
+                </svg>
+                <p class="visual-caption">A JavaScript-heavy website as seen by a human browser (left) versus the near-empty HTML skeleton seen by most AI crawlers (right). Based on lizmicik.com analysis of 120 B2B professional services firms.</p>
+            </div>
+
+            <p>From the AI platform's perspective, your homepage doesn't contain useful information. It's not rankable. It's not citable. It's invisible.</p>
+
+            <h3>How to Check Where You Stand</h3>
+
+            <p>Crawl your website with JavaScript disabled. Are you happy with what you see? Can your business be understood?</p>
+
+            <!-- GATE 4 -->
+            <h2 id="gate-4">Gate 4: Structured Data (The Language AI Platforms Actually Speak)</h2>
+
+            <p>If a crawler can reach your page and see your content, the next question is: <em>does the crawler understand what it's reading?</em></p>
+
+            <p>Humans read: "Our AI Visibility Audit costs $2,500, takes 3 days, and includes a 30-minute strategy call."</p>
+
+            <p>An AI crawler sees plain text. Without structured data, it has to guess: is that a product? A service? A price? A duration? A feature?</p>
+
+            <p>Structured data (schema markup in JSON-LD format, RDFa, or microdata) is the answer. It's metadata that explains, in a machine-readable format, what your content is and what attributes it has.</p>
+
+            <p>Here's the same sentence with schema markup:</p>
+
+            <div class="code-block">
+                <span class="code-block-label">Example: JSON-LD schema for a service</span>
+                <pre>{
+  <span class="directive">"@context"</span>: <span class="value">"https://schema.org"</span>,
+  <span class="directive">"@type"</span>: <span class="value">"Service"</span>,
+  <span class="directive">"name"</span>: <span class="value">"AI Visibility Audit"</span>,
+  <span class="directive">"price"</span>: {
+    <span class="directive">"@type"</span>: <span class="value">"PriceSpecification"</span>,
+    <span class="directive">"priceCurrency"</span>: <span class="value">"USD"</span>,
+    <span class="directive">"price"</span>: <span class="value">"2500"</span>
+  },
+  <span class="directive">"duration"</span>: <span class="value">"P3D"</span>,
+  <span class="directive">"includes"</span>: {
+    <span class="directive">"@type"</span>: <span class="value">"Thing"</span>,
+    <span class="directive">"name"</span>: <span class="value">"30-minute strategy call"</span>
+  }
+}</pre>
+            </div>
+
+            <p>Now the AI crawler understands: there's a service, it costs 2,500 dollars, it takes 3 days, and it includes a 30-minute call. The crawler can index these attributes, use them for retrieval, and cite the source accurately.</p>
+
+            <p>Fabrice Canel, a Microsoft engineer who leads Bing's LLM integration, explained the implications at SMX Munich in 2025 when he said, "Schema markup directly feeds Bing's LLMs."</p>
+
+            <p>Schema markup does so much more than earn you rich snippets. It connects your content to the knowledge graph. It tells the AI agent what category your business falls into, what you do, how much it costs, how long it takes, who your customers are, and what outcomes you deliver.</p>
+
+            <p>This structured data becomes part of the source material that LLMs see when they're generating answers. Here's what our research across 120 B2B professional services firms found:</p>
+
+            <!-- Schema Adoption by Type Chart (Horizontal Bars) -->
+            <div class="visual-container">
+                <svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Horizontal bar chart showing schema markup adoption by type across 120 B2B professional services companies. Organization is highest at 70%, followed by Service/Product at 55%, Article at 45%, LocalBusiness at 20%, Author at 15%, Rating at 12%, HowTo at 10%, Review at 8%, and FAQPage at less than 1%.">
+  <defs>
+    <style>
+      .sct-text { font-family: system-ui, -apple-system, sans-serif; }
+      .sct-title { font-size: 18px; font-weight: bold; fill: #6B3D2E; }
+      .sct-subtitle { font-size: 13px; fill: #2C3038; }
+      .sct-row-label { font-size: 13px; fill: #2C3038; font-weight: 500; }
+      .sct-pct { font-size: 12px; fill: #2C3038; font-weight: 600; }
+      .sct-source { font-size: 11px; fill: #666666; font-style: italic; }
+      .sct-annotation { font-size: 11px; fill: #6B3D2E; font-weight: 600; }
+    </style>
+  </defs>
+
+  <rect width="720" height="480" fill="#FAFAF7"/>
+  <text x="360" y="30" text-anchor="middle" class="sct-text sct-title">Schema Markup Adoption by Type</text>
+  <text x="360" y="50" text-anchor="middle" class="sct-text sct-subtitle">120 B2B Professional Services Companies</text>
+
+  <!-- Chart area -->
+  <line x1="180" y1="70" x2="180" y2="420" stroke="#E8E8E5" stroke-width="1"/>
+
+  <!-- Gridlines -->
+  <line x1="180" y1="70" x2="180" y2="425" stroke="#2C3038" stroke-width="1"/>
+  <line x1="310" y1="70" x2="310" y2="425" stroke="#E8E8E5" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="440" y1="70" x2="440" y2="425" stroke="#E8E8E5" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="570" y1="70" x2="570" y2="425" stroke="#E8E8E5" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="700" y1="70" x2="700" y2="425" stroke="#E8E8E5" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- X-axis labels -->
+  <text x="180" y="442" text-anchor="middle" class="sct-text" font-size="11" fill="#666">0%</text>
+  <text x="310" y="442" text-anchor="middle" class="sct-text" font-size="11" fill="#666">25%</text>
+  <text x="440" y="442" text-anchor="middle" class="sct-text" font-size="11" fill="#666">50%</text>
+  <text x="570" y="442" text-anchor="middle" class="sct-text" font-size="11" fill="#666">75%</text>
+  <text x="700" y="442" text-anchor="middle" class="sct-text" font-size="11" fill="#666">100%</text>
+
+  <!-- Row 1: Organization 70% -->
+  <text x="170" y="97" text-anchor="end" class="sct-text sct-row-label">Organization</text>
+  <rect x="180" y="82" width="364" height="24" rx="3" fill="#5B7C5E"/>
+  <text x="550" y="99" class="sct-text sct-pct" fill="#5B7C5E">70%</text>
+
+  <!-- Row 2: Service/Product 55% -->
+  <text x="170" y="135" text-anchor="end" class="sct-text sct-row-label">Service / Product</text>
+  <rect x="180" y="120" width="286" height="24" rx="3" fill="#5B7C5E"/>
+  <text x="472" y="137" class="sct-text sct-pct" fill="#5B7C5E">55%</text>
+
+  <!-- Row 3: Article 45% -->
+  <text x="170" y="173" text-anchor="end" class="sct-text sct-row-label">Article</text>
+  <rect x="180" y="158" width="234" height="24" rx="3" fill="#C4956A"/>
+  <text x="420" y="175" class="sct-text sct-pct" fill="#C4956A">45%</text>
+
+  <!-- Row 4: LocalBusiness 20% -->
+  <text x="170" y="211" text-anchor="end" class="sct-text sct-row-label">LocalBusiness</text>
+  <rect x="180" y="196" width="104" height="24" rx="3" fill="#C4956A"/>
+  <text x="290" y="213" class="sct-text sct-pct" fill="#C4956A">20%</text>
+
+  <!-- Row 5: Author 15% -->
+  <text x="170" y="249" text-anchor="end" class="sct-text sct-row-label">Author</text>
+  <rect x="180" y="234" width="78" height="24" rx="3" fill="#6B3D2E"/>
+  <text x="264" y="251" class="sct-text sct-pct" fill="#6B3D2E">15%</text>
+
+  <!-- Row 6: Rating 12% -->
+  <text x="170" y="287" text-anchor="end" class="sct-text sct-row-label">Rating</text>
+  <rect x="180" y="272" width="62" height="24" rx="3" fill="#6B3D2E"/>
+  <text x="248" y="289" class="sct-text sct-pct" fill="#6B3D2E">12%</text>
+
+  <!-- Row 7: HowTo 10% -->
+  <text x="170" y="325" text-anchor="end" class="sct-text sct-row-label">HowTo</text>
+  <rect x="180" y="310" width="52" height="24" rx="3" fill="#6B3D2E"/>
+  <text x="238" y="327" class="sct-text sct-pct" fill="#6B3D2E">10%</text>
+
+  <!-- Row 8: Review 8% -->
+  <text x="170" y="363" text-anchor="end" class="sct-text sct-row-label">Review</text>
+  <rect x="180" y="348" width="42" height="24" rx="3" fill="#6B3D2E"/>
+  <text x="228" y="365" class="sct-text sct-pct" fill="#6B3D2E">8%</text>
+
+  <!-- Row 9: FAQPage <1% -->
+  <text x="170" y="401" text-anchor="end" class="sct-text sct-row-label">FAQPage</text>
+  <rect x="180" y="386" width="5" height="24" rx="2" fill="#6B3D2E"/>
+  <text x="192" y="403" class="sct-text sct-annotation">&lt;1%</text>
+  <text x="225" y="403" class="sct-text sct-annotation" font-weight="normal" font-style="italic">Only 1 company, despite FAQ content on many sites</text>
+
+  <text x="360" y="470" text-anchor="middle" class="sct-text sct-source">Based on lizmicik.com research of 120 B2B professional services companies</text>
+</svg>
+                <p class="visual-caption">Schema markup adoption by type across 120 B2B professional services firms. Relationship markup (Author, Rating, Review) and content-specific markup (FAQPage, HowTo) are severely underutilized.</p>
+            </div>
+
+            <p>The data speaks to a gap: most professional services firms haven't translated their content into the structured format that AI platforms need to understand it.</p>
+
+            <p>I have a suspicion that this one gate is going to cause more talk and raise more debate than any other. Schema markup has been around since 2011. Yet adoption remains mixed.</p>
+
+            <p>I'm going to make a longer-term prediction here and say that schema may NOT be important -- or as important -- in three to five years as it is now. I think as AI agents get smarter they won't need the "structure" quite as much, but the "data" that's contained in those structures will always be key to their understanding of what you do.</p>
+
+            <p>Today though, they have a problem even parsing your content to find the bits and pieces that are important. If you don't help make their job easier, they may just fill in their missing gaps with guesses. And we know what an expensive mistake that is.</p>
+
+            <h3>How to Check Where You Stand</h3>
+
+            <p>Audit your site with Google's Schema Markup Validator or a tool like Screaming Frog's schema analyzer. Identify which pages have schema markup, which types are present, and which are missing.</p>
+
+            <!-- WHY FIND FEEDS EVERYTHING -->
+            <h2 id="why-find-feeds">Why FIND Feeds Everything Else</h2>
+
+            <p>Before we wrap, it's important to understand why FIND is foundational to the whole AI visibility framework.</p>
+
+            <p>The Find/Understand/Trust stool has three legs. FIND is the first one: the technical layer that answers, "Can they access and read you?"</p>
+
+            <p>If you fail FIND, UNDERSTAND and TRUST become irrelevant. A crawler that can't reach your page, can't see your content, or can't parse your structured data will never get to the point of ranking your content (UNDERSTAND) or assessing your credibility (TRUST).</p>
+
+            <p>Here's the upside: FIND is the most controllable layer. You own your robots.txt. You own your infrastructure. You own your schema markup. You can configure your CDN's bot rules.</p>
+
+            <p>A poor UNDERSTAND ranking (where the AI agent ranks you lower than a competitor) can be more complex to fix. It affects how you present yourself to humans as well as AI agents and involves multiple teams working together.</p>
+
+            <p>A poor TRUST score (where the AI agent weighs your credibility lower) takes time. But a FIND failure? That's fixable in days. Some gates (like CDN settings) take minutes once you know where to look.</p>
+
+            <!-- FINDABLE ADVANTAGE -->
+            <h2 id="findable-advantage">The Findable Advantage: What Happens When You Pass FIND</h2>
+
+            <p>Companies that nail FIND see a different trajectory in AI visibility. They appear in more citations. They get referred higher-quality traffic.</p>
+
+            <p>GoodFirms studied 7,000+ citations across AI platforms and found that content updated within 30 days gets 3.2x more AI citations than content older than 90 days. That stat matters only if you're findable. An old, unfindable page gets zero citations. A fresh, findable page gets cited more often.</p>
+
+            <p>On conversion, the numbers are compelling. AI-referred traffic converts at 14.2 percent, compared to 2.8 percent from Google Search, according to GoodFirms' same research. That's a 5x difference. But you don't get that advantage unless your content is findable first.</p>
+
+            <p>Sixty percent of Google searches now end without a click to a website. Those users get their answer from an AI Overview. If you're findable, your content can feed that Overview. If you're not, your competitor's does.</p>
+
+            <p>The FIND layer is the prerequisite. Master it, and the rest of the framework becomes actionable.</p>
+
+            <!-- NEXT STEPS -->
+            <h2 id="next-steps">Next Steps: From FIND to UNDERSTAND</h2>
+
+            <p>Once an AI agent has made it through all four FIND gates on your site, the next question is harder: can it actually parse your content well enough to understand what you are and what you do?</p>
+
+            <!-- CTA Box -->
+            <div class="cta-box">
+                <p><strong>Our Signal Check tests the UNDERSTAND layer.</strong></p>
+                <p>It's free and takes only two minutes to find out exactly what all four major AI platforms say about you right now.</p>
+                <p><a href="/signal-check">Run your free Signal Check now</a></p>
+            </div>
+
+            <!-- Author Bio -->
+            <div class="author-bio">
+                <div class="author-avatar">LM</div>
+                <div class="author-info">
+                    <h3>Liz Micik</h3>
+                    <p class="author-title">SEO &amp; Content Strategist | AI Visibility Consultant</p>
+                    <p>Liz has spent 28 years helping companies navigate structural shifts in how the web works. From the rise of Google to mobile-first indexing to today's AI-mediated search, she works with B2B professional services firms to ensure they're visible where their buyers are looking.</p>
+                </div>
+            </div>
+
+            <!-- Related Posts -->
+            <div class="related-posts">
+                <h2>More in This Series</h2>
+                <div class="related-posts-grid">
+                    <div class="post-card fade-in">
+                        <a href="/library/new-old-search-definitions">
+                        <div class="post-card-image" style="background: linear-gradient(135deg, #C4956A 0%, #8B9A7E 100%);">
+                            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
+                                <rect width="280" height="180" fill="none"/>
+                                <text x="140" y="85" text-anchor="middle" font-family="Manrope, sans-serif" font-size="28" font-weight="800" fill="rgba(255,255,255,0.5)">FRAMEWORK</text>
+                                <text x="140" y="115" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)">The Transition Needs Translation</text>
+                            </svg>
+                        </div>
+                        <div class="post-card-content">
+                            <p class="post-card-meta">Previous</p>
+                            <h3>From Search to AI Visibility: The Transition Needs Translation</h3>
+                        </div>
+                        </a>
+                    </div>
+
+                    <div class="post-card fade-in">
+                        <a href="/library/ai-understand-brand-visibility">
+                        <div class="post-card-image" style="background: linear-gradient(135deg, #2C3038 0%, #545B6A 100%);">
+                            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
+                                <rect width="280" height="180" fill="none"/>
+                                <text x="140" y="75" text-anchor="middle" font-family="Manrope, sans-serif" font-size="32" font-weight="800" fill="rgba(255,255,255,0.4)">UNDERSTAND</text>
+                                <text x="140" y="115" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)">Layer 2: Fact vs. Vibe</text>
+                            </svg>
+                        </div>
+                        <div class="post-card-content">
+                            <p class="post-card-meta">Next</p>
+                            <h3>AI Found Your Website. It Has No Idea What You Do.</h3>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </div>
+
+    <!-- Final CTA -->
+    <div style="max-width:680px;margin:2.5rem auto 0;padding:16px 22px;background:#F5EFE4;border:1px solid rgba(44,48,56,0.10);border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;"><span style="font-size:0.95rem;color:#2C3038;font-weight:600;line-height:1.4;">Found this useful? Make Liz Micik a preferred source in Google Search.</span><a href="https://google.com/preferences/source?q=lizmicik.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(44,48,56,0.16);color:#2C3038;font-weight:700;font-size:0.88rem;padding:10px 18px;border-radius:8px;text-decoration:none;white-space:nowrap;"><svg width="16" height="16" viewBox="0 0 48 48" aria-hidden="true" style="flex-shrink:0;"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg> Add as a preferred source</a></div>
+    <div class="final-cta">
+        <h2>You're findable. But does AI understand what you do?</h2>
+        <p>The Signal Check shows you exactly what AI platforms extract from your site. The full Audit diagnoses every gap across all four layers &mdash; Find, Understand, Trust, and Use. Or <a href="/agent-readiness-checklist" style="color:#C4956A;text-decoration:underline;">see where you stand</a> in two minutes.</p>
+        <div class="cta-buttons">
+            <a href="/signal-check" class="cta-button">Free Signal Check</a>
+            <a href="/audit" class="cta-button copper">Agent Readiness Audit</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <style>
+.lmf-footer{background:#2C3038;color:#F2EDE7;padding:56px 24px 28px;font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+.lmf-inner{max-width:960px;margin:0 auto;}
+.lmf-top{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,0.10);}
+.lmf-brand{max-width:300px;}
+.lmf-brand .lmf-wordmark{font-size:1.2rem;font-weight:700;letter-spacing:-0.01em;margin-bottom:10px;color:#F2EDE7;}
+.lmf-brand p{font-size:0.88rem;color:#B8B5B0;line-height:1.6;margin:0;}
+.lmf-cols{display:flex;flex-wrap:wrap;gap:48px;}
+.lmf-col h4{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.10em;color:#C4956A;margin:0 0 14px;}
+.lmf-col ul{list-style:none;margin:0;padding:0;}
+.lmf-col li{margin-bottom:9px;}
+.lmf-col a{color:#F2EDE7;text-decoration:none;font-size:0.9rem;transition:color 0.18s;}
+.lmf-col a:hover{color:#C4956A;}
+.lmf-bottom{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding-top:22px;}
+.lmf-bottom p{font-size:0.8rem;color:#B8B5B0;margin:0;}
+.lmf-bottom .lmf-legal a{color:#B8B5B0;text-decoration:none;font-size:0.8rem;}
+.lmf-bottom .lmf-legal a:hover{color:#C4956A;}
+.lmf-bottom .lmf-legal span{color:rgba(255,255,255,0.25);margin:0 8px;}
+@media (max-width:640px){.lmf-top{flex-direction:column;gap:32px;}.lmf-cols{gap:32px;}.lmf-bottom{flex-direction:column;align-items:flex-start;}}
+</style>
+<footer class="lmf-footer" role="contentinfo">
+  <div class="lmf-inner">
+    <div class="lmf-top">
+      <div class="lmf-brand">
+        <div class="lmf-wordmark">Liz Micik</div>
+        <p>Helping businesses transition human websites to usable, agentic websites.</p>
+      </div>
+      <div class="lmf-cols">
+        <div class="lmf-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="/signal-check">Signal Check</a></li>
+            <li><a href="/audit">Agent Readiness Audit</a></li>
+            <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+            <li><a href="/actions">Agent Readiness Actions</a></li>
+          </ul>
+        </div>
+        <div class="lmf-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/about">About</a></li>
+            <li><a href="/library">Library</a></li>
+            <li><a href="/resources">Resources</a></li>
+          </ul>
+        </div>
+        <div class="lmf-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="mailto:info@lizmicik.com">info@lizmicik.com</a></li>
+            <li><a href="https://www.linkedin.com/in/lizmicik" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://google.com/preferences/source?q=lizmicik.com" target="_blank" rel="noopener">Add as a preferred source</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="lmf-bottom">
+      <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+      <p class="lmf-legal">
+        <a href="/privacy-policy">Privacy Policy</a>
+        <span>&middot;</span>
+        <a href="/terms">Terms of Use</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+    <script>
+        // Cookie Banner & GA4
+        (function() {
+            var COOKIE_KEY = 'lizmicik-cookie-consent';
+            var GA_ID = 'G-B9S40S2SKG';
+
+            if (!localStorage.getItem(COOKIE_KEY)) {
+                var banner = document.createElement('div');
+                banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#2C3038;color:white;padding:1.5rem 2rem;text-align:center;z-index:999;font-size:0.9rem;';
+                banner.innerHTML = '<p style="margin-bottom:1rem;">We use analytics to understand how you use our site and improve it.</p><button id="accept-cookies" style="background:#5B7C5E;color:white;border:none;padding:0.75rem 1.5rem;border-radius:0.5rem;cursor:pointer;font-weight:600;margin-right:1rem;">Accept</button><button id="decline-cookies" style="background:transparent;color:white;border:1px solid white;padding:0.75rem 1.5rem;border-radius:0.5rem;cursor:pointer;font-weight:600;">Decline</button>';
+                document.body.appendChild(banner);
+                document.getElementById('accept-cookies').addEventListener('click', function() { localStorage.setItem(COOKIE_KEY, 'true'); loadGA(); banner.remove(); });
+                document.getElementById('decline-cookies').addEventListener('click', function() { localStorage.setItem(COOKIE_KEY, 'false'); banner.remove(); });
+            } else if (localStorage.getItem(COOKIE_KEY) === 'true') { loadGA(); }
+
+            function loadGA() {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', GA_ID);
+                var script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+                document.head.appendChild(script);
+            }
+        })();
+
+        // Mobile Navigation Toggle
+        var navToggle = document.querySelector('.nav-toggle');
+        var navLinks = document.querySelector('.nav-links');
+        navToggle.addEventListener('click', function() {
+            navToggle.classList.toggle('open');
+            navLinks.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+        });
+
+        // Hide nav on scroll down, show on scroll up
+        var lastScrollTop = 0;
+        var nav = document.querySelector('.nav');
+        window.addEventListener('scroll', function() {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) { nav.classList.add('nav-hidden'); }
+            else { nav.classList.remove('nav-hidden'); }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                var href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    var target = document.querySelector(href);
+                    var offsetTop = target.offsetTop - 80;
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                    if (navLinks.classList.contains('active')) { navToggle.classList.remove('open'); navLinks.classList.remove('active'); }
+                }
+            });
+        });
+
+        // TOC active state tracking
+        var tocLinks = document.querySelectorAll('.toc-list a');
+        var sections = [];
+        tocLinks.forEach(function(link) {
+            var id = link.getAttribute('href').substring(1);
+            var section = document.getElementById(id);
+            if (section) sections.push({ el: section, link: link });
+        });
+
+        function updateTOC() {
+            var scrollPos = window.scrollY + 120;
+            var current = null;
+            sections.forEach(function(s) {
+                if (s.el.offsetTop <= scrollPos) current = s;
+            });
+            tocLinks.forEach(function(l) { l.classList.remove('active'); });
+            if (current) current.link.classList.add('active');
+        }
+        window.addEventListener('scroll', updateTOC);
+        updateTOC();
+
+        // IntersectionObserver for fade-in animations
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; observer.unobserve(entry.target); }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+            el.style.opacity = '0'; el.style.transform = 'translateY(10px)'; el.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; observer.observe(el);
+        });
+    </script>
+</body>
+</html>

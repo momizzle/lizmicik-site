@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Google, Cloudflare, the protocol bodies, and EU regulators all set 2026 deadlines for the AI web. Here is an honest scorecard of what shipped, what slipped, and what actually matters for a B2B professional-services firm.">
+    <meta name="keywords" content="AI deadlines, agentic web, Cloudflare September 15, MCP specification, EU AI Act, llms.txt, Content Signals, Agent Readiness, Life Beyond Google, AI visibility, B2B, professional services">
+    <title>A Hot Summer of AI Deadlines &mdash; and Which Ones Are Actually Real | Liz Micik</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="A Hot Summer of AI Deadlines &mdash; and Which Ones Are Actually Real">
+    <meta property="og:description" content="Everyone shaping the AI web named a date this summer. Here is an honest scorecard of what shipped, what slipped, and the one deadline with real teeth for a B2B firm.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://lizmicik.com/library/ai-deadlines-scorecard">
+    <meta property="og:site_name" content="Liz Micik">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "A Hot Summer of AI Deadlines — and Which Ones Are Actually Real",
+        "description": "Google, Cloudflare, the protocol bodies, and EU regulators all set 2026 deadlines for the AI web. An honest scorecard of what shipped, what slipped, and what actually matters for a B2B professional-services firm.",
+        "author": {
+            "@type": "Person",
+            "name": "Liz Micik",
+            "url": "https://lizmicik.com"
+        },
+        "datePublished": "2026-07-14",
+        "dateModified": "2026-07-14",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://lizmicik.com/library/ai-deadlines-scorecard"
+        },
+        "keywords": "AI deadlines, agentic web, Cloudflare September 15, MCP specification, EU AI Act, llms.txt, Content Signals, Agent Readiness, Life Beyond Google",
+        "isPartOf": {
+            "@type": "BlogPosting",
+            "name": "Life Beyond Google",
+            "url": "https://lizmicik.com/library"
+        }
+    }
+    </script>
+
+    <style>
+        :root {
+            --cream: #FAFAF7;
+            --cream-dark: #FAF8F5;
+            --slate: #2C3038;
+            --slate-light: #3D424D;
+            --slate-mid: #545B6A;
+            --accent-amber: #C4956A;
+            --accent-teal: #5B7C5E;
+            --accent-copper: #3D6B4E;
+            --muted-red: #C25E4A;
+            --hero-brown: #6B3D2E;
+            --text-primary: #2C3038;
+            --text-secondary: #545B6A;
+            --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --content-width: 720px;
+            --wide-width: 960px;
+            --toc-width: 220px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--cream); color: var(--text-primary); font-family: var(--font-body); line-height: 1.6; }
+
+        /* Navigation */
+        .nav { position: fixed; top: 0; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--cream-dark); z-index: 1000; transition: transform 0.3s ease; }
+        .nav.nav-hidden { transform: translateY(-100%); }
+        .nav-inner { max-width: var(--wide-width); margin: 0 auto; padding: 1.5rem clamp(1.5rem, 4vw, 2rem); display: flex; justify-content: space-between; align-items: center; }
+        .nav-name { font-weight: 700; color: var(--text-primary); font-size: 1.25rem; }
+        .nav-name a { color: inherit; text-decoration: none; }
+        .nav-toggle { display: none; flex-direction: column; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .nav-toggle span { width: 24px; height: 2px; background: var(--text-primary); margin: 5px 0; transition: 0.3s; }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+        .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--accent-teal); }
+        .nav-cta { background: var(--accent-teal) !important; color: white !important; padding: 0.75rem 1.5rem; border-radius: 0.5rem; transition: background 0.3s ease; }
+        .nav-cta:hover { background: var(--accent-copper) !important; }
+        .nav-item.has-dropdown { position: relative; }
+        .nav-caret { font-size: 0.7em; margin-left: 0.15rem; transition: transform 0.2s ease; display: inline-block; }
+        .nav-item.has-dropdown:hover .nav-caret, .nav-item.has-dropdown:focus-within .nav-caret { transform: rotate(180deg); }
+        .nav-dropdown { display: none; position: absolute; top: 100%; left: 0; min-width: 260px; margin: 0; padding: 0.45rem 0; list-style: none; background: rgba(250, 250, 247, 0.98); backdrop-filter: blur(12px); border: 1px solid rgba(44, 48, 56, 0.06); border-radius: 6px; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08); z-index: 100; }
+        .nav-item.has-dropdown:hover .nav-dropdown, .nav-item.has-dropdown:focus-within .nav-dropdown { display: block; }
+        .nav-dropdown li { padding: 0; }
+        .nav-dropdown a { display: block; padding: 0.55rem 1.2rem; white-space: nowrap; font-size: 0.9rem !important; }
+        .nav-dropdown a:hover { background: rgba(44, 48, 56, 0.04); }
+        @media (max-width: 768px) {
+            .nav-toggle { display: flex; }
+            .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(10px, 10px); }
+            .nav-toggle.open span:nth-child(2) { opacity: 0; }
+            .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+            .nav-links { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--cream); gap: 1.5rem; padding: 2rem; border-bottom: 1px solid var(--cream-dark); display: none; }
+            .nav-links.active { display: flex; }
+            .nav-dropdown { display: block; position: static; min-width: 0; padding: 0.25rem 0 0 1rem; background: transparent; backdrop-filter: none; border: none; box-shadow: none; }
+            .nav-caret { display: none; }
+            .nav-links a { font-size: 1.1rem; }
+        }
+
+        /* Hero (text-only variant) */
+        header.blog-hero { max-width: 1080px; margin: 60px auto 0; padding: 2.75rem clamp(1.5rem, 4vw, 3rem); background: #F5EFE4; text-align: left; }
+        .hero-text { display: flex; flex-direction: column; gap: 0.85rem; max-width: 820px; }
+        .pillar-eyebrow { display: inline-block; align-self: flex-start; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0; color: var(--accent-teal); }
+        .blog-meta { display: flex; justify-content: flex-start; gap: 0.75rem; margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--text-secondary); flex-wrap: wrap; align-items: center; }
+        header.blog-hero h1 { font-family: var(--font-heading); font-size: clamp(1.6rem, 3.4vw, 2.3rem); font-weight: 700; line-height: 1.22; color: var(--text-primary); margin: 0; }
+        @media (max-width: 720px) { header.blog-hero { text-align: left; } header.blog-hero h1 { font-size: clamp(1.4rem, 6vw, 1.85rem); } }
+
+        /* Two-column layout with sticky TOC */
+        .blog-layout { max-width: 1080px; margin: 0 auto; padding: 2rem clamp(1.5rem, 4vw, 2rem); display: grid; grid-template-columns: var(--toc-width) 1fr; gap: 3rem; align-items: start; }
+        .toc { position: sticky; top: 80px; max-height: calc(100vh - 100px); overflow-y: auto; padding-right: 1rem; }
+        .toc-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--accent-teal); }
+        .toc-list { list-style: none; padding: 0; }
+        .toc-list li { margin: 0; }
+        .toc-list a { display: block; padding: 0.4rem 0 0.4rem 0.75rem; font-size: 0.8rem; color: var(--text-secondary); text-decoration: none; border-left: 2px solid transparent; transition: all 0.2s ease; line-height: 1.4; }
+        .toc-list a:hover { color: var(--accent-teal); border-left-color: var(--accent-teal); }
+        .toc-list a.active { color: var(--accent-teal); border-left-color: var(--accent-teal); font-weight: 600; }
+
+        /* Article */
+        article.blog-content { max-width: var(--content-width); }
+        article p { font-size: 1.05rem; line-height: 1.75; margin: 1.5rem 0; color: var(--text-primary); }
+        article h2 { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 600; margin: 3rem 0 1.5rem; color: var(--text-primary); border-left: 3px solid var(--accent-teal); padding-left: 1rem; }
+        article h2:first-of-type { margin-top: 0; }
+        article h3 { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--text-primary); }
+        article strong { font-weight: 700; color: var(--accent-teal); }
+        article a { color: #C4956A; text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        article a:hover { color: #3D6B4E; text-decoration: underline; }
+
+        /* TLDR */
+        .tldr { font-style: italic; color: var(--text-secondary); border-left: 3px solid var(--accent-amber); padding-left: 1.5rem; margin: 2rem 0; }
+        .tldr p { color: var(--text-secondary); font-style: italic; margin: 0.5rem 0; }
+        .tldr ul { padding-left: 1.5rem; margin: 0.5rem 0; }
+        .tldr li { color: var(--text-secondary); font-style: italic; margin: 0.5rem 0; line-height: 1.6; }
+
+        /* Scorecard table */
+        .visual-container { margin: 2.5rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid #E8DDD5; background: #FFFFFF; }
+        .scorecard-table { width: 100%; border-collapse: collapse; margin: 0; font-size: 0.9rem; }
+        .scorecard-table thead { background: var(--slate); color: white; }
+        .scorecard-table th { text-align: left; padding: 0.85rem 1rem; font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; }
+        .scorecard-table tbody tr { border-bottom: 1px solid #E8DDD5; }
+        .scorecard-table tbody tr:last-child { border-bottom: none; }
+        .scorecard-table tbody tr:nth-child(even) { background: var(--cream-dark); }
+        .scorecard-table td { padding: 0.9rem 1rem; vertical-align: top; color: var(--text-primary); line-height: 1.5; border: none; }
+        .scorecard-table td.promise { font-weight: 600; }
+        .scorecard-table td.date { white-space: nowrap; font-weight: 600; color: var(--text-secondary); }
+        .badge { display: inline-block; padding: 0.22rem 0.6rem; border-radius: 1rem; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; color: #fff; }
+        .badge.shipped { background: #5B7C5E; }
+        .badge.ontrack { background: #C4956A; }
+        .badge.cosmetic { background: #C25E4A; }
+        .badge.partial { background: #545B6A; }
+        .scorecard-caption { font-size: 0.85rem; color: var(--text-secondary); text-align: center; padding: 0.75rem 1rem; background: var(--cream-dark); border-top: 1px solid #E8DDD5; font-style: italic; }
+        @media (max-width: 760px) {
+            .scorecard-table thead { display: none; }
+            .scorecard-table tbody { display: block; }
+            .scorecard-table tr { display: block; margin: 0; padding: 1rem 1.25rem; border-bottom: 1px solid #E8DDD5; }
+            .scorecard-table tr:nth-child(even) { background: var(--cream-dark); }
+            .scorecard-table td { display: block; padding: 0.3rem 0; font-size: 0.92rem; }
+            .scorecard-table td:before { content: attr(data-label); display: block; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); margin-bottom: 0.15rem; font-weight: 600; }
+        }
+
+        /* CTA Box */
+        .cta-box { background: var(--cream-dark); border: 2px solid var(--accent-amber); border-radius: 0.75rem; padding: 2rem; margin: 3rem 0; text-align: center; }
+        .cta-box p { margin: 0.5rem 0; font-size: 1rem; }
+        .cta-box strong { color: var(--text-primary); font-size: 1.1rem; }
+        .cta-box a { color: #C4956A; font-weight: 700; }
+        .cta-box a:hover { color: #3D6B4E; }
+
+        /* Author Bio */
+        .author-bio { display: flex; gap: 2rem; padding: 2.5rem; background: var(--cream-dark); border-radius: 0.75rem; border: 1px solid #E8DDD5; margin: 3rem 0; align-items: flex-start; }
+        .author-avatar { width: 100px; height: 100px; border-radius: 50%; background: var(--accent-teal); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 700; flex-shrink: 0; }
+        .author-info h3 { margin-top: 0; margin-bottom: 0.5rem; }
+        .author-title { font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 0.8rem; }
+        .author-bio p { font-size: 0.95rem; margin: 0; color: var(--text-primary); }
+
+        /* Related Posts */
+        .related-posts { margin: 4rem 0 3rem; border-top: 2px solid var(--cream-dark); padding-top: 3rem; }
+        .related-posts h2 { border: none; padding: 0; text-align: center; margin-bottom: 2.5rem; font-family: var(--font-heading); font-size: 1.8rem; font-weight: 600; }
+        .related-posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .post-card { background: var(--cream-dark); border: 1px solid #E8DDD5; border-radius: 0.75rem; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .post-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); }
+        .post-card a { text-decoration: none; color: inherit; }
+        .post-card-content { padding: 1.5rem; }
+        .post-card-meta { font-size: 0.8rem; color: var(--accent-copper); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+        .post-card h3 { font-size: 1.2rem; margin: 0.8rem 0; color: var(--text-primary); }
+
+        /* Final CTA */
+        .final-cta { background: var(--slate); color: white; padding: 3rem 2rem; text-align: center; margin: 4rem 0 0; }
+        .final-cta h2 { border: none; padding: 0; color: white; margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1.8rem; font-weight: 600; }
+        .final-cta p { color: rgba(255, 255, 255, 0.95); margin-bottom: 2rem; }
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .cta-button { display: inline-block; background: var(--accent-teal); color: white; padding: 0.75rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 700; transition: all 0.3s ease; border: 2px solid var(--accent-teal); }
+        .cta-button:hover { background: transparent; color: white; }
+        .cta-button.copper { background: var(--accent-amber); border-color: var(--accent-amber); }
+
+        @media (max-width: 968px) {
+            .blog-layout { grid-template-columns: 1fr; max-width: var(--content-width); }
+            .toc { position: relative; top: 0; max-height: none; border: 1px solid #E8DDD5; border-radius: 0.75rem; padding: 1.25rem; background: var(--cream-dark); margin-bottom: 1rem; }
+            .author-bio { flex-direction: column; text-align: center; }
+            .author-avatar { margin: 0 auto; }
+        }
+        @media (max-width: 600px) {
+            article p { font-size: 1rem; }
+            article h2 { font-size: 1.4rem; }
+            .cta-buttons { flex-direction: column; }
+            .cta-buttons .cta-button { display: block; width: 100%; }
+            .related-posts-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <span class="nav-name"><a href="/">Liz Micik</a></span>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/about">About</a></li>
+                <li><a href="/library">Library</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li class="nav-item has-dropdown">
+                    <a href="/audit" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Services <span class="nav-caret">&#9662;</span></a>
+                    <ul class="nav-dropdown">
+                        <li><a href="/audit">Agent Readiness Audit</a></li>
+                        <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+                        <li><a href="/actions">Agent Readiness Actions</a></li>
+                    </ul>
+                </li>
+                <li><a href="/signal-check" class="nav-cta">Free Signal Check</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="blog-hero">
+        <div class="hero-text">
+            <span class="pillar-eyebrow">Life Beyond Google &middot; The Deadline Scorecard</span>
+            <h1>A Hot Summer of AI Deadlines &mdash; and Which Ones Are Actually Real</h1>
+            <div class="blog-meta">
+                <span>July 14, 2026</span>
+                <span>&bull;</span>
+                <span>By Liz Micik</span>
+                <span>&bull;</span>
+                <span>10 min read</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Two-column: TOC + Content -->
+    <div class="blog-layout">
+
+        <!-- Left Sticky TOC -->
+        <nav class="toc" aria-label="Table of contents">
+            <div class="toc-title">In This Article</div>
+            <ul class="toc-list">
+                <li><a href="#scorecard">The Scorecard</a></li>
+                <li><a href="#teeth">The One With Real Teeth</a></li>
+                <li><a href="#kept">The Promises Being Kept</a></li>
+                <li><a href="#controls">The Controls That Do Not Work</a></li>
+                <li><a href="#coming">The One That Is Not Here Yet</a></li>
+                <li><a href="#no-deadline">The Risk Nobody Dated</a></li>
+                <li><a href="#do">What To Actually Do</a></li>
+            </ul>
+        </nav>
+
+        <!-- Article Content -->
+        <article class="blog-content">
+
+            <!-- TLDR -->
+            <div class="tldr">
+                <p>The short version:</p>
+                <ul>
+                    <li>Nearly every organization shaping the AI web named a 2026 date this summer. Most of the dated promises are real; the two files being sold as easy control buttons are not.</li>
+                    <li>If you read only one row, read Cloudflare's September 15. A well-meant setting can block Google from indexing you at the same time it blocks AI training.</li>
+                    <li>The change that may matter most has no date on it at all: your AI visibility often rests on an index you do not control and cannot see.</li>
+                </ul>
+            </div>
+
+            <p>It has already been a hot summer, and the calendar says it is about to get hotter. Over the past few months, nearly every organization shaping how AI reads the web stood up and named a date. Google promised an &ldquo;agentic web&rdquo; at its I/O conference. Cloudflare drew a hard line at September 15. The group behind the protocol that connects AI agents to real tools set July 28. Regulators in Europe circled August 2.</p>
+
+            <p>When that many promises land in a single season, the useful move is not to react to each headline as it drops. It is to keep the receipts and check them against reality. So that is what this is. Below is a scorecard of the AI-web deadlines that actually matter to a professional-services firm, scored by how close each one is to being real, with a plain-English note on what each one means for you.</p>
+
+            <h2 id="scorecard">The Scorecard</h2>
+
+            <div class="visual-container">
+                <table class="scorecard-table">
+                    <thead>
+                        <tr>
+                            <th>Promise</th>
+                            <th>Who Set It</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>What It Means For You</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="promise" data-label="Promise">&ldquo;Agentic web&rdquo; AI Mode as the default Search experience</td>
+                            <td data-label="Who set it">Google (I/O 2026)</td>
+                            <td class="date" data-label="Date">Live now</td>
+                            <td data-label="Status"><span class="badge shipped">Shipped</span></td>
+                            <td data-label="What it means">Your visibility increasingly depends on being cited inside AI answers, not just ranking in blue links.</td>
+                        </tr>
+                        <tr>
+                            <td class="promise" data-label="Promise">Default block of AI-training and agent crawlers on ad pages</td>
+                            <td data-label="Who set it">Cloudflare</td>
+                            <td class="date" data-label="Date">Sept 15, 2026</td>
+                            <td data-label="Status"><span class="badge ontrack">On track</span></td>
+                            <td data-label="What it means">If you are new to Cloudflare or on the free tier, check your settings before this date. Blocking &ldquo;AI training&rdquo; can also block Google's search crawler.</td>
+                        </tr>
+                        <tr>
+                            <td class="promise" data-label="Promise">MCP, the standard that connects AI agents to tools, finalized</td>
+                            <td data-label="Who set it">Model Context Protocol project</td>
+                            <td class="date" data-label="Date">July 28, 2026</td>
+                            <td data-label="Status"><span class="badge ontrack">On track</span></td>
+                            <td data-label="What it means">Beta SDKs are already out. If you buy or build any AI-agent integration, hold your vendor to the new specification after this date.</td>
+                        </tr>
+                        <tr>
+                            <td class="promise" data-label="Promise">Free competitive AI-citation analysis (Clarity &ldquo;Topic Insights&rdquo;)</td>
+                            <td data-label="Who set it">Microsoft</td>
+                            <td class="date" data-label="Date">Live now (Jul 9)</td>
+                            <td data-label="Status"><span class="badge shipped">Shipped</span></td>
+                            <td data-label="What it means">A free way to see which questions your competitors get cited for and you do not. Treat it as directional monitoring, not a system of record.</td>
+                        </tr>
+                        <tr>
+                            <td class="promise" data-label="Promise">Content Signals, a robots.txt label to control AI</td>
+                            <td data-label="Who set it">Cloudflare</td>
+                            <td class="date" data-label="Date">Live now</td>
+                            <td data-label="Status"><span class="badge cosmetic">Cosmetic</span></td>
+                            <td data-label="What it means">Google says it does nothing. Do not rely on it to protect or promote anything.</td>
+                        </tr>
+                        <tr>
+                            <td class="promise" data-label="Promise">llms.txt, a file to help AI answer engines understand you</td>
+                            <td data-label="Who set it">Community standard</td>
+                            <td class="date" data-label="Date">Live now</td>
+                            <td data-label="Status"><span class="badge cosmetic">Unproven</span></td>
+                            <td data-label="What it means">Studies show the major answer engines rarely read it. Real for coding tools, not for AI search visibility.</td>
+                        </tr>
+                        <tr>
+                            <td class="promise" data-label="Promise">Public &ldquo;Agent Readiness&rdquo; score anyone can run</td>
+                            <td data-label="Who set it">Cloudflare</td>
+                            <td class="date" data-label="Date">Live now (Apr 17)</td>
+                            <td data-label="Status"><span class="badge shipped">Shipped</span></td>
+                            <td data-label="What it means">A free diagnostic you can run on your own site today.</td>
+                        </tr>
+                        <tr>
+                            <td class="promise" data-label="Promise">Paying AI agents per visit through a monetization gateway</td>
+                            <td data-label="Who set it">Cloudflare and partners</td>
+                            <td class="date" data-label="Date">Announced Jul 1</td>
+                            <td data-label="Status"><span class="badge partial">Partial</span></td>
+                            <td data-label="What it means">Charging agents for access to premium content is coming, but it is not operational yet. Watch, do not build.</td>
+                        </tr>
+                        <tr>
+                            <td class="promise" data-label="Promise">EU AI Act transparency obligations take effect</td>
+                            <td data-label="Who set it">European Commission</td>
+                            <td class="date" data-label="Date">Aug 2, 2026</td>
+                            <td data-label="Status"><span class="badge ontrack">On track</span></td>
+                            <td data-label="What it means">If you use AI chatbots or AI-generated content with EU audiences, plan to disclose it. The tougher high-risk rules were pushed to late 2027.</td>
+                        </tr>
+                        <tr>
+                            <td class="promise" data-label="Promise">OpenAI retires the Atlas browser</td>
+                            <td data-label="Who set it">OpenAI</td>
+                            <td class="date" data-label="Date">Aug 9, 2026</td>
+                            <td data-label="Status"><span class="badge partial">Happening</span></td>
+                            <td data-label="What it means">Less an action item than a warning. AI entry points are still churning; do not anchor your strategy to any single app.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="scorecard-caption">Scored by how close each promise is to being real, as of mid-July 2026. Cite the underlying sources, not the table.</p>
+            </div>
+
+            <h2 id="teeth">The One With a Hard Date and Real Teeth</h2>
+
+            <p>If you read only one row, read the Cloudflare one. On September 15, Cloudflare sets new defaults that block AI training and agent crawlers on ad-displaying pages. The defaults apply to sites newly joining Cloudflare and to existing free-tier sites that never changed their settings, so this is not a switch that flips for everyone. What makes it worth your attention is a detail almost nobody is flagging.</p>
+
+            <p>The crawlers that matter most are multi-purpose. Googlebot, Bingbot, and Applebot each crawl for search and for AI training at the same time, in a single bot. Cloudflare applies the most restrictive rule that fits. So a site that blocks &ldquo;AI training&rdquo; to keep its content out of models can also block Googlebot from indexing it for search. That is a real and self-inflicted way to disappear from Google, made by a well-intentioned setting that a marketing leader may never know was changed. If your firm is on Cloudflare, the honest task before September 15 is to confirm which crawlers your configuration actually welcomes, and to make sure the search and AI engines you want to be found by can still reach you.</p>
+
+            <h2 id="kept">The Promises That Are Mostly Being Kept</h2>
+
+            <p>Google's &ldquo;agentic web&rdquo; is not vaporware. AI Mode is now the default Search experience for more than a billion people, and background &ldquo;information agents&rdquo; that monitor topics and alert users are rolling out to paid tiers. The practical translation for a professional-services firm is the one we have been making all year. Being visible now means being understood and cited inside an AI answer, not only ranking on a page of links. The plumbing that makes that possible, which is crawlable content, clean structured data, and semantic HTML that tells a machine what each part of your page is, has quietly become the work that decides whether AI can represent you at all.</p>
+
+            <p>The MCP specification is on the same track. MCP is the standard that lets an AI agent connect to real tools and take real actions, and its biggest revision since launch is scheduled to publish on July 28. Beta versions of the developer kits are already out, which is usually the sign that a date will hold. You do not need to read the specification. You need to know it exists, so that the next time a vendor sells you an &ldquo;AI agent integration,&rdquo; you can ask whether it is built to the current standard or to last year's.</p>
+
+            <p>And Microsoft quietly shipped something genuinely useful on July 9. Its free Clarity analytics tool now shows, for a topic you choose, which competitors get cited in AI answers and where they beat you. Most tools reserve that competitive view for paid tiers. It runs in beta and only sees the platforms it is grounded on, so treat it as a directional read rather than the last word, but it is the most usable free measurement tool to land in weeks.</p>
+
+            <h2 id="controls">The Controls That Do Not Do What They Claim</h2>
+
+            <p>Two files are being sold as ways to manage AI, and both underdeliver. Google's John Mueller said in July that Cloudflare's Content Signals directive has &ldquo;no effects whatsoever for any crawler or LLM.&rdquo; Separately, controlled studies found that the major AI answer engines rarely fetch llms.txt, and that having the file produces no measurable lift in citations. The lesson is not that these ideas are foolish. It is that a label you declare only works if the engine on the other side agrees to honor it, and the biggest engines have said, on the record, that they do not. Posting a sign is not the same as building the road. The road is content a machine can actually reach and read.</p>
+
+            <h2 id="coming">The One That Is Coming But Is Not Here</h2>
+
+            <p>Cloudflare and a group of partners announced a monetization gateway on July 1 that would let publishers charge AI agents for access, using an open payment standard called x402. It is real, and it points at a genuine future in which access to premium content and tools is metered for machines. It is also early: a first set of partners, no general pricing, no broad launch date. This belongs on your radar, not in your budget.</p>
+
+            <h2 id="no-deadline">The Risk Nobody Set a Date For</h2>
+
+            <p>Every row above has a date on it. The change that may matter most this summer does not. In mid-July, a respected search analyst documented a site that had been thriving in ChatGPT while pulling almost nothing from Google. Its strength lived in Bing's index, because that is where ChatGPT grounds a large share of its citations. Then Bing deindexed the site, roughly ninety thousand pages, and its presence in ChatGPT vanished along with it.</p>
+
+            <p>That is one site and one practitioner's field note, not a measured pattern, so hold it loosely. But the shape of it is structural, and it is the honest counterweight to a scorecard full of dates. Your presence in an AI answer often rests on an index you do not own and cannot see into. A brand can win in ChatGPT with almost no Google traffic and lose it overnight to a system it never knew it depended on. The question the calendar cannot answer for you is a dependency question: where are your AI mentions actually grounded, and what happens to you if that source degrades or drops you. You cannot manage a dependency you cannot see.</p>
+
+            <h2 id="do">What To Actually Do Before the Summer Is Over</h2>
+
+            <p>The pattern across every row of this scorecard is the same. The tools being marketed as easy buttons tend to be cosmetic, and the changes that quietly decide your visibility tend to be unglamorous plumbing. So the to-do list is short and boring, which is usually a good sign. Run the free Agent Readiness scan and see where you stand. If you are on Cloudflare, check your crawler settings before September 15 and make sure the engines you want to be found by can reach you. If you use AI chatbots or AI-generated content with European audiences, plan your disclosures for August 2. And ignore the files that promise control they cannot deliver.</p>
+
+            <p>The deadlines will keep coming, because this is what the early years of a platform shift look like. The firms that do well through it will not be the ones who chased every announcement. They will be the ones who made themselves genuinely readable to machines, and then let the calendar take care of itself.</p>
+
+            <div class="cta-box">
+                <p><strong>Want to know where your site actually stands against all of this?</strong></p>
+                <p>Run the free <a href="/signal-check">Signal Check</a> and see how the major AI models find, understand, and describe your business today.</p>
+            </div>
+
+            <!-- Author Bio -->
+            <div class="author-bio">
+                <div class="author-avatar">LM</div>
+                <div class="author-info">
+                    <h3>Liz Micik</h3>
+                    <div class="author-title">SEO &amp; Content Strategy &middot; Agent Readiness</div>
+                    <p>Liz Micik helps complex B2B companies prepare their website, expertise, and conversion processes for AI agents. After 28 years in SEO, content strategy, and B2B demand generation, she translates the jargon of the agentic web into decisions a business can actually act on.</p>
+                </div>
+            </div>
+
+            <!-- Related Posts -->
+            <div class="related-posts">
+                <h2>Keep Reading</h2>
+                <div class="related-posts-grid">
+                    <div class="post-card">
+                        <a href="/library/life-beyond-google">
+                            <div class="post-card-content">
+                                <div class="post-card-meta">USE Layer</div>
+                                <h3>AI Read Your Site. Can It DO Anything With Your Business?</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="post-card">
+                        <a href="/library/ai-visibility-measurement-free-tools">
+                            <div class="post-card-content">
+                                <div class="post-card-meta">Measurement</div>
+                                <h3>Measuring Your AI Visibility With Free Tools</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="post-card">
+                        <a href="/library/new-old-search-definitions">
+                            <div class="post-card-content">
+                                <div class="post-card-meta">Foundations</div>
+                                <h3>The New Old Language of Search</h3>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </div>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>See where you stand before the next deadline lands</h2>
+        <p>Every AI-web deadline this summer comes down to one question: can machines find, understand, trust, and act on your business?</p>
+        <div class="cta-buttons">
+            <a href="/signal-check" class="cta-button">Run Your Free Signal Check</a>
+            <a href="/audit" class="cta-button copper">Explore the Agent Readiness Audit</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <style>
+        .lmf-footer{background:#2C3038;color:#F2EDE7;padding:56px 24px 28px;}
+        .lmf-inner{max-width:1080px;margin:0 auto;}
+        .lmf-top{display:flex;justify-content:space-between;gap:64px;flex-wrap:wrap;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.1);}
+        .lmf-brand{max-width:300px;}
+        .lmf-wordmark{font-weight:700;font-size:1.25rem;margin-bottom:12px;}
+        .lmf-brand p{color:#B8B5B0;font-size:0.9rem;line-height:1.6;}
+        .lmf-cols{display:flex;gap:56px;flex-wrap:wrap;}
+        .lmf-col h4{font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;color:#B8B5B0;margin-bottom:16px;}
+        .lmf-col ul{list-style:none;padding:0;margin:0;}
+        .lmf-col li{margin-bottom:10px;}
+        .lmf-col a{color:#F2EDE7;text-decoration:none;font-size:0.9rem;}
+        .lmf-col a:hover{color:#C4956A;}
+        .lmf-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;flex-wrap:wrap;gap:12px;}
+        .lmf-bottom p{color:#B8B5B0;font-size:0.8rem;}
+        .lmf-bottom .lmf-legal a{color:#B8B5B0;text-decoration:none;font-size:0.8rem;}
+        .lmf-bottom .lmf-legal a:hover{color:#C4956A;}
+        .lmf-bottom .lmf-legal span{color:rgba(255,255,255,0.25);margin:0 8px;}
+        @media (max-width:640px){.lmf-top{flex-direction:column;gap:32px;}.lmf-cols{gap:32px;}.lmf-bottom{flex-direction:column;align-items:flex-start;}}
+    </style>
+    <footer class="lmf-footer" role="contentinfo">
+      <div class="lmf-inner">
+        <div class="lmf-top">
+          <div class="lmf-brand">
+            <div class="lmf-wordmark">Liz Micik</div>
+            <p>Helping businesses transition human websites to usable, agentic websites.</p>
+          </div>
+          <div class="lmf-cols">
+            <div class="lmf-col">
+              <h4>Services</h4>
+              <ul>
+                <li><a href="/signal-check">Signal Check</a></li>
+                <li><a href="/audit">Agent Readiness Audit</a></li>
+                <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+                <li><a href="/actions">Agent Readiness Actions</a></li>
+              </ul>
+            </div>
+            <div class="lmf-col">
+              <h4>Explore</h4>
+              <ul>
+                <li><a href="/about">About</a></li>
+                <li><a href="/library">Library</a></li>
+                <li><a href="/resources">Resources</a></li>
+              </ul>
+            </div>
+            <div class="lmf-col">
+              <h4>Connect</h4>
+              <ul>
+                <li><a href="mailto:info@lizmicik.com">info@lizmicik.com</a></li>
+                <li><a href="https://www.linkedin.com/in/lizmicik" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="https://google.com/preferences/source?q=lizmicik.com" target="_blank" rel="noopener">Add as a preferred source</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="lmf-bottom">
+          <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+          <p class="lmf-legal">
+            <a href="/privacy-policy">Privacy Policy</a>
+            <span>&middot;</span>
+            <a href="/terms">Terms of Use</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        var navToggle = document.querySelector('.nav-toggle');
+        var navLinks = document.querySelector('.nav-links');
+        navToggle.addEventListener('click', function() {
+            navToggle.classList.toggle('open');
+            navLinks.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+        });
+
+        // Hide nav on scroll down, show on scroll up
+        var lastScrollTop = 0;
+        var nav = document.querySelector('.nav');
+        window.addEventListener('scroll', function() {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) { nav.classList.add('nav-hidden'); }
+            else { nav.classList.remove('nav-hidden'); }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                var href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    var target = document.querySelector(href);
+                    var offsetTop = target.offsetTop - 80;
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                    if (navLinks.classList.contains('active')) { navToggle.classList.remove('open'); navLinks.classList.remove('active'); }
+                }
+            });
+        });
+
+        // TOC active state tracking
+        var tocLinks = document.querySelectorAll('.toc-list a');
+        var sections = [];
+        tocLinks.forEach(function(link) {
+            var id = link.getAttribute('href').substring(1);
+            var section = document.getElementById(id);
+            if (section) sections.push({ el: section, link: link });
+        });
+        function updateTOC() {
+            var scrollPos = window.scrollY + 120;
+            var current = null;
+            sections.forEach(function(s) { if (s.el.offsetTop <= scrollPos) current = s; });
+            tocLinks.forEach(function(l) { l.classList.remove('active'); });
+            if (current) current.link.classList.add('active');
+        }
+        window.addEventListener('scroll', updateTOC);
+        updateTOC();
+    </script>
+</body>
+</html>

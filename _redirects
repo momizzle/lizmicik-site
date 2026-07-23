@@ -1,3 +1,7 @@
 # URL redirects — old names to new names (March 29, 2026)
 /readability-check    /signal-check    301
 /api/check-readability    /api/signal-check    200
+
+# Blog -> Library reorg (July 2026). Forced (!) because old /blog files remain in the repo.
+/blog            /library            301!
+/blog/*          /library/:splat     301!

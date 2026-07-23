@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Can you spot the real ROI saving business decisions among a jumble of GEO or AEO or AI SEO or LLM optimization promises? Here are a few tips to start with.">
+    <meta name="keywords" content="ai search engine optimization, generative engine optimization, answer engine optimization, AI visibility, AI SEO">
+    <title>What is AI Search Engine Optimization? | Liz Micik</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="What is AI Search Engine Optimization?">
+    <meta property="og:description" content="Can you spot the real ROI saving business decisions among a jumble of GEO or AEO or AI SEO or LLM optimization promises? Here are a few tips to start with.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://lizmicik.com/library/new-old-search-definitions">
+    <meta property="og:site_name" content="Liz Micik">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "From Search to AI Visibility: The Transition Needs Translation",
+        "description": "Can you spot the real ROI saving business decisions among a jumble of GEO or AEO or AI SEO or LLM optimization promises? Here are a few tips to start with.",
+        "author": {
+            "@type": "Person",
+            "name": "Liz Micik",
+            "url": "https://lizmicik.com"
+        },
+        "datePublished": "2026-04-10",
+        "dateModified": "2026-04-10",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://lizmicik.com/library/new-old-search-definitions"
+        },
+        "keywords": "ai search engine optimization, generative engine optimization, answer engine optimization, AI visibility, AI SEO"
+    }
+    </script>
+
+    <style>
+        :root {
+            --cream: #FAFAF7;
+            --cream-dark: #FAF8F5;
+            --slate: #2C3038;
+            --slate-light: #3D424D;
+            --slate-mid: #545B6A;
+            --accent-amber: #C4956A;
+            --accent-teal: #5B7C5E;
+            --accent-blue: #8B9A7E;
+            --accent-copper: #5B7C5E;
+            --text-primary: #2C3038;
+            --text-secondary: #545B6A;
+            --text-light: #F2EDE7;
+            --text-light-secondary: #B8B5B0;
+            --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --section-padding: clamp(4rem, 8vw, 7rem);
+            --content-width: 720px;
+            --wide-width: 960px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--cream);
+            border-bottom: 1px solid var(--cream-dark);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .nav.nav-hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-inner {
+            max-width: var(--wide-width);
+            margin: 0 auto;
+            padding: 1.5rem clamp(1.5rem, 4vw, 2rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-name {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+        }
+
+        .nav-name a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-teal);
+        }
+
+        .nav-cta {
+            background: var(--accent-teal) !important;
+            color: white !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-copper) !important;
+        }
+        /* Services dropdown */
+        .nav-item.has-dropdown { position: relative; }
+        .nav-caret { font-size: 0.7em; margin-left: 0.15rem; transition: transform 0.2s ease; display: inline-block; }
+        .nav-item.has-dropdown:hover .nav-caret,
+        .nav-item.has-dropdown:focus-within .nav-caret { transform: rotate(180deg); }
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 260px;
+            margin: 0;
+            padding: 0.45rem 0;
+            list-style: none;
+            background: rgba(250, 250, 247, 0.98);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(44, 48, 56, 0.06);
+            border-radius: 6px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+        }
+        .nav-item.has-dropdown:hover .nav-dropdown,
+        .nav-item.has-dropdown:focus-within .nav-dropdown { display: block; }
+        .nav-dropdown li { padding: 0; }
+        .nav-dropdown a {
+            display: block;
+            padding: 0.55rem 1.2rem;
+            white-space: nowrap;
+            text-transform: none !important;
+            letter-spacing: 0 !important;
+            font-size: 0.9rem !important;
+        }
+        .nav-dropdown a:hover { background: rgba(44, 48, 56, 0.04); }
+
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-toggle.open span:nth-child(1) {
+                transform: rotate(45deg) translate(10px, 10px);
+            }
+
+            .nav-toggle.open span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.open span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: var(--cream);
+                gap: 1.5rem;
+                padding: 2rem;
+                border-bottom: 1px solid var(--cream-dark);
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+            }
+
+            /* Services dropdown: nested list on mobile */
+            .nav-dropdown {
+                display: block;
+                position: static;
+                min-width: 0;
+                padding: 0.25rem 0 0 1rem;
+                background: transparent;
+                backdrop-filter: none;
+                border: none;
+                box-shadow: none;
+            }
+            .nav-caret { display: none; }
+        }
+
+        /* Header/Hero — v6 redesign: image left, text right, cream confined to 1080px hero */
+        header.blog-hero {
+            max-width: 1080px;
+            margin: 60px auto 0;
+            padding: 2.5rem clamp(1.5rem, 4vw, 3rem);
+            background: #F5EFE4;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            text-align: left;
+        }
+
+        .blog-hero-image {
+            width: 290px;
+            height: auto;
+            max-width: 100%;
+            margin: 0;
+            display: block;
+            border-radius: 6px;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .pillar-eyebrow {
+            display: inline-block;
+            align-self: flex-start;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin: 0;
+            color: var(--accent-amber);
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: flex-start;
+            gap: 0.75rem;
+            margin: 0.25rem 0 0;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        header.blog-hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+            font-weight: 700;
+            line-height: 1.25;
+            color: var(--text-primary);
+            margin: 0;
+            text-align: left;
+        }
+
+        @media (max-width: 720px) {
+            header.blog-hero { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; }
+            .blog-hero-image { width: 220px; margin: 0 auto; }
+            .hero-text { align-items: center; }
+            .pillar-eyebrow { align-self: center; }
+            .blog-meta { justify-content: center; }
+            header.blog-hero h1 { text-align: center; font-size: clamp(1.35rem, 5vw, 1.75rem); }
+        }
+
+        .blog-subheader {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: var(--content-width);
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* Single column layout for shorter articles */
+        .blog-container-single {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 2rem clamp(1.5rem, 4vw, 2rem);
+        }
+
+        article.blog-content {
+            max-width: var(--content-width);
+        }
+
+        article p {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            margin: 1.5rem 0;
+            color: var(--text-primary);
+        }
+
+        article h2 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 3rem 0 1.5rem;
+            color: var(--text-primary);
+            border-left: 3px solid var(--accent-copper);
+            padding-left: 1rem;
+        }
+
+        article h2:first-of-type {
+            margin-top: 0;
+        }
+
+        article h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: var(--text-primary);
+        }
+
+        article strong {
+            font-weight: 700;
+            color: var(--accent-copper);
+        }
+
+        article ul, article ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        article li {
+            margin: 0.8rem 0;
+            line-height: 1.75;
+            color: var(--text-primary);
+        }
+
+        article ul li:before {
+            content: "\2713";
+            color: var(--accent-copper);
+            font-weight: 700;
+            display: inline-block;
+            width: 1.5em;
+            margin-left: -1.5em;
+        }
+
+        article a {
+            color: #C4956A;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        article a:hover {
+            color: #3D6B4E;
+            text-decoration: underline;
+        }
+
+        /* TLDR Section */
+        .tldr {
+            font-style: italic;
+            color: var(--text-secondary);
+            border-left: 3px solid var(--accent-amber);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .tldr p {
+            color: var(--text-secondary);
+            font-style: italic;
+            margin: 0.5rem 0;
+        }
+
+        .tldr ul {
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .tldr li {
+            color: var(--text-secondary);
+            font-style: italic;
+            margin: 0.5rem 0;
+            line-height: 1.6;
+        }
+
+        .tldr li:before {
+            content: none;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table thead th {
+            background: var(--slate);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .comparison-table tbody td {
+            padding: 1rem;
+            border-bottom: 1px solid #E8DDD5;
+            vertical-align: top;
+        }
+
+        .comparison-table tbody tr:nth-child(even) {
+            background: var(--cream-dark);
+        }
+
+        .comparison-table tbody td:first-child {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .comparison-table tbody td:nth-child(2) {
+            font-weight: 700;
+            color: var(--accent-teal);
+        }
+
+        /* Definition list styling for acronyms */
+        .acronym-list {
+            margin: 1.5rem 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .acronym-list li {
+            margin: 1.2rem 0;
+            padding-left: 0;
+        }
+
+        .acronym-list li:before {
+            content: none;
+        }
+
+        /* Blockquotes & Pull Quotes */
+        article blockquote {
+            border-left: 4px solid var(--accent-amber);
+            padding-left: 2rem;
+            margin: 2.5rem 0;
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* CTA Box */
+        .cta-box {
+            background: var(--cream-dark);
+            border: 2px solid var(--accent-amber);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .cta-box p {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+        }
+
+        .cta-box strong {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
+
+        .cta-box a {
+            color: #C4956A;
+            font-weight: 700;
+        }
+
+        .cta-box a:hover {
+            color: #3D6B4E;
+        }
+
+        /* Author Bio */
+        .author-bio {
+            display: flex;
+            gap: 2rem;
+            padding: 2.5rem;
+            background: var(--cream-dark);
+            border-radius: 0.75rem;
+            border: 1px solid #E8DDD5;
+            margin: 3rem 0;
+            align-items: flex-start;
+        }
+
+        .author-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--accent-amber);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .author-info h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .author-title {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+        }
+
+        .author-bio p {
+            font-size: 0.95rem;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        /* Related Posts */
+        .related-posts {
+            margin: 4rem 0 3rem;
+            border-top: 2px solid var(--cream-dark);
+            padding-top: 3rem;
+        }
+
+        .related-posts h2 {
+            border: none;
+            padding: 0;
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .related-posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .post-card {
+            background: var(--cream-dark);
+            border: 1px solid #E8DDD5;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .post-card-image {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .post-card-content {
+            padding: 1.5rem;
+        }
+
+        .post-card-meta {
+            font-size: 0.8rem;
+            color: var(--accent-copper);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.8rem;
+        }
+
+        .post-card h3 {
+            font-size: 1.2rem;
+            margin: 0.8rem 0;
+            color: var(--text-primary);
+        }
+
+        .post-card p.coming-soon {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: var(--slate);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 4rem 0 0;
+            border-radius: 0;
+        }
+
+        .final-cta h2 {
+            border: none;
+            padding: 0;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .final-cta p {
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-teal);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent-teal);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: white;
+        }
+
+        .cta-button.copper {
+            background: var(--accent-copper);
+            border-color: var(--accent-copper);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--cream-dark);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #C4956A;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #3D6B4E;
+            text-decoration: underline;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .author-bio {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .author-avatar {
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            article p {
+                font-size: 1rem;
+            }
+
+            article h2 {
+                font-size: 1.4rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-buttons .cta-button {
+                display: block;
+                width: 100%;
+            }
+
+            .comparison-table {
+                font-size: 0.85rem;
+            }
+
+            .comparison-table thead th,
+            .comparison-table tbody td {
+                padding: 0.7rem;
+            }
+
+            .related-posts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.6s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <span class="nav-name"><a href="/">Liz Micik</a></span>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/about">About</a></li>
+                <li><a href="/library">Library</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li class="nav-item has-dropdown">
+                    <a href="/audit" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Services <span class="nav-caret">&#9662;</span></a>
+                    <ul class="nav-dropdown">
+                        <li><a href="/audit">Agent Readiness Audit</a></li>
+                        <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+                        <li><a href="/actions">Agent Readiness Actions</a></li>
+                    </ul>
+                </li>
+                <li><a href="/signal-check" class="nav-cta">Free Signal Check</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="blog-hero">
+        <img class="blog-hero-image" src="/images/transition-phrasebook-hero.png" alt="Editorial illustration: an open phrasebook translating old search terminology into the language AI agents actually use — signifying that the transition from search to AI visibility requires new vocabulary, not new effort." loading="eager" />
+        <div class="hero-text">
+            <span class="pillar-eyebrow">AI Visibility</span>
+            <h1>From Search to AI Visibility: The Transition Needs Translation</h1>
+            <div class="blog-meta">
+                <span>April 10, 2026</span>
+                <span>&bull;</span>
+                <span>By Liz Micik</span>
+                <span>&bull;</span>
+                <span>8 min read</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="blog-container-single">
+        <article class="blog-content">
+
+            <!-- TLDR -->
+            <div class="tldr">
+                <p><em>The short version:</em></p>
+                <ul>
+                    <li>Half of all Google searches now trigger an AI Overview, but the industry can't agree on what to call the work required to show up in them.</li>
+                    <li>The terminology confusion (GEO, AEO, AI SEO, AIO) isn't just annoying. It's slowing down the business decisions that actually matter.</li>
+                    <li>The fundamentals haven't changed as much as the acronyms suggest. A framework most marketers already know translates directly into this new context.</li>
+                </ul>
+            </div>
+
+            <h2 id="shifted">Something Shifted, and We're Still Arguing About What to Call It</h2>
+
+            <p>Google's <a href="https://almcorp.com/blog/google-march-2026-core-update-complete/">March 2026 Core Update</a> completed April 8 and the results were stark. Sites relying on mass-produced AI content saw traffic drop 71%. Sites built on original data rose 22%.</p>
+
+            <p>That's good news for all of us who are tired of watching "AI slop" win.</p>
+
+            <p>At the same time, ChatGPT, Perplexity, Claude, and Gemini are answering questions about your business right now, pulling from sources they chose for reasons no one knows. ALM Corp reported in April 2026 that <a href="https://www.globenewswire.com/news-release/2026/04/07/3269307/0/en/Only-14-of-Marketers-Track-AI-Search-Citations-Even-as-89-of-Brands-are-Already-Appearing-in-them.html">89% of brands appear in AI citations</a>, but only 14% actively track them.</p>
+
+            <p>That's bad news for the companies who are stuck trying to decide what is deemed "valuable content" in this new Internet. Compounding the problem is the fact that there are few clear analytics tools and even fewer analytics benchmarks to guide them.</p>
+
+            <h2 id="acronym-problem">The Acronym Problem</h2>
+
+            <p>Search any marketing publication right now and you'll find at least four terms for roughly the same thing:</p>
+
+            <ul class="acronym-list">
+                <li><strong>GEO (Generative Engine Optimization):</strong> Coined by <a href="https://arxiv.org/abs/2311.09735">researchers at Princeton, Georgia Tech, and IIT Delhi</a> in a 2024 academic paper. Technically precise. Almost nobody outside SEO practitioners uses it.</li>
+                <li><strong>AEO (Answer Engine Optimization):</strong> The term was first used to distinguish between AI chat engines and AI web search. Broader adoption than GEO, but still niche.</li>
+                <li><strong>AI SEO or AI Search Optimization:</strong> What most marketers actually type into Google when they're trying to figure this out. High search volume, but vague enough to mean almost anything.</li>
+                <li><strong>AIO (AI Overviews):</strong> This one sometimes refers specifically to the AI Overviews and AI Mode answers that appear in Google search results, it is sometimes applied to Google's Gemini AI as well.</li>
+            </ul>
+
+            <p>These aren't just different labels for the same thing. Each carries assumptions about what matters most: the AI platform, the tactic, or the outcome.</p>
+
+            <p>The result is that a VP of Marketing searching for help understanding what's happening to his site traffic ends up more confused after researching than before. That's a problem for the whole industry, not just one company.</p>
+
+            <h2 id="old-language">Old Language, New Things (and Vice Versa)</h2>
+
+            <p>Part of the confusion comes from a pattern that repeats every time technology shifts. We take familiar words and stretch them to cover unfamiliar territory.</p>
+
+            <p>"SEO" originally meant optimizing for search engine crawlers and ranking algorithms. Now people use "AI SEO" to mean optimizing for large language models that don't rank pages at all; they cite sources. That's a fundamentally different behavior, but we're using the same three-letter abbreviation.</p>
+
+            <p>Going the other direction, new terms are being applied to practices that aren't actually new. The same levers used for "AI Optimization" are the ones that have been fueling SEO best practices for decades.</p>
+
+            <p>The terminology mess creates two real business problems:</p>
+
+            <ul class="acronym-list">
+                <li><strong>Teams can't align on priorities.</strong> When the SEO manager, the content director, and the CTO are each reading different articles using different terms, they end up building different mental models of the same problem. Budgets stall. Projects get scoped wrong.</li>
+                <li><strong>Vendors exploit the confusion.</strong> Every agency with an SEO practice now offers "AI optimization" as a service line. Some are doing meaningful work. Some are repackaging existing technical SEO audits with new slide decks. Without shared definitions, buyers can't tell the difference.</li>
+            </ul>
+
+            <h2 id="what-changed">What Actually Changed (And What Didn't)</h2>
+
+            <p>Here's where it helps to separate the genuinely new from the relabeled.</p>
+
+            <h3>What's new:</h3>
+
+            <p>AI platforms choose sources to cite, not pages to rank. That changes the economics entirely. <a href="https://almcorp.com/blog/google-ai-overview-citations-drop-top-ranking-pages-2026/">ALM Corp found</a> that the first source cited in an AI Overview captures 47% of clicks. The second gets 23%. The third gets 14%.</p>
+
+            <p>If most of your site content loads through JavaScript, four out of six AI crawlers see a blank page. Not thin content. Nothing at all. <a href="https://vercel.com/i/how-ai-is-changing-seo">Vercel confirmed this</a> across more than 500 million GPTBot fetches: zero evidence of JavaScript execution.</p>
+
+            <p>Content has always gone stale, but now the penalty is measurable. <a href="https://thedigitalbloom.com/learn/google-ai-overviews-top-cited-domains-2025/">Digital Bloom studied more than 7,000 AI citations</a> and found that content published or updated within the past 30 days gets 3.2x more citations than content 90 days old.</p>
+
+            <p>Google's rankings used to determine who got cited everywhere. Not anymore. <a href="https://almcorp.com/blog/google-ai-overview-citations-drop-top-ranking-pages-2026/">Only 38% of AI Overview citations</a> now come from sites in Google's traditional top 10, down from 76% in 2024. AI platforms are building their own authority models.</p>
+
+            <h3>What didn't change:</h3>
+
+            <p>Your website still needs to be technically accessible to crawlers. The crawlers are different, but the principle is the same.</p>
+
+            <p>Content quality still determines whether you get found. In a <a href="https://arxiv.org/abs/2311.09735">2024 study by Princeton University</a>, a 41% lift in citations was seen when content included specific statistics with named sources. That's not a new idea. It's "write better content, cite your sources" with a measured uplift.</p>
+
+            <p>Authority still matters, just measured differently. Backlink counts used to be the proxy. Now it's entity consistency: does the same accurate information about your business appear across multiple authoritative sources? <a href="https://www.authoritas.com/seo-ai-research-whitepapers/the-state-of-aios-user-intent-research-dec-2024">Authoritas tested this directly</a> and found that a few comprehensive, accurate representations outperform many shallow mentions.</p>
+
+            <p>The common thread: the fundamentals of being found, understood, and trusted online haven't been replaced. They've been translated into a new context with new tools, new crawlers, and new economics.</p>
+
+            <p>And some things that are old are truly new again.</p>
+
+            <p>Schema markup, for example, has existed since 2011. It was once a "nice to have" meant to garner stars and rich snippets. Then Microsoft's Fabrice Canel took the stage at SMX Munich in 2025 and said what many of us had suspected: <a href="https://searchengineland.com/microsoft-bing-copilot-use-schema-for-its-llms-453455">schema markup directly feeds Bing's LLMs</a>. It's not optional anymore. It's how AI agents understand your content.</p>
+
+            <p>I've been trying to train myself to say "structured data" instead of "schema" to distinguish this as a new need, not an old want. But it's hard and the old words come out all too often, but I'll keep working at it.</p>
+
+            <h2 id="framework">A Framework That Translates</h2>
+
+            <p>Fortunately, when you dig down to the next layer, you'll find a lot of familiar tools are being used to help everyone through this transition.</p>
+
+            <p>Every SEO practitioner learned the three-legged stool: technical SEO, on-page SEO, off-page SEO. That framework still works. It just has a new translation.</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Traditional SEO</th>
+                        <th>AI Visibility</th>
+                        <th>The Question It Answers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Technical SEO (crawlability, speed, structure)</td>
+                        <td>FIND</td>
+                        <td>Can AI platforms access and read your content?</td>
+                    </tr>
+                    <tr>
+                        <td>On-Page SEO (content quality, keywords, relevance)</td>
+                        <td>UNDERSTAND</td>
+                        <td>Does AI correctly interpret what your business does?</td>
+                    </tr>
+                    <tr>
+                        <td>Off-Page SEO (backlinks, authority, reputation)</td>
+                        <td>TRUST</td>
+                        <td>Does AI trust you enough to cite you?</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Think of it as the same stool, built for a different room. The legs still need to be balanced. And just like traditional SEO, the weakest leg determines how far you get.</p>
+
+            <p>The difference: traditional SEO is a ranking game. AI visibility is a citation game. You don't need to be result #1; you need to be the source the AI quotes when someone asks about your category.</p>
+
+            <p>We'll be going deeper into each of these layers in upcoming posts, because each one has its own problems, tools, and fixes. But the starting point is recognizing that you don't need to learn a new discipline from scratch. You need to translate what you already know.</p>
+
+            <h2 id="terminology-matters">Why the Terminology Matters for Your Business</h2>
+
+            <p>This isn't an academic debate. The language problem has practical consequences.</p>
+
+            <p>If your organization thinks "AI SEO" is just regular SEO with a new label, you'll underinvest. You'll miss the JavaScript rendering gap, the entity identification and consistency requirements, and the freshness signals that didn't matter before.</p>
+
+            <p>If your organization thinks AI optimization is an entirely new discipline requiring entirely new expertise, you'll overinvest in the wrong places. You'll hire specialists before you've fixed the basics, or buy tools that solve problems you don't have yet.</p>
+
+            <p>The productive middle ground is recognizing that this is a transition, not a revolution. The foundations are familiar; the applications are new. The window for early movers is real: AI platforms increasingly rely on their own previous citations, creating a feedback loop that favors the businesses that get their foundations right first.</p>
+
+            <p>We audited 120 B2B professional services websites to understand where firms actually stand in this transition. The findings were consistent: most companies have the raw material (good content, established brands, real expertise) but haven't translated it into a format AI platforms can access, interpret, or trust.</p>
+
+            <p>The terminology will eventually settle. The business decisions can't wait for it.</p>
+
+            <h2 id="where-to-start">Where to Start</h2>
+
+            <p>Three questions can tell you how far along your organization is in this transition:</p>
+
+            <ul class="acronym-list">
+                <li><strong>Can AI platforms actually reach and read your website?</strong> Test your key pages with JavaScript disabled. Check your robots.txt for AI crawler blocks. If the answer is no, nothing else matters until you fix that.</li>
+                <li><strong>When AI describes your business, is it accurate?</strong> Ask ChatGPT, Perplexity, Claude, and Gemini about your company. If the answers are generic or wrong, your content isn't structured for AI comprehension.</li>
+                <li><strong>Does AI cite you when someone asks about your category?</strong> Search for your core topics across multiple AI platforms. If competitors appear and you don't, you have a trust gap.</li>
+            </ul>
+
+            <p>These three questions map directly to Find, Understand, and Trust. They also map directly to the three-legged stool you already know. The framework isn't new; the application is.</p>
+
+            <!-- CTA Box -->
+            <div class="cta-box">
+                <p><strong>Wondering where your firm stands?</strong></p>
+                <p>Our Signal Check shows you how AI platforms describe your company today, in under 60 seconds. <a href="https://lizmicik.com/signal-check">Try it free at lizmicik.com/signal-check</a></p>
+            </div>
+
+            <!-- Author Bio -->
+            <div class="author-bio">
+                <div class="author-avatar">LM</div>
+                <div class="author-info">
+                    <h3>Liz Micik</h3>
+                    <p class="author-title">SEO &amp; Content Strategist | AI Visibility Consultant</p>
+                    <p>Liz has spent 28 years helping companies navigate structural shifts in how the web works. From the rise of Google to mobile-first indexing to today's AI-mediated search, she works with B2B professional services firms to ensure they're visible where their buyers are looking.</p>
+                </div>
+            </div>
+
+            <!-- Related Posts -->
+            <div class="related-posts">
+                <h2>More in This Series</h2>
+                <div class="related-posts-grid">
+                    <div class="post-card fade-in">
+                        <a href="/library/ai-searchability-find-layer" style="text-decoration:none;color:inherit;">
+                        <div class="post-card-image" style="background: linear-gradient(135deg, #5B7C5E 0%, #8B9A7E 100%);">
+                            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
+                                <rect width="280" height="180" fill="none"/>
+                                <text x="140" y="85" text-anchor="middle" font-family="Manrope, sans-serif" font-size="48" font-weight="800" fill="rgba(255,255,255,0.4)">FIND</text>
+                                <text x="140" y="115" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)">Layer 1</text>
+                            </svg>
+                        </div>
+                        <div class="post-card-content">
+                            <p class="post-card-meta">FIND Layer</p>
+                            <h3>AI Searchability is Binary: Can AI Crawlers FIND you?</h3>
+                        </div>
+                        </a>
+                    </div>
+
+                    <div class="post-card fade-in">
+                        <a href="/library/ai-understand-brand-visibility" style="text-decoration:none;color:inherit;">
+                        <div class="post-card-image" style="background: linear-gradient(135deg, #C4956A 0%, #2C3038 100%);">
+                            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
+                                <rect width="280" height="180" fill="none"/>
+                                <text x="140" y="75" text-anchor="middle" font-family="Manrope, sans-serif" font-size="32" font-weight="800" fill="rgba(255,255,255,0.4)">UNDERSTAND</text>
+                                <text x="140" y="115" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)">Layer 2: Facts vs. Vibes</text>
+                            </svg>
+                        </div>
+                        <div class="post-card-content">
+                            <p class="post-card-meta">UNDERSTAND Layer</p>
+                            <h3>AI Found Your Website. It Has No Idea What You Do.</h3>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </div>
+
+    <!-- Final CTA -->
+    <div style="max-width:680px;margin:2.5rem auto 0;padding:16px 22px;background:#F5EFE4;border:1px solid rgba(44,48,56,0.10);border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;"><span style="font-size:0.95rem;color:#2C3038;font-weight:600;line-height:1.4;">Found this useful? Make Liz Micik a preferred source in Google Search.</span><a href="https://google.com/preferences/source?q=lizmicik.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(44,48,56,0.16);color:#2C3038;font-weight:700;font-size:0.88rem;padding:10px 18px;border-radius:8px;text-decoration:none;white-space:nowrap;"><svg width="16" height="16" viewBox="0 0 48 48" aria-hidden="true" style="flex-shrink:0;"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg> Add as a preferred source</a></div>
+    <div class="final-cta">
+        <h2>Ready to see where you stand?</h2>
+        <p>Get a clear picture of your AI visibility and what you can improve right now. Or <a href="/agent-readiness-checklist" style="color:#C4956A;text-decoration:underline;">see where you stand</a> in two minutes.</p>
+        <div class="cta-buttons">
+            <a href="/audit" class="cta-button">Agent Readiness Audit</a>
+            <a href="/signal-check" class="cta-button copper">Free Signal Check</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <style>
+.lmf-footer{background:#2C3038;color:#F2EDE7;padding:56px 24px 28px;font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+.lmf-inner{max-width:960px;margin:0 auto;}
+.lmf-top{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,0.10);}
+.lmf-brand{max-width:300px;}
+.lmf-brand .lmf-wordmark{font-size:1.2rem;font-weight:700;letter-spacing:-0.01em;margin-bottom:10px;color:#F2EDE7;}
+.lmf-brand p{font-size:0.88rem;color:#B8B5B0;line-height:1.6;margin:0;}
+.lmf-cols{display:flex;flex-wrap:wrap;gap:48px;}
+.lmf-col h4{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.10em;color:#C4956A;margin:0 0 14px;}
+.lmf-col ul{list-style:none;margin:0;padding:0;}
+.lmf-col li{margin-bottom:9px;}
+.lmf-col a{color:#F2EDE7;text-decoration:none;font-size:0.9rem;transition:color 0.18s;}
+.lmf-col a:hover{color:#C4956A;}
+.lmf-bottom{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding-top:22px;}
+.lmf-bottom p{font-size:0.8rem;color:#B8B5B0;margin:0;}
+.lmf-bottom .lmf-legal a{color:#B8B5B0;text-decoration:none;font-size:0.8rem;}
+.lmf-bottom .lmf-legal a:hover{color:#C4956A;}
+.lmf-bottom .lmf-legal span{color:rgba(255,255,255,0.25);margin:0 8px;}
+@media (max-width:640px){.lmf-top{flex-direction:column;gap:32px;}.lmf-cols{gap:32px;}.lmf-bottom{flex-direction:column;align-items:flex-start;}}
+</style>
+<footer class="lmf-footer" role="contentinfo">
+  <div class="lmf-inner">
+    <div class="lmf-top">
+      <div class="lmf-brand">
+        <div class="lmf-wordmark">Liz Micik</div>
+        <p>Helping businesses transition human websites to usable, agentic websites.</p>
+      </div>
+      <div class="lmf-cols">
+        <div class="lmf-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="/signal-check">Signal Check</a></li>
+            <li><a href="/audit">Agent Readiness Audit</a></li>
+            <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+            <li><a href="/actions">Agent Readiness Actions</a></li>
+          </ul>
+        </div>
+        <div class="lmf-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/about">About</a></li>
+            <li><a href="/library">Library</a></li>
+            <li><a href="/resources">Resources</a></li>
+          </ul>
+        </div>
+        <div class="lmf-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="mailto:info@lizmicik.com">info@lizmicik.com</a></li>
+            <li><a href="https://www.linkedin.com/in/lizmicik" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://google.com/preferences/source?q=lizmicik.com" target="_blank" rel="noopener">Add as a preferred source</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="lmf-bottom">
+      <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+      <p class="lmf-legal">
+        <a href="/privacy-policy">Privacy Policy</a>
+        <span>&middot;</span>
+        <a href="/terms">Terms of Use</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+    <script>
+        // Cookie Banner & GA4
+        (function() {
+            const COOKIE_KEY = 'lizmicik-cookie-consent';
+            const GA_ID = 'G-B9S40S2SKG';
+
+            if (!localStorage.getItem(COOKIE_KEY)) {
+                const banner = document.createElement('div');
+                banner.style.cssText = `
+                    position: fixed;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: #2C3038;
+                    color: white;
+                    padding: 1.5rem 2rem;
+                    text-align: center;
+                    z-index: 999;
+                    font-size: 0.9rem;
+                `;
+                banner.innerHTML = `
+                    <p style="margin-bottom: 1rem;">We use analytics to understand how you use our site and improve it.</p>
+                    <button id="accept-cookies" style="background: #5B7C5E; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.5rem; cursor: pointer; font-weight: 600; margin-right: 1rem;">Accept</button>
+                    <button id="decline-cookies" style="background: transparent; color: white; border: 1px solid white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; cursor: pointer; font-weight: 600;">Decline</button>
+                `;
+                document.body.appendChild(banner);
+
+                document.getElementById('accept-cookies').addEventListener('click', function() {
+                    localStorage.setItem(COOKIE_KEY, 'true');
+                    loadGA();
+                    banner.remove();
+                });
+
+                document.getElementById('decline-cookies').addEventListener('click', function() {
+                    localStorage.setItem(COOKIE_KEY, 'false');
+                    banner.remove();
+                });
+            } else if (localStorage.getItem(COOKIE_KEY) === 'true') {
+                loadGA();
+            }
+
+            function loadGA() {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', GA_ID);
+
+                var script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+                document.head.appendChild(script);
+            }
+        })();
+
+        // Mobile Navigation Toggle
+        var navToggle = document.querySelector('.nav-toggle');
+        var navLinks = document.querySelector('.nav-links');
+
+        navToggle.addEventListener('click', function() {
+            navToggle.classList.toggle('open');
+            navLinks.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+        });
+
+        // Hide nav on scroll down, show on scroll up
+        var lastScrollTop = 0;
+        var nav = document.querySelector('.nav');
+
+        window.addEventListener('scroll', function() {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                nav.classList.add('nav-hidden');
+            } else {
+                nav.classList.remove('nav-hidden');
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                var href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    var target = document.querySelector(href);
+                    var offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                    if (navLinks.classList.contains('active')) {
+                        navToggle.classList.remove('open');
+                        navLinks.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        // IntersectionObserver for fade-in animations
+        var observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(10px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

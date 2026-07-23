@@ -3,18 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free downloadable tools, frameworks, and cheatsheets for measuring and managing AI visibility.">
+    <meta name="description" content="The Library: cornerstone essays and the Find / Understand / Trust / Use framework for making your business visible, understood, and trusted by the AI agents that now shortlist vendors.">
     <meta name="theme-color" content="#FAF8F5">
-    <title>Resources - Liz Micik | SEO Strategist</title>
+    <title>The Library - Liz Micik | AI Visibility Strategist</title>
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Resources - Liz Micik">
-    <meta property="og:description" content="Free downloadable tools, frameworks, and cheatsheets for measuring and managing AI visibility.">
-    <meta property="og:url" content="https://lizmicik.com/resources">
-    <meta property="og:site_name" content="Liz Micik">
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -28,11 +20,10 @@
         gtag('config', 'G-B9S40S2SKG');
     </script>
 
-    <style>
+<style>
         :root {
             --cream: #FAFAF7;
             --cream-dark: #FAF8F5;
-            --cream-card: #F5EFE4;
             --slate: #2C3038;
             --slate-light: #3D424D;
             --slate-mid: #545B6A;
@@ -40,7 +31,6 @@
             --accent-teal: #5B7C5E;
             --accent-blue: #8B9A7E;
             --accent-copper: #5B7C5E;
-            --accent-brown: #6B3D2E;
             --text-primary: #2C3038;
             --text-secondary: #545B6A;
             --text-light: #F2EDE7;
@@ -283,138 +273,139 @@
             line-height: 1.7;
         }
 
-        /* ===== RESOURCE CARDS SECTION ===== */
-        .resources-section {
-            padding: 0 clamp(1rem, 5vw, 2rem) var(--section-padding);
-            max-width: var(--content-width);
+        /* ===== BLOG CARDS SECTION ===== */
+        .blog-section {
+            padding: var(--section-padding) clamp(1rem, 5vw, 2rem);
+            max-width: 1080px;
             margin: 0 auto;
         }
 
-        .resource-card {
-            background-color: var(--cream-card);
-            border-radius: 0.75rem;
-            padding: clamp(1.75rem, 4vw, 2.5rem);
-            margin-bottom: 2rem;
-            border: 1px solid rgba(44, 48, 56, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        /* Card — v6 hero style: image left, text right, cream background, matches article-page hero */
+        .blog-card {
+            display: grid;
+            grid-template-columns: 290px 1fr;
+            gap: 2rem;
+            align-items: center;
+            background: #F5EFE4;
+            padding: 2.25rem clamp(1.5rem, 4vw, 2.75rem);
+            border-radius: 8px;
+            margin-bottom: clamp(2rem, 4vw, 2.75rem);
             opacity: 0;
             animation: fadeIn 0.6s ease-out forwards;
-        }
-
-        .resource-card:nth-child(1) { animation-delay: 0.1s; }
-        .resource-card:nth-child(2) { animation-delay: 0.2s; }
-        .resource-card:nth-child(3) { animation-delay: 0.3s; }
-
-        .resource-card:hover {
-            transform: translateY(-0.25rem);
-            box-shadow: 0 1rem 2rem rgba(44, 48, 56, 0.08);
+            transition: transform 0.3s ease;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(1rem); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(1rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .resource-card-type {
+        .blog-card:nth-child(1) { animation-delay: 0.1s; }
+        .blog-card:nth-child(2) { animation-delay: 0.2s; }
+        .blog-card:nth-child(3) { animation-delay: 0.3s; }
+        .blog-card:nth-child(4) { animation-delay: 0.4s; }
+        .blog-card:nth-child(5) { animation-delay: 0.5s; }
+        .blog-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .blog-card:hover {
+            transform: translateY(-0.25rem);
+        }
+
+        /* Featured Image — 290px wide, natural aspect ratio */
+        .blog-card-image {
+            display: block;
+            width: 290px;
+            max-width: 100%;
+            height: auto;
+            margin: 0;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover .blog-card-image {
+            transform: scale(1.02);
+        }
+
+        .blog-card-image svg,
+        .blog-card-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Card Content */
+        .blog-card-pillar {
             font-size: 0.75rem;
             font-weight: 600;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: var(--accent-brown);
+            color: var(--accent-copper);
             margin-bottom: 0.75rem;
         }
 
-        .resource-card h2 {
-            font-size: clamp(1.35rem, 3.5vw, 1.75rem);
+        .blog-card h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.35rem, 2.6vw, 1.8rem);
             font-weight: 700;
             letter-spacing: -0.01em;
             margin-bottom: 1rem;
             color: var(--text-primary);
-            line-height: 1.3;
+            line-height: 1.25;
         }
 
-        .resource-card-description {
+        /* Mobile stack: match article hero responsive breakpoint */
+        @media (max-width: 720px) {
+            .blog-card {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+                padding: 1.75rem 1.5rem;
+            }
+            .blog-card-image {
+                width: 220px;
+                margin: 0 auto;
+            }
+        }
+
+        .blog-card h2 a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .blog-card h2 a:hover {
+            color: var(--accent-copper);
+        }
+
+        .blog-card-excerpt {
             font-size: 1rem;
             color: var(--text-secondary);
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
             line-height: 1.7;
         }
 
-        .resource-card-meta {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem 1.5rem;
-        }
-
-        .resource-card-meta span {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .resource-card-meta strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .resource-card-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .btn-download {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background-color: var(--accent-brown);
-            color: var(--cream) !important;
-            text-decoration: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .btn-download:hover {
-            background-color: #8B5640;
-            transform: translateY(-1px);
-        }
-
-        .resource-card-context {
+        .blog-card-link {
+            display: inline-block;
             color: var(--accent-copper);
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
-            padding-bottom: 0.2rem;
-            border-bottom: 2px solid transparent;
             transition: all 0.2s ease;
+            position: relative;
+            padding-bottom: 0.25rem;
+            border-bottom: 2px solid transparent;
         }
 
-        .resource-card-context:hover {
+        .blog-card-link:hover {
             color: var(--accent-amber);
             border-bottom-color: var(--accent-amber);
-        }
-
-        /* Coming soon / placeholder cards */
-        .resource-card.placeholder {
-            background-color: transparent;
-            border: 1px dashed rgba(44, 48, 56, 0.2);
-            text-align: center;
-        }
-
-        .resource-card.placeholder .resource-card-type {
-            color: var(--text-secondary);
-        }
-
-        .resource-card.placeholder h2 {
-            color: var(--text-secondary);
-            font-weight: 600;
         }
 
         /* ===== FOOTER ===== */
@@ -440,15 +431,6 @@
             color: #3D6B4E;
         }
 
-        .footer-contact {
-            margin-bottom: 1.25rem;
-            font-size: 0.95rem;
-        }
-
-        .footer-contact a {
-            color: var(--accent-amber);
-        }
-
         /* ===== COOKIE BANNER ===== */
         .cookie-banner {
             position: fixed;
@@ -463,8 +445,12 @@
         }
 
         @keyframes slideUp {
-            from { transform: translateY(100%); }
-            to { transform: translateY(0); }
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
         }
 
         .cookie-banner-inner {
@@ -517,19 +503,29 @@
                 flex-direction: column;
                 align-items: stretch;
             }
+
             .cookie-accept {
                 width: 100%;
                 text-align: center;
             }
-            .resource-card-actions {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .btn-download {
-                width: 100%;
-                justify-content: center;
+
+            .blog-card-image {
+                aspect-ratio: 4 / 3;
             }
         }
+    </style>
+    <style>
+        .section-eyebrow { max-width: 1080px; margin: 0 auto; padding: 0 clamp(1rem, 5vw, 2rem); }
+        .section-eyebrow span { display:inline-block; font-size:0.75rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent-copper); border-bottom:2px solid var(--accent-amber); padding-bottom:0.35rem; }
+        .library-more { max-width: 1080px; margin: 1rem auto 0; padding: 0 clamp(1rem, 5vw, 2rem) 2rem; }
+        .more-group { margin-bottom: 2.75rem; }
+        .more-group-title { font-size:0.78rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-secondary); margin-bottom:0.75rem; border-bottom:1px solid #E4D9CD; padding-bottom:0.55rem; }
+        .more-item { display:block; padding:1rem 0; border-bottom:1px solid rgba(44,48,56,0.07); text-decoration:none; color:inherit; }
+        .more-item:last-child { border-bottom:none; }
+        .more-item-title { font-family:var(--font-heading); font-weight:700; font-size:1.1rem; color:var(--text-primary); line-height:1.3; transition:color 0.2s ease; }
+        .more-item:hover .more-item-title { color:var(--accent-copper); }
+        .more-item-desc { font-size:0.92rem; color:var(--text-secondary); margin-top:0.3rem; line-height:1.6; }
+        .cornerstone-card { border:1px solid rgba(196,149,106,0.55); box-shadow:0 4px 20px rgba(107,61,46,0.06); }
     </style>
 </head>
 <body>
@@ -559,64 +555,102 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
         <section class="hero">
-            <h1>Resources</h1>
-            <p>Free tools, cheatsheets, and frameworks you can put to work today &mdash; no email gate, no strings attached.</p>
+            <h1>The Library</h1>
+            <p>Cornerstone essays and the Find / Understand / Trust / Use framework &mdash; the research and field notes behind making your business legible to the AI agents that now shortlist vendors.</p>
         </section>
 
-        <!-- Resource Cards Section -->
-        <section class="resources-section">
-            <!-- Agent-Readiness Checklist (interactive) -->
-            <article class="resource-card">
-                <div class="resource-card-type">Interactive tool</div>
-                <h2>The Agent-Readiness Checklist</h2>
-                <p class="resource-card-description">
-                    Can AI agents find, understand, trust, and act on your website? Tap through twelve plain-English questions and watch your readiness score build across all four layers &mdash; in about two minutes. No email, no download.
-                </p>
-                <div class="resource-card-meta">
-                    <span><strong>Format:</strong>&nbsp;Interactive</span>
-                    <span><strong>Questions:</strong>&nbsp;12</span>
-                    <span><strong>Updated:</strong>&nbsp;June 2026</span>
-                </div>
-                <div class="resource-card-actions">
-                    <a href="/agent-readiness-checklist" class="btn-download">Open the checklist &rarr;</a>
-                    <a href="/signal-check" class="resource-card-context">Or run a live Signal Check &rarr;</a>
+        <div class="section-eyebrow"><span>Frameworks &amp; cornerstones</span></div>
+        <section class="blog-section">
+            <article class="blog-card cornerstone-card">
+                <a href="/library/the-proxy-buyer" class="blog-card-image">
+                    <img src="/images/proxy-buyer-hero.png" alt="Editorial illustration: an empty boxing-ring corner with worn boxing gloves hung over the ropes by copper-amber laces — the fight for the deal is decided before you step into the ring." />
+                </a>
+                <div class="blog-card-content">
+                    <div class="blog-card-pillar" style="color:#C4956A;">Cornerstone &middot; Start Here</div>
+                <h2><a href="/library/the-proxy-buyer">The Proxy Buyer</a></h2>
+                <p class="blog-card-excerpt">There&rsquo;s a new buyer in every deal now, and it&rsquo;s not human. It finds, ranks, and shortlists firms before the human is ever involved &mdash; and an excellent firm it can&rsquo;t confirm looks exactly like one that can&rsquo;t do the job.</p>
+                <a href="/library/the-proxy-buyer" class="blog-card-link">Read article &rarr;</a>
                 </div>
             </article>
-
-            <!-- Transparency Audit Spreadsheet -->
-            <article class="resource-card">
-                <div class="resource-card-type">Cheatsheet &middot; Spreadsheet</div>
-                <h2>AI Visibility Tools: Transparency Audit</h2>
-                <p class="resource-card-description">
-                    28 free and freemium AI visibility tools scored against four transparency questions &mdash; Source, Methodology, Reproducibility, Actionability &mdash; and grouped by the five questions marketers are actually asking about AI visibility. Use it as a shortlist, a gut check, or ammo for the next &ldquo;let&rsquo;s buy this tool&rdquo; conversation.
-                </p>
-                <div class="resource-card-meta">
-                    <span><strong>Format:</strong>&nbsp;.xlsx</span>
-                    <span><strong>Tools scored:</strong>&nbsp;28</span>
-                    <span><strong>Updated:</strong>&nbsp;April 2026</span>
-                </div>
-                <div class="resource-card-actions">
-                    <a href="/downloads/AI-Visibility-Tools-Transparency-Audit.xlsx" class="btn-download" download>
-                        Download the spreadsheet
-                    </a>
-                    <a href="/library/ai-visibility-measurement-free-tools" class="resource-card-context">Read the methodology &rarr;</a>
+            <article class="blog-card">
+                <a href="/library/ai-searchability-find-layer" class="blog-card-image">
+                    <img src="/images/find-door-hero.png" alt="Editorial illustration: a solid, grounded door in the center of an otherwise empty room — signifying that AI crawlers either find a real entry point or they don't." />
+                </a>
+                <div class="blog-card-content">
+                    <div class="blog-card-pillar">FIND Layer</div>
+                <h2><a href="/library/ai-searchability-find-layer">AI Searchability is Binary: Can AI Crawlers FIND You?</a></h2>
+                <p class="blog-card-excerpt">35% of B2B professional services sites unknowingly block AI crawlers. The 4 gates your content must pass &mdash; and how to check where you stand.</p>
+                <a href="/library/ai-searchability-find-layer" class="blog-card-link">Read article &rarr;</a>
                 </div>
             </article>
-
-            <!-- Placeholder for more resources -->
-            <article class="resource-card placeholder">
-                <div class="resource-card-type">Coming soon</div>
-                <h2>More frameworks and cheatsheets on the way</h2>
-                <p class="resource-card-description">
-                    Agent Readiness Audit worksheet, schema templates, and a few other things in the queue. Subscribe to the blog or check back here.
-                </p>
+            <article class="blog-card">
+                <a href="/library/ai-understand-brand-visibility" class="blog-card-image">
+                    <img src="/images/understand-blackboard-hero.png" alt="Editorial illustration: a blackboard covered in clear, labeled diagrams of a company's expertise — signifying that AI needs machine-readable structure, not just prose." />
+                </a>
+                <div class="blog-card-content">
+                    <div class="blog-card-pillar">UNDERSTAND Layer</div>
+                <h2><a href="/library/ai-understand-brand-visibility">AI Found Your Website. It Has No Idea What You Do.</a></h2>
+                <p class="blog-card-excerpt">3 out of 4 B2B firms get AI responses with zero verifiable facts. Why AI defaults to generic descriptions, and what the UNDERSTAND layer reveals about your visibility.</p>
+                <a href="/library/ai-understand-brand-visibility" class="blog-card-link">Read article &rarr;</a>
+                </div>
+            </article>
+            <article class="blog-card">
+                <a href="/library/ai-trust-brand-authority" class="blog-card-image">
+                    <img src="/images/trust-house-hero.png" alt="Editorial illustration: a well-built house with visible foundation, named residents, and a clear address — signifying documented authors, verifiable expertise, and consistent identity." />
+                </a>
+                <div class="blog-card-content">
+                    <div class="blog-card-pillar" style="color:#6B3D2E;">TRUST Layer</div>
+                <h2><a href="/library/ai-trust-brand-authority">AI Cites Your Competitors. Not You. Here&rsquo;s Why.</a></h2>
+                <p class="blog-card-excerpt">Trust isn&rsquo;t a switch you flip. It accumulates across every source that&rsquo;s ever mentioned you. Why AI hedges on your brand and cites your competitors with confidence.</p>
+                <a href="/library/ai-trust-brand-authority" class="blog-card-link">Read article &rarr;</a>
+                </div>
+            </article>
+            <article class="blog-card">
+                <a href="/library/life-beyond-google" class="blog-card-image">
+                    <img src="/images/use-switchboard-hero.png" alt="Editorial illustration: a vintage telephone switchboard with labeled jacks for agent protocols (API, MCP, A2A, UCP, AP2, /.well-known/) and patch cables routing connections — signifying that AI agents now route requests across many surfaces." />
+                </a>
+                <div class="blog-card-content">
+                    <div class="blog-card-pillar" style="color:#8B9A7E;">USE Layer</div>
+                <h2><a href="/library/life-beyond-google">The USE Layer: When Agents Act on Your Site, Not Just Read It</a></h2>
+                <p class="blog-card-excerpt">AI agents are moving from reading your site to acting on it. The new vocabulary &mdash; APIs, MCPs, A2A, /.well-known/ &mdash; maps to decisions you&rsquo;ve made before. What to decide before your platform vendors decide for you.</p>
+                <a href="/library/life-beyond-google" class="blog-card-link">Read article &rarr;</a>
+                </div>
             </article>
         </section>
+
+    <!-- More from the Library -->
+    <div class="section-eyebrow" style="margin-top:1rem;"><span>More from the Library</span></div>
+    <section class="library-more">
+        <div class="more-group">
+            <div class="more-group-title">Measuring your AI visibility &middot; a 3-part series</div>
+            <a class="more-item" href="/library/ai-visibility-measurement-frame">
+                <div class="more-item-title">You Can&rsquo;t Manage What You Can&rsquo;t Measure About AI, or Can You?</div>
+                <div class="more-item-desc">When only 14% of marketers track their AI visibility but 89% of brands appear in AI answers, the tools gap takes the blame. The honest read is more complicated.</div>
+            </a>
+            <a class="more-item" href="/library/ai-visibility-measurement-free-tools">
+                <div class="more-item-title">Which of the Free AI Visibility Tools Measure Up?</div>
+                <div class="more-item-desc">75% of the 28 free and freemium AI visibility tools fail four basic transparency questions. The ones that pass tell you something the rest don&rsquo;t.</div>
+            </a>
+            <a class="more-item" href="/library/ai-visibility-measurement-paid-stack">
+                <div class="more-item-title">The Paid AI Visibility Stack: Can One Tool Do All Three Jobs?</div>
+                <div class="more-item-desc">A buyer&rsquo;s guide to the three stages of AI visibility work &mdash; diagnose, fix, measure &mdash; and how to pick the paid stack that fits your team and budget.</div>
+            </a>
+        </div>
+        <div class="more-group">
+            <div class="more-group-title">Field notes</div>
+            <a class="more-item" href="/library/cloudflare-ai-crawler-trap">
+                <div class="more-item-title">The AI Block That Can Quietly Delete You From Google</div>
+                <div class="more-item-desc">Block AI the wrong way and you can vanish from Google too &mdash; here&rsquo;s the trap, the CCBot mistake, and the robots.txt fix.</div>
+            </a>
+            <a class="more-item" href="/library/new-old-search-definitions">
+                <div class="more-item-title">From Search to AI Visibility: The Transition Needs Translation</div>
+                <div class="more-item-desc">Half of all Google searches now trigger an AI Overview, but the industry can&rsquo;t agree on what to call the work required to show up in them. Cutting through the acronym confusion.</div>
+            </a>
+        </div>
+    </section>
     </main>
-
-    <!-- Footer -->
+<!-- Footer -->
     <style>
 .lmf-footer{background:#2C3038;color:#F2EDE7;padding:56px 24px 28px;font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
 .lmf-inner{max-width:960px;margin:0 auto;}
@@ -682,7 +716,6 @@
     </div>
   </div>
 </footer>
-
     <!-- Cookie Banner -->
     <div id="cookie-banner" class="cookie-banner" role="alert" aria-label="Cookie notice" style="display:none;">
         <div class="cookie-banner-inner">
@@ -696,30 +729,20 @@
     {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        "name": "Liz Micik Resources",
-        "description": "Free downloadable tools, frameworks, and cheatsheets for measuring and managing AI visibility.",
-        "url": "https://lizmicik.com/resources",
+        "name": "The Library \u2014 Liz Micik",
+        "description": "Cornerstone essays and the Find / Understand / Trust / Use framework for AI visibility and agent readiness.",
+        "url": "https://lizmicik.com/library",
         "hasPart": [
-            {
-                "@type": "WebApplication",
-                "name": "Agent-Readiness Checklist",
-                "url": "https://lizmicik.com/agent-readiness-checklist",
-                "applicationCategory": "BusinessApplication",
-                "isAccessibleForFree": true,
-                "author": { "@type": "Person", "name": "Liz Micik" }
-            },
-            {
-                "@type": "CreativeWork",
-                "name": "AI Visibility Tools: Transparency Audit",
-                "description": "28 free and freemium AI visibility tools scored against four transparency questions and grouped by the five questions marketers are asking about AI visibility.",
-                "url": "https://lizmicik.com/downloads/AI-Visibility-Tools-Transparency-Audit.xlsx",
-                "encodingFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                "author": {
-                    "@type": "Person",
-                    "name": "Liz Micik"
-                },
-                "datePublished": "2026-04-18"
-            }
+            {"@type": "BlogPosting", "headline": "The Proxy Buyer", "url": "https://lizmicik.com/library/the-proxy-buyer", "author": {"@type": "Person", "name": "Liz Micik"}, "datePublished": "2026-07-22"},
+            {"@type": "BlogPosting", "headline": "AI Searchability is Binary: Can AI Crawlers FIND you?", "url": "https://lizmicik.com/library/ai-searchability-find-layer", "author": {"@type": "Person", "name": "Liz Micik"}, "datePublished": "2026-04-12"},
+            {"@type": "BlogPosting", "headline": "AI Found Your Website. It Has No Idea What You Do.", "url": "https://lizmicik.com/library/ai-understand-brand-visibility", "author": {"@type": "Person", "name": "Liz Micik"}, "datePublished": "2026-04-13"},
+            {"@type": "BlogPosting", "headline": "AI Cites Your Competitors. Not You. Here's Why.", "url": "https://lizmicik.com/library/ai-trust-brand-authority", "author": {"@type": "Person", "name": "Liz Micik"}, "datePublished": "2026-04-13"},
+            {"@type": "BlogPosting", "headline": "The USE Layer: When Agents Act on Your Site, Not Just Read It", "url": "https://lizmicik.com/library/life-beyond-google", "author": {"@type": "Person", "name": "Liz Micik"}, "datePublished": "2026-05-19"},
+            {"@type": "BlogPosting", "headline": "You Can't Manage What You Can't Measure About AI, or Can You?", "url": "https://lizmicik.com/library/ai-visibility-measurement-frame", "author": {"@type": "Person", "name": "Liz Micik"}, "datePublished": "2026-04-15"},
+            {"@type": "BlogPosting", "headline": "Which of the Free AI Visibility Tools Measure Up?", "url": "https://lizmicik.com/library/ai-visibility-measurement-free-tools", "author": {"@type": "Person", "name": "Liz Micik"}, "datePublished": "2026-04-18"},
+            {"@type": "BlogPosting", "headline": "The Paid AI Visibility Stack: Can One Tool Do All Three Jobs?", "url": "https://lizmicik.com/library/ai-visibility-measurement-paid-stack", "author": {"@type": "Person", "name": "Liz Micik"}, "datePublished": "2026-04-19"},
+            {"@type": "BlogPosting", "headline": "The AI Block That Can Quietly Delete You From Google", "url": "https://lizmicik.com/library/cloudflare-ai-crawler-trap", "author": {"@type": "Person", "name": "Liz Micik"}, "datePublished": "2026-07-14"},
+            {"@type": "BlogPosting", "headline": "From Search to AI Visibility: The Transition Needs Translation", "url": "https://lizmicik.com/library/new-old-search-definitions", "author": {"@type": "Person", "name": "Liz Micik"}, "datePublished": "2026-04-10"}
         ]
     }
     </script>
@@ -750,14 +773,37 @@
 
         window.addEventListener('scroll', () => {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
             if (scrollTop > 100) {
                 if (scrollTop > lastScrollTop) {
+                    // Scrolling down
                     nav.classList.add('nav-hidden');
                 } else {
+                    // Scrolling up
                     nav.classList.remove('nav-hidden');
                 }
             }
+
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        // ===== FADE IN ON SCROLL (IntersectionObserver) =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.blog-card').forEach(card => {
+            observer.observe(card);
         });
 
         // ===== COOKIE BANNER =====
@@ -765,13 +811,27 @@
         const cookieAccept = document.getElementById('cookie-accept');
         const cookieKey = 'lizmicik_cookie_consent';
 
+        // Show cookie banner if consent not recorded
         if (!localStorage.getItem(cookieKey)) {
             cookieBanner.style.display = 'block';
         }
 
+        // Handle cookie acceptance
         cookieAccept.addEventListener('click', () => {
             localStorage.setItem(cookieKey, 'accepted');
             cookieBanner.style.display = 'none';
+        });
+
+        // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
         });
     </script>
 </body>

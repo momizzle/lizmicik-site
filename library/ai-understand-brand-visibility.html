@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="3 out of 4 B2B firms get zero verifiable facts from AI. Learn why AI defaults to generic descriptions and what the UNDERSTAND layer reveals about your visibility.">
+    <meta name="keywords" content="AI brand visibility, AI search engines, correcting AI about your brand, brand mentions AI search visibility, AI understand business, entity optimization">
+    <title>Why Doesn't AI Understand Your Business? - Liz Micik</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Why Doesn't AI Understand Your Business?">
+    <meta property="og:description" content="3 out of 4 B2B firms get zero verifiable facts from AI. Learn why AI defaults to generic descriptions and what the UNDERSTAND layer reveals about your visibility.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://lizmicik.com/library/ai-understand-brand-visibility">
+    <meta property="og:site_name" content="Liz Micik">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "AI Found Your Website. It Has No Idea What You Do.",
+        "description": "3 out of 4 B2B firms get zero verifiable facts from AI. Learn why AI defaults to generic descriptions and what the UNDERSTAND layer reveals about your visibility.",
+        "author": {
+            "@type": "Person",
+            "name": "Liz Micik",
+            "url": "https://lizmicik.com"
+        },
+        "datePublished": "2026-04-13",
+        "dateModified": "2026-04-13",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://lizmicik.com/library/ai-understand-brand-visibility"
+        },
+        "keywords": "AI brand visibility, AI search engines, entity optimization, structured data, schema markup, AI citations",
+        "isPartOf": {
+            "@type": "BlogPosting",
+            "name": "Find/Understand/Trust/Use Framework Series",
+            "url": "https://lizmicik.com/library"
+        }
+    }
+    </script>
+
+    <style>
+        :root {
+            --cream: #FAFAF7;
+            --cream-dark: #FAF8F5;
+            --slate: #2C3038;
+            --slate-light: #3D424D;
+            --slate-mid: #545B6A;
+            --accent-amber: #C4956A;
+            --accent-teal: #5B7C5E;
+            --accent-blue: #8B9A7E;
+            --accent-copper: #5B7C5E;
+            --hero-brown: #6B3D2E;
+            --muted-red: #C25E4A;
+            --text-primary: #2C3038;
+            --text-secondary: #545B6A;
+            --text-light: #F2EDE7;
+            --text-light-secondary: #B8B5B0;
+            --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --section-padding: clamp(4rem, 8vw, 7rem);
+            --content-width: 720px;
+            --wide-width: 960px;
+            --toc-width: 220px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--cream); color: var(--text-primary); font-family: var(--font-body); line-height: 1.6; }
+
+        /* Navigation */
+        .nav { position: fixed; top: 0; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--cream-dark); z-index: 1000; transition: transform 0.3s ease; }
+        .nav.nav-hidden { transform: translateY(-100%); }
+        .nav-inner { max-width: var(--wide-width); margin: 0 auto; padding: 1.5rem clamp(1.5rem, 4vw, 2rem); display: flex; justify-content: space-between; align-items: center; }
+        .nav-name { font-weight: 700; color: var(--text-primary); font-size: 1.25rem; }
+        .nav-name a { color: inherit; text-decoration: none; }
+        .nav-toggle { display: none; flex-direction: column; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .nav-toggle span { width: 24px; height: 2px; background: var(--text-primary); margin: 5px 0; transition: 0.3s; }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+        .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--accent-teal); }
+        .nav-cta { background: var(--accent-teal) !important; color: white !important; padding: 0.75rem 1.5rem; border-radius: 0.5rem; transition: background 0.3s ease; }
+        .nav-cta:hover { background: var(--accent-copper) !important; }
+        /* Services dropdown */
+        .nav-item.has-dropdown { position: relative; }
+        .nav-caret { font-size: 0.7em; margin-left: 0.15rem; transition: transform 0.2s ease; display: inline-block; }
+        .nav-item.has-dropdown:hover .nav-caret,
+        .nav-item.has-dropdown:focus-within .nav-caret { transform: rotate(180deg); }
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 260px;
+            margin: 0;
+            padding: 0.45rem 0;
+            list-style: none;
+            background: rgba(250, 250, 247, 0.98);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(44, 48, 56, 0.06);
+            border-radius: 6px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+        }
+        .nav-item.has-dropdown:hover .nav-dropdown,
+        .nav-item.has-dropdown:focus-within .nav-dropdown { display: block; }
+        .nav-dropdown li { padding: 0; }
+        .nav-dropdown a {
+            display: block;
+            padding: 0.55rem 1.2rem;
+            white-space: nowrap;
+            text-transform: none !important;
+            letter-spacing: 0 !important;
+            font-size: 0.9rem !important;
+        }
+        .nav-dropdown a:hover { background: rgba(44, 48, 56, 0.04); }
+
+
+        @media (max-width: 768px) {
+            .nav-toggle { display: flex; }
+            .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(10px, 10px); }
+            .nav-toggle.open span:nth-child(2) { opacity: 0; }
+            .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+            .nav-links { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--cream); gap: 1.5rem; padding: 2rem; border-bottom: 1px solid var(--cream-dark); display: none; }
+            .nav-links.active { display: flex; }
+            /* Services dropdown: nested list on mobile */
+            .nav-dropdown {
+                display: block;
+                position: static;
+                min-width: 0;
+                padding: 0.25rem 0 0 1rem;
+                background: transparent;
+                backdrop-filter: none;
+                border: none;
+                box-shadow: none;
+            }
+            .nav-caret { display: none; }
+            .nav-links a { font-size: 1.1rem; }
+        }
+
+        /* Hero — v6 redesign: image left, text right, cream confined to 1080px hero */
+        header.blog-hero { max-width: 1080px; margin: 60px auto 0; padding: 2.5rem clamp(1.5rem, 4vw, 3rem); background: #F5EFE4; display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center; text-align: left; }
+        .blog-hero-image { width: 290px; height: auto; max-width: 100%; margin: 0; display: block; border-radius: 6px; }
+        .hero-text { display: flex; flex-direction: column; gap: 0.85rem; }
+        .pillar-eyebrow { display: inline-block; align-self: flex-start; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0; color: var(--accent-teal); }
+        .blog-meta { display: flex; justify-content: flex-start; gap: 0.75rem; margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--text-secondary); flex-wrap: wrap; align-items: center; }
+        header.blog-hero h1 { font-family: var(--font-heading); font-size: clamp(1.5rem, 3.2vw, 2.1rem); font-weight: 700; line-height: 1.25; color: var(--text-primary); margin: 0; text-align: left; }
+        @media (max-width: 720px) { header.blog-hero { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; } .blog-hero-image { width: 220px; margin: 0 auto; } .hero-text { align-items: center; } .pillar-eyebrow { align-self: center; } .blog-meta { justify-content: center; } header.blog-hero h1 { text-align: center; font-size: clamp(1.35rem, 5vw, 1.75rem); } }
+
+        /* Two-column layout with sticky TOC */
+        .blog-layout {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 2rem clamp(1.5rem, 4vw, 2rem);
+            display: grid;
+            grid-template-columns: var(--toc-width) 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* Table of Contents */
+        .toc {
+            position: sticky;
+            top: 80px;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+        .toc-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-teal);
+        }
+        .toc-list { list-style: none; padding: 0; }
+        .toc-list li { margin: 0; }
+        .toc-list a {
+            display: block;
+            padding: 0.4rem 0 0.4rem 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            transition: all 0.2s ease;
+            line-height: 1.4;
+        }
+        .toc-list a:hover { color: var(--accent-teal); border-left-color: var(--accent-teal); }
+        .toc-list a.active { color: var(--accent-teal); border-left-color: var(--accent-teal); font-weight: 600; }
+
+        /* Article content */
+        article.blog-content { max-width: var(--content-width); }
+        article p { font-size: 1.05rem; line-height: 1.75; margin: 1.5rem 0; color: var(--text-primary); }
+        article h2 { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 600; margin: 3rem 0 1.5rem; color: var(--text-primary); border-left: 3px solid var(--accent-copper); padding-left: 1rem; }
+        article h2:first-of-type { margin-top: 0; }
+        article h3 { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--text-primary); }
+        article strong { font-weight: 700; color: var(--accent-copper); }
+        article ul, article ol { margin: 1.5rem 0; padding-left: 2rem; }
+        article li { margin: 0.8rem 0; line-height: 1.75; color: var(--text-primary); }
+        article ul li:before { content: "\2713"; color: var(--accent-copper); font-weight: 700; display: inline-block; width: 1.5em; margin-left: -1.5em; }
+        article a { color: #C4956A; text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        article a:hover { color: #3D6B4E; text-decoration: underline; }
+
+        /* TLDR */
+        .tldr { font-style: italic; color: var(--text-secondary); border-left: 3px solid var(--accent-amber); padding-left: 1.5rem; margin: 2rem 0; }
+        .tldr p { color: var(--text-secondary); font-style: italic; margin: 0.5rem 0; }
+        .tldr ul { padding-left: 1.5rem; margin: 0.5rem 0; }
+        .tldr li { color: var(--text-secondary); font-style: italic; margin: 0.5rem 0; line-height: 1.6; }
+        .tldr li:before { content: none; }
+
+        /* Data highlight list */
+        .data-list { list-style: none; padding-left: 0; margin: 1.5rem 0; }
+        .data-list li { margin: 0.8rem 0; padding-left: 1.5rem; position: relative; }
+        .data-list li:before { content: "\2022"; color: var(--accent-copper); font-weight: 700; display: inline-block; width: 1.5em; margin-left: -1.5em; }
+
+        /* Fact/Vibe/Wrong example lists */
+        .fvw-list { list-style: none; padding-left: 0; margin: 0.75rem 0 1.5rem; }
+        .fvw-list li { margin: 0.4rem 0; padding-left: 1.5rem; position: relative; line-height: 1.6; }
+        .fvw-list li:before { content: "\2022"; color: var(--accent-copper); font-weight: 700; display: inline-block; width: 1.5em; margin-left: -1.5em; }
+
+        /* Page type list (no checkmarks) */
+        .page-list { list-style: none; padding-left: 0; margin: 1.5rem 0; }
+        .page-list li { margin: 1rem 0; padding-left: 0; line-height: 1.75; }
+        .page-list li:before { content: none; }
+
+        /* Fan-out sub-query list */
+        .fanout-list { list-style: none; padding-left: 0; margin: 1rem 0; }
+        .fanout-list li { margin: 0.5rem 0; padding-left: 1.5rem; position: relative; }
+        .fanout-list li:before { content: "\2022"; color: var(--accent-copper); font-weight: 700; display: inline-block; width: 1.5em; margin-left: -1.5em; }
+
+        /* Callout box for Harbor Strategies */
+        .callout-box {
+            background: var(--cream-dark);
+            border: 1px solid #E8DDD5;
+            border-left: 4px solid var(--accent-amber);
+            border-radius: 0 0.75rem 0.75rem 0;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+        .callout-box p { margin: 0.75rem 0; font-size: 1rem; }
+        .callout-box p:first-child { margin-top: 0; }
+        .callout-box p:last-child { margin-bottom: 0; }
+
+        /* Visual containers */
+        .visual-container {
+            margin: 2.5rem 0;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid #E8DDD5;
+            background: #FFFFFF;
+        }
+        .visual-container svg { display: block; width: 100%; height: auto; }
+        .visual-caption {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 0.75rem 1rem;
+            background: var(--cream-dark);
+            border-top: 1px solid #E8DDD5;
+            font-style: italic;
+        }
+
+        /* Blockquotes */
+        article blockquote { border-left: 4px solid var(--accent-amber); padding-left: 2rem; margin: 2.5rem 0; font-style: italic; font-size: 1.15rem; color: var(--text-secondary); line-height: 1.7; }
+
+        /* CTA Box */
+        .cta-box { background: var(--cream-dark); border: 2px solid var(--accent-amber); border-radius: 0.75rem; padding: 2rem; margin: 3rem 0; text-align: center; }
+        .cta-box p { margin: 0.5rem 0; font-size: 1rem; }
+        .cta-box strong { color: var(--text-primary); font-size: 1.1rem; }
+        .cta-box a { color: #C4956A; font-weight: 700; }
+        .cta-box a:hover { color: #3D6B4E; }
+
+        /* Author Bio */
+        .author-bio { display: flex; gap: 2rem; padding: 2.5rem; background: var(--cream-dark); border-radius: 0.75rem; border: 1px solid #E8DDD5; margin: 3rem 0; align-items: flex-start; }
+        .author-avatar { width: 100px; height: 100px; border-radius: 50%; background: var(--accent-amber); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 700; flex-shrink: 0; }
+        .author-info h3 { margin-top: 0; margin-bottom: 0.5rem; }
+        .author-title { font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 0.8rem; }
+        .author-bio p { font-size: 0.95rem; margin: 0; color: var(--text-primary); }
+
+        /* Related Posts */
+        .related-posts { margin: 4rem 0 3rem; border-top: 2px solid var(--cream-dark); padding-top: 3rem; }
+        .related-posts h2 { border: none; padding: 0; text-align: center; margin-bottom: 2.5rem; }
+        .related-posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .post-card { background: var(--cream-dark); border: 1px solid #E8DDD5; border-radius: 0.75rem; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .post-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); }
+        .post-card a { text-decoration: none; color: inherit; }
+        .post-card-image { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
+        .post-card-content { padding: 1.5rem; }
+        .post-card-meta { font-size: 0.8rem; color: var(--accent-copper); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+        .post-card h3 { font-size: 1.2rem; margin: 0.8rem 0; color: var(--text-primary); }
+        .post-card p.coming-soon { font-size: 0.85rem; color: var(--text-secondary); font-style: italic; }
+
+        /* Final CTA */
+        .final-cta { background: var(--slate); color: white; padding: 3rem 2rem; text-align: center; margin: 4rem 0 0; }
+        .final-cta h2 { border: none; padding: 0; color: white; margin-bottom: 1.5rem; }
+        .final-cta p { color: rgba(255, 255, 255, 0.95); margin-bottom: 2rem; }
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .cta-button { display: inline-block; background: var(--accent-teal); color: white; padding: 0.75rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 700; transition: all 0.3s ease; border: 2px solid var(--accent-teal); }
+        .cta-button:hover { background: transparent; color: white; }
+        .cta-button.copper { background: var(--accent-copper); border-color: var(--accent-copper); }
+
+        /* Footer */
+        .footer { background: var(--cream-dark); padding: 2rem; text-align: center; color: var(--text-secondary); font-size: 0.9rem; }
+        .footer a { color: #C4956A; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        /* Sources section */
+        .sources { margin: 3rem 0 2rem; padding-top: 2rem; border-top: 1px solid #E8DDD5; }
+        .sources h3 { font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-secondary); }
+        .sources ul { list-style: none; padding: 0; }
+        .sources ul li { margin: 0.5rem 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+        .sources ul li:before { content: none; }
+        .sources a { color: #C4956A; font-weight: 400; }
+
+        /* Responsive: collapse TOC on smaller screens */
+        @media (max-width: 968px) {
+            .blog-layout {
+                grid-template-columns: 1fr;
+                max-width: var(--content-width);
+            }
+            .toc {
+                position: relative;
+                top: 0;
+                max-height: none;
+                border: 1px solid #E8DDD5;
+                border-radius: 0.75rem;
+                padding: 1.25rem;
+                background: var(--cream-dark);
+                margin-bottom: 1rem;
+            }
+            .author-bio { flex-direction: column; text-align: center; }
+            .author-avatar { margin: 0 auto; }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            article p { font-size: 1rem; }
+            article h2 { font-size: 1.4rem; }
+            .cta-buttons { flex-direction: column; }
+            .cta-buttons .cta-button { display: block; width: 100%; }
+            .related-posts-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Fade-in */
+        .fade-in { opacity: 0; animation: fadeIn 0.6s ease-in forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Quadrant visual animation */
+        @keyframes quadrant-cycle {
+            0%, 100% { opacity: 1; }
+            25% { opacity: 1; }
+            30% { opacity: 0.3; }
+            95% { opacity: 0.3; }
+        }
+        .quadrant-tile { transition: opacity 0.4s ease; }
+        .quadrant-active-1 { animation: quadrant-cycle 8s ease infinite; }
+        .quadrant-active-2 { animation: quadrant-cycle 8s ease 2s infinite; }
+        .quadrant-active-3 { animation: quadrant-cycle 8s ease 4s infinite; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <span class="nav-name"><a href="/">Liz Micik</a></span>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/about">About</a></li>
+                <li><a href="/library">Library</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li class="nav-item has-dropdown">
+                    <a href="/audit" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Services <span class="nav-caret">&#9662;</span></a>
+                    <ul class="nav-dropdown">
+                        <li><a href="/audit">Agent Readiness Audit</a></li>
+                        <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+                        <li><a href="/actions">Agent Readiness Actions</a></li>
+                    </ul>
+                </li>
+                <li><a href="/signal-check" class="nav-cta">Free Signal Check</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="blog-hero">
+        <img class="blog-hero-image" src="/images/understand-blackboard-hero.png" alt="Editorial illustration: a blackboard covered in clear, labeled diagrams of a company's expertise — signifying that AI needs machine-readable structure, not just prose, to understand what you do." loading="eager" />
+        <div class="hero-text">
+            <span class="pillar-eyebrow">UNDERSTAND Layer</span>
+            <h1>AI Found Your Website. It Has No Idea What You Do.</h1>
+            <div class="blog-meta">
+                <span>April 13, 2026</span>
+                <span>&bull;</span>
+                <span>By Liz Micik</span>
+                <span>&bull;</span>
+                <span>9 min read</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Two-column: TOC + Content -->
+    <div class="blog-layout">
+
+        <!-- Left Sticky TOC -->
+        <nav class="toc" aria-label="Table of contents">
+            <div class="toc-title">In This Article</div>
+            <ul class="toc-list">
+                <li><a href="#revenue">Why This Matters to Your Revenue</a></li>
+                <li><a href="#harbor">Meet Harbor Strategies</a></li>
+                <li><a href="#facts-vibes">Facts, Vibes, and Hallucinations</a></li>
+                <li><a href="#two-blockers">The Two Blockers</a></li>
+                <li><a href="#why-vibes">Why AI Defaults to Vibes</a></li>
+                <li><a href="#ai-trainer">You Have to Become an AI Trainer</a></li>
+                <li><a href="#seven-dimensions">What AI Needs to Understand</a></li>
+                <li><a href="#creates-kills">How Your Website Creates or Kills Facts</a></li>
+                <li><a href="#fan-out">The Fan-Out Reality</a></li>
+                <li><a href="#understand-to-trust">From UNDERSTAND to TRUST</a></li>
+            </ul>
+        </nav>
+
+        <!-- Article Content -->
+        <article class="blog-content">
+
+            <!-- TLDR -->
+            <div class="tldr">
+                <p><em>The short version:</em></p>
+                <ul>
+                    <li>AI can access your website. It can crawl every page. But when a buyer asks an AI platform what your company does, the answer is so generic it could describe half your competitors.</li>
+                    <li>Three out of four B2B professional services firms get AI responses containing zero verifiable facts about their business. Zero. The AI isn't broken. Your website just never taught it what makes you different.</li>
+                    <li>This is the UNDERSTAND layer of the Find/Understand/Trust framework: the gap between being findable and being known.</li>
+                </ul>
+            </div>
+
+            <h2 id="revenue">Why This Matters to Your Revenue</h2>
+
+            <p>73% of B2B buyers now use AI tools in their purchase research, according to the Augusta CEO multi-source analysis published in March 2026. These are your buyers. They're asking ChatGPT, Gemini, Claude, and Perplexity about firms like yours.</p>
+
+            <p>When AI returns a generic response like "a consulting firm that helps companies improve operations," your potential buyer learns nothing that distinguishes you from a thousand competitors. They move down the list.</p>
+
+            <p><a href="https://www.goodfirms.co/resources/seo-statistics-ai-search-rankings-zero-click-trends">GoodFirms' 2026 research</a> found that AI-referred traffic converts at 14.2%, compared to 2.8% from Google organic search. That's a 5x conversion advantage. But that lift only happens when AI has real facts to cite about your business.</p>
+
+            <p>The UNDERSTAND layer is where that 5x advantage lives or dies.</p>
+
+            <h2 id="harbor">Meet Harbor Strategies</h2>
+
+            <p>To make this concrete, let's follow a fictional firm through the entire article.</p>
+
+            <div class="callout-box">
+                <p>Harbor Strategies is a 15-person management consulting firm based in Portland, Oregon. They specialize in supply chain optimization for mid-market food and beverage manufacturers with $30M to $300M in annual revenue. Their founders, James Chen and Patricia Goldstein, previously led supply chain programs at Unilever and Nestl&eacute;. The firm has worked with 28 clients and publishes original research on cold chain logistics.</p>
+            </div>
+
+            <p>When given a prompt like "tell me about Harbor Strategies and what it's known for" with all those facts at its disposal, this is what AI should say:</p>
+
+            <blockquote>"Harbor Strategies is a supply chain consulting firm that specializes in distribution network design and procurement optimization for mid-market food and beverage manufacturers."</blockquote>
+
+            <p>But three times out of four, this is more likely to be the response: "Harbor Strategies is a management consulting firm that helps companies improve their operations. They work with mid-market companies and offer strategic advice across various industries."</p>
+
+            <p>It's a response that could describe any consulting firm in any city and never really answers the heart of the user's question.</p>
+
+            <p>That gap is the UNDERSTAND layer.</p>
+
+            <h2 id="facts-vibes">Facts, Vibes, and Hallucinations</h2>
+
+            <p>Here's a phrase that was all the rage in early 2024 articles, but has gradually fallen out of favor: "ai hallucinations." I associate it visually with early AI image attempts that gave people four arms or 12 fingers. There were thousands of funny AI hallucination memes created around those errors and others.</p>
+
+            <p>But it's not always the right word for what's happening today. And the effects it can have on your website traffic and business bottom line are anything but funny.</p>
+
+            <p>When my AI assistant and I were discussing the research for this article, she said, "I'd argue 'Hallucinations' is the better hook (readers know the word, it's searchable, it has emotional weight) but the in-text breakdown should stay Fact/Vibe/Wrong because 'Wrong' is more precise (hallucination implies AI invented something; Wrong includes AI pulling outdated or misattributed info)."</p>
+
+            <p>When I sat back and thought about what I first perceived as her fussiness over a simple choice of words, I realized she really needed to be that precise in every one of her word choices to make sure she was accurately answering the intent of my query.</p>
+
+            <p>And I realized the exchange was a perfect example of our challenge when it comes to getting AI to UNDERSTAND our businesses. AI knows the difference between "wrong" and "hallucination." You have to deliberately teach it which one is more appropriate in each use case.</p>
+
+            <p>So here's the diagnostic lens we use to begin AI training. Every statement an AI platform makes about your business falls into one of three categories:</p>
+
+            <p><strong>Facts</strong> are specific, verifiable, and accurate.</p>
+            <ul class="fvw-list">
+                <li>"Founded in 2019 in Portland, Oregon."</li>
+                <li>"Specializes in supply chain optimization for food and beverage manufacturers."</li>
+                <li>"Led by former Unilever logistics executive."</li>
+            </ul>
+            <p>Facts are sometimes add-ons, or something humans absorb and quickly tuck away until needed or challenged. AI uses them to create an entity. Either way, you want them understood because they convey real differentiation.</p>
+
+            <p><strong>Vibes</strong> are generic statements that could describe your competitor too.</p>
+            <ul class="fvw-list">
+                <li>"A management consulting firm."</li>
+                <li>"Helps companies improve efficiency."</li>
+                <li>"Offers strategic advice."</li>
+            </ul>
+            <p>Vibes aren't wrong. They're just "squishy" to a human and useless to AI. They dilute your value proposition in AI responses.</p>
+
+            <p><strong>Wrongs</strong> are specific but inaccurate.</p>
+            <ul class="fvw-list">
+                <li>"Founded in 1995" when you launched in 2019.</li>
+                <li>"Headquartered in Seattle" when you're in Portland.</li>
+                <li>"Specializes in healthcare" when you serve food and beverage.</li>
+            </ul>
+            <p>Wrongs are often more damaging than vibes because they actively mislead buyers. Some wrongs are hallucinations (AI invented a fact). Others are outdated data or misattributed information. The distinction matters for diagnosis, but the damage is the same.</p>
+
+            <!-- VISUAL 1: Fact/Vibe/Wrong Annotated Response -->
+            <div class="visual-container">
+                <svg viewBox="0 0 720 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An annotated AI response about Harbor Strategies showing each statement color-coded as Fact (green), Vibe (amber), or Wrong (brown). One fact, three vibes, one wrong.">
+                    <rect width="720" height="440" fill="#FAFAF7"/>
+                    <!-- Header -->
+                    <text x="360" y="32" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" font-weight="700" fill="#2C3038">What AI Actually Says About Harbor Strategies</text>
+                    <!-- AI response box -->
+                    <rect x="40" y="50" width="640" height="165" rx="8" fill="#FFFFFF" stroke="#E8DDD5" stroke-width="1.5"/>
+                    <text x="56" y="72" font-family="Manrope, sans-serif" font-size="11" font-weight="600" fill="#545B6A">AI RESPONSE</text>
+                    <!-- Fact: location is correct -->
+                    <rect x="56" y="84" width="500" height="22" rx="4" fill="#5B7C5E" opacity="0.12"/>
+                    <text x="62" y="100" font-family="Manrope, sans-serif" font-size="13" fill="#2C3038">"Harbor Strategies is a management consulting firm based in Portland</text>
+                    <!-- Vibe line -->
+                    <rect x="56" y="110" width="380" height="22" rx="4" fill="#C4956A" opacity="0.15"/>
+                    <text x="62" y="126" font-family="Manrope, sans-serif" font-size="13" fill="#2C3038">that helps companies improve their operations.</text>
+                    <!-- Vibe line -->
+                    <rect x="56" y="136" width="475" height="22" rx="4" fill="#C4956A" opacity="0.15"/>
+                    <text x="62" y="152" font-family="Manrope, sans-serif" font-size="13" fill="#2C3038">They work with mid-market companies and offer strategic advice</text>
+                    <!-- Wrong line -->
+                    <rect x="56" y="162" width="250" height="22" rx="4" fill="#6B3D2E" opacity="0.15"/>
+                    <text x="62" y="178" font-family="Manrope, sans-serif" font-size="13" fill="#2C3038">across various industries."</text>
+                    <!-- Legend -->
+                    <rect x="40" y="236" width="640" height="180" rx="8" fill="#FFFFFF" stroke="#E8DDD5" stroke-width="1"/>
+                    <text x="360" y="260" text-anchor="middle" font-family="Manrope, sans-serif" font-size="12" font-weight="700" fill="#2C3038">DIAGNOSTIC BREAKDOWN</text>
+                    <!-- Fact row -->
+                    <rect x="60" y="276" width="14" height="14" rx="3" fill="#5B7C5E"/>
+                    <text x="82" y="288" font-family="Manrope, sans-serif" font-size="12" font-weight="600" fill="#5B7C5E">Fact: 1</text>
+                    <text x="82" y="304" font-family="Manrope, sans-serif" font-size="11" fill="#545B6A">"based in Portland" — correct, but that alone won't differentiate you.</text>
+                    <!-- Vibe row -->
+                    <rect x="60" y="322" width="14" height="14" rx="3" fill="#C4956A"/>
+                    <text x="82" y="334" font-family="Manrope, sans-serif" font-size="12" font-weight="600" fill="#C4956A">Vibes: 3</text>
+                    <text x="82" y="350" font-family="Manrope, sans-serif" font-size="11" fill="#545B6A">"management consulting," "improve operations," "mid-market companies"</text>
+                    <!-- Wrong row — separate line below vibes -->
+                    <rect x="60" y="368" width="14" height="14" rx="3" fill="#6B3D2E"/>
+                    <text x="82" y="380" font-family="Manrope, sans-serif" font-size="12" font-weight="600" fill="#6B3D2E">Wrong: 1</text>
+                    <text x="82" y="396" font-family="Manrope, sans-serif" font-size="11" fill="#6B3D2E">"various industries" — they serve food &amp; beverage only.</text>
+                </svg>
+                <div class="visual-caption">One fact. Three vibes. One wrong. AI got the city right but missed everything that makes Harbor different.</div>
+            </div>
+
+            <p>Our analysis of 120 B2B professional services firms found that three out of four received AI responses containing zero verifiable facts about the business. Not "few." Zero. AI returned vibes for nearly everything: "a consulting firm," "a professional services provider," "a firm specializing in consulting." That's not understanding. That's a placeholder.</p>
+
+            <h2 id="two-blockers">The Two Blockers: Why UNDERSTAND Has Gates Too</h2>
+
+            <p>In our first article explaining our framework, we went deep and explained the ways <a href="/library/ai-searchability-find-layer">the FIND layer</a> is binary. You're either accessible to AI crawlers or you're not. UNDERSTAND is different. It lives in shades of grey. But it still has blockers: structural barriers that prevent AI from comprehending your content even after it can access it.</p>
+
+            <h3>Blocker 1: Time</h3>
+
+            <p>When you type a question into ChatGPT or Perplexity, something happens behind the scenes that most people never consider. The AI doesn't just search for your question. It deconstructs it.</p>
+
+            <p>This is because of the time blocker. AI agents don't have minutes to piece together what your business does from scattered clues across your site. They have seconds.</p>
+
+            <p>A single prompt spawns 8 to 12 parallel sub-queries. Research from Semrush and Ahrefs on query fan-out architecture shows that complex questions can generate dozens or even hundreds of sub-queries. Each sub-query fans out to different sources. Results stream back and synthesize into the response you see, all within seconds.</p>
+
+            <p>Your website has a narrow window to provide answers. If your content isn't structured for fast extraction (clear headings, self-contained paragraphs, explicit entity statements), AI fills the gaps with guesses. And guesses become vibes.</p>
+
+            <h3>Blocker 2: Code</h3>
+
+            <p>The second blocker is how your website is built, not what it says.</p>
+
+            <p>Consider two versions of the same content. The first uses semantic HTML: <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;nav&gt;</code>. These tags tell AI what role each piece of content plays. <code>&lt;article&gt;</code> means standalone content. <code>&lt;nav&gt;</code> means navigation. <code>&lt;h2&gt;</code> means a major subtopic.</p>
+
+            <!-- VISUAL 2: Semantic HTML vs Div Soup -->
+            <div class="visual-container">
+                <svg viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Split-screen comparison showing clean semantic HTML tags on the left (labeled Structured, parseable) versus nested div tags on the right (labeled Unmarked, flat). Demonstrates what AI crawlers see when reading your website code.">
+                    <rect width="720" height="380" fill="#FAFAF7"/>
+                    <text x="360" y="30" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" font-weight="700" fill="#2C3038">What AI Crawlers See</text>
+                    <!-- Left: Semantic HTML -->
+                    <rect x="20" y="46" width="330" height="310" rx="8" fill="#FFFFFF" stroke="#5B7C5E" stroke-width="2"/>
+                    <rect x="20" y="46" width="330" height="36" rx="8" fill="#5B7C5E"/>
+                    <rect x="20" y="74" width="330" height="8" fill="#5B7C5E"/>
+                    <text x="185" y="70" text-anchor="middle" font-family="Manrope, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">SEMANTIC HTML</text>
+                    <text x="40" y="108" font-family="monospace" font-size="11.5" fill="#5B7C5E">&lt;main&gt;</text>
+                    <text x="56" y="128" font-family="monospace" font-size="11.5" fill="#5B7C5E">&lt;article&gt;</text>
+                    <text x="72" y="148" font-family="monospace" font-size="11.5" fill="#5B7C5E">&lt;h1&gt;</text>
+                    <text x="108" y="148" font-family="monospace" font-size="11.5" fill="#2C3038">Supply Chain Consulting</text>
+                    <text x="72" y="168" font-family="monospace" font-size="11.5" fill="#5B7C5E">&lt;section&gt;</text>
+                    <text x="88" y="188" font-family="monospace" font-size="11.5" fill="#5B7C5E">&lt;h2&gt;</text>
+                    <text x="120" y="188" font-family="monospace" font-size="11.5" fill="#2C3038">Our Services</text>
+                    <text x="88" y="208" font-family="monospace" font-size="11.5" fill="#5B7C5E">&lt;p&gt;</text>
+                    <text x="112" y="208" font-family="monospace" font-size="11.5" fill="#2C3038">We specialize in...</text>
+                    <text x="72" y="228" font-family="monospace" font-size="11.5" fill="#5B7C5E">&lt;/section&gt;</text>
+                    <text x="72" y="248" font-family="monospace" font-size="11.5" fill="#5B7C5E">&lt;nav&gt;</text>
+                    <text x="100" y="248" font-family="monospace" font-size="11.5" fill="#2C3038"> Related services</text>
+                    <text x="56" y="268" font-family="monospace" font-size="11.5" fill="#5B7C5E">&lt;/article&gt;</text>
+                    <text x="40" y="288" font-family="monospace" font-size="11.5" fill="#5B7C5E">&lt;/main&gt;</text>
+                    <rect x="100" y="310" width="170" height="28" rx="14" fill="#5B7C5E" opacity="0.12"/>
+                    <text x="185" y="329" text-anchor="middle" font-family="Manrope, sans-serif" font-size="12" font-weight="600" fill="#5B7C5E">Structured, parseable</text>
+                    <!-- Right: Div Soup -->
+                    <rect x="370" y="46" width="330" height="310" rx="8" fill="#FFFFFF" stroke="#6B3D2E" stroke-width="2"/>
+                    <rect x="370" y="46" width="330" height="36" rx="8" fill="#6B3D2E"/>
+                    <rect x="370" y="74" width="330" height="8" fill="#6B3D2E"/>
+                    <text x="535" y="70" text-anchor="middle" font-family="Manrope, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">DIV SOUP</text>
+                    <text x="390" y="108" font-family="monospace" font-size="11.5" fill="#6B3D2E">&lt;div class="wrapper"&gt;</text>
+                    <text x="406" y="128" font-family="monospace" font-size="11.5" fill="#6B3D2E">&lt;div class="container"&gt;</text>
+                    <text x="422" y="148" font-family="monospace" font-size="11.5" fill="#6B3D2E">&lt;div class="hero-text"&gt;</text>
+                    <text x="438" y="168" font-family="monospace" font-size="11.5" fill="#2C3038">Supply Chain Consulting</text>
+                    <text x="422" y="188" font-family="monospace" font-size="11.5" fill="#6B3D2E">&lt;/div&gt;</text>
+                    <text x="422" y="208" font-family="monospace" font-size="11.5" fill="#6B3D2E">&lt;div class="content-block"&gt;</text>
+                    <text x="438" y="228" font-family="monospace" font-size="11.5" fill="#6B3D2E">&lt;div class="title"&gt;</text>
+                    <text x="454" y="248" font-family="monospace" font-size="11.5" fill="#2C3038">Our Services</text>
+                    <text x="438" y="268" font-family="monospace" font-size="11.5" fill="#6B3D2E">&lt;/div&gt;</text>
+                    <text x="438" y="288" font-family="monospace" font-size="11.5" fill="#6B3D2E">&lt;div class="text"&gt;...</text>
+                    <rect x="458" y="310" width="150" height="28" rx="14" fill="#6B3D2E" opacity="0.12"/>
+                    <text x="533" y="329" text-anchor="middle" font-family="Manrope, sans-serif" font-size="12" font-weight="600" fill="#6B3D2E">Unmarked, flat</text>
+                </svg>
+                <div class="visual-caption">Both pages look identical in a browser. Only the left one communicates meaning to AI.</div>
+            </div>
+
+            <p>The second version wraps everything in nested <code>&lt;div&gt;</code> tags: <code>&lt;div class="wrapper"&gt;&lt;div class="container"&gt;&lt;div class="content-block"&gt;</code>. To a human browser, both pages look identical. To an AI crawler, the first is a clearly labeled building with signs on every door. The second is a warehouse full of unmarked boxes.</p>
+
+            <p>As The HOTH's 2026 analysis put it, it's much simpler for AI to parse a few dozen semantic HTML tags than several hundred nested div tags. Semantic HTML provides contextual information that divs simply lack.</p>
+
+            <p>This matters because AI crawlers don't render your page like a browser does. They read the raw HTML. If your content structure is semantic, AI understands the hierarchy and relationships. If it's div soup, AI sees flat text with no structural meaning.</p>
+
+            <h2 id="why-vibes">Why AI Defaults to Vibes</h2>
+
+            <p>AI platforms don't hallucinate about your business out of carelessness. They default to vibes because of how they're built and trained.</p>
+
+            <p><strong>Training data gaps.</strong> Most large language models are initially trained on web content through 2023 or 2024. If your website was built or substantially revised after that, the model may have outdated information or none at all. When a model encounters a blank, it generalizes. "A consulting firm." Generic beats wrong. That's a safety mechanism.</p>
+
+            <p><strong>No structured entity signals.</strong> AI platforms perform best when information is formally marked and organized, not buried in prose. Schema markup (the standardized code that tells AI platforms what your content means) is the clearest example. Only 1 of the 120 companies in our research had FAQ schema on their website. One. This is among the most valuable schema types for AI extraction, and nearly every firm ignores it.</p>
+
+            <!-- VISUAL: Why AI Defaults to Vibes Quadrant -->
+            <div class="visual-container">
+                <svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A 2x2 quadrant showing four reasons AI defaults to vibes: Training Data Gaps, No Entity Signals (greyed out to show the most common failure), No Authoritative Source, and No Entity Clarity. Three tiles cycle through a highlight animation while Entity Signals stays dimmed.">
+                    <rect width="720" height="420" fill="#FAFAF7"/>
+                    <text x="360" y="32" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" font-weight="700" fill="#2C3038">Why AI Defaults to Vibes: Four Failure Modes</text>
+                    <text x="360" y="52" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" fill="#545B6A">Most B2B sites have at least one dark tile. Entity Signals is the most common gap.</text>
+
+                    <!-- Tile 1: Training Data Gaps (active) -->
+                    <g class="quadrant-tile quadrant-active-1">
+                        <rect x="40" y="72" width="310" height="155" rx="10" fill="#FFFFFF" stroke="#5B7C5E" stroke-width="2"/>
+                        <circle cx="72" cy="104" r="18" fill="#5B7C5E" opacity="0.12"/>
+                        <text x="72" y="110" text-anchor="middle" font-family="Manrope, sans-serif" font-size="18" fill="#5B7C5E">1</text>
+                        <text x="100" y="110" font-family="Manrope, sans-serif" font-size="14" font-weight="700" fill="#2C3038">Training Data Gaps</text>
+                        <text x="60" y="140" font-family="Manrope, sans-serif" font-size="12" fill="#545B6A">Models trained on content through 2023-2024.</text>
+                        <text x="60" y="158" font-family="Manrope, sans-serif" font-size="12" fill="#545B6A">If your site changed since then, the model</text>
+                        <text x="60" y="176" font-family="Manrope, sans-serif" font-size="12" fill="#545B6A">has outdated info or none at all.</text>
+                        <text x="60" y="206" font-family="Manrope, sans-serif" font-size="11" font-style="italic" fill="#C4956A">Generic beats wrong. That's a safety mechanism.</text>
+                    </g>
+
+                    <!-- Tile 2: No Entity Signals (GREYED OUT - static) -->
+                    <g class="quadrant-tile" opacity="0.3">
+                        <rect x="370" y="72" width="310" height="155" rx="10" fill="#FFFFFF" stroke="#545B6A" stroke-width="2" stroke-dasharray="6,4"/>
+                        <circle cx="402" cy="104" r="18" fill="#545B6A" opacity="0.2"/>
+                        <text x="402" y="110" text-anchor="middle" font-family="Manrope, sans-serif" font-size="18" fill="#545B6A">2</text>
+                        <text x="430" y="110" font-family="Manrope, sans-serif" font-size="14" font-weight="700" fill="#545B6A">No Entity Signals</text>
+                        <text x="390" y="140" font-family="Manrope, sans-serif" font-size="12" fill="#545B6A">No schema markup to formally identify</text>
+                        <text x="390" y="158" font-family="Manrope, sans-serif" font-size="12" fill="#545B6A">what your business is. Only 1 of 120 firms</text>
+                        <text x="390" y="176" font-family="Manrope, sans-serif" font-size="12" fill="#545B6A">had FAQ schema. One.</text>
+                        <text x="390" y="206" font-family="Manrope, sans-serif" font-size="11" font-style="italic" fill="#545B6A">The most common gap in B2B.</text>
+                    </g>
+
+                    <!-- Tile 3: No Authoritative Source (active) -->
+                    <g class="quadrant-tile quadrant-active-2">
+                        <rect x="40" y="245" width="310" height="155" rx="10" fill="#FFFFFF" stroke="#5B7C5E" stroke-width="2"/>
+                        <circle cx="72" cy="277" r="18" fill="#5B7C5E" opacity="0.12"/>
+                        <text x="72" y="283" text-anchor="middle" font-family="Manrope, sans-serif" font-size="18" fill="#5B7C5E">3</text>
+                        <text x="100" y="283" font-family="Manrope, sans-serif" font-size="14" font-weight="700" fill="#2C3038">No Authoritative Source</text>
+                        <text x="60" y="313" font-family="Manrope, sans-serif" font-size="12" fill="#545B6A">A fact mentioned once in a blog post is</text>
+                        <text x="60" y="331" font-family="Manrope, sans-serif" font-size="12" fill="#545B6A">too weak to cite. Repeated across about,</text>
+                        <text x="60" y="349" font-family="Manrope, sans-serif" font-size="12" fill="#545B6A">services, case studies, and bios = authoritative.</text>
+                        <text x="60" y="379" font-family="Manrope, sans-serif" font-size="11" font-style="italic" fill="#C4956A">Repetition across pages builds confidence.</text>
+                    </g>
+
+                    <!-- Tile 4: No Entity Clarity (active) -->
+                    <g class="quadrant-tile quadrant-active-3">
+                        <rect x="370" y="245" width="310" height="155" rx="10" fill="#FFFFFF" stroke="#5B7C5E" stroke-width="2"/>
+                        <circle cx="402" cy="277" r="18" fill="#5B7C5E" opacity="0.12"/>
+                        <text x="402" y="283" text-anchor="middle" font-family="Manrope, sans-serif" font-size="18" fill="#5B7C5E">4</text>
+                        <text x="430" y="283" font-family="Manrope, sans-serif" font-size="14" font-weight="700" fill="#2C3038">No Entity Clarity</text>
+                        <text x="390" y="313" font-family="Manrope, sans-serif" font-size="12" fill="#545B6A">AI needs: category, audience, location,</text>
+                        <text x="390" y="331" font-family="Manrope, sans-serif" font-size="12" fill="#545B6A">services, differentiator. Most B2B sites are</text>
+                        <text x="390" y="349" font-family="Manrope, sans-serif" font-size="12" fill="#545B6A">vague because they assume context.</text>
+                        <text x="390" y="379" font-family="Manrope, sans-serif" font-size="11" font-style="italic" fill="#C4956A">"Digital transformation" = noise to AI.</text>
+                    </g>
+                </svg>
+                <div class="visual-caption">Four independent failure modes. Most B2B sites have at least one dark tile.</div>
+            </div>
+
+            <p><strong>No authoritative source to pull from.</strong> If a fact about your business appears once, casually mentioned in a blog post, AI may treat it as too weak to cite. If it appears consistently across your about page, service pages, case studies, and leadership bios, AI treats it as authoritative. Repetition across pages builds confidence.</p>
+
+            <p><strong>Absence of entity clarity.</strong> AI needs to understand what category your business belongs to, who you serve, where you're located, what you do, and what makes you different. Most B2B websites are vague on these points because they're written for audiences assumed to already know the context. "Helping enterprises navigate digital transformation" makes sense to an industry insider. To an AI model, it's noise.</p>
+
+            <p>These aren't failures of AI. They're failures of websites to provide information in a format AI can process.</p>
+
+            <h2 id="ai-trainer">You Have to Become an AI Trainer</h2>
+
+            <p>Here's where UNDERSTAND differs fundamentally from traditional SEO.</p>
+
+            <p>In SEO, you optimize for an algorithm. You study what Google rewards, and you align your content with those signals. Keywords, backlinks, page speed, mobile responsiveness. The algorithm is the student; you're teaching to the test.</p>
+
+            <p>With AI visibility, the dynamic shifts. You're not optimizing for an algorithm. You're training a model. You're providing the structured, consistent, specific information that AI needs to build an accurate representation of your business in its knowledge base.</p>
+
+            <p>Humans contextualize subjective data through years of experience. A VP of Marketing at a food manufacturer reads "supply chain optimization" and immediately understands the implications for their cold chain, their procurement process, their distribution network. AI can't make those leaps. It needs to be told explicitly.</p>
+
+            <p>That's what structured data does. Schema markup, semantic HTML, consistent entity descriptions across pages: these aren't technical SEO tasks. They're AI training data. Every page on your site either teaches AI something specific about your business or teaches it nothing.</p>
+
+            <p>Kevin Indig wrote in the <a href="https://www.growth-memo.com/p/state-of-ai-search-optimization-2026">"State of AI Search Optimization, 2026"</a> that content with definitive language achieves a 36.2% citation rate in AI responses, compared to 20.2% for hedged or vague language. That's a 79% citation lift just for being specific. Definitive statements like "We specialize in cold chain logistics for CPG manufacturers" train AI. Hedge statements like "We may be able to help with various supply chain challenges" leave AI guessing.</p>
+
+            <h2 id="seven-dimensions">What AI Needs to Understand Your Business</h2>
+
+            <p>AI models need clarity on seven core entity dimensions. These are the building blocks that determine whether AI describes your firm with facts or vibes.</p>
+
+            <!-- VISUAL 3: Seven Entity Dimensions Hub-and-Spoke (clock-face layout) -->
+            <div class="visual-container">
+                <svg viewBox="0 0 720 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hub-and-spoke diagram with Your Business Entity at the center and seven nodes arranged like a clock face: Name/Category at 12, Location at upper-left, Social Proof at upper-right, Ideal Customer at left, Differentiator at right, Services at lower-left, Results at lower-right.">
+                    <rect width="720" height="500" fill="#FAFAF7"/>
+                    <!-- Center hub at (360, 250), r=56 -->
+                    <circle cx="360" cy="250" r="56" fill="#5B7C5E"/>
+                    <text x="360" y="243" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">YOUR BUSINESS</text>
+                    <text x="360" y="260" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">ENTITY</text>
+
+                    <!-- Spokes: each line starts at the hub edge (r=56) aimed toward the node center -->
+                    <!-- 1. Name/Category — 12:00 (0°) straight up -->
+                    <line x1="360" y1="194" x2="360" y2="80" stroke="#C4956A" stroke-width="1.5" opacity="0.5"/>
+                    <!-- 2. Social Proof — 12:07 (42° CW) upper-right -->
+                    <line x1="397" y1="208" x2="490" y2="120" stroke="#C4956A" stroke-width="1.5" opacity="0.5"/>
+                    <!-- 3. Differentiator — 12:15 (90° CW) far right -->
+                    <line x1="416" y1="250" x2="555" y2="250" stroke="#C4956A" stroke-width="1.5" opacity="0.5"/>
+                    <!-- 4. Results — 12:27 (162° CW) lower-right (hub point mirrors Social Proof) -->
+                    <line x1="397" y1="292" x2="500" y2="381" stroke="#C4956A" stroke-width="1.5" opacity="0.5"/>
+                    <!-- 5. Services — 12:38 (228° CW) lower-left -->
+                    <line x1="318" y1="288" x2="215" y2="381" stroke="#C4956A" stroke-width="1.5" opacity="0.5"/>
+                    <!-- 6. Ideal Customer — 12:45 (270° CW) far left -->
+                    <line x1="304" y1="250" x2="165" y2="250" stroke="#C4956A" stroke-width="1.5" opacity="0.5"/>
+                    <!-- 7. Location — 12:52 (312° CW) upper-left -->
+                    <line x1="318" y1="212" x2="215" y2="120" stroke="#C4956A" stroke-width="1.5" opacity="0.5"/>
+
+                    <!-- Node 1: Name/Category — 12:00, top center -->
+                    <rect x="280" y="30" width="160" height="50" rx="8" fill="#FFFFFF" stroke="#5B7C5E" stroke-width="1.5"/>
+                    <text x="360" y="52" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#5B7C5E">Name &amp; Category</text>
+                    <text x="360" y="70" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">"Supply chain consulting"</text>
+
+                    <!-- Node 2: Social Proof — 12:07, upper-right (top-aligned with Location at y=95) -->
+                    <rect x="400" y="95" width="180" height="50" rx="8" fill="#FFFFFF" stroke="#5B7C5E" stroke-width="1.5"/>
+                    <text x="490" y="117" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#5B7C5E">Social Proof</text>
+                    <text x="490" y="135" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">"28 clients, original research"</text>
+
+                    <!-- Node 3: Differentiator — 12:15, far right -->
+                    <rect x="465" y="225" width="190" height="50" rx="8" fill="#FFFFFF" stroke="#5B7C5E" stroke-width="1.5"/>
+                    <text x="560" y="247" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#5B7C5E">Differentiator</text>
+                    <text x="560" y="265" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">"Ex-Unilever &amp; Nestl&eacute; leaders"</text>
+
+                    <!-- Node 4: Results — 12:27, lower-right (left-aligned with Social Proof at x=400) -->
+                    <rect x="400" y="356" width="200" height="50" rx="8" fill="#FFFFFF" stroke="#5B7C5E" stroke-width="1.5"/>
+                    <text x="500" y="378" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#5B7C5E">Results</text>
+                    <text x="500" y="396" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">"18% avg cost reduction"</text>
+
+                    <!-- Node 5: Services & Specialization — 12:38, lower-left -->
+                    <rect x="100" y="356" width="220" height="50" rx="8" fill="#FFFFFF" stroke="#5B7C5E" stroke-width="1.5"/>
+                    <text x="210" y="378" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#5B7C5E">Services &amp; Specialization</text>
+                    <text x="210" y="396" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">"Procurement network design"</text>
+
+                    <!-- Node 6: Ideal Customer — 12:45, far left -->
+                    <rect x="40" y="225" width="200" height="50" rx="8" fill="#FFFFFF" stroke="#5B7C5E" stroke-width="1.5"/>
+                    <text x="140" y="247" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#5B7C5E">Ideal Customer</text>
+                    <text x="140" y="265" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">"Mid-market F&amp;B, $30-300M"</text>
+
+                    <!-- Node 7: Location — 12:52, upper-left -->
+                    <rect x="125" y="95" width="180" height="50" rx="8" fill="#FFFFFF" stroke="#5B7C5E" stroke-width="1.5"/>
+                    <text x="215" y="117" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#5B7C5E">Location</text>
+                    <text x="215" y="135" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#545B6A">"Portland, Oregon"</text>
+                </svg>
+                <div class="visual-caption">Seven entity dimensions AI needs to describe your firm with facts, not vibes.</div>
+            </div>
+
+            <ul class="page-list">
+                <li><strong>Name and category.</strong> "Harbor Strategies" is the firm. "Supply chain management consulting" is the category. Not "consulting" or "professional services." Specific enough to distinguish you from thousands of others.</li>
+                <li><strong>Location.</strong> "Portland, Oregon" is processable. "Based in the Pacific Northwest" is vague. City and region, not just country.</li>
+                <li><strong>Services and specialization.</strong> Not "strategic advice" but "supply chain optimization," "procurement network design," "cold chain logistics." Specific enough that an AI can match you to a buyer's query.</li>
+                <li><strong>Ideal customer.</strong> "Mid-market food and beverage manufacturers with $30M to $300M annual revenue." Three dimensions (industry, size, revenue) together tell AI exactly who you serve.</li>
+                <li><strong>Differentiator.</strong> "Founded by former Unilever and Nestl&eacute; logistics leaders." "First firm in the region to specialize in cold chain sustainability." This is where you move from commodity to distinctive.</li>
+                <li><strong>Results.</strong> "Reduced supply chain costs by an average of 18% for clients." Hard metrics matter because they're verifiable. AI cites verifiable claims with higher confidence.</li>
+                <li><strong>Social proof.</strong> Case studies, client logos, press mentions. These give AI multiple angles to confirm what you claim about yourself. A Princeton study found that statistics with named sources deliver 40% more AI citations than unsourced claims.</li>
+            </ul>
+
+            <p>When a website communicates these seven dimensions clearly across multiple pages (about page, service pages, case studies, leadership bios, blog, schema markup), AI has something to work with. When they're absent or vague, AI guesses. And guesses are vibes.</p>
+
+            <h2 id="creates-kills">How Your Website Creates or Kills Facts</h2>
+
+            <p>Every page on your site either adds facts to AI's understanding of your business or reinforces vibes.</p>
+
+            <ul class="page-list">
+                <li><strong>Your About page</strong> is the single most valuable page for AI comprehension. It can answer all seven entity dimensions AI needs as a foundation.</li>
+                <li><strong>Service pages</strong> should answer "What specifically do we do?" not "What does our industry do?" The more specific your service descriptions, the more facts AI can extract.</li>
+                <li><strong>Leadership bios</strong> matter more than most firms realize. "James Chen, founder, former VP of Supply Chain at Unilever" gives AI a way to validate expertise.</li>
+                <li><strong>Blog content</strong> gives AI additional angles on your expertise. A post titled "Cold Chain Sustainability Trends in CPG Manufacturing" tells AI what you think about, what you know, and who you serve.</li>
+            </ul>
+
+            <p>Consistency across pages is where most firms fail quietly. If your About page says you serve "food and beverage manufacturers" and your case studies show tech and finance clients, AI gets confused. It sees conflicting signals and defaults to the safest generalization: vibes.</p>
+
+            <h2 id="fan-out">The Fan-Out Reality: What AI Is Actually Asking About You</h2>
+
+            <p>If you have the content on the visual layer of the pages mentioned above dialed in and it's backed by a complete structured data layer, you're off to a great start. It's not just the pages on your site that you have to think carefully about though.</p>
+
+            <p>Remember those fan-out queries we discussed earlier? The 8 to 12 sub-queries that AI spawns from a single user prompt? Those are designed to grab specific chunks of content from any relevant page.</p>
+
+            <p>When a buyer asks Perplexity "Which firms specialize in supply chain consulting for food manufacturers?", the AI doesn't search for that exact phrase. It deconstructs the query into parallel sub-queries, each targeting a different angle.</p>
+
+            <!-- VISUAL 4: Fan-Out Query Diagram -->
+            <div class="visual-container">
+                <svg viewBox="0 0 720 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fan-out query diagram showing a single user question branching into 8 sub-queries that fan out to different sources like company websites, publications, case studies, and LinkedIn. Sub-queries synthesize back into a single AI response. Total elapsed time: about 4 seconds.">
+                    <rect width="720" height="500" fill="#FAFAF7"/>
+
+                    <!-- User question at top -->
+                    <rect x="100" y="15" width="520" height="44" rx="8" fill="#2C3038"/>
+                    <text x="360" y="42" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="600" fill="#FFFFFF">"Which firms specialize in supply chain consulting for food manufacturers?"</text>
+
+                    <!-- Fan-out label -->
+                    <text x="360" y="82" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" font-weight="600" fill="#C4956A">QUERY DECONSTRUCTION</text>
+
+                    <!-- Sub-queries (8 boxes) -->
+                    <!-- Row 1 -->
+                    <line x1="180" y1="59" x2="110" y2="100" stroke="#C4956A" stroke-width="1.5"/>
+                    <rect x="20" y="100" width="180" height="34" rx="6" fill="#FFFFFF" stroke="#C4956A" stroke-width="1"/>
+                    <text x="110" y="121" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038">supply chain consulting firms</text>
+
+                    <line x1="270" y1="59" x2="290" y2="100" stroke="#C4956A" stroke-width="1.5"/>
+                    <rect x="200" y="100" width="180" height="34" rx="6" fill="#FFFFFF" stroke="#C4956A" stroke-width="1"/>
+                    <text x="290" y="121" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038">food beverage supply chain</text>
+
+                    <line x1="450" y1="59" x2="470" y2="100" stroke="#C4956A" stroke-width="1.5"/>
+                    <rect x="380" y="100" width="180" height="34" rx="6" fill="#FFFFFF" stroke="#C4956A" stroke-width="1"/>
+                    <text x="470" y="121" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038">mid-market SC optimization</text>
+
+                    <line x1="540" y1="59" x2="620" y2="100" stroke="#C4956A" stroke-width="1.5"/>
+                    <rect x="560" y="100" width="140" height="34" rx="6" fill="#FFFFFF" stroke="#C4956A" stroke-width="1"/>
+                    <text x="630" y="121" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038">SC case studies CPG</text>
+
+                    <!-- Row 2 -->
+                    <line x1="180" y1="59" x2="90" y2="152" stroke="#C4956A" stroke-width="1" opacity="0.5"/>
+                    <rect x="20" y="152" width="140" height="34" rx="6" fill="#FFFFFF" stroke="#C4956A" stroke-width="1"/>
+                    <text x="90" y="173" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038">Portland consulting</text>
+
+                    <line x1="300" y1="59" x2="260" y2="152" stroke="#C4956A" stroke-width="1" opacity="0.5"/>
+                    <rect x="170" y="152" width="180" height="34" rx="6" fill="#FFFFFF" stroke="#C4956A" stroke-width="1"/>
+                    <text x="260" y="173" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038">cold chain logistics experts</text>
+
+                    <line x1="430" y1="59" x2="450" y2="152" stroke="#C4956A" stroke-width="1" opacity="0.5"/>
+                    <rect x="360" y="152" width="180" height="34" rx="6" fill="#FFFFFF" stroke="#C4956A" stroke-width="1"/>
+                    <text x="450" y="173" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038">procurement optimization F&amp;B</text>
+
+                    <line x1="540" y1="59" x2="610" y2="152" stroke="#C4956A" stroke-width="1" opacity="0.5"/>
+                    <rect x="550" y="152" width="150" height="34" rx="6" fill="#FFFFFF" stroke="#C4956A" stroke-width="1"/>
+                    <text x="625" y="173" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#2C3038">SC firm reviews ratings</text>
+
+                    <!-- Source types -->
+                    <text x="360" y="216" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" font-weight="600" fill="#545B6A">SOURCES SEARCHED</text>
+                    <rect x="60" y="228" width="120" height="28" rx="6" fill="#5B7C5E" opacity="0.1" stroke="#5B7C5E" stroke-width="1"/>
+                    <text x="120" y="246" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#5B7C5E">Company sites</text>
+                    <rect x="200" y="228" width="120" height="28" rx="6" fill="#5B7C5E" opacity="0.1" stroke="#5B7C5E" stroke-width="1"/>
+                    <text x="260" y="246" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#5B7C5E">Publications</text>
+                    <rect x="340" y="228" width="120" height="28" rx="6" fill="#5B7C5E" opacity="0.1" stroke="#5B7C5E" stroke-width="1"/>
+                    <text x="400" y="246" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#5B7C5E">Case studies</text>
+                    <rect x="480" y="228" width="120" height="28" rx="6" fill="#5B7C5E" opacity="0.1" stroke="#5B7C5E" stroke-width="1"/>
+                    <text x="540" y="246" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#5B7C5E">LinkedIn profiles</text>
+
+                    <!-- Synthesis arrows — all four lines converge above the "TH" in SYNTHESIS -->
+                    <line x1="120" y1="256" x2="360" y2="296" stroke="#C4956A" stroke-width="1" opacity="0.4"/>
+                    <line x1="260" y1="256" x2="360" y2="296" stroke="#C4956A" stroke-width="1" opacity="0.4"/>
+                    <line x1="400" y1="256" x2="360" y2="296" stroke="#C4956A" stroke-width="1" opacity="0.4"/>
+                    <line x1="540" y1="256" x2="360" y2="296" stroke="#C4956A" stroke-width="1" opacity="0.4"/>
+
+                    <!-- Synthesis label — sits below the convergence point -->
+                    <text x="360" y="314" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" font-weight="600" fill="#C4956A">SYNTHESIS</text>
+
+                    <!-- AI Response at bottom — one line of space below SYNTHESIS -->
+                    <rect x="80" y="332" width="560" height="100" rx="8" fill="#FFFFFF" stroke="#2C3038" stroke-width="1.5"/>
+                    <text x="100" y="356" font-family="Manrope, sans-serif" font-size="10" font-weight="600" fill="#545B6A">AI RESPONSE</text>
+                    <text x="100" y="378" font-family="Manrope, sans-serif" font-size="12" fill="#2C3038">"Harbor Strategies is a supply chain consulting firm based in</text>
+                    <text x="100" y="396" font-family="Manrope, sans-serif" font-size="12" fill="#2C3038">Portland, Oregon, specializing in distribution network design for</text>
+                    <text x="100" y="414" font-family="Manrope, sans-serif" font-size="12" fill="#2C3038">mid-market food and beverage manufacturers..."</text>
+
+                    <!-- Time label -->
+                    <rect x="280" y="452" width="160" height="30" rx="15" fill="#2C3038"/>
+                    <text x="360" y="472" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="600" fill="#FFFFFF">Total elapsed: ~4 seconds</text>
+                </svg>
+                <div class="visual-caption">A single question becomes 8+ sub-queries, each looking for specific facts. Your site needs to answer them.</div>
+            </div>
+
+            <p>Each sub-query is looking for a specific piece of information. Your website needs to answer those specific sub-questions, not just the broad topic.</p>
+
+            <p>Surfer SEO's December 2025 research found that 68% of AI-cited pages are outside the traditional top 10 organic search results. Only 25% to 39% overlap exists between Google rankings and AI citations. AI is finding and citing different content than Google rewards.</p>
+
+            <p>This means your content can rank nowhere on Google and still get cited by AI, if it answers the specific sub-queries that AI generates. Conversely, your content can rank #1 on Google and get zero AI citations if it doesn't match the fan-out query pattern.</p>
+
+            <p>The fan-out architecture means AI is asking very specific questions about your business. Every page that answers one of those sub-questions clearly and with facts is a page that gets cited. Every page that speaks in generalities gets skipped.</p>
+
+            <h2 id="understand-to-trust">From UNDERSTAND to TRUST</h2>
+
+            <p>Being found is step one. Being understood is step two. But even when AI accurately describes what your company does, a potential buyer still needs to trust what AI says about you.</p>
+
+            <p>That's the TRUST layer: do buyers and AI platforms have enough confidence in your authority to act on what they read? Is the information scattered across your own website, or your website and other owned platforms, consistent or contradictory? Do third-party sources corroborate your claims? Does AI cite you with conviction or with hedging?</p>
+
+            <p>UNDERSTAND gets you into the conversation. TRUST determines whether that conversation leads to revenue. That's what we'll be discussing next.</p>
+
+            <!-- Signal Check CTA -->
+            <div class="cta-box">
+                <p><strong>Our Signal Check tests the UNDERSTAND layer.</strong></p>
+                <p>It's free and takes only two minutes to find out exactly what all four major AI platforms say about you right now.</p>
+                <p><a href="/signal-check">Run your free Signal Check now &rarr;</a></p>
+            </div>
+
+            <p><em>You're findable. AI understands what you do. But does it trust what it finds enough to cite you with confidence? That's exactly what <a href="/library/ai-trust-brand-authority">the TRUST layer</a> diagnoses.</em></p>
+
+
+            <!-- Author Bio -->
+            <div class="author-bio">
+                <div class="author-avatar">LM</div>
+                <div class="author-info">
+                    <h3>Liz Micik</h3>
+                    <p class="author-title">AI Visibility Strategist &amp; SEO Expert</p>
+                    <p>28 years in SEO, content strategy, and B2B marketing. Liz helps professional services firms become visible, understood, and trusted by AI platforms.</p>
+                </div>
+            </div>
+
+            <!-- Related Posts -->
+            <div class="related-posts">
+                <h2>More in This Series</h2>
+                <div class="related-posts-grid">
+                    <div class="post-card fade-in">
+                        <a href="/library/ai-searchability-find-layer">
+                        <div class="post-card-image" style="background: linear-gradient(135deg, #5B7C5E 0%, #2C3038 100%);">
+                            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
+                                <rect width="280" height="180" fill="none"/>
+                                <text x="140" y="75" text-anchor="middle" font-family="Manrope, sans-serif" font-size="32" font-weight="800" fill="rgba(255,255,255,0.4)">FIND</text>
+                                <text x="140" y="115" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)">Layer 1: The Four Gates</text>
+                            </svg>
+                        </div>
+                        <div class="post-card-content">
+                            <p class="post-card-meta">Previous</p>
+                            <h3>AI Searchability is Binary: Can AI Crawlers FIND you?</h3>
+                        </div>
+                        </a>
+                    </div>
+
+                    <div class="post-card fade-in">
+                        <a href="/library/ai-trust-brand-authority">
+                        <div class="post-card-image" style="background: linear-gradient(135deg, #6B3D2E 0%, #C4956A 100%);">
+                            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
+                                <rect width="280" height="180" fill="none"/>
+                                <text x="140" y="75" text-anchor="middle" font-family="Manrope, sans-serif" font-size="32" font-weight="800" fill="rgba(255,255,255,0.4)">TRUST</text>
+                                <text x="140" y="115" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)">Layer 3: Authority &amp; Confidence</text>
+                            </svg>
+                        </div>
+                        <div class="post-card-content">
+                            <p class="post-card-meta">Next</p>
+                            <h3>AI Cites Your Competitors. Not You. Here's Why.</h3>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </div>
+
+    <!-- Final CTA -->
+    <div style="max-width:680px;margin:2.5rem auto 0;padding:16px 22px;background:#F5EFE4;border:1px solid rgba(44,48,56,0.10);border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;"><span style="font-size:0.95rem;color:#2C3038;font-weight:600;line-height:1.4;">Found this useful? Make Liz Micik a preferred source in Google Search.</span><a href="https://google.com/preferences/source?q=lizmicik.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(44,48,56,0.16);color:#2C3038;font-weight:700;font-size:0.88rem;padding:10px 18px;border-radius:8px;text-decoration:none;white-space:nowrap;"><svg width="16" height="16" viewBox="0 0 48 48" aria-hidden="true" style="flex-shrink:0;"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg> Add as a preferred source</a></div>
+    <div class="final-cta">
+        <h2>You're understood. But does AI trust you enough to cite you?</h2>
+        <p>Read <a href="/library/ai-trust-brand-authority" style="color:#C4956A;text-decoration:underline;">the TRUST layer</a> to find out. Or test your own brand with a Signal Check across all four layers. Or <a href="/agent-readiness-checklist" style="color:#C4956A;text-decoration:underline;">see where you stand</a> in two minutes.</p>
+        <div class="cta-buttons">
+            <a href="/signal-check" class="cta-button">Free Signal Check</a>
+            <a href="/audit" class="cta-button copper">Agent Readiness Audit</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <style>
+.lmf-footer{background:#2C3038;color:#F2EDE7;padding:56px 24px 28px;font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+.lmf-inner{max-width:960px;margin:0 auto;}
+.lmf-top{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,0.10);}
+.lmf-brand{max-width:300px;}
+.lmf-brand .lmf-wordmark{font-size:1.2rem;font-weight:700;letter-spacing:-0.01em;margin-bottom:10px;color:#F2EDE7;}
+.lmf-brand p{font-size:0.88rem;color:#B8B5B0;line-height:1.6;margin:0;}
+.lmf-cols{display:flex;flex-wrap:wrap;gap:48px;}
+.lmf-col h4{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.10em;color:#C4956A;margin:0 0 14px;}
+.lmf-col ul{list-style:none;margin:0;padding:0;}
+.lmf-col li{margin-bottom:9px;}
+.lmf-col a{color:#F2EDE7;text-decoration:none;font-size:0.9rem;transition:color 0.18s;}
+.lmf-col a:hover{color:#C4956A;}
+.lmf-bottom{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding-top:22px;}
+.lmf-bottom p{font-size:0.8rem;color:#B8B5B0;margin:0;}
+.lmf-bottom .lmf-legal a{color:#B8B5B0;text-decoration:none;font-size:0.8rem;}
+.lmf-bottom .lmf-legal a:hover{color:#C4956A;}
+.lmf-bottom .lmf-legal span{color:rgba(255,255,255,0.25);margin:0 8px;}
+@media (max-width:640px){.lmf-top{flex-direction:column;gap:32px;}.lmf-cols{gap:32px;}.lmf-bottom{flex-direction:column;align-items:flex-start;}}
+</style>
+<footer class="lmf-footer" role="contentinfo">
+  <div class="lmf-inner">
+    <div class="lmf-top">
+      <div class="lmf-brand">
+        <div class="lmf-wordmark">Liz Micik</div>
+        <p>Helping businesses transition human websites to usable, agentic websites.</p>
+      </div>
+      <div class="lmf-cols">
+        <div class="lmf-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="/signal-check">Signal Check</a></li>
+            <li><a href="/audit">Agent Readiness Audit</a></li>
+            <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+            <li><a href="/actions">Agent Readiness Actions</a></li>
+          </ul>
+        </div>
+        <div class="lmf-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/about">About</a></li>
+            <li><a href="/library">Library</a></li>
+            <li><a href="/resources">Resources</a></li>
+          </ul>
+        </div>
+        <div class="lmf-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="mailto:info@lizmicik.com">info@lizmicik.com</a></li>
+            <li><a href="https://www.linkedin.com/in/lizmicik" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://google.com/preferences/source?q=lizmicik.com" target="_blank" rel="noopener">Add as a preferred source</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="lmf-bottom">
+      <p>&copy; 2026 Liz Micik. All rights reserved.</p>
+      <p class="lmf-legal">
+        <a href="/privacy-policy">Privacy Policy</a>
+        <span>&middot;</span>
+        <a href="/terms">Terms of Use</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+    <script>
+        // Cookie Banner & GA4
+        (function() {
+            var COOKIE_KEY = 'lizmicik-cookie-consent';
+            var GA_ID = 'G-B9S40S2SKG';
+
+            if (!localStorage.getItem(COOKIE_KEY)) {
+                var banner = document.createElement('div');
+                banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#2C3038;color:white;padding:1.5rem 2rem;text-align:center;z-index:999;font-size:0.9rem;';
+                banner.innerHTML = '<p style="margin-bottom:1rem;">We use analytics to understand how you use our site and improve it.</p><button id="accept-cookies" style="background:#5B7C5E;color:white;border:none;padding:0.75rem 1.5rem;border-radius:0.5rem;cursor:pointer;font-weight:600;margin-right:1rem;">Accept</button><button id="decline-cookies" style="background:transparent;color:white;border:1px solid white;padding:0.75rem 1.5rem;border-radius:0.5rem;cursor:pointer;font-weight:600;">Decline</button>';
+                document.body.appendChild(banner);
+                document.getElementById('accept-cookies').addEventListener('click', function() { localStorage.setItem(COOKIE_KEY, 'true'); loadGA(); banner.remove(); });
+                document.getElementById('decline-cookies').addEventListener('click', function() { localStorage.setItem(COOKIE_KEY, 'false'); banner.remove(); });
+            } else if (localStorage.getItem(COOKIE_KEY) === 'true') { loadGA(); }
+
+            function loadGA() {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', GA_ID);
+                var script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+                document.head.appendChild(script);
+            }
+        })();
+
+        // Mobile Navigation Toggle
+        var navToggle = document.querySelector('.nav-toggle');
+        var navLinks = document.querySelector('.nav-links');
+        navToggle.addEventListener('click', function() {
+            navToggle.classList.toggle('open');
+            navLinks.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+        });
+
+        // Hide nav on scroll down, show on scroll up
+        var lastScrollTop = 0;
+        var nav = document.querySelector('.nav');
+        window.addEventListener('scroll', function() {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) { nav.classList.add('nav-hidden'); }
+            else { nav.classList.remove('nav-hidden'); }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                var href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    var target = document.querySelector(href);
+                    var offsetTop = target.offsetTop - 80;
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                    if (navLinks.classList.contains('active')) { navToggle.classList.remove('open'); navLinks.classList.remove('active'); }
+                }
+            });
+        });
+
+        // TOC active state tracking
+        var tocLinks = document.querySelectorAll('.toc-list a');
+        var sections = [];
+        tocLinks.forEach(function(link) {
+            var id = link.getAttribute('href').substring(1);
+            var section = document.getElementById(id);
+            if (section) sections.push({ el: section, link: link });
+        });
+
+        function updateTOC() {
+            var scrollPos = window.scrollY + 120;
+            var current = null;
+            sections.forEach(function(s) {
+                if (s.el.offsetTop <= scrollPos) current = s;
+            });
+            tocLinks.forEach(function(l) { l.classList.remove('active'); });
+            if (current) current.link.classList.add('active');
+        }
+        window.addEventListener('scroll', updateTOC);
+        updateTOC();
+
+        // IntersectionObserver for fade-in animations
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; observer.unobserve(entry.target); }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+            el.style.opacity = '0'; el.style.transform = 'translateY(10px)'; el.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; observer.observe(el);
+        });
+    </script>
+</body>
+</html>
