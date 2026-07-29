@@ -998,13 +998,13 @@
             inset: 0;
             pointer-events: none;
             z-index: 1;
-            opacity: 0.055;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.18;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.70' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
         }
         .hero .hero-inner { position: relative; z-index: 2; width: 100%; }
         .hero { text-align: left; justify-content: flex-start; }
-        .hero h1 { max-width: 15ch; }
-        .hero .hero-sub { max-width: 46ch; margin: 0 0 2.75rem; }
+        .hero h1 { max-width: 15ch; line-height: 1.02; letter-spacing: -0.015em; margin-bottom: 1.35rem; }
+        .hero .hero-sub { max-width: 46ch; margin: 0 0 3.25rem; line-height: 1.45; }
         @media (max-width: 640px) {
             .hero { text-align: center; justify-content: center; }
             .hero h1 { max-width: none; }
@@ -1081,7 +1081,8 @@
                     <p class="stat-source">Source: <a href="https://www.imperva.com/resources/resource-library/reports/2025-bad-bot-report/" target="_blank" rel="noopener">Imperva 2025 Bad Bot Report</a></p>
                 </div>
             </div>
-            <p class="fade-in">While most of the automated traffic on your site is made up of routine analytics bots or random AI question bots, more and more of it is what I call &ldquo;<a href="/library/the-proxy-buyer">Proxy Buyers</a>.&rdquo; Those are the AI agents sent by a human to seriously research you in connection with a buying decision. You need to start paying attention to if and how they can use your site. If you can&rsquo;t serve them structured, verifiable information they can use, you risk becoming invisible.</p>
+            <p class="fade-in">While most of the automated traffic on your site is made up of routine analytics bots or random AI question bots, more and more of it is what I call &ldquo;<a href="/library/the-proxy-buyer">Proxy Buyers</a>.&rdquo; Those are the AI agents sent by a human to seriously research you in connection with a buying decision.</p>
+            <p class="fade-in">You need to start paying attention to if and how they can use your site. If you can&rsquo;t serve them structured, verifiable information they can use, you risk becoming invisible.</p>
             <div class="pull-quote fade-in">The companies that figure out how to talk to agents — clearly, completely, and consistently — will own the next decade of discovery.</div>
             <p class="fade-in">The ones that don't will watch their visibility erode and never understand why.</p>
         </div>
