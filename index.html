@@ -992,23 +992,54 @@
         }
             /* ---- HERO REFRESH — hero-refresh-2026-07-29. Delete this whole block to revert. ---- */
         .hero::after { display: none !important; }
+        .hero {
+            background-color: #F5EFE4;
+            text-align: left;
+            justify-content: flex-start;
+            padding-bottom: clamp(1rem, 2.2vw, 1.6rem);
+        }
         .hero::before {
             content: '';
             position: absolute;
             inset: 0;
             pointer-events: none;
             z-index: 1;
-            opacity: 0.18;
+            opacity: 0.12;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.70' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
         }
         .hero .hero-inner { position: relative; z-index: 2; width: 100%; }
-        .hero { text-align: left; justify-content: flex-start; }
-        .hero h1 { max-width: 15ch; line-height: 1.02; letter-spacing: -0.015em; margin-bottom: 1.35rem; }
-        .hero .hero-sub { max-width: 46ch; margin: 0 0 3.25rem; line-height: 1.45; }
-        @media (max-width: 640px) {
+        .hero-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 2.6rem; flex-wrap: wrap; }
+        .hero-copy { flex: 1 1 400px; min-width: 0; }
+        .hero h1 { color: #6B3D2E; max-width: 16ch; line-height: 1.02; letter-spacing: -0.015em; margin: 0 0 0.95rem; }
+        .hero .hero-sub { color: #6E6054; max-width: 44ch; margin: 0; font-weight: 500; opacity: 1; }
+        .hero-act { flex: 0 0 auto; text-align: right; }
+        .hero-act-note { margin: 0.6rem 0 0; font-size: 0.78rem; color: #8A7C6E; }
+        .hero .strip {
+            display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end;
+            gap: 0.9rem; margin-top: clamp(1.4rem, 2.8vw, 2.2rem);
+            padding-top: 1.2rem; border-top: 1px solid rgba(107, 61, 46, 0.16);
+        }
+        .hero .chip {
+            flex: 0 1 92px; max-width: 92px; display: block; line-height: 0; border-radius: 6px;
+            opacity: 0.42; filter: saturate(0.15);
+            transition: opacity 0.25s ease, transform 0.25s ease, filter 0.25s ease;
+        }
+        .hero .chip img { width: 100%; height: auto; display: block; mix-blend-mode: multiply; }
+        .hero .chip:hover, .hero .chip:focus-visible {
+            opacity: 1; filter: saturate(1); transform: translateY(-4px); outline: none;
+        }
+        @media (max-width: 720px) {
             .hero { text-align: center; justify-content: center; }
+            .hero-top { flex-direction: column; align-items: center; gap: 1.8rem; }
             .hero h1 { max-width: none; }
-            .hero .hero-sub { max-width: none; margin: 0 auto 2rem; }
+            .hero .hero-sub { max-width: none; margin: 0 auto; }
+            .hero-act { text-align: center; }
+            .hero .chip { flex: 0 1 64px; max-width: 64px; }
+            .hero .strip { gap: 0.55rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero .chip { transition: none; }
+            .hero .chip:hover, .hero .chip:focus-visible { transform: none; }
         }
         /* ---- end hero refresh ---- */
     </style>
@@ -1042,11 +1073,42 @@
     <!-- HERO -->
     <header class="section hero" role="banner">
         <div class="hero-inner section-inner">
-            <h1 class="fade-in">
-                Your Next Buyer Isn't Human
-            </h1>
-            <p class="hero-sub fade-in">Prepare your website for AI&nbsp;Agents</p>
-            <a href="/signal-check" class="hero-cta fade-in">Run Your Signal Check — Free</a>
+            <div class="hero-top">
+                <div class="hero-copy">
+                    <h1 class="fade-in">Your Next Visitor May Not Be Human</h1>
+                    <p class="hero-sub fade-in">I help complex B2B companies get ready for AI agents.</p>
+                </div>
+                <div class="hero-act fade-in">
+                    <a href="/signal-check" class="hero-cta">See What AI Says About You</a>
+                    <p class="hero-act-note">Free. Four platforms. Thirty seconds.</p>
+                </div>
+            </div>
+            <nav class="strip" aria-label="Explore the library">
+                <a class="chip" href="/library/the-proxy-buyer" aria-label="The Proxy Buyer: the machine that shortlists you before a human ever calls">
+                    <img src="/images/strip-proxy-buyer.webp" alt="The Proxy Buyer: the machine that shortlists you before a human ever calls" width="184" height="184">
+                </a>
+                <a class="chip" href="/library/ai-searchability-find-layer" aria-label="Find: can AI agents reach and read your content?">
+                    <img src="/images/strip-find-door.webp" alt="Find: can AI agents reach and read your content?" width="184" height="184">
+                </a>
+                <a class="chip" href="/library/ai-understand-brand-visibility" aria-label="Understand: can AI agents work out what you actually do?">
+                    <img src="/images/strip-understand-blackboard.webp" alt="Understand: can AI agents work out what you actually do?" width="184" height="184">
+                </a>
+                <a class="chip" href="/library/ai-trust-brand-authority" aria-label="Trust: can AI agents verify the claims you make?">
+                    <img src="/images/strip-trust-house.webp" alt="Trust: can AI agents verify the claims you make?" width="184" height="184">
+                </a>
+                <a class="chip" href="/library/life-beyond-google" aria-label="Use: AI read your site, but can it do anything with your business?">
+                    <img src="/images/strip-use-switchboard.webp" alt="Use: AI read your site, but can it do anything with your business?" width="184" height="184">
+                </a>
+                <a class="chip" href="/library/new-old-search-definitions" aria-label="From search to AI visibility: the vocabulary has changed">
+                    <img src="/images/strip-transition-phrasebook.webp" alt="From search to AI visibility: the vocabulary has changed" width="184" height="184">
+                </a>
+                <a class="chip" href="/library/ai-visibility-measurement-frame" aria-label="You can't manage what you can't measure about AI">
+                    <img src="/images/strip-measure-1-scale.webp" alt="You can't manage what you can't measure about AI" width="184" height="184">
+                </a>
+                <a class="chip" href="/library/ai-visibility-measurement-paid-stack" aria-label="The paid AI visibility stack: can one tool do every job?">
+                    <img src="/images/strip-measure-3-still.webp" alt="The paid AI visibility stack: can one tool do every job?" width="184" height="184">
+                </a>
+            </nav>
         </div>
     </header>
     <!-- THE SHIFT -->
