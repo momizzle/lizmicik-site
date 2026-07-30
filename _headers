@@ -1,2 +1,8 @@
 /clients/*
   X-Robots-Tag: noindex, nofollow
+
+# Internal operations dashboard. Deliberately NOT listed in robots.txt:
+# a robots.txt Disallow would stop crawlers reading this noindex header,
+# which is the exact trap Glenn Gabe flagged on 2026-07-29. Nothing links here.
+/desk-q7m2x9f4/*
+  X-Robots-Tag: noindex, nofollow, noarchive
