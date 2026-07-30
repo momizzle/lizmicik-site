@@ -114,7 +114,7 @@ export default async (request) => {
         'Content-Type': 'application/json',
         'X-Kit-Api-Key': apiKey,
       },
-      body: JSON.stringify({ email_address: email }),
+      body: JSON.stringify({ email_address: email, ...(name ? { first_name: name } : {}) }),
     });
 
     const subData = await subResponse.json();

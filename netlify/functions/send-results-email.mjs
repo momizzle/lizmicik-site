@@ -177,7 +177,7 @@ function buildEmailHtml({ url, keyword, scoring, responses, benchmark }) {
         <!-- CTA -->
         <div style="text-align: center; padding: 8px 0 16px;">
           <h2 style="font-family: 'Lora', Georgia, serif; font-size: 20px; color: #2C3038; margin: 0 0 8px;">Want to improve this score?</h2>
-          <p style="font-size: 14px; color: #6b7280; margin: 0 0 20px; line-height: 1.6;">The Agent Readiness Audit evaluates your site across 30 dimensions and shows you exactly what to fix. You get a step-by-step improvement roadmap including quick wins.</p>
+          <p style="font-size: 14px; color: #6b7280; margin: 0 0 20px; line-height: 1.6;">The Agent Readiness Audit evaluates your site across 44 checkpoints spanning all four layers &mdash; Find, Understand, Trust, and Use &mdash; and shows you exactly what to fix. You get a step-by-step improvement roadmap including quick wins.</p>
           <a href="https://lizmicik.com/audit.html" style="display: inline-block; background: #B07D4F; color: #ffffff; font-weight: 600; font-size: 15px; padding: 14px 32px; border-radius: 6px; text-decoration: none;">Get My Readiness Audit</a>
         </div>
 

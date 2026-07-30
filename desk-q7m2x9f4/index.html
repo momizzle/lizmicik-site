@@ -52,6 +52,9 @@
   .hot{border-left:4px solid var(--amber);}
   .tag{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--amber);
     font-family:ui-monospace,Menlo,Consolas,monospace;margin-left:6px;}
+  .did{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;letter-spacing:.5px;
+    background:var(--brown);color:var(--cream);padding:2px 6px;border-radius:2px;
+    margin-right:8px;vertical-align:middle;text-transform:none;}
 
   /* grid */
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;}
@@ -119,52 +122,52 @@
 <section class="front">
   <div class="front-hd">
     <div>Waiting on you</div>
-    <span>Nothing here moves until you rule on it</span>
+    <span>Reply with the code &mdash; e.g. &ldquo;KIT: done&rdquo; or &ldquo;POINTCOUNT: 72&rdquo;. Codes are stable; the numbers renumber.</span>
   </div>
   <ol class="decisions">
-    <li class="hot">
+    <li class="hot" id="d-pointcount">
       <span class="n">1</span>
-      <span class="q">Which point count is the real one? <span class="tag">now public</span></span>
+      <span class="q"><code class="did">POINTCOUNT</code>Which point count is the real one? <span class="tag">now public</span></span>
       <span class="why">You said <strong>&ldquo;40 different checkpoints. 40.&rdquo;</strong> on the Wisepreneurs episode that published today. Four versions are live across the brain, the site and past outreach &mdash; 31, 40, 72, 30 &mdash; and the engine actually carries 72 registry checks. This stopped being an internal inconsistency this morning. Pick one before the next proposal goes out.</span>
     </li>
-    <li>
+    <li id="d-ladder">
       <span class="n">2</span>
-      <span class="q">Roadmap and Actions both start at $5,500. Ladder, or collision?</span>
+      <span class="q"><code class="did">LADDER</code>Roadmap and Actions both start at $5,500. Ladder, or collision?</span>
       <span class="why">They now share an entry price <em>and</em> &ldquo;done-for-you&rdquo; language. On the podcast it came out as one thing: &ldquo;build services from $5,500.&rdquo; Either that is deliberate and the pitch needs to name the difference out loud, or the ladder has two rungs at the same height.</span>
     </li>
-    <li>
+    <li id="d-discount">
       <span class="n">3</span>
-      <span class="q">Is the $1,200 private discount dead?</span>
+      <span class="q"><code class="did">DISCOUNT</code>Is the $1,200 private discount dead?</span>
       <span class="why">Elsco paid full list as the warmest possible referral. Flagged in <code>business-overview.md</code> as a question I would not decide alone.</span>
     </li>
-    <li>
+    <li id="d-casestudy">
       <span class="n">4</span>
-      <span class="q">The case study is still unmet.</span>
+      <span class="q"><code class="did">CASESTUDY</code>The case study is still unmet.</span>
       <span class="why">The &ldquo;2&ndash;3 free pilots for case studies&rdquo; plan never happened. The plan is optional; the underlying need is not, and it is the thing every proposal is missing.</span>
     </li>
-    <li class="hot">
+    <li class="hot" id="d-kit">
       <span class="n">5</span>
-      <span class="q">Kit needs you logged in. <span class="tag">blocked</span></span>
+      <span class="q"><code class="did">KIT</code>Kit needs you logged in. <span class="tag">blocked</span></span>
       <span class="why">I cannot authenticate to <code>app.kit.com</code>, so the Signal Check form contents cannot be read and the sequence cannot be built. Three warm people from July 28 are still sitting unsequenced, and today&rsquo;s episode links straight to <code>/signal-check</code>.</span>
     </li>
-    <li>
+    <li id="d-commits">
       <span class="n">6</span>
-      <span class="q">Two commits are waiting on you.</span>
+      <span class="q"><code class="did">COMMITS</code>Two commits are waiting on you.</span>
       <span class="why"><strong>The site repo:</strong> <code>about.html</code>, 18 insertions, the Wisepreneurs link in both the visible list and the JSON-LD &mdash; plus this page. <strong>The <code>AI work</code> repo:</strong> still nothing pushed, going back to Session 174. I prepare, you commit.</span>
     </li>
-    <li>
+    <li id="d-nigel">
       <span class="n">7</span>
-      <span class="q">Nigel&rsquo;s thank-you: send now, or Saturday with numbers?</span>
+      <span class="q"><code class="did">NIGEL</code>Nigel&rsquo;s thank-you: send now, or Saturday with numbers?</span>
       <span class="why">Sending now thanks him with figures he already knows. Waiting two or three days lets you report what his newsletter and his episode did on your side, which he cannot see. The Barbara question that used to belong in this note is <strong>closed</strong> as of today.</span>
     </li>
-    <li>
+    <li id="d-d6">
       <span class="n">8</span>
-      <span class="q">The D6 drift check &mdash; proposed, not built.</span>
+      <span class="q"><code class="did">D6</code>The D6 drift check &mdash; proposed, not built.</span>
       <span class="why">Would assert that every skill with a scoring function is either registered or on an explicit exclusion list. It exists because a finished analyzer sat unregistered and its silence was indistinguishable from correctness. Needs your go.</span>
     </li>
-    <li>
+    <li id="d-deletions">
       <span class="n">9</span>
-      <span class="q">Two deletions only you can do.</span>
+      <span class="q"><code class="did">DELETIONS</code>Two deletions only you can do.</span>
       <span class="why"><code>Consulting/AI-Automations/_to_delete/ai-query-runner</code> and <code>index-lock-STALE-safe-to-delete</code> at the site repo root. The bridge cannot delete files.</span>
     </li>
   </ol>
