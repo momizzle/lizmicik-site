@@ -5,3 +5,6 @@
 # Blog -> Library reorg (July 2026). Forced (!) because old /blog files remain in the repo.
 /blog            /library            301!
 /blog/*          /library/:splat     301!
+
+# Roadmap folded into the Fractional Director (Aug 2026). Forced because roadmap.html remains in the repo.
+/roadmap            /fractional-director            301!

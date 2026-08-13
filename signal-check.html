@@ -790,7 +790,7 @@
   <section class="audit-cta" id="audit-cta">
     <div class="container">
       <div class="audit-cta-card">
-        <div class="audit-cta-eyebrow">Full Agent Readiness Audit</div>
+        <div class="audit-cta-eyebrow">Full Independent SEO & AI Search Review</div>
         <h2>Ready to Start Improving Your Score?</h2>
         <p class="cta-body">We'll evaluate your site across 30 dimensions and show you exactly what's keeping your score down. You'll learn how easily AI agents can find you, understand your key content, and trust your authority, and what you can do to improve each of those.</p>
         <p class="cta-details">You'll receive an interactive report with prioritized findings, an executive summary, and a step-by-step improvement roadmap including quick wins.</p>
@@ -833,8 +833,8 @@
           <h4>Services</h4>
           <ul>
             <li><a href="/signal-check">Signal Check</a></li>
-            <li><a href="/audit">Agent Readiness Audit</a></li>
-            <li><a href="/roadmap">Agent Readiness Roadmap</a></li>
+            <li><a href="/audit">Independent SEO &amp; AI Search Review</a></li>
+            <li><a href="/fractional-director">Fractional Director</a></li>
             <li><a href="/actions">Agent Readiness Actions</a></li>
           </ul>
         </div>
@@ -1092,13 +1092,13 @@
       const totalScore = scoring.totalScore;
 
       if (totalFacts === 0) {
-        body.innerHTML = `Across all four AI platforms, <strong>not a single verifiable fact</strong> was cited about your business. No founding year, no team size, no named clients, no awards. Every response was generated from vibes &mdash; plausible-sounding descriptions with nothing behind them. That means when someone asks an AI to recommend a <strong>${escapeHtml(primaryKeyword)}</strong> provider, AI has nothing concrete to point to. The full Agent Readiness Audit identifies exactly which signals are missing and what to fix first.`;
+        body.innerHTML = `Across all four AI platforms, <strong>not a single verifiable fact</strong> was cited about your business. No founding year, no team size, no named clients, no awards. Every response was generated from vibes &mdash; plausible-sounding descriptions with nothing behind them. That means when someone asks an AI to recommend a <strong>${escapeHtml(primaryKeyword)}</strong> provider, AI has nothing concrete to point to. The full Independent SEO & AI Search Review identifies exactly which signals are missing and what to fix first.`;
       } else if (totalScore < 0) {
-        body.innerHTML = `AI agents produced <strong>more hedges than facts</strong> about your business. That means the dominant signal is uncertainty &mdash; "appears to be," "limited information," "I'd recommend checking." When AI agents aren't sure about you, they don't recommend you. The full Agent Readiness Audit maps exactly where these gaps are across all four layers: Find, Understand, Trust, and Use.`;
+        body.innerHTML = `AI agents produced <strong>more hedges than facts</strong> about your business. That means the dominant signal is uncertainty &mdash; "appears to be," "limited information," "I'd recommend checking." When AI agents aren't sure about you, they don't recommend you. The full Independent SEO & AI Search Review maps exactly where these gaps are across all four layers: Find, Understand, Trust, and Use.`;
       } else if (totalFacts <= 4) {
-        body.innerHTML = `AI agents found <strong>a few facts</strong> about your business, but the coverage is thin and inconsistent across platforms. Some know more than others. The full Agent Readiness Audit identifies which signals are reaching which platforms &mdash; and which aren't &mdash; across all four layers of the framework.`;
+        body.innerHTML = `AI agents found <strong>a few facts</strong> about your business, but the coverage is thin and inconsistent across platforms. Some know more than others. The full Independent SEO & AI Search Review identifies which signals are reaching which platforms &mdash; and which aren't &mdash; across all four layers of the framework.`;
       } else {
-        body.innerHTML = `AI agents can cite <strong>real facts</strong> about your business &mdash; that's better than most. But are they citing the <em>right</em> facts? The ones that win recommendations? The full Agent Readiness Audit goes beyond what AI knows to test whether it trusts you enough to recommend you, across all four layers of the framework.`;
+        body.innerHTML = `AI agents can cite <strong>real facts</strong> about your business &mdash; that's better than most. But are they citing the <em>right</em> facts? The ones that win recommendations? The full Independent SEO & AI Search Review goes beyond what AI knows to test whether it trusts you enough to recommend you, across all four layers of the framework.`;
       }
     }
 
@@ -1188,7 +1188,7 @@
 
       if (gap > 20) {
         document.getElementById('benchmark-gap-headline').textContent = 'There\'s a significant gap here';
-        gapBody.textContent = bench.titanName + ' scores ' + gap + ' points higher than you across all four AI platforms. That\'s the difference between AI agents recommending them and hedging about you. The good news: this gap is closable. The full Agent Readiness Audit maps exactly where your signals are missing and what to fix first.';
+        gapBody.textContent = bench.titanName + ' scores ' + gap + ' points higher than you across all four AI platforms. That\'s the difference between AI agents recommending them and hedging about you. The good news: this gap is closable. The full Independent SEO & AI Search Review maps exactly where your signals are missing and what to fix first.';
       } else if (gap > 8) {
         document.getElementById('benchmark-gap-headline').textContent = 'Room to improve';
         gapBody.textContent = bench.titanName + ' leads you by ' + gap + ' points. That gap means AI agents cite more verifiable facts about them — more founding dates, team sizes, client names, awards. Every fact they have that you don\'t is a missed opportunity for recommendation. The full Audit identifies exactly which facts to surface.';
@@ -1236,7 +1236,7 @@
 
       if (totalFacts === 0) {
         headline.textContent = 'AI agents don\u2019t know you yet';
-        body.textContent = 'Across all four platforms, not a single verifiable fact was cited about your business. No founding year, no team size, no named clients. When AI agents don\u2019t know you, they can\u2019t recommend you. The full Agent Readiness Audit identifies exactly which signals are missing and what to fix first.';
+        body.textContent = 'Across all four platforms, not a single verifiable fact was cited about your business. No founding year, no team size, no named clients. When AI agents don\u2019t know you, they can\u2019t recommend you. The full Independent SEO & AI Search Review identifies exactly which signals are missing and what to fix first.';
       } else if (totalScore < 0) {
         headline.textContent = 'More hedges than facts';
         body.textContent = 'AI agents produced more disclaimers than verifiable facts about your business. The dominant signal is uncertainty. When AI isn\u2019t sure about you, it doesn\u2019t recommend you. The full Audit maps exactly where these gaps are and how to close them.';
@@ -1524,7 +1524,7 @@
 
       if (gap > 20) {
         document.getElementById('benchmark-gap-headline').textContent = 'There\'s a significant gap here';
-        gapBody.textContent = benchmarkData.titanName + ' scores ' + gap + ' points higher than you across all four AI platforms. That\'s the difference between AI agents recommending them and hedging about you. The good news: this gap is closable. The full Agent Readiness Audit maps exactly where your signals are missing and what to fix first.';
+        gapBody.textContent = benchmarkData.titanName + ' scores ' + gap + ' points higher than you across all four AI platforms. That\'s the difference between AI agents recommending them and hedging about you. The good news: this gap is closable. The full Independent SEO & AI Search Review maps exactly where your signals are missing and what to fix first.';
       } else if (gap > 8) {
         document.getElementById('benchmark-gap-headline').textContent = 'Room to improve';
         gapBody.textContent = benchmarkData.titanName + ' leads you by ' + gap + ' points. That gap means AI agents cite more verifiable facts about them — more founding dates, team sizes, client names, awards. Every fact they have that you don\'t is a missed opportunity for recommendation. The full Audit identifies exactly which facts to surface.';
