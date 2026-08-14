@@ -160,7 +160,7 @@
        STATS
        ============================================================ */
     .shift-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
       margin-top: 32px;
     }
     .stat-card {
@@ -197,6 +197,10 @@
       color: var(--charcoal); font-weight: 500;
     }
     .compare-table tr:last-child td { border-bottom: none; }
+    /* two-column variant (Aug 14) */
+    .compare-table.two-col th:first-child { color: var(--slate); width: 46%; }
+    .compare-table.two-col th:nth-child(2) { color: var(--teal); }
+    .compare-table.two-col td:nth-child(2) { color: var(--charcoal); font-weight: 500; }
     .compare-check { color: var(--teal); font-weight: 700; }
     .compare-x { color: var(--slate-light); }
 
@@ -363,6 +367,11 @@
       text-align: center; margin-top: 24px;
       font-size: 0.82rem; color: var(--slate-light); font-style: italic;
     }
+    /* normal-weight variant (Aug 14) */
+    .preview-note.plain {
+      text-align: left; font-size: 1rem; color: var(--slate);
+      font-style: normal; line-height: 1.7; margin-top: 28px;
+    }
 
     /* ============================================================
        WHAT YOU GET
@@ -425,6 +434,21 @@
       display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
       margin-top: 24px;
     }
+    /* "Who needs an independent review?" list (Aug 14) */
+    .fit-list {
+      list-style: none; margin-top: 20px; display: grid;
+      grid-template-columns: 1fr 1fr; gap: 4px 32px;
+    }
+    .fit-list li {
+      position: relative; padding: 9px 0 9px 28px;
+      font-size: 0.95rem; color: var(--slate); line-height: 1.6;
+      border-bottom: 1px solid var(--border);
+    }
+    .fit-list li::before {
+      content: "\2713"; position: absolute; left: 0; top: 9px;
+      color: var(--teal); font-weight: 700;
+    }
+    @media (max-width: 768px) { .fit-list { grid-template-columns: 1fr; } }
     .fit-card {
       background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 28px;
     }
@@ -664,6 +688,45 @@
       .pricing-amount { font-size: 2.4rem; }
       .process-steps { grid-template-columns: 1fr; }
     }
+
+    /* ============================================================
+       RESULTS PORTAL + CRITICAL-ITEMS sample
+       ============================================================ */
+    .edb-section { background: linear-gradient(180deg, #ffffff 0%, var(--cream) 100%); }
+    .edb-intro { font-size: 0.95rem; color: var(--slate); line-height: 1.65; margin-top: 8px; margin-bottom: 28px; max-width: 660px; }
+    .edb-h { font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--teal-deep); }
+    /* portal frame */
+    .portal-frame { border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow:var(--shadow-lg); background:#fff; }
+    .portal-bar { display:flex; align-items:center; gap:8px; padding:11px 16px; background:#2C3038; }
+    .portal-dots { display:flex; gap:6px; }
+    .portal-dots span { width:11px; height:11px; border-radius:50%; background:rgba(255,255,255,0.28); display:block; }
+    .portal-title { color:#cfd3d8; font-size:0.78rem; font-weight:500; margin-left:8px; }
+    .portal-body { padding:26px 26px 28px; background:linear-gradient(180deg,#fff 0%, var(--cream) 100%); }
+    .portal-verdict { font-size:0.95rem; color:var(--charcoal); line-height:1.65; margin-bottom:22px; }
+    .portal-verdict strong { color:var(--teal-deep); }
+    .portal-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+    .portal-layers { margin-top:24px; padding-top:20px; border-top:1px solid var(--border); }
+    .portal-layers .edb-h { margin-bottom:12px; }
+    .pcard { background:#fff; border:1px solid var(--border); border-radius:10px; padding:16px; box-shadow:var(--shadow-sm); }
+    .pcard h4 { font-family:'Manrope',sans-serif; font-size:1rem; font-weight:700; color:var(--charcoal); margin-bottom:3px; }
+    .pcard-q { font-size:0.72rem; color:var(--slate-light); margin-bottom:10px; line-height:1.35; }
+    .pcard-verdict { font-size:0.79rem; color:#545B6A; line-height:1.5; margin-bottom:12px; min-height:57px; }
+    .sevbar { display:flex; height:7px; border-radius:4px; overflow:hidden; }
+    .sevbar span { display:block; }
+    .sevbar .s-high{background:#dc2626;} .sevbar .s-med{background:#f59e0b;} .sevbar .s-low{background:#fde047;} .sevbar .s-pass{background:#2f855a;}
+    .pcard-status { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; margin-top:9px; }
+    .pcard-status.ok{color:#2f855a;} .pcard-status.warn{color:#d97706;} .pcard-status.act{color:#c53030;}
+    .portal-ai { margin-top:0; }
+    .edb-ai { display:grid; grid-template-columns:1fr; gap:9px; margin-top:12px; }
+    .edb-ai-row { display:flex; align-items:center; gap:12px; }
+    .edb-ai-name { font-size:0.8rem; color:var(--charcoal); font-weight:600; width:158px; flex-shrink:0; }
+    .edb-ai-track { flex:1; background:#eee7dd; border-radius:6px; height:19px; overflow:hidden; }
+    .edb-ai-fill { height:100%; background:linear-gradient(90deg,#5B7C5E,#3D6B4E); border-radius:6px; }
+    .edb-ai-val { font-size:0.8rem; font-weight:700; color:var(--charcoal); width:40px; text-align:right; flex-shrink:0; }
+    .edb-ai-zero { color:#c53030; }
+    @media (max-width:768px){ .portal-cards{grid-template-columns:1fr 1fr;} .edb-ai-name{width:120px;} }
+    @media (max-width:480px){ .portal-cards{grid-template-columns:1fr;} .pcard-verdict{min-height:0;} }
+
   </style>
 </head>
 <body>
@@ -685,9 +748,9 @@
     <section class="hero">
       <div class="container">
         <p class="section-label" style="margin-bottom: 12px;">Independent SEO &amp; AI Search Review</p>
-        <h1>Are You Ready for AI Agents?</h1>
-        <p class="subtitle">You built your website for humans, but they aren't the only ones visiting it today. And they may not be the only ones trying to act on it tomorrow.</p>
-        <p class="subtitle" style="margin-top: 16px;">The <strong>Independent SEO &amp; AI Search Review</strong> is an outside expert's read on your site, delivered as an Executive Decision Brief that shows you what works, what doesn't, and what to fix first.</p>
+        <h1>Is Your Search Strategy<br class="h1-break"> Still Right?</h1>
+        <p class="subtitle">Your team or agency may be doing good work. But Google is changing, AI is reshaping how buyers discover and evaluate companies, and yesterday's priorities aren't automatically today's.</p>
+        <p class="subtitle" style="margin-top: 16px;">The <strong>Independent SEO &amp; AI Search Review</strong> gives you a senior outside assessment of what you're doing now, what still makes sense, and what needs to change.</p>
         <a href="#apply" class="cta-btn">Get Your Review</a>
       </div>
     </section>
@@ -698,13 +761,34 @@
     <section id="the-situation">
       <div class="container">
         <p class="section-label">Why Now?</p>
-        <h2 class="section-heading">Success is a Moving Target</h2>
+        <h2 class="section-heading">Success is a moving target</h2>
         <div class="section-body">
-          <p>Something has changed for you in 2026. Whether you're new to your role or a third-generation leader of a family business, your job today is not the same as it was yesterday. You may have just inherited a brand-new agency relationship, or be working with a team that's been together for a decade &mdash; but what they need to do today isn't what it was a year ago.</p>
-          <p>AI is evolving rapidly and transforming everything it touches. The status quo is not safe anymore.</p>
-          <p>As a marketing leader accountable for organic growth, you know you can't keep doing the same things you've always done, the same ways you've always done them. Your buyers are changing their behaviors. Instead of using search engines, they're starting their buying journey by asking questions of ChatGPT or Claude.</p>
-          <p>You need an independent, senior read on whether your team is pointed in the right direction, and a plan for what to change. You need to know if your company is findable, understood, trusted, and capable of being acted on &mdash; across both classic search and AI.</p>
+          <p>Something has changed for every marketing leader in 2026. You may be new to your role, inheriting a team or agency you didn't choose. Or you may have worked with the same people for years. Either way, what worked a year ago can't simply be assumed to be the right strategy now.</p>
+          <p>Your buyers are changing how they discover, evaluate and choose companies. Google still matters, but increasingly those journeys also run through ChatGPT, Claude and other AI platforms. That changes what it means to be visible &mdash; and what your team needs to prioritize.</p>
+          <p><strong>The status quo needs to be re-evaluated, not automatically abandoned.</strong></p>
         </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WHO NEEDS AN INDEPENDENT REVIEW (new Aug 14)
+         ============================================================ -->
+    <section id="who-needs">
+      <div class="container">
+        <p class="section-label">Who It's For</p>
+        <h2 class="section-heading">Who needs an independent review?</h2>
+        <div class="section-body">
+          <p>This Review is especially useful when you:</p>
+        </div>
+        <ul class="fit-list">
+          <li>have stepped into a new marketing leadership role and inherited the existing strategy, team or agency;</li>
+          <li>have recently hired or changed agencies and want an independent assessment of the direction;</li>
+          <li>are considering whether to keep, change or expand an existing agency relationship;</li>
+          <li>have seen organic performance weaken and are getting competing explanations for why;</li>
+          <li>are planning a redesign, migration, replatform or major content investment;</li>
+          <li>are being asked what your company should be doing about AI Search;</li>
+          <li>have capable people doing the work but no senior search specialist independently assessing the priorities.</li>
+        </ul>
       </div>
     </section>
 
@@ -714,14 +798,14 @@
     <section id="the-shift">
       <div class="container">
         <p class="section-label">The Four Questions</p>
-        <h2 class="section-heading">Found, understood, trusted, usable &mdash; across Google <em>and</em> AI.</h2>
+        <h2 class="section-heading">Do you perform well across Google <em>and</em> AI?</h2>
         <div class="section-body">
-          <p>Before any search engine ranks you, any AI answer cites you, or any agent acts for you, your site has to clear four bars. They're the same four whether the visitor is a person, Google's crawler, or an autonomous agent &mdash; the AI shift just raised each one and added a fourth that barely existed two years ago:</p>
+          <p>Before any search engine ranks you, any AI answer cites you, or any agent interacts with you, your site has to clear four levels of usability. They're the same four whether the visitor is a person, Google's crawler, or an autonomous agent:</p>
         </div>
         <div class="shift-stats">
           <div class="stat-card">
             <div class="stat-number">Found</div>
-            <div class="stat-label">Can they reach you &mdash; or are you blocking crawlers and agents by accident?</div>
+            <div class="stat-label">Can they reach you, or are you blocking crawlers and agents by accident?</div>
           </div>
           <div class="stat-card">
             <div class="stat-number">Understood</div>
@@ -733,11 +817,11 @@
           </div>
           <div class="stat-card">
             <div class="stat-number">Usable</div>
-            <div class="stat-label">Can an agent actually do business with you &mdash; or only describe you?</div>
+            <div class="stat-label">Can an agent actually do business with you, or only describe you?</div>
           </div>
         </div>
         <div class="section-body" style="margin-top: 28px;">
-          <p>The Review scores all four. Classic search readiness lives inside the first three; the agent-action layer is the fourth. You get one picture that covers both &mdash; not an "SEO report" and a separate "AI report" that never talk to each other.</p>
+          <p>Not every company needs to act on all four areas today. The Review distinguishes what matters now from what can wait.</p>
         </div>
       </div>
     </section>
@@ -748,242 +832,45 @@
     <section id="comparison">
       <div class="container">
         <p class="section-label">The Difference</p>
-        <h2 class="section-heading">Two things most audits skip: the AI layer, and independence.</h2>
+        <h2 class="section-heading">Go beyond a traditional audit</h2>
         <div class="section-body">
-          <p>A traditional SEO audit still matters &mdash; crawlability, indexation, site health, intent, authority. The Review covers that ground, then keeps going into the layer most audits never touch: whether AI platforms can find, understand, trust, and act on you. And it's done independently &mdash; not by the team or agency whose work is being evaluated.</p>
+          <p><strong>A traditional SEO audit asks:</strong><br>What is technically or strategically wrong with the site?</p>
+          <p><strong>My Review asks:</strong><br>Given everything happening across traditional and AI Search, are we pursuing the right priorities&mdash;and what should leadership do about it?</p>
         </div>
-        <table class="compare-table" role="table">
+        <table class="compare-table two-col" role="table">
           <thead>
             <tr>
-              <th>What's evaluated</th>
-              <th>Typical SEO audit</th>
-              <th>The Independent Review</th>
+              <th>Traditional SEO Audit</th>
+              <th>Independent SEO &amp; AI Search Review</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Crawlability, indexation &amp; site health</td>
-              <td><span class="compare-check">&check;</span> Covered</td>
-              <td><span class="compare-check">&check;</span> Covered</td>
+              <td>Finds SEO problems</td>
+              <td>Evaluates whether your overall direction is right</td>
             </tr>
             <tr>
-              <td>Keyword &amp; intent coverage</td>
-              <td><span class="compare-check">&check;</span> Covered</td>
-              <td><span class="compare-check">&check;</span> Covered &mdash; plus how agents parse intent</td>
+              <td>Primarily Google/search-engine focused</td>
+              <td>Looks across Google and AI discovery</td>
             </tr>
             <tr>
-              <td>Backlink &amp; entity authority</td>
-              <td><span class="compare-check">&check;</span> Covered</td>
-              <td><span class="compare-check">&check;</span> Covered &mdash; plus how AI verifies who you are</td>
+              <td>Usually written for SEO practitioners</td>
+              <td>Written first for the executive responsible for the outcome</td>
             </tr>
             <tr>
-              <td>Schema &amp; structured-data depth</td>
-              <td>Surface check only</td>
-              <td><span class="compare-check">&check;</span> Entity relationships &amp; completeness</td>
+              <td>Produces recommendations</td>
+              <td>Prioritizes what to Stay, Change, Stop, Start or Investigate</td>
             </tr>
             <tr>
-              <td>AI crawler access (GPTBot, ClaudeBot, PerplexityBot)</td>
-              <td><span class="compare-x">-</span> Not evaluated</td>
-              <td><span class="compare-check">&check;</span> Bot-specific permissions audited</td>
+              <td>May be performed by the current provider</td>
+              <td>Independent of the team or agency being evaluated</td>
             </tr>
             <tr>
-              <td>JavaScript rendering for agents</td>
-              <td><span class="compare-x">-</span> Not evaluated</td>
-              <td><span class="compare-check">&check;</span> Can agents actually see your content?</td>
-            </tr>
-            <tr>
-              <td>Live AI platform visibility</td>
-              <td><span class="compare-x">-</span> Not evaluated</td>
-              <td><span class="compare-check">&check;</span> Real queries across 4 AI platforms</td>
-            </tr>
-            <tr>
-              <td>Agent-actionable surfaces (/.well-known/, MCP)</td>
-              <td><span class="compare-x">-</span> Not evaluated</td>
-              <td><span class="compare-check">&check;</span> Can an agent transact, not just read?</td>
-            </tr>
-            <tr>
-              <td><strong>Who performs it</strong></td>
-              <td>Often your own agency</td>
-              <td><span class="compare-check">&check;</span> <strong>An independent senior outside expert</strong></td>
+              <td>Usually ends with findings</td>
+              <td>Produces a sequenced 90-day decision plan</td>
             </tr>
           </tbody>
         </table>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         FOUR LAYERS + SAMPLE DIMENSION
-         ============================================================ -->
-    <section id="what-we-evaluate">
-      <div class="container">
-        <p class="section-label">The Framework</p>
-        <h2 class="section-heading">Four questions. Every layer that matters.</h2>
-        <div class="section-body">
-          <p>The Review runs your site against a four-layer framework built from real-world testing across hundreds of agent interactions &mdash; the classic-search fundamentals and the AI/agent layer in one diagnostic. Not a checklist. An independent read of what's broken, why it matters, and what to fix first.</p>
-        </div>
-        <div class="layers-grid">
-          <div class="layer-card">
-            <div class="layer-number">1</div>
-            <h3>Can agents find you?</h3>
-            <p>The infrastructure layer. Are AI crawlers welcomed or blocked? Can agents actually access and render your content? Do you have the signals that tell AI agents your site is open for business, or are you accidentally invisible?</p>
-            <p class="layer-dimensions">"Every major infrastructure shift resets the findability problem. I'll check whether AI crawlers can actually reach and render your content, from robots.txt directives to JavaScript compilation to the new agent discovery protocols."</p>
-          </div>
-          <div class="layer-card">
-            <div class="layer-number">2</div>
-            <h3>Can agents understand you?</h3>
-            <p>The structure layer. Is your content semantically organized so agents can interpret it, not just read it? Schema markup, entity relationships, content hierarchy, and structured data turn a website from a wall of text into a knowledge source agents can work with. Most companies fail here.</p>
-            <p class="layer-dimensions">"Most companies think having structured content means having formatted content. They're not the same thing. I evaluate whether your schema, semantic markup, and content hierarchy actually give AI agents something they can work with, or just look organized to a human eye."</p>
-          </div>
-          <div class="layer-card">
-            <div class="layer-number">3</div>
-            <h3>Can agents trust you?</h3>
-            <p>The authority layer. When an AI agent decides whether to cite you, recommend you, or surface you in an answer, what signals does it find? This is where most businesses discover their biggest blind spot.</p>
-            <p class="layer-dimensions">"This is the blind spot. AI agents verify what your site claims by checking it against every other source they can find. I test what four major AI platforms actually say about your business today and trace where the inconsistencies are coming from."</p>
-          </div>
-          <div class="layer-card">
-            <div class="layer-number">4</div>
-            <h3>Can agents do anything with you?</h3>
-            <p>The capability layer. Beyond reading you, can agents actually act on your business &mdash; request a quote, place an order, negotiate a contract? Agent-actionable surfaces, /.well-known/ endpoints, MCP servers, A2A, and payments protocols are what move you from being described in AI answers to being part of agent workflows.</p>
-            <p class="layer-dimensions">"The agent web isn't just discovery anymore &mdash; it's action. I evaluate whether your site exposes agent-actionable surfaces and discoverable protocols, so when an agent decides to do something with your business, it can."</p>
-          </div>
-        </div>
-
-        <!-- Preview Accordion: Real findings from a real audit -->
-        <div class="preview-accordion">
-          <p class="preview-accordion-intro">Here's what actual findings look like — from a real audit, client identity redacted.</p>
-
-          <!-- FIND -->
-          <div class="preview-item">
-            <button class="preview-toggle" onclick="togglePreview(this)">
-              <div class="preview-toggle-left">
-                <div>
-                  <span class="layer-label">Find</span>
-                  <h4>Can AI crawlers actually reach your content?</h4>
-                </div>
-              </div>
-              <span class="toggle-icon">+</span>
-            </button>
-            <div class="preview-body">
-              <div class="preview-finding">
-                <span class="preview-severity medium">Medium</span>
-                <h5>Selective AI Crawler Management</h5>
-                <p class="preview-finding-desc">Modern AI platforms each send their own named crawler to read your website. Explicitly allowing these crawlers by name signals that your site welcomes AI indexing and can improve crawl priority.</p>
-                <div class="preview-whatwefound">
-                  <strong>What we found</strong>
-                  This site has explicit rules for Claude's bots but does not address GPTBot, PerplexityBot, Google-Extended, Bytespider, or other AI crawlers. While technically allowed under the wildcard rule, adding explicit Allow directives for each signals intent and can improve how thoroughly they index your content.
-                </div>
-                <details class="preview-techdetail">
-                  <summary>Technical detail</summary>
-                  <div class="preview-techdetail-body">
-                    <p>AI crawlers not specifically addressed: GPTBot, Google-Extended, Bytespider, CCBot, Anthropic-AI, PerplexityBot, Amazonbot. These all fall under User-Agent: * (permissive). The selective Claude-only approach may be from an early implementation before other AI crawlers became standard.</p>
-                  </div>
-                </details>
-                <div class="preview-rec"><strong>Recommendation:</strong> Add explicit Allow: / directives for GPTBot, Google-Extended, PerplexityBot, Bytespider, CCBot, and Amazonbot.</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- UNDERSTAND -->
-          <div class="preview-item">
-            <button class="preview-toggle" onclick="togglePreview(this)">
-              <div class="preview-toggle-left">
-                <div>
-                  <span class="layer-label">Understand</span>
-                  <h4>Does your structured data tell AI what you do?</h4>
-                </div>
-              </div>
-              <span class="toggle-icon">+</span>
-            </button>
-            <div class="preview-body">
-              <div class="preview-finding">
-                <span class="preview-severity high">High</span>
-                <h5>Services Pages Lack Service Schema</h5>
-                <p class="preview-finding-desc">Schema.org Service markup tells AI agents "this page describes a professional service." Without it, AI models must guess whether a page is about services, a blog post, or something else entirely.</p>
-                <div class="preview-whatwefound">
-                  <strong>What we found</strong>
-                  Both the services overview and service detail pages use generic WebPage schema. Neither declares Service or ProfessionalService type. When a prospect asks AI "What services does this firm offer?", the AI cannot cite structured schema and must parse unstructured text instead.
-                </div>
-                <details class="preview-techdetail">
-                  <summary>Technical detail</summary>
-                  <div class="preview-techdetail-body">
-                    <p>WordPress theme defaults to WebPage type for all pages. Yoast SEO does not auto-generate Service schema. Requires custom post type schema template in child theme.</p>
-                    <p class="pages-affected">Pages affected:</p>
-                    <ul>
-                      <li>https://████████.com/service-areas — <code>has_service: false</code></li>
-                      <li>https://████████.com/service-areas/strategy-scale — <code>has_service: false</code></li>
-                    </ul>
-                  </div>
-                </details>
-                <div class="preview-rec"><strong>Recommendation:</strong> Implement schema.org/Service on all service pages with properties: name, description, provider (Organization), areaServed, serviceType.</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- TRUST -->
-          <div class="preview-item">
-            <button class="preview-toggle" onclick="togglePreview(this)">
-              <div class="preview-toggle-left">
-                <div>
-                  <span class="layer-label">Trust</span>
-                  <h4>Will AI actually recommend your business?</h4>
-                </div>
-              </div>
-              <span class="toggle-icon">+</span>
-            </button>
-            <div class="preview-body">
-              <div class="preview-finding">
-                <span class="preview-severity high">High</span>
-                <h5>Zero Visibility Across All AI Models</h5>
-                <p class="preview-finding-desc">AI visibility measures whether AI agents mention your firm when users ask questions in your industry. We test this by running structured conversations across multiple AI models and tracking which firms are mentioned.</p>
-                <div class="preview-whatwefound">
-                  <strong>What we found</strong>
-                  This firm has 0% visibility across all four AI model families tested: DeepSeek, Perplexity, Gemini, and OpenAI. In 80 AI conversations, the firm was never mentioned. This is not a ranking problem. The firm is completely absent from AI answers about their industry.
-                </div>
-                <details class="preview-techdetail">
-                  <summary>Technical detail</summary>
-                  <div class="preview-techdetail-body">
-                    <p>20 prompts generating 80 conversations across 4 model families. This site: 0 mentions across 397 total source citations. Top cited in category: bcg.com (23), mckinsey.com (22), youtube.com (17), pwc.com (17), deloitte.com (15), bain.com (15).</p>
-                  </div>
-                </details>
-                <div class="preview-rec"><strong>Recommendation:</strong> This finding is the result of compounding failures across Find and Understand dimensions. Fixing schema, content depth, and authority signals will begin building the foundation for visibility. Re-run testing in 90 days after implementing initial fixes.</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- USE -->
-          <div class="preview-item">
-            <button class="preview-toggle" onclick="togglePreview(this)">
-              <div class="preview-toggle-left">
-                <div>
-                  <span class="layer-label">Use</span>
-                  <h4>Can agents act on your business, not just read it?</h4>
-                </div>
-              </div>
-              <span class="toggle-icon">+</span>
-            </button>
-            <div class="preview-body">
-              <div class="preview-finding">
-                <span class="preview-severity high">High</span>
-                <h5>No Agent-Actionable Surfaces Published</h5>
-                <p class="preview-finding-desc">Agent-actionable surfaces at /.well-known/ tell AI agents what your site can do, not just what it says. Without them, an agent can describe your business in an answer but cannot transact with it, even when the buyer is ready to act.</p>
-                <div class="preview-whatwefound">
-                  <strong>What we found</strong>
-                  None of the expected agent-discovery files are published: /.well-known/api-catalog, /.well-known/mcp/server-card.json, /.well-known/agent-skills/index.json. The site has API documentation pages indexed for humans, but agents querying the standardized discovery paths get a 404. When an agent decides to take action on behalf of a buyer, it routes to a competitor that publishes the right contracts.
-                </div>
-                <details class="preview-techdetail">
-                  <summary>Technical detail</summary>
-                  <div class="preview-techdetail-body">
-                    <p>Three agent-discovery surfaces evaluated: API Catalog (RFC 9727) at <code>/.well-known/api-catalog</code>, MCP Server Card at <code>/.well-known/mcp/server-card.json</code>, and Agent Skills Index at <code>/.well-known/agent-skills/index.json</code>. None present on this site. OAuth discovery (RFC 8414 / RFC 9728) also absent, which rules out authenticated agent flows.</p>
-                  </div>
-                </details>
-                <div class="preview-rec"><strong>Recommendation:</strong> Publish at minimum <code>/.well-known/api-catalog</code> pointing to your public API spec. Add an MCP server card when ready to expose agent-callable tools. Add OAuth discovery when authenticated agent flows are scoped.</div>
-              </div>
-            </div>
-          </div>
-
-          <p class="preview-note">Each audit includes scored findings across all four layers, plus a prioritized action plan.</p>
-        </div>
-
       </div>
     </section>
 
@@ -993,15 +880,15 @@
     <section id="what-you-get">
       <div class="container">
         <p class="section-label">What You Receive</p>
-        <h2 class="section-heading">Not a 70-item crawl report. An Executive Decision Brief.</h2>
+        <h2 class="section-heading">An Executive Decision Brief first, then details</h2>
         <div class="section-body">
-          <p>You already have people who can generate a technical report. What you don't have is a senior, independent read you can take upstairs and act on. That's the deliverable &mdash; written to be read by a decision-maker, not decoded by a specialist. Every Brief answers three questions and hands you a plan.</p>
+          <p>You already have people who can generate a technical report. What you get from me is a senior, independent read you can take upstairs and the details your teams need to start moving towards success.</p>
         </div>
         <ul class="deliverables-list">
           <li>
             <div class="deliverable-icon">&#x1F4DD;</div>
             <div class="deliverable-content">
-              <h4>What you inherited</h4>
+              <h4>Where you stand now</h4>
               <p>A straight read of the current state of your site and the work being done on it &mdash; in plain language, not a scorecard only a specialist can interpret.</p>
             </div>
           </li>
@@ -1034,13 +921,162 @@
             </div>
           </li>
           <li>
-            <div class="deliverable-icon">&#x1F3AC;</div>
+            <div class="deliverable-icon">&#x1F4C5;</div>
             <div class="deliverable-content">
-              <h4>A personalized video walkthrough</h4>
-              <p>A recorded walkthrough from me, calling out what matters most and where to start. Share it across the org &mdash; no meeting required.</p>
+              <h4>A 60-minute Executive Readout</h4>
+              <p>During this meeting we'll discuss and answer your questions, then agree on what matters most and where to start.</p>
             </div>
           </li>
         </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SAMPLE — RESULTS PORTAL + CRITICAL ITEMS (redacted)
+         ============================================================ -->
+    <section id="sample-brief" class="edb-section">
+      <div class="container">
+        <p class="section-label">See It In Action</p>
+        <h2 class="section-heading">A look at what you actually get</h2>
+        <p class="edb-intro">In your private results portal, you'll find a Written Executive Decision Brief that will include information like this:</p>
+
+        <!-- Portal view -->
+        <div class="portal-frame">
+          <div class="portal-bar">
+            <div class="portal-dots"><span></span><span></span><span></span></div>
+            <div class="portal-title">Executive Brief Samples &middot; client and industry redacted</div>
+          </div>
+          <div class="portal-body">
+            <p class="portal-verdict">Overall your brand shows <strong>excellent competitive visibility</strong>. You rank 6th of 120 brands, ahead of every direct competitor. However, when you look closer, you'll see that while you are strongly represented on some AI platforms, you're nearly absent on others (see table below). The gap points to <strong>structural and entity-level issues</strong> rather than weak content or authority.</p>
+            <div class="portal-ai">
+              <div class="edb-h">Live AI visibility &mdash; baseline at time of audit</div>
+              <div class="edb-ai">
+                <div class="edb-ai-row"><div class="edb-ai-name">Perplexity</div><div class="edb-ai-track"><div class="edb-ai-fill" style="width:75%;"></div></div><div class="edb-ai-val">75%</div></div>
+                <div class="edb-ai-row"><div class="edb-ai-name">Gemini</div><div class="edb-ai-track"><div class="edb-ai-fill" style="width:64%;"></div></div><div class="edb-ai-val">64%</div></div>
+                <div class="edb-ai-row"><div class="edb-ai-name">Google AI Overviews</div><div class="edb-ai-track"><div class="edb-ai-fill" style="width:6%;"></div></div><div class="edb-ai-val">6%</div></div>
+                <div class="edb-ai-row"><div class="edb-ai-name">ChatGPT</div><div class="edb-ai-track"><div class="edb-ai-fill" style="width:4%;"></div></div><div class="edb-ai-val">4%</div></div>
+                <div class="edb-ai-row"><div class="edb-ai-name">Claude</div><div class="edb-ai-track"><div class="edb-ai-fill" style="width:0%;"></div></div><div class="edb-ai-val edb-ai-zero">0%</div></div>
+              </div>
+            </div>
+
+            <div class="portal-layers">
+              <div class="edb-h">Four-layer results</div>
+            <div class="portal-cards">
+              <div class="pcard">
+                <h4>Find</h4>
+                <div class="pcard-q">Can AI reach &amp; render you?</div>
+                <div class="pcard-verdict">Doors wide open. Clean robots.txt and sitemaps, no blockers.</div>
+                <div class="sevbar"><span class="s-pass" style="flex:8"></span><span class="s-low" style="flex:1"></span><span class="s-med" style="flex:1"></span></div>
+                <div class="pcard-status ok">Strong</div>
+              </div>
+              <div class="pcard">
+                <h4>Understand</h4>
+                <div class="pcard-q">Can AI tell what you do?</div>
+                <div class="pcard-verdict">Rich content, almost no structure. Specs live in prose, not schema.</div>
+                <div class="sevbar"><span class="s-high" style="flex:7"></span><span class="s-med" style="flex:3"></span><span class="s-pass" style="flex:2"></span></div>
+                <div class="pcard-status act">Act now</div>
+              </div>
+              <div class="pcard">
+                <h4>Trust</h4>
+                <div class="pcard-q">Will AI recommend you?</div>
+                <div class="pcard-verdict">Winning on some engines, invisible on others. Indexed under two names.</div>
+                <div class="sevbar"><span class="s-high" style="flex:5"></span><span class="s-med" style="flex:3"></span><span class="s-pass" style="flex:4"></span></div>
+                <div class="pcard-status warn">Mixed</div>
+              </div>
+              <div class="pcard">
+                <h4>Use</h4>
+                <div class="pcard-q">Can an agent act on you?</div>
+                <div class="pcard-verdict">Good quote form for humans; closed to agents, no machine-readable path.</div>
+                <div class="sevbar"><span class="s-high" style="flex:6"></span><span class="s-med" style="flex:2"></span><span class="s-pass" style="flex:2"></span></div>
+                <div class="pcard-status act">Act now</div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Three highest-impact items (collapsed accordion) -->
+        <div class="preview-accordion" style="margin-top:44px;">
+          <p class="preview-accordion-intro">Also in the Executive Brief, you'll find your three highest impact moves. Open any one to see the finding and the fix.</p>
+
+          <div class="preview-item">
+            <button class="preview-toggle" onclick="togglePreview(this)">
+              <div class="preview-toggle-left">
+                <div>
+                  <span class="layer-label">Highest impact &middot; Trust</span>
+                  <h4>Reconcile your identity</h4>
+                </div>
+              </div>
+              <span class="toggle-icon">+</span>
+            </button>
+            <div class="preview-body">
+              <div class="preview-finding">
+                <span class="preview-severity high">Critical</span>
+                <h5>You're indexed under two different company names</h5>
+                <div class="preview-whatwefound">
+                  <strong>What we found</strong>
+                  A modern brand name on newer platforms and a legacy legal name on older B2B directories. With no schema bridge declaring them one company, training-weighted engines treat them as two businesses &mdash; which is most of why one engine cites you at 75% and another at 0%.
+                </div>
+                <div class="preview-rec"><strong>Recommendation:</strong> Add an Organization schema bridge (<code>alternateName</code> + <code>sameAs</code>) and reconcile the legacy directory listings so every engine resolves you to a single entity.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="preview-item">
+            <button class="preview-toggle" onclick="togglePreview(this)">
+              <div class="preview-toggle-left">
+                <div>
+                  <span class="layer-label">Highest impact &middot; Understand</span>
+                  <h4>Add the structural backbone</h4>
+                </div>
+              </div>
+              <span class="toggle-icon">+</span>
+            </button>
+            <div class="preview-body">
+              <div class="preview-finding">
+                <span class="preview-severity high">Critical</span>
+                <h5>Your specs and services aren't machine-readable</h5>
+                <div class="preview-whatwefound">
+                  <strong>What we found</strong>
+                  Product and service details exist only as prose, with generic <code>WebPage</code> schema site-wide. An agent building a comparison represents you with roughly 3 attributes and a competitor with 20 &mdash; a data-extractability gap, not a product gap.
+                </div>
+                <details class="preview-techdetail">
+                  <summary>Technical detail</summary>
+                  <div class="preview-techdetail-body">
+                    <p>Every sampled page emits only WordPress/Yoast defaults &mdash; no <code>Product</code>, <code>Service</code>, <code>Organization</code>, or <code>Review</code> types. Requires custom schema templates per page type.</p>
+                  </div>
+                </details>
+                <div class="preview-rec"><strong>Recommendation:</strong> Implement <code>schema.org/Product</code> and <code>schema.org/Service</code> with <code>name</code>, <code>description</code>, <code>provider</code>, <code>areaServed</code>, and offer/spec properties, plus <code>Review</code> schema on testimonials.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="preview-item">
+            <button class="preview-toggle" onclick="togglePreview(this)">
+              <div class="preview-toggle-left">
+                <div>
+                  <span class="layer-label">Highest impact &middot; Use</span>
+                  <h4>Open the action layer</h4>
+                </div>
+              </div>
+              <span class="toggle-icon">+</span>
+            </button>
+            <div class="preview-body">
+              <div class="preview-finding">
+                <span class="preview-severity high">Critical</span>
+                <h5>An agent can describe you, but can't do business with you</h5>
+                <div class="preview-whatwefound">
+                  <strong>What we found</strong>
+                  Your quote-request path is genuinely good for a human, but it's closed to agents by a challenge question and exposes no machine-readable contract. When a buyer's agent is ready to request a quote, it routes to a competitor that published the right surfaces.
+                </div>
+                <div class="preview-rec"><strong>Recommendation:</strong> Publish a machine-readable "inputs-to-quote" contract and agent-actionable surfaces at <code>/.well-known/</code>, and link product pages to a structured RFQ path with spec context carried through.</div>
+              </div>
+            </div>
+          </div>
+
+          <p class="preview-note plain">The full audit is also included in your portal. There you'll see every finding scored, with the technical detail your team fixes from.</p>
+        </div>
+
       </div>
     </section>
 
@@ -1050,22 +1086,22 @@
     <section id="process">
       <div class="container">
         <p class="section-label">The Process</p>
-        <h2 class="section-heading">What happens after you request your Review.</h2>
+        <h2 class="section-heading">It starts with your business, not a form</h2>
         <div class="process-steps" style="grid-template-columns: repeat(3, 1fr);">
           <div class="process-step">
             <div class="step-number">1</div>
-            <h4>Tell Us About Your Business</h4>
-            <p>When you order, we ask about your business goals, competitive landscape, and what prompted your interest so we can hit the ground running.</p>
+            <h4>I start with your business</h4>
+            <p>When you request your Review, the first thing I ask about is your real objectives, the pressure you're under, and what your team has been asked to deliver, before I look at a single page. I measure your site against what matters to your business, not a generic checklist.</p>
           </div>
           <div class="process-step">
             <div class="step-number">2</div>
-            <h4>We Get to Work</h4>
-            <p>If we have questions, we'll reach out. Otherwise, your diagnostic is underway. Most audits are delivered within 10 business days.</p>
+            <h4>I run the independent diagnostic</h4>
+            <p>I run the full four-layer audit and the live AI tests independently, not as the team or agency whose work is being evaluated. If I have questions I'll reach out; most Reviews are delivered within 10 business days.</p>
           </div>
           <div class="process-step">
             <div class="step-number">3</div>
-            <h4>Your Results Are Ready</h4>
-            <p>You'll receive your executive summary, full diagnostic report, prioritized action roadmap, live AI test results, and a personalized video walkthrough.</p>
+            <h4>You get the verdict and the evidence</h4>
+            <p>The Executive Decision Brief is my read on whether you're pointed the right way and what to change, with the scored audit and live AI results underneath it, ready for your team to act on. We close with a 60-minute Executive Readout.</p>
           </div>
         </div>
       </div>
@@ -1096,14 +1132,14 @@
         <h2 class="section-heading">Transparent. One tier. No surprises.</h2>
         <div class="pricing-card">
           <div class="pricing-amount">$2,500</div>
-          <p class="pricing-label">One-time diagnostic. No retainer. No recurring fees.</p>
+          <p class="pricing-label">A standalone review. No retainer, no recurring fees &mdash; the brief is yours to run with.</p>
           <ul class="pricing-includes">
-            <li>The Executive Decision Brief &mdash; what you inherited, whether to trust it, what to do</li>
+            <li>The Executive Decision Brief shows where you stand and where you need to go</li>
             <li>Every area sorted: Stay, Change, Stop, Start, Investigate</li>
             <li>Your three highest-impact moves and a 90-day priority list</li>
             <li>Live AI test results across ChatGPT, Claude, Perplexity, and Gemini</li>
             <li>Scored four-layer diagnostic &mdash; every finding rated and prioritized</li>
-            <li>Personalized video walkthrough from Liz</li>
+            <li>A 60-minute Executive Readout with Liz</li>
           </ul>
           <a href="#apply" class="cta-btn" style="width: 100%; text-align: center;">Book Your Review</a>
         </div>
@@ -1121,7 +1157,7 @@
 
           <div class="faq-item">
             <button class="faq-question" onclick="toggleFaq(this)">
-              <span>Do you use AI in the audit process?</span>
+              <span>Do you use AI in the Review process?</span>
               <span class="faq-toggle">+</span>
             </button>
             <div class="faq-answer">
@@ -1135,7 +1171,7 @@
               <span class="faq-toggle">+</span>
             </button>
             <div class="faq-answer">
-              <p>No &mdash; it's giving them a target they can trust. Good teams get pointed at the wrong goal all the time when the field moves faster than the plan. The Review is an independent read of <em>direction</em>, not a performance review of people. Most teams are relieved to have a senior outside opinion, in writing, on what actually matters now &mdash; something they can build against.</p>
+              <p>No &mdash; it's giving them a target they can trust. Good teams get pointed at the wrong goal all the time when the field moves faster than the plan. The Review is an independent read of <em>direction</em>, not a performance review of people. Most teams are relieved to have a senior outside opinion, in writing, on what actually matters now, and something to build against.</p>
             </div>
           </div>
 
@@ -1145,28 +1181,27 @@
               <span class="faq-toggle">+</span>
             </button>
             <div class="faq-answer">
-              <p>That's what the Fractional Director engagement is for. The Review tells you what's broken and what to prioritize across all four layers. The <a href="/fractional-director">Fractional Director, SEO &amp; AI Search</a> is the ongoing relationship that makes sure your team and agency actually work those priorities, quarter after quarter, as AI search keeps moving. The Review is how it starts.</p>
+              <p>The Review stands on its own &mdash; most clients take the brief to their team and run with it, which is exactly how it's meant to work. If you'd rather not go it alone and you want someone independent staying in the picture to keep you pointed the right way as AI search keeps moving, that's the <a href="/fractional-director">Fractional Director, SEO &amp; AI Search</a>. Some people start there right after the Review; some come back six months later; some never do. The retainer only makes sense if it's right for both of us.</p>
             </div>
           </div>
 
           <div class="faq-item">
             <button class="faq-question" onclick="toggleFaq(this)">
-              <span>What if we need help with the implementation?</span>
+              <span>What do you need from us?</span>
               <span class="faq-toggle">+</span>
             </button>
             <div class="faq-answer">
-              <p>The Roadmap is built for exactly this, and we do the building. Not a list of recommendations: the actual schema, the corrected markup, and the content rewrites, produced for each of your page types and annotated so everyone knows where each piece goes. Your developers place finished assets instead of interpreting a spec. I don't push the changes to your site myself, but nothing is left for your team to figure out.</p>
-              <p>If what you need is for an agent to actually <em>transact</em> with you &mdash; request a quote, submit an RFQ &mdash; that is a different job. <strong>Agent Readiness Actions</strong> builds the machine-readable contracts and discovery files that make your business callable. <a href="/actions">See Agent Readiness Actions &rarr;</a></p>
+              <p>I do not require access to your GA/GSC or other internal accounts for this Review. However, in our onboarding conversation, we will want to discuss your roadmap, agency reports and results, etc.</p>
             </div>
           </div>
 
           <div class="faq-item">
             <button class="faq-question" onclick="toggleFaq(this)">
-              <span>How long does the audit take?</span>
+              <span>How long does the Review take?</span>
               <span class="faq-toggle">+</span>
             </button>
             <div class="faq-answer">
-              <p>Most audits are delivered within 10 business days. You'll receive your full package - executive summary, diagnostic report, action roadmap, AI test results, and personalized video walkthrough - all at once.</p>
+              <p>Most Reviews are delivered within 10 business days. You'll receive your full package &mdash; Executive Decision Brief, scored diagnostic, 90-day priority list, and live AI test results &mdash; all at once, followed by your 60-minute Executive Readout.</p>
             </div>
           </div>
 
@@ -1180,16 +1215,6 @@
             </div>
           </div>
 
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-              <span>I already rank well on Google. Do I still need this?</span>
-              <span class="faq-toggle">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>Google rankings and AI agent visibility are related but not the same thing. Some companies that rank well on Google are invisible to AI agents because they lack the structured data and entity signals that AI agents rely on. This audit evaluates a different surface - one that's becoming more important every quarter.</p>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
@@ -1200,8 +1225,8 @@
     <section id="apply" class="form-section">
       <div class="container">
         <div class="form-card">
-          <h2>Request Your Independent SEO &amp; AI Search Review</h2>
-          <p class="form-subtitle">I take 5 audits per month to ensure every client gets my full attention. Tell me about your business and I'll be in touch within two business days.</p>
+          <h2>Request your Independent SEO &amp; AI Search Review</h2>
+          <p class="form-subtitle">Tell me a bit about your business and I'll be in touch within two business days.</p>
 
           <form name="audit-application" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/audit-thank-you">
             <input type="hidden" name="form-name" value="audit-application">
@@ -1229,15 +1254,28 @@
             </div>
 
             <div class="form-group">
-              <label for="company-size">Company Size</label>
-              <select id="company-size" name="company-size">
+              <label for="annual-revenue">Annual Revenue</label>
+              <select id="annual-revenue" name="annual-revenue">
                 <option value="" disabled selected>Select one</option>
-                <option value="1-10">1&ndash;10 employees</option>
-                <option value="11-50">11&ndash;50 employees</option>
-                <option value="51-200">51&ndash;200 employees</option>
-                <option value="201-1000">201&ndash;1,000 employees</option>
-                <option value="1000+">1,000+ employees</option>
+                <option value="under-10m">Under $10M</option>
+                <option value="10m-25m">$10M &ndash; $25M</option>
+                <option value="25m-100m">$25M &ndash; $100M</option>
+                <option value="100m-500m">$100M &ndash; $500M</option>
+                <option value="over-500m">Over $500M</option>
+                <option value="prefer-not-to-say">Prefer not to say</option>
               </select>
+            </div>
+
+            <div class="form-group">
+              <label for="marketing-team-size">How many people work on your marketing and SEO?</label>
+              <select id="marketing-team-size" name="marketing-team-size">
+                <option value="" disabled selected>Select one</option>
+                <option value="1">Just me</option>
+                <option value="2-3">2&ndash;3 people</option>
+                <option value="4-10">4&ndash;10 people</option>
+                <option value="10+">More than 10 people</option>
+              </select>
+              <span class="form-hint">Include in-house staff and anyone at an agency working on your behalf.</span>
             </div>
 
             <div class="form-group">
@@ -1424,7 +1462,8 @@
         var name = form.querySelector('[name="name"]').value;
         var email = form.querySelector('[name="email"]').value;
         var website = form.querySelector('[name="website"]').value;
-        var companySize = form.querySelector('[name="company-size"]').value;
+        var annualRevenue = form.querySelector('[name="annual-revenue"]').value;
+        var marketingTeamSize = form.querySelector('[name="marketing-team-size"]').value;
         var aboutBusiness = form.querySelector('[name="about-business"]').value;
         var howFound = form.querySelector('[name="how-found"]').value;
 
@@ -1443,7 +1482,8 @@
             name: name,
             email: email,
             website: website,
-            companySize: companySize,
+            annualRevenue: annualRevenue,
+            marketingTeamSize: marketingTeamSize,
             aboutBusiness: aboutBusiness,
             howFound: howFound
           })

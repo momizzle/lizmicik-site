@@ -95,7 +95,8 @@ export default async (request) => {
         name,
         email,
         website: body.website || '',
-        companySize: body.companySize || '',
+        annualRevenue: body.annualRevenue || '',
+        marketingTeamSize: body.marketingTeamSize || '',
         aboutBusiness: body.aboutBusiness || '',
         howFound: body.howFound || '',
       });
@@ -178,8 +179,14 @@ function buildContactEmail({ name, email, message }) {
 </body></html>`;
 }
 
-function buildAuditEmail({ name, email, website, companySize, aboutBusiness, howFound }) {
+function buildAuditEmail({ name, email, website, companySize, annualRevenue, marketingTeamSize, aboutBusiness, howFound }) {
   const escapedAbout = (aboutBusiness || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>');
+  const row = (label, value, shaded) =>
+    `<tr${shaded ? ' style="background:#FAF8F5;"' : ''}><td style="padding:8px 12px; font-weight:600; color:#374151; vertical-align:top;">${label}</td><td style="padding:8px 12px; color:#2C3038;">${value || '(not selected)'}</td></tr>`;
+  // audit form sends annualRevenue + marketingTeamSize; roadmap form still sends companySize
+  const qualifierRows = annualRevenue !== undefined || marketingTeamSize !== undefined
+    ? row('Annual Revenue', annualRevenue, true) + row('Marketing Team', marketingTeamSize, false)
+    : row('Company Size', companySize, true);
   return `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"></head>
 <body style="margin:0; padding:24px; background:#f5f3ef; font-family:Inter,-apple-system,Helvetica,Arial,sans-serif;">
@@ -190,7 +197,7 @@ function buildAuditEmail({ name, email, website, companySize, aboutBusiness, how
     <tr><td style="padding:8px 12px; font-weight:600; color:#374151; width:100px; vertical-align:top;">Name</td><td style="padding:8px 12px; color:#2C3038;">${name || '(not provided)'}</td></tr>
     <tr style="background:#FAF8F5;"><td style="padding:8px 12px; font-weight:600; color:#374151; vertical-align:top;">Email</td><td style="padding:8px 12px;"><a href="mailto:${email}" style="color:#018799;">${email}</a></td></tr>
     <tr><td style="padding:8px 12px; font-weight:600; color:#374151; vertical-align:top;">Website</td><td style="padding:8px 12px;"><a href="${website}" style="color:#018799;" target="_blank">${website || '(not provided)'}</a></td></tr>
-    <tr style="background:#FAF8F5;"><td style="padding:8px 12px; font-weight:600; color:#374151; vertical-align:top;">Company Size</td><td style="padding:8px 12px; color:#2C3038;">${companySize || '(not selected)'}</td></tr>
+    ${qualifierRows}
     <tr><td style="padding:8px 12px; font-weight:600; color:#374151; vertical-align:top;">About</td><td style="padding:8px 12px; color:#2C3038; line-height:1.6;">${escapedAbout || '(not provided)'}</td></tr>
     <tr style="background:#FAF8F5;"><td style="padding:8px 12px; font-weight:600; color:#374151; vertical-align:top;">How Found</td><td style="padding:8px 12px; color:#2C3038;">${howFound || '(not provided)'}</td></tr>
   </table>
